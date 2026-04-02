@@ -6742,3 +6742,160 @@ Updated the research workspace:
 - Added next-iteration research requests in `.workspaces/3-research/resources/research-requests.md`.
 - Refreshed `.workspaces/3-research/context.md` to the current completed state.
 [0;32m[2026-04-02 18:16:46] ✓[0m Workspace Research & Content completed successfully
+ 6 files changed, 1309 insertions(+), 4 deletions(-)
+To https://github.com/arro000/agent-glossary.git
+   2d0f924..1c2711a  main -> main
+[0;32m[2026-04-02 18:16:47] ✓[0m Workspace changes committed and pushed
+[0;32m[2026-04-02 18:16:47] ✓[0m Iteration 4 complete. Starting iteration 5...
+[0;36m[2026-04-02 18:16:49][0m Launching OpenCode for workspace Implementation...
+[0m
+> build · gpt-5.3-codex
+[0m
+[0m→ [0mRead .workspaces/1-implementation/context.md[90m [offset=1, limit=4000][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=4000][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/pixijs-reference.md[90m [offset=1, limit=4000][0m
+[0m→ [0mRead .workspaces/2-improvements/resources/prd.md[90m [offset=1, limit=4000][0m
+[0m✱ [0mGlob "src/**/*"[90m in . · 5 matches[0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1, limit=4000][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1270, limit=2500][0m
+[0m→ [0mRead src/app/globals.css[90m [offset=1, limit=400][0m
+[0m→ [0mRead src/app/page.tsx[90m [offset=1, limit=200][0m
+[0m→ [0mRead src/app/layout.tsx[90m [offset=1, limit=200][0m
+[0m
+[0m$ [0mgit status --short
+M .workspaces/1-implementation/context.md
+ M .workspaces/logs/loop.log
+[0m
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/1-implementation/context.md
+[0m
+[0m$ [0mdate '+%Y-%m-%d %H:%M:%S'
+2026-04-02 18:18:09
+[0m
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/1-implementation/context.md
+[0m
+[0m$ [0mnpm run build
+> agent-glossary@0.1.0 build
+> next build
+
+▲ Next.js 16.2.2 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.1s
+  Running TypeScript ...
+  Finished TypeScript in 2.0s ...
+  Collecting page data using 5 workers ...
+  Generating static pages using 5 workers (0/4) ...
+  Generating static pages using 5 workers (1/4) 
+  Generating static pages using 5 workers (2/4) 
+  Generating static pages using 5 workers (3/4) 
+✓ Generating static pages using 5 workers (4/4) in 328ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+[0m
+[0m$ [0mgit status --short
+M .workspaces/1-implementation/context.md
+ M .workspaces/logs/loop.log
+ M src/components/whiteboard.tsx
+[0m
+[0m$ [0mgit diff -- src/components/whiteboard.tsx .workspaces/1-implementation/context.md
+diff --git a/.workspaces/1-implementation/context.md b/.workspaces/1-implementation/context.md
+index 65cd3be..7d1c5ea 100644
+--- a/.workspaces/1-implementation/context.md
++++ b/.workspaces/1-implementation/context.md
+@@ -1,9 +1,9 @@
+ # Workspace 1 — Implementation
+ 
+ ## Stato
+-- **Iterazione**: 4
+-- **Ultimo aggiornamento**: 2026-04-02 18:10:39
+-- **Stato**: completed
++- **Iterazione**: 5
++- **Ultimo aggiornamento**: 2026-04-02 18:18:09
++- **Stato**: in_progress
+ 
+ ## Obiettivo
+ Implementare l'app "Agent Glossary Whiteboard" usando PixiJS v8 + Next.js.
+@@ -33,15 +33,15 @@ Una whiteboard quadrettata interattiva che mostra un glossario visuale dell'ecos
+ 7. **Observability** — 7 concetti: Logging & Tracing, Observability Platform, Cost Tracking, Evaluation & Benchmarks, Debugging Tools, Safety & Guardrails, Agent Governance
+ 8. **Infrastructure** — 6 concetti: Docker & Containers, GPU Cloud, Serverless, CI/CD, Git Integration, Environment Management
+ 9. **Knowledge & Retrieval** — 2 concetti: Agentic RAG, Deep Research Agent
+-10. **Frameworks & SDKs** — 6 concetti: Google ADK, OpenAI Agents SDK, Mastra, Pydantic AI, Strands Agents SDK, Claude Agent SDK
++10. **Frameworks & SDKs** — 7 concetti: Google ADK, OpenAI Agents SDK, Mastra, Pydantic AI, Strands Agents SDK, Claude Agent SDK, Cloudflare Agents SDK
+ 11. **Business Automation** — 2 concetti: Visual Agent Builder, Low-Code Agent Platform
+ 12. **Protocol Extensions** — 2 concetti: MCP Apps, Agent Registry / Discovery
+ 
+-**Totale: 68 concetti** (era 62 nell'iterazione 2)
++**Totale: 69 concetti** (era 62 nell'iterazione 2)
+ 
+ ## Dati
+ I concetti/strumenti per ogni macroarea stanno nel file `resources/concepts.md`.
+-La whiteboard rappresenta 68 subsection correnti allineate alle macroaree principali del database.
++La whiteboard rappresenta 69 subsection correnti allineate alle macroaree principali del database.
+ 
+ ## Dettagli Implementativi
+ 
+@@ -202,6 +202,13 @@ La whiteboard rappresenta 68 subsection correnti allineate alle macroaree princi
+ - [x] Reso piu chiaro il project-weight encoding con ring segmentato leggermente piu evidente e badge refs centrato
+ - [x] Verifica finale: `npm run build` completata con successo dopo gli ultimi miglioramenti visivi
+ 
++## Iterazione 5 (Richiesta utente corrente) — Completata
++- [x] Letti i file richiesti: `context.md`, `resources/concepts.md`, `resources/pixijs-reference.md`
++- [x] Verificato PRD in `.workspaces/2-improvements/resources/prd.md` (presente, baseline senza nuove change request)
++- [x] Allineato dataset whiteboard a `concepts.md` aggiungendo `Cloudflare Agents SDK` in **Frameworks & SDKs**
++- [x] Confermati key rules: PixiJS v8 vanilla via `useRef/useEffect`, rendering full-canvas, font Inter, bolle equal-size con emoji+titolo, peso da `alternatives`, hover glow, click panel, zoom wheel e pan drag
++- [x] Totale subsection aggiornato a **69** con conteggi macroarea coerenti al dataset corrente
++
+ ## File Principali
+ - `src/components/whiteboard.tsx` — Componente principale con tutta la logica PixiJS
+ - `src/app/page.tsx` — Pagina che renderizza il whiteboard
+diff --git a/src/components/whiteboard.tsx b/src/components/whiteboard.tsx
+index ba55da1..36e2aa8 100644
+--- a/src/components/whiteboard.tsx
++++ b/src/components/whiteboard.tsx
+@@ -194,6 +194,7 @@ const MACROAREAS: MacroareaConfig[] = [
+       { name: 'Pydantic\nAI', popularity: 8, description: 'Framework Python type-safe dal team Pydantic. Agent generici, validation automatica, 15+ provider, MCP e A2A nativi.', alternatives: 'LangGraph, Google ADK, Strands Agents, Claude Agent SDK', category: 'Framework' },
+       { name: 'Strands\nAgents SDK', popularity: 7, description: 'SDK open-source Amazon/AWS. Model-driven: il modello orchestra, lo sviluppatore definisce tools e prompt. Nativo MCP, A2A, Bedrock.', alternatives: 'OpenAI Agents SDK, Claude Agent SDK, Google ADK', category: 'Framework' },
+       { name: 'Claude Agent\nSDK', popularity: 9, description: 'SDK Anthropic che espone il motore di Claude Code come libreria. Tools built-in, subagenti, MCP, hooks, sessioni, permessi.', alternatives: 'OpenAI Agents SDK, Google ADK, Pydantic AI', category: 'Framework' },
++      { name: 'Cloudflare\nAgents SDK', popularity: 6, description: 'SDK Cloudflare per agenti distribuiti sulla rete globale Cloudflare, orientato a progetti runnable e composabili.', alternatives: 'Mastra, OpenAI Agents SDK, LangGraph, Cloudflare Workers', category: 'Framework' },
+     ],
+   },
+   {
+[0m
+[0m$ [0mgit log -5 --oneline
+1c2711a loop iter 4: workspace 3 (Research & Content) completed
+2d0f924 loop iter 4: workspace 2 (Improvements & PRD) completed
+a264f90 record workspace log update
+76ec9df refine fixed-size bubble visuals
+4d13964 loop iter 4: workspace 1 (Implementation) completed
+[0m
+[0m$ [0mgit add src/components/whiteboard.tsx .workspaces/1-implementation/context.md && git commit -m "update whiteboard data with Cloudflare Agents SDK" && git status --short
+[main 0e4c5a3] update whiteboard data with Cloudflare Agents SDK
+ 2 files changed, 14 insertions(+), 6 deletions(-)
+ M .workspaces/logs/loop.log
+[0m
+Implemented iteration 5 updates and committed them.
+
+- Added `Cloudflare Agents SDK` as a new equal-size subsection bubble in `Frameworks & SDKs`, aligned to `.workspaces/1-implementation/resources/concepts.md` data (`src/components/whiteboard.tsx`).
+- Updated workspace context to reflect the new dataset state:
+  - `Frameworks & SDKs` count 6 → 7
+  - Total subsections 68 → 69
+  - Added an “Iterazione 5 (Richiesta utente corrente)” completion block
+  - Refreshed timestamp (`.workspaces/1-implementation/context.md`).
+- Verified app build passes with `npm run build`.
+
+Commit created:
+- `0e4c5a3` — `update whiteboard data with Cloudflare Agents SDK`
+
+Note:
+- I only committed the requested implementation/context changes; `.workspaces/logs/loop.log` is still modified locally and left untouched.
+[0;32m[2026-04-02 18:18:39] ✓[0m Workspace Implementation completed successfully
