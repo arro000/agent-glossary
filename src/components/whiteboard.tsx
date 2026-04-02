@@ -41,6 +41,7 @@ const ROW_STEP = AREA_HEIGHT + ROW_GAP;
 const BUBBLE_RADIUS = 46;
 const ZOOM_LERP = 0.12;
 const PAN_LERP = 0.15;
+const EMOJI_FONT_FAMILY = '"Inter", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif';
 
 const MACROAREAS: MacroareaConfig[] = [
   {
@@ -268,6 +269,24 @@ function getProjectWeightTier(referenceCount: number): number {
   return Math.max(1, Math.min(5, Math.ceil(referenceCount / 2)));
 }
 
+function getBubbleColumns(count: number): number {
+  if (count <= 3) return count;
+  if (count <= 6) return 3;
+  if (count <= 10) return 4;
+  return Math.min(6, Math.max(4, Math.ceil(Math.sqrt(count * 1.2))));
+}
+
+function getBubbleFontSize(name: string, radius: number): number {
+  const len = name.replace(/\n/g, ' ').length;
+  if (len <= 12) return Math.min(11, Math.max(9, radius * 0.22));
+  if (len <= 18) return Math.min(10, Math.max(8.5, radius * 0.19));
+  return Math.min(9, Math.max(8, radius * 0.17));
+}
+
+function getBubbleLabel(name: string): string {
+  return name.replace(/\n/g, ' ');
+}
+
 function layoutBubbles(concepts: ConceptData[], ax: number, ay: number) {
   const n = concepts.length;
   const padX = 30;
@@ -280,10 +299,7 @@ function layoutBubbles(concepts: ConceptData[], ax: number, ay: number) {
     concept: c,
     radius: BUBBLE_RADIUS,
   }));
-  let cols: number;
-  if (n <= 4) cols = n;
-  else if (n <= 8) cols = Math.min(n, 5);
-  else cols = 6;
+  const cols = getBubbleColumns(n);
 
   const rows = Math.ceil(n / cols);
   const cellW = availW / cols;
@@ -297,9 +313,8 @@ function layoutBubbles(concepts: ConceptData[], ax: number, ay: number) {
   return items.map((it, i) => {
     const col = i % cols;
     const row = Math.floor(i / cols);
-    const isLastRow = row === rows - 1;
-    const itemsInRow = isLastRow ? n - row * cols : cols;
-    const rowOffsetX = isLastRow ? (cols - itemsInRow) * cellW / 2 : 0;
+    const itemsInRow = row === rows - 1 ? n - row * cols : cols;
+    const rowOffsetX = itemsInRow < cols ? ((cols - itemsInRow) * cellW) / 2 : 0;
 
     return {
       concept: it.concept,
@@ -694,6 +709,7 @@ function createLegend(onAreaClick: (areaIndex: number) => void): Container {
 
   const container = new Container();
   container.eventMode = 'static';
+  let cleanupScroll: (() => void) | null = null;
 
   const shadow = new Graphics();
   shadow.roundRect(2, 3, w, h, 10);
@@ -857,11 +873,13 @@ function createLegend(onAreaClick: (areaIndex: number) => void): Container {
     window.addEventListener('pointermove', onMove);
     window.addEventListener('pointerup', onUp);
 
-    (container as unknown as Record<string, unknown>)._cleanupScroll = () => {
+    cleanupScroll = () => {
       window.removeEventListener('pointermove', onMove);
       window.removeEventListener('pointerup', onUp);
     };
   }
+
+  (container as unknown as Record<string, unknown>)._cleanupScroll = () => cleanupScroll?.();
 
   return container;
 }
@@ -1028,27 +1046,27 @@ export default function Whiteboard() {
 
           const emoji = getBubbleEmoji(area.name, concept.category);
           const emojiBack = new Graphics();
-          emojiBack.circle(0, -radius * 0.36, 11.5);
-          emojiBack.fill({ color: '#ffffff', alpha: 0.58 + weightRatio * 0.08 });
-          emojiBack.stroke({ color: area.color, width: 1, alpha: 0.12 + weightRatio * 0.08 });
+          emojiBack.circle(0, -radius * 0.35, 12.5);
+          emojiBack.fill({ color: '#ffffff', alpha: 0.64 + weightRatio * 0.08 });
+          emojiBack.stroke({ color: area.color, width: 1, alpha: 0.16 + weightRatio * 0.08 });
           emojiBack.eventMode = 'none';
           bubbleContainer.addChild(emojiBack);
 
           const emojiText = new Text({
             text: emoji,
             style: new TextStyle({
-              fontFamily: '"Inter", sans-serif',
-              fontSize: 19,
+              fontFamily: EMOJI_FONT_FAMILY,
+              fontSize: 20,
               fontWeight: 'bold',
             }),
           });
           emojiText.anchor.set(0.5);
-          emojiText.y = -radius * 0.36;
+          emojiText.y = -radius * 0.35;
           bubbleContainer.addChild(emojiText);
 
-          const fontSize = 9;
+          const fontSize = getBubbleFontSize(concept.name, radius);
           const bText = new Text({
-            text: concept.name,
+            text: getBubbleLabel(concept.name),
             style: new TextStyle({
               fontFamily: '"Inter", sans-serif',
               fontSize,
@@ -1056,26 +1074,26 @@ export default function Whiteboard() {
               fill: '#1f2937',
               align: 'center',
               wordWrap: true,
-              wordWrapWidth: radius * 1.45,
-              lineHeight: fontSize + 3,
+              wordWrapWidth: radius * 1.55,
+              lineHeight: fontSize + 2,
             }),
           });
           bText.anchor.set(0.5);
-          bText.y = radius * 0.12;
+          bText.y = radius * 0.1;
           bubbleContainer.addChild(bText);
 
           const weightStrip = new Graphics();
-          const dotCount = 5;
-          const filledDots = Math.min(dotCount, weightTier);
-          const dotSpacing = 8;
-          const dotRadius = 2.1;
+          const dotCount = 6;
+          const filledDots = Math.min(dotCount, weightTier + Math.max(0, referenceCount - 5) * 0.25);
+          const dotSpacing = 7.5;
+          const dotRadius = 2.35;
           const stripStart = -((dotCount - 1) * dotSpacing) / 2;
           for (let d = 0; d < dotCount; d++) {
             const xPos = stripStart + d * dotSpacing;
             weightStrip.circle(xPos, radius * 0.57, dotRadius);
             weightStrip.fill({
               color: d < filledDots ? area.color : '#cbd5e1',
-              alpha: d < filledDots ? 0.6 + weightRatio * 0.2 : 0.38,
+              alpha: d < filledDots ? 0.7 + weightRatio * 0.18 : 0.4,
             });
           }
           weightStrip.eventMode = 'none';
@@ -1085,9 +1103,9 @@ export default function Whiteboard() {
           badge.x = radius * 0.48;
           badge.y = radius * 0.5;
           const badgeBg = new Graphics();
-          badgeBg.circle(0, 0, 11);
-          badgeBg.fill({ color: area.color, alpha: 0.18 + weightRatio * 0.12 });
-          badgeBg.stroke({ color: area.color, width: 1, alpha: 0.32 + weightRatio * 0.12 });
+          badgeBg.circle(0, 0, 11.5);
+          badgeBg.fill({ color: area.color, alpha: 0.2 + weightRatio * 0.14 });
+          badgeBg.stroke({ color: area.color, width: 1, alpha: 0.34 + weightRatio * 0.12 });
           badge.addChild(badgeBg);
           const badgeTxt = new Text({
             text: `${referenceCount}`,
@@ -1122,7 +1140,7 @@ export default function Whiteboard() {
             glow.fill({ color: area.color, alpha: 0.08 });
             glow.circle(0, 0, radius + 7);
             glow.fill({ color: area.color, alpha: 0.15 });
-            showTooltip(`${emoji} ${concept.name}`, concept.category, e.globalX, e.globalY);
+            showTooltip(`${emoji} ${concept.name}`, concept.category, referenceCount, e.globalX, e.globalY);
           });
           bubbleContainer.on('pointerout', () => {
             state.targetScale = 1;
@@ -1248,6 +1266,7 @@ export default function Whiteboard() {
       legend.x = window.innerWidth - 190 - 14;
       legend.y = 14;
       app.stage.addChild(legend);
+      const legendCleanup = (legend as unknown as Record<string, unknown>)._cleanupScroll as (() => void) | undefined;
 
       const tooltip = new Container();
       tooltip.visible = false;
@@ -1280,13 +1299,13 @@ export default function Whiteboard() {
 
       app.stage.addChild(tooltip);
 
-      function showTooltip(name: string, category: string, x: number, y: number) {
+      function showTooltip(name: string, category: string, referenceCount: number, x: number, y: number) {
         if (panel) return;
         const cleanName = name.replace(/\n/g, ' ');
         tooltipText.text = cleanName;
         tooltipText.x = 10;
         tooltipText.y = 6;
-        tooltipSub.text = category;
+        tooltipSub.text = `${category} · ${referenceCount} refs`;
         tooltipSub.x = 10;
         tooltipSub.y = 22;
         tooltipBg.clear();
@@ -1840,6 +1859,7 @@ export default function Whiteboard() {
       cleanup = () => {
         window.removeEventListener('keydown', onKey);
         window.removeEventListener('resize', onResize);
+        legendCleanup?.();
         document.body.removeChild(hiddenInput);
         if (panel) {
           app.stage.removeChild(panel);

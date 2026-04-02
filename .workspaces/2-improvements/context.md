@@ -2,7 +2,7 @@
 
 ## Stato
 - **Iterazione**: 1
-- **Ultimo aggiornamento**: 2026-04-02 18:42:00
+- **Ultimo aggiornamento**: 2026-04-02 18:22:00
 - **Stato**: completed
 
 ## Obiettivo
@@ -10,6 +10,13 @@ Analizzare l'implementazione corrente, identificare miglioramenti, e IMPLEMENTAR
 
 ## Iterazione 1 — Completata
 - Setup iniziale PixiJS con griglia, macroaree, bolle, zoom/pan
+
+## Iterazione 1 (Questa esecuzione) — Completata
+- Bubble packing reso piu bilanciato con colonne adaptive e righe meglio centrate
+- Emoji e titoli delle bolle resi piu leggibili con font fallback dedicato e label dinamiche
+- Encoding del project weight rafforzato con meter a punti, badge numerico e tooltip con refs
+- Cleanup del listener scroll della legend collegato al teardown del canvas
+- Build di produzione verificata con successo (`npm run build`)
 
 ## Iterazione 2 — Completata
 - **16 nuovi concetti aggiunti** (da 48 a 62 totali)

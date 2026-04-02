@@ -149,6 +149,13 @@ Tutti i concetti dal database sono ora rappresentati nella whiteboard.
 - [x] Corretto hit area delle bolle per interazioni pointer precise (`Circle(0, 0, radius)`)
 - [x] Migliorato layout controlli zoom evitando overlap tra pulsanti (+, -, fit)
 
+## Iterazione 1 (Aggiornamento finale) — Completata
+- [x] Adaptive bubble packing aggiornato per mantenere griglia piu bilanciata tra le macroaree
+- [x] Emoji delle bolle rese piu riconoscibili con font fallback dedicato e halo leggero
+- [x] Project weight reso piu leggibile con meter a punti, badge refs e tooltip arricchito
+- [x] Cleanup della legend scrollabile collegato al teardown dell'app
+- [x] Verifica finale: `npm run build` completata con successo dopo gli ultimi miglioramenti
+
 ## Iterazione 2 (Questa esecuzione) — Completata
 - [x] Verificato PRD in `.workspaces/2-improvements/resources/prd.md` (baseline iteration)
 - [x] Migliorato visual macroaree con bordo tratteggiato in PixiJS (coerente con whiteboard style)
