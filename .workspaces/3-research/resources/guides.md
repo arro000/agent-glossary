@@ -607,3 +607,49 @@
 - **source**: Aider docs
 - **description**: Shows how Aider builds and uses a repo map to navigate large codebases.
 - **relevance**: Best practical guide for repo-map style context navigation.
+
+## Iteration 18 Guides (2026-04-02)
+
+### LangGraph Overview
+- **url**: https://docs.langchain.com/oss/python/langgraph/overview
+- **source**: LangChain
+- **description**: Overview of LangGraph as a low-level runtime for stateful, long-running agents. Covers durable execution, human-in-the-loop, memory, and LangSmith debugging.
+- **relevance**: Best primary source for durable agent execution and checkpoint-friendly workflow design.
+
+### AgentOps README
+- **url**: https://github.com/AgentOps-AI/agentops
+- **source**: AgentOps
+- **description**: Repository README for the agent observability and session replay platform. Shows replay graphs, cost tracking, and framework integrations in one place.
+- **relevance**: Good practical reference for trace-driven debugging and session replay.
+
+### OpenLIT README
+- **url**: https://github.com/openlit/openlit
+- **source**: OpenLIT
+- **description**: Repository README for the OpenTelemetry-native AI engineering platform. Covers observability, evaluations, rule engine, prompt management, and the supported integrations surface.
+- **relevance**: Best open-stack reference for OTEL-first harness observability.
+
+### Graphiti README
+- **url**: https://github.com/getzep/graphiti
+- **source**: Zep
+- **description**: README for the temporal context graph engine used for evolving agent memory. Highlights hybrid retrieval, provenance, and the MCP server surface.
+- **relevance**: Strong guide for reference-aware retrieval beyond flat summaries.
+
+## Iteration 19 Guides (2026-04-02)
+
+### Temporal Workflow
+- **url**: https://docs.temporal.io/workflows
+- **source**: Temporal
+- **description**: Official workflow docs covering deterministic definitions, event history, replay, schedules, and resilience.
+- **relevance**: Best primary reference for durable execution and checkpointed agent runtimes.
+
+### Sourcegraph Code Search
+- **url**: https://sourcegraph.com/code-search
+- **source**: Sourcegraph
+- **description**: Product page for searching and understanding large codebases with filters, operators, and cross-repo search.
+- **relevance**: Best guide for enterprise code-search-driven context navigation.
+
+### Sourcegraph MCP
+- **url**: https://sourcegraph.com/mcp
+- **source**: Sourcegraph
+- **description**: MCP surface for exposing Sourcegraph code intelligence to agents.
+- **relevance**: Useful reference for agent-facing code intelligence and code-graph context injection.

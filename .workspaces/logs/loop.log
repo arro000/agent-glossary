@@ -1,727 +1,96 @@
-[0;36m[2026-04-02 21:19:18][0m Starting Agent Glossary loop...
-[0;36m[2026-04-02 21:19:18][0m Project: /home/arro/projects/agent-glossary
-[0;36m[2026-04-02 21:19:18][0m Max iterations: 2
-[0;36m[2026-04-02 21:19:18][0m Log: /home/arro/projects/agent-glossary/.workspaces/logs/loop.log
-[0;36m[2026-04-02 21:19:18][0m Press Ctrl+C or run '.workspaces/loop.sh stop' to interrupt.
+[0;36m[2026-04-02 21:32:46][0m Starting Agent Glossary loop...
+[0;36m[2026-04-02 21:32:46][0m Project: /home/arro/projects/agent-glossary
+[0;36m[2026-04-02 21:32:46][0m Max iterations: 5
+[0;36m[2026-04-02 21:32:46][0m Log: /home/arro/projects/agent-glossary/.workspaces/logs/loop.log
+[0;36m[2026-04-02 21:32:46][0m Press Ctrl+C or run '.workspaces/loop.sh stop' to interrupt.
 
 ╔══════════════════════════════════════════════════════════╗
-║  AGENT GLOSSARY LOOP — Started 2026-04-02 21:19:18          ║
-[0;32m[2026-04-02 21:19:18] ✓[0m Loop started (PID: 50054)
-║  Max iterations: 2                         ║
+║  AGENT GLOSSARY LOOP — Started 2026-04-02 21:32:46          ║
+║  Max iterations: 5                         ║
 ╚══════════════════════════════════════════════════════════╝
 
-[0;36m[2026-04-02 21:19:18][0m Launching OpenCode for workspace Research & Content...
+[0;32m[2026-04-02 21:32:46] ✓[0m Loop started (PID: 53549)
+[0;36m[2026-04-02 21:32:46][0m Launching OpenCode for workspace Research & Content...
 [0m
 > build · gpt-5.4-mini
 [0m
-I’m reading the current whiteboard state and research backlog first, then I’ll fill gaps with concrete repos and tools.
-[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1, limit=4000][0m
-[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=1, limit=4000][0m
-[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=4000][0m
-[0m→ [0mRead .workspaces/3-research/context.md[90m [offset=1, limit=4000][0m
-I have the whiteboard and backlog. Next I’m checking the existing guide inventory so I only add new, reusable sources.
-[0m→ [0mRead .workspaces/3-research/resources/guides.md[90m [offset=1, limit=4000][0m
-[0m✱ [0mGrep "^## "[90m in .workspaces/3-research/resources · 180 matches[0m
-I found the existing research inventory, and it already has some of the target area. I’m checking the later sections now so I can extend, not duplicate, the whiteboard.
-[0m✗ [0mread failed
-[91m[1mError: [0mOffset 1420 is out of range for this file (1223 lines)
-[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1080, limit=400][0m
-[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=708, limit=400][0m
-I’m pulling the primary sources now for the harness, eval, and reference-navigation layers. After that I’ll write the new findings and update the concept map only where a reusable concept is missing.
-[0m% [0mWebFetch https://docs.anthropic.com/en/docs/claude-code/hooks-guide
-[0m% [0mWebFetch https://www.promptfoo.dev/docs/getting-started/
-[0m% [0mWebFetch https://docs.anthropic.com/en/docs/claude-code/subagents
-[0m✗ [0mwebfetch failed
-[91m[1mError: [0mRequest failed with status code: 404
-[0m% [0mWebFetch https://platform.openai.com/docs/guides/evals
-[0m✗ [0mwebfetch failed
-[91m[1mError: [0mRequest failed with status code: 404
+I’m gathering the current whiteboard state and prior research first, then I’ll add only concrete tools/patterns that fit the harness and context-navigation priorities.
+[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1, limit=400][0m
+I’ve got the current taxonomy; next I’m checking whether the whiteboard already has the exact reusable concepts before I add any new ones, then I’ll pull concrete repo-level evidence.
+[0m✱ [0mGrep "reference|retriev|trace|replay|checkpoint|pinning|repo map|graph|navigation|context engineering|hook"[90m in .workspaces/1-implementation/resources · 16 matches[0m
+[0m✱ [0mGrep "promptfoo|inspect_ai|openai/evals|langsmith|langfuse|phoenix|openllmetry|openlit|agentops|weave|temporal|langgraph|claude code|claude-code|aider|sourcegraph|graphiti|zep|context7"[90m in .workspaces/3-research/resources · 62 matches[0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=400, limit=260][0m
+[0m→ [0mRead .workspaces/3-research/resources/guides.md[90m [offset=520, limit=120][0m
+[0m→ [0mRead .workspaces/3-research/resources/awesome-agents-scan.md[90m [offset=1, limit=120][0m
+I found the existing taxonomy already includes the core concepts I expected, so I’m now collecting repo-level evidence and likely adding a new iteration section rather than reshaping the whole board.
+[0m→ [0mRead .workspaces/3-research/context.md[90m [offset=1, limit=220][0m
+[0m✱ [0mGrep "OpenAI Evals|promptfoo|Inspect AI|LangSmith|AgentOps|OpenLIT|Context7|Graphiti|Aider Repo Map|Claude Code Hooks|Subagents|Tracing|Guardrails|Durable Execution|Checkpoint"[90m in .workspaces/3-research/resources · 73 matches[0m
+The findings file already contains many of the obvious candidates, so I’m checking for gaps that are still missing from the whiteboard before I append anything new.
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=520, limit=180][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1220, limit=80][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=620, limit=180][0m
+[0m✱ [0mGrep "## Temporal|Temporal workflows|Temporal"[90m in .workspaces/3-research/resources/findings.md · 4 matches[0m
+[0m✱ [0mGrep "Sourcegraph|code search|code graph|graph backed|semantic code|repo map"[90m in .workspaces/3-research/resources/findings.md · 2 matches[0m
+[0m✱ [0mGrep "LangGraph middleware|middleware|checkpointing|checkpoint|durable execution"[90m in .workspaces/3-research/resources/findings.md · 5 matches[0m
+I’ve identified the likely gaps: Sourcegraph-style code search and Temporal-style durable workflows. I’m fetching official docs/READMEs for those plus the core harness tools to keep the writeup accurate.
+[0m% [0mWebFetch https://sourcegraph.com
+[0m% [0mWebFetch https://docs.temporal.io/workflows
 [0m% [0mWebFetch https://github.com/openai/evals
 [0m% [0mWebFetch https://github.com/UKGovernmentBEIS/inspect_ai
-I’ve got enough source material to start filling the missing pieces. I’m checking the concept vocabulary for a few reusable terms before I edit anything.
-[0m✱ [0mGrep "Guardrail|Middleware|Session Replay|Evals|Evals|Replay|Hooks|Subagents|Promptfoo|Inspect AI|LangSmith"[90m in .workspaces/1-implementation/resources · 12 matches[0m
-[0m✱ [0mGrep "## (OpenAI Agents SDK|LangGraph|Mastra|Strands Agents SDK|Claude Code Hooks|Claude Code Subagents|Promptfoo|Inspect AI|OpenAI Evals|LangSmith|Context7|Aider Repo Map|Graphiti|Zep)"[90m in .workspaces/3-research/resources · 13 matches[0m
-[0m✗ [0mwebfetch failed
-[91m[1mError: [0mRequest failed with status code: 404
-[0m% [0mWebFetch https://smith.langchain.com
-[0m% [0mWebFetch https://github.com/openai/openai-agents-python
-[0m% [0mWebFetch https://github.com/agentops-ai/agentops
-[0m% [0mWebFetch https://github.com/langchain-ai/langgraph
-[0m% [0mWebFetch https://github.com/mastra-ai/mastra
-[0m% [0mWebFetch https://github.com/strands-agents/sdk-python
+[0m% [0mWebFetch https://github.com/promptfoo/promptfoo
+[0m✱ [0mGrep "Temporal|Sourcegraph"[90m in .workspaces/3-research/resources/guides.md · 0 matches[0m
+[0m✱ [0mGrep "LangGraph Durable Execution|LangSmith Evaluation|Aider Repo Map|Context7 Platform|Promptfoo Getting Started|Inspect AI README|OpenAI Evals README|AgentOps README|OpenLIT README"[90m in .workspaces/3-research/resources/guides.md · 9 matches[0m
+[0m→ [0mRead .workspaces/3-research/context.md[90m [offset=221, limit=100][0m
+I’ve got enough to write the eval and harness entries; I’m doing one last pass on the context-navigation side so any new finding is specific, not just “Sourcegraph exists.”
+[0m% [0mWebFetch https://aider.chat/docs/repomap.html
+[0m% [0mWebFetch https://sourcegraph.com/mcp
+[0m% [0mWebFetch https://github.com/getzep/graphiti
+[0m% [0mWebFetch https://github.com/AgentOps-AI/agentops
 [0m% [0mWebFetch https://github.com/openlit/openlit
-I’ve got the main docs I need. I’m making one last pass for LangGraph and LangSmith-specific pages so the comparison entries aren’t generic.
-[0m✗ [0mwebfetch failed
-[91m[1mError: [0mUnable to connect. Is the computer able to access the url?
-[0m✗ [0mwebfetch failed
-[91m[1mError: [0mRequest failed with status code: 404
-[0m% [0mWebFetch https://openai.github.io/openai-agents-python/tracing/
-[0m% [0mWebFetch https://openai.github.io/openai-agents-python/guardrails/
-[0m% [0mWebFetch https://docs.smith.langchain.com/
-[0m✗ [0mwebfetch failed
-[91m[1mError: [0mRequest failed with status code: 404
-I’ve got the source-backed additions. I’m patching the research notes now with the missing harness, replay, and context-navigation entries, plus a next-iteration backlog.
-[0m✗ [0mapply_patch failed
-[91m[1mError: [0mapply_patch verification failed: Error: Failed to find expected lines in /home/arro/projects/agent-glossary/.workspaces/3-research/resources/findings.md:
-## SWE-Lancer
-- **macroarea**: Evaluation / Benchmarks
-- **url**: https://openai.com/index/swe-lancer/
-- **description**: OpenAI's benchmark of 1,400+ real freelance software engineering tasks, including implementation and managerial decisions. It ties model performance to monetary value and ships a public evaluation split.
-- **popularity**: 8
-- **alternatives**: SWE-bench, Terminal-Bench, AgentBench
-- **why_include**: Raises the bar beyond bug fixing by testing real work allocation and value judgment.
-The first patch missed the exact anchor points. I’m re-reading the tail of the files and will patch from the current end instead of relying on older section boundaries.
-[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1188, limit=80][0m
-[0m→ [0mRead .workspaces/3-research/resources/guides.md[90m [offset=560, limit=60][0m
-[0m→ [0mRead .workspaces/3-research/context.md[90m [offset=220, limit=60][0m
-[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=150, limit=60][0m
-I’ve got the exact tail anchors now. I’m doing a small patch: tighten two existing observability entries, then append the new harness/retrieval/replay section plus the new guides and follow-up requests.
-[0m✱ [0mGrep "## AgentOps|## OpenLIT"[90m in .workspaces/3-research/resources/findings.md · 3 matches[0m
-[0m✱ [0mGrep "## Iterazione 11 Guides|## Iteration 12"[90m in .workspaces/3-research/resources/guides.md · 1 match[0m
-[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1105, limit=20][0m
-[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=968, limit=20][0m
-[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=760, limit=20][0m
-[0m✗ [0mapply_patch failed
-[91m[1mError: [0mapply_patch verification failed: Error: Failed to find expected lines in /home/arro/projects/agent-glossary/.workspaces/3-research/resources/findings.md:
-**description**: Observability for AI agents. Session replays, LLM cost tracking, multi-agent visualization. Integrates with CrewAI, AutoGen, LangChain, OpenAI Agents SDK.
-I’m splitting the edit into smaller chunks so the patch applies cleanly against the current file layout.
-[0m⚙ [0mapply_patch Success. Updated the following files:
-M .workspaces/3-research/resources/findings.md
+I’ve narrowed the additions to a small, high-signal set: `Temporal` for durable execution, `Sourcegraph` for code-aware reference navigation, and matching guides. I’m writing those plus a current-state update now.
+[0m
+[0m# [0mTodos
+[x] Review current research state and existing taxonomy
+[ ] Collect source-backed findings for harness/runtime and reference navigation
+[ ] Append findings and guides with concrete tools
+[ ] Update context.md with iteration state and next focus
+[ ] Refresh research requests for next iteration
+[0m
 [0m⚙ [0mapply_patch Success. Updated the following files:
 M .workspaces/3-research/resources/findings.md
 [0m⚙ [0mapply_patch Success. Updated the following files:
 M .workspaces/3-research/resources/guides.md
-[0m⚙ [0mapply_patch Success. Updated the following files:
-M .workspaces/3-research/resources/research-requests.md
-[0m⚙ [0mapply_patch Success. Updated the following files:
-M .workspaces/3-research/context.md
-I’m normalizing the iteration labels so the three files agree on the same sweep number.
-[0m⚙ [0mapply_patch Success. Updated the following files:
-M .workspaces/3-research/resources/guides.md
+I’ve added the new findings and guides. I’m updating the workspace context and the next research prompts now so the state reflects this pass instead of the earlier iterations.
 [0m
 [0m$ [0mdate '+%Y-%m-%d %H:%M:%S'
-2026-04-02 21:23:19
+2026-04-02 21:34:27
 [0m
 [0m⚙ [0mapply_patch Success. Updated the following files:
 M .workspaces/3-research/context.md
-The content updates are in place. I’m doing a quick diff pass to catch any formatting issues before I wrap up.
-[0m
-[0m$ [0mgit diff -- ".workspaces/3-research/resources/findings.md" ".workspaces/3-research/resources/guides.md" ".workspaces/3-research/resources/research-requests.md" ".workspaces/3-research/context.md" ".workspaces/1-implementation/resources/concepts.md"
-diff --git a/.workspaces/3-research/context.md b/.workspaces/3-research/context.md
-index 1370671..4284002 100644
---- a/.workspaces/3-research/context.md
-+++ b/.workspaces/3-research/context.md
-@@ -1,8 +1,8 @@
- # Workspace 3 — Research & Content Discovery
- 
- ## Stato
--- **Iterazione**: 14
--- **Ultimo aggiornamento**: 2026-04-02 19:45:30
-+- **Iterazione**: 16
-+- **Ultimo aggiornamento**: 2026-04-02 21:23:19
- - **Stato**: completed
- 
- ## Risultati Iterazione 1
-@@ -259,3 +259,21 @@ La passata attuale ha coperto la capa di curated repositories e discovery, con f
- 
- ### Next Iteration
- - See `resources/research-requests.md` Iteration 13 for the next research sweep.
-+
-+## Stato Corrente - Iterazione 16
-+
-+### Cosa è stato aggiornato
-+- Harness/runtime: aggiunti OpenAI Agents SDK Guardrails e Tracing come riferimenti first-party per policy e telemetry.
-+- Eval loop: aggiunto LangSmith Evaluation come riferimento per il closed loop tracing + datasets + regression testing.
-+- Context navigation: aggiunto Aider Repo Map come implementazione concreta di repo-map style navigation.
-+- Observability: AgentOps e OpenLIT sono stati rifiniti con replay graphs, trace search e rule-engine oriented debugging.
-+
-+### Segnali attuali
-+1. The harness is now clearly split into policy, telemetry, and eval layers rather than one generic agent loop.
-+2. Reference-aware retrieval is best understood as a mix of docs retrieval, repo mapping, and graph-backed memory rather than a single RAG system.
-+3. Trace replay is becoming a debugging primitive on its own, not just an observability afterthought.
-+
-+### Next Focus
-+- Compare LangGraph middleware/checkpointing against Claude Code hooks and OpenAI guardrails.
-+- Compare replay/debug UIs across LangSmith, Langfuse, AgentOps, Phoenix, and OpenLIT.
-+- Expand reference-aware retrieval with code graphs and citation-ranking systems beyond repo maps.
-diff --git a/.workspaces/3-research/resources/findings.md b/.workspaces/3-research/resources/findings.md
-index 18dbc82..c08cff1 100644
---- a/.workspaces/3-research/resources/findings.md
-+++ b/.workspaces/3-research/resources/findings.md
-@@ -768,7 +768,7 @@
- - **macroarea**: Observability / DevOps
- - **url**: https://agentops.ai
- - **github**: https://github.com/AgentOps-AI/agentops (5.4k stars)
--- **description**: Observability for AI agents. Session replays, LLM cost tracking, multi-agent visualization. Integrates with CrewAI, AutoGen, LangChain, OpenAI Agents SDK.
-+- **description**: Observability for AI agents. Session replays, step-by-step execution graphs, LLM cost tracking, and multi-agent visualization. Integrates with CrewAI, AutoGen, LangChain, OpenAI Agents SDK.
- - **popularity**: 7
- - **category**: devops, monitoring
- - **why_include**: The Datadog equivalent for AI agents. Session replay and multi-agent visualization distinctive.
-@@ -977,7 +977,7 @@
- ## OpenLIT
- - **macroarea**: Observability / Monitoring
- - **url**: https://github.com/openlit/openlit
--- **description**: OpenTelemetry-native observability stack for AI engineering. It provides SDKs, dashboards, prompt management, evaluations, and integrations across many LLM providers, frameworks, and vector stores.
-+- **description**: OpenTelemetry-native observability stack for AI engineering. It provides SDKs, dashboards, prompt management, evaluations, trace search, and integrations across many LLM providers, frameworks, and vector stores.
- - **popularity**: 7
- - **alternatives**: OpenLLMetry, Langfuse, Arize Phoenix, W&B Weave
- - **why_include**: Strong concrete bridge from OTEL conventions to an opinionated, usable agent observability stack.
-@@ -1113,7 +1113,7 @@
- ## OpenLIT
- - **macroarea**: Observability / Reference Stack
- - **url**: https://github.com/openlit/openlit
--- **description**: OpenTelemetry-native AI engineering platform with SDKs, dashboards, evaluations, prompt management, and many integrations. It bridges GenAI semantic conventions to a usable stack for tracing and governance.
-+- **description**: OpenTelemetry-native AI engineering platform with SDKs, dashboards, evaluations, prompt management, rule engine, and many integrations. It bridges GenAI semantic conventions to a usable stack for tracing, governance, and trace search.
- - **popularity**: 7
- - **alternatives**: OpenLLMetry, Langfuse, Arize Phoenix, W&B Weave
- - **why_include**: Most complete open stack for turning GenAI telemetry into an operational workflow.
-@@ -1221,3 +1221,39 @@
- - **popularity**: 7
- - **alternatives**: BrowserGym, Mind2Web, BrowseComp
- - **why_include**: Useful when the research target is browser automation rather than generic web QA.
-+
-+---
-+
-+# Iteration 16 - Harness, Replay, and Context Navigation
-+
-+## OpenAI Agents SDK Guardrails
-+- **macroarea**: Harness / Runtime Scaffold
-+- **url**: https://openai.github.io/openai-agents-python/guardrails/
-+- **description**: First-party guardrail docs for the OpenAI Agents SDK. Covers workflow boundaries, input/output/tool guardrails, execution modes, tripwires, and how to implement validation around agent runs.
-+- **popularity**: 9
-+- **alternatives**: Claude Code hooks, LangGraph middleware, Strands steering hooks
-+- **why_include**: Cleanest reference for policy checks inside the agent runtime loop.
-+
-+## OpenAI Agents SDK Tracing
-+- **macroarea**: Harness / Observability
-+- **url**: https://openai.github.io/openai-agents-python/tracing/
-+- **description**: Built-in trace model for runs and spans in the OpenAI Agents SDK. Covers default tracing, custom processors, sensitive-data handling, and export/integration patterns for external backends.
-+- **popularity**: 9
-+- **alternatives**: LangSmith tracing, Langfuse, AgentOps, OpenLIT
-+- **why_include**: Strong first-party baseline for harness telemetry and debugging.
-+
-+## LangSmith Evaluation
-+- **macroarea**: Eval Harness
-+- **url**: https://docs.langchain.com/langsmith/evaluation-quickstart
-+- **description**: LangSmith's quickstart for programmatic evals, datasets, and regression testing. It keeps tracing, evaluation, prompt iteration, and deployment in one workflow.
-+- **popularity**: 9
-+- **alternatives**: promptfoo, Inspect AI, OpenAI Evals, W&B Weave
-+- **why_include**: Best single-vendor closed-loop path when traces and evals need to stay together.
-+
-+## Aider Repo Map
-+- **macroarea**: Knowledge & Retrieval / Navigation
-+- **url**: https://aider.chat/docs/repomap.html
-+- **description**: Documents Aider's repo-map system for compressing a large codebase into a structured summary of files, symbols, and relationships. It is one of the clearest practical patterns for navigating large repos without losing structure.
-+- **popularity**: 8
-+- **alternatives**: Context7, Sourcegraph code search, Graphiti, Zep
-+- **why_include**: Best concrete repo-map implementation for large-codebase exploration.
-diff --git a/.workspaces/3-research/resources/guides.md b/.workspaces/3-research/resources/guides.md
-index d5c4ce8..a91288c 100644
---- a/.workspaces/3-research/resources/guides.md
-+++ b/.workspaces/3-research/resources/guides.md
-@@ -581,3 +581,29 @@
- - **source**: OpenAI
- - **description**: Explains the eval registry, custom evals, benchmark templates, and build/run workflow.
- - **relevance**: Best reference for OpenAI-style benchmark iteration.
-+
-+## Iteration 16 Guides (2026-04-02)
-+
-+### OpenAI Agents SDK Guardrails
-+- **url**: https://openai.github.io/openai-agents-python/guardrails/
-+- **source**: OpenAI Agents SDK docs
-+- **description**: First-party guide to workflow boundaries, input/output/tool guardrails, execution modes, and tripwires.
-+- **relevance**: Best practical reference for the policy layer around agent execution.
-+
-+### OpenAI Agents SDK Tracing
-+- **url**: https://openai.github.io/openai-agents-python/tracing/
-+- **source**: OpenAI Agents SDK docs
-+- **description**: Explains traces and spans, custom processors, sensitive data handling, and exporting traces to external backends.
-+- **relevance**: Best first-party telemetry guide for the OpenAI agent runtime.
-+
-+### LangSmith Evaluation Quickstart
-+- **url**: https://docs.langchain.com/langsmith/evaluation-quickstart
-+- **source**: LangSmith docs
-+- **description**: Quickstart for programmatic evals, datasets, and regression testing inside LangSmith.
-+- **relevance**: Strongest closed-loop guide when tracing and evals live in the same product.
-+
-+### Aider Repo Map
-+- **url**: https://aider.chat/docs/repomap.html
-+- **source**: Aider docs
-+- **description**: Shows how Aider builds and uses a repo map to navigate large codebases.
-+- **relevance**: Best practical guide for repo-map style context navigation.
-diff --git a/.workspaces/3-research/resources/research-requests.md b/.workspaces/3-research/resources/research-requests.md
-index 1312938..a6c530a 100644
---- a/.workspaces/3-research/resources/research-requests.md
-+++ b/.workspaces/3-research/resources/research-requests.md
-@@ -182,3 +182,16 @@
- 
- ### Esplorazione
- 5. **Prompt assembly and context injection** — CLAUDE.md, skills, prompt templates, dynamic context assembly, and prompt caching patterns across harnesses.
-+
-+## Iterazione 16 — Nuove Richieste
-+
-+### Priorità Alta
-+1. **LangGraph middleware / checkpointing** — how do middleware, durable execution, and state checkpoints combine into a reusable policy + replay layer?
-+2. **Trace replay comparison** — LangSmith vs Langfuse vs AgentOps vs Phoenix vs OpenLIT: which UIs and APIs are actually best for root-cause analysis?
-+
-+### Priorità Media
-+3. **Reference-aware retrieval beyond repo maps** — Sourcegraph, code graphs, citation pinning, and retrieval ranking for docs/code context.
-+4. **OpenAI Agents SDK guardrail patterns** — what guardrails are reusable in real projects, and where do they break down?
-+
-+### Esplorazione
-+5. **Outer-loop harness optimization** — Meta-Harness, prompt mutation, and eval-driven harness tuning for the Pareto frontier of quality vs cost.
-[0m
-The diff is structurally good. I’m running a whitespace check, then I’ll summarize the new research surface and the next questions it suggests.
-[0m$ [0mgit diff --check -- ".workspaces/3-research/resources/findings.md" ".workspaces/3-research/resources/guides.md" ".workspaces/3-research/resources/research-requests.md" ".workspaces/3-research/context.md"
-Updated:
-- `/.workspaces/3-research/resources/findings.md` with Iteration 16 entries for OpenAI Agents SDK guardrails/tracing, LangSmith evaluation, and Aider repo maps, plus tighter AgentOps/OpenLIT descriptions.
-- `/.workspaces/3-research/resources/guides.md` with matching primary guides.
-- `/.workspaces/3-research/resources/research-requests.md` with next-step questions on LangGraph checkpointing, replay comparisons, reference-aware retrieval, and outer-loop optimization.
-- `/.workspaces/3-research/context.md` to reflect the current sweep state.
-
-No new concepts were needed in `concepts.md`; the existing runtime, eval, and navigation concepts already covered these additions.
-[0;32m[2026-04-02 21:23:54] ✓[0m Workspace Research & Content completed successfully
- 6 files changed, 309 insertions(+), 362 deletions(-)
-To https://github.com/arro000/agent-glossary.git
-   992fc85..1a05359  main -> main
-[0;32m[2026-04-02 21:23:55] ✓[0m Workspace changes committed and pushed
-[0;36m[2026-04-02 21:23:55][0m Launching OpenCode for workspace Improvements & PRD...
-[0m
-> build · gpt-5.4-mini
-[0m
-I’m reading the current app, the implementation context, and the research notes first so I can update the PRD and code in one pass.
-[0m→ [0mRead .workspaces/1-implementation/context.md[90m [offset=1, limit=400][0m
-[0m→ [0mRead .workspaces/1-implementation/resources/pixijs-reference.md[90m [offset=1, limit=400][0m
-[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=400][0m
-[0m→ [0mRead .workspaces/2-improvements/resources/prd.md[90m [offset=1, limit=400][0m
-[0m✱ [0mGlob "src/**/*"[90m in . · 5 matches[0m
-[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1, limit=400][0m
-I’ve got the spec and research. Next I’m checking the current Pixi implementation so I can fold the new findings into the actual board instead of only updating docs.
-[0m→ [0mRead src/app/layout.tsx[90m [offset=1, limit=160][0m
-[0m→ [0mRead src/app/page.tsx[90m [offset=1, limit=120][0m
-[0m→ [0mRead src/app/globals.css[90m [offset=1, limit=240][0m
-[0m→ [0mRead package.json[90m [offset=1, limit=220][0m
-[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1, limit=400][0m
-I found the app already has a bigger dataset than the earlier context summary. I’m checking which research items are still missing from the UI so I can make the iteration useful rather than duplicative.
-[0m✱ [0mGrep "Harness|Reference Navigation|Repo Map|OpenTelemetry|AG-UI|A2UI|Computer Use|LiveKit|Vapi|Daily|Retell|Pipecat|Cloudflare Agents SDK|Agent Registry|Discovery"[90m in src/components/whiteboard.tsx · 15 matches[0m
-[0m✱ [0mGrep "Harness|Reference Navigation|Repo Map|OpenTelemetry|AG-UI|A2UI|Computer Use|LiveKit|Vapi|Daily|Retell|Pipecat|Cloudflare Agents SDK|Agent Registry|Discovery"[90m in .workspaces/1-implementation/resources/concepts.md · 28 matches[0m
-[0m✱ [0mGrep "research-requests"[90m in .workspaces/3-research/resources · 0 matches[0m
-I’ve confirmed the dataset already includes the research items. Now I’m reading the interaction/rendering code paths to find the smallest useful upgrades in layout, feedback, and cleanup.
-[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=400, limit=400][0m
-[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=800, limit=400][0m
-[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1600, limit=400][0m
-[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1200, limit=400][0m
-[0m✱ [0mGrep "legend|minimap|panel|search|zoom|wheel|fit|hover|pointerdown|pointermove|pointerup|cull|teardown|cleanup"[90m in src/components/whiteboard.tsx · 163 matches[0m
-[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=2000, limit=400][0m
-[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=401, limit=260][0m
-I’ve got enough context to start the actual pass. I’m tracking the work so I can keep the code, PRD, research requests, and workspace state aligned.
-[0m
-[0m# [0mTodos
-[ ] Refine the Pixi whiteboard implementation in `src/components/whiteboard.tsx`
-[ ] Update PRD and implementation/context notes to match the new iteration
-[ ] Add any missing research requests in `.workspaces/3-research/resources/research-requests.md`
-[ ] Build and verify the app, then commit changes
-[0m
-[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=1, limit=240][0m
-[0m✱ [0mGlob ".workspaces/3-research/resources/*"[90m in . · 5 matches[0m
-I’m switching from analysis to edits now. I’ll keep the code change small but concrete: cache derived bubble metadata, strengthen selection feedback, and then sync the PRD/context docs to match.
-[0m→ [0mRead .workspaces/2-improvements/context.md[90m [offset=1, limit=260][0m
-[0m→ [0mRead .workspaces/2-improvements/resources/prd.md[90m [offset=1, limit=220][0m
-[0m✗ [0mapply_patch failed
-[91m[1mError: [0mapply_patch verification failed: Error: Failed to find expected lines in /home/arro/projects/agent-glossary/src/components/whiteboard.tsx:
-        if (panel || compactMode) return;
-      }
-[0m⚙ [0mapply_patch Success. Updated the following files:
-M src/components/whiteboard.tsx
-
-LSP errors detected in src/components/whiteboard.tsx, please fix:
-<diagnostics file="/home/arro/projects/agent-glossary/src/components/whiteboard.tsx">
-ERROR [1283:17] Type '{ container: Container<ContainerChild>; glow: Graphics; weightRing: Graphics; bubble: Graphics; targetScale: number; currentScale: number; ... 4 more ...; searchHighlight: false; }' is missing the following properties from type 'BubbleState': areaIndex, referenceCount, searchIndex, displayLabel, and 2 more.
-</diagnostics>
-[0m⚙ [0mapply_patch Success. Updated the following files:
-M src/components/whiteboard.tsx
-
-LSP errors detected in src/components/whiteboard.tsx, please fix:
-<diagnostics file="/home/arro/projects/agent-glossary/src/components/whiteboard.tsx">
-ERROR [1284:17] Type '{ container: Container<ContainerChild>; glow: Graphics; weightRing: Graphics; bubble: Graphics; targetScale: number; currentScale: number; ... 4 more ...; searchHighlight: false; }' is missing the following properties from type 'BubbleState': areaIndex, referenceCount, searchIndex, displayLabel, and 2 more.
-</diagnostics>
-[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1170, limit=150][0m
-[0m⚙ [0mapply_patch Success. Updated the following files:
-M src/components/whiteboard.tsx
-
-LSP errors detected in src/components/whiteboard.tsx, please fix:
-<diagnostics file="/home/arro/projects/agent-glossary/src/components/whiteboard.tsx">
-ERROR [1184:17] Cannot redeclare block-scoped variable 'emoji'.
-ERROR [1220:17] Cannot redeclare block-scoped variable 'emoji'.
-</diagnostics>
-[0m⚙ [0mapply_patch Success. Updated the following files:
-M src/components/whiteboard.tsx
-[0m✱ [0mGrep "buildSearchHaystack\(|getBubbleLabel\(concept.name\)|getBubbleEmoji\(|getReferenceCount\(data.concept.alternatives\)|getReferenceCount\(concept.alternatives\)|openPanel\(|selectedBubble|searchIndex|referenceCount"[90m in src/components/whiteboard.tsx · 31 matches[0m
-[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1810, limit=260][0m
-[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1450, limit=220][0m
-[0m⚙ [0mapply_patch Success. Updated the following files:
-M src/components/whiteboard.tsx
-[0m⚙ [0mapply_patch Success. Updated the following files:
-M src/components/whiteboard.tsx
-[0m⚙ [0mapply_patch Success. Updated the following files:
-M src/components/whiteboard.tsx
-[0m✱ [0mGrep "buildSearchHaystack\(|openPanel\(|selectedBubble|searchIndex|referenceCount:|displayLabel|emoji:|areaIndex"[90m in src/components/whiteboard.tsx · 33 matches[0m
-[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1178, limit=90][0m
-[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1850, limit=220][0m
-[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=2070, limit=120][0m
-The code change is in place. I’m syncing the improvement notes now so the PRD, workspace context, and research queue reflect the actual implementation instead of the earlier baseline.
-[0m⚙ [0mapply_patch Success. Updated the following files:
-M .workspaces/2-improvements/resources/prd.md
-[0m⚙ [0mapply_patch Success. Updated the following files:
-M .workspaces/2-improvements/context.md
 [0m⚙ [0mapply_patch Success. Updated the following files:
 M .workspaces/3-research/resources/research-requests.md
-I’ve finished the edits. I’m building now to catch any Pixi/TypeScript regressions from the cache and selection-state changes.
-[0m
-[0m$ [0mnpm run build
-> agent-glossary@0.1.0 build
-> next build
-
-▲ Next.js 16.2.2 (Turbopack)
-
-  Creating an optimized production build ...
-✓ Compiled successfully in 2.2s
-  Running TypeScript ...
-  Finished TypeScript in 1961ms ...
-  Collecting page data using 5 workers ...
-  Generating static pages using 5 workers (0/4) ...
-  Generating static pages using 5 workers (1/4) 
-  Generating static pages using 5 workers (2/4) 
-  Generating static pages using 5 workers (3/4) 
-✓ Generating static pages using 5 workers (4/4) in 339ms
-  Finalizing page optimization ...
-
-Route (app)
-┌ ○ /
-└ ○ /_not-found
-
-
-○  (Static)  prerendered as static content
-[0m
-The build passed. I’m checking the final diff now so I can make a clean commit with the right scope and message.
-[0m$ [0mgit status --short
-M .workspaces/2-improvements/context.md
- M .workspaces/2-improvements/resources/prd.md
- M .workspaces/3-research/resources/research-requests.md
- M .workspaces/logs/loop.log
- M src/components/whiteboard.tsx
-[0m
-[0m$ [0mgit diff --stat
-.workspaces/2-improvements/context.md              |  11 +-
- .workspaces/2-improvements/resources/prd.md        |   4 +
- .../3-research/resources/research-requests.md      |   9 ++
- .workspaces/logs/loop.log                          | 130 +++++++++++++++++++++
- src/components/whiteboard.tsx                      | 103 +++++++++++-----
- 5 files changed, 223 insertions(+), 34 deletions(-)
-[0m
-[0m$ [0mgit log -3 --oneline
-1a05359 loop iter 1: workspace 3 (Research & Content) completed
-992fc85 Sync whiteboard with updated taxonomy
-79773b8 loop iter 1: workspace 3 (Research & Content) completed
-[0m
-I’m committing only the app, PRD, context, and research-request changes. The log file is unrelated and will stay unstaged.
-[0m$ [0mgit add src/components/whiteboard.tsx .workspaces/2-improvements/context.md .workspaces/2-improvements/resources/prd.md .workspaces/3-research/resources/research-requests.md && git commit -m "Improve whiteboard metadata caching and selection feedback" && git status --short
-[main a0293cb] Improve whiteboard metadata caching and selection feedback
- 4 files changed, 93 insertions(+), 34 deletions(-)
- M .workspaces/logs/loop.log
+The workspace state is updated. I’m doing a quick sanity read on the appended sections so I don’t leave you with a malformed markdown block or a missing guide entry.
+[0m→ [0mRead .workspaces/3-research/resources/guides.md[90m [offset=611, limit=60][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1260, limit=80][0m
+[0m→ [0mRead .workspaces/3-research/context.md[90m [offset=281, limit=40][0m
+[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=219, limit=40][0m
 [0m
 [0m# [0mTodos
-[x] Refine the Pixi whiteboard implementation in `src/components/whiteboard.tsx`
-[x] Update PRD and implementation/context notes to match the new iteration
-[x] Add any missing research requests in `.workspaces/3-research/resources/research-requests.md`
-[x] Build and verify the app, then commit changes
+[x] Review current research state and existing taxonomy
+[x] Collect source-backed findings for harness/runtime and reference navigation
+[x] Append findings and guides with concrete tools
+[x] Update context.md with iteration state and next focus
+[x] Refresh research requests for next iteration
 [0m
-Implemented and committed.
+Updated the research workspace for the harness/reference-navigation pass.
 
-- `src/components/whiteboard.tsx`: cached derived bubble metadata, tightened search/open-panel matching, and added persistent selection emphasis for the clicked bubble.
-- `.workspaces/2-improvements/resources/prd.md`: aligned the PRD with the current iteration.
-- `.workspaces/2-improvements/context.md`: updated current state.
-- `.workspaces/3-research/resources/research-requests.md`: added new research requests for the coding-agent landscape and selection/search metadata.
+Added:
+- `Temporal Workflow` and `Sourcegraph Code Search / MCP` to `findings.md`
+- `Temporal Workflow`, `Sourcegraph Code Search`, and `Sourcegraph MCP` to `guides.md`
+- New `Iteration 19` state and next-focus notes in `context.md`
+- New `Iteration 19` research requests in `research-requests.md`
 
-Verification:
-- `npm run build` passed.
-
-Commit:
-- `a0293cb` `Improve whiteboard metadata caching and selection feedback`
-
-Note: `.workspaces/logs/loop.log` is still modified and was intentionally not committed.
-[0;32m[2026-04-02 21:27:40] ✓[0m Workspace Improvements & PRD completed successfully
- 1 file changed, 170 insertions(+)
-To https://github.com/arro000/agent-glossary.git
-   1a05359..161e049  main -> main
-[0;32m[2026-04-02 21:27:41] ✓[0m Workspace changes committed and pushed
-[0;36m[2026-04-02 21:27:41][0m Launching OpenCode for workspace Implementation...
-[0m
-> build · gpt-5.3-codex
-[0m
-[0m→ [0mRead .workspaces/1-implementation/context.md[90m [offset=1, limit=2000][0m
-[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1, limit=2000][0m
-[0m→ [0mRead .workspaces/1-implementation/resources/pixijs-reference.md[90m [offset=1, limit=2000][0m
-[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=2000][0m
-[0m→ [0mRead .workspaces/2-improvements/context.md[90m [offset=1, limit=2000][0m
-[0m→ [0mRead .workspaces/2-improvements/resources/prd.md[90m [offset=1, limit=2000][0m
-[0m✱ [0mGlob "src/**/*.{ts,tsx,css}"[90m in . · 4 matches[0m
-[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1, limit=2400][0m
-[0m→ [0mRead src/app/page.tsx[90m [offset=1, limit=400][0m
-[0m→ [0mRead src/app/globals.css[90m [offset=1, limit=400][0m
-[0m→ [0mRead src/app/layout.tsx[90m [offset=1, limit=300][0m
-[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1103, limit=2400][0m
-[0m⚙ [0mapply_patch Success. Updated the following files:
-M src/components/whiteboard.tsx
-
-LSP errors detected in src/components/whiteboard.tsx, please fix:
-<diagnostics file="/home/arro/projects/agent-glossary/src/components/whiteboard.tsx">
-ERROR [1196:25] Expected 3 arguments, but got 2.
-</diagnostics>
-[0m⚙ [0mapply_patch Success. Updated the following files:
-M src/components/whiteboard.tsx
-[0m
-[0m$ [0mnpm run build
-> agent-glossary@0.1.0 build
-> next build
-
-▲ Next.js 16.2.2 (Turbopack)
-
-  Creating an optimized production build ...
-✓ Compiled successfully in 2.1s
-  Running TypeScript ...
-  Finished TypeScript in 1995ms ...
-  Collecting page data using 5 workers ...
-  Generating static pages using 5 workers (0/4) ...
-  Generating static pages using 5 workers (1/4) 
-  Generating static pages using 5 workers (2/4) 
-  Generating static pages using 5 workers (3/4) 
-✓ Generating static pages using 5 workers (4/4) in 343ms
-  Finalizing page optimization ...
-
-Route (app)
-┌ ○ /
-└ ○ /_not-found
-
-
-○  (Static)  prerendered as static content
-[0m
-[0m⚙ [0mapply_patch Success. Updated the following files:
-M .workspaces/1-implementation/context.md
-[0m
-[0m$ [0mgit status --short
-M .workspaces/1-implementation/context.md
- M .workspaces/logs/loop.log
- M src/components/whiteboard.tsx
-[0m
-[0m$ [0mgit diff -- src/components/whiteboard.tsx .workspaces/1-implementation/context.md
-diff --git a/.workspaces/1-implementation/context.md b/.workspaces/1-implementation/context.md
-index 77e6d31..41d2f45 100644
---- a/.workspaces/1-implementation/context.md
-+++ b/.workspaces/1-implementation/context.md
-@@ -1,9 +1,9 @@
- # Workspace 1 — Implementation
- 
- ## Stato
--- **Iterazione**: 5
--- **Ultimo aggiornamento**: 2026-04-02 18:18:09
--- **Stato**: completed
-+- **Iterazione**: 1
-+- **Ultimo aggiornamento**: 2026-04-02 21:27:41
-+- **Stato**: in_progress
- 
- ## Obiettivo
- Implementare l'app "Agent Glossary Whiteboard" usando PixiJS v8 + Next.js.
-@@ -215,6 +215,14 @@ La whiteboard rappresenta 69 subsection correnti allineate alle macroaree princi
- - [x] Ring segmentato reso piu contrastato per comunicare meglio il project-weight a colpo d'occhio
- - [x] Verifica finale: `npm run build` completata con successo
- 
-+## Iterazione 1 (Richiesta utente corrente) — Completata
-+- [x] Letto il contesto richiesto (`context.md`, `resources/concepts.md`, `resources/pixijs-reference.md`, `workspace 2 context`, `research findings`) e verificato PRD presente in `.workspaces/2-improvements/resources/prd.md`
-+- [x] Tradotti i segnali harness/context/reference-navigation in elementi visivamente piu riconoscibili nelle bubbles (emoji dedicate per Harness Runtime Scaffold, Context Window, Reference Navigation, Repo Map e Trace Replay)
-+- [x] Migliorata la leggibilita del layout senza aumentare densita: macroaree piu ariose (dimensioni/gap aumentati) e packing bubbles piu bilanciato
-+- [x] Mantenuti i vincoli chiave: bolle equal-size, project-weight codificato da refs (ring+badge), hover glow, click panel, zoom/pan
-+- [x] Fix UI search bar: focus/blur ora ridisegnano il box con dimensioni reali anche in viewport compatta
-+- [x] Verifica tecnica: `npm run build` completata con successo
-+
- ## File Principali
- - `src/components/whiteboard.tsx` — Componente principale con tutta la logica PixiJS
- - `src/app/page.tsx` — Pagina che renderizza il whiteboard
-diff --git a/src/components/whiteboard.tsx b/src/components/whiteboard.tsx
-index ff2f660..0bcb734 100644
---- a/src/components/whiteboard.tsx
-+++ b/src/components/whiteboard.tsx
-@@ -30,15 +30,15 @@ interface MacroareaConfig {
- const GRID_SIZE = 40;
- const GRID_COLOR = '#e5e5e5';
- const BG_COLOR = '#fafafa';
--const AREA_WIDTH = 720;
--const AREA_HEIGHT = 460;
--const COL_GAP = 80;
--const ROW_GAP = 60;
--const START_X = 80;
--const START_Y = 60;
-+const AREA_WIDTH = 760;
-+const AREA_HEIGHT = 500;
-+const COL_GAP = 96;
-+const ROW_GAP = 72;
-+const START_X = 64;
-+const START_Y = 52;
- const COL_STEP = AREA_WIDTH + COL_GAP;
- const ROW_STEP = AREA_HEIGHT + ROW_GAP;
--const BUBBLE_RADIUS = 46;
-+const BUBBLE_RADIUS = 44;
- const PROJECT_WEIGHT_SEGMENTS = 10;
- const ZOOM_LERP = 0.12;
- const PAN_LERP = 0.15;
-@@ -252,7 +252,15 @@ function getAreaPosition(index: number) {
-   return { x: START_X + col * COL_STEP, y: START_Y + row * ROW_STEP };
- }
- 
--function getBubbleEmoji(areaName: string, category: string): string {
-+function getBubbleEmoji(areaName: string, category: string, conceptName: string): string {
-+  const conceptKey = conceptName.replace(/\n/g, ' ').toLowerCase();
-+  if (conceptKey.includes('harness / runtime scaffold')) return '🧱';
-+  if (conceptKey.includes('eval harness')) return '🧪';
-+  if (conceptKey.includes('context window')) return '🪟';
-+  if (conceptKey.includes('reference navigation')) return '🔎';
-+  if (conceptKey.includes('repo map') || conceptKey.includes('codebase map')) return '🗺️';
-+  if (conceptKey.includes('trace replay')) return '🎞️';
-+
-   const key = `${areaName} ${category}`.toLowerCase();
-   if (key.includes('memory')) return '🧠';
-   if (key.includes('tool') || key.includes('action')) return '🛠️';
-@@ -306,9 +314,9 @@ function getReferenceCount(alternatives: string): number {
- 
- function getBubbleColumns(count: number): number {
-   if (count <= 3) return count;
--  if (count <= 6) return 3;
--  if (count <= 10) return 4;
--  return Math.min(6, Math.max(4, Math.ceil(Math.sqrt(count * 1.2))));
-+  if (count <= 8) return 4;
-+  if (count <= 13) return 5;
-+  return Math.min(5, Math.max(4, Math.ceil(Math.sqrt(count * 1.15))));
- }
- 
- function getBubbleReferenceScore(concept: ConceptData): number {
-@@ -405,9 +413,9 @@ function drawProjectWeightRing(
- 
- function layoutBubbles(concepts: ConceptData[], ax: number, ay: number) {
-   const n = concepts.length;
--  const padX = 30;
--  const padY = 20;
--  const headerH = 38;
-+  const padX = 34;
-+  const padY = 26;
-+  const headerH = 54;
-   const availW = AREA_WIDTH - padX * 2;
-   const availH = AREA_HEIGHT - headerH - padY * 2;
- 
-@@ -754,9 +762,13 @@ function createSearchBar(screenW: number, compact = false): {
-   clearBtn: Container;
-   matchLabel: Text;
-   iconGfx: Graphics;
-+  width: number;
-+  height: number;
-+  radius: number;
- } {
-   const w = compact ? Math.min(Math.max(screenW - 24, 280), 360) : 300;
-   const h = compact ? 46 : 38;
-+  const radius = 12;
-   const pad = compact ? 14 : 12;
- 
-   const container = new Container();
-@@ -770,7 +782,7 @@ function createSearchBar(screenW: number, compact = false): {
-   container.addChild(shadow);
- 
-   const bg = new Graphics();
--  bg.roundRect(0, 0, w, h, 12);
-+  bg.roundRect(0, 0, w, h, radius);
-   bg.fill({ color: '#ffffff', alpha: 0.95 });
-   bg.stroke({ color: '#d1d5db', width: 1 });
-   bg.eventMode = 'none';
-@@ -852,7 +864,7 @@ function createSearchBar(screenW: number, compact = false): {
-   matchLabel.visible = false;
-   container.addChild(matchLabel);
- 
--  return { container, bg, textDisplay, placeholder, clearBtn, matchLabel, iconGfx };
-+  return { container, bg, textDisplay, placeholder, clearBtn, matchLabel, iconGfx, width: w, height: h, radius };
- }
- 
- function createLegend(onAreaClick: (areaIndex: number) => void, compact = false): Container {
-@@ -1162,7 +1174,7 @@ export default function Whiteboard() {
-         areaContainer.addChild(label);
- 
-         const conceptCount = new Text({
--          text: `${area.concepts.length} subsections`,
-+          text: `${area.concepts.length} subsections • weighted by refs`,
-           style: new TextStyle({
-             fontFamily: '"Inter", sans-serif',
-             fontSize: 10,
-@@ -1181,7 +1193,7 @@ export default function Whiteboard() {
-           const by = y - pos.y;
-           const referenceCount = getReferenceCount(concept.alternatives);
-           const displayLabel = getBubbleLabel(concept.name);
--          const emoji = getBubbleEmoji(area.name, concept.category);
-+          const emoji = getBubbleEmoji(area.name, concept.category, concept.name);
-           const searchIndex = buildSearchHaystack(concept, area.name);
- 
-           const bubbleContainer = new Container();
-@@ -1430,7 +1442,7 @@ export default function Whiteboard() {
-       app.stage.addChild(zoomContainer);
- 
-       const searchBar = createSearchBar(window.innerWidth, compactMode);
--      searchBar.container.x = Math.max(12, (window.innerWidth - (compactMode ? Math.min(Math.max(window.innerWidth - 24, 280), 360) : 300)) / 2);
-+      searchBar.container.x = Math.max(12, (window.innerWidth - searchBar.width) / 2);
-       searchBar.container.y = compactMode ? 10 : 14;
-       app.stage.addChild(searchBar.container);
- 
-@@ -1534,7 +1546,7 @@ export default function Whiteboard() {
-       hiddenInput.addEventListener('focus', () => {
-         searchActive = true;
-         searchBar.bg.clear();
--        searchBar.bg.roundRect(0, 0, 300, 38, 12);
-+        searchBar.bg.roundRect(0, 0, searchBar.width, searchBar.height, searchBar.radius);
-         searchBar.bg.fill({ color: '#ffffff', alpha: 1 });
-         searchBar.bg.stroke({ color: '#93c5fd', width: 1.5 });
-       });
-@@ -1542,7 +1554,7 @@ export default function Whiteboard() {
-       hiddenInput.addEventListener('blur', () => {
-         searchActive = false;
-         searchBar.bg.clear();
--        searchBar.bg.roundRect(0, 0, 300, 38, 12);
-+        searchBar.bg.roundRect(0, 0, searchBar.width, searchBar.height, searchBar.radius);
-         searchBar.bg.fill({ color: '#ffffff', alpha: 0.95 });
-         searchBar.bg.stroke({ color: '#d1d5db', width: 1 });
-       });
-[0m
-[0m$ [0mgit log -8 --oneline
-161e049 loop iter 1: workspace 2 (Improvements & PRD) completed
-a0293cb Improve whiteboard metadata caching and selection feedback
-1a05359 loop iter 1: workspace 3 (Research & Content) completed
-992fc85 Sync whiteboard with updated taxonomy
-79773b8 loop iter 1: workspace 3 (Research & Content) completed
-b909d89 Improve mobile navigation for whiteboard
-c40e5fe loop iter 5: workspace 3 (Research & Content) completed
-2300813 loop iter 5: workspace 2 (Improvements & PRD) completed
-[0m
-[0m$ [0mgit add src/components/whiteboard.tsx .workspaces/1-implementation/context.md && git commit -m "Improve whiteboard clarity with weighted concept cues" && git status --short
-[main dd15666] Improve whiteboard clarity with weighted concept cues
- 2 files changed, 44 insertions(+), 24 deletions(-)
- M .workspaces/logs/loop.log
-[0m
-Implemented and committed. I checked the PRD at `.workspaces/2-improvements/resources/prd.md` (it exists, baseline constraints), then applied the iteration focus to make the board clearer without increasing visual density.
-
-- Updated whiteboard layout spacing and macroarea sizing for better readability while keeping bubble diameter uniform in `src/components/whiteboard.tsx`.
-- Kept subsection bubbles equal-size and project-weighted (refs still drive weight styling, not size), and added clearer macroarea weight messaging (`subsections • weighted by refs`) in `src/components/whiteboard.tsx`.
-- Made harness/context/reference-navigation ideas more visibly recognizable with explicit concept emoji mappings (including Harness Runtime Scaffold, Context Window, Reference Navigation, Repo Map, Trace Replay) in `src/components/whiteboard.tsx`.
-- Fixed search bar focus/blur redraw sizing so compact/mobile rendering remains correct in `src/components/whiteboard.tsx`.
-- Updated implementation status/context notes in `.workspaces/1-implementation/context.md`.
-- Verified with `npm run build` (successful).
-
-Commit:
-- `dd15666` — `Improve whiteboard clarity with weighted concept cues`
-
-Note:
-- I committed only the relevant files; `.workspaces/logs/loop.log` remains modified and uncommitted.
-[0;32m[2026-04-02 21:29:53] ✓[0m Workspace Implementation completed successfully
+I did not change `concepts.md`; the existing `Durable Execution` and `Reference Navigation` concepts already cover the new tools cleanly.
+[0;32m[2026-04-02 21:34:45] ✓[0m Workspace Research & Content completed successfully

@@ -147,6 +147,12 @@
 - **alternatives**: Claude Code harness, agent runtime, LLM OS, outer loop
 - **category**: Runtime
 
+### Durable Execution
+- **popularity**: 8
+- **description**: Esecuzione persistente che conserva stato e progressi tra interruzioni, retry e resume. Serve quando un agente deve vivere a lungo senza perdere il punto del workflow.
+- **alternatives**: LangGraph durable execution, Temporal workflows, checkpointed state machines
+- **category**: Runtime
+
 ### Prompt Assembly
 - **popularity**: 8
 - **description**: Composizione dinamica del messaggio finale al modello a partire da istruzioni, memoria, schema dei tool e slice di contesto

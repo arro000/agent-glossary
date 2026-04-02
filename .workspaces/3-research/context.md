@@ -1,8 +1,8 @@
 # Workspace 3 — Research & Content Discovery
 
 ## Stato
-- **Iterazione**: 16
-- **Ultimo aggiornamento**: 2026-04-02 21:23:19
+- **Iterazione**: 19
+- **Ultimo aggiornamento**: 2026-04-02 21:34:27
 - **Stato**: completed
 
 ## Risultati Iterazione 1
@@ -277,3 +277,33 @@ La passata attuale ha coperto la capa di curated repositories e discovery, con f
 - Compare LangGraph middleware/checkpointing against Claude Code hooks and OpenAI guardrails.
 - Compare replay/debug UIs across LangSmith, Langfuse, AgentOps, Phoenix, and OpenLIT.
 - Expand reference-aware retrieval with code graphs and citation-ranking systems beyond repo maps.
+
+## Aggiornamento Corrente - Iterazione 18
+
+### Cosa è stato aggiunto
+- Durable execution: nuovo concetto `Durable Execution` per workflow riprendibili e checkpointed state.
+- Runtime scaffold: aggiunto `LangGraph Durable Execution` come finding concreto per il layer persistente dell'agente.
+- Guides: aggiunti LangGraph overview, AgentOps README, OpenLIT README e Graphiti README come riferimenti primari.
+- Research requests: nuova Iterazione 18 su durable execution, session replay, ranking dei riferimenti ed eval harness data models.
+
+### Segnali attuali
+1. The next gap is no longer “what is an agent runtime?” but “which runtime primitives persist, replay, and resume correctly?”.
+2. Reference navigation is splitting into repo maps, temporal graphs, and search/ranking layers rather than a single retrieval bucket.
+3. Trace replay and eval harnesses are converging into one feedback loop for debugging and regression prevention.
+
+## Aggiornamento Corrente - Iterazione 19
+
+### Cosa è stato aggiunto
+- Durable execution: aggiunto Temporal Workflow come riferimento generale per workflow deterministici, replay e resume.
+- Reference navigation: aggiunto Sourcegraph Code Search / MCP come layer di code intelligence e code-graph navigation.
+- Guides: aggiunte guide primarie per Temporal e Sourcegraph Code Search/MCP.
+
+### Segnali attuali
+1. Durable execution is the missing substrate under long-running harnesses; Temporal is the clearest general-purpose reference.
+2. Reference-aware navigation now splits cleanly into repo maps, graph memory, and enterprise code search/code intelligence.
+3. The remaining gap is less about individual tools and more about how replay, ranking, and eval data models connect into one harness loop.
+
+### Next Focus
+- Compare Temporal against LangGraph checkpointing and OpenAI Agents sessions for resume semantics.
+- Compare Sourcegraph against repo maps, Context7, Graphiti, and Zep for code-aware navigation and ranking.
+- Tighten the eval harness comparison around dataset shape, scoring, and CI ergonomics.

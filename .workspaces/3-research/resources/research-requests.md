@@ -204,3 +204,29 @@
 
 ### Priorità Media
 3. **Persistent selection feedback** — visual patterns for keeping a clicked node emphasized while a detail panel is open, without adding duplicate UI chrome.
+
+## Iterazione 18 — Nuove Richieste
+
+### Priorità Alta
+1. **Durable execution / checkpointing** — LangGraph vs Temporal vs OpenAI Agents sessions: quali pattern rendono davvero riprendibile un workflow agente senza perdere stato?
+2. **Session replay UX** — AgentOps, LangSmith, Langfuse, Phoenix, OpenLIT: quali UI aiutano di più nel root-cause analysis di failure lunghi?
+
+### Priorità Media
+3. **Reference ranking and pinning** — Sourcegraph code search, code graphs, citation pinning, and graph-backed retrieval: quali strumenti aiutano davvero a navigare riferimenti già visti?
+4. **Eval harness data models** — promptfoo vs Inspect AI vs OpenAI Evals vs LangSmith: come cambiano dataset, scoring, e CI ergonomics quando il harness deve diventare shareable?
+
+### Esplorazione
+5. **Checkpoint-aware prompt injection** — come reinserire istruzioni e policy dopo compaction senza duplicare contesto o perdere vincoli?
+
+## Iterazione 19 — Nuove Richieste
+
+### Priorità Alta
+1. **Temporal vs LangGraph checkpointing** — compare deterministic replay, resume semantics, and event-history models for long-running agent workflows.
+2. **Sourcegraph code intelligence for agents** — code search, MCP, code graph ranking, and enterprise navigation patterns that outperform simple repo maps.
+
+### Priorità Media
+3. **Session replay data model comparison** — LangSmith, Langfuse, AgentOps, Phoenix, and OpenLIT: which schemas and UIs are best for root-cause analysis?
+4. **Eval harness data model comparison** — promptfoo, Inspect AI, OpenAI Evals, LangSmith: dataset formats, scoring, and CI ergonomics for shareable eval loops.
+
+### Esplorazione
+5. **Prompt caching and context assembly** — how outer-loop harnesses combine dynamic prompt assembly, cached static blocks, and reference reinjection without drift.

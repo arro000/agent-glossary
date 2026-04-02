@@ -1257,3 +1257,35 @@
 - **popularity**: 8
 - **alternatives**: Context7, Sourcegraph code search, Graphiti, Zep
 - **why_include**: Best concrete repo-map implementation for large-codebase exploration.
+
+---
+
+# Iteration 18 - Durable Runtime and Navigation Addendum
+
+## LangGraph Durable Execution
+- **macroarea**: Harness / Runtime Scaffold
+- **url**: https://docs.langchain.com/oss/python/langgraph/overview
+- **description**: LangGraph is the low-level runtime for long-running, stateful agents. The docs emphasize durable execution, human-in-the-loop control, memory, and debugging with LangSmith rather than prompt abstraction.
+- **popularity**: 10
+- **alternatives**: OpenAI Agents SDK sessions, Semantic Kernel, CrewAI Flows, Temporal workflows
+- **why_include**: The clearest concrete reference for persistence-aware agent runtimes and resumable workflows.
+
+---
+
+# Iteration 19 - Harness and Reference Navigation Gaps
+
+## Temporal Workflow
+- **macroarea**: Harness / Runtime Scaffold
+- **url**: https://docs.temporal.io/workflows
+- **description**: General-purpose durable workflow engine built around deterministic workflow definitions, event history, and replayable execution. Workflows can run for years and recover state after crashes, which makes Temporal a strong substrate for long-running agent harnesses that need checkpointing and resume semantics.
+- **popularity**: 9
+- **alternatives**: LangGraph durable execution, OpenAI Agents SDK sessions, Prefect, Step Functions
+- **why_include**: Best-in-class reference for durable execution primitives outside the LLM layer.
+
+## Sourcegraph Code Search / MCP
+- **macroarea**: Knowledge & Retrieval / Navigation
+- **url**: https://sourcegraph.com
+- **description**: Code intelligence platform with Deep Search, Code Search, batch changes, CLI, and an MCP surface for agents. It focuses on giving humans and agents structured code understanding across very large codebases, including dependency-aware navigation and code graph knowledge.
+- **popularity**: 9
+- **alternatives**: Aider Repo Map, Context7, Graphiti, Zep
+- **why_include**: Strongest enterprise-grade code search and code-intelligence layer for reference-aware agent navigation.
