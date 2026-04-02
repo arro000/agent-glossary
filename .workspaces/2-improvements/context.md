@@ -6,7 +6,7 @@
 - **Stato**: in_progress
 
 ## Obiettivo
-Analizzare l'implementazione corrente, identificare miglioramenti, e IMPLEMENTARLI direttamente sul codice.
+Analizzare l'implementazione corrente, identificare miglioramenti, e IMPLEMENTARLI direttamente sul codice. Le bolle devono restare uguali tra loro, con emoji/icon e peso dato dai progetti/referenze della sotto-sezione. Non scrivere solo PRD — cambia il codice.
 
 ## Iterazione 1 — Completata
 - Setup iniziale PixiJS con griglia, macroaree, bolle, zoom/pan

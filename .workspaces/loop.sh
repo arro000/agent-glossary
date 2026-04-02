@@ -106,7 +106,7 @@ get_prompt_for_workspace() {
 You are implementing the Agent Glossary Whiteboard app.
 
 Read the full context from .workspaces/1-implementation/context.md for specifications.
-Read .workspaces/1-implementation/resources/concepts.md for bubble data.
+Read .workspaces/1-implementation/resources/concepts.md for subsection/project data.
 Read .workspaces/1-implementation/resources/pixijs-reference.md for PixiJS v8 API reference.
 
 This is iteration $iteration. Check if there's a PRD in .workspaces/2-improvements/resources/prd.md — if it exists, implement the changes described there.
@@ -115,7 +115,9 @@ Key rules:
 - PixiJS v8 vanilla (NOT @pixi/react) — mount canvas via useRef/useEffect
 - All rendering in PixiJS, no HTML overlay for content
 - Font: Inter (loaded via CSS import)
-- Grid background, pastel macroareas, proportional bubbles
+- Use equal-size subsection bubbles inside each macroarea
+- Every bubble should be recognizable via emoji/icon + title
+- Bubble weight is the number of projects/references inside that subsection, not bubble size
 - Zoom (scroll) and pan (drag) on the whiteboard
 - Hover glow + click detail panel on bubbles
 - Make it work and look good. Commit when done.
@@ -129,7 +131,7 @@ You are IMPROVING and IMPLEMENTING the Agent Glossary Whiteboard app.
 
 Read the current code in src/ to understand what's implemented.
 Read .workspaces/1-implementation/context.md for full specifications.
-Read .workspaces/1-implementation/resources/concepts.md for bubble data.
+Read .workspaces/1-implementation/resources/concepts.md for subsection/project data.
 Read .workspaces/1-implementation/resources/pixijs-reference.md for PixiJS v8 API.
 Read .workspaces/3-research/resources/findings.md for new discoveries.
 
@@ -139,10 +141,11 @@ Your job:
 1. If nothing is implemented yet, implement it (follow specs in context.md)
 2. If something is half-done, complete it
 3. If something works, improve it (layout, interactivity, visuals, performance)
-4. Update bubble data in .workspaces/1-implementation/resources/concepts.md if needed
-5. Add research requests for topics you need more info on in .workspaces/3-research/resources/research-requests.md
-6. Test with npm run build after significant changes
-7. Commit your changes
+4. Rework subsection bubbles so they stay equal-size, emoji-recognizable, and project-weighted
+5. Update subsection/project data in .workspaces/1-implementation/resources/concepts.md if needed
+6. Add research requests for topics you need more info on in .workspaces/3-research/resources/research-requests.md
+7. Test with npm run build after significant changes
+8. Commit your changes
 
 This is iteration $iteration. Focus on writing real code and making the app work better.
 
@@ -150,7 +153,7 @@ Key rules:
 - PixiJS v8 vanilla (NOT @pixi/react) — mount canvas via useRef/useEffect
 - All rendering in PixiJS, no HTML overlay for content
 - Font: Inter (loaded via CSS)
-- Grid background, pastel macroareas, proportional bubbles
+- Grid background, pastel macroareas, equal-size subsection bubbles
 - Zoom (scroll) and pan (drag)
 - Hover + click interactions on bubbles
 
@@ -167,10 +170,11 @@ Read .workspaces/3-research/resources/findings.md for previous findings.
 
 Your job:
 1. Research each topic using web search (curl, read URLs, etc.)
-2. For each finding, save structured data in .workspaces/3-research/resources/findings.md
-3. Collect guides/tutorials in .workspaces/3-research/resources/guides.md
-4. Update concept data if you find new important tools/patterns
-5. Add new research requests for next iteration
+2. Focus on projects/tools/frameworks that belong to a subsection, not just abstract concepts
+3. For each finding, save structured data in .workspaces/3-research/resources/findings.md
+4. Collect guides/tutorials in .workspaces/3-research/resources/guides.md
+5. Update subsection/project data if you find new important tools/patterns
+6. Add new research requests for next iteration
 
 Format for findings:
 ## [Tool/Framework/Pattern Name]
@@ -211,9 +215,16 @@ run_workspace() {
 
   log "Launching OpenCode for workspace $ws_name..."
 
+  local model
+  case "$ws" in
+    1) model="openai/gpt-5.3-codex" ;;
+    2|3) model="openai/gpt-5.4-mini" ;;
+    *) model="openai/gpt-5.4-mini" ;;
+  esac
+
   # Run OpenCode
   if timeout 1200 opencode run "$prompt" \
-    --model zai-coding-plan/glm-5-turbo \
+    --model "$model" \
     2>&1 | tee -a "$LOG_FILE"; then
     log_success "Workspace $ws_name completed successfully"
 

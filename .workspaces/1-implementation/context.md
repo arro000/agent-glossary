@@ -15,7 +15,7 @@ Implementare l'app "Agent Glossary Whiteboard" usando PixiJS v8 + Next.js.
 - Font: Inter (importato via CSS @fontsource)
 
 ## Visione dell'App
-Una whiteboard quadrettata interattiva che mostra un glossario visuale dell'ecosistema degli agenti AI per il codice. Serve a progettisti/sviluppatori per avere a colpo d'occhio tutti gli strumenti, concetti e pattern disponibili, evitando di installare componenti sovrapposti.
+Una whiteboard quadrettata interattiva che mostra un glossario visuale dell'ecosistema degli agenti AI per il codice. Le bolle rappresentano sotto-sezioni e progetti, non concetti isolati: devono avere tutte la stessa dimensione, essere riconoscibili con emoji/icon e mostrare a colpo d'occhio scopo, riferimenti e peso relativo dei progetti legati a quella sotto-sezione. Serve a progettisti/sviluppatori per evitare di installare componenti sovrapposti.
 
 ## Layout
 - **Sfondo**: Griglia quadrettata (tipo whiteboard/sheet), linee sottili grigio chiaro su bianco

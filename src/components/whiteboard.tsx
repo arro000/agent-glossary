@@ -38,8 +38,7 @@ const START_X = 80;
 const START_Y = 60;
 const COL_STEP = AREA_WIDTH + COL_GAP;
 const ROW_STEP = AREA_HEIGHT + ROW_GAP;
-const MIN_RADIUS = 24;
-const MAX_RADIUS = 62;
+const BUBBLE_RADIUS = 46;
 const ZOOM_LERP = 0.12;
 const PAN_LERP = 0.15;
 
@@ -221,9 +220,21 @@ function getAreaPosition(index: number) {
   return { x: START_X + col * COL_STEP, y: START_Y + row * ROW_STEP };
 }
 
-function getRadius(popularity: number) {
-  const t = (popularity - 6) / 4;
-  return MIN_RADIUS + t * (MAX_RADIUS - MIN_RADIUS);
+function getBubbleEmoji(areaName: string, category: string): string {
+  const key = `${areaName} ${category}`.toLowerCase();
+  if (key.includes('memory')) return '🧠';
+  if (key.includes('tool') || key.includes('action')) return '🛠️';
+  if (key.includes('prompt')) return '✍️';
+  if (key.includes('orchestr') || key.includes('workflow') || key.includes('routing')) return '🧭';
+  if (key.includes('model') || key.includes('inference') || key.includes('llm')) return '🤖';
+  if (key.includes('skill') || key.includes('plugin')) return '🧩';
+  if (key.includes('observ') || key.includes('debug') || key.includes('trace')) return '👀';
+  if (key.includes('infrastruct') || key.includes('container') || key.includes('cloud')) return '🏗️';
+  if (key.includes('retriev') || key.includes('rag') || key.includes('knowledge')) return '📚';
+  if (key.includes('framework')) return '⚙️';
+  if (key.includes('automation')) return '🚀';
+  if (key.includes('protocol')) return '🔌';
+  return '•';
 }
 
 function layoutBubbles(concepts: ConceptData[], ax: number, ay: number) {
@@ -234,11 +245,10 @@ function layoutBubbles(concepts: ConceptData[], ax: number, ay: number) {
   const availW = AREA_WIDTH - padX * 2;
   const availH = AREA_HEIGHT - headerH - padY * 2;
 
-  let items = concepts.map((c) => ({
+  const items = concepts.map((c) => ({
     concept: c,
-    radius: getRadius(c.popularity),
+    radius: BUBBLE_RADIUS,
   }));
-
   let cols: number;
   if (n <= 4) cols = n;
   else if (n <= 8) cols = Math.min(n, 5);
@@ -248,13 +258,7 @@ function layoutBubbles(concepts: ConceptData[], ax: number, ay: number) {
   const cellW = availW / cols;
   const cellH = availH / rows;
 
-  const maxDiameter = Math.max(...items.map((it) => it.radius * 2));
-  const maxFit = Math.min(cellW, cellH) - 6;
-
-  if (maxDiameter > maxFit && maxFit > 0) {
-    const scale = maxFit / maxDiameter;
-    items = items.map((it) => ({ ...it, radius: it.radius * scale }));
-  }
+  // Bubbles are intentionally equal-size; only the grid layout adapts.
 
   const offX = ax + padX;
   const offY = ay + headerH + padY;
@@ -845,7 +849,7 @@ export default function Whiteboard() {
         areaContainer.addChild(label);
 
         const conceptCount = new Text({
-          text: `${area.concepts.length} concepts`,
+          text: `${area.concepts.length} subsections`,
           style: new TextStyle({
             fontFamily: '"Inter", sans-serif',
             fontSize: 10,
@@ -879,15 +883,27 @@ export default function Whiteboard() {
 
           const bubble = new Graphics();
           bubble.circle(0, 0, radius);
-          bubble.fill({ color: '#ffffff', alpha: 0.65 });
+          bubble.fill({ color: '#ffffff', alpha: 0.7 });
           bubble.circle(0, 0, radius);
-          bubble.stroke({ color: area.color, width: 1.5, alpha: 0.5 });
-          bubble.circle(0, 0, radius - 4);
-          bubble.fill({ color: area.border, alpha: 0.12 });
+          bubble.stroke({ color: area.color, width: 1.5, alpha: 0.55 });
+          bubble.circle(0, 0, radius - 5);
+          bubble.fill({ color: area.border, alpha: 0.11 });
           bubble.eventMode = 'none';
           bubbleContainer.addChild(bubble);
 
-          const fontSize = Math.max(8, Math.round(radius * 0.24));
+          const emoji = getBubbleEmoji(area.name, concept.category);
+          const emojiText = new Text({
+            text: emoji,
+            style: new TextStyle({
+              fontFamily: '"Inter", sans-serif',
+              fontSize: 18,
+            }),
+          });
+          emojiText.anchor.set(0.5);
+          emojiText.y = -radius * 0.38;
+          bubbleContainer.addChild(emojiText);
+
+          const fontSize = 9;
           const bText = new Text({
             text: concept.name,
             style: new TextStyle({
@@ -897,12 +913,34 @@ export default function Whiteboard() {
               fill: '#1f2937',
               align: 'center',
               wordWrap: true,
-              wordWrapWidth: radius * 1.4,
+              wordWrapWidth: radius * 1.45,
               lineHeight: fontSize + 3,
             }),
           });
           bText.anchor.set(0.5);
+          bText.y = radius * 0.1;
           bubbleContainer.addChild(bText);
+
+          const badge = new Container();
+          badge.x = radius * 0.48;
+          badge.y = radius * 0.5;
+          const badgeBg = new Graphics();
+          badgeBg.circle(0, 0, 11);
+          badgeBg.fill({ color: area.color, alpha: 0.16 });
+          badgeBg.stroke({ color: area.color, width: 1, alpha: 0.35 });
+          badge.addChild(badgeBg);
+          const badgeTxt = new Text({
+            text: `${concept.popularity}`,
+            style: new TextStyle({
+              fontFamily: '"Inter", sans-serif',
+              fontSize: 10,
+              fontWeight: 'bold',
+              fill: area.color,
+            }),
+          });
+          badgeTxt.anchor.set(0.5);
+          badge.addChild(badgeTxt);
+          bubbleContainer.addChild(badge);
 
           const state: BubbleState = {
             container: bubbleContainer,
@@ -924,7 +962,7 @@ export default function Whiteboard() {
             glow.fill({ color: area.color, alpha: 0.08 });
             glow.circle(0, 0, radius + 7);
             glow.fill({ color: area.color, alpha: 0.15 });
-            showTooltip(concept.name, concept.category, e.globalX, e.globalY);
+            showTooltip(`${emoji} ${concept.name}`, concept.category, e.globalX, e.globalY);
           });
           bubbleContainer.on('pointerout', () => {
             state.targetScale = 1;
@@ -1227,10 +1265,9 @@ export default function Whiteboard() {
 
           if (s.searchHighlight && !panel) {
             s.glow.clear();
-            const r = getRadius(s.concept.popularity);
-            s.glow.circle(0, 0, r + 10);
+            s.glow.circle(0, 0, BUBBLE_RADIUS + 10);
             s.glow.fill({ color: '#fbbf24', alpha: 0.15 });
-            s.glow.circle(0, 0, r + 4);
+            s.glow.circle(0, 0, BUBBLE_RADIUS + 4);
             s.glow.fill({ color: '#fbbf24', alpha: 0.1 });
           }
         }
@@ -1503,7 +1540,7 @@ export default function Whiteboard() {
         cy += desc.height + 12;
 
         const popLbl = new Text({
-          text: 'POPULARITY',
+          text: 'PROJECT WEIGHT',
           style: new TextStyle({
             fontFamily: '"Inter", sans-serif',
             fontSize: 10,
@@ -1517,7 +1554,7 @@ export default function Whiteboard() {
         card.addChild(popLbl);
 
         const popVal = new Text({
-          text: `${data.concept.popularity}/10`,
+          text: `${data.concept.popularity} refs`,
           style: new TextStyle({
             fontFamily: '"Inter", sans-serif',
             fontSize: 11,
@@ -1561,7 +1598,7 @@ export default function Whiteboard() {
         cy += 22;
 
         const altLbl = new Text({
-          text: 'ALTERNATIVES',
+          text: 'PROJECT REFERENCES',
           style: new TextStyle({
             fontFamily: '"Inter", sans-serif',
             fontSize: 10,
