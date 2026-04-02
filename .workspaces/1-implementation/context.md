@@ -2,7 +2,7 @@
 
 ## Stato
 - **Iterazione**: 4
-- **Ultimo aggiornamento**: 2026-04-02 18:42:00
+- **Ultimo aggiornamento**: 2026-04-02 18:10:39
 - **Stato**: completed
 
 ## Obiettivo
@@ -196,6 +196,11 @@ La whiteboard rappresenta 68 subsection correnti allineate alle macroaree princi
 - [x] Verificato PRD in `.workspaces/2-improvements/resources/prd.md` (presente, baseline senza nuove change request)
 - [x] Aggiornati i dati subsection della macroarea **Protocol Extensions** con `Agent Registry / Discovery` da `concepts.md`
 - [x] Confermati key rules: PixiJS v8 vanilla via `useRef/useEffect`, rendering full-canvas, font Inter, bolle equal-size con emoji+titolo, peso da `alternatives`, hover glow, click panel, zoom wheel e pan drag
+
+## Iterazione 5 — Completata
+- [x] Raffinato il rendering delle subsection bubbles: shell piu leggibile, title plate interno e halo emoji piu netto
+- [x] Reso piu chiaro il project-weight encoding con ring segmentato leggermente piu evidente e badge refs centrato
+- [x] Verifica finale: `npm run build` completata con successo dopo gli ultimi miglioramenti visivi
 
 ## File Principali
 - `src/components/whiteboard.tsx` — Componente principale con tutta la logica PixiJS

@@ -1,8 +1,8 @@
 # Workspace 2 — Improvements & Implementation
 
 ## Stato
-- **Iterazione**: 3
-- **Ultimo aggiornamento**: 2026-04-02 18:01:17
+- **Iterazione**: 4
+- **Ultimo aggiornamento**: 2026-04-02 18:10:39
 - **Stato**: completed
 
 ## Obiettivo
@@ -108,3 +108,9 @@ Analizzare l'implementazione corrente, identificare miglioramenti, e IMPLEMENTAR
 - Le subsection bubbles ora mantengono una resa ancora piu uniforme: fill/stroke sono fissi, il peso progetto vive nel ring segmentato e nel badge refs
 - Emoji piu leggibili grazie a halo piu ampio e dimensione aumentata
 - Aggiornato il layout label interno per ridurre overlap visivo nelle bubble piu dense
+
+## Iterazione 6 — Completata
+- Shell delle subsection bubbles resa piu chiara e coerente con un title plate interno per migliorare la lettura a colpo d'occhio
+- Emoji rinforzate con halo piu netto e font size adattiva per mantenere il riconoscimento anche in bubble dense
+- Ring segmentato reso piu leggibile e badge refs centrato per ribadire il peso progetto senza cambiare il diametro
+- Build di produzione verificata con successo (`npm run build`)

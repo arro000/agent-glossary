@@ -39,9 +39,7 @@ const START_Y = 60;
 const COL_STEP = AREA_WIDTH + COL_GAP;
 const ROW_STEP = AREA_HEIGHT + ROW_GAP;
 const BUBBLE_RADIUS = 46;
-const BUBBLE_FILL_ALPHA = 0.72;
 const BUBBLE_TRACK_ALPHA = 0.16;
-const BUBBLE_INNER_ALPHA = 0.06;
 const PROJECT_WEIGHT_SEGMENTS = 10;
 const ZOOM_LERP = 0.12;
 const PAN_LERP = 0.15;
@@ -298,6 +296,41 @@ function getProjectWeightStyle(referenceCount: number) {
   };
 }
 
+function getBubbleTypography(name: string, radius: number): BubbleTypography {
+  const len = getBubbleLabel(name).length;
+
+  if (len <= 12) {
+    return {
+      emojiSize: 26,
+      emojiY: -radius * 0.37,
+      titleFontSize: getBubbleFontSize(name, radius),
+      titleY: radius * 0.12,
+      titleWrapWidth: radius * 1.42,
+      badgeY: radius * 0.56,
+    };
+  }
+
+  if (len <= 20) {
+    return {
+      emojiSize: 24,
+      emojiY: -radius * 0.36,
+      titleFontSize: getBubbleFontSize(name, radius),
+      titleY: radius * 0.09,
+      titleWrapWidth: radius * 1.36,
+      badgeY: radius * 0.56,
+    };
+  }
+
+  return {
+    emojiSize: 22,
+    emojiY: -radius * 0.34,
+    titleFontSize: getBubbleFontSize(name, radius),
+    titleY: radius * 0.07,
+    titleWrapWidth: radius * 1.28,
+    badgeY: radius * 0.57,
+  };
+}
+
 function drawProjectWeightRing(
   graphics: Graphics,
   radius: number,
@@ -306,15 +339,15 @@ function drawProjectWeightRing(
 ) {
   const { filledSegments, totalSegments, emphasis } = getProjectWeightStyle(referenceCount);
   const ringRadius = radius + 9;
-  const ringWidth = 3.2;
+  const ringWidth = 3.4;
   const segmentSpan = (Math.PI * 2) / totalSegments;
-  const gap = segmentSpan * 0.28;
+  const gap = segmentSpan * 0.24;
   const segmentArc = segmentSpan - gap;
 
   graphics.clear();
   graphics.moveTo(ringRadius, 0);
   graphics.arc(0, 0, ringRadius, 0, Math.PI * 2);
-  graphics.stroke({ color: '#ffffff', width: ringWidth + 1.5, alpha: BUBBLE_TRACK_ALPHA, cap: 'round' });
+  graphics.stroke({ color: '#ffffff', width: ringWidth + 1.6, alpha: BUBBLE_TRACK_ALPHA, cap: 'round' });
 
   for (let i = 0; i < totalSegments; i++) {
     const start = -Math.PI / 2 + i * segmentSpan + gap / 2;
@@ -323,8 +356,8 @@ function drawProjectWeightRing(
     graphics.arc(0, 0, ringRadius, start, end);
     graphics.stroke({
       color,
-      width: i < filledSegments ? ringWidth + (i === filledSegments - 1 ? 0.2 : 0) : ringWidth - 0.4,
-      alpha: i < filledSegments ? 0.34 + emphasis : 0.08,
+      width: i < filledSegments ? ringWidth + (i === filledSegments - 1 ? 0.35 : 0.1) : ringWidth - 0.6,
+      alpha: i < filledSegments ? 0.4 + emphasis * 0.55 : 0.06,
       cap: 'round',
     });
   }
@@ -380,6 +413,15 @@ interface BubbleState {
   macroarea: MacroareaConfig;
   introIndex: number;
   searchHighlight: boolean;
+}
+
+interface BubbleTypography {
+  emojiSize: number;
+  emojiY: number;
+  titleFontSize: number;
+  titleY: number;
+  titleWrapWidth: number;
+  badgeY: number;
 }
 
 function redrawGrid(
@@ -1084,19 +1126,30 @@ export default function Whiteboard() {
 
           const bubble = new Graphics();
           bubble.circle(0, 0, radius);
-          bubble.fill({ color: '#ffffff', alpha: BUBBLE_FILL_ALPHA });
+          bubble.fill({ color: '#ffffff', alpha: 0.82 });
           bubble.circle(0, 0, radius);
-          bubble.stroke({ color: area.color, width: 1.5, alpha: 0.54 });
+          bubble.stroke({ color: area.color, width: 1.7, alpha: 0.6 });
           bubble.circle(0, 0, radius - 5);
-          bubble.fill({ color: area.border, alpha: BUBBLE_INNER_ALPHA });
+          bubble.fill({ color: area.border, alpha: 0.08 });
+          bubble.circle(0, 0, radius - 15);
+          bubble.fill({ color: area.color, alpha: 0.04 });
           bubble.eventMode = 'none';
           bubbleContainer.addChild(bubble);
 
+          const bubbleTypography = getBubbleTypography(concept.name, radius);
           const emoji = getBubbleEmoji(area.name, concept.category);
+
+          const titlePlate = new Graphics();
+          titlePlate.roundRect(-radius * 0.72, radius * 0.01, radius * 1.44, radius * 0.56, 15);
+          titlePlate.fill({ color: '#ffffff', alpha: 0.58 });
+          titlePlate.stroke({ color: area.color, width: 1, alpha: 0.08 });
+          titlePlate.eventMode = 'none';
+          bubbleContainer.addChild(titlePlate);
+
           const emojiBack = new Graphics();
-          emojiBack.circle(0, -radius * 0.36, 15.5);
-          emojiBack.fill({ color: '#ffffff', alpha: 0.78 });
-          emojiBack.stroke({ color: area.color, width: 1, alpha: 0.18 });
+          emojiBack.circle(0, bubbleTypography.emojiY, 16.5);
+          emojiBack.fill({ color: '#ffffff', alpha: 0.82 });
+          emojiBack.stroke({ color: area.color, width: 1, alpha: 0.2 });
           emojiBack.eventMode = 'none';
           bubbleContainer.addChild(emojiBack);
 
@@ -1104,39 +1157,38 @@ export default function Whiteboard() {
             text: emoji,
             style: new TextStyle({
               fontFamily: EMOJI_FONT_FAMILY,
-              fontSize: 24,
+              fontSize: bubbleTypography.emojiSize,
               fontWeight: 'bold',
             }),
           });
           emojiText.anchor.set(0.5);
-          emojiText.y = -radius * 0.36;
+          emojiText.y = bubbleTypography.emojiY;
           bubbleContainer.addChild(emojiText);
 
-          const fontSize = getBubbleFontSize(concept.name, radius);
           const bText = new Text({
             text: getBubbleLabel(concept.name),
             style: new TextStyle({
               fontFamily: '"Inter", sans-serif',
-              fontSize,
+              fontSize: bubbleTypography.titleFontSize,
               fontWeight: 'bold',
               fill: '#1f2937',
               align: 'center',
               wordWrap: true,
-              wordWrapWidth: radius * 1.45,
-              lineHeight: fontSize + 2,
+              wordWrapWidth: bubbleTypography.titleWrapWidth,
+              lineHeight: bubbleTypography.titleFontSize + 2,
             }),
           });
           bText.anchor.set(0.5);
-          bText.y = radius * 0.11;
+          bText.y = bubbleTypography.titleY;
           bubbleContainer.addChild(bText);
 
           const badge = new Container();
-          badge.x = radius * 0.5;
-          badge.y = radius * 0.5;
+          badge.x = 0;
+          badge.y = bubbleTypography.badgeY;
           const badgeBg = new Graphics();
-          badgeBg.roundRect(-13, -8, 26, 16, 8);
-          badgeBg.fill({ color: area.color, alpha: 0.16 });
-          badgeBg.stroke({ color: area.color, width: 1, alpha: 0.36 });
+          badgeBg.roundRect(-15, -8, 30, 16, 8);
+          badgeBg.fill({ color: area.color, alpha: 0.18 });
+          badgeBg.stroke({ color: area.color, width: 1, alpha: 0.34 });
           badge.addChild(badgeBg);
           const badgeTxt = new Text({
             text: `${referenceCount}`,

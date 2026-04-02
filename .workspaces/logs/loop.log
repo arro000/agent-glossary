@@ -5402,3 +5402,128 @@ Commit created:
 Note:
 - I intentionally did not include `.workspaces/logs/loop.log` in the commit since it was an unrelated pre-existing workspace log change.
 [0;32m[2026-04-02 18:07:25] ✓[0m Workspace Implementation completed successfully
+ 1 file changed, 376 insertions(+)
+To https://github.com/arro000/agent-glossary.git
+   923d96f..4d13964  main -> main
+[0;32m[2026-04-02 18:07:26] ✓[0m Workspace changes committed and pushed
+[0;36m[2026-04-02 18:07:26][0m Launching OpenCode for workspace Improvements & PRD...
+[0m
+> build · gpt-5.4-mini
+[0m
+I’m reading the implementation context and current `src/` code first so I can change the right files instead of guessing.
+[0m→ [0mRead .workspaces/1-implementation/context.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/pixijs-reference.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1, limit=400][0m
+[0m✱ [0mGlob "src/**/*"[90m in . · 5 matches[0m
+I have the spec and data; next I’m checking the actual implementation to see what’s missing or inconsistent before I edit.
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1, limit=400][0m
+[0m→ [0mRead src/app/page.tsx[90m [offset=1, limit=200][0m
+[0m→ [0mRead src/app/layout.tsx[90m [offset=1, limit=200][0m
+[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=1, limit=200][0m
+[0m→ [0mRead src/app/globals.css[90m [offset=1, limit=300][0m
+The app already exists, so I’m drilling into the current PixiJS scene logic and interaction code to adjust the bubble behavior instead of rebuilding from scratch.
+[0m✱ [0mGrep "function Whiteboard|export default|detail panel|minimap|search|zoom|pan|hover|pointerdown|pointerup"[90m in src/components/whiteboard.tsx · 131 matches[0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1200, limit=400][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=800, limit=400][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=400, limit=400][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1600, limit=400][0m
+I’ve confirmed the current app is already substantial. I’m now making the bubble treatment more distinct and readable, and I’ll update the workspace notes afterward.
+[0m✱ [0mGrep "AG-UI|Semantic Kernel|CrewAI Flows|Vercel AI SDK|OpenTelemetry|PixiJS v8 emoji rendering|visual encoding"[90m in .workspaces/3-research/resources/research-requests.md · 10 matches[0m
+[0m→ [0mRead .workspaces/2-improvements/context.md[90m [offset=1, limit=260][0m
+I’m editing the bubble rendering now: stronger fixed-size shells, clearer emoji treatment, and more legible weight encoding without changing bubble diameter.
+[0m✗ [0mapply_patch failed
+[91m[1mError: [0mapply_patch verification failed: Error: Failed to find expected lines in /home/arro/projects/agent-glossary/src/components/whiteboard.tsx:
+function getProjectWeightStyle(referenceCount: number) {
+  const capped = Math.max(1, Math.min(10, referenceCount));
+  const filledSegments = Math.max(1, Math.round((capped / 10) * PROJECT_WEIGHT_SEGMENTS));
+  return {
+The first patch missed the exact source shape, so I’m re-reading the local section and applying a tighter diff.
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=280, limit=80][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1080, limit=120][0m
+[0m✗ [0mapply_patch failed
+[91m[1mError: [0mapply_patch verification failed: Error: Failed to find expected lines in /home/arro/projects/agent-glossary/src/components/whiteboard.tsx:
+function getProjectWeightStyle(referenceCount: number) {
+  const capped = Math.max(1, Math.min(10, referenceCount));
+  const filledSegments = Math.max(1, Math.round((capped / 10) * PROJECT_WEIGHT_SEGMENTS));
+  return {
+    filledSegments,
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+The first pass is in. I’m checking for stale constants and any fallout from the bubble rewrite before I run a build.
+[0m✱ [0mGrep "BUBBLE_FILL_ALPHA|BUBBLE_INNER_ALPHA"[90m in src/components/whiteboard.tsx · 2 matches[0m
+[0m✱ [0mGrep "getBubbleTypography|titlePlate|bubbleTypography"[90m in src/components/whiteboard.tsx · 16 matches[0m
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+The visual rewrite is in place. I’m running a production build now to catch any typing or PixiJS issues from the scene changes.
+[0m
+[0m$ [0mnpm run build
+> agent-glossary@0.1.0 build
+> next build
+
+▲ Next.js 16.2.2 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.2s
+  Running TypeScript ...
+  Finished TypeScript in 1969ms ...
+  Collecting page data using 5 workers ...
+  Generating static pages using 5 workers (0/4) ...
+  Generating static pages using 5 workers (1/4) 
+  Generating static pages using 5 workers (2/4) 
+  Generating static pages using 5 workers (3/4) 
+✓ Generating static pages using 5 workers (4/4) in 333ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+[0m
+I’ve verified the build. I’m adding a couple of follow-up research requests for the remaining rendering/encoding questions so the next iteration has a clear target.
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/resources/research-requests.md
+I’m updating the workspace logs now so they match the code that was just shipped.
+[0m
+[0m$ [0mdate '+%Y-%m-%d %H:%M:%S'
+2026-04-02 18:10:39
+[0m
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/1-implementation/context.md
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/2-improvements/context.md
+The code and workspace notes are updated. I’m checking the final diff and repo state, then I’ll commit with a message that matches the repo’s history.
+[0m
+[0m$ [0mgit status --short --untracked-files=all
+M .workspaces/1-implementation/context.md
+ M .workspaces/2-improvements/context.md
+ M .workspaces/3-research/resources/research-requests.md
+ M .workspaces/logs/loop.log
+ M src/components/whiteboard.tsx
+[0m
+[0m$ [0mgit log --oneline -5
+4d13964 loop iter 4: workspace 1 (Implementation) completed
+6f6927f add protocol discovery subsection and update iteration 4 context
+923d96f loop iter 3: workspace 3 (Research & Content) completed
+c6e5600 loop iter 3: workspace 2 (Improvements & PRD) completed
+62ed952 refine fixed-size bubble encoding
+[0m
+[0m$ [0mgit diff --stat
+.workspaces/1-implementation/context.md            |   7 +-
+ .workspaces/2-improvements/context.md              |  10 +-
+ .../3-research/resources/research-requests.md      |   9 ++
+ .workspaces/logs/loop.log                          | 101 ++++++++++++++++++++
+ src/components/whiteboard.tsx                      | 102 ++++++++++++++++-----
+ 5 files changed, 201 insertions(+), 28 deletions(-)
+[0m
+I’ve got the final diff shape. I’m staging everything that changed and creating the commit now.

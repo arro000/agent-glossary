@@ -119,3 +119,12 @@
 
 ### Esplorazione
 5. **Curated repo quality signals** — quali metadati, README patterns e machine-readable index fanno davvero la differenza nelle awesome-lists?
+
+## Iterazione 10 — Da esplorare
+
+### Priorità Alta
+1. **PixiJS v8 text metrics per emoji + titoli brevi** — come centrare meglio emoji e label dentro nodi circolari senza perdere crispness su DPI alti?
+2. **Fixed-size node encoding** — quali pattern visivi funzionano meglio per comunicare peso/importanza quando il diametro resta costante?
+
+### Priorità Media
+3. **Segmented ring legibility** — come rendere piu leggibile un ring a segmenti su sfondi pastello e in piccoli cerchi?
