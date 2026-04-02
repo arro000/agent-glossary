@@ -166,27 +166,166 @@ function getRadius(popularity: number) {
 
 function layoutBubbles(concepts: ConceptData[], ax: number, ay: number) {
   const n = concepts.length;
-  const cols = Math.ceil(Math.sqrt(n));
-  const rows = Math.ceil(n / cols);
   const padX = 30;
-  const padY = 16;
+  const padY = 20;
   const headerH = 38;
   const availW = AREA_WIDTH - padX * 2;
   const availH = AREA_HEIGHT - headerH - padY * 2;
-  const cellW = availW / cols;
-  const cellH = availH / rows;
 
-  return concepts.map((c, i) => {
+  const items = concepts.map((c, i) => ({
+    concept: c,
+    radius: getRadius(c.popularity),
+    index: i,
+  }));
+
+  const totalArea = items.reduce((s, it) => s + Math.PI * it.radius * it.radius, 0);
+  const packingDensity = 0.55;
+  const neededW = Math.sqrt(totalArea / packingDensity) * 1.1;
+  const neededH = Math.sqrt((totalArea / packingDensity) * (availH / availW)) * 1.1;
+
+  const fitW = Math.min(neededW, availW);
+  const fitH = Math.min(neededH, availH);
+
+  const offX = ax + padX + (availW - fitW) / 2;
+  const offY = ay + headerH + padY + (availH - fitH) / 2;
+
+  const cols = Math.ceil(Math.sqrt(n * (fitW / fitH)));
+  const rows = Math.ceil(n / cols);
+  const cellW = fitW / cols;
+  const cellH = fitH / rows;
+
+  return items.map((it, i) => {
     const col = i % cols;
     const row = Math.floor(i / cols);
-    const r = getRadius(c.popularity);
+    const isLastCol = col === cols - 1;
+    const isLastRow = row === rows - 1;
+    const itemsInRow = isLastRow ? n - row * cols : cols;
+    const rowOffsetX = isLastRow ? (cols - itemsInRow) * cellW / 2 : 0;
+
     return {
-      concept: c,
-      x: ax + padX + cellW * col + cellW / 2,
-      y: ay + headerH + padY + cellH * row + cellH / 2,
-      radius: r,
+      concept: it.concept,
+      x: offX + rowOffsetX + cellW * col + cellW / 2,
+      y: offY + cellH * row + cellH / 2,
+      radius: it.radius,
     };
   });
+}
+
+interface BubbleState {
+  container: Container;
+  glow: Graphics;
+  bubble: Graphics;
+  targetScale: number;
+  currentScale: number;
+  concept: ConceptData;
+  macroarea: MacroareaConfig;
+}
+
+function redrawGrid(
+  grid: Graphics,
+  world: Container,
+  screenW: number,
+  screenH: number,
+) {
+  grid.clear();
+  const s = world.scale.x;
+  const wx = world.x;
+  const wy = world.y;
+
+  const minX = (-wx / s) - GRID_SIZE * 2;
+  const maxX = ((screenW - wx) / s) + GRID_SIZE * 2;
+  const minY = (-wy / s) - GRID_SIZE * 2;
+  const maxY = ((screenH - wy) / s) + GRID_SIZE * 2;
+
+  const startX = Math.floor(minX / GRID_SIZE) * GRID_SIZE;
+  const startY = Math.floor(minY / GRID_SIZE) * GRID_SIZE;
+
+  for (let x = startX; x <= maxX; x += GRID_SIZE) {
+    grid.moveTo(x, minY);
+    grid.lineTo(x, maxY);
+  }
+  for (let y = startY; y <= maxY; y += GRID_SIZE) {
+    grid.moveTo(minX, y);
+    grid.lineTo(maxX, y);
+  }
+  grid.stroke({ color: GRID_COLOR, width: 0.5 / s });
+}
+
+function createMinimap(
+  worldBounds: { x: number; y: number; w: number; h: number },
+  screenW: number,
+  screenH: number,
+  world: Container,
+  app: Application,
+): Container {
+  const mmW = 180;
+  const mmH = 110;
+  const mmPad = 12;
+  const mmX = screenW - mmW - mmPad;
+  const mmY = screenH - mmH - mmPad;
+
+  const mm = new Container();
+  mm.label = 'minimap';
+
+  const bg = new Graphics();
+  bg.roundRect(0, 0, mmW, mmH, 8);
+  bg.fill({ color: '#ffffff', alpha: 0.85 });
+  bg.stroke({ color: '#d1d5db', width: 1 });
+  bg.eventMode = 'none';
+  mm.addChild(bg);
+
+  const scaleX = mmW / worldBounds.w;
+  const scaleY = mmH / worldBounds.h;
+  const scale = Math.min(scaleX, scaleY) * 0.9;
+  const offsetX = (mmW - worldBounds.w * scale) / 2;
+  const offsetY = (mmH - worldBounds.h * scale) / 2;
+
+  for (let i = 0; i < MACROAREAS.length; i++) {
+    const area = MACROAREAS[i];
+    const pos = getAreaPosition(i);
+    const r = new Graphics();
+    r.roundRect(
+      offsetX + pos.x * scale,
+      offsetY + pos.y * scale,
+      AREA_WIDTH * scale,
+      AREA_HEIGHT * scale,
+      2,
+    );
+    r.fill({ color: area.bg, alpha: 0.8 });
+    r.eventMode = 'none';
+    mm.addChild(r);
+  }
+
+  const viewportRect = new Graphics();
+  viewportRect.eventMode = 'none';
+  mm.addChild(viewportRect);
+
+  function updateViewport() {
+    viewportRect.clear();
+    const vx = (-world.x / world.scale.x - worldBounds.x) * scale + offsetX;
+    const vy = (-world.y / world.scale.y - worldBounds.y) * scale + offsetY;
+    const vw = (screenW / world.scale.x) * scale;
+    const vh = (screenH / world.scale.y) * scale;
+    viewportRect.rect(vx, vy, vw, vh);
+    viewportRect.fill({ color: '#3b82f6', alpha: 0.08 });
+    viewportRect.stroke({ color: '#3b82f6', width: 1, alpha: 0.5 });
+  }
+
+  mm.x = mmX;
+  mm.y = mmY;
+  mm.eventMode = 'static';
+  mm.cursor = 'pointer';
+
+  mm.on('pointerdown', (e) => {
+    const localX = e.globalX - mmX;
+    const localY = e.globalY - mmY;
+    const targetWX = (localX - offsetX) / scale + worldBounds.x;
+    const targetWY = (localY - offsetY) / scale + worldBounds.y;
+    world.x = screenW / 2 - targetWX * world.scale.x;
+    world.y = screenH / 2 - targetWY * world.scale.y;
+  });
+
+  return mm;
 }
 
 export default function Whiteboard() {
@@ -198,6 +337,7 @@ export default function Whiteboard() {
 
     (async () => {
       await document.fonts.load('600 12px "Inter"').catch(() => {});
+      await document.fonts.load('700 12px "Inter"').catch(() => {});
 
       const app = new Application();
       await app.init({
@@ -227,24 +367,16 @@ export default function Whiteboard() {
 
       app.stage.addChild(world);
 
-      // Grid
+      const worldBounds = { x: 0, y: 0, w: totalW, h: totalH };
+
+      // Dynamic grid
       const grid = new Graphics();
-      const gMin = -2000;
-      const gMax = 6000;
-      for (let x = gMin; x <= gMax; x += GRID_SIZE) {
-        grid.moveTo(x, gMin);
-        grid.lineTo(x, gMax);
-      }
-      for (let y = gMin; y <= gMax; y += GRID_SIZE) {
-        grid.moveTo(gMin, y);
-        grid.lineTo(gMax, y);
-      }
-      grid.stroke({ color: GRID_COLOR, width: 0.5 });
       grid.eventMode = 'none';
-      world.addChild(grid);
+      world.addChildAt(grid, 0);
+      redrawGrid(grid, world, window.innerWidth, window.innerHeight);
 
       // Macroareas & Bubbles
-      const bubbleMap = new Map<Container, { concept: ConceptData; macroarea: MacroareaConfig }>();
+      const bubbleStates: BubbleState[] = [];
 
       for (let i = 0; i < MACROAREAS.length; i++) {
         const area = MACROAREAS[i];
@@ -303,8 +435,11 @@ export default function Whiteboard() {
 
           const bubble = new Graphics();
           bubble.circle(0, 0, radius);
-          bubble.fill({ color: area.border, alpha: 0.5 });
-          bubble.stroke({ color: area.color, width: 1.5, alpha: 0.6 });
+          bubble.fill({ color: '#ffffff', alpha: 0.6 });
+          bubble.circle(0, 0, radius);
+          bubble.stroke({ color: area.color, width: 1.5, alpha: 0.5 });
+          bubble.circle(0, 0, radius - 4);
+          bubble.fill({ color: area.border, alpha: 0.15 });
           bubble.eventMode = 'none';
           bubbleContainer.addChild(bubble);
 
@@ -325,25 +460,55 @@ export default function Whiteboard() {
           bText.anchor.set(0.5);
           bubbleContainer.addChild(bText);
 
+          const state: BubbleState = {
+            container: bubbleContainer,
+            glow,
+            bubble,
+            targetScale: 1,
+            currentScale: 1,
+            concept,
+            macroarea: area,
+          };
+
           bubbleContainer.on('pointerover', () => {
+            state.targetScale = 1.08;
             glow.clear();
-            glow.circle(0, 0, radius + 12);
-            glow.fill({ color: area.color, alpha: 0.1 });
-            glow.circle(0, 0, radius + 6);
-            glow.fill({ color: area.color, alpha: 0.18 });
-            bubbleContainer.scale.set(1.06);
+            glow.circle(0, 0, radius + 14);
+            glow.fill({ color: area.color, alpha: 0.08 });
+            glow.circle(0, 0, radius + 7);
+            glow.fill({ color: area.color, alpha: 0.15 });
           });
           bubbleContainer.on('pointerout', () => {
+            state.targetScale = 1;
             glow.clear();
-            bubbleContainer.scale.set(1);
           });
 
           areaContainer.addChild(bubbleContainer);
-          bubbleMap.set(bubbleContainer, { concept, macroarea: area });
+          bubbleStates.push(state);
         }
 
         world.addChild(areaContainer);
       }
+
+      // Smooth animation ticker
+      let needsGridRedraw = false;
+      app.ticker.add(() => {
+        let anyChanged = false;
+        for (const s of bubbleStates) {
+          if (Math.abs(s.currentScale - s.targetScale) > 0.001) {
+            s.currentScale += (s.targetScale - s.currentScale) * 0.18;
+            s.container.scale.set(s.currentScale);
+            anyChanged = true;
+          }
+        }
+        if (needsGridRedraw) {
+          redrawGrid(grid, world, app.renderer.width / (window.devicePixelRatio || 1), app.renderer.height / (window.devicePixelRatio || 1));
+          needsGridRedraw = false;
+        }
+        if (minimapViewport) {
+          updateMinimapViewport();
+        }
+      });
 
       // Zoom & Pan
       app.stage.eventMode = 'static';
@@ -370,6 +535,7 @@ export default function Whiteboard() {
         if (!dragging) return;
         world.x = worldSX + (e.clientX - dragSX);
         world.y = worldSY + (e.clientY - dragSY);
+        needsGridRedraw = true;
       });
 
       const endDrag = () => {
@@ -390,17 +556,51 @@ export default function Whiteboard() {
         world.scale.set(ns);
         world.x = mx - wx * ns;
         world.y = my - wy * ns;
+        needsGridRedraw = true;
       }, { passive: false });
+
+      // Minimap
+      let minimapViewport: Graphics | null = null;
+      let updateMinimapViewport: () => void = () => {};
+
+      const minimap = createMinimap(worldBounds, window.innerWidth, window.innerHeight, world, app);
+      minimapViewport = minimap.children[minimap.children.length - 1] as Graphics;
+
+      updateMinimapViewport = () => {
+        minimapViewport?.clear();
+        const mmW = 180;
+        const mmH = 110;
+        const scaleX = mmW / worldBounds.w;
+        const scaleY = mmH / worldBounds.h;
+        const scale = Math.min(scaleX, scaleY) * 0.9;
+        const offsetX = (mmW - worldBounds.w * scale) / 2;
+        const offsetY = (mmH - worldBounds.h * scale) / 2;
+
+        const sw = window.innerWidth;
+        const sh = window.innerHeight;
+        const vx = (-world.x / world.scale.x - worldBounds.x) * scale + offsetX;
+        const vy = (-world.y / world.scale.y - worldBounds.y) * scale + offsetY;
+        const vw = (sw / world.scale.x) * scale;
+        const vh = (sh / world.scale.y) * scale;
+        minimapViewport!.rect(vx, vy, vw, vh);
+        minimapViewport!.fill({ color: '#3b82f6', alpha: 0.08 });
+        minimapViewport!.stroke({ color: '#3b82f6', width: 1, alpha: 0.5 });
+      };
+
+      app.stage.addChild(minimap);
 
       // Detail panel
       let panel: Container | null = null;
+      let panelAlpha = 0;
+      let panelAnimating = false;
 
       function closePanel() {
-        if (panel) {
-          app.stage.removeChild(panel);
-          panel.destroy({ children: true });
-          panel = null;
-        }
+        if (!panel) return;
+        app.stage.removeChild(panel);
+        panel.destroy({ children: true });
+        panel = null;
+        panelAlpha = 0;
+        panelAnimating = false;
       }
 
       function openPanel(data: { concept: ConceptData; macroarea: MacroareaConfig }) {
@@ -414,6 +614,7 @@ export default function Whiteboard() {
         const py = Math.max(10, Math.min(sh - ph - 10, (sh - ph) / 2));
 
         const root = new Container();
+        root.alpha = 0;
 
         const backdrop = new Graphics();
         backdrop.rect(0, 0, sw, sh);
@@ -434,6 +635,13 @@ export default function Whiteboard() {
         cardBg.stroke({ color: '#e5e7eb', width: 1 });
         cardBg.eventMode = 'none';
         root.addChild(cardBg);
+
+        // Top accent bar
+        const accentBar = new Graphics();
+        accentBar.roundRect(px, py, pw, 5, 16);
+        accentBar.fill({ color: data.macroarea.color, alpha: 0.8 });
+        accentBar.eventMode = 'none';
+        root.addChild(accentBar);
 
         // Close btn
         const closeBtn = new Container();
@@ -468,7 +676,7 @@ export default function Whiteboard() {
         });
         root.addChild(closeBtn);
 
-        let cy = py + pad;
+        let cy = py + pad + 6;
 
         // Title
         const title = new Text({
@@ -616,15 +824,29 @@ export default function Whiteboard() {
         root.addChild(altTxt);
 
         panel = root;
+        panelAlpha = 0;
+        panelAnimating = true;
         app.stage.addChild(root);
       }
 
-      for (const [bc, data] of bubbleMap) {
-        bc.on('pointerdown', (e) => {
+      for (const s of bubbleStates) {
+        s.container.on('pointerdown', (e) => {
           e.stopPropagation();
-          openPanel(data);
+          openPanel({ concept: s.concept, macroarea: s.macroarea });
         });
       }
+
+      // Panel fade-in ticker
+      const panelFadeFn = () => {
+        if (!panelAnimating || !panel) return;
+        panelAlpha += 0.08;
+        if (panelAlpha >= 1) {
+          panelAlpha = 1;
+          panelAnimating = false;
+        }
+        panel.alpha = panelAlpha;
+      };
+      app.ticker.add(panelFadeFn);
 
       // ESC to close
       const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') closePanel(); };
@@ -632,14 +854,23 @@ export default function Whiteboard() {
 
       // Resize
       const onResize = () => {
-        app.renderer.resize(window.innerWidth, window.innerHeight);
+        const dpr = window.devicePixelRatio || 1;
+        app.renderer.resize(window.innerWidth * dpr, window.innerHeight * dpr);
+        app.canvas.width = window.innerWidth * dpr;
+        app.canvas.height = window.innerHeight * dpr;
+        app.canvas.style.width = `${window.innerWidth}px`;
+        app.canvas.style.height = `${window.innerHeight}px`;
         app.stage.hitArea = new Rectangle(0, 0, window.innerWidth, window.innerHeight);
+        needsGridRedraw = true;
+        minimap.x = window.innerWidth - 180 - 12;
+        minimap.y = window.innerHeight - 110 - 12;
       };
       window.addEventListener('resize', onResize);
 
       cleanup = () => {
         window.removeEventListener('keydown', onKey);
         window.removeEventListener('resize', onResize);
+        app.ticker.remove(panelFadeFn);
         closePanel();
         app.destroy(true);
       };
