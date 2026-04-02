@@ -284,6 +284,8 @@ interface BubbleState {
   baseAlpha: number;
   concept: ConceptData;
   macroarea: MacroareaConfig;
+  introIndex: number;
+  searchHighlight: boolean;
 }
 
 function redrawGrid(
@@ -319,11 +321,12 @@ function redrawGrid(
 function createMinimap(
   worldBounds: { x: number; y: number; w: number; h: number },
   screenW: number,
-  screenH: number,
+  _screenH: number,
   world: Container,
+  onNavigate: (targetWX: number, targetWY: number) => void,
 ): Container {
   const mmW = 180;
-  const mmH = 110;
+  const mmH = _screenH > 300 ? 110 : 70;
   const mmPad = 12;
   const mmX = screenW - mmW - mmPad;
   const mmY = screenH - mmH - mmPad;
@@ -385,8 +388,7 @@ function createMinimap(
     const localY = e.globalY - mmY;
     const targetWX = (localX - offsetX) / scale + worldBounds.x;
     const targetWY = (localY - offsetY) / scale + worldBounds.y;
-    world.x = screenW / 2 - targetWX * world.scale.x;
-    world.y = screenH / 2 - targetWY * world.scale.y;
+    onNavigate(targetWX, targetWY);
   });
 
   (mm as unknown as Record<string, unknown>)._updateViewport = updateViewport;
@@ -560,13 +562,19 @@ function createSearchBar(): {
   return { container, bg, textDisplay, placeholder, clearBtn, matchLabel, iconGfx };
 }
 
-function createLegend(): Container {
+function createLegend(onAreaClick: (areaIndex: number) => void, screenH: number): Container {
   const pad = 10;
   const itemH = 22;
-  const w = 170;
-  const h = MACROAREAS.length * itemH + pad * 2 + 22;
+  const w = 190;
+  const maxVisibleItems = 8;
+  const headerH = 30;
+  const headerPad = pad * 2;
+  const innerH = Math.min(MACROAREAS.length, maxVisibleItems) * itemH;
+  const h = headerH + headerPad + innerH + 2;
+  const isScrollable = MACROAREAS.length > maxVisibleItems;
 
   const container = new Container();
+  container.eventMode = 'static';
 
   const shadow = new Graphics();
   shadow.roundRect(2, 3, w, h, 10);
@@ -593,15 +601,65 @@ function createLegend(): Container {
   });
   header.x = pad;
   header.y = pad;
+  header.eventMode = 'none';
   container.addChild(header);
 
-  let y = pad + 22;
-  for (const area of MACROAREAS) {
+  if (isScrollable) {
+    const scrollHint = new Text({
+      text: `${MACROAREAS.length} areas \u2193`,
+      style: new TextStyle({
+        fontFamily: '"Inter", sans-serif',
+        fontSize: 9,
+        fill: '#c0c0c0',
+      }),
+    });
+    scrollHint.anchor.set(1, 0);
+    scrollHint.x = w - pad;
+    scrollHint.y = pad;
+    scrollHint.eventMode = 'none';
+    container.addChild(scrollHint);
+  }
+
+  const listContainer = new Container();
+  listContainer.x = 0;
+  listContainer.y = headerH + headerPad;
+  container.addChild(listContainer);
+
+  if (isScrollable) {
+    const clipContainer = new Container();
+    clipContainer.x = 0;
+    clipContainer.y = headerH + headerPad;
+    const clipBg = new Graphics();
+    clipBg.rect(0, 0, w, innerH);
+    clipBg.fill({ color: '#ffffff', alpha: 0 });
+    clipContainer.addChild(clipBg);
+    container.addChild(clipContainer);
+    listContainer.parent?.removeChild(listContainer);
+    clipContainer.addChild(listContainer);
+    listContainer.y = 0;
+    listContainer.mask = clipContainer;
+  }
+
+  let y = 0;
+  for (let i = 0; i < MACROAREAS.length; i++) {
+    const area = MACROAREAS[i];
+    const row = new Container();
+    row.eventMode = 'static';
+    row.cursor = 'pointer';
+    row.x = 0;
+    row.y = y;
+
+    const rowBg = new Graphics();
+    rowBg.roundRect(2, 0, w - 4, itemH, 4);
+    rowBg.fill({ color: '#000000', alpha: 0 });
+    rowBg.eventMode = 'none';
+    row.addChild(rowBg);
+
     const dot = new Graphics();
-    dot.roundRect(pad, y, 14, 14, 4);
+    dot.roundRect(pad, 4, 14, 14, 4);
     dot.fill({ color: area.color, alpha: 0.7 });
     dot.eventMode = 'none';
-    container.addChild(dot);
+    row.addChild(dot);
 
     const txt = new Text({
       text: area.name,
@@ -612,8 +670,9 @@ function createLegend(): Container {
       }),
     });
     txt.x = pad + 20;
-    txt.y = y + 1;
-    container.addChild(txt);
+    txt.y = 5;
+    txt.eventMode = 'none';
+    row.addChild(txt);
 
     const count = new Text({
       text: `${area.concepts.length}`,
@@ -625,10 +684,64 @@ function createLegend(): Container {
     });
     count.anchor.set(1, 0);
     count.x = w - pad;
-    count.y = y + 2;
-    container.addChild(count);
+    count.y = 5;
+    count.eventMode = 'none';
+    row.addChild(count);
 
+    row.on('pointerover', () => {
+      rowBg.clear();
+      rowBg.roundRect(2, 0, w - 4, itemH, 4);
+      rowBg.fill({ color: area.color, alpha: 0.08 });
+    });
+    row.on('pointerout', () => {
+      rowBg.clear();
+      rowBg.roundRect(2, 0, w - 4, itemH, 4);
+      rowBg.fill({ color: '#000000', alpha: 0 });
+    });
+    row.on('pointerdown', (e) => {
+      e.stopPropagation();
+      onAreaClick(i);
+    });
+
+    listContainer.addChild(row);
     y += itemH;
+  }
+
+  if (isScrollable) {
+    const maxY = y - innerH;
+    let scrollY = 0;
+    let isDragging = false;
+    let lastWheelTime = 0;
+
+    container.on('wheel', (e) => {
+      e.stopPropagation();
+      const now = Date.now();
+      if (now - lastWheelTime < 20) return;
+      lastWheelTime = now;
+      scrollY = Math.max(-maxY, Math.min(0, scrollY - e.deltaY * 0.5));
+      listContainer.y = headerH + headerPad + scrollY;
+    });
+
+    listContainer.eventMode = 'static';
+    listContainer.on('pointerdown', (e) => {
+      isDragging = true;
+      e.stopPropagation();
+    });
+
+    const onMove = (e: any) => {
+      if (!isDragging) return;
+      scrollY = Math.max(-maxY, Math.min(0, scrollY + e.movementY));
+      listContainer.y = headerH + headerPad + scrollY;
+    };
+    const onUp = () => { isDragging = false; };
+
+    window.addEventListener('pointermove', onMove);
+    window.addEventListener('pointerup', onUp);
+
+    (container as any)._cleanupScroll = () => {
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerup', onUp);
+    };
   }
 
   return container;
@@ -800,6 +913,8 @@ export default function Whiteboard() {
             baseAlpha: 1,
             concept,
             macroarea: area,
+            introIndex: 0,
+            searchHighlight: false,
           };
 
           bubbleContainer.on('pointerover', (e) => {
@@ -809,7 +924,7 @@ export default function Whiteboard() {
             glow.fill({ color: area.color, alpha: 0.08 });
             glow.circle(0, 0, radius + 7);
             glow.fill({ color: area.color, alpha: 0.15 });
-            showTooltip(concept.name, e.globalX, e.globalY);
+            showTooltip(concept.name, concept.category, e.globalX, e.globalY);
           });
           bubbleContainer.on('pointerout', () => {
             state.targetScale = 1;
@@ -819,6 +934,7 @@ export default function Whiteboard() {
 
           areaContainer.addChild(bubbleContainer);
           bubbleStates.push(state);
+          state.introIndex = bubbleStates.length - 1;
         }
 
         world.addChild(areaContainer);
@@ -856,7 +972,10 @@ export default function Whiteboard() {
         targetPanY = Math.max(20, cy);
       }
 
-      const minimap = createMinimap(worldBounds, window.innerWidth, window.innerHeight, world);
+      const minimap = createMinimap(worldBounds, window.innerWidth, window.innerHeight, world, (targetWX: number, targetWY: number) => {
+        targetPanX = window.innerWidth / 2 - targetWX * world.scale.x;
+        targetPanY = window.innerHeight / 2 - targetWY * world.scale.y;
+      });
       app.stage.addChild(minimap);
 
       const zoomContainer = new Container();
@@ -914,8 +1033,21 @@ export default function Whiteboard() {
       searchBar.container.y = 14;
       app.stage.addChild(searchBar.container);
 
-      const legend = createLegend();
-      legend.x = window.innerWidth - 170 - 14;
+      const legend = createLegend((areaIndex: number) => {
+        const pos = getAreaPosition(areaIndex);
+        const areaCX = pos.x + AREA_WIDTH / 2;
+        const areaCY = pos.y + AREA_HEIGHT / 2;
+        const s = Math.min(
+          (window.innerWidth - 60) / (AREA_WIDTH + 80),
+          (window.innerHeight - 60) / (AREA_HEIGHT + 80),
+          1.8,
+        );
+        const ns = Math.max(0.2, Math.min(3, s));
+        targetScale = ns;
+        targetPanX = window.innerWidth / 2 - areaCX * ns;
+        targetPanY = window.innerHeight / 2 - areaCY * ns;
+      }, window.innerHeight);
+      legend.x = window.innerWidth - 190 - 14;
       legend.y = 14;
       app.stage.addChild(legend);
 
@@ -950,12 +1082,13 @@ export default function Whiteboard() {
 
       app.stage.addChild(tooltip);
 
-      function showTooltip(name: string, x: number, y: number) {
+      function showTooltip(name: string, category: string, x: number, y: number) {
         if (panel) return;
         const cleanName = name.replace(/\n/g, ' ');
         tooltipText.text = cleanName;
         tooltipText.x = 10;
         tooltipText.y = 6;
+        tooltipSub.text = category;
         tooltipSub.x = 10;
         tooltipSub.y = 22;
         tooltipBg.clear();
@@ -1027,6 +1160,7 @@ export default function Whiteboard() {
         if (!q) {
           for (const s of bubbleStates) {
             s.baseAlpha = 1;
+            s.searchHighlight = false;
           }
           for (const mc of macroareaContainers) {
             mc.alpha = 1;
@@ -1043,11 +1177,13 @@ export default function Whiteboard() {
           const matched = name.includes(q) || desc.includes(q);
           if (matched) {
             s.baseAlpha = 1;
+            s.searchHighlight = true;
             matchCount++;
             const areaIdx = MACROAREAS.indexOf(s.macroarea);
             if (areaIdx >= 0) areaMatchFlags[areaIdx] = true;
           } else {
             s.baseAlpha = 0.12;
+            s.searchHighlight = false;
           }
         }
 
@@ -1073,8 +1209,7 @@ export default function Whiteboard() {
         const introDone = introElapsed > MACROAREAS.length * 60 + 500;
 
         for (const s of bubbleStates) {
-          const introIdx = bubbleStates.indexOf(s);
-          const bubbleDelay = introIdx * 15;
+          const bubbleDelay = s.introIndex * 15;
           let introT = 1;
           if (!introDone) {
             introT = Math.min(1, Math.max(0, (introElapsed - bubbleDelay) / 400));
@@ -1088,6 +1223,15 @@ export default function Whiteboard() {
           const targetAlpha = s.baseAlpha * introT;
           if (Math.abs(s.container.alpha - targetAlpha) > 0.01) {
             s.container.alpha += (targetAlpha - s.container.alpha) * 0.15;
+          }
+
+          if (s.searchHighlight && !panel) {
+            s.glow.clear();
+            const r = getRadius(s.concept.popularity);
+            s.glow.circle(0, 0, r + 10);
+            s.glow.fill({ color: '#fbbf24', alpha: 0.15 });
+            s.glow.circle(0, 0, r + 4);
+            s.glow.fill({ color: '#fbbf24', alpha: 0.1 });
           }
         }
 
@@ -1128,13 +1272,25 @@ export default function Whiteboard() {
 
         if (panelFadeDir !== 0 && panel) {
           panel!.alpha += panelFadeDir * 0.1;
-          if (panelFadeDir === 1 && panel!.alpha >= 1) {
-            panel!.alpha = 1;
-            panelFadeDir = 0;
+          if (panelFadeDir === 1) {
+            if (panelCard) {
+              const cs = panelCard.scale.x;
+              if (cs < 0.98) {
+                panelCard.scale.set(cs + (1 - cs) * 0.15);
+              } else {
+                panelCard.scale.set(1);
+              }
+            }
+            if (panel!.alpha >= 1) {
+              panel!.alpha = 1;
+              if (panelCard) panelCard.scale.set(1);
+              panelFadeDir = 0;
+            }
           } else if (panelFadeDir === -1 && panel!.alpha <= 0) {
             app.stage.removeChild(panel!);
             panel!.destroy({ children: true });
             panel = null;
+            panelCard = null;
             panelFadeDir = 0;
           }
         }
@@ -1194,6 +1350,7 @@ export default function Whiteboard() {
 
       let panel: Container | null = null;
       let panelFadeDir: number = 0;
+      let panelCard: Container | null = null;
 
       function closePanel() {
         if (!panel || panelFadeDir === -1) return;
@@ -1233,28 +1390,36 @@ export default function Whiteboard() {
         backdrop.on('pointerdown', closePanel);
         root.addChild(backdrop);
 
+        const card = new Container();
+        card.x = px;
+        card.y = py;
+        card.scale.set(0.92);
+        panelCard = card;
+
+        root.addChild(card);
+
         const cardShadow = new Graphics();
-        cardShadow.roundRect(px + 3, py + 6, pw, ph, 16);
+        cardShadow.roundRect(3, 6, pw, ph, 16);
         cardShadow.fill({ color: '#000000', alpha: 0.08 });
         cardShadow.eventMode = 'none';
-        root.addChild(cardShadow);
+        card.addChild(cardShadow);
 
         const cardBg = new Graphics();
-        cardBg.roundRect(px, py, pw, ph, 16);
+        cardBg.roundRect(0, 0, pw, ph, 16);
         cardBg.fill({ color: '#ffffff' });
         cardBg.stroke({ color: '#e5e7eb', width: 1 });
         cardBg.eventMode = 'none';
-        root.addChild(cardBg);
+        card.addChild(cardBg);
 
         const accentBar = new Graphics();
-        accentBar.roundRect(px, py, pw, 5, 16);
+        accentBar.roundRect(0, 0, pw, 5, 16);
         accentBar.fill({ color: data.macroarea.color, alpha: 0.8 });
         accentBar.eventMode = 'none';
-        root.addChild(accentBar);
+        card.addChild(accentBar);
 
         const closeBtn = new Container();
-        closeBtn.x = px + pw - 38;
-        closeBtn.y = py + 12;
+        closeBtn.x = pw - 38;
+        closeBtn.y = 12;
         closeBtn.eventMode = 'static';
         closeBtn.cursor = 'pointer';
         const closeCircle = new Graphics();
@@ -1282,9 +1447,9 @@ export default function Whiteboard() {
           e.stopPropagation();
           closePanel();
         });
-        root.addChild(closeBtn);
+        card.addChild(closeBtn);
 
-        let cy = py + pad + 6;
+        let cy = pad + 6;
 
         const title = new Text({
           text: data.concept.name.replace(/\n/g, ' '),
@@ -1297,9 +1462,9 @@ export default function Whiteboard() {
             wordWrapWidth: pw - pad * 2 - 36,
           }),
         });
-        title.x = px + pad;
+        title.x = pad;
         title.y = cy;
-        root.addChild(title);
+        card.addChild(title);
         cy += 28;
 
         const badgeTxt = new Text({
@@ -1312,13 +1477,13 @@ export default function Whiteboard() {
           }),
         });
         const badgeBgGfx = new Graphics();
-        badgeBgGfx.roundRect(px + pad - 4, cy - 3, badgeTxt.width + 10, badgeTxt.height + 6, 5);
+        badgeBgGfx.roundRect(pad - 4, cy - 3, badgeTxt.width + 10, badgeTxt.height + 6, 5);
         badgeBgGfx.fill({ color: data.macroarea.color, alpha: 0.1 });
         badgeBgGfx.eventMode = 'none';
-        root.addChild(badgeBgGfx);
-        badgeTxt.x = px + pad + 1;
+        card.addChild(badgeBgGfx);
+        badgeTxt.x = pad + 1;
         badgeTxt.y = cy;
-        root.addChild(badgeTxt);
+        card.addChild(badgeTxt);
         cy += 26;
 
         const desc = new Text({
@@ -1332,9 +1497,9 @@ export default function Whiteboard() {
             lineHeight: 20,
           }),
         });
-        desc.x = px + pad;
+        desc.x = pad;
         desc.y = cy;
-        root.addChild(desc);
+        card.addChild(desc);
         cy += desc.height + 12;
 
         const popLbl = new Text({
@@ -1347,9 +1512,9 @@ export default function Whiteboard() {
             letterSpacing: 1,
           }),
         });
-        popLbl.x = px + pad;
+        popLbl.x = pad;
         popLbl.y = cy;
-        root.addChild(popLbl);
+        card.addChild(popLbl);
 
         const popVal = new Text({
           text: `${data.concept.popularity}/10`,
@@ -1361,25 +1526,25 @@ export default function Whiteboard() {
           }),
         });
         popVal.anchor.set(1, 0);
-        popVal.x = px + pw - pad;
+        popVal.x = pw - pad;
         popVal.y = cy;
-        root.addChild(popVal);
+        card.addChild(popVal);
         cy += 18;
 
         const barW = pw - pad * 2;
         const barH = 6;
         const barBgGfx = new Graphics();
-        barBgGfx.roundRect(px + pad, cy, barW, barH, 3);
+        barBgGfx.roundRect(pad, cy, barW, barH, 3);
         barBgGfx.fill({ color: '#f3f4f6' });
         barBgGfx.eventMode = 'none';
-        root.addChild(barBgGfx);
+        card.addChild(barBgGfx);
 
         const fillW = Math.max(barH, (data.concept.popularity / 10) * barW);
         const barFill = new Graphics();
-        barFill.roundRect(px + pad, cy, fillW, barH, 3);
+        barFill.roundRect(pad, cy, fillW, barH, 3);
         barFill.fill({ color: data.macroarea.color, alpha: 0.65 });
         barFill.eventMode = 'none';
-        root.addChild(barFill);
+        card.addChild(barFill);
         cy += barH + 16;
 
         const catTxt = new Text({
@@ -1390,9 +1555,9 @@ export default function Whiteboard() {
             fill: '#6b7280',
           }),
         });
-        catTxt.x = px + pad;
+        catTxt.x = pad;
         catTxt.y = cy;
-        root.addChild(catTxt);
+        card.addChild(catTxt);
         cy += 22;
 
         const altLbl = new Text({
@@ -1405,9 +1570,9 @@ export default function Whiteboard() {
             letterSpacing: 1,
           }),
         });
-        altLbl.x = px + pad;
+        altLbl.x = pad;
         altLbl.y = cy;
-        root.addChild(altLbl);
+        card.addChild(altLbl);
         cy += 18;
 
         const altTxt = new Text({
@@ -1421,9 +1586,9 @@ export default function Whiteboard() {
             lineHeight: 18,
           }),
         });
-        altTxt.x = px + pad;
+        altTxt.x = pad;
         altTxt.y = cy;
-        root.addChild(altTxt);
+        card.addChild(altTxt);
 
         panel = root;
         panelFadeDir = 1;
@@ -1468,7 +1633,7 @@ export default function Whiteboard() {
         zoomContainer.y = window.innerHeight - 180;
         searchBar.container.x = (window.innerWidth - 300) / 2;
         searchBar.container.y = 14;
-        legend.x = window.innerWidth - 170 - 14;
+        legend.x = window.innerWidth - 190 - 14;
         legend.y = 14;
       };
       window.addEventListener('resize', onResize);
@@ -1481,6 +1646,7 @@ export default function Whiteboard() {
           app.stage.removeChild(panel);
           panel.destroy({ children: true });
           panel = null;
+          panelCard = null;
         }
         app.destroy(true);
       };
