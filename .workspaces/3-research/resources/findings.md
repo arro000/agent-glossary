@@ -973,3 +973,71 @@
 - **popularity**: 8
 - **alternatives**: SWE-bench, Terminal-Bench, AgentBench
 - **why_include**: Raises the bar beyond bug fixing by testing real work allocation and value judgment.
+
+---
+
+# Iteration 7 - Curated Repositories & Discovery Layer
+
+## Awesome MCP Servers
+- **macroarea**: MCP Ecosystem / Curated Lists
+- **url**: https://github.com/punkpeye/awesome-mcp-servers
+- **description**: Large community-maintained directory of MCP servers, with category breakdowns, client references, and tutorial links. The repo plus the Glama-backed web directory make it one of the easiest starting points for finding production-ready MCP servers by use case.
+- **popularity**: 10
+- **alternatives**: awesome-mcp-clients, Glama MCP directory, official MCP registry
+- **why_include**: Best discovery layer for the MCP ecosystem; ideal researcher-stage source for locating concrete servers quickly.
+
+## Awesome LLM Apps
+- **macroarea**: Research / Curated Apps
+- **url**: https://github.com/Shubhamsaboo/awesome-llm-apps
+- **description**: High-density collection of practical LLM apps, with strong coverage of starter agents, advanced agents, voice agents, MCP-backed agents, memory tutorials, and RAG. It is especially useful as a pattern library because the repo is organized around runnable examples rather than abstract concepts.
+- **popularity**: 10
+- **alternatives**: awesome-ai-apps, awesome-copilot, awesome-claude-code
+- **why_include**: One of the most useful research-stage repos for concrete agent examples across many stacks.
+
+## Awesome Claude Code
+- **macroarea**: Coding Agents / Claude Code Ecosystem
+- **url**: https://github.com/hesreallyhim/awesome-claude-code
+- **description**: Curated directory of Claude Code skills, hooks, slash commands, orchestrators, plugins, and usage monitors. The repo is valuable because it surfaces the customization layer around Claude Code rather than just the core CLI.
+- **popularity**: 9
+- **alternatives**: awesome-copilot, awesome-agent-skills, claude-code-docs mirrors
+- **why_include**: Best entry point for the Claude Code ecosystem and its surrounding tooling.
+
+## Awesome GitHub Copilot
+- **macroarea**: Coding Agents / Copilot Ecosystem
+- **url**: https://github.com/github/awesome-copilot
+- **description**: GitHub-run marketplace for agents, instructions, skills, hooks, plugins, and workflows for Copilot. It also ships a searchable website and machine-readable `llms.txt`, which makes it unusually easy to mine for usable assets.
+- **popularity**: 9
+- **alternatives**: awesome-claude-code, awesome-agent-skills, Copilot extension galleries
+- **why_include**: Strong vendor-backed source for Copilot customization patterns and reusable assets.
+
+## Awesome Agent Skills
+- **macroarea**: Skills / Agent Customization
+- **url**: https://github.com/VoltAgent/awesome-agent-skills
+- **description**: Large curated collection of official and community agent skills, spanning vendors like Anthropic, Google, Stripe, Cloudflare, Vercel, Sentry, and more. It is explicitly designed to work across multiple clients, which makes it useful for comparing portable skill packs.
+- **popularity**: 8
+- **alternatives**: awesome-claude-code, awesome-copilot, vendor-specific skill repos
+- **why_include**: Best cross-vendor skills directory and a strong signal for reusable agent assets.
+
+## Awesome AI Apps
+- **macroarea**: Research / Practical Examples
+- **url**: https://github.com/Arindam200/awesome-ai-apps
+- **description**: Broad collection of practical AI app examples covering starter agents, voice, MCP, memory, RAG, and advanced workflows. The repo is especially useful because it bundles courses and concrete project directories rather than only listing external links.
+- **popularity**: 8
+- **alternatives**: awesome-llm-apps, awesome-n8n-templates, vertical agent repos
+- **why_include**: Excellent source of runnable examples and stack-specific starter projects for researchers.
+
+## Awesome n8n Templates
+- **macroarea**: Business Automation / Workflow Templates
+- **url**: https://github.com/enescingoz/awesome-n8n-templates
+- **description**: Large template library for n8n with 280+ ready-to-import workflows across email, docs, social, devops, research, and AI use cases. The structure by integration and use case makes it a practical map for automation-heavy agent workflows.
+- **popularity**: 8
+- **alternatives**: n8n community templates, Dify workflow galleries, Flowise templates
+- **why_include**: Best source for concrete automation patterns that can be adapted into agent systems.
+
+## Awesome GPT Agents
+- **macroarea**: Security / Curated GPT Directory
+- **url**: https://github.com/fr0gger/Awesome-GPT-Agents
+- **description**: Cybersecurity-focused directory of GPT agents covering offensive, defensive, OSINT, and compliance use cases. It is narrower than the general-purpose repos, but useful when you need a vertical-specific catalog.
+- **popularity**: 6
+- **alternatives**: OWASP LLM resources, security skill packs, vertical GPT directories
+- **why_include**: Good example of a domain-specific agent directory and a source for security-oriented beads.

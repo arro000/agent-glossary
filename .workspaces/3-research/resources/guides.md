@@ -329,3 +329,15 @@
 - **source**: Sotopia Lab
 - **description**: Official docs for a social learning environment for AI agents. Includes installation, examples, and a quick tutorial notebook.
 - **relevance**: Good entry point for agent simulation and social intelligence research.
+
+### Awesome Copilot Learning Hub
+- **url**: https://awesome-copilot.github.com/learning-hub
+- **source**: GitHub / awesome-copilot
+- **description**: Curated learning area for Copilot customization, covering agents, skills, instructions, hooks, MCP servers, and workflow patterns. Useful as a practical entry point before mining the full repo.
+- **relevance**: Best tutorial surface for the Copilot customization ecosystem.
+
+### AWS Strands Course for Beginners
+- **url**: https://www.youtube.com/playlist?list=PLMZM1DAlf0Lrc43ZtUXAwYu9DhnqxzRKZ
+- **source**: Arindam200 / AWS Strands
+- **description**: Eight-lesson hands-on course covering agent fundamentals, MCP integration, human-in-the-loop, multi-agent orchestration, observability, safety, and production patterns. It is a practical companion to the AWS Strands examples in `awesome-ai-apps`.
+- **relevance**: Strong beginner-friendly guided path for the Strands ecosystem.

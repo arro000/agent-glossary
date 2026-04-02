@@ -1,8 +1,8 @@
 # Workspace 3 — Research & Content Discovery
 
 ## Stato
-- **Iterazione**: 4
-- **Ultimo aggiornamento**: 2026-04-02 18:30:00
+- **Iterazione**: 7
+- **Ultimo aggiornamento**: 2026-04-02 17:55:22
 - **Stato**: completed
 
 ## Risultati Iterazione 1
@@ -171,3 +171,33 @@ La ricerca ha colmato i gap rimasti con focus su componenti concreti del runtime
 
 ### Next Iteration
 Vedi `resources/research-requests.md` per le richieste nuove dell'Iterazione 6.
+
+## Risultati Iterazione 7
+
+### Ricerca Completata
+La passata attuale ha coperto la capa di curated repositories e discovery, con focus su liste ad alta densita utili per il research stage.
+
+**Repository curati aggiunti:**
+- ✅ Awesome MCP Servers: directory principale per discovery MCP, con tutorial e aggregatori
+- ✅ Awesome LLM Apps: hub ad alta densita di starter/advanced agents, voice, MCP e RAG
+- ✅ Awesome Claude Code: ecosistema Claude Code per skills, hooks, slash commands e tooling
+- ✅ Awesome GitHub Copilot: marketplace GitHub per instructions, agents, skills, hooks e plugins
+- ✅ Awesome Agent Skills: skill packs cross-vendor e community skills
+- ✅ Awesome AI Apps: examples hub con starter agents, voice, memory, RAG e corsi
+- ✅ Awesome n8n Templates: template repository per automazioni e agent workflows
+- ✅ Awesome GPT Agents: directory verticale cybersecurity
+
+**Guide aggiunte:**
+- ✅ Awesome Copilot Learning Hub
+- ✅ AWS Strands Course for Beginners
+
+**Concetto aggiunto:**
+- ✅ Agent Registry / Discovery
+
+### Insight Chiave
+1. **Curated repos are the fastest research path**: the best directories now expose skills, hooks, templates, and runnable examples instead of only pointing to tools.
+2. **Discovery is becoming a layer**: MCP servers, agent cards, and registry-style catalogs are increasingly part of the ecosystem, not just an index.
+3. **Vendor ecosystems are converging on customization assets**: Claude Code, Copilot, and cross-vendor skill packs all now have active curated collections.
+
+### Next Iteration
+Vedi `resources/research-requests.md` per le nuove richieste dell'Iterazione 7.

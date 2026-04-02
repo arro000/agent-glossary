@@ -454,6 +454,12 @@
 - **alternatives**: N/A (estensione unica)
 - **category**: Integration
 
+### Agent Registry / Discovery
+- **popularity**: 6
+- **description**: Livello di scoperta per agenti, skill e capability tramite registry, directory e capability cards. Serve a collegare ecosistemi multi-vendor con metadata condivisi; esempi: A2A Agent Cards, NANDA, Virtuals, ERC-8004 e curated lists come Awesome MCP Servers.
+- **alternatives**: A2A Agent Cards, MCP registries, Glama directories, custom catalogs
+- **category**: Integration
+
 ## Observability (updated)
 
 ### Observability Platform

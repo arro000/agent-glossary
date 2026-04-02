@@ -3543,3 +3543,129 @@ Commit: `d7ba0a1` `Refine bubble weight encoding`
 
 Unrelated worktree change still present: `.workspaces/logs/loop.log`
 [0;32m[2026-04-02 17:53:26] ✓[0m Workspace Improvements & PRD completed successfully
+ 1 file changed, 301 insertions(+)
+To https://github.com/arro000/agent-glossary.git
+   410a084..3e46710  main -> main
+[0;32m[2026-04-02 17:53:27] ✓[0m Workspace changes committed and pushed
+[0;36m[2026-04-02 17:53:27][0m Launching OpenCode for workspace Research & Content...
+[0m
+> build · gpt-5.4-mini
+[0m
+I’m going to inspect the current research request, existing whiteboard concepts, and prior findings first so I can add only relevant, non-duplicative entries.
+[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=1, limit=4000][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1, limit=4000][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=4000][0m
+[0m→ [0mRead .workspaces/3-research/context.md[90m [offset=1, limit=4000][0m
+I’ve got the current whiteboard state. Next I’m checking the open requests against curated repo sources so I can add only concrete, useful projects and avoid repeating concepts that are already covered.
+[0m→ [0mRead .workspaces/3-research/resources/guides.md[90m [offset=1, limit=4000][0m
+[0m✱ [0mGrep "^## "[90m in .workspaces/3-research/resources · 139 matches[0m
+I found the current board already covers most of the obvious ecosystem pieces. I’m reading the later sections now to see what’s missing before I add any new findings or guides.
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=727, limit=200][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=773, limit=200][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=900, limit=200][0m
+[0m→ [0mRead .workspaces/3-research/resources/awesome-agents-scan.md[90m [offset=1, limit=4000][0m
+[0m→ [0mRead .workspaces/3-research/resources/beads-roadmap.md[90m [offset=1, limit=4000][0m
+I’ve confirmed the missing gap is the curated repository layer itself. I’m pulling the actual repo pages now so I can add them as first-class findings rather than only listing the tools they point to.
+[0m% [0mWebFetch https://github.com/Shubhamsaboo/awesome-llm-apps
+[0m% [0mWebFetch https://github.com/Arindam200/awesome-ai-apps
+[0m% [0mWebFetch https://github.com/fr0gger/Awesome-GPT-Agents
+[0m% [0mWebFetch https://github.com/hesreallyhim/awesome-claude-code
+[0m% [0mWebFetch https://github.com/VoltAgent/awesome-agent-skills
+[0m% [0mWebFetch https://github.com/github/awesome-copilot
+[0m% [0mWebFetch https://github.com/enescingoz/awesome-n8n-templates
+[0m✱ [0mGrep "NANDA|registry|discovery|ERC-8004|Virtuals|Agent Discovery"[90m in .workspaces/1-implementation/resources · 1 match[0m
+[0m✱ [0mGrep "Claude Code|skills|hooks|slash commands|Copilot|n8n|templates"[90m in .workspaces/1-implementation/resources/concepts.md · 13 matches[0m
+I’ve got enough source material to extend the board. I’m checking for the last missing guide entries and a likely new concept so the update stays useful for the next research pass.
+[0m✱ [0mGrep "Strands|Copilot|Claude Code|n8n templates|Awesome LLM Apps|awesome-copilot|awesome-claude-code"[90m in .workspaces/3-research/resources/guides.md · 4 matches[0m
+[0m✱ [0mGrep "Agent Registry|registry|discovery|NANDA|ERC-8004|Virtuals"[90m in .workspaces/1-implementation/resources/concepts.md · 1 match[0m
+[0m
+[0m# [0mTodos
+[ ] Research curated agent ecosystem repositories and key subcategories
+[ ] Update findings.md with structured repo findings
+[ ] Add relevant educational guides to guides.md
+[ ] Add next-iteration research requests
+[ ] Update concepts.md with any new whiteboard concepts
+[ ] Refresh context.md to reflect current state
+[0m
+I’ve got the main list. I’m pulling one more high-signal directory repo so the new findings cover the MCP discovery layer too, not just coding-agent lists.
+[0m% [0mWebFetch https://github.com/punkpeye/awesome-mcp-servers
+I’m at the edit stage now. I’m grabbing the current timestamp so the workspace context reflects the new research pass cleanly, then I’ll patch the markdown files in one go.
+[0m
+[0m$ [0mdate '+%Y-%m-%d %H:%M:%S'
+2026-04-02 17:55:22
+[0m
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/resources/findings.md
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/resources/guides.md
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/resources/research-requests.md
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/1-implementation/resources/concepts.md
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/context.md
+The content edits are in. I’m verifying the new sections and the context state so I don’t leave any malformed markdown or mismatched metadata behind.
+[0m→ [0mRead .workspaces/3-research/resources/guides.md[90m [offset=320, limit=90][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=960, limit=220][0m
+[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=79, limit=40][0m
+[0m→ [0mRead .workspaces/3-research/context.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=447, limit=40][0m
+[0m
+[0m# [0mTodos
+[x] Research curated agent ecosystem repositories and key subcategories
+[x] Update findings.md with structured repo findings
+[x] Add relevant educational guides to guides.md
+[x] Add next-iteration research requests
+[x] Update concepts.md with any new whiteboard concepts
+[x] Refresh context.md to reflect current state
+[0m
+The markdown updates are done. I’m doing a quick git verification now to confirm the exact files changed and make sure nothing unexpected slipped in.
+[0m$ [0mgit status --short
+M .workspaces/1-implementation/resources/concepts.md
+ M .workspaces/3-research/context.md
+ M .workspaces/3-research/resources/findings.md
+ M .workspaces/3-research/resources/guides.md
+ M .workspaces/3-research/resources/research-requests.md
+ M .workspaces/logs/loop.log
+[0m
+[0m$ [0mgit diff --stat
+.workspaces/1-implementation/resources/concepts.md |  6 ++
+ .workspaces/3-research/context.md                  | 34 ++++++++-
+ .workspaces/3-research/resources/findings.md       | 68 +++++++++++++++++
+ .workspaces/3-research/resources/guides.md         | 12 +++
+ .../3-research/resources/research-requests.md      | 14 ++++
+ .workspaces/logs/loop.log                          | 85 ++++++++++++++++++++++
+ 6 files changed, 217 insertions(+), 2 deletions(-)
+[0m
+I spotted one small typo in the new request list. I’m fixing that before I wrap up so the next iteration starts cleanly.
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/resources/research-requests.md
+[0m
+[0m$ [0mgit status --short
+M .workspaces/1-implementation/resources/concepts.md
+ M .workspaces/3-research/context.md
+ M .workspaces/3-research/resources/findings.md
+ M .workspaces/3-research/resources/guides.md
+ M .workspaces/3-research/resources/research-requests.md
+ M .workspaces/logs/loop.log
+[0m
+Done.
+
+- Added 8 curated-repo findings to `.workspaces/3-research/resources/findings.md`:
+  - `awesome-mcp-servers`
+  - `awesome-llm-apps`
+  - `awesome-claude-code`
+  - `awesome-copilot`
+  - `awesome-agent-skills`
+  - `awesome-ai-apps`
+  - `awesome-n8n-templates`
+  - `Awesome-GPT-Agents`
+- Added 2 guides to `.workspaces/3-research/resources/guides.md`:
+  - `Awesome Copilot Learning Hub`
+  - `AWS Strands Course for Beginners`
+- Added new iteration requests in `.workspaces/3-research/resources/research-requests.md`
+- Added `Agent Registry / Discovery` to `.workspaces/1-implementation/resources/concepts.md`
+- Updated `.workspaces/3-research/context.md` to the current state
+
+Unrelated existing change left untouched: `.workspaces/logs/loop.log`
+[0;32m[2026-04-02 17:56:41] ✓[0m Workspace Research & Content completed successfully

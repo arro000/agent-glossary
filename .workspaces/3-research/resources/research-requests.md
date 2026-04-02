@@ -89,3 +89,17 @@
 ### Esplorazione
 5. **Terminal-Bench 3.0** — stato del benchmark in sviluppo e task design pattern
 6. **SWE-Lancer follow-up** — manager vs implementation tasks, dataset split, e framework di valutazione comparabile
+
+## Iterazione 7 — Nuove Richieste
+
+### Priorità Alta
+1. **Agent Registry / Discovery** — NANDA, ERC-8004, Virtuals, A2A Agent Cards: quali directory, registry e capability cards sono davvero adottati?
+2. **Awesome MCP Servers landscape** — quali server e categorie dominano, e quali aggregatori/registries sono i più utili per il researcher stage?
+
+### Priorità Media
+3. **Claude Code vs Copilot customization ecosystems** — confrontare skills, hooks, slash commands, plugins, linting e quality patterns tra awesome-claude-code, awesome-copilot e awesome-agent-skills.
+4. **Voice agent example repos** — mappare starter/template utili da LiveKit, Vapi, Daily, Pipecat e raccolte di esempi.
+
+### Esplorazione
+5. **Vertical agent directories** — finance, security, research e DevOps collections da promuovere come beads.
+6. **Repo quality signals** — come valutare freschezza, struttura, metadati machine-readable e utilità pratica delle curated lists.
