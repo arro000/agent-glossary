@@ -30,10 +30,10 @@ interface MacroareaConfig {
 const GRID_SIZE = 40;
 const GRID_COLOR = '#e5e5e5';
 const BG_COLOR = '#fafafa';
-const AREA_WIDTH = 800;
-const AREA_HEIGHT = 540;
-const COL_GAP = 112;
-const ROW_GAP = 80;
+const AREA_WIDTH = 840;
+const AREA_HEIGHT = 568;
+const COL_GAP = 124;
+const ROW_GAP = 92;
 const START_X = 64;
 const START_Y = 52;
 const COL_STEP = AREA_WIDTH + COL_GAP;
@@ -44,6 +44,22 @@ const ZOOM_LERP = 0.12;
 const PAN_LERP = 0.15;
 const EMOJI_FONT_FAMILY = '"Inter", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif';
 const MOBILE_BREAKPOINT = 768;
+
+interface SignalInfo {
+  key: 'harness' | 'eval' | 'replay' | 'context' | 'refnav' | 'repomap';
+  label: string;
+  color: string;
+  helper: string;
+}
+
+const SIGNAL_LEGEND: SignalInfo[] = [
+  { key: 'harness', label: 'HARNESS', color: '#0284c7', helper: 'runtime scaffold' },
+  { key: 'context', label: 'CONTEXT', color: '#2563eb', helper: 'state window + graph' },
+  { key: 'refnav', label: 'REF NAV', color: '#0f766e', helper: 'source traversal' },
+  { key: 'repomap', label: 'REPO MAP', color: '#0f766e', helper: 'codebase navigation' },
+  { key: 'replay', label: 'REPLAY', color: '#7c3aed', helper: 'durable trace loops' },
+  { key: 'eval', label: 'EVAL', color: '#7c3aed', helper: 'regression harness' },
+];
 
 function isCompactViewport() {
   if (typeof window === 'undefined') return false;
@@ -324,15 +340,15 @@ function getBubbleColumns(count: number): number {
   return 7;
 }
 
-function getConceptSignal(conceptName: string): { label: string; color: string } | null {
+function getConceptSignal(conceptName: string): SignalInfo | null {
   const key = conceptName.replace(/\n/g, ' ').toLowerCase();
-  if (key.includes('harness / runtime scaffold')) return { label: 'HARNESS', color: '#0284c7' };
-  if (key.includes('eval harness')) return { label: 'EVAL', color: '#7c3aed' };
-  if (key.includes('durable execution')) return { label: 'REPLAY', color: '#7c3aed' };
-  if (key.includes('context window')) return { label: 'CONTEXT', color: '#2563eb' };
-  if (key.includes('context graph')) return { label: 'CONTEXT', color: '#2563eb' };
-  if (key.includes('reference navigation')) return { label: 'REF NAV', color: '#0f766e' };
-  if (key.includes('repo map') || key.includes('codebase map')) return { label: 'REPO MAP', color: '#0f766e' };
+  if (key.includes('harness / runtime scaffold')) return SIGNAL_LEGEND[0];
+  if (key.includes('eval harness')) return SIGNAL_LEGEND[5];
+  if (key.includes('durable execution')) return SIGNAL_LEGEND[4];
+  if (key.includes('context window')) return SIGNAL_LEGEND[1];
+  if (key.includes('context graph')) return SIGNAL_LEGEND[1];
+  if (key.includes('reference navigation')) return SIGNAL_LEGEND[2];
+  if (key.includes('repo map') || key.includes('codebase map')) return SIGNAL_LEGEND[3];
   return null;
 }
 
@@ -430,9 +446,9 @@ function drawProjectWeightRing(
 
 function layoutBubbles(concepts: ConceptData[], ax: number, ay: number) {
   const n = concepts.length;
-  const padX = 42;
-  const padY = 34;
-  const headerH = 72;
+  const padX = 50;
+  const padY = 42;
+  const headerH = 80;
   const availW = AREA_WIDTH - padX * 2;
   const availH = AREA_HEIGHT - headerH - padY * 2;
 
@@ -506,6 +522,7 @@ interface BubbleState {
   searchIndex: string;
   displayLabel: string;
   emoji: string;
+  signal: SignalInfo | null;
   introIndex: number;
   searchHighlight: boolean;
   selected: boolean;
@@ -1073,6 +1090,89 @@ function createLegend(onAreaClick: (areaIndex: number) => void, compact = false)
   return container;
 }
 
+function createSignalLegend(compact = false): Container {
+  const container = new Container();
+  container.visible = !compact;
+  container.eventMode = 'none';
+
+  const padX = 10;
+  const padY = 8;
+  const chipW = 98;
+  const chipH = 20;
+  const chipGap = 8;
+  const headerH = 16;
+  const items = SIGNAL_LEGEND.slice(0, 4);
+  const w = padX * 2 + chipW * 2 + chipGap;
+  const h = padY * 2 + headerH + chipH * 2 + chipGap;
+
+  const bg = new Graphics();
+  bg.roundRect(0, 0, w, h, 12);
+  bg.fill({ color: '#ffffff', alpha: 0.9 });
+  bg.stroke({ color: '#e5e7eb', width: 1 });
+  bg.eventMode = 'none';
+  container.addChild(bg);
+
+  const title = new Text({
+    text: 'SIGNAL CUES',
+    style: new TextStyle({
+      fontFamily: '"Inter", sans-serif',
+      fontSize: 9,
+      fontWeight: 'bold',
+      fill: '#94a3b8',
+      letterSpacing: 1,
+    }),
+  });
+  title.x = padX;
+  title.y = padY;
+  title.eventMode = 'none';
+  container.addChild(title);
+
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+    const col = i % 2;
+    const row = Math.floor(i / 2);
+    const x = padX + col * (chipW + chipGap);
+    const y = padY + headerH + row * (chipH + chipGap);
+
+    const chip = new Graphics();
+    chip.roundRect(x, y, chipW, chipH, 10);
+    chip.fill({ color: '#f8fafc', alpha: 0.98 });
+    chip.stroke({ color: item.color, width: 1, alpha: 0.45 });
+    chip.eventMode = 'none';
+    container.addChild(chip);
+
+    const label = new Text({
+      text: item.label,
+      style: new TextStyle({
+        fontFamily: '"Inter", sans-serif',
+        fontSize: 8,
+        fontWeight: 'bold',
+        fill: item.color,
+        letterSpacing: 0.5,
+      }),
+    });
+    label.x = x + 8;
+    label.y = y + 3;
+    label.eventMode = 'none';
+    container.addChild(label);
+
+    const helper = new Text({
+      text: item.helper,
+      style: new TextStyle({
+        fontFamily: '"Inter", sans-serif',
+        fontSize: 7,
+        fill: '#64748b',
+      }),
+    });
+    helper.x = x + 8;
+    helper.y = y + 11;
+    helper.eventMode = 'none';
+    container.addChild(helper);
+  }
+
+  return container;
+}
+
 export default function Whiteboard() {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -1309,6 +1409,12 @@ export default function Whiteboard() {
             signalChip.addChild(signalBg);
             signalChip.addChild(signalText);
             bubbleContainer.addChild(signalChip);
+
+            const signalRail = new Graphics();
+            signalRail.roundRect(-radius * 0.34, radius * 0.36, radius * 0.68, 4, 2);
+            signalRail.fill({ color: conceptSignal.color, alpha: 0.45 });
+            signalRail.eventMode = 'none';
+            bubbleContainer.addChild(signalRail);
           }
 
           const bText = new Text({
@@ -1365,6 +1471,7 @@ export default function Whiteboard() {
             searchIndex,
             displayLabel,
             emoji,
+            signal: conceptSignal,
             introIndex: 0,
             searchHighlight: false,
             selected: false,
@@ -1501,23 +1608,10 @@ export default function Whiteboard() {
       searchBar.container.y = compactMode ? 10 : 14;
       app.stage.addChild(searchBar.container);
 
-      const signalHint = new Text({
-        text: 'Signals: HARNESS · CONTEXT · REF NAV',
-        style: new TextStyle({
-          fontFamily: '"Inter", sans-serif',
-          fontSize: 10,
-          fontWeight: 'bold',
-          fill: '#64748b',
-          letterSpacing: 0.5,
-        }),
-      });
-      signalHint.anchor.set(0.5, 0);
-      signalHint.x = window.innerWidth / 2;
-      signalHint.y = searchBar.container.y + searchBar.height + 7;
-      signalHint.alpha = 0.92;
-      signalHint.visible = !compactMode;
-      signalHint.eventMode = 'none';
-      app.stage.addChild(signalHint);
+      const signalLegend = createSignalLegend(compactMode);
+      signalLegend.x = Math.max(12, (window.innerWidth - signalLegend.width) / 2);
+      signalLegend.y = searchBar.container.y + searchBar.height + 8;
+      app.stage.addChild(signalLegend);
 
       const legend = createLegend((areaIndex: number) => {
         const pos = getAreaPosition(areaIndex);
@@ -2095,6 +2189,29 @@ export default function Whiteboard() {
         card.addChild(badgeTxt);
         cy += 26;
 
+        if (state.signal) {
+          const signalBadge = new Graphics();
+          signalBadge.roundRect(pad - 4, cy - 2, 180, 20, 10);
+          signalBadge.fill({ color: '#f8fafc', alpha: 0.95 });
+          signalBadge.stroke({ color: state.signal.color, width: 1, alpha: 0.4 });
+          signalBadge.eventMode = 'none';
+          card.addChild(signalBadge);
+
+          const signalLabel = new Text({
+            text: `${state.signal.label} • ${state.signal.helper}`,
+            style: new TextStyle({
+              fontFamily: '"Inter", sans-serif',
+              fontSize: 10,
+              fontWeight: 'bold',
+              fill: state.signal.color,
+            }),
+          });
+          signalLabel.x = pad + 4;
+          signalLabel.y = cy + 2;
+          card.addChild(signalLabel);
+          cy += 26;
+        }
+
         const desc = new Text({
           text: state.concept.description,
           style: new TextStyle({
@@ -2252,9 +2369,9 @@ export default function Whiteboard() {
         const searchW = searchBar.container.width;
         searchBar.container.x = Math.max(12, (window.innerWidth - searchW) / 2);
         searchBar.container.y = compactMode ? 10 : 14;
-        signalHint.visible = !compactMode;
-        signalHint.x = window.innerWidth / 2;
-        signalHint.y = searchBar.container.y + searchBar.height + 7;
+        signalLegend.visible = !compactMode;
+        signalLegend.x = Math.max(12, (window.innerWidth - signalLegend.width) / 2);
+        signalLegend.y = searchBar.container.y + searchBar.height + 8;
         legend.visible = !compactMode;
         legend.x = window.innerWidth - 190 - 14;
         legend.y = 14;
