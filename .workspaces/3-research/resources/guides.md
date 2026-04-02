@@ -654,6 +654,20 @@
 - **description**: MCP surface for exposing Sourcegraph code intelligence to agents.
 - **relevance**: Useful reference for agent-facing code intelligence and code-graph context injection.
 
+## Iteration 23 Guides (2026-04-02)
+
+### Effective Harnesses for Long-Running Agents
+- **url**: https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents
+- **source**: Anthropic
+- **description**: Explains the initializer-agent + coding-agent setup, feature lists, progress files, init scripts, and git handoff pattern for work that spans many context windows.
+- **relevance**: Best practical source for long-horizon harness bootstrap design.
+
+### OpenAI Agents SDK Sessions
+- **url**: https://openai.github.io/openai-agents-python/sessions/
+- **source**: OpenAI Agents SDK docs
+- **description**: Covers session-backed memory, persistence backends, compaction sessions, encrypted sessions, and resume semantics.
+- **relevance**: Best first-party reference for session state in the OpenAI harness.
+
 ---
 
 ## Harness / Retrieval Additions

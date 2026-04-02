@@ -547,6 +547,14 @@
 - **alternatives**: agent teams, worker agents, planner/researcher splits, background tasks
 - **why_include**: Core primitive for context isolation and parallel research without polluting the main conversation.
 
+## Long-Running Harness Bootstrap
+- **macroarea**: Harness / Runtime Scaffold
+- **url**: https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents
+- **description**: Anthropic's long-running harness pattern uses an initializer agent to create a feature list, init.sh, progress log, and initial git commit, then a coding agent to make incremental progress across sessions. The article argues compaction alone is not enough and emphasizes leaving clean, testable handoff artifacts.
+- **popularity**: 8
+- **alternatives**: Claude Code hooks, Claude Code subagents, custom session logs, checkpoint files
+- **why_include**: Concrete blueprint for multi-window agent work; directly addresses the persistent context problem.
+
 ---
 
 # Deep Research Agents (Pattern)

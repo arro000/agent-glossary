@@ -1,8 +1,8 @@
 # Workspace 3 — Research & Content Discovery
 
 ## Stato
-- **Iterazione**: 20
-- **Ultimo aggiornamento**: 2026-04-02 22:05:00
+- **Iterazione**: 4
+- **Ultimo aggiornamento**: 2026-04-02
 - **Stato**: completed
 
 ## Risultati Iterazione 1
@@ -341,3 +341,21 @@ La passata attuale ha coperto la capa di curated repositories e discovery, con f
 - Compare trace replay and trace grading surfaces across OpenAI, LangSmith, Langfuse, AgentOps, Phoenix, and OpenLIT.
 - Compare reference-aware retrieval and ranking across OpenAI Retrieval, Sourcegraph, Aider, Context7, Graphiti, and Zep.
 - Compare session and checkpoint semantics across OpenAI Agents SDK, LangGraph, and Temporal-style workflows.
+
+## Aggiornamento Corrente - Iterazione 23
+
+### Cosa è stato aggiornato
+- Concepts: aggiunto `Session Bootstrap Artifacts` come pattern concreto per handoff tra sessioni lunghe.
+- Findings: aggiunto `Long-Running Harness Bootstrap` per il pattern initializer-agent + coding-agent di Anthropic.
+- Guides: aggiunti `Effective Harnesses for Long-Running Agents` e `OpenAI Agents SDK Sessions`.
+- Research requests: nuova Iterazione 23 su session bootstrap, prompt assembly, trace-to-eval flywheels e ranking delle referenze.
+
+### Segnali attuali
+1. The harness gap is shifting from “persistence” to “recoverable handoff artifacts” for many-window work.
+2. Prompt assembly is now the next useful comparison axis: static instructions, skills, repo maps, and retrieved context need a common model.
+3. Trace replay only becomes truly useful when it feeds a grading/eval loop and a reproducible regression dataset.
+
+### Next Focus
+- Compare bootstrap artifact patterns across Claude Code, Aider, LangGraph, and OpenAI session workflows.
+- Compare prompt assembly and context injection across the same runtimes.
+- Tighten reference-ranking comparisons across docs retrieval, code intelligence, and temporal memory graphs.

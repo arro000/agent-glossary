@@ -3303,3 +3303,219 @@ Commit created:
 
 Note: there is an unrelated existing local modification in `/.workspaces/logs/loop.log` left uncommitted.
 [0;32m[2026-04-02 22:02:28] ✓[0m Workspace Implementation completed successfully
+ 2 files changed, 250 insertions(+), 1 deletion(-)
+To https://github.com/arro000/agent-glossary.git
+   cc9a072..a04e21e  main -> main
+[0;32m[2026-04-02 22:02:29] ✓[0m Workspace changes committed and pushed
+[0;32m[2026-04-02 22:02:29] ✓[0m Iteration 3 complete. Starting iteration 4...
+[0;36m[2026-04-02 22:02:31][0m Launching OpenCode for workspace Research & Content...
+[0m
+> build · gpt-5.4-mini
+[0m
+I’m going to inspect the existing research notes and whiteboard concepts first, then I’ll pull in concrete repos and update the research files with only reusable tools and patterns.
+[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1, limit=400][0m
+I have the current glossary and prior findings. Next I’m checking the surrounding research files so I can write new entries in the same format and avoid duplicating concepts that are already covered.
+[0m→ [0mRead .workspaces/3-research/resources/guides.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/3-research/context.md[90m [offset=1, limit=300][0m
+[0m✱ [0mGrep "Context Graph|Reference-aware|Trace Replay|Checkpoint|Hook System|Prompt Assembly|Eval Harness|Durable Execution|Sourcegraph|Graphiti|Zep|Aider|Context7"[90m in .workspaces/1-implementation/resources/concepts.md · 10 matches[0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=420, limit=80][0m
+[0m→ [0mRead .workspaces/3-research/context.md[90m [offset=301, limit=80][0m
+The whiteboard already has the core abstraction names. I’m now collecting concrete repos and official guides that fill the current gap: runtime scaffold, replay/debug, and reference-aware navigation implementations rather than more generic concepts.
+[0m✱ [0mGrep "Trace Grading|Session Replay|Reference Navigation|Prompt Caching|Checkpointing|LangGraph Persistence|OpenAI Retrieval|Repository Map"[90m in .workspaces/1-implementation/resources/concepts.md · 4 matches[0m
+[0m✱ [0mGrep "OpenAI Agents SDK Tracing|OpenAI Trace Grading|LangGraph Persistence|Context7|Sourcegraph Code Search|Aider Repository Map|Graphiti|Zep|Promptfoo|Inspect AI|OpenAI Evals|LangSmith Evaluation|AgentOps|OpenLIT|Phoenix"[90m in .workspaces/3-research/resources/findings.md · 42 matches[0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=630, limit=170][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=840, limit=180][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1290, limit=90][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=610, limit=40][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=100, limit=70][0m
+I’ve confirmed the whiteboard already contains the abstract concepts. I’m now verifying the concrete tools against their official docs so the new entries can be precise about what each one actually does in the harness and navigation stack.
+[0m% [0mWebFetch https://sourcegraph.com/docs/code-search
+[0m% [0mWebFetch https://docs.langchain.com/oss/python/langgraph/persistence
+[0m% [0mWebFetch https://openai.github.io/openai-agents-python/guardrails/
+[0m% [0mWebFetch https://openai.github.io/openai-agents-python/tracing/
+[0m% [0mWebFetch https://aider.chat/docs/repomap.html
+[0m% [0mWebFetch https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents
+[0m✱ [0mGrep "Claude Code Hooks|Claude Code Subagents|Mastra Hooks|Strands steering hooks|LangGraph middleware|Lifecycle Hooks|Prompt Assembly|Prompt Caching"[90m in .workspaces/3-research/resources/findings.md · 4 matches[0m
+[0m% [0mWebFetch https://docs.anthropic.com/en/docs/claude-code/hooks
+[0m% [0mWebFetch https://docs.anthropic.com/en/docs/claude-code/sub-agents
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=520, limit=40][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=540, limit=35][0m
+[0m✱ [0mGrep "Claude Code Hooks|Claude Code Subagents|LangGraph Persistence|OpenAI Agents SDK Tracing|OpenAI Trace Grading|OpenAI Retrieval / File Search|Sourcegraph Code Search|Aider Repository Map|Context7|Promptfoo|Inspect AI|OpenAI Evals"[90m in .workspaces/3-research/resources/guides.md · 14 matches[0m
+[0m✱ [0mGrep "Claude Code Hooks|Claude Code Subagents|LangGraph Persistence|OpenAI Trace Grading|Sourcegraph Code Search|Aider Repo Map|Session Replay|Trace Grading|Reference Navigation"[90m in .workspaces/1-implementation/resources/concepts.md · 3 matches[0m
+[0m→ [0mRead .workspaces/3-research/resources/guides.md[90m [offset=530, limit=150][0m
+[0m→ [0mRead .workspaces/3-research/resources/guides.md[90m [offset=640, limit=60][0m
+[0m✱ [0mGrep "Effective harnesses for long-running agents|Building Effective Agents|OpenAI Trace Grading|OpenAI File Search|Sourcegraph MCP"[90m in .workspaces/3-research/resources/guides.md · 4 matches[0m
+[0m✱ [0mGrep "Effective harnesses for long-running agents|Claude Code Hooks Guide|Claude Code Subagents|LangGraph Persistence|Sourcegraph Code Search|OpenAI Retrieval"[90m in .workspaces/3-research/resources/findings.md · 7 matches[0m
+[0m✱ [0mGrep "awesome-claude-code|awesome-copilot|awesome-agent-skills|awesome-ai-apps|awesome-llm-apps"[90m in .workspaces/3-research/resources/findings.md · 12 matches[0m
+[0m✱ [0mGrep "awesome-claude-code|awesome-copilot|awesome-agent-skills|awesome-ai-apps|awesome-llm-apps"[90m in .workspaces/3-research/resources/guides.md · 3 matches[0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1088, limit=70][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1188, limit=30][0m
+I’ve got the missing pieces: a new concrete harness-bootstrap concept, one new guide source, and a fresh research iteration to capture what’s still open after this sweep. I’m updating the glossary files now.
+[0m
+[0m# [0mTodos
+[ ] Add a concrete session-bootstrap concept for long-running harness handoffs
+[ ] Append new findings for the long-running harness bootstrap pattern
+[ ] Add missing guides for long-running harnesses and OpenAI sessions
+[ ] Update research requests and workspace context for the next iteration
+[0m
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/1-implementation/resources/concepts.md
+M .workspaces/3-research/resources/findings.md
+M .workspaces/3-research/resources/guides.md
+M .workspaces/3-research/resources/research-requests.md
+M .workspaces/3-research/context.md
+The files are updated. I’m doing a quick pass on the new sections now to make sure the formatting matches the rest of the workspace and that the new iteration notes read cleanly.
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=156, limit=25][0m
+[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=255, limit=35][0m
+[0m→ [0mRead .workspaces/3-research/resources/guides.md[90m [offset=645, limit=50][0m
+[0m→ [0mRead .workspaces/3-research/context.md[90m [offset=340, limit=35][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=540, limit=30][0m
+The content looks consistent. I’m checking the final diff and workspace state now so I can summarize exactly what changed and avoid missing anything accidental.
+[0m
+[0m$ [0mgit status --short
+M .workspaces/1-implementation/resources/concepts.md
+ M .workspaces/3-research/context.md
+ M .workspaces/3-research/resources/findings.md
+ M .workspaces/3-research/resources/guides.md
+ M .workspaces/3-research/resources/research-requests.md
+ M .workspaces/logs/loop.log
+[0m
+[0m$ [0mgit diff -- .workspaces/1-implementation/resources/concepts.md .workspaces/3-research/resources/findings.md .workspaces/3-research/resources/guides.md .workspaces/3-research/resources/research-requests.md .workspaces/3-research/context.md
+diff --git a/.workspaces/1-implementation/resources/concepts.md b/.workspaces/1-implementation/resources/concepts.md
+index 43bd22f..e4aa699 100644
+--- a/.workspaces/1-implementation/resources/concepts.md
++++ b/.workspaces/1-implementation/resources/concepts.md
+@@ -165,6 +165,12 @@
+ - **alternatives**: lifecycle middleware, event listeners, permission guards, prompt-based hooks
+ - **category**: Runtime
+ 
++### Session Bootstrap Artifacts
++- **popularity**: 6
++- **description**: File di handoff per agenti a lungo orizzonte: init script, progress log, feature checklist e git history che permettono a una nuova sessione di riprendere il lavoro senza perdere il filo.
++- **alternatives**: custom progress files, handoff notes, checkpoint files, task manifests
++- **category**: Runtime
++
+ ## Orchestration
+ ### Agent Loop
+ - **popularity**: 10
+diff --git a/.workspaces/3-research/context.md b/.workspaces/3-research/context.md
+index 7795a5a..8211f20 100644
+--- a/.workspaces/3-research/context.md
++++ b/.workspaces/3-research/context.md
+@@ -1,9 +1,9 @@
+ # Workspace 3 — Research & Content Discovery
+ 
+ ## Stato
+-- **Iterazione**: 20
+-- **Ultimo aggiornamento**: 2026-04-02 22:05:00
+-- **Stato**: completed
++- **Iterazione**: 4
++- **Ultimo aggiornamento**: 2026-04-02
++- **Stato**: in_progress
+ 
+ ## Risultati Iterazione 1
+ 
+@@ -341,3 +341,21 @@ La passata attuale ha coperto la capa di curated repositories e discovery, con f
+ - Compare trace replay and trace grading surfaces across OpenAI, LangSmith, Langfuse, AgentOps, Phoenix, and OpenLIT.
+ - Compare reference-aware retrieval and ranking across OpenAI Retrieval, Sourcegraph, Aider, Context7, Graphiti, and Zep.
+ - Compare session and checkpoint semantics across OpenAI Agents SDK, LangGraph, and Temporal-style workflows.
++
++## Aggiornamento Corrente - Iterazione 23
++
++### Cosa è stato aggiornato
++- Concepts: aggiunto `Session Bootstrap Artifacts` come pattern concreto per handoff tra sessioni lunghe.
++- Findings: aggiunto `Long-Running Harness Bootstrap` per il pattern initializer-agent + coding-agent di Anthropic.
++- Guides: aggiunti `Effective Harnesses for Long-Running Agents` e `OpenAI Agents SDK Sessions`.
++- Research requests: nuova Iterazione 23 su session bootstrap, prompt assembly, trace-to-eval flywheels e ranking delle referenze.
++
++### Segnali attuali
++1. The harness gap is shifting from “persistence” to “recoverable handoff artifacts” for many-window work.
++2. Prompt assembly is now the next useful comparison axis: static instructions, skills, repo maps, and retrieved context need a common model.
++3. Trace replay only becomes truly useful when it feeds a grading/eval loop and a reproducible regression dataset.
++
++### Next Focus
++- Compare bootstrap artifact patterns across Claude Code, Aider, LangGraph, and OpenAI session workflows.
++- Compare prompt assembly and context injection across the same runtimes.
++- Tighten reference-ranking comparisons across docs retrieval, code intelligence, and temporal memory graphs.
+diff --git a/.workspaces/3-research/resources/findings.md b/.workspaces/3-research/resources/findings.md
+index c88a319..59aca0b 100644
+--- a/.workspaces/3-research/resources/findings.md
++++ b/.workspaces/3-research/resources/findings.md
+@@ -547,6 +547,14 @@
+ - **alternatives**: agent teams, worker agents, planner/researcher splits, background tasks
+ - **why_include**: Core primitive for context isolation and parallel research without polluting the main conversation.
+ 
++## Long-Running Harness Bootstrap
++- **macroarea**: Harness / Runtime Scaffold
++- **url**: https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents
++- **description**: Anthropic's long-running harness pattern uses an initializer agent to create a feature list, init.sh, progress log, and initial git commit, then a coding agent to make incremental progress across sessions. The article argues compaction alone is not enough and emphasizes leaving clean, testable handoff artifacts.
++- **popularity**: 8
++- **alternatives**: Claude Code hooks, Claude Code subagents, custom session logs, checkpoint files
++- **why_include**: Concrete blueprint for multi-window agent work; directly addresses the persistent context problem.
++
+ ---
+ 
+ # Deep Research Agents (Pattern)
+diff --git a/.workspaces/3-research/resources/guides.md b/.workspaces/3-research/resources/guides.md
+index c593471..758661e 100644
+--- a/.workspaces/3-research/resources/guides.md
++++ b/.workspaces/3-research/resources/guides.md
+@@ -654,6 +654,20 @@
+ - **description**: MCP surface for exposing Sourcegraph code intelligence to agents.
+ - **relevance**: Useful reference for agent-facing code intelligence and code-graph context injection.
+ 
++## Iteration 23 Guides (2026-04-02)
++
++### Effective Harnesses for Long-Running Agents
++- **url**: https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents
++- **source**: Anthropic
++- **description**: Explains the initializer-agent + coding-agent setup, feature lists, progress files, init scripts, and git handoff pattern for work that spans many context windows.
++- **relevance**: Best practical source for long-horizon harness bootstrap design.
++
++### OpenAI Agents SDK Sessions
++- **url**: https://openai.github.io/openai-agents-python/sessions/
++- **source**: OpenAI Agents SDK docs
++- **description**: Covers session-backed memory, persistence backends, compaction sessions, encrypted sessions, and resume semantics.
++- **relevance**: Best first-party reference for session state in the OpenAI harness.
++
+ ---
+ 
+ ## Harness / Retrieval Additions
+diff --git a/.workspaces/3-research/resources/research-requests.md b/.workspaces/3-research/resources/research-requests.md
+index 26293b1..e9d6119 100644
+--- a/.workspaces/3-research/resources/research-requests.md
++++ b/.workspaces/3-research/resources/research-requests.md
+@@ -263,3 +263,13 @@
+ ### Priorità Media
+ 1. **PixiJS v8 emoji/text crispness** — best practices per label brevi misti a emoji su canvas ad alto DPR, soprattutto dentro bubble fixed-size.
+ 2. **Replay vs grading iconography** — quale encoding visivo distingue meglio session replay, trace replay e trace grading senza aumentare clutter nelle bubble compatte?
++
++## Iterazione 23 — Nuove Richieste
++
++### Priorità Alta
++1. **Session bootstrap artifacts** — quali file/minimal artifacts rendono davvero riprendibile un agente a lungo orizzonte? Confronta init scripts, progress logs, feature manifests, git checkpoints, e session handoff notes.
++2. **Prompt assembly pipelines** — come combinano concretamente CLAUDE.md, skills, repo maps, retrieval, e cached context i harness più usabili?
++
++### Priorità Media
++3. **Trace-to-eval flywheels** — come trace grading, session replay e dataset extraction si collegano in cicli di regression testing pratici?
++4. **Reference ranking policies** — come Context7, Sourcegraph, Aider repo maps, Graphiti, Zep e OpenAI File Search ordinano, pinzano e citano fonti?
+[0m
+The workspace checks out. I’m marking the research tasks complete now and then I’ll give you the concise summary of what was added and what’s next.
+[0m# [0mTodos
+[x] Add a concrete session-bootstrap concept for long-running harness handoffs
+[x] Append new findings for the long-running harness bootstrap pattern
+[x] Add missing guides for long-running harnesses and OpenAI sessions
+[x] Update research requests and workspace context for the next iteration
+[0m
+Updated the research workspace.
+
+- Added `Session Bootstrap Artifacts` to `concepts.md`.
+- Added a new finding for `Long-Running Harness Bootstrap` from Anthropic’s long-running agents article.
+- Added guides for `Effective Harnesses for Long-Running Agents` and `OpenAI Agents SDK Sessions`.
+- Added `Iteration 23` research requests focused on session bootstrap, prompt assembly, trace-to-eval loops, and reference ranking.
+- Updated `context.md` with the current state and next focus.
+
+No tests were needed for these documentation updates.
+[0;32m[2026-04-02 22:05:57] ✓[0m Workspace Research & Content completed successfully

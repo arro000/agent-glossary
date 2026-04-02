@@ -263,3 +263,13 @@
 ### Priorità Media
 1. **PixiJS v8 emoji/text crispness** — best practices per label brevi misti a emoji su canvas ad alto DPR, soprattutto dentro bubble fixed-size.
 2. **Replay vs grading iconography** — quale encoding visivo distingue meglio session replay, trace replay e trace grading senza aumentare clutter nelle bubble compatte?
+
+## Iterazione 23 — Nuove Richieste
+
+### Priorità Alta
+1. **Session bootstrap artifacts** — quali file/minimal artifacts rendono davvero riprendibile un agente a lungo orizzonte? Confronta init scripts, progress logs, feature manifests, git checkpoints, e session handoff notes.
+2. **Prompt assembly pipelines** — come combinano concretamente CLAUDE.md, skills, repo maps, retrieval, e cached context i harness più usabili?
+
+### Priorità Media
+3. **Trace-to-eval flywheels** — come trace grading, session replay e dataset extraction si collegano in cicli di regression testing pratici?
+4. **Reference ranking policies** — come Context7, Sourcegraph, Aider repo maps, Graphiti, Zep e OpenAI File Search ordinano, pinzano e citano fonti?

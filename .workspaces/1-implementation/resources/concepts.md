@@ -165,6 +165,12 @@
 - **alternatives**: lifecycle middleware, event listeners, permission guards, prompt-based hooks
 - **category**: Runtime
 
+### Session Bootstrap Artifacts
+- **popularity**: 6
+- **description**: File di handoff per agenti a lungo orizzonte: init script, progress log, feature checklist e git history che permettono a una nuova sessione di riprendere il lavoro senza perdere il filo.
+- **alternatives**: custom progress files, handoff notes, checkpoint files, task manifests
+- **category**: Runtime
+
 ## Orchestration
 ### Agent Loop
 - **popularity**: 10
