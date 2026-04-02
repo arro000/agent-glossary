@@ -6899,3 +6899,432 @@ Commit created:
 Note:
 - I only committed the requested implementation/context changes; `.workspaces/logs/loop.log` is still modified locally and left untouched.
 [0;32m[2026-04-02 18:18:39] ✓[0m Workspace Implementation completed successfully
+ 2 files changed, 158 insertions(+), 1 deletion(-)
+To https://github.com/arro000/agent-glossary.git
+   1c2711a..016ad53  main -> main
+[0;32m[2026-04-02 18:18:40] ✓[0m Workspace changes committed and pushed
+[0;36m[2026-04-02 18:18:40][0m Launching OpenCode for workspace Improvements & PRD...
+[0m
+> build · gpt-5.4-mini
+[0m
+I'll inspect the implementation spec, research notes, and current `src/` code first, then patch the Pixi app and verify with a build.
+[0m→ [0mRead .workspaces/1-implementation/context.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/pixijs-reference.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1, limit=400][0m
+[0m✱ [0mGlob "src/**"[90m in . · 5 matches[0m
+I have the spec and data; next I’m reading the current whiteboard component and app shell to see what already works and what needs to be reworked.
+[0m→ [0mRead src/app/page.tsx[90m [offset=1, limit=200][0m
+[0m→ [0mRead src/app/layout.tsx[90m [offset=1, limit=200][0m
+[0m→ [0mRead src/app/globals.css[90m [offset=1, limit=300][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1, limit=400][0m
+The component is substantial; I’m locating the panel/search/minimap/zoom code paths now so I can adjust the subsection bubbles without breaking existing interactions.
+[0m✱ [0mGrep "function Whiteboard|const Whiteboard|export default function|useEffect\("[90m in src/components/whiteboard.tsx · 2 matches[0m
+[0m✱ [0mGrep "minimap|search|zoom|panel|legend|wheel|pointerdown|ESC|fit"[90m in src/components/whiteboard.tsx · 141 matches[0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=400, limit=420][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=820, limit=420][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1240, limit=420][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1660, limit=360][0m
+I’ve confirmed the app is already functional; I’m now targeting the bubble rework and a few quality fixes around fit, readability, and interaction polish.
+[0m✱ [0mGlob ".workspaces/3-research/resources/*"[90m in . · 5 matches[0m
+[0m→ [0mRead .workspaces/2-improvements/context.md[90m [offset=1, limit=300][0m
+[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=1, limit=200][0m
+I’m patching the bubble layout now: heavier subsections will be placed closer to the center of their macroarea while keeping every bubble the same size, and I’m tightening the emoji/weight layers for readability.
+[0m✗ [0mapply_patch failed
+[91m[1mError: [0mapply_patch verification failed: Error: Failed to find expected lines in /home/arro/projects/agent-glossary/src/components/whiteboard.tsx:
+function getBubbleColumns(count: number): number {
+  if (count <= 3) return count;
+  if (count <= 6) return 3;
+  if (count <= 10) return 4;
+  return Math.min(6, Math.max(4, Math.ceil(Math.sqrt(count * 1.2))));
+}
+The first patch missed the exact source shape, so I’m re-reading the helper section and applying a tighter edit.
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=260, limit=160][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=360, limit=80][0m
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+I’m sharpening the bubble shell next: stronger emoji halo, more legible weight pill, and a slightly clearer inner plate so the fixed-size circles read faster.
+[0m✗ [0mapply_patch failed
+[91m[1mError: [0mapply_patch verification failed: Error: Invalid patch format: missing Begin/End markers
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1124, limit=110][0m
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+I’ve strengthened the bubble weight ring and badge. I’m checking for any dead constants or type fallout before I run the build.
+[0m✱ [0mGrep "BUBBLE_TRACK_ALPHA"[90m in src/components/whiteboard.tsx · 1 match[0m
+[0m✱ [0mGrep "BUBBLE_RADIUS"[90m in src/components/whiteboard.tsx · 4 matches[0m
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+The code change is in place. I’m running the production build now to catch any TypeScript or PixiJS regressions before I touch the workspace notes.
+[0m
+[0m$ [0mnpm run build
+> agent-glossary@0.1.0 build
+> next build
+
+▲ Next.js 16.2.2 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.2s
+  Running TypeScript ...
+  Finished TypeScript in 1959ms ...
+  Collecting page data using 5 workers ...
+  Generating static pages using 5 workers (0/4) ...
+  Generating static pages using 5 workers (1/4) 
+  Generating static pages using 5 workers (2/4) 
+  Generating static pages using 5 workers (3/4) 
+✓ Generating static pages using 5 workers (4/4) in 342ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+[0m
+The build passed, so I’m updating the workspace notes and adding one targeted research follow-up about high-DPI emoji/text behavior in PixiJS.
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/resources/research-requests.md
+[0m✗ [0mapply_patch failed
+[91m[1mError: [0mapply_patch verification failed: Error: Failed to find expected lines in /home/arro/projects/agent-glossary/.workspaces/2-improvements/context.md:
+## Iterazione 6 — Completata
+- Le subsection bubbles ora mantengono una resa ancora piu uniforme: fill/stroke sono fissi, il peso progetto vive nel ring segmentato e nel badge refs
+- Emoji piu leggibili grazie a halo piu ampio e dimensione aumentata
+- Aggiornato il layout label interno per ridurre overlap visivo nelle bubble piu dense
+[0m→ [0mRead .workspaces/2-improvements/context.md[90m [offset=96, limit=40][0m
+[0m→ [0mRead .workspaces/2-improvements/context.md[90m [offset=1, limit=12][0m
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/2-improvements/context.md
+[0m→ [0mRead .workspaces/1-implementation/context.md[90m [offset=195, limit=40][0m
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/1-implementation/context.md
+The implementation and workspace notes are updated. I’m checking the final diff and repo state, then I’ll commit these changes.
+[0m
+[0m$ [0mgit status --short
+M .workspaces/1-implementation/context.md
+ M .workspaces/2-improvements/context.md
+ M .workspaces/3-research/resources/research-requests.md
+ M .workspaces/logs/loop.log
+ M src/components/whiteboard.tsx
+[0m
+[0m$ [0mgit diff -- src/components/whiteboard.tsx .workspaces/1-implementation/context.md .workspaces/2-improvements/context.md .workspaces/3-research/resources/research-requests.md
+diff --git a/.workspaces/1-implementation/context.md b/.workspaces/1-implementation/context.md
+index 9e89c91..77e6d31 100644
+--- a/.workspaces/1-implementation/context.md
++++ b/.workspaces/1-implementation/context.md
+@@ -209,6 +209,12 @@ La whiteboard rappresenta 69 subsection correnti allineate alle macroaree princi
+ - [x] Confermati key rules: PixiJS v8 vanilla via `useRef/useEffect`, rendering full-canvas, font Inter, bolle equal-size con emoji+titolo, peso da `alternatives`, hover glow, click panel, zoom wheel e pan drag
+ - [x] Totale subsection aggiornato a **69** con conteggi macroarea coerenti al dataset corrente
+ 
++## Iterazione 6 — Completata
++- [x] Rework delle subsection bubbles: i riferimenti/progetti guidano la posizione verso il centro dell'area senza cambiare il diametro
++- [x] Rafforzato il rendering: emoji piu riconoscibili, title plate piu leggibile, badge refs piu esplicito
++- [x] Ring segmentato reso piu contrastato per comunicare meglio il project-weight a colpo d'occhio
++- [x] Verifica finale: `npm run build` completata con successo
++
+ ## File Principali
+ - `src/components/whiteboard.tsx` — Componente principale con tutta la logica PixiJS
+ - `src/app/page.tsx` — Pagina che renderizza il whiteboard
+diff --git a/.workspaces/2-improvements/context.md b/.workspaces/2-improvements/context.md
+index 383284c..a0cf25a 100644
+--- a/.workspaces/2-improvements/context.md
++++ b/.workspaces/2-improvements/context.md
+@@ -1,8 +1,8 @@
+ # Workspace 2 — Improvements & Implementation
+ 
+ ## Stato
+-- **Iterazione**: 4
+-- **Ultimo aggiornamento**: 2026-04-02 18:10:39
++- **Iterazione**: 5
++- **Ultimo aggiornamento**: 2026-04-02 18:48:00
+ - **Stato**: completed
+ 
+ ## Obiettivo
+@@ -114,3 +114,9 @@ Analizzare l'implementazione corrente, identificare miglioramenti, e IMPLEMENTAR
+ - Emoji rinforzate con halo piu netto e font size adattiva per mantenere il riconoscimento anche in bubble dense
+ - Ring segmentato reso piu leggibile e badge refs centrato per ribadire il peso progetto senza cambiare il diametro
+ - Build di produzione verificata con successo (`npm run build`)
++
++## Iterazione 7 — Completata
++- Bubble layout aggiornato: i project-weight piu alti vengono piazzati piu vicino al centro dell'area, mantenendo tutte le bolle equal-size
++- Badge refs reso piu esplicito (`N refs`) e ring segmentato piu contrastato per una lettura piu rapida del peso progetto
++- Emoji e title plate rinforzati per mantenere riconoscibilita e leggibilita su canvas ad alta densita
++- Verifica finale: `npm run build` completata con successo
+diff --git a/.workspaces/3-research/resources/research-requests.md b/.workspaces/3-research/resources/research-requests.md
+index aab981f..7f0e80a 100644
+--- a/.workspaces/3-research/resources/research-requests.md
++++ b/.workspaces/3-research/resources/research-requests.md
+@@ -141,3 +141,8 @@
+ 
+ ### Esplorazione
+ 5. **Curated repo quality signals** — which metadata, site search, llms.txt, and machine-readable indexes make an awesome-list actually useful?
++
++## Iterazione 12 — Da esplorare
++
++### Priorità Media
++1. **PixiJS v8 emoji + label metrics on high-DPI canvases** — best practices for keeping mixed emoji/text bubbles crisp, centered, and readable at 2x/3x DPR.
+diff --git a/src/components/whiteboard.tsx b/src/components/whiteboard.tsx
+index 36e2aa8..6c3c574 100644
+--- a/src/components/whiteboard.tsx
++++ b/src/components/whiteboard.tsx
+@@ -39,7 +39,6 @@ const START_Y = 60;
+ const COL_STEP = AREA_WIDTH + COL_GAP;
+ const ROW_STEP = AREA_HEIGHT + ROW_GAP;
+ const BUBBLE_RADIUS = 46;
+-const BUBBLE_TRACK_ALPHA = 0.16;
+ const PROJECT_WEIGHT_SEGMENTS = 10;
+ const ZOOM_LERP = 0.12;
+ const PAN_LERP = 0.15;
+@@ -276,6 +275,10 @@ function getBubbleColumns(count: number): number {
+   return Math.min(6, Math.max(4, Math.ceil(Math.sqrt(count * 1.2))));
+ }
+ 
++function getBubbleReferenceScore(concept: ConceptData): number {
++  return getReferenceCount(concept.alternatives);
++}
++
+ function getBubbleFontSize(name: string, radius: number): number {
+   const len = name.replace(/\n/g, ' ').length;
+   if (len <= 12) return Math.min(12, Math.max(9.5, radius * 0.235));
+@@ -302,33 +305,33 @@ function getBubbleTypography(name: string, radius: number): BubbleTypography {
+ 
+   if (len <= 12) {
+     return {
+-      emojiSize: 26,
+-      emojiY: -radius * 0.37,
++      emojiSize: 28,
++      emojiY: -radius * 0.38,
+       titleFontSize: getBubbleFontSize(name, radius),
+-      titleY: radius * 0.12,
++      titleY: radius * 0.13,
+       titleWrapWidth: radius * 1.42,
+-      badgeY: radius * 0.56,
++      badgeY: radius * 0.57,
+     };
+   }
+ 
+   if (len <= 20) {
+     return {
+-      emojiSize: 24,
+-      emojiY: -radius * 0.36,
++      emojiSize: 26,
++      emojiY: -radius * 0.37,
+       titleFontSize: getBubbleFontSize(name, radius),
+-      titleY: radius * 0.09,
++      titleY: radius * 0.1,
+       titleWrapWidth: radius * 1.36,
+-      badgeY: radius * 0.56,
++      badgeY: radius * 0.57,
+     };
+   }
+ 
+   return {
+-    emojiSize: 22,
+-    emojiY: -radius * 0.34,
++    emojiSize: 24,
++    emojiY: -radius * 0.35,
+     titleFontSize: getBubbleFontSize(name, radius),
+-    titleY: radius * 0.07,
++    titleY: radius * 0.08,
+     titleWrapWidth: radius * 1.28,
+-    badgeY: radius * 0.57,
++    badgeY: radius * 0.58,
+   };
+ }
+ 
+@@ -340,7 +343,7 @@ function drawProjectWeightRing(
+ ) {
+   const { filledSegments, totalSegments, emphasis } = getProjectWeightStyle(referenceCount);
+   const ringRadius = radius + 9;
+-  const ringWidth = 3.4;
++  const ringWidth = 3.6;
+   const segmentSpan = (Math.PI * 2) / totalSegments;
+   const gap = segmentSpan * 0.24;
+   const segmentArc = segmentSpan - gap;
+@@ -348,7 +351,7 @@ function drawProjectWeightRing(
+   graphics.clear();
+   graphics.moveTo(ringRadius, 0);
+   graphics.arc(0, 0, ringRadius, 0, Math.PI * 2);
+-  graphics.stroke({ color: '#ffffff', width: ringWidth + 1.6, alpha: BUBBLE_TRACK_ALPHA, cap: 'round' });
++  graphics.stroke({ color: '#ffffff', width: ringWidth + 1.8, alpha: 0.18, cap: 'round' });
+ 
+   for (let i = 0; i < totalSegments; i++) {
+     const start = -Math.PI / 2 + i * segmentSpan + gap / 2;
+@@ -357,8 +360,8 @@ function drawProjectWeightRing(
+     graphics.arc(0, 0, ringRadius, start, end);
+     graphics.stroke({
+       color,
+-      width: i < filledSegments ? ringWidth + (i === filledSegments - 1 ? 0.35 : 0.1) : ringWidth - 0.6,
+-      alpha: i < filledSegments ? 0.4 + emphasis * 0.55 : 0.06,
++      width: i < filledSegments ? ringWidth + (i === filledSegments - 1 ? 0.45 : 0.12) : ringWidth - 0.5,
++      alpha: i < filledSegments ? 0.5 + emphasis * 0.5 : 0.1,
+       cap: 'round',
+     });
+   }
+@@ -372,32 +375,57 @@ function layoutBubbles(concepts: ConceptData[], ax: number, ay: number) {
+   const availW = AREA_WIDTH - padX * 2;
+   const availH = AREA_HEIGHT - headerH - padY * 2;
+ 
+-  const items = concepts.map((c) => ({
+-    concept: c,
+-    radius: BUBBLE_RADIUS,
+-  }));
+   const cols = getBubbleColumns(n);
+ 
+   const rows = Math.ceil(n / cols);
+   const cellW = availW / cols;
+   const cellH = availH / rows;
++  const centerCol = (cols - 1) / 2;
++  const centerRow = (rows - 1) / 2;
++
++  const slots = [] as Array<{
++    col: number;
++    row: number;
++    x: number;
++    y: number;
++    distance: number;
++  }>;
++
++  for (let row = 0; row < rows; row++) {
++    for (let col = 0; col < cols; col++) {
++      slots.push({
++        col,
++        row,
++        x: ax + padX + cellW * col + cellW / 2,
++        y: ay + headerH + padY + cellH * row + cellH / 2,
++        distance: Math.hypot(col - centerCol, row - centerRow),
++      });
++    }
++  }
+ 
+-  // Bubbles are intentionally equal-size; only the grid layout adapts.
+-
+-  const offX = ax + padX;
+-  const offY = ay + headerH + padY;
+-
+-  return items.map((it, i) => {
+-    const col = i % cols;
+-    const row = Math.floor(i / cols);
+-    const itemsInRow = row === rows - 1 ? n - row * cols : cols;
+-    const rowOffsetX = itemsInRow < cols ? ((cols - itemsInRow) * cellW) / 2 : 0;
+-
++  const orderedSlots = [...slots].sort((a, b) => a.distance - b.distance || a.row - b.row || a.col - b.col);
++  const orderedConcepts = [...concepts]
++    .map((concept, index) => ({
++      concept,
++      index,
++      score: getBubbleReferenceScore(concept),
++      name: getBubbleLabel(concept.name),
++    }))
++    .sort((a, b) => b.score - a.score || a.name.localeCompare(b.name) || a.index - b.index);
++
++  // Bubbles remain equal-size; weight only affects placement and styling.
++
++  return orderedConcepts.map((item, i) => {
++    const slot = orderedSlots[i];
++    const push = Math.min(8, Math.max(0, item.score - 4)) * 0.75;
++    const dx = centerCol - slot.col;
++    const dy = centerRow - slot.row;
++    const len = Math.hypot(dx, dy) || 1;
+     return {
+-      concept: it.concept,
+-      x: offX + rowOffsetX + cellW * col + cellW / 2,
+-      y: offY + cellH * row + cellH / 2,
+-      radius: it.radius,
++      concept: item.concept,
++      x: slot.x + (dx / len) * push,
++      y: slot.y + (dy / len) * push,
++      radius: BUBBLE_RADIUS,
+     };
+   });
+ }
+@@ -1131,9 +1159,9 @@ export default function Whiteboard() {
+           bubble.circle(0, 0, radius);
+           bubble.stroke({ color: area.color, width: 1.7, alpha: 0.6 });
+           bubble.circle(0, 0, radius - 5);
+-          bubble.fill({ color: area.border, alpha: 0.08 });
++          bubble.fill({ color: area.border, alpha: 0.1 });
+           bubble.circle(0, 0, radius - 15);
+-          bubble.fill({ color: area.color, alpha: 0.04 });
++          bubble.fill({ color: area.color, alpha: 0.055 });
+           bubble.eventMode = 'none';
+           bubbleContainer.addChild(bubble);
+ 
+@@ -1141,16 +1169,16 @@ export default function Whiteboard() {
+           const emoji = getBubbleEmoji(area.name, concept.category);
+ 
+           const titlePlate = new Graphics();
+-          titlePlate.roundRect(-radius * 0.72, radius * 0.01, radius * 1.44, radius * 0.56, 15);
+-          titlePlate.fill({ color: '#ffffff', alpha: 0.58 });
+-          titlePlate.stroke({ color: area.color, width: 1, alpha: 0.08 });
++          titlePlate.roundRect(-radius * 0.72, radius * 0.005, radius * 1.44, radius * 0.58, 15);
++          titlePlate.fill({ color: '#ffffff', alpha: 0.7 });
++          titlePlate.stroke({ color: area.color, width: 1, alpha: 0.12 });
+           titlePlate.eventMode = 'none';
+           bubbleContainer.addChild(titlePlate);
+ 
+           const emojiBack = new Graphics();
+-          emojiBack.circle(0, bubbleTypography.emojiY, 16.5);
+-          emojiBack.fill({ color: '#ffffff', alpha: 0.82 });
+-          emojiBack.stroke({ color: area.color, width: 1, alpha: 0.2 });
++          emojiBack.circle(0, bubbleTypography.emojiY, 17.5);
++          emojiBack.fill({ color: '#ffffff', alpha: 0.92 });
++          emojiBack.stroke({ color: area.color, width: 1.1, alpha: 0.26 });
+           emojiBack.eventMode = 'none';
+           bubbleContainer.addChild(emojiBack);
+ 
+@@ -1186,13 +1214,8 @@ export default function Whiteboard() {
+           const badge = new Container();
+           badge.x = 0;
+           badge.y = bubbleTypography.badgeY;
+-          const badgeBg = new Graphics();
+-          badgeBg.roundRect(-15, -8, 30, 16, 8);
+-          badgeBg.fill({ color: area.color, alpha: 0.18 });
+-          badgeBg.stroke({ color: area.color, width: 1, alpha: 0.34 });
+-          badge.addChild(badgeBg);
+           const badgeTxt = new Text({
+-            text: `${referenceCount}`,
++            text: `${referenceCount} refs`,
+             style: new TextStyle({
+               fontFamily: '"Inter", sans-serif',
+               fontSize: 9,
+@@ -1201,6 +1224,12 @@ export default function Whiteboard() {
+             }),
+           });
+           badgeTxt.anchor.set(0.5);
++          const badgeWidth = Math.max(34, badgeTxt.width + 14);
++          const badgeBg = new Graphics();
++          badgeBg.roundRect(-badgeWidth / 2, -8, badgeWidth, 16, 8);
++          badgeBg.fill({ color: area.color, alpha: 0.16 + Math.min(0.14, referenceCount * 0.012) });
++          badgeBg.stroke({ color: area.color, width: 1, alpha: 0.34 });
++          badge.addChild(badgeBg);
+           badge.addChild(badgeTxt);
+           bubbleContainer.addChild(badge);
+[0m
+[0m$ [0mgit log --oneline -5
+016ad53 loop iter 5: workspace 1 (Implementation) completed
+0e4c5a3 update whiteboard data with Cloudflare Agents SDK
+1c2711a loop iter 4: workspace 3 (Research & Content) completed
+2d0f924 loop iter 4: workspace 2 (Improvements & PRD) completed
+a264f90 record workspace log update
+[0m
+I’ve separated the unrelated workspace log change and am committing only the app/code/workspace updates.
+[0m$ [0mgit add src/components/whiteboard.tsx .workspaces/1-implementation/context.md .workspaces/2-improvements/context.md .workspaces/3-research/resources/research-requests.md && git commit -m "loop iter 5: refine subsection bubble layout"
+[main feced93] loop iter 5: refine subsection bubble layout
+ 4 files changed, 98 insertions(+), 52 deletions(-)
+[0m
+[0m$ [0mgit status --short
+M .workspaces/logs/loop.log
+[0m
+Implemented and committed.
+
+- `src/components/whiteboard.tsx`: bubble layout now places higher-reference subsections closer to the center while keeping all bubbles equal-size; emoji halo/title plate/badge and weight ring are clearer.
+- `.workspaces/2-improvements/context.md`: updated current state.
+- `.workspaces/1-implementation/context.md`: recorded the latest bubble rework.
+- `.workspaces/3-research/resources/research-requests.md`: added a PixiJS high-DPI emoji/text follow-up.
+- `npm run build` passed.
+- Commit: `feced93` (`loop iter 5: refine subsection bubble layout`)
+
+One unrelated file is still modified and uncommitted: `.workspaces/logs/loop.log`.
+[0;32m[2026-04-02 18:22:19] ✓[0m Workspace Improvements & PRD completed successfully
