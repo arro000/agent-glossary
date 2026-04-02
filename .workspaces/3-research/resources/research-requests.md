@@ -16,22 +16,42 @@
 9. ~~Best practices per tool selection in agent systems~~ ✅ DONE
 10. ~~Trends emergenti nell'ecosistema agentico~~ ✅ DONE
 
-## Iterazione 2 — Nuove Richieste
+## Iterazione 2 — Completate ✅
 
 ### Priorità Alta
-1. **Google ADK (Agent Development Kit)** — Come si integra con A2A? Quali pattern supporta?
-2. **Mastra** — Framework TypeScript per agenti, come si confronta con LangGraph?
-3. **Pydantic AI** — Strumento di Google per agenti type-safe, adozione e uso
-4. **Strands Agents SDK** (Amazon) — Framework AWS per agenti, stato e caratteristiche
+1. ~~Google ADK (Agent Development Kit)~~ ✅ DONE — 18.7k stars, reference A2A implementation, 4 SDKs, ADK 2.0 alpha
+2. ~~Mastra~~ ✅ DONE — 22.6k stars, TS-first, YC W25, native Next.js, built-in MCP/eval/memory
+3. ~~Pydantic AI~~ ✅ DONE — 16k stars, type-safe, FastA2A, 15+ providers, strong Google partnership
+4. ~~Strands Agents SDK (Amazon)~~ ✅ DONE — 5.5k stars, Apache 2.0, steering hooks, Bedrock-native
 
 ### Priorità Media
-5. **Claude Agent SDK** — SDK ufficiale Anthropic per costruire agenti con Claude
-6. **Deep Agents / Deep Research Agents** — Agenti per ricerca profonda (OpenAI Deep Research, Gemini Deep Research, Claude)
-7. **Agent Framework per automazione business** (n8n, Make, Zapier AI agents) — Stato dell'arte
-8. **MCP Apps** — Estensione MCP per interfacce HTML interattive embeddate nei client AI
+5. ~~Claude Agent SDK~~ ✅ DONE — Claude Code engine as library, subagents, MCP, multi-cloud (Bedrock, Vertex, Azure)
+6. ~~Deep Research Agents~~ ✅ DONE — Pattern documented + 5 implementations (OpenAI, Gemini, GPT Researcher, STORM, Tongyi)
+7. ~~Agent Framework per automazione business~~ ✅ DONE — 6 platforms analyzed (n8n 182k, Dify 136k, Langflow 147k, Flowise 51k, Zapier, Make)
+8. ~~MCP Apps~~ ✅ DONE — SEP-1865 Final, spec 2026-01-26, adopted by Claude/ChatGPT/VS Code Copilot
 
 ### Esplorazione
-9. **Agentic RAG** — Pattern RAG con agenti (correction-RAG, self-RAG, adaptive-RAG)
-10. **MCP Server showcase** — I server MCP più popolari e utili per coding agents
-11. **LOCOMO Benchmark** — Dettagli sulla valutazione della memoria per agenti
-12. **Agenzie open-source per task specifici** — Agenti verticali (data analysis, security, DevOps)
+9. ~~Agentic RAG~~ ✅ DONE — 5 sub-patterns (Self-RAG, CRAG, Adaptive, RAT, General Agentic) with papers
+10. ~~MCP Server showcase~~ ✅ DONE — 6,300+ servers, top 8 catalogued (Context7 51k, Chrome DevTools 32.9k, GitHub 28.5k, Playwright 30.1k)
+11. ~~LOCOMO Benchmark~~ ✅ DONE — ACL 2024, 343+ citations, scores: Mem0 66.9%, Full-context 72.9%, OpenAI 52.9%
+12. ~~Agenzie open-source per task specifici~~ ✅ DONE — CopilotKit 29.9k, Agent-Reach 14.5k, SGLang 25.3k, AgentOps 5.4k, OpenSandbox 9.7k
+
+## Iterazione 3 — Nuove Richieste
+
+### Priorità Alta
+1. **AG-UI Protocol** (CopilotKit) — Cos'è? Come si confronta con MCP/A2A? Adozione
+2. **Semantic Kernel** (Microsoft) — Framework enterprise Microsoft per agenti, stato e caratteristiche
+3. **CrewAI Flows vs Crews** — Sistema event-driven di CrewAI, come si differenzia dai Crew
+4. **Vercel AI SDK** — Uso per agenti, confronto con Mastra per TS ecosystem
+
+### Priorità Media
+5. **MCP Inspector / Debug Tools** — Strumenti per debug e sviluppo di server MCP
+6. **Agent Banking / FinTech Agents** — Agenti specifici per settore finanziario
+7. **Real-time Voice Agents** — SDK e framework per agenti vocali (LiveKit, Daily, Retell, Vapi)
+8. **Embedded / Edge Agents** — Agenti on-device (Ollama, llama.cpp, Apple MLX, Gemini Nano)
+
+### Esplorazione
+9. **Agent Simulation / Wario-type frameworks** — Simulazione di comportamenti umani con agenti
+10. **Data-Centric Agent Evaluation** — Framework di valutazione oltre LOCOMO (SWE-bench, Aider polyglot, etc.)
+11. **OpenTelemetry for Agents** — Standard telemetry per l'ecosistema agentico
+12. **Anthropic Computer Use API** — Stato avanzato, use cases, confronto con UI automation tradizionale

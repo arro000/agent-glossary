@@ -81,3 +81,111 @@
 - **source**: World Economic Forum, 2025
 - **description**: Governance framework for AI agents covering evaluation criteria, risk assessment, and organizational readiness.
 - **relevance**: Board-level governance considerations for AI agent deployment.
+
+---
+
+# Iteration 2 Guides (2026-04-02)
+
+---
+
+## Agent Framework Guides
+
+### Google ADK Documentation
+- **url**: https://google.github.io/adk-docs/
+- **source**: Google
+- **description**: Comprehensive docs for Google's Agent Development Kit — quickstarts, agents, tools, A2A, evaluation, deployment. Covers all four SDKs (Python, TypeScript, Go, Java).
+- **relevance**: Reference implementation for A2A protocol. Essential for understanding how A2A works in practice.
+
+### Pydantic AI Documentation
+- **url**: https://ai.pydantic.dev/
+- **source**: Pydantic team (Samuel Colvin)
+- **description**: Docs for the type-safe Python agent framework. Covers agent creation, structured output, MCP, A2A (FastA2A), graph workflows, dependency injection, and model-agnostic setup.
+- **relevance**: Best reference for type-safe agent patterns and Pydantic validation in agent systems.
+
+### Strands Agents Documentation
+- **url**: https://strandsagents.com
+- **source**: Amazon/AWS
+- **description**: Docs for Amazon's open-source agent SDK. Covers steering hooks, MCP, multi-agent patterns, Bedrock integration, conversation memory, and evaluation.
+- **relevance**: Best reference for the "model-driven" agent philosophy and steering hooks guardrails pattern.
+
+### Claude Agent SDK Overview
+- **url**: https://docs.anthropic.com/en/docs/agent-sdk/overview
+- **source**: Anthropic
+- **description**: Official docs for Anthropic's programmatic agent SDK. Covers built-in tools, subagents, MCP integration, hooks, sessions, permissions, and multi-cloud deployment (Bedrock, Vertex, Azure).
+- **relevance**: Shows how Claude Code's engine is exposed as a library. Subagents and hooks patterns are key glossary entries.
+
+### Mastra Documentation
+- **url**: https://mastra.ai
+- **source**: Mastra AI (YC W25)
+- **description**: Docs for TypeScript-first agent framework. Covers agents, workflows, RAG, memory, MCP, evals, and integration with Next.js/React.
+- **relevance**: Best reference for TS/JS-native agent patterns. Memory system (observational, working, semantic recall) is distinctive.
+
+---
+
+## Agentic RAG
+
+### Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection
+- **url**: https://arxiv.org/abs/2310.11511
+- **source**: Asai et al., Oct 2023
+- **description**: Introduces reflection tokens for self-reflective retrieval and generation. Model decides when to retrieve, grades passage relevance, checks support, and evaluates usefulness — all at inference time.
+- **relevance**: Foundational paper for agentic RAG. The reflection token concept is a key pattern.
+
+### Corrective RAG (CRAG): Towards Robust Knowledge-Augmented Generation
+- **url**: https://arxiv.org/abs/2401.15884
+- **source**: Yan et al., Jan 2024
+- **description**: Lightweight plug-and-play approach adding retrieval evaluator with corrective actions (web search fallback, query rewriting, knowledge refinement). No model retraining needed.
+- **relevance**: Most practical agentic RAG pattern — composable with any existing RAG pipeline.
+
+### Retrieval Augmented Thoughts Elicit Better Reasoning
+- **url**: https://arxiv.org/abs/2403.05313
+- **source**: Wang et al., Mar 2024
+- **description**: Interleaves retrieval at each chain-of-thought step. Dramatically reduces hallucinations in multi-step reasoning (+42.8% task planning improvement).
+- **relevance**: Novel pattern combining CoT with retrieval. Strong benchmark results across multiple domains.
+
+---
+
+## Deep Research
+
+### OpenAI Deep Research Guide
+- **url**: https://platform.openai.com/docs/guides/deep-research
+- **source**: OpenAI Platform Documentation
+- **description**: Official guide for using o3-deep-research and o4-mini-deep-research models. Covers the 3-step pipeline (clarification, prompt rewriting, deep research execution), web search, MCP servers, and file search.
+- **relevance**: Best reference for the deep research agent architecture from a product perspective.
+
+### STORM: Synthesis of Topic Outlines through Retrieval and Multi-perspective question asking
+- **url**: https://github.com/stanford-oval/storm
+- **source**: Stanford HAI, NAACL 2024
+- **description**: Academic system for writing Wikipedia-like articles using perspective-guided question asking and simulated conversations. Co-STORM enables human-AI collaborative research with dynamic mind maps.
+- **relevance**: Best academic reference for the multi-perspective research agent pattern.
+
+---
+
+## MCP Ecosystem
+
+### MCP Apps Specification
+- **url**: https://modelcontextprotocol.io/extensions/apps/overview
+- **source**: Anthropic / MCP Steering Committee
+- **description**: Official spec for MCP Apps extension — interactive HTML UIs rendered inline in AI client conversations via sandboxed iframes and bidirectional JSON-RPC.
+- **relevance**: Key extension to MCP. The `ui://` URI scheme and tool-to-UI linkage patterns are new primitives for the whiteboard.
+
+### Awesome MCP Servers
+- **url**: https://github.com/punkpeye/awesome-mcp-servers
+- **source**: Community (punkpeye), 84k stars
+- **description**: Curated list of 800+ MCP servers across all categories — file system, web, database, browser automation, cloud services, developer tools, and more.
+- **relevance**: The definitive directory for discovering MCP servers. Essential for the "MCP ecosystem" whiteboard section.
+
+### Microsoft MCP for Beginners
+- **url**: https://github.com/microsoft/mcp-for-beginners
+- **source**: Microsoft, 15.8k stars
+- **description**: Official Microsoft open-source curriculum for MCP fundamentals with real-world, cross-language examples and tutorials.
+- **relevance**: Best beginner-friendly MCP guide from a major vendor.
+
+---
+
+## Memory Evaluation
+
+### LOCOMO: Long Conversational Memory Benchmark
+- **url**: https://aclanthology.org/2024.acl-long.747/
+- **source**: ACL 2024, 343+ citations
+- **description**: Benchmark for evaluating long-term conversational memory. ~600 turns, 16K tokens, 32 sessions. Tests single-hop, temporal, multi-hop QA, summarization, and multi-modal generation.
+- **relevance**: The de facto standard for memory system evaluation. Key scores and methodology needed for the memory whiteboard section.

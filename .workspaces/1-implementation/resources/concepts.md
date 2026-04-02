@@ -379,3 +379,85 @@
 - **description**: Gestione di ambienti dev diversi (local, remote, sandbox)
 - **alternatives**: Devcontainers, SSH remotes, Daytona, E2B, Modal
 - **category**: Runtime
+
+## Knowledge & Retrieval
+
+### Agentic RAG
+- **popularity**: 9
+- **description**: Pattern RAG dove l'agente decide attivamente quando, come e se recuperare informazioni. Include varianti: Self-RAG (reflection tokens), Corrective RAG (valutazione con fallback), Adaptive RAG (routing per complessità), Retrieval Augmented Thoughts (recupero per ogni step di ragionamento).
+- **alternatives**: Traditional RAG, LangChain agentic RAG, LlamaIndex agent workflows
+- **category**: Pattern
+
+### Deep Research Agent
+- **popularity**: 9
+- **description**: Agente che conduce ricerca multi-step in autonomia: pianifica query, naviga il web, legge centinaia di fonti, sintetizza report con citazioni e self-critica. Opera su tempi lunghi (minuti-ore). Implementazioni: OpenAI Deep Research, Gemini Deep Research, GPT Researcher, STORM, Tongyi DeepResearch.
+- **alternatives**: GPT Researcher, STORM, Tongyi DeepResearch, DeepSearcher
+- **category**: Pattern
+
+## Frameworks & SDKs
+
+### Google ADK (Agent Development Kit)
+- **popularity**: 9
+- **description**: Framework open-source Google per agenti AI. Model-agnostic (ottimizzato per Gemini), SDK in Python/TypeScript/Go/Java. Reference implementation per A2A protocol. ADK 2.0 aggiunge workflow a grafi e agenti collaborativi.
+- **alternatives**: LangGraph, OpenAI Agents SDK, Mastra, Strands Agents, Pydantic AI, Claude Agent SDK
+- **category**: Framework
+
+### OpenAI Agents SDK
+- **popularity**: 10
+- **description**: Framework lightweight di OpenAI per multi-agent workflows. Supporta handoffs, guardrails, HITL, sessioni, tracing, voice agents. Provider-agnostic (100+ LLM). 20.5k stars.
+- **alternatives**: LangGraph, Google ADK, CrewAI, Claude Agent SDK, Strands Agents
+- **category**: Framework
+
+### Mastra
+- **popularity**: 8
+- **description**: Framework TypeScript-first per agenti AI dal team Gatsby. Agenti, workflow a grafi, RAG, memoria, MCP, eval, osservabilità. Integrazione nativa Next.js/React. YC W25. 22.6k stars.
+- **alternatives**: LangGraph, Vercel AI SDK, Pydantic AI, Google ADK
+- **category**: Framework
+
+### Pydantic AI
+- **popularity**: 8
+- **description**: Framework Python type-safe dal team Pydantic (Samuel Colvin). Agent generici `Agent[Deps, Output]`, validation automatica, 15+ provider, MCP e A2A nativi, FastA2A. 16k stars.
+- **alternatives**: LangGraph, Google ADK, Strands Agents, Claude Agent SDK
+- **category**: Framework
+
+### Strands Agents SDK
+- **popularity**: 7
+- **description**: SDK open-source (Apache 2.0) di Amazon/AWS. Filosofia model-driven: il modello orchestra, lo sviluppatore definisce tools e prompt. Steering hooks per guardrails. Nativo MCP, A2A, Bedrock.
+- **alternatives**: OpenAI Agents SDK, Claude Agent SDK, Google ADK
+- **category**: Framework
+
+### Claude Agent SDK
+- **popularity**: 9
+- **description**: SDK Anthropic che espone il motore di Claude Code come libreria. Tools built-in (file I/O, bash, web search), subagenti, MCP, hooks, sessioni, permessi. Multi-cloud (API, Bedrock, Vertex, Azure).
+- **alternatives**: OpenAI Agents SDK, Google ADK, Pydantic AI
+- **category**: Framework
+
+## Business Automation
+
+### Visual Agent Builder
+- **popularity**: 8
+- **description**: Piattaforma no-code/low-code per costruire workflow multi-agente con canvas visuale. Supportano deployment come API, MCP server, o chatbot. Leader: Dify (136k stars), Langflow (147k), Flowise (51k).
+- **alternatives**: Dify, Langflow, Flowise, n8n, Coze
+- **category**: Platform
+
+### Low-Code Agent Platform
+- **popularity**: 8
+- **description**: Piattaforma di automazione con funzionalità AI agent integrate. Bridge tra automazione business tradizionale e agenti AI. n8n (182k stars) è il più maturo. Zapier (8000+ app), Make.com (1800+ app) per utenti non-tecnici.
+- **alternatives**: n8n, Zapier, Make.com, Activepieces
+- **category**: Platform
+
+## Protocol Extensions
+
+### MCP Apps
+- **popularity**: 7
+- **description**: Estensione ufficiale MCP (SEP-1865, Final) che permette ai server MCP di fornire UI HTML interattive renderizzate inline nelle conversazioni AI tramite iframe sandboxed con schema URI `ui://`. Comunicazione bidirezionale JSON-RPC.
+- **alternatives**: N/A (estensione unica)
+- **category**: Integration
+
+## Observability (updated)
+
+### Observability Platform
+- **popularity**: 9
+- **description**: Piattaforma completa per tracing, evaluation, prompt management e deployment di agenti. Leader open-source: Langfuse (24.2k stars). Più feature-complete: LangSmith. Nuovi entranti: AgentOps (session replay, multi-agent viz).
+- **alternatives**: Langfuse, LangSmith, Arize Phoenix, W&B Weave, Helicone, AgentOps
+- **category**: Monitoring
