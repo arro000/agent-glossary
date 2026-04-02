@@ -1,8 +1,8 @@
 # Workspace 2 — Improvements & Implementation
 
 ## Stato
-- **Iterazione**: 4
-- **Ultimo aggiornamento**: 2026-04-02 18:10:39
+- **Iterazione**: 5
+- **Ultimo aggiornamento**: 2026-04-02 18:48:00
 - **Stato**: completed
 
 ## Obiettivo
@@ -114,3 +114,9 @@ Analizzare l'implementazione corrente, identificare miglioramenti, e IMPLEMENTAR
 - Emoji rinforzate con halo piu netto e font size adattiva per mantenere il riconoscimento anche in bubble dense
 - Ring segmentato reso piu leggibile e badge refs centrato per ribadire il peso progetto senza cambiare il diametro
 - Build di produzione verificata con successo (`npm run build`)
+
+## Iterazione 7 — Completata
+- Bubble layout aggiornato: i project-weight piu alti vengono piazzati piu vicino al centro dell'area, mantenendo tutte le bolle equal-size
+- Badge refs reso piu esplicito (`N refs`) e ring segmentato piu contrastato per una lettura piu rapida del peso progetto
+- Emoji e title plate rinforzati per mantenere riconoscibilita e leggibilita su canvas ad alta densita
+- Verifica finale: `npm run build` completata con successo

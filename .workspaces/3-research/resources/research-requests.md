@@ -141,3 +141,8 @@
 
 ### Esplorazione
 5. **Curated repo quality signals** — which metadata, site search, llms.txt, and machine-readable indexes make an awesome-list actually useful?
+
+## Iterazione 12 — Da esplorare
+
+### Priorità Media
+1. **PixiJS v8 emoji + label metrics on high-DPI canvases** — best practices for keeping mixed emoji/text bubbles crisp, centered, and readable at 2x/3x DPR.

@@ -39,7 +39,6 @@ const START_Y = 60;
 const COL_STEP = AREA_WIDTH + COL_GAP;
 const ROW_STEP = AREA_HEIGHT + ROW_GAP;
 const BUBBLE_RADIUS = 46;
-const BUBBLE_TRACK_ALPHA = 0.16;
 const PROJECT_WEIGHT_SEGMENTS = 10;
 const ZOOM_LERP = 0.12;
 const PAN_LERP = 0.15;
@@ -276,6 +275,10 @@ function getBubbleColumns(count: number): number {
   return Math.min(6, Math.max(4, Math.ceil(Math.sqrt(count * 1.2))));
 }
 
+function getBubbleReferenceScore(concept: ConceptData): number {
+  return getReferenceCount(concept.alternatives);
+}
+
 function getBubbleFontSize(name: string, radius: number): number {
   const len = name.replace(/\n/g, ' ').length;
   if (len <= 12) return Math.min(12, Math.max(9.5, radius * 0.235));
@@ -302,33 +305,33 @@ function getBubbleTypography(name: string, radius: number): BubbleTypography {
 
   if (len <= 12) {
     return {
-      emojiSize: 26,
-      emojiY: -radius * 0.37,
+      emojiSize: 28,
+      emojiY: -radius * 0.38,
       titleFontSize: getBubbleFontSize(name, radius),
-      titleY: radius * 0.12,
+      titleY: radius * 0.13,
       titleWrapWidth: radius * 1.42,
-      badgeY: radius * 0.56,
+      badgeY: radius * 0.57,
     };
   }
 
   if (len <= 20) {
     return {
-      emojiSize: 24,
-      emojiY: -radius * 0.36,
+      emojiSize: 26,
+      emojiY: -radius * 0.37,
       titleFontSize: getBubbleFontSize(name, radius),
-      titleY: radius * 0.09,
+      titleY: radius * 0.1,
       titleWrapWidth: radius * 1.36,
-      badgeY: radius * 0.56,
+      badgeY: radius * 0.57,
     };
   }
 
   return {
-    emojiSize: 22,
-    emojiY: -radius * 0.34,
+    emojiSize: 24,
+    emojiY: -radius * 0.35,
     titleFontSize: getBubbleFontSize(name, radius),
-    titleY: radius * 0.07,
+    titleY: radius * 0.08,
     titleWrapWidth: radius * 1.28,
-    badgeY: radius * 0.57,
+    badgeY: radius * 0.58,
   };
 }
 
@@ -340,7 +343,7 @@ function drawProjectWeightRing(
 ) {
   const { filledSegments, totalSegments, emphasis } = getProjectWeightStyle(referenceCount);
   const ringRadius = radius + 9;
-  const ringWidth = 3.4;
+  const ringWidth = 3.6;
   const segmentSpan = (Math.PI * 2) / totalSegments;
   const gap = segmentSpan * 0.24;
   const segmentArc = segmentSpan - gap;
@@ -348,7 +351,7 @@ function drawProjectWeightRing(
   graphics.clear();
   graphics.moveTo(ringRadius, 0);
   graphics.arc(0, 0, ringRadius, 0, Math.PI * 2);
-  graphics.stroke({ color: '#ffffff', width: ringWidth + 1.6, alpha: BUBBLE_TRACK_ALPHA, cap: 'round' });
+  graphics.stroke({ color: '#ffffff', width: ringWidth + 1.8, alpha: 0.18, cap: 'round' });
 
   for (let i = 0; i < totalSegments; i++) {
     const start = -Math.PI / 2 + i * segmentSpan + gap / 2;
@@ -357,8 +360,8 @@ function drawProjectWeightRing(
     graphics.arc(0, 0, ringRadius, start, end);
     graphics.stroke({
       color,
-      width: i < filledSegments ? ringWidth + (i === filledSegments - 1 ? 0.35 : 0.1) : ringWidth - 0.6,
-      alpha: i < filledSegments ? 0.4 + emphasis * 0.55 : 0.06,
+      width: i < filledSegments ? ringWidth + (i === filledSegments - 1 ? 0.45 : 0.12) : ringWidth - 0.5,
+      alpha: i < filledSegments ? 0.5 + emphasis * 0.5 : 0.1,
       cap: 'round',
     });
   }
@@ -372,32 +375,57 @@ function layoutBubbles(concepts: ConceptData[], ax: number, ay: number) {
   const availW = AREA_WIDTH - padX * 2;
   const availH = AREA_HEIGHT - headerH - padY * 2;
 
-  const items = concepts.map((c) => ({
-    concept: c,
-    radius: BUBBLE_RADIUS,
-  }));
   const cols = getBubbleColumns(n);
 
   const rows = Math.ceil(n / cols);
   const cellW = availW / cols;
   const cellH = availH / rows;
+  const centerCol = (cols - 1) / 2;
+  const centerRow = (rows - 1) / 2;
 
-  // Bubbles are intentionally equal-size; only the grid layout adapts.
+  const slots = [] as Array<{
+    col: number;
+    row: number;
+    x: number;
+    y: number;
+    distance: number;
+  }>;
 
-  const offX = ax + padX;
-  const offY = ay + headerH + padY;
+  for (let row = 0; row < rows; row++) {
+    for (let col = 0; col < cols; col++) {
+      slots.push({
+        col,
+        row,
+        x: ax + padX + cellW * col + cellW / 2,
+        y: ay + headerH + padY + cellH * row + cellH / 2,
+        distance: Math.hypot(col - centerCol, row - centerRow),
+      });
+    }
+  }
 
-  return items.map((it, i) => {
-    const col = i % cols;
-    const row = Math.floor(i / cols);
-    const itemsInRow = row === rows - 1 ? n - row * cols : cols;
-    const rowOffsetX = itemsInRow < cols ? ((cols - itemsInRow) * cellW) / 2 : 0;
+  const orderedSlots = [...slots].sort((a, b) => a.distance - b.distance || a.row - b.row || a.col - b.col);
+  const orderedConcepts = [...concepts]
+    .map((concept, index) => ({
+      concept,
+      index,
+      score: getBubbleReferenceScore(concept),
+      name: getBubbleLabel(concept.name),
+    }))
+    .sort((a, b) => b.score - a.score || a.name.localeCompare(b.name) || a.index - b.index);
 
+  // Bubbles remain equal-size; weight only affects placement and styling.
+
+  return orderedConcepts.map((item, i) => {
+    const slot = orderedSlots[i];
+    const push = Math.min(8, Math.max(0, item.score - 4)) * 0.75;
+    const dx = centerCol - slot.col;
+    const dy = centerRow - slot.row;
+    const len = Math.hypot(dx, dy) || 1;
     return {
-      concept: it.concept,
-      x: offX + rowOffsetX + cellW * col + cellW / 2,
-      y: offY + cellH * row + cellH / 2,
-      radius: it.radius,
+      concept: item.concept,
+      x: slot.x + (dx / len) * push,
+      y: slot.y + (dy / len) * push,
+      radius: BUBBLE_RADIUS,
     };
   });
 }
@@ -1131,9 +1159,9 @@ export default function Whiteboard() {
           bubble.circle(0, 0, radius);
           bubble.stroke({ color: area.color, width: 1.7, alpha: 0.6 });
           bubble.circle(0, 0, radius - 5);
-          bubble.fill({ color: area.border, alpha: 0.08 });
+          bubble.fill({ color: area.border, alpha: 0.1 });
           bubble.circle(0, 0, radius - 15);
-          bubble.fill({ color: area.color, alpha: 0.04 });
+          bubble.fill({ color: area.color, alpha: 0.055 });
           bubble.eventMode = 'none';
           bubbleContainer.addChild(bubble);
 
@@ -1141,16 +1169,16 @@ export default function Whiteboard() {
           const emoji = getBubbleEmoji(area.name, concept.category);
 
           const titlePlate = new Graphics();
-          titlePlate.roundRect(-radius * 0.72, radius * 0.01, radius * 1.44, radius * 0.56, 15);
-          titlePlate.fill({ color: '#ffffff', alpha: 0.58 });
-          titlePlate.stroke({ color: area.color, width: 1, alpha: 0.08 });
+          titlePlate.roundRect(-radius * 0.72, radius * 0.005, radius * 1.44, radius * 0.58, 15);
+          titlePlate.fill({ color: '#ffffff', alpha: 0.7 });
+          titlePlate.stroke({ color: area.color, width: 1, alpha: 0.12 });
           titlePlate.eventMode = 'none';
           bubbleContainer.addChild(titlePlate);
 
           const emojiBack = new Graphics();
-          emojiBack.circle(0, bubbleTypography.emojiY, 16.5);
-          emojiBack.fill({ color: '#ffffff', alpha: 0.82 });
-          emojiBack.stroke({ color: area.color, width: 1, alpha: 0.2 });
+          emojiBack.circle(0, bubbleTypography.emojiY, 17.5);
+          emojiBack.fill({ color: '#ffffff', alpha: 0.92 });
+          emojiBack.stroke({ color: area.color, width: 1.1, alpha: 0.26 });
           emojiBack.eventMode = 'none';
           bubbleContainer.addChild(emojiBack);
 
@@ -1186,13 +1214,8 @@ export default function Whiteboard() {
           const badge = new Container();
           badge.x = 0;
           badge.y = bubbleTypography.badgeY;
-          const badgeBg = new Graphics();
-          badgeBg.roundRect(-15, -8, 30, 16, 8);
-          badgeBg.fill({ color: area.color, alpha: 0.18 });
-          badgeBg.stroke({ color: area.color, width: 1, alpha: 0.34 });
-          badge.addChild(badgeBg);
           const badgeTxt = new Text({
-            text: `${referenceCount}`,
+            text: `${referenceCount} refs`,
             style: new TextStyle({
               fontFamily: '"Inter", sans-serif',
               fontSize: 9,
@@ -1201,6 +1224,12 @@ export default function Whiteboard() {
             }),
           });
           badgeTxt.anchor.set(0.5);
+          const badgeWidth = Math.max(34, badgeTxt.width + 14);
+          const badgeBg = new Graphics();
+          badgeBg.roundRect(-badgeWidth / 2, -8, badgeWidth, 16, 8);
+          badgeBg.fill({ color: area.color, alpha: 0.16 + Math.min(0.14, referenceCount * 0.012) });
+          badgeBg.stroke({ color: area.color, width: 1, alpha: 0.34 });
+          badge.addChild(badgeBg);
           badge.addChild(badgeTxt);
           bubbleContainer.addChild(badge);
 

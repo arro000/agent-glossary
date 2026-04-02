@@ -209,6 +209,12 @@ La whiteboard rappresenta 69 subsection correnti allineate alle macroaree princi
 - [x] Confermati key rules: PixiJS v8 vanilla via `useRef/useEffect`, rendering full-canvas, font Inter, bolle equal-size con emoji+titolo, peso da `alternatives`, hover glow, click panel, zoom wheel e pan drag
 - [x] Totale subsection aggiornato a **69** con conteggi macroarea coerenti al dataset corrente
 
+## Iterazione 6 — Completata
+- [x] Rework delle subsection bubbles: i riferimenti/progetti guidano la posizione verso il centro dell'area senza cambiare il diametro
+- [x] Rafforzato il rendering: emoji piu riconoscibili, title plate piu leggibile, badge refs piu esplicito
+- [x] Ring segmentato reso piu contrastato per comunicare meglio il project-weight a colpo d'occhio
+- [x] Verifica finale: `npm run build` completata con successo
+
 ## File Principali
 - `src/components/whiteboard.tsx` — Componente principale con tutta la logica PixiJS
 - `src/app/page.tsx` — Pagina che renderizza il whiteboard
