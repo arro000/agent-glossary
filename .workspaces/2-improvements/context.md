@@ -1,8 +1,8 @@
 # Workspace 2 — Improvements & Implementation
 
 ## Stato
-- **Iterazione**: 2
-- **Ultimo aggiornamento**: 2026-04-02 22:10:00
+- **Iterazione**: 3
+- **Ultimo aggiornamento**: 2026-04-02 22:00:00
 - **Stato**: completed
 
 ## Obiettivo
@@ -137,3 +137,8 @@ Analizzare l'implementazione corrente, identificare miglioramenti, e IMPLEMENTAR
 - [x] Aggiornato il PRD di workspace 2 alla nuova iterazione e ai vincoli su context/replay signals
 - [x] Validato che il board resta full-canvas PixiJS v8 vanilla con bolle equal-size e project-weight separato
 - [x] Verifica tecnica eseguita: `npm run build` completata con successo
+
+## Iterazione 3 (Questa esecuzione) — Completata
+- [x] Allineati i concept del canvas al taxonomy corrente aggiungendo `Session Replay` e `Trace Grading`
+- [x] La bubble selezionata resta evidenziata anche mentre la search filtra gli altri nodi
+- [x] PRD riallineato a iterazione 3 con focus su replay/eval signals e stato attuale della board

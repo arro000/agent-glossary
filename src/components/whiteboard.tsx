@@ -189,6 +189,8 @@ const MACROAREAS: MacroareaConfig[] = [
       { name: 'Data-Centric\nAgent Evaluation', popularity: 8, description: 'Benchmark-first evaluation basata su task reali e non solo metriche astratte. Include SWE-bench, Terminal-Bench 2.0, WebArena, TAU-bench, BrowseComp e SWE-Lancer.', alternatives: 'LOCOMO, custom evals, human eval', category: 'Quality' },
       { name: 'Debugging\nTools', popularity: 7, description: 'Tool per ispezionare e debuggare il comportamento dell\'agente', alternatives: 'Replay tools, Inspector UI, Trace viewers', category: 'Debug' },
       { name: 'Trace\nReplay', popularity: 8, description: 'Replay di sessioni e tool call per ricostruire failure long-horizon e confrontare run diverse', alternatives: 'AgentOps replay, LangSmith replay, Langfuse session replay, custom transcript viewers', category: 'Debug' },
+      { name: 'Session\nReplay', popularity: 8, description: 'Replay visivo di una sessione o run con trace, tool call e state transitions per root-cause analysis e debugging long-horizon', alternatives: 'trace playback, transcript viewer, LangSmith replay, Langfuse sessions, AgentOps replay', category: 'Debug' },
+      { name: 'Trace\nGrading', popularity: 8, description: 'Valutazione strutturata di trace end-to-end con score o label per trasformare i failure di workflow in regressioni ripetibili', alternatives: 'trace evals, LangSmith evals, Langfuse experiments, promptfoo, Inspect AI', category: 'Quality' },
       { name: 'Safety &\nGuardrails', popularity: 7, description: 'Meccanismi per prevenire comportamenti indesiderati', alternatives: 'Input/output filtering, Permission systems, Approval flows, Geordie AI', category: 'Safety' },
       { name: 'Agent\nGovernance', popularity: 6, description: 'Framework di governance per deployment sicuro di agenti AI in produzione', alternatives: 'WEF framework, Microsoft Power Platform governance, Collibra', category: 'Governance' },
       { name: 'OpenTelemetry\nfor Agents', popularity: 8, description: 'Pattern di observability per agenti che mappa trace, span ed eventi su OpenTelemetry. Le semantic conventions GenAI sono il lessico standard.', alternatives: 'Langfuse, LangSmith, Arize Phoenix, W&B Weave, Helicone', category: 'Monitoring' },
@@ -275,6 +277,8 @@ function getBubbleEmoji(areaName: string, category: string, conceptName: string)
   if (conceptKey.includes('harness / runtime scaffold')) return '🧱';
   if (conceptKey.includes('eval harness')) return '🧪';
   if (conceptKey.includes('durable execution')) return '🔁';
+  if (conceptKey.includes('session replay')) return '🎬';
+  if (conceptKey.includes('trace grading')) return '🏷️';
   if (conceptKey.includes('context window')) return '🪟';
   if (conceptKey.includes('context graph')) return '🕸️';
   if (conceptKey.includes('reference navigation')) return '🔎';
@@ -345,6 +349,8 @@ function getConceptSignal(conceptName: string): SignalInfo | null {
   if (key.includes('harness / runtime scaffold')) return SIGNAL_LEGEND[0];
   if (key.includes('eval harness')) return SIGNAL_LEGEND[5];
   if (key.includes('durable execution')) return SIGNAL_LEGEND[4];
+  if (key.includes('session replay')) return SIGNAL_LEGEND[4];
+  if (key.includes('trace grading')) return SIGNAL_LEGEND[5];
   if (key.includes('context window')) return SIGNAL_LEGEND[1];
   if (key.includes('context graph')) return SIGNAL_LEGEND[1];
   if (key.includes('reference navigation')) return SIGNAL_LEGEND[2];
@@ -1754,11 +1760,15 @@ export default function Whiteboard() {
 
         for (const s of bubbleStates) {
           const matched = s.searchIndex.includes(q);
-          if (matched) {
+          if (matched || s.selected) {
             s.baseAlpha = 1;
-            s.searchHighlight = true;
-            matchCount++;
-            areaMatchFlags[s.areaIndex] = true;
+            s.searchHighlight = matched;
+            if (matched) {
+              matchCount++;
+              areaMatchFlags[s.areaIndex] = true;
+            } else {
+              areaMatchFlags[s.areaIndex] = true;
+            }
           } else {
             s.baseAlpha = 0.12;
             s.searchHighlight = false;

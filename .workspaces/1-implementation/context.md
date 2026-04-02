@@ -254,3 +254,8 @@ La whiteboard rappresenta 100 subsection correnti allineate alle macroaree princ
 2. Se incontri errori o limiti, segnalali in `resources/blockers.md`
 3. Aggiorna i dati dei concetti se trovi nuovi strumenti/pattern
 4. Commit con messaggio descrittivo
+
+## Iterazione 4 (Questa esecuzione) — Completata
+- [x] Allineato il canvas a `concepts.md` con `Session Replay` e `Trace Grading` nelle metriche/visuali dell'area Observability
+- [x] Confermato il comportamento della bubble selezionata: resta evidenziata anche durante il filtro search
+- [x] Aggiornato il PRD workspace 2 alla iterazione corrente e sincronizzato il totale canvas a 101 concept nodes

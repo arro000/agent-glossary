@@ -257,3 +257,9 @@
 
 ### Esplorazione
 6. **Trace-to-eval flywheels** — how trace grading, eval datasets, and CI regression loops connect into a shareable harness workflow.
+
+## Iterazione 22 — Da esplorare
+
+### Priorità Media
+1. **PixiJS v8 emoji/text crispness** — best practices per label brevi misti a emoji su canvas ad alto DPR, soprattutto dentro bubble fixed-size.
+2. **Replay vs grading iconography** — quale encoding visivo distingue meglio session replay, trace replay e trace grading senza aumentare clutter nelle bubble compatte?
