@@ -1,8 +1,8 @@
 # Workspace 2 — Improvements & Implementation
 
 ## Stato
-- **Iterazione**: 1
-- **Ultimo aggiornamento**: 2026-04-02 18:22:00
+- **Iterazione**: 2
+- **Ultimo aggiornamento**: 2026-04-02 18:12:00
 - **Stato**: completed
 
 ## Obiettivo
@@ -97,3 +97,9 @@ Analizzare l'implementazione corrente, identificare miglioramenti, e IMPLEMENTAR
 
 ### Problemi incontrati
 - Nessuno. Build e lint passano senza errori/warnings (0 errors, 0 warnings).
+
+## Iterazione 4 — Completata
+- Rework delle subsection bubbles con **dimensione fissa** e encoding del peso tramite **ring segmentato + badge refs**
+- Emoji rese piu riconoscibili con halo piu ampio e text size aumentata
+- Rimossa la vecchia barra a punti per ridurre il rumore visivo
+- Build di produzione verificata con successo (`npm run build`)

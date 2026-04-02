@@ -265,10 +265,6 @@ function getReferenceCount(alternatives: string): number {
     .length;
 }
 
-function getProjectWeightTier(referenceCount: number): number {
-  return Math.max(1, Math.min(5, Math.ceil(referenceCount / 2)));
-}
-
 function getBubbleColumns(count: number): number {
   if (count <= 3) return count;
   if (count <= 6) return 3;
@@ -285,6 +281,39 @@ function getBubbleFontSize(name: string, radius: number): number {
 
 function getBubbleLabel(name: string): string {
   return name.replace(/\n/g, ' ');
+}
+
+function drawProjectWeightRing(
+  graphics: Graphics,
+  radius: number,
+  color: string,
+  referenceCount: number,
+) {
+  const segments = 8;
+  const filledSegments = Math.max(1, Math.min(segments, referenceCount));
+  const ringRadius = radius + 8;
+  const ringWidth = 3.5;
+  const segmentSpan = (Math.PI * 2) / segments;
+  const gap = segmentSpan * 0.26;
+  const segmentArc = segmentSpan - gap;
+
+  graphics.clear();
+  graphics.moveTo(ringRadius, 0);
+  graphics.arc(0, 0, ringRadius, 0, Math.PI * 2);
+  graphics.stroke({ color: '#ffffff', width: ringWidth + 1.5, alpha: 0.22, cap: 'round' });
+
+  for (let i = 0; i < segments; i++) {
+    const start = -Math.PI / 2 + i * segmentSpan + gap / 2;
+    const end = start + segmentArc;
+    graphics.moveTo(Math.cos(start) * ringRadius, Math.sin(start) * ringRadius);
+    graphics.arc(0, 0, ringRadius, start, end);
+    graphics.stroke({
+      color,
+      width: ringWidth,
+      alpha: i < filledSegments ? 0.3 + (filledSegments / segments) * 0.42 : 0.1,
+      cap: 'round',
+    });
+  }
 }
 
 function layoutBubbles(concepts: ConceptData[], ax: number, ay: number) {
@@ -328,6 +357,7 @@ function layoutBubbles(concepts: ConceptData[], ax: number, ay: number) {
 interface BubbleState {
   container: Container;
   glow: Graphics;
+  weightRing: Graphics;
   bubble: Graphics;
   targetScale: number;
   currentScale: number;
@@ -1017,7 +1047,6 @@ export default function Whiteboard() {
           const bx = x - pos.x;
           const by = y - pos.y;
           const referenceCount = getReferenceCount(concept.alternatives);
-          const weightTier = getProjectWeightTier(referenceCount);
           const weightRatio = Math.min(1, referenceCount / 8);
 
           const bubbleContainer = new Container();
@@ -1034,6 +1063,12 @@ export default function Whiteboard() {
           glow.eventMode = 'none';
           bubbleContainer.addChild(glow);
 
+          const weightRing = new Graphics();
+          weightRing.eventMode = 'none';
+          drawProjectWeightRing(weightRing, radius, area.color, referenceCount);
+          weightRing.alpha = 0.92;
+          bubbleContainer.addChild(weightRing);
+
           const bubble = new Graphics();
           bubble.circle(0, 0, radius);
           bubble.fill({ color: '#ffffff', alpha: 0.66 + weightRatio * 0.06 });
@@ -1046,9 +1081,9 @@ export default function Whiteboard() {
 
           const emoji = getBubbleEmoji(area.name, concept.category);
           const emojiBack = new Graphics();
-          emojiBack.circle(0, -radius * 0.35, 12.5);
-          emojiBack.fill({ color: '#ffffff', alpha: 0.64 + weightRatio * 0.08 });
-          emojiBack.stroke({ color: area.color, width: 1, alpha: 0.16 + weightRatio * 0.08 });
+          emojiBack.circle(0, -radius * 0.35, 13.5);
+          emojiBack.fill({ color: '#ffffff', alpha: 0.7 + weightRatio * 0.06 });
+          emojiBack.stroke({ color: area.color, width: 1, alpha: 0.14 + weightRatio * 0.1 });
           emojiBack.eventMode = 'none';
           bubbleContainer.addChild(emojiBack);
 
@@ -1056,7 +1091,7 @@ export default function Whiteboard() {
             text: emoji,
             style: new TextStyle({
               fontFamily: EMOJI_FONT_FAMILY,
-              fontSize: 20,
+              fontSize: 22,
               fontWeight: 'bold',
             }),
           });
@@ -1082,23 +1117,6 @@ export default function Whiteboard() {
           bText.y = radius * 0.1;
           bubbleContainer.addChild(bText);
 
-          const weightStrip = new Graphics();
-          const dotCount = 6;
-          const filledDots = Math.min(dotCount, weightTier + Math.max(0, referenceCount - 5) * 0.25);
-          const dotSpacing = 7.5;
-          const dotRadius = 2.35;
-          const stripStart = -((dotCount - 1) * dotSpacing) / 2;
-          for (let d = 0; d < dotCount; d++) {
-            const xPos = stripStart + d * dotSpacing;
-            weightStrip.circle(xPos, radius * 0.57, dotRadius);
-            weightStrip.fill({
-              color: d < filledDots ? area.color : '#cbd5e1',
-              alpha: d < filledDots ? 0.7 + weightRatio * 0.18 : 0.4,
-            });
-          }
-          weightStrip.eventMode = 'none';
-          bubbleContainer.addChild(weightStrip);
-
           const badge = new Container();
           badge.x = radius * 0.48;
           badge.y = radius * 0.5;
@@ -1123,6 +1141,7 @@ export default function Whiteboard() {
           const state: BubbleState = {
             container: bubbleContainer,
             glow,
+            weightRing,
             bubble,
             targetScale: 1,
             currentScale: 0.3,
@@ -1135,6 +1154,7 @@ export default function Whiteboard() {
 
           bubbleContainer.on('pointerover', (e) => {
             state.targetScale = 1.06;
+            state.weightRing.alpha = 1;
             glow.clear();
             glow.circle(0, 0, radius + 14);
             glow.fill({ color: area.color, alpha: 0.08 });
@@ -1144,6 +1164,7 @@ export default function Whiteboard() {
           });
           bubbleContainer.on('pointerout', () => {
             state.targetScale = 1;
+            state.weightRing.alpha = 0.92;
             glow.clear();
             hideTooltip();
           });
@@ -1448,6 +1469,9 @@ export default function Whiteboard() {
             s.glow.fill({ color: '#fbbf24', alpha: 0.15 });
             s.glow.circle(0, 0, BUBBLE_RADIUS + 4);
             s.glow.fill({ color: '#fbbf24', alpha: 0.1 });
+            s.weightRing.alpha = 1;
+          } else {
+            s.weightRing.alpha += (0.92 - s.weightRing.alpha) * 0.18;
           }
         }
 
