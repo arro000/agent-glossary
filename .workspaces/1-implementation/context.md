@@ -1,9 +1,9 @@
 # Workspace 1 — Implementation
 
 ## Stato
-- **Iterazione**: 4
-- **Ultimo aggiornamento**: 2026-04-02 22:10:44
-- **Stato**: completed
+- **Iterazione**: 5
+- **Ultimo aggiornamento**: 2026-04-02 22:21:09
+- **Stato**: in_progress
 
 ## Obiettivo
 Implementare l'app "Agent Glossary Whiteboard" usando PixiJS v8 + Next.js.
@@ -279,3 +279,10 @@ La whiteboard rappresenta 100 subsection correnti allineate alle macroaree princ
 - [x] Allineati i dataset visuali e i signal rules senza introdurre overlay HTML o cambiare il diametro delle bubble
 - [x] PRD workspace 2 e research requests aggiornati per riflettere i follow-up su policy middleware, compaction e code intelligence
 - [x] Verifica finale: `npm run build` completata con successo
+
+## Iterazione 5 (Richiesta utente corrente) — Completata
+- [x] Letto il contesto completo richiesto (`workspace 1/2`, `concepts.md`, `pixijs-reference.md`, `findings.md`) e verificato PRD presente in `.workspaces/2-improvements/resources/prd.md`
+- [x] Tradotti i concetti di coordinamento harness/context/reference-navigation in cue visivi piu espliciti nelle bubbles (`HARNESS CORE`, `CONTEXT CORE`, `REF NAV CORE` + badge `COORDINATION`)
+- [x] Mantenute bolle equal-size con peso progetto basato su `alternatives` (ring+badge), riducendo solo il center-bias per migliorare leggibilita e non aumentare densita
+- [x] Rafforzata la chiarezza del panel dettaglio con badge dedicato `COORDINATION FOCUS` per i nodi core
+- [x] Verifica tecnica: `npm run build` completata con successo

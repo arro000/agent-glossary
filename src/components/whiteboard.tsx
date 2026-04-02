@@ -389,9 +389,24 @@ function getConceptSignal(conceptName: string): SignalInfo | null {
   return null;
 }
 
-function isCoordinationFocusConcept(conceptName: string): boolean {
+function getCoordinationFocusKey(conceptName: string): 'harness' | 'context' | 'refnav' | null {
   const key = conceptName.replace(/\n/g, ' ').toLowerCase();
-  return key.includes('harness / runtime scaffold') || key.includes('context graph') || key.includes('reference navigation');
+  if (key.includes('harness / runtime scaffold')) return 'harness';
+  if (key.includes('context graph')) return 'context';
+  if (key.includes('reference navigation')) return 'refnav';
+  return null;
+}
+
+function isCoordinationFocusConcept(conceptName: string): boolean {
+  return getCoordinationFocusKey(conceptName) !== null;
+}
+
+function getCoordinationFocusTag(conceptName: string): { label: string; color: string } | null {
+  const focusKey = getCoordinationFocusKey(conceptName);
+  if (focusKey === 'harness') return { label: 'HARNESS CORE', color: '#0284c7' };
+  if (focusKey === 'context') return { label: 'CONTEXT CORE', color: '#2563eb' };
+  if (focusKey === 'refnav') return { label: 'REF NAV CORE', color: '#0f766e' };
+  return null;
 }
 
 function getMacroareaSignals(area: MacroareaConfig): SignalInfo[] {
@@ -546,11 +561,14 @@ function layoutBubbles(concepts: ConceptData[], ax: number, ay: number) {
     }))
     .sort((a, b) => b.score - a.score || a.name.localeCompare(b.name) || a.index - b.index);
 
-  // Bubbles remain equal-size; weight only affects placement and styling.
+  const densityEase = Math.max(0.18, Math.min(0.42, Math.min(cellW, cellH) / 240));
+  const maxPush = Math.min(6.5, Math.max(2.8, Math.min(cellW, cellH) * 0.07));
+
+  // Bubbles remain equal-size; weight affects ring/badge and a subtle center bias.
 
   return orderedConcepts.map((item, i) => {
     const slot = orderedSlots[i];
-    const push = Math.min(12, Math.max(0, item.score - 3)) * 0.82;
+    const push = Math.min(maxPush, Math.max(0, item.score - 3) * densityEase);
     const dx = centerCol - slot.col;
     const dy = centerRow - slot.row;
     const len = Math.hypot(dx, dy) || 1;
@@ -1527,6 +1545,7 @@ export default function Whiteboard() {
           const bubbleTypography = getBubbleTypography(concept.name, radius);
           const conceptSignal = getConceptSignal(concept.name);
           const focusConcept = isCoordinationFocusConcept(concept.name);
+          const focusTag = getCoordinationFocusTag(concept.name);
 
           const titlePlate = new Graphics();
           titlePlate.roundRect(-radius * 0.72, radius * 0.005, radius * 1.44, radius * 0.58, 15);
@@ -1556,12 +1575,12 @@ export default function Whiteboard() {
 
           if (conceptSignal) {
             const signalText = new Text({
-              text: conceptSignal.label,
+              text: focusTag ? focusTag.label : conceptSignal.label,
               style: new TextStyle({
                 fontFamily: '"Inter", sans-serif',
                 fontSize: focusConcept ? 7.8 : 7,
                 fontWeight: 'bold',
-                fill: conceptSignal.color,
+                fill: focusTag ? focusTag.color : conceptSignal.color,
                 letterSpacing: focusConcept ? 0.7 : 0.6,
               }),
             });
@@ -1571,7 +1590,7 @@ export default function Whiteboard() {
             const signalBg = new Graphics();
             signalBg.roundRect(-signalWidth / 2, -6, signalWidth, 12, 6);
             signalBg.fill({ color: '#ffffff', alpha: 0.95 });
-            signalBg.stroke({ color: conceptSignal.color, width: focusConcept ? 1.2 : 1, alpha: focusConcept ? 0.58 : 0.42 });
+            signalBg.stroke({ color: focusTag ? focusTag.color : conceptSignal.color, width: focusConcept ? 1.2 : 1, alpha: focusConcept ? 0.58 : 0.42 });
             signalBg.eventMode = 'none';
 
             const signalChip = new Container();
@@ -1584,9 +1603,33 @@ export default function Whiteboard() {
 
             const signalRail = new Graphics();
             signalRail.roundRect(-radius * 0.34, radius * 0.36, radius * 0.68, 4, 2);
-            signalRail.fill({ color: conceptSignal.color, alpha: focusConcept ? 0.62 : 0.45 });
+            signalRail.fill({ color: focusTag ? focusTag.color : conceptSignal.color, alpha: focusConcept ? 0.62 : 0.45 });
             signalRail.eventMode = 'none';
             bubbleContainer.addChild(signalRail);
+          }
+
+          if (focusTag) {
+            const coreBadge = new Graphics();
+            coreBadge.roundRect(-radius * 0.48, -radius * 0.86, radius * 0.96, 11, 5.5);
+            coreBadge.fill({ color: '#ffffff', alpha: 0.94 });
+            coreBadge.stroke({ color: focusTag.color, width: 1.2, alpha: 0.52 });
+            coreBadge.eventMode = 'none';
+            bubbleContainer.addChild(coreBadge);
+
+            const coreText = new Text({
+              text: 'COORDINATION',
+              style: new TextStyle({
+                fontFamily: '"Inter", sans-serif',
+                fontSize: 6,
+                fontWeight: 'bold',
+                fill: focusTag.color,
+                letterSpacing: 0.6,
+              }),
+            });
+            coreText.anchor.set(0.5);
+            coreText.y = -radius * 0.805;
+            coreText.eventMode = 'none';
+            bubbleContainer.addChild(coreText);
           }
 
           const bText = new Text({
@@ -2258,6 +2301,7 @@ export default function Whiteboard() {
 
         const root = new Container();
         root.alpha = 0;
+        const focusTag = getCoordinationFocusTag(state.concept.name);
 
         const backdrop = new Graphics();
         backdrop.rect(0, 0, sw, sh);
@@ -2370,16 +2414,50 @@ export default function Whiteboard() {
         card.addChild(badgeTxt);
         cy += 26;
 
+        if (focusTag) {
+          const focusBadge = new Graphics();
+          focusBadge.roundRect(pad - 4, cy - 2, 188, 20, 10);
+          focusBadge.fill({ color: '#f8fafc', alpha: 0.98 });
+          focusBadge.stroke({ color: focusTag.color, width: 1, alpha: 0.5 });
+          focusBadge.eventMode = 'none';
+          card.addChild(focusBadge);
+
+          const focusLabel = new Text({
+            text: `COORDINATION FOCUS • ${focusTag.label}`,
+            style: new TextStyle({
+              fontFamily: '"Inter", sans-serif',
+              fontSize: 9,
+              fontWeight: 'bold',
+              fill: focusTag.color,
+            }),
+          });
+          focusLabel.x = pad + 4;
+          focusLabel.y = cy + 3;
+          card.addChild(focusLabel);
+          cy += 26;
+        }
+
         if (state.signal) {
+          const signalTextValue = `${state.signal.label} • ${state.signal.helper}`;
+          const signalLabelMeasure = new Text({
+            text: signalTextValue,
+            style: new TextStyle({
+              fontFamily: '"Inter", sans-serif',
+              fontSize: 10,
+              fontWeight: 'bold',
+              fill: state.signal.color,
+            }),
+          });
+          const signalBadgeWidth = Math.min(pw - pad * 2, signalLabelMeasure.width + 16);
           const signalBadge = new Graphics();
-          signalBadge.roundRect(pad - 4, cy - 2, 180, 20, 10);
+          signalBadge.roundRect(pad - 4, cy - 2, signalBadgeWidth, 20, 10);
           signalBadge.fill({ color: '#f8fafc', alpha: 0.95 });
           signalBadge.stroke({ color: state.signal.color, width: 1, alpha: 0.4 });
           signalBadge.eventMode = 'none';
           card.addChild(signalBadge);
 
           const signalLabel = new Text({
-            text: `${state.signal.label} • ${state.signal.helper}`,
+            text: signalTextValue,
             style: new TextStyle({
               fontFamily: '"Inter", sans-serif',
               fontSize: 10,
