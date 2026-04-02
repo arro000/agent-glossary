@@ -1,8 +1,8 @@
 # Workspace 1 — Implementation
 
 ## Stato
-- **Iterazione**: 2
-- **Ultimo aggiornamento**: 2026-04-02 17:49:21
+- **Iterazione**: 3
+- **Ultimo aggiornamento**: 2026-04-02 17:57:57
 - **Stato**: completed
 
 ## Obiettivo
@@ -178,6 +178,13 @@ Tutti i concetti dal database sono ora rappresentati nella whiteboard.
 - [x] Corretto filtro apertura panel: ora rispetta la ricerca su **nome o descrizione** (coerente con il filtro realtime)
 - [x] Corretto repositioning minimap su resize usando dimensioni reali del container (`minimap.width/height`)
 - [x] Aggiunto cleanup del listener wheel del canvas in teardown per evitare leak su remount
+
+## Iterazione 3 (Richiesta utente corrente) — Completata
+- [x] Letti i file richiesti: `context.md`, `resources/concepts.md`, `resources/pixijs-reference.md`
+- [x] Verificato PRD presente in `.workspaces/2-improvements/resources/prd.md` e confermato che i requisiti baseline sono gia implementati
+- [x] Confermato allineamento ai key rules: PixiJS v8 vanilla via `useRef/useEffect`, rendering full-canvas, font Inter, bolle equal-size con emoji+titolo, peso da `alternatives`, zoom/pan, hover glow e click panel
+- [x] Verifica esecuzione: `npm run build` completata con successo
+- [x] Verifica lint eseguita: errori residui confinati agli artefatti generati `.netlify/**` (fuori scope della whiteboard)
 
 ## File Principali
 - `src/components/whiteboard.tsx` — Componente principale con tutta la logica PixiJS
