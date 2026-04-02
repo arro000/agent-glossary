@@ -53,10 +53,10 @@ interface SignalInfo {
 }
 
 const SIGNAL_LEGEND: SignalInfo[] = [
-  { key: 'harness', label: 'HARNESS', color: '#0284c7', helper: 'hooks + sessions' },
+  { key: 'harness', label: 'HARNESS', color: '#0284c7', helper: 'hooks + sessions + compaction' },
   { key: 'context', label: 'CONTEXT', color: '#2563eb', helper: 'window + graph' },
-  { key: 'refnav', label: 'REF NAV', color: '#0f766e', helper: 'citations + search' },
-  { key: 'repomap', label: 'REPO MAP', color: '#0891b2', helper: 'code intelligence' },
+  { key: 'refnav', label: 'REF NAV', color: '#0f766e', helper: 'citations + code search' },
+  { key: 'repomap', label: 'REPO MAP', color: '#0891b2', helper: 'code graphs' },
   { key: 'replay', label: 'REPLAY', color: '#7c3aed', helper: 'session + trace' },
   { key: 'eval', label: 'EVAL', color: '#c026d3', helper: 'grading loop' },
   { key: 'interop', label: 'INTEROP', color: '#ea580c', helper: 'registry + UI' },
@@ -115,13 +115,14 @@ const MACROAREAS: MacroareaConfig[] = [
       { name: 'System\nPrompt', popularity: 10, description: 'Istruzioni di base che definiscono personalit\u00e0 e comportamento dell\'agente', alternatives: 'Static system prompt, Dynamic assembly, Prompt templates', category: 'Core' },
       { name: 'Prompt\nAssembly', popularity: 8, description: 'Composizione dinamica del messaggio finale al modello a partire da istruzioni, memoria, schema tool e slice di contesto', alternatives: 'instruction builder, prompt templates, context builder, static system prompt', category: 'Runtime' },
       { name: 'Hook\nSystem', popularity: 8, description: 'Strato event-driven che attiva comandi, prompt o agenti in punti specifici del lifecycle dell\'agente', alternatives: 'lifecycle middleware, event listeners, permission guards, prompt-based hooks', category: 'Runtime' },
+      { name: 'Compaction', popularity: 8, description: 'Riduzione server-side o controllata del contesto di una sessione mantenendo uno stato opaco sufficiente per continuare il workflow nelle turn successive', alternatives: 'OpenAI Responses compaction, summary compression, checkpoint pruning, manual transcript pruning', category: 'Runtime' },
       { name: 'Few-Shot\nExamples', popularity: 8, description: 'Esempi di input/output per guidare il modello', alternatives: 'In-context learning, Dynamic few-shot, Retrieved examples', category: 'Technique' },
       { name: 'Chain-of-\nThought', popularity: 9, description: 'Guidare il modello a ragionare passo per passo', alternatives: 'CoT prompting, Tree-of-Thought, Step-by-step, ReAct', category: 'Technique' },
       { name: 'Structured\nOutput', popularity: 9, description: 'Forzare il modello a produrre output in formato specifico (JSON, etc.)', alternatives: 'JSON mode, Function calling, Outlines, Guidance', category: 'Technique' },
       { name: 'Prompt\nCaching', popularity: 7, description: 'Cachare parti statiche del prompt per ridurre costi e latenza', alternatives: 'Anthropic prompt caching, Semantic caching, KV cache', category: 'Optimization' },
       { name: 'Context\nCompression', popularity: 7, description: 'Comprimere il contesto per rientrare nella finestra di token', alternatives: 'Summarization, Token merging, Key info extraction', category: 'Optimization' },
       { name: 'Eval\nHarness', popularity: 8, description: 'Runner strutturato per prompt, agenti e RAG con dataset, scoring, regression checks e integrazione CI', alternatives: 'promptfoo, Inspect AI, OpenAI Evals, custom CI evals', category: 'Quality' },
-      { name: 'Harness /\nRuntime Scaffold', popularity: 9, description: 'Tutto lo strato attorno all\'LLM che prepara il prompt, gestisce hooks, tools, memory, traces, eval e state', alternatives: 'Claude Code harness, agent runtime, LLM OS, outer loop', category: 'Runtime' },
+      { name: 'Harness /\nRuntime Scaffold', popularity: 9, description: 'Tutto lo strato attorno all\'LLM che prepara il prompt, gestisce hooks, tools, memory, traces, eval, state e compaction', alternatives: 'Claude Code harness, OpenAI Responses compaction, agent runtime, Mastra middleware, LangSmith middleware', category: 'Runtime' },
       { name: 'Durable\nExecution', popularity: 8, description: 'Esecuzione persistente che conserva stato e progressi tra interruzioni, retry e resume', alternatives: 'LangGraph durable execution, Temporal workflows, checkpointed state machines', category: 'Runtime' },
     ],
   },
@@ -222,8 +223,9 @@ const MACROAREAS: MacroareaConfig[] = [
       { name: 'Agentic\nRAG', popularity: 9, description: 'Pattern RAG dove l\'agente decide attivamente quando, come e se recuperare informazioni. Include Self-RAG, Corrective RAG, Adaptive RAG.', alternatives: 'Traditional RAG, LangChain agentic RAG, LlamaIndex agent workflows', category: 'Pattern' },
       { name: 'Deep Research\nAgent', popularity: 9, description: 'Agente che conduce ricerca multi-step: pianifica query, naviga il web, sintetizza report con citazioni e self-critica', alternatives: 'GPT Researcher, STORM, Tongyi DeepResearch, DeepSearcher', category: 'Pattern' },
       { name: 'Context\nGraph', popularity: 8, description: 'Grafo temporale di entità, relazioni, episodi e provenance che permette di recuperare contesto evolutivo invece di comprimere soltanto la chat history', alternatives: 'Graphiti, Zep, GraphRAG, temporal knowledge graph', category: 'Navigation' },
-      { name: 'Reference\nNavigation', popularity: 8, description: 'Esplorazione dei riferimenti già visti: recupero semantico, pinning, citazioni, summary incrementali e navigazione tra fonti correlate invece della sola compressione del contesto', alternatives: 'retrieval browser, citation graph, memory browsing, semantic search UI', category: 'Navigation' },
-      { name: 'Repo Map /\nCodebase Map', popularity: 8, description: 'Mappa strutturale del codebase per navigazione e editing su repository grandi, spesso derivata da tree-sitter o analisi statica per mostrare file e dipendenze rilevanti', alternatives: 'Aider repomap, semantic code graph, file tree summaries', category: 'Navigation' },
+      { name: 'Reference\nNavigation', popularity: 8, description: 'Esplorazione dei riferimenti già visti: recupero semantico, pinning, citazioni, summary incrementali e navigazione tra fonti correlate invece della sola compressione del contesto', alternatives: 'retrieval browser, citation graph, memory browsing, semantic search UI, Sourcegraph Code Search / MCP', category: 'Navigation' },
+      { name: 'Repo Map /\nCodebase Map', popularity: 8, description: 'Mappa strutturale del codebase per navigazione e editing su repository grandi, spesso derivata da tree-sitter o analisi statica per mostrare file e dipendenze rilevanti', alternatives: 'Aider repomap, semantic code graph, file tree summaries, Sourcegraph code intelligence', category: 'Navigation' },
+      { name: 'Sourcegraph\nCode Search', popularity: 9, description: 'Code intelligence layer con search, code graph e surface MCP per navigare codebase enormi in modo dependency-aware', alternatives: 'Sourcegraph deep search, code search UI, Aider repo map, Context7', category: 'Navigation' },
     ],
   },
   {
@@ -277,6 +279,7 @@ function getBubbleEmoji(areaName: string, category: string, conceptName: string)
   const conceptKey = conceptName.replace(/\n/g, ' ').toLowerCase();
   if (conceptKey.includes('harness / runtime scaffold')) return '🧱';
   if (conceptKey.includes('eval harness')) return '🧪';
+  if (conceptKey.includes('compaction')) return '🗜️';
   if (conceptKey.includes('durable execution')) return '🔁';
   if (conceptKey.includes('session replay')) return '🎬';
   if (conceptKey.includes('trace grading')) return '🏷️';
@@ -284,6 +287,7 @@ function getBubbleEmoji(areaName: string, category: string, conceptName: string)
   if (conceptKey.includes('context graph')) return '🕸️';
   if (conceptKey.includes('reference navigation')) return '🔎';
   if (conceptKey.includes('repo map') || conceptKey.includes('codebase map')) return '🗺️';
+  if (conceptKey.includes('sourcegraph') || conceptKey.includes('code search')) return '🛰️';
   if (conceptKey.includes('trace replay')) return '🎞️';
 
   const key = `${areaName} ${category}`.toLowerCase();
@@ -348,7 +352,7 @@ const SIGNAL_RULES: Array<{ signal: SignalInfo; matchers: RegExp[] }> = [
   {
     signal: SIGNAL_LEGEND[0],
     matchers: [
-      /harness|runtime scaffold|hook system|prompt assembly|durable execution|session memory|temporal memory|tiered memory/i,
+      /harness|runtime scaffold|hook system|prompt assembly|compaction|middleware|durable execution|session memory|temporal memory|tiered memory/i,
     ],
   },
   {
@@ -357,11 +361,11 @@ const SIGNAL_RULES: Array<{ signal: SignalInfo; matchers: RegExp[] }> = [
   },
   {
     signal: SIGNAL_LEGEND[2],
-    matchers: [/reference navigation|retrieval|file search|sourcegraph code search/i],
+    matchers: [/reference navigation|retrieval|file search|sourcegraph|code search|code intelligence/i],
   },
   {
     signal: SIGNAL_LEGEND[3],
-    matchers: [/repo map|codebase map|aider repo map|code search|sourcegraph/i],
+    matchers: [/repo map|codebase map|aider repo map|code graph|sourcegraph/i],
   },
   {
     signal: SIGNAL_LEGEND[4],

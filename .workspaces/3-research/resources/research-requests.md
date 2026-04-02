@@ -289,3 +289,11 @@
 ### Priorità Media
 3. **Trace-to-eval pipelines** — OpenAI Trace Grading, LangSmith evaluations, Langfuse experiments, promptfoo, Inspect AI: quali coppie trace replay + regression loop funzionano davvero bene?
 4. **Reference-aware retrieval ranking** — Context7, Sourcegraph, Aider repo map, Graphiti, Zep, OpenAI File Search: come cambiano ranking, provenance e pinning in uso reale?
+
+## Iterazione 26 — Nuove Richieste
+
+### Priorità Alta
+1. **Sourcegraph code intelligence UX** — quali segnali visivi e metadati minimi rendono chiari code search, dependency-aware navigation e MCP surface in una board fixed-size?
+
+### Priorità Media
+2. **Compaction + policy middleware ergonomics** — come OpenAI Responses compaction, Mastra middleware e LangSmith middleware vanno esposti in una tassonomia harness senza aggiungere clutter?

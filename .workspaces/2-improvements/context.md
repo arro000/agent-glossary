@@ -1,8 +1,8 @@
 # Workspace 2 — Improvements & Implementation
 
 ## Stato
-- **Iterazione**: 4
-- **Ultimo aggiornamento**: 2026-04-02 22:09:37
+- **Iterazione**: 5
+- **Ultimo aggiornamento**: 2026-04-02 22:40:00
 - **Stato**: completed
 
 ## Obiettivo
@@ -148,3 +148,9 @@ Analizzare l'implementazione corrente, identificare miglioramenti, e IMPLEMENTAR
 - [x] Tooltip hover aggiornato per mostrare anche il signal sintetico del nodo senza introdurre nuovi overlay
 - [x] Signal matching reso piu robusto per harness, context, retrieval, repo map, replay, eval e protocol/discovery pattern
 - [x] PRD workspace 2 riallineato alla nuova iterazione e stato corrente aggiornato a `completed`
+
+## Iterazione 5 (Questa esecuzione) — Completata
+- [x] Allineati i concept e i cue visuali al research set corrente: `Compaction` e `Sourcegraph Code Search / MCP`
+- [x] Rafforzati helper e signal legend per compaction, policy middleware e code-intelligence surfaces senza introdurre clutter
+- [x] PRD aggiornato alla iterazione 5 e research requests estese con i follow-up ancora aperti
+- [x] Verifica tecnica: `npm run build` completata con successo

@@ -149,8 +149,8 @@
 
 ### Harness / Runtime Scaffold
 - **popularity**: 9
-- **description**: Tutto lo strato attorno all'LLM che prepara il prompt, gestisce hooks, tools, memory, traces, eval e state
-- **alternatives**: Claude Code harness, agent runtime, LLM OS, outer loop
+- **description**: Tutto lo strato attorno all'LLM che prepara il prompt, gestisce hooks, tools, memory, traces, eval, state e compaction.
+- **alternatives**: Claude Code harness, OpenAI Responses compaction, agent runtime, Mastra middleware, LangSmith middleware
 - **category**: Runtime
 
 ### Durable Execution
@@ -451,13 +451,19 @@
 ### Reference Navigation
 - **popularity**: 8
 - **description**: Esplorazione dei riferimenti già visti: recupero semantico, pinning, citazioni, summary incrementali e navigazione tra fonti correlate invece della sola compressione del contesto
-- **alternatives**: retrieval browser, citation graph, memory browsing, semantic search UI
+- **alternatives**: retrieval browser, citation graph, memory browsing, semantic search UI, Sourcegraph Code Search / MCP
 - **category**: Navigation
 
 ### Repo Map / Codebase Map
 - **popularity**: 8
 - **description**: Mappa strutturale del codebase per navigazione e editing su repository grandi, spesso derivata da tree-sitter o analisi statica per mostrare file e dipendenze rilevanti
-- **alternatives**: Aider repomap, semantic code graph, file tree summaries
+- **alternatives**: Aider repomap, semantic code graph, file tree summaries, Sourcegraph code intelligence
+- **category**: Navigation
+
+### Sourcegraph Code Search / MCP
+- **popularity**: 9
+- **description**: Code intelligence layer con search, code graph e surface MCP per navigare codebase enormi in modo dependency-aware.
+- **alternatives**: Sourcegraph deep search, code search UI, Aider repo map, Context7
 - **category**: Navigation
 
 ## Frameworks & SDKs

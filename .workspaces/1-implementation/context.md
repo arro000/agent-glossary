@@ -273,3 +273,9 @@ La whiteboard rappresenta 100 subsection correnti allineate alle macroaree princ
 - [x] Migliorata la riconoscibilita dei concept chiave nelle bubble con signal chip/rail piu contrastati per i nodi core senza cambiare il diametro
 - [x] Layout reso piu chiaro (non piu denso) aumentando spazio macroaree/gap e padding interno del packing mantenendo bolle equal-size
 - [x] Vincoli mantenuti: PixiJS v8 vanilla full-canvas, Inter, peso da `alternatives` (ring+badge), hover glow, click panel, zoom wheel + pan drag
+
+## Iterazione 7 (Questa esecuzione) — Completata
+- [x] Aggiornati i cue harness/reference con compaction e code-intelligence surfaces, includendo `Compaction` e `Sourcegraph Code Search / MCP`
+- [x] Allineati i dataset visuali e i signal rules senza introdurre overlay HTML o cambiare il diametro delle bubble
+- [x] PRD workspace 2 e research requests aggiornati per riflettere i follow-up su policy middleware, compaction e code intelligence
+- [x] Verifica finale: `npm run build` completata con successo

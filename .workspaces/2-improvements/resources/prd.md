@@ -1,4 +1,4 @@
-# PRD — Iterazione 4
+# PRD — Iterazione 5
 
 ## Obiettivo
 Raffinare la whiteboard per rappresentare il glossario come una macchina agentica: macroaree, harness, memoria, contesto, tools, skills, navigazione tra riferimenti, observability e discovery.
@@ -8,6 +8,7 @@ Raffinare la whiteboard per rappresentare il glossario come una macchina agentic
 - [x] Rendering macroaree con sfondo pastello
 - [x] Rendering bolle dentro macroaree con dimensione uniforme, emoji riconoscibili e peso progetto codificato separatamente
 - [x] Inserire/raffinare i concetti harness, context navigation e reference retrieval nella tassonomia
+- [x] Allineare i segnali visuali di harness/context/reference navigation con compaction, policy middleware e code intelligence surfaces
 - [x] Zoom & pan interattivi
 - [x] Hover effect sulle bolle
 - [x] Click per mostrare dettagli (panel)
@@ -17,9 +18,10 @@ Raffinare la whiteboard per rappresentare il glossario come una macchina agentic
 - [x] Stato selezione persistente della bubble aperta per feedback visivo piu chiaro senza aggiungere clutter
 - [x] Raffinamento visuale dell'attuale iterazione: header macroarea piu leggibili, bubble equal-size piu bilanciate, emoji piu riconoscibili e project weight piu chiaro
 - [x] Signal legend ampliata con cue `INTEROP` per discovery/protocol UI, piu tooltip hover con segnale sintetico
+- [x] Compaction e code-intelligence surfaces resi visibili tramite concept dedicati e helper/alternative aggiornati invece di aggiungere overlay
 - [x] Miglioramento feedback interaction: tooltip e selezione restano leggibili su viewport piccole senza introdurre overlay HTML
 - [x] Conservato il vincolo full-canvas PixiJS v8 vanilla con font Inter e layout responsive
-- [x] Allineamento finale al dataset `concepts.md`: `Context Graph`, `Durable Execution`, `Session Replay` e `Trace Grading` visibili, per un totale di 101 subsection bubbles coerenti con la taxonomy corrente
+- [x] Allineamento finale al dataset `concepts.md`: `Compaction`, `Context Graph`, `Sourcegraph Code Search / MCP`, `Durable Execution`, `Session Replay` e `Trace Grading` visibili, coerenti con la taxonomy corrente
 - [x] Signal chip e visual cues tenuti discreti ma leggibili per harness, context, reference navigation, replay-aware e eval-aware workflows
 
 ## Dettagli Tecnici
@@ -36,7 +38,8 @@ Vedi `context.md` per le specifiche complete.
 - Il peso progetto deve restare codificato in modo discreto ma immediatamente interpretabile (ring + badge + panel)
 - Le macroaree devono rimanere pastello e distinte, ma senza competere con la leggibilita delle bubble
 - Le emoji devono restare riconoscibili anche su bubble compatte e ad alto DPR
-- Context graph, reference navigation, durable execution, session replay e trace grading devono avere segnali visivi distintivi ma non invasivi
+- Context graph, reference navigation, compaction, durable execution, session replay e trace grading devono avere segnali visivi distintivi ma non invasivi
+- Policy surfaces e code-intelligence surfaces devono restare leggibili tramite copy, helper e signal chip, non tramite nuove UI chrome
 - Discovery/protocol UI deve avere un cue dedicato senza aumentare la densita delle bubble
 
 ## Criticita
