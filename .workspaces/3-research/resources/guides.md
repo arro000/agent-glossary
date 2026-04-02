@@ -581,3 +581,29 @@
 - **source**: OpenAI
 - **description**: Explains the eval registry, custom evals, benchmark templates, and build/run workflow.
 - **relevance**: Best reference for OpenAI-style benchmark iteration.
+
+## Iteration 16 Guides (2026-04-02)
+
+### OpenAI Agents SDK Guardrails
+- **url**: https://openai.github.io/openai-agents-python/guardrails/
+- **source**: OpenAI Agents SDK docs
+- **description**: First-party guide to workflow boundaries, input/output/tool guardrails, execution modes, and tripwires.
+- **relevance**: Best practical reference for the policy layer around agent execution.
+
+### OpenAI Agents SDK Tracing
+- **url**: https://openai.github.io/openai-agents-python/tracing/
+- **source**: OpenAI Agents SDK docs
+- **description**: Explains traces and spans, custom processors, sensitive data handling, and exporting traces to external backends.
+- **relevance**: Best first-party telemetry guide for the OpenAI agent runtime.
+
+### LangSmith Evaluation Quickstart
+- **url**: https://docs.langchain.com/langsmith/evaluation-quickstart
+- **source**: LangSmith docs
+- **description**: Quickstart for programmatic evals, datasets, and regression testing inside LangSmith.
+- **relevance**: Strongest closed-loop guide when tracing and evals live in the same product.
+
+### Aider Repo Map
+- **url**: https://aider.chat/docs/repomap.html
+- **source**: Aider docs
+- **description**: Shows how Aider builds and uses a repo map to navigate large codebases.
+- **relevance**: Best practical guide for repo-map style context navigation.

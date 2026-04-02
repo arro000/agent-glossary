@@ -768,7 +768,7 @@
 - **macroarea**: Observability / DevOps
 - **url**: https://agentops.ai
 - **github**: https://github.com/AgentOps-AI/agentops (5.4k stars)
-- **description**: Observability for AI agents. Session replays, LLM cost tracking, multi-agent visualization. Integrates with CrewAI, AutoGen, LangChain, OpenAI Agents SDK.
+- **description**: Observability for AI agents. Session replays, step-by-step execution graphs, LLM cost tracking, and multi-agent visualization. Integrates with CrewAI, AutoGen, LangChain, OpenAI Agents SDK.
 - **popularity**: 7
 - **category**: devops, monitoring
 - **why_include**: The Datadog equivalent for AI agents. Session replay and multi-agent visualization distinctive.
@@ -977,7 +977,7 @@
 ## OpenLIT
 - **macroarea**: Observability / Monitoring
 - **url**: https://github.com/openlit/openlit
-- **description**: OpenTelemetry-native observability stack for AI engineering. It provides SDKs, dashboards, prompt management, evaluations, and integrations across many LLM providers, frameworks, and vector stores.
+- **description**: OpenTelemetry-native observability stack for AI engineering. It provides SDKs, dashboards, prompt management, evaluations, trace search, and integrations across many LLM providers, frameworks, and vector stores.
 - **popularity**: 7
 - **alternatives**: OpenLLMetry, Langfuse, Arize Phoenix, W&B Weave
 - **why_include**: Strong concrete bridge from OTEL conventions to an opinionated, usable agent observability stack.
@@ -1113,7 +1113,7 @@
 ## OpenLIT
 - **macroarea**: Observability / Reference Stack
 - **url**: https://github.com/openlit/openlit
-- **description**: OpenTelemetry-native AI engineering platform with SDKs, dashboards, evaluations, prompt management, and many integrations. It bridges GenAI semantic conventions to a usable stack for tracing and governance.
+- **description**: OpenTelemetry-native AI engineering platform with SDKs, dashboards, evaluations, prompt management, rule engine, and many integrations. It bridges GenAI semantic conventions to a usable stack for tracing, governance, and trace search.
 - **popularity**: 7
 - **alternatives**: OpenLLMetry, Langfuse, Arize Phoenix, W&B Weave
 - **why_include**: Most complete open stack for turning GenAI telemetry into an operational workflow.
@@ -1221,3 +1221,39 @@
 - **popularity**: 7
 - **alternatives**: BrowserGym, Mind2Web, BrowseComp
 - **why_include**: Useful when the research target is browser automation rather than generic web QA.
+
+---
+
+# Iteration 16 - Harness, Replay, and Context Navigation
+
+## OpenAI Agents SDK Guardrails
+- **macroarea**: Harness / Runtime Scaffold
+- **url**: https://openai.github.io/openai-agents-python/guardrails/
+- **description**: First-party guardrail docs for the OpenAI Agents SDK. Covers workflow boundaries, input/output/tool guardrails, execution modes, tripwires, and how to implement validation around agent runs.
+- **popularity**: 9
+- **alternatives**: Claude Code hooks, LangGraph middleware, Strands steering hooks
+- **why_include**: Cleanest reference for policy checks inside the agent runtime loop.
+
+## OpenAI Agents SDK Tracing
+- **macroarea**: Harness / Observability
+- **url**: https://openai.github.io/openai-agents-python/tracing/
+- **description**: Built-in trace model for runs and spans in the OpenAI Agents SDK. Covers default tracing, custom processors, sensitive-data handling, and export/integration patterns for external backends.
+- **popularity**: 9
+- **alternatives**: LangSmith tracing, Langfuse, AgentOps, OpenLIT
+- **why_include**: Strong first-party baseline for harness telemetry and debugging.
+
+## LangSmith Evaluation
+- **macroarea**: Eval Harness
+- **url**: https://docs.langchain.com/langsmith/evaluation-quickstart
+- **description**: LangSmith's quickstart for programmatic evals, datasets, and regression testing. It keeps tracing, evaluation, prompt iteration, and deployment in one workflow.
+- **popularity**: 9
+- **alternatives**: promptfoo, Inspect AI, OpenAI Evals, W&B Weave
+- **why_include**: Best single-vendor closed-loop path when traces and evals need to stay together.
+
+## Aider Repo Map
+- **macroarea**: Knowledge & Retrieval / Navigation
+- **url**: https://aider.chat/docs/repomap.html
+- **description**: Documents Aider's repo-map system for compressing a large codebase into a structured summary of files, symbols, and relationships. It is one of the clearest practical patterns for navigating large repos without losing structure.
+- **popularity**: 8
+- **alternatives**: Context7, Sourcegraph code search, Graphiti, Zep
+- **why_include**: Best concrete repo-map implementation for large-codebase exploration.

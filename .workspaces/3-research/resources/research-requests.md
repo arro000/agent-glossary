@@ -182,3 +182,16 @@
 
 ### Esplorazione
 5. **Prompt assembly and context injection** — CLAUDE.md, skills, prompt templates, dynamic context assembly, and prompt caching patterns across harnesses.
+
+## Iterazione 16 — Nuove Richieste
+
+### Priorità Alta
+1. **LangGraph middleware / checkpointing** — how do middleware, durable execution, and state checkpoints combine into a reusable policy + replay layer?
+2. **Trace replay comparison** — LangSmith vs Langfuse vs AgentOps vs Phoenix vs OpenLIT: which UIs and APIs are actually best for root-cause analysis?
+
+### Priorità Media
+3. **Reference-aware retrieval beyond repo maps** — Sourcegraph, code graphs, citation pinning, and retrieval ranking for docs/code context.
+4. **OpenAI Agents SDK guardrail patterns** — what guardrails are reusable in real projects, and where do they break down?
+
+### Esplorazione
+5. **Outer-loop harness optimization** — Meta-Harness, prompt mutation, and eval-driven harness tuning for the Pareto frontier of quality vs cost.

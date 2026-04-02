@@ -1,8 +1,8 @@
 # Workspace 3 — Research & Content Discovery
 
 ## Stato
-- **Iterazione**: 14
-- **Ultimo aggiornamento**: 2026-04-02 19:45:30
+- **Iterazione**: 16
+- **Ultimo aggiornamento**: 2026-04-02 21:23:19
 - **Stato**: completed
 
 ## Risultati Iterazione 1
@@ -259,3 +259,21 @@ La passata attuale ha coperto la capa di curated repositories e discovery, con f
 
 ### Next Iteration
 - See `resources/research-requests.md` Iteration 13 for the next research sweep.
+
+## Stato Corrente - Iterazione 16
+
+### Cosa è stato aggiornato
+- Harness/runtime: aggiunti OpenAI Agents SDK Guardrails e Tracing come riferimenti first-party per policy e telemetry.
+- Eval loop: aggiunto LangSmith Evaluation come riferimento per il closed loop tracing + datasets + regression testing.
+- Context navigation: aggiunto Aider Repo Map come implementazione concreta di repo-map style navigation.
+- Observability: AgentOps e OpenLIT sono stati rifiniti con replay graphs, trace search e rule-engine oriented debugging.
+
+### Segnali attuali
+1. The harness is now clearly split into policy, telemetry, and eval layers rather than one generic agent loop.
+2. Reference-aware retrieval is best understood as a mix of docs retrieval, repo mapping, and graph-backed memory rather than a single RAG system.
+3. Trace replay is becoming a debugging primitive on its own, not just an observability afterthought.
+
+### Next Focus
+- Compare LangGraph middleware/checkpointing against Claude Code hooks and OpenAI guardrails.
+- Compare replay/debug UIs across LangSmith, Langfuse, AgentOps, Phoenix, and OpenLIT.
+- Expand reference-aware retrieval with code graphs and citation-ranking systems beyond repo maps.

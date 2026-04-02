@@ -1,429 +1,283 @@
-[0;36m[2026-04-02 19:43:36][0m Starting Agent Glossary loop...
-[0;36m[2026-04-02 19:43:36][0m Project: /home/arro/projects/agent-glossary
-[0;36m[2026-04-02 19:43:36][0m Max iterations: 2
-[0;36m[2026-04-02 19:43:36][0m Log: /home/arro/projects/agent-glossary/.workspaces/logs/loop.log
-[0;36m[2026-04-02 19:43:36][0m Press Ctrl+C or run '.workspaces/loop.sh stop' to interrupt.
+[0;36m[2026-04-02 21:19:18][0m Starting Agent Glossary loop...
+[0;36m[2026-04-02 21:19:18][0m Project: /home/arro/projects/agent-glossary
+[0;36m[2026-04-02 21:19:18][0m Max iterations: 2
+[0;36m[2026-04-02 21:19:18][0m Log: /home/arro/projects/agent-glossary/.workspaces/logs/loop.log
+[0;36m[2026-04-02 21:19:18][0m Press Ctrl+C or run '.workspaces/loop.sh stop' to interrupt.
 
 ╔══════════════════════════════════════════════════════════╗
-║  AGENT GLOSSARY LOOP — Started 2026-04-02 19:43:36          ║
+║  AGENT GLOSSARY LOOP — Started 2026-04-02 21:19:18          ║
+[0;32m[2026-04-02 21:19:18] ✓[0m Loop started (PID: 50054)
 ║  Max iterations: 2                         ║
 ╚══════════════════════════════════════════════════════════╝
 
-[0;32m[2026-04-02 19:43:36] ✓[0m Loop started (PID: 45974)
-[0;36m[2026-04-02 19:43:36][0m Launching OpenCode for workspace Research & Content...
+[0;36m[2026-04-02 21:19:18][0m Launching OpenCode for workspace Research & Content...
 [0m
 > build · gpt-5.4-mini
 [0m
-I’m pulling the current whiteboard context and prior research first, then I’ll fill gaps with source-backed tools and patterns.
-[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=1, limit=400][0m
-[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=400][0m
-[0m→ [0mRead .workspaces/3-research/context.md[90m [offset=1, limit=200][0m
-[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1, limit=400][0m
-I have the existing whiteboard shape. Next I’m checking whether the concepts file already has the concrete runtime/retrieval building blocks before I add anything new.
-[0m✱ [0mGrep "prompt|hook|trace|eval|retriev|rank|memory|navigation"[90m in .workspaces/1-implementation/resources · 25 matches[0m
-[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=389, limit=260][0m
-I’m looking at the nearby curated lists and harness docs next, because the whiteboard wants concrete repos and runnable examples rather than abstract categories.
-[0m✱ [0mGrep "## Harness|## Reference Navigation|## Trace|## Eval|## Debug|## Claude Code|## OpenAI Agents SDK|## LangGraph|## Mastra|## Aider|## AgentOps|## OpenTelemetry"[90m in .workspaces/3-research/resources/findings.md · 9 matches[0m
-[0m→ [0mRead .workspaces/3-research/resources/guides.md[90m [offset=1, limit=260][0m
-There are already some observability and framework entries in the research file, so I’m reading those sections to avoid duplicating and to extend the scaffold layer cleanly.
-[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=780, limit=260][0m
-[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=900, limit=220][0m
-[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=660, limit=320][0m
-I’m pulling a first source batch now: hook/subagent docs, repo-map style context navigation, memory graphs, and eval harnesses.
-[0m% [0mWebFetch https://docs.anthropic.com/en/docs/claude-code/hooks
+I’m reading the current whiteboard state and research backlog first, then I’ll fill gaps with concrete repos and tools.
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1, limit=4000][0m
+[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=1, limit=4000][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=4000][0m
+[0m→ [0mRead .workspaces/3-research/context.md[90m [offset=1, limit=4000][0m
+I have the whiteboard and backlog. Next I’m checking the existing guide inventory so I only add new, reusable sources.
+[0m→ [0mRead .workspaces/3-research/resources/guides.md[90m [offset=1, limit=4000][0m
+[0m✱ [0mGrep "^## "[90m in .workspaces/3-research/resources · 180 matches[0m
+I found the existing research inventory, and it already has some of the target area. I’m checking the later sections now so I can extend, not duplicate, the whiteboard.
+[0m✗ [0mread failed
+[91m[1mError: [0mOffset 1420 is out of range for this file (1223 lines)
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1080, limit=400][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=708, limit=400][0m
+I’m pulling the primary sources now for the harness, eval, and reference-navigation layers. After that I’ll write the new findings and update the concept map only where a reusable concept is missing.
+[0m% [0mWebFetch https://docs.anthropic.com/en/docs/claude-code/hooks-guide
+[0m% [0mWebFetch https://www.promptfoo.dev/docs/getting-started/
 [0m% [0mWebFetch https://docs.anthropic.com/en/docs/claude-code/subagents
-[0m% [0mWebFetch https://github.com/mem0ai/mem0
-[0m% [0mWebFetch https://github.com/promptfoo/promptfoo
-[0m% [0mWebFetch https://github.com/letta-ai/letta
-[0m% [0mWebFetch https://github.com/UKGovernmentBEIS/inspect_ai
-[0m% [0mWebFetch https://github.com/getzep/zep
-[0m% [0mWebFetch https://github.com/mastra-ai/mastra
-[0m% [0mWebFetch https://github.com/Aider-AI/aider
-[0m% [0mWebFetch https://github.com/getzep/graphiti
-[0m% [0mWebFetch https://github.com/openai/evals
-I have enough on hooks, subagents, memory graphs, and eval harnesses. I’m checking one more reference-aware retrieval candidate to see if it merits a whiteboard entry.
 [0m✗ [0mwebfetch failed
 [91m[1mError: [0mRequest failed with status code: 404
-[0m% [0mWebFetch https://github.com/upstash/context7
-I found the missing context-navigation candidate: Context7. I’m checking the existing findings file for overlap so I only add genuinely new entries.
-[0m✱ [0mGrep "Claude Code|Hooks|Subagents|Context7|Promptfoo|Inspect AI|OpenAI Evals"[90m in .workspaces/3-research/resources/findings.md · 15 matches[0m
-[0m✱ [0mGrep "Claude Code|Promptfoo|Inspect AI|OpenAI Evals|Context7|Aider|Graphiti|Zep|Mem0"[90m in .workspaces/3-research/resources/guides.md · 2 matches[0m
-[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=600, limit=80][0m
-[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=520, limit=120][0m
-I’ve got the source set. Before editing, I’m checking the end of the guides file so I append in the same style instead of splicing into the middle.
-[0m→ [0mRead .workspaces/3-research/resources/guides.md[90m [offset=260, limit=320][0m
-[0m→ [0mRead .workspaces/3-research/context.md[90m [offset=175, limit=120][0m
-I have enough to write, but I’m confirming the Claude Code hook guide URL so the guide entry points to the right primary source.
-[0m% [0mWebFetch https://docs.anthropic.com/en/docs/claude-code/hooks-guide
-I’m at the edit phase now. I’m grabbing the current timestamp so the workspace state stays consistent with the rest of the research logs.
-[0m
-[0m$ [0mdate '+%Y-%m-%d %H:%M:%S'
-2026-04-02 19:45:30
-[0m
-I have the sources and the current state. I’m patching the whiteboard data now with the new harness, retrieval, and eval items plus follow-up requests.
+[0m% [0mWebFetch https://platform.openai.com/docs/guides/evals
+[0m✗ [0mwebfetch failed
+[91m[1mError: [0mRequest failed with status code: 404
+[0m% [0mWebFetch https://github.com/openai/evals
+[0m% [0mWebFetch https://github.com/UKGovernmentBEIS/inspect_ai
+I’ve got enough source material to start filling the missing pieces. I’m checking the concept vocabulary for a few reusable terms before I edit anything.
+[0m✱ [0mGrep "Guardrail|Middleware|Session Replay|Evals|Evals|Replay|Hooks|Subagents|Promptfoo|Inspect AI|LangSmith"[90m in .workspaces/1-implementation/resources · 12 matches[0m
+[0m✱ [0mGrep "## (OpenAI Agents SDK|LangGraph|Mastra|Strands Agents SDK|Claude Code Hooks|Claude Code Subagents|Promptfoo|Inspect AI|OpenAI Evals|LangSmith|Context7|Aider Repo Map|Graphiti|Zep)"[90m in .workspaces/3-research/resources · 13 matches[0m
+[0m✗ [0mwebfetch failed
+[91m[1mError: [0mRequest failed with status code: 404
+[0m% [0mWebFetch https://smith.langchain.com
+[0m% [0mWebFetch https://github.com/openai/openai-agents-python
+[0m% [0mWebFetch https://github.com/agentops-ai/agentops
+[0m% [0mWebFetch https://github.com/langchain-ai/langgraph
+[0m% [0mWebFetch https://github.com/mastra-ai/mastra
+[0m% [0mWebFetch https://github.com/strands-agents/sdk-python
+[0m% [0mWebFetch https://github.com/openlit/openlit
+I’ve got the main docs I need. I’m making one last pass for LangGraph and LangSmith-specific pages so the comparison entries aren’t generic.
+[0m✗ [0mwebfetch failed
+[91m[1mError: [0mUnable to connect. Is the computer able to access the url?
+[0m✗ [0mwebfetch failed
+[91m[1mError: [0mRequest failed with status code: 404
+[0m% [0mWebFetch https://openai.github.io/openai-agents-python/tracing/
+[0m% [0mWebFetch https://openai.github.io/openai-agents-python/guardrails/
+[0m% [0mWebFetch https://docs.smith.langchain.com/
+[0m✗ [0mwebfetch failed
+[91m[1mError: [0mRequest failed with status code: 404
+I’ve got the source-backed additions. I’m patching the research notes now with the missing harness, replay, and context-navigation entries, plus a next-iteration backlog.
 [0m✗ [0mapply_patch failed
-[91m[1mError: [0mapply_patch verification failed: Error: Failed to find expected lines in /home/arro/projects/agent-glossary/.workspaces/1-implementation/resources/concepts.md:
-### Evaluation & Benchmarks
-- **popularity**: 7
-- **description**: Valutare le performance dell'agente su task specifici
-- **alternatives**: LM Eval Harness, Custom evals, A/B testing, Human eval
-- **category**: Quality
-The patch hit a context mismatch in the concepts file. I’m reading the exact surrounding lines and will re-apply with tighter anchors.
-[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=130, limit=30][0m
-[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=398, limit=20][0m
-[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=330, limit=20][0m
-[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=332, limit=20][0m
-I’ve got the exact anchors now. I’m reapplying the edits in smaller chunks so the workspace stays clean and we don’t risk broad mismatches.
+[91m[1mError: [0mapply_patch verification failed: Error: Failed to find expected lines in /home/arro/projects/agent-glossary/.workspaces/3-research/resources/findings.md:
+## SWE-Lancer
+- **macroarea**: Evaluation / Benchmarks
+- **url**: https://openai.com/index/swe-lancer/
+- **description**: OpenAI's benchmark of 1,400+ real freelance software engineering tasks, including implementation and managerial decisions. It ties model performance to monetary value and ships a public evaluation split.
+- **popularity**: 8
+- **alternatives**: SWE-bench, Terminal-Bench, AgentBench
+- **why_include**: Raises the bar beyond bug fixing by testing real work allocation and value judgment.
+The first patch missed the exact anchor points. I’m re-reading the tail of the files and will patch from the current end instead of relying on older section boundaries.
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1188, limit=80][0m
+[0m→ [0mRead .workspaces/3-research/resources/guides.md[90m [offset=560, limit=60][0m
+[0m→ [0mRead .workspaces/3-research/context.md[90m [offset=220, limit=60][0m
+[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=150, limit=60][0m
+I’ve got the exact tail anchors now. I’m doing a small patch: tighten two existing observability entries, then append the new harness/retrieval/replay section plus the new guides and follow-up requests.
+[0m✱ [0mGrep "## AgentOps|## OpenLIT"[90m in .workspaces/3-research/resources/findings.md · 3 matches[0m
+[0m✱ [0mGrep "## Iterazione 11 Guides|## Iteration 12"[90m in .workspaces/3-research/resources/guides.md · 1 match[0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1105, limit=20][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=968, limit=20][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=760, limit=20][0m
 [0m✗ [0mapply_patch failed
-[91m[1mError: [0mapply_patch verification failed: Error: Failed to find expected lines in /home/arro/projects/agent-glossary/.workspaces/1-implementation/resources/concepts.md:
-### Context Compression
-- **popularity**: 7
-- **description**: Comprimere il contesto per rientrare nella finestra
-- **alternatives**: Summarization, Token merging, Key info extraction
-- **category**: Optimization
-[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=124, limit=20][0m
-[0m⚙ [0mapply_patch Success. Updated the following files:
-M .workspaces/1-implementation/resources/concepts.md
-[0m⚙ [0mapply_patch Success. Updated the following files:
-M .workspaces/1-implementation/resources/concepts.md
-[0m⚙ [0mapply_patch Success. Updated the following files:
-M .workspaces/1-implementation/resources/concepts.md
-[0m⚙ [0mapply_patch Success. Updated the following files:
-M .workspaces/1-implementation/resources/concepts.md
+[91m[1mError: [0mapply_patch verification failed: Error: Failed to find expected lines in /home/arro/projects/agent-glossary/.workspaces/3-research/resources/findings.md:
+**description**: Observability for AI agents. Session replays, LLM cost tracking, multi-agent visualization. Integrates with CrewAI, AutoGen, LangChain, OpenAI Agents SDK.
+I’m splitting the edit into smaller chunks so the patch applies cleanly against the current file layout.
 [0m⚙ [0mapply_patch Success. Updated the following files:
 M .workspaces/3-research/resources/findings.md
 [0m⚙ [0mapply_patch Success. Updated the following files:
 M .workspaces/3-research/resources/findings.md
 [0m⚙ [0mapply_patch Success. Updated the following files:
 M .workspaces/3-research/resources/guides.md
-[0m✗ [0mapply_patch failed
-[91m[1mError: [0mapply_patch verification failed: Error: Failed to find expected lines in /home/arro/projects/agent-glossary/.workspaces/3-research/resources/research-requests.md:
-### Priorità Media
-3. **Reference navigation / context exploration** — patterns and tools for navigating prior references, citations, pinning, retrieval ranking, and trace-aware browsing instead of only context compression.
-[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=163, limit=20][0m
 [0m⚙ [0mapply_patch Success. Updated the following files:
 M .workspaces/3-research/resources/research-requests.md
 [0m⚙ [0mapply_patch Success. Updated the following files:
 M .workspaces/3-research/context.md
-The edits are in. I’m doing a quick verification pass for the new concepts and entries so I can catch any malformed sections before I wrap up.
-[0m✱ [0mGrep "Hook System|Repo Map / Codebase Map|Eval Harness|Trace Replay"[90m in .workspaces/1-implementation/resources/concepts.md · 5 matches[0m
-[0m✱ [0mGrep "Claude Code Hooks|Claude Code Subagents|Promptfoo|Inspect AI|OpenAI Evals"[90m in .workspaces/3-research/resources/findings.md · 8 matches[0m
-[0m✱ [0mGrep "Claude Code Hooks Guide|Claude Code Subagents|Aider Repo Map|Context7 Platform|Promptfoo Getting Started|OpenAI Evals README"[90m in .workspaces/3-research/resources/guides.md · 6 matches[0m
-[0m✱ [0mGrep "Iteration 15|Hook systems comparison|Eval harness showdown"[90m in .workspaces/3-research/resources/research-requests.md · 2 matches[0m
-[0m✱ [0mGrep "Harness / Runtime Scaffold \+ Reference Navigation|Hook System|Repo Map / Codebase Map|Eval Harness|Trace Replay"[90m in .workspaces/3-research/context.md · 2 matches[0m
-One structural issue showed up: the new eval section may have swallowed the next MCP entry. I’m checking that block and will add the missing separator if needed.
-[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=620, limit=80][0m
-I found the sectioning issue: the eval harness block needs to be a subsection, not a new top-level section, so the MCP showcase stays intact.
+I’m normalizing the iteration labels so the three files agree on the same sweep number.
 [0m⚙ [0mapply_patch Success. Updated the following files:
-M .workspaces/3-research/resources/findings.md
-[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=132, limit=24][0m
-[0m→ [0mRead .workspaces/3-research/context.md[90m [offset=220, limit=30][0m
-[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=163, limit=30][0m
-[0m→ [0mRead .workspaces/3-research/resources/guides.md[90m [offset=531, limit=60][0m
-[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=640, limit=50][0m
-The eval subsection label is unnecessary and makes the heading hierarchy awkward. I’m dropping that label so the MCP showcase stays clean and the new tools just read as a separated block.
-[0m⚙ [0mapply_patch Success. Updated the following files:
-M .workspaces/3-research/resources/findings.md
-[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=644, limit=40][0m
-[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=524, limit=30][0m
-The source material keeps emphasizing prompt assembly specifically, so I’m adding that as a reusable runtime concept rather than leaving it implicit.
-[0m⚙ [0mapply_patch Success. Updated the following files:
-M .workspaces/1-implementation/resources/concepts.md
+M .workspaces/3-research/resources/guides.md
+[0m
+[0m$ [0mdate '+%Y-%m-%d %H:%M:%S'
+2026-04-02 21:23:19
+[0m
 [0m⚙ [0mapply_patch Success. Updated the following files:
 M .workspaces/3-research/context.md
-[0m✱ [0mGrep "Prompt Assembly"[90m in .workspaces/1-implementation/resources/concepts.md · 1 match[0m
-[0m✱ [0mGrep "Prompt Assembly"[90m in .workspaces/3-research/context.md · 1 match[0m
-I’ve got the content in place. I’m checking the repo diff now so I can confirm only the intended research files changed.
+The content updates are in place. I’m doing a quick diff pass to catch any formatting issues before I wrap up.
 [0m
-[0m$ [0mgit status --short
-M .workspaces/1-implementation/resources/concepts.md
- M .workspaces/2-improvements/resources/prd.md
- M .workspaces/3-research/context.md
- M .workspaces/3-research/resources/findings.md
- M .workspaces/3-research/resources/guides.md
- M .workspaces/3-research/resources/research-requests.md
- M .workspaces/logs/loop.log
- M .workspaces/loop.pid
- M .workspaces/loop.sh
-[0m
-[0m$ [0mgit diff -- .workspaces/1-implementation/resources/concepts.md .workspaces/3-research/resources/findings.md .workspaces/3-research/resources/guides.md .workspaces/3-research/resources/research-requests.md .workspaces/3-research/context.md
-diff --git a/.workspaces/1-implementation/resources/concepts.md b/.workspaces/1-implementation/resources/concepts.md
-index e77bb67..88e17da 100644
---- a/.workspaces/1-implementation/resources/concepts.md
-+++ b/.workspaces/1-implementation/resources/concepts.md
-@@ -135,6 +135,30 @@
- - **alternatives**: Summarization, Token merging, Key info extraction
- - **category**: Optimization
- 
-+### Eval Harness
-+- **popularity**: 8
-+- **description**: Runner strutturato per prompt, agenti e RAG con dataset, scoring, regression checks e integrazione CI
-+- **alternatives**: promptfoo, Inspect AI, OpenAI Evals, custom CI evals
-+- **category**: Quality
-+
-+### Harness / Runtime Scaffold
-+- **popularity**: 9
-+- **description**: Tutto lo strato attorno all'LLM che prepara il prompt, gestisce hooks, tools, memory, traces, eval e state
-+- **alternatives**: Claude Code harness, agent runtime, LLM OS, outer loop
-+- **category**: Runtime
-+
-+### Prompt Assembly
-+- **popularity**: 8
-+- **description**: Composizione dinamica del messaggio finale al modello a partire da istruzioni, memoria, schema dei tool e slice di contesto
-+- **alternatives**: instruction builder, prompt templates, context builder, static system prompt
-+- **category**: Runtime
-+
-+### Hook System
-+- **popularity**: 8
-+- **description**: Strato event-driven che attiva comandi, prompt o agenti in punti specifici del lifecycle dell'agente, come pre/post tool use, compaction e change events
-+- **alternatives**: lifecycle middleware, event listeners, permission guards, prompt-based hooks
-+- **category**: Runtime
-+
- ## Orchestration
- ### Agent Loop
- - **popularity**: 10
-@@ -331,6 +355,12 @@
- - **alternatives**: Replay tools, Inspector UI, Trace viewers
- - **category**: Debug
- 
-+### Trace Replay
-+- **popularity**: 8
-+- **description**: Replay di sessioni e tool call per ricostruire failure long-horizon e confrontare run diverse
-+- **alternatives**: AgentOps replay, LangSmith replay, Langfuse session replay, custom transcript viewers
-+- **category**: Debug
-+
- ### Safety & Guardrails
- - **popularity**: 7
- - **description**: Meccanismi per prevenire comportamenti indesiderati
-@@ -394,6 +424,18 @@
- - **alternatives**: GPT Researcher, STORM, Tongyi DeepResearch, DeepSearcher
- - **category**: Pattern
- 
-+### Reference Navigation
-+- **popularity**: 8
-+- **description**: Esplorazione dei riferimenti già visti: recupero semantico, pinning, citazioni, summary incrementali e navigazione tra fonti correlate invece della sola compressione del contesto
-+- **alternatives**: retrieval browser, citation graph, memory browsing, semantic search UI
-+- **category**: Navigation
-+
-+### Repo Map / Codebase Map
-+- **popularity**: 8
-+- **description**: Mappa strutturale del codebase per navigazione e editing su repository grandi, spesso derivata da tree-sitter o analisi statica per mostrare file e dipendenze rilevanti
-+- **alternatives**: Aider repomap, semantic code graph, file tree summaries
-+- **category**: Navigation
-+
- ## Frameworks & SDKs
- 
- ### Google ADK (Agent Development Kit)
+[0m$ [0mgit diff -- ".workspaces/3-research/resources/findings.md" ".workspaces/3-research/resources/guides.md" ".workspaces/3-research/resources/research-requests.md" ".workspaces/3-research/context.md" ".workspaces/1-implementation/resources/concepts.md"
 diff --git a/.workspaces/3-research/context.md b/.workspaces/3-research/context.md
-index 55f7805..f447069 100644
+index 1370671..4284002 100644
 --- a/.workspaces/3-research/context.md
 +++ b/.workspaces/3-research/context.md
-@@ -1,9 +1,9 @@
+@@ -1,8 +1,8 @@
  # Workspace 3 — Research & Content Discovery
  
  ## Stato
--- **Iterazione**: 12
--- **Ultimo aggiornamento**: 2026-04-02 18:26:01
--- **Stato**: completed
-+- **Iterazione**: 14
-+- **Ultimo aggiornamento**: 2026-04-02 19:45:30
-+- **Stato**: in_progress
+-- **Iterazione**: 14
+-- **Ultimo aggiornamento**: 2026-04-02 19:45:30
++- **Iterazione**: 16
++- **Ultimo aggiornamento**: 2026-04-02 21:23:19
+ - **Stato**: completed
  
  ## Risultati Iterazione 1
+@@ -259,3 +259,21 @@ La passata attuale ha coperto la capa di curated repositories e discovery, con f
  
-@@ -223,6 +223,24 @@ La passata attuale ha coperto la capa di curated repositories e discovery, con f
- - `guides.md` ora include i primi tre come punti di partenza pratici per UI, voice e computer use.
- - `research-requests.md` ha una nuova Iterazione 9 su browser automation, voice eval, registry/discovery, verticale finance/support e quality signals per curated lists.
- 
-+## Aggiornamento Corrente - Harness / Runtime Scaffold + Reference Navigation
+ ### Next Iteration
+ - See `resources/research-requests.md` Iteration 13 for the next research sweep.
 +
-+### Cosa è stato aggiunto
-+- Harness layer: Claude Code Hooks e Claude Code Subagents come primitive concrete per policy, compaction, automation e context isolation.
-+- Eval stack: Promptfoo, Inspect AI, and OpenAI Evals come harness concreti per regression testing e red-teaming.
-+- Reference-aware retrieval: Context7 resta il layer migliore per docs fresche; il whiteboard ora traccia anche repo maps/codebase maps come concetto separato.
-+- Concepts: Prompt Assembly, Hook System, Repo Map / Codebase Map, Eval Harness, and Trace Replay aggiunti al vocabolario di implementation.
++## Stato Corrente - Iterazione 16
 +
-+### Nuovi segnali
-+1. The harness is increasingly a programmable outer loop, not just a prompt wrapper.
-+2. Context navigation splits into docs retrieval, repo mapping, and temporal memory graphs rather than a single RAG bucket.
-+3. Eval tooling is converging on CI-friendly regression loops, with promptfoo and OpenAI Evals as the most practical first stops and Inspect AI as the research-grade option.
++### Cosa è stato aggiornato
++- Harness/runtime: aggiunti OpenAI Agents SDK Guardrails e Tracing come riferimenti first-party per policy e telemetry.
++- Eval loop: aggiunto LangSmith Evaluation come riferimento per il closed loop tracing + datasets + regression testing.
++- Context navigation: aggiunto Aider Repo Map come implementazione concreta di repo-map style navigation.
++- Observability: AgentOps e OpenLIT sono stati rifiniti con replay graphs, trace search e rule-engine oriented debugging.
++
++### Segnali attuali
++1. The harness is now clearly split into policy, telemetry, and eval layers rather than one generic agent loop.
++2. Reference-aware retrieval is best understood as a mix of docs retrieval, repo mapping, and graph-backed memory rather than a single RAG system.
++3. Trace replay is becoming a debugging primitive on its own, not just an observability afterthought.
 +
 +### Next Focus
-+- Compare hook systems across Claude Code, OpenAI Agents SDK, LangGraph, Mastra, and Strands.
-+- Compare eval harnesses with a focus on dataset format, scoring, and CI ergonomics.
-+- Expand the reference-navigation layer with more repo-map and trace-replay examples if needed.
-+
- ## Aggiornamento Corrente - Iterazione 12
- 
- ### Cosa e' stato aggiunto
++- Compare LangGraph middleware/checkpointing against Claude Code hooks and OpenAI guardrails.
++- Compare replay/debug UIs across LangSmith, Langfuse, AgentOps, Phoenix, and OpenLIT.
++- Expand reference-aware retrieval with code graphs and citation-ranking systems beyond repo maps.
 diff --git a/.workspaces/3-research/resources/findings.md b/.workspaces/3-research/resources/findings.md
-index 60b57f0..18dbc82 100644
+index 18dbc82..c08cff1 100644
 --- a/.workspaces/3-research/resources/findings.md
 +++ b/.workspaces/3-research/resources/findings.md
-@@ -531,6 +531,22 @@
- - **alternatives**: OpenAI Agents SDK, LangGraph, Google ADK, CrewAI, AutoGen
- - **why_include**: Only first-party Anthropic SDK for building production agents. Full Claude Code engine as a programmable library. Subagents, MCP, multi-cloud deployment.
- 
-+## Claude Code Hooks
-+- **macroarea**: Harness / Runtime Scaffold
-+- **url**: https://docs.anthropic.com/en/docs/claude-code/hooks-guide
-+- **description**: Deterministic lifecycle hooks for Claude Code that can run shell commands, HTTP callbacks, prompt-based checks, or subagent verifications around tool use, compaction, notifications, and config changes. They can block, allow, or annotate actions and are the cleanest place to enforce policy or re-inject context.
-+- **popularity**: 9
-+- **alternatives**: Claude Code subagents, agent middleware, permission guards, prompt-based validators
-+- **why_include**: This is the harness control plane: it turns Claude Code into a programmable outer loop with policy, automation, and context reinjection.
-+
-+## Claude Code Subagents
-+- **macroarea**: Harness / Runtime Scaffold
-+- **url**: https://docs.anthropic.com/en/docs/claude-code/subagents
-+- **description**: Isolated assistants with their own context windows, tool restrictions, permissions, and optional persistent memory. Built-ins like Explore and Plan keep exploration out of the main thread, and custom subagents can be scoped per project or user.
-+- **popularity**: 9
-+- **alternatives**: agent teams, worker agents, planner/researcher splits, background tasks
-+- **why_include**: Core primitive for context isolation and parallel research without polluting the main conversation.
-+
- ---
- 
- # Deep Research Agents (Pattern)
-@@ -629,6 +645,30 @@
- - **description**: Fetches up-to-date, version-specific library docs and code examples into coding agents. Eliminates hallucinated APIs.
- - **category**: documentation, coding agents
- 
-+## Promptfoo
-+- **macroarea**: Eval Harness
-+- **url**: https://github.com/promptfoo/promptfoo
-+- **description**: CLI and library for prompt, agent, and RAG evaluation with declarative configs, CI/CD integration, side-by-side model comparisons, and red teaming. Focuses on repeatable regression testing rather than one-off checks.
-+- **popularity**: 8
-+- **alternatives**: Inspect AI, OpenAI Evals, custom harnesses, LangSmith evals
-+- **why_include**: Best practical OSS eval harness for iterating on prompts and agent behavior in CI.
-+
-+## Inspect AI
-+- **macroarea**: Eval Harness
-+- **url**: https://github.com/UKGovernmentBEIS/inspect_ai
-+- **description**: Python evaluation framework from the UK AI Security Institute with prompt engineering, tool usage, multi-turn dialog, and model-graded evaluations. Ships a large library of pre-built evals and extensible scoring/elicitation support.
-+- **popularity**: 7
-+- **alternatives**: promptfoo, OpenAI Evals, custom Py evals, HELM
-+- **why_include**: Strong research-grade eval harness with many prebuilt tasks and model-graded evaluation support.
-+
-+## OpenAI Evals
-+- **macroarea**: Eval Harness
-+- **url**: https://github.com/openai/evals
-+- **description**: Open-source eval registry and framework for LLM systems with templates, custom evals, and benchmark management. Useful for private evals and benchmark-driven iteration loops.
-+- **popularity**: 8
-+- **alternatives**: promptfoo, Inspect AI, custom evals, LangSmith evals
-+- **why_include**: Canonical OpenAI eval harness and registry; good reference for benchmark-driven iteration.
-+
- ## Playwright MCP
- - **macroarea**: Browser Automation
- - **url**: https://github.com/microsoft/playwright-mcp
-diff --git a/.workspaces/3-research/resources/guides.md b/.workspaces/3-research/resources/guides.md
-index 14731eb..d5c4ce8 100644
---- a/.workspaces/3-research/resources/guides.md
-+++ b/.workspaces/3-research/resources/guides.md
-@@ -529,3 +529,55 @@
- - **source**: Joon Sung Park research repo
- - **description**: Research code for the canonical long-horizon social simulation paper.
- - **relevance**: Baseline reference for human-like agent simulation.
+@@ -768,7 +768,7 @@
+ - **macroarea**: Observability / DevOps
+ - **url**: https://agentops.ai
+ - **github**: https://github.com/AgentOps-AI/agentops (5.4k stars)
+-- **description**: Observability for AI agents. Session replays, LLM cost tracking, multi-agent visualization. Integrates with CrewAI, AutoGen, LangChain, OpenAI Agents SDK.
++- **description**: Observability for AI agents. Session replays, step-by-step execution graphs, LLM cost tracking, and multi-agent visualization. Integrates with CrewAI, AutoGen, LangChain, OpenAI Agents SDK.
+ - **popularity**: 7
+ - **category**: devops, monitoring
+ - **why_include**: The Datadog equivalent for AI agents. Session replay and multi-agent visualization distinctive.
+@@ -977,7 +977,7 @@
+ ## OpenLIT
+ - **macroarea**: Observability / Monitoring
+ - **url**: https://github.com/openlit/openlit
+-- **description**: OpenTelemetry-native observability stack for AI engineering. It provides SDKs, dashboards, prompt management, evaluations, and integrations across many LLM providers, frameworks, and vector stores.
++- **description**: OpenTelemetry-native observability stack for AI engineering. It provides SDKs, dashboards, prompt management, evaluations, trace search, and integrations across many LLM providers, frameworks, and vector stores.
+ - **popularity**: 7
+ - **alternatives**: OpenLLMetry, Langfuse, Arize Phoenix, W&B Weave
+ - **why_include**: Strong concrete bridge from OTEL conventions to an opinionated, usable agent observability stack.
+@@ -1113,7 +1113,7 @@
+ ## OpenLIT
+ - **macroarea**: Observability / Reference Stack
+ - **url**: https://github.com/openlit/openlit
+-- **description**: OpenTelemetry-native AI engineering platform with SDKs, dashboards, evaluations, prompt management, and many integrations. It bridges GenAI semantic conventions to a usable stack for tracing and governance.
++- **description**: OpenTelemetry-native AI engineering platform with SDKs, dashboards, evaluations, prompt management, rule engine, and many integrations. It bridges GenAI semantic conventions to a usable stack for tracing, governance, and trace search.
+ - **popularity**: 7
+ - **alternatives**: OpenLLMetry, Langfuse, Arize Phoenix, W&B Weave
+ - **why_include**: Most complete open stack for turning GenAI telemetry into an operational workflow.
+@@ -1221,3 +1221,39 @@
+ - **popularity**: 7
+ - **alternatives**: BrowserGym, Mind2Web, BrowseComp
+ - **why_include**: Useful when the research target is browser automation rather than generic web QA.
 +
 +---
 +
-+## Iteration 14 Guides (2026-04-02)
++# Iteration 16 - Harness, Replay, and Context Navigation
 +
-+### Claude Code Hooks Guide
-+- **url**: https://docs.anthropic.com/en/docs/claude-code/hooks-guide
-+- **source**: Anthropic
-+- **description**: Step-by-step guide to Notification, PostToolUse, PreToolUse, compaction reinjection, config auditing, and permission automation with hooks. Shows command, HTTP, prompt, and agent hook styles.
-+- **relevance**: Best practical entry point for the harness-policy layer around Claude Code.
++## OpenAI Agents SDK Guardrails
++- **macroarea**: Harness / Runtime Scaffold
++- **url**: https://openai.github.io/openai-agents-python/guardrails/
++- **description**: First-party guardrail docs for the OpenAI Agents SDK. Covers workflow boundaries, input/output/tool guardrails, execution modes, tripwires, and how to implement validation around agent runs.
++- **popularity**: 9
++- **alternatives**: Claude Code hooks, LangGraph middleware, Strands steering hooks
++- **why_include**: Cleanest reference for policy checks inside the agent runtime loop.
 +
-+### Claude Code Subagents
-+- **url**: https://docs.anthropic.com/en/docs/claude-code/subagents
-+- **source**: Anthropic
-+- **description**: Explains built-in and custom subagents, tool restrictions, memory scopes, hooks, and foreground/background execution. Includes patterns for isolation, parallel research, and chaining subagents.
-+- **relevance**: Core guide for context isolation and delegation.
++## OpenAI Agents SDK Tracing
++- **macroarea**: Harness / Observability
++- **url**: https://openai.github.io/openai-agents-python/tracing/
++- **description**: Built-in trace model for runs and spans in the OpenAI Agents SDK. Covers default tracing, custom processors, sensitive-data handling, and export/integration patterns for external backends.
++- **popularity**: 9
++- **alternatives**: LangSmith tracing, Langfuse, AgentOps, OpenLIT
++- **why_include**: Strong first-party baseline for harness telemetry and debugging.
++
++## LangSmith Evaluation
++- **macroarea**: Eval Harness
++- **url**: https://docs.langchain.com/langsmith/evaluation-quickstart
++- **description**: LangSmith's quickstart for programmatic evals, datasets, and regression testing. It keeps tracing, evaluation, prompt iteration, and deployment in one workflow.
++- **popularity**: 9
++- **alternatives**: promptfoo, Inspect AI, OpenAI Evals, W&B Weave
++- **why_include**: Best single-vendor closed-loop path when traces and evals need to stay together.
++
++## Aider Repo Map
++- **macroarea**: Knowledge & Retrieval / Navigation
++- **url**: https://aider.chat/docs/repomap.html
++- **description**: Documents Aider's repo-map system for compressing a large codebase into a structured summary of files, symbols, and relationships. It is one of the clearest practical patterns for navigating large repos without losing structure.
++- **popularity**: 8
++- **alternatives**: Context7, Sourcegraph code search, Graphiti, Zep
++- **why_include**: Best concrete repo-map implementation for large-codebase exploration.
+diff --git a/.workspaces/3-research/resources/guides.md b/.workspaces/3-research/resources/guides.md
+index d5c4ce8..a91288c 100644
+--- a/.workspaces/3-research/resources/guides.md
++++ b/.workspaces/3-research/resources/guides.md
+@@ -581,3 +581,29 @@
+ - **source**: OpenAI
+ - **description**: Explains the eval registry, custom evals, benchmark templates, and build/run workflow.
+ - **relevance**: Best reference for OpenAI-style benchmark iteration.
++
++## Iteration 16 Guides (2026-04-02)
++
++### OpenAI Agents SDK Guardrails
++- **url**: https://openai.github.io/openai-agents-python/guardrails/
++- **source**: OpenAI Agents SDK docs
++- **description**: First-party guide to workflow boundaries, input/output/tool guardrails, execution modes, and tripwires.
++- **relevance**: Best practical reference for the policy layer around agent execution.
++
++### OpenAI Agents SDK Tracing
++- **url**: https://openai.github.io/openai-agents-python/tracing/
++- **source**: OpenAI Agents SDK docs
++- **description**: Explains traces and spans, custom processors, sensitive data handling, and exporting traces to external backends.
++- **relevance**: Best first-party telemetry guide for the OpenAI agent runtime.
++
++### LangSmith Evaluation Quickstart
++- **url**: https://docs.langchain.com/langsmith/evaluation-quickstart
++- **source**: LangSmith docs
++- **description**: Quickstart for programmatic evals, datasets, and regression testing inside LangSmith.
++- **relevance**: Strongest closed-loop guide when tracing and evals live in the same product.
 +
 +### Aider Repo Map
 +- **url**: https://aider.chat/docs/repomap.html
-+- **source**: Aider
-+- **description**: Documents Aider's codebase map and how it uses structure to work in larger repositories.
-+- **relevance**: Best reference for codebase-map style navigation.
-+
-+### Context7 Platform
-+- **url**: https://github.com/upstash/context7
-+- **source**: Upstash
-+- **description**: README for Context7's MCP server and CLI/skills flow. Shows how to fetch up-to-date library docs and use version-specific context.
-+- **relevance**: Best guide for reference-aware documentation retrieval.
-+
-+### Promptfoo Getting Started
-+- **url**: https://www.promptfoo.dev/docs/getting-started/
-+- **source**: Promptfoo
-+- **description**: Quickstart for running evals, comparing models, and iterating locally with declarative configs.
-+- **relevance**: Best practical tutorial for eval harness iteration.
-+
-+### Promptfoo Red Teaming
-+- **url**: https://www.promptfoo.dev/docs/red-team/
-+- **source**: Promptfoo
-+- **description**: Guide for vulnerability scanning and red teaming of prompts, agents, and RAG systems.
-+- **relevance**: Strong source for harness hardening workflows.
-+
-+### Inspect AI README
-+- **url**: https://github.com/UKGovernmentBEIS/inspect_ai
-+- **source**: UK AI Security Institute
-+- **description**: Project README summarizing prompt engineering, tool usage, multi-turn dialogs, model-graded evals, and the prebuilt eval library.
-+- **relevance**: Good research-grade eval harness intro.
-+
-+### OpenAI Evals README
-+- **url**: https://github.com/openai/evals
-+- **source**: OpenAI
-+- **description**: Explains the eval registry, custom evals, benchmark templates, and build/run workflow.
-+- **relevance**: Best reference for OpenAI-style benchmark iteration.
++- **source**: Aider docs
++- **description**: Shows how Aider builds and uses a repo map to navigate large codebases.
++- **relevance**: Best practical guide for repo-map style context navigation.
 diff --git a/.workspaces/3-research/resources/research-requests.md b/.workspaces/3-research/resources/research-requests.md
-index fc09934..1312938 100644
+index 1312938..a6c530a 100644
 --- a/.workspaces/3-research/resources/research-requests.md
 +++ b/.workspaces/3-research/resources/research-requests.md
-@@ -159,3 +159,26 @@
+@@ -182,3 +182,16 @@
  
  ### Esplorazione
- 5. **Long-horizon benchmark harnesses** — repo-level tooling around SWE-bench Verified, Terminal-Bench 2.0, WebArena-x, BrowseComp, and SWE-Lancer.
+ 5. **Prompt assembly and context injection** — CLAUDE.md, skills, prompt templates, dynamic context assembly, and prompt caching patterns across harnesses.
 +
-+## Iterazione 14 — Nuove Richieste
-+
-+### Priorità Alta
-+1. **Harness / runtime scaffolds** — what lives around the LLM: prompt assembly, pre/post hooks, tools, memory, traces, eval, state, and code-optimized outer loops like Meta-Harness.
-+2. **Reference navigation / context exploration** — patterns and tools for navigating prior references, citations, pinning, retrieval ranking, and trace-aware browsing instead of only context compression.
-+
-+### Priorità Media
-+3. **Trace-driven debugging** — how successful harnesses keep execution traces searchable and use them to diagnose long-horizon failures.
-+4. **Outer-loop harness optimization** — papers and practical repos that mutate harness code, run evals, and search the Pareto frontier of accuracy vs token cost.
-+
-+## Iterazione 15 — Nuove Richieste
++## Iterazione 16 — Nuove Richieste
 +
 +### Priorità Alta
-+1. **Hook systems comparison** — Claude Code hooks vs OpenAI Agents SDK guardrails vs LangGraph middleware vs Mastra/Strands lifecycle hooks; which are actually expressive and shareable?
-+2. **Eval harness showdown** — promptfoo vs inspect_ai vs openai/evals vs LangSmith evals for agent and RAG regression testing.
++1. **LangGraph middleware / checkpointing** — how do middleware, durable execution, and state checkpoints combine into a reusable policy + replay layer?
++2. **Trace replay comparison** — LangSmith vs Langfuse vs AgentOps vs Phoenix vs OpenLIT: which UIs and APIs are actually best for root-cause analysis?
 +
 +### Priorità Media
-+3. **Reference-aware retrieval patterns** — repo maps, code graphs, Context7, Aider, Graphiti, Zep: how do they rank, pin, and navigate references?
-+4. **Trace replay / session replay tools** — AgentOps, Langfuse, LangSmith, Phoenix, OpenLIT: which UIs are most useful for debugging long-horizon agent failures?
++3. **Reference-aware retrieval beyond repo maps** — Sourcegraph, code graphs, citation pinning, and retrieval ranking for docs/code context.
++4. **OpenAI Agents SDK guardrail patterns** — what guardrails are reusable in real projects, and where do they break down?
 +
 +### Esplorazione
-+5. **Prompt assembly and context injection** — CLAUDE.md, skills, prompt templates, dynamic context assembly, and prompt caching patterns across harnesses.
++5. **Outer-loop harness optimization** — Meta-Harness, prompt mutation, and eval-driven harness tuning for the Pareto frontier of quality vs cost.
 [0m
-The workspace is done, so I’m flipping the top-level state from in_progress to completed to match the final research status.
-[0m⚙ [0mapply_patch Success. Updated the following files:
-M .workspaces/3-research/context.md
-[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=150, limit=40][0m
-[0m→ [0mRead .workspaces/3-research/context.md[90m [offset=1, limit=12][0m
-I’m doing one last status check. There are unrelated workspace changes already present, and I’m leaving them alone.
-[0m
-[0m$ [0mgit status --short .workspaces/1-implementation/resources/concepts.md .workspaces/3-research/context.md .workspaces/3-research/resources/findings.md .workspaces/3-research/resources/guides.md .workspaces/3-research/resources/research-requests.md
-M .workspaces/1-implementation/resources/concepts.md
- M .workspaces/3-research/context.md
- M .workspaces/3-research/resources/findings.md
- M .workspaces/3-research/resources/guides.md
- M .workspaces/3-research/resources/research-requests.md
-[0m
-Updated the research workspace for the harness/context-navigation pass.
+The diff is structurally good. I’m running a whitespace check, then I’ll summarize the new research surface and the next questions it suggests.
+[0m$ [0mgit diff --check -- ".workspaces/3-research/resources/findings.md" ".workspaces/3-research/resources/guides.md" ".workspaces/3-research/resources/research-requests.md" ".workspaces/3-research/context.md"
+Updated:
+- `/.workspaces/3-research/resources/findings.md` with Iteration 16 entries for OpenAI Agents SDK guardrails/tracing, LangSmith evaluation, and Aider repo maps, plus tighter AgentOps/OpenLIT descriptions.
+- `/.workspaces/3-research/resources/guides.md` with matching primary guides.
+- `/.workspaces/3-research/resources/research-requests.md` with next-step questions on LangGraph checkpointing, replay comparisons, reference-aware retrieval, and outer-loop optimization.
+- `/.workspaces/3-research/context.md` to reflect the current sweep state.
 
-- Added new findings for `Claude Code Hooks`, `Claude Code Subagents`, `Promptfoo`, `Inspect AI`, and `OpenAI Evals`.
-- Expanded guides with primary docs for hooks, subagents, Aider repo maps, Context7, and eval harnesses.
-- Added concepts for `Prompt Assembly`, `Hook System`, `Repo Map / Codebase Map`, `Eval Harness`, and `Trace Replay`.
-- Updated `research-requests.md` with Iteration 15 follow-ups and refreshed `context.md` to the current completed state.
-[0;32m[2026-04-02 19:49:50] ✓[0m Workspace Research & Content completed successfully
+No new concepts were needed in `concepts.md`; the existing runtime, eval, and navigation concepts already covered these additions.
+[0;32m[2026-04-02 21:23:54] ✓[0m Workspace Research & Content completed successfully
