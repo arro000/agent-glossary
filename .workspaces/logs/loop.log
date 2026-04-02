@@ -397,3 +397,223 @@ Iteration 1 is complete. The Agent Glossary Whiteboard was already fully impleme
 
 Build and lint pass cleanly. Committed as `2cb530e`.
 [0;32m[2026-04-02 14:22:11] ✓[0m Workspace Implementation completed successfully
+ 2 files changed, 50 insertions(+), 1 deletion(-)
+[0;32m[2026-04-02 14:22:11] ✓[0m Workspace changes committed
+[0;36m[2026-04-02 14:22:11][0m Launching OpenCode for workspace Improvements & PRD...
+[0m
+> build · glm-5-turbo
+[0m
+[0m# [0mTodos
+[ ] Read existing code and specs to understand current state
+[ ] Implement or improve the Agent Glossary Whiteboard app
+[ ] Test with npm run build
+[ ] Update improvement context and commit
+[0m
+[0m→ [0mRead src
+[0m→ [0mRead .workspaces/1-implementation/context.md
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md
+[0m→ [0mRead .workspaces/1-implementation/resources/pixijs-reference.md
+[0m→ [0mRead .workspaces/3-research/resources/findings.md
+[0m→ [0mRead src/app
+[0m→ [0mRead src/components
+[0m✱ [0mGlob "src/**/*.{tsx,ts,css}"[90m 4 matches[0m
+[0m→ [0mRead src/app/lib
+[0m→ [0mRead src/app/components
+[0m→ [0mRead src/app/layout.tsx
+[0m→ [0mRead src/app/page.tsx
+[0m→ [0mRead src/app/globals.css
+[0m→ [0mRead src/components/whiteboard.tsx
+[0m→ [0mRead package.json
+[0m
+[0m# [0mTodos
+[x] Read existing code and specs to understand current state
+[ ] Optimize grid rendering (viewport culling - only draw visible lines)
+[ ] Add smooth hover transitions using ticker
+[ ] Improve bubble layout with better spacing and circle packing
+[ ] Add minimap for navigation overview
+[ ] Polish detail panel with fade-in animation
+[ ] Add search/filter functionality
+[ ] Test with npm run build
+[ ] Update improvement context and commit
+[0m
+[0m$ [0mnpm run build 2>&1 | tail -30
+> agent-glossary@0.1.0 build
+> next build
+
+▲ Next.js 16.2.2 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.2s
+  Running TypeScript ...
+  Finished TypeScript in 1847ms ...
+  Collecting page data using 5 workers ...
+  Generating static pages using 5 workers (0/4) ...
+  Generating static pages using 5 workers (1/4) 
+  Generating static pages using 5 workers (2/4) 
+  Generating static pages using 5 workers (3/4) 
+✓ Generating static pages using 5 workers (4/4) in 327ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+[0m
+Build passes. Now I'll implement significant improvements. Let me rewrite the whiteboard component with: optimized dynamic grid, smooth hover animations, minimap, panel fade animation, and better bubble styling.
+[0m# [0mTodos
+[x] Read existing code and specs to understand current state
+[ ] Rewrite whiteboard with all improvements
+[ ] Add minimap for navigation overview
+[ ] Test with npm run build
+[ ] Update improvement context and commit
+[0m
+[0m← [0mWrite src/components/whiteboard.tsx
+Wrote file successfully.
+
+LSP errors detected in this file, please fix:
+<diagnostics file="/home/arro/projects/agent-glossary/src/components/whiteboard.tsx">
+ERROR [872:27] Argument of type 'Ticker' is not assignable to parameter of type 'TickerCallback<any>'.
+  Type 'Ticker' provides no match for the signature '(this: any, ticker: Ticker): any'.
+</diagnostics>
+[0m
+[0m← [0mEdit src/components/whiteboard.tsx
+Index: /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
+===================================================================
+--- /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
++++ /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
+@@ -836,17 +836,18 @@
+     });
+   }
+ 
+   // Panel fade-in ticker
+-  const panelTicker = app.ticker.add(() => {
++  const panelFadeFn = () => {
+     if (!panelAnimating || !panel) return;
+     panelAlpha += 0.08;
+     if (panelAlpha >= 1) {
+       panelAlpha = 1;
+       panelAnimating = false;
+     }
+     panel.alpha = panelAlpha;
+-  });
++  };
++  app.ticker.add(panelFadeFn);
+ 
+   // ESC to close
+   const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') closePanel(); };
+   window.addEventListener('keydown', onKey);
+@@ -868,9 +869,9 @@
+ 
+   cleanup = () => {
+     window.removeEventListener('keydown', onKey);
+     window.removeEventListener('resize', onResize);
+-    app.ticker.remove(panelTicker);
++    app.ticker.remove(panelFadeFn);
+     closePanel();
+     app.destroy(true);
+   };
+ })();
+
+[0m
+[0m$ [0mnpm run build 2>&1 | tail -20
+Creating an optimized production build ...
+✓ Compiled successfully in 2.2s
+  Running TypeScript ...
+  Finished TypeScript in 1834ms ...
+  Collecting page data using 5 workers ...
+  Generating static pages using 5 workers (0/4) ...
+  Generating static pages using 5 workers (1/4) 
+  Generating static pages using 5 workers (2/4) 
+  Generating static pages using 5 workers (3/4) 
+✓ Generating static pages using 5 workers (4/4) in 332ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+[0m
+[0m# [0mTodos
+[x] Read existing code and specs to understand current state
+[x] Rewrite whiteboard with all improvements
+[x] Add minimap for navigation overview
+[x] Test with npm run build
+[ ] Update improvement context and commit
+[0m
+Now let me check if the improvements context file exists and update it:
+[0m→ [0mRead .workspaces/2-improvements
+[0m→ [0mRead .workspaces/2-improvements/context.md
+[0m
+[0m← [0mWrite .workspaces/2-improvements/context.md
+Wrote file successfully.
+[0m
+Now let me commit:
+[0m$ [0mgit status
+On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   .workspaces/2-improvements/context.md
+	modified:   .workspaces/logs/loop.log
+	modified:   package-lock.json
+	modified:   package.json
+	modified:   src/components/whiteboard.tsx
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[0m
+[0m$ [0mgit log --oneline -5
+31a35fe loop iter 1: workspace 1 (Implementation) completed
+2cb530e feat: iteration 1 complete — Agent Glossary Whiteboard with PixiJS v8
+0b36d44 loop iter 1: implementation changes
+5233faf Initial commit from Create Next App
+[0m
+[0m$ [0mgit diff --stat
+.workspaces/2-improvements/context.md |  38 ++--
+ .workspaces/logs/loop.log             | 154 ++++++++++++++++
+ package-lock.json                     | 112 ++++++++++++
+ package.json                          |   2 +
+ src/components/whiteboard.tsx         | 319 +++++++++++++++++++++++++++++-----
+ 5 files changed, 569 insertions(+), 56 deletions(-)
+[0m
+[0m$ [0mgit add src/components/whiteboard.tsx .workspaces/2-improvements/context.md && git commit -m "feat: improve whiteboard — dynamic grid, smooth hover, minimap, panel animation
+
+- Optimize grid: viewport-culled dynamic rendering (only visible lines)
+- Smooth hover transitions via ticker interpolation (scale 1→1.08)
+- Add minimap (180x110px) with viewport indicator and click-to-navigate
+- Detail panel: fade-in animation + colored accent bar
+- Better bubble visuals: layered fill with depth effect
+- Improved bubble layout with circle-packing density calculation
+- Fix resize handler for devicePixelRatio"
+[main 592ae22] feat: improve whiteboard — dynamic grid, smooth hover, minimap, panel animation
+ 2 files changed, 301 insertions(+), 56 deletions(-)
+[0m
+[0m# [0mTodos
+[x] Read existing code and specs to understand current state
+[x] Rewrite whiteboard with all improvements
+[x] Add minimap for navigation overview
+[x] Test with npm run build
+[x] Update improvement context and commit
+[0m
+Committed. Here's what was improved in this iteration:
+
+**Performance:**
+- **Dynamic grid** — viewport-culled, only draws visible lines (was drawing 400 lines from -2000 to 6000)
+
+**Visual polish:**
+- **Smooth hover** — ticker-based lerp animation (scale 1→1.08) instead of instant
+- **Layered bubble fill** — white base + inner gradient circle for depth
+- **Panel accent bar** — colored top bar matching macroarea theme
+- **Panel fade-in** — alpha animation on open
+
+**Navigation:**
+- **Minimap** (180x110px) — shows all macroareas + viewport indicator rectangle, click-to-navigate
+
+**Layout:**
+- **Circle-packing density** — better bubble spacing with centered last row
+
+**Remaining for next iteration:** search/filter, zoom buttons, drag bubbles, mobile responsive, keyboard navigation.
+[0;32m[2026-04-02 14:28:31] ✓[0m Workspace Improvements & PRD completed successfully
