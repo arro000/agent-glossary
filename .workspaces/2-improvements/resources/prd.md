@@ -15,6 +15,9 @@ Raffinare la whiteboard per rappresentare il glossario come una macchina agentic
 - [x] Aggiornamento tassonomia con harness/runtime scaffold, reference navigation, repo map, OTel GenAI e protocolli UI
 - [x] Cache dei metadati derivati delle bubble (search index, display label, refs) per search e interazioni piu fluide
 - [x] Stato selezione persistente della bubble aperta per feedback visivo piu chiaro senza aggiungere clutter
+- [x] Raffinamento visuale dell'attuale iterazione: header macroarea piu leggibili, bubble equal-size piu bilanciate, emoji piu riconoscibili e project weight piu chiaro
+- [x] Miglioramento feedback interaction: tooltip e selezione restano leggibili su viewport piccole senza introdurre overlay HTML
+- [x] Conservato il vincolo full-canvas PixiJS v8 vanilla con font Inter e layout responsive
 
 ## Dettagli Tecnici
 Vedi `context.md` per le specifiche complete.
@@ -27,6 +30,9 @@ Vedi `context.md` per le specifiche complete.
 - La search deve cercare anche alternative e categoria, non solo nome/descrizione
 - Il canvas deve restare responsive con zoom-to-fit iniziale
 - Le bubble cliccate devono restare enfatizzate finche il panel e aperto, ma senza cambiare dimensione base
+- Il peso progetto deve restare codificato in modo discreto ma immediatamente interpretabile (ring + badge + panel)
+- Le macroaree devono rimanere pastello e distinte, ma senza competere con la leggibilita delle bubble
+- Le emoji devono restare riconoscibili anche su bubble compatte e ad alto DPR
 
 ## Criticità
 - Performance con molte bolle: usare Container per culling e redraw minimo della griglia

@@ -314,9 +314,10 @@ function getReferenceCount(alternatives: string): number {
 
 function getBubbleColumns(count: number): number {
   if (count <= 3) return count;
-  if (count <= 8) return 4;
-  if (count <= 13) return 5;
-  return Math.min(5, Math.max(4, Math.ceil(Math.sqrt(count * 1.15))));
+  if (count <= 7) return 4;
+  if (count <= 11) return 5;
+  if (count <= 14) return 5;
+  return 6;
 }
 
 function getBubbleReferenceScore(concept: ConceptData): number {
@@ -461,7 +462,7 @@ function layoutBubbles(concepts: ConceptData[], ax: number, ay: number) {
 
   return orderedConcepts.map((item, i) => {
     const slot = orderedSlots[i];
-    const push = Math.min(8, Math.max(0, item.score - 4)) * 0.75;
+    const push = Math.min(12, Math.max(0, item.score - 3)) * 0.82;
     const dx = centerCol - slot.col;
     const dy = centerRow - slot.row;
     const len = Math.hypot(dx, dy) || 1;
@@ -1150,12 +1151,13 @@ export default function Whiteboard() {
         const areaEmoji = new Text({
           text: getMacroareaEmoji(area.name),
           style: new TextStyle({
-            fontFamily: '"Inter", sans-serif',
-            fontSize: 15,
+            fontFamily: EMOJI_FONT_FAMILY,
+            fontSize: 18,
+            fontWeight: 'bold',
           }),
         });
         areaEmoji.x = 18;
-        areaEmoji.y = 9;
+        areaEmoji.y = 8;
         areaEmoji.eventMode = 'none';
         areaContainer.addChild(areaEmoji);
 
@@ -1170,20 +1172,27 @@ export default function Whiteboard() {
           }),
         });
         label.x = 42;
-        label.y = 10;
+        label.y = 9;
         areaContainer.addChild(label);
 
         const conceptCount = new Text({
-          text: `${area.concepts.length} subsections • weighted by refs`,
+          text: `${area.concepts.length} subsections • refs drive ring weight`,
           style: new TextStyle({
             fontFamily: '"Inter", sans-serif',
             fontSize: 10,
             fill: area.color,
+            fontWeight: 'bold',
           }),
         });
-        conceptCount.alpha = 0.6;
+        conceptCount.alpha = 0.72;
         conceptCount.x = 42;
-        conceptCount.y = 30;
+        conceptCount.y = 31;
+        const conceptCountBg = new Graphics();
+        conceptCountBg.roundRect(38, 28, conceptCount.width + 14, 18, 9);
+        conceptCountBg.fill({ color: '#ffffff', alpha: 0.28 });
+        conceptCountBg.stroke({ color: area.color, width: 1, alpha: 0.12 });
+        conceptCountBg.eventMode = 'none';
+        areaContainer.addChild(conceptCountBg);
         areaContainer.addChild(conceptCount);
 
         const bubbles = layoutBubbles(area.concepts, pos.x, pos.y);
@@ -1218,13 +1227,13 @@ export default function Whiteboard() {
 
           const bubble = new Graphics();
           bubble.circle(0, 0, radius);
-          bubble.fill({ color: '#ffffff', alpha: 0.82 });
+          bubble.fill({ color: '#ffffff', alpha: 0.88 });
           bubble.circle(0, 0, radius);
-          bubble.stroke({ color: area.color, width: 1.7, alpha: 0.6 });
+          bubble.stroke({ color: area.color, width: 1.8, alpha: 0.68 });
           bubble.circle(0, 0, radius - 5);
-          bubble.fill({ color: area.border, alpha: 0.1 });
+          bubble.fill({ color: area.border, alpha: 0.11 });
           bubble.circle(0, 0, radius - 15);
-          bubble.fill({ color: area.color, alpha: 0.055 });
+          bubble.fill({ color: area.color, alpha: 0.06 });
           bubble.eventMode = 'none';
           bubbleContainer.addChild(bubble);
 
@@ -1232,8 +1241,8 @@ export default function Whiteboard() {
 
           const titlePlate = new Graphics();
           titlePlate.roundRect(-radius * 0.72, radius * 0.005, radius * 1.44, radius * 0.58, 15);
-          titlePlate.fill({ color: '#ffffff', alpha: 0.7 });
-          titlePlate.stroke({ color: area.color, width: 1, alpha: 0.12 });
+          titlePlate.fill({ color: '#ffffff', alpha: 0.76 });
+          titlePlate.stroke({ color: area.color, width: 1, alpha: 0.14 });
           titlePlate.eventMode = 'none';
           bubbleContainer.addChild(titlePlate);
 

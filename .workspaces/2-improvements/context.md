@@ -2,7 +2,7 @@
 
 ## Stato
 - **Iterazione**: 1
-- **Ultimo aggiornamento**: 2026-04-02 21:23:55
+- **Ultimo aggiornamento**: 2026-04-02 21:37:00
 - **Stato**: completed
 
 ## Obiettivo
@@ -124,3 +124,10 @@ Analizzare l'implementazione corrente, identificare miglioramenti, e IMPLEMENTAR
 - Sync del canvas con la tassonomia aggiornata: harness/runtime scaffold, reference navigation, repo map, protocol UI, OTel GenAI, edge runtime e voice/realtime cluster
 - Search ampliata su nome, descrizione, categoria e alternative per coprire meglio reference retrieval e discovery
 - PRD allineato con i vincoli attuali e build di produzione verificata con successo (`npm run build`)
+
+## Iterazione 1 (Aggiornamento corrente) — Completata
+- [x] PRD riallineato con i vincoli di rendering, interaction e leggibilita dell'iterazione
+- [x] Macroarea header resi piu leggibili con badge/contatori piu chiari
+- [x] Packing delle bubble densificate aggiornato per aprire meglio le macroaree piu piene
+- [x] Bubble shell, emoji e project weight resi piu chiari senza cambiare il diametro
+- [x] Build di produzione verificata con successo dopo i miglioramenti visivi (`npm run build`)
