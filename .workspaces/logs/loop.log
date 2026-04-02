@@ -3054,3 +3054,252 @@ Commit:
 Uncommitted leftover:
 - `.workspaces/logs/loop.log`
 [0;32m[2026-04-02 22:00:15] ✓[0m Workspace Improvements & PRD completed successfully
+ 1 file changed, 686 insertions(+)
+To https://github.com/arro000/agent-glossary.git
+   a424af8..cc9a072  main -> main
+[0;32m[2026-04-02 22:00:16] ✓[0m Workspace changes committed and pushed
+[0;36m[2026-04-02 22:00:16][0m Launching OpenCode for workspace Implementation...
+[0m
+> build · gpt-5.3-codex
+[0m
+[0m→ [0mRead .workspaces/1-implementation/context.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/pixijs-reference.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .workspaces/2-improvements/context.md[90m [offset=1, limit=2000][0m
+[0m✱ [0mGlob "**/prd.md"[90m in .workspaces/2-improvements/resources · 1 match[0m
+[0m✱ [0mGlob "src/**/*.tsx"[90m in . · 3 matches[0m
+[0m✱ [0mGlob "**/*"[90m in node_modules/next/dist/docs · 100 matches[0m
+[0m→ [0mRead node_modules/next/dist/docs/01-app/01-getting-started/05-server-and-client-components.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead .workspaces/2-improvements/resources/prd.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead node_modules/next/dist/docs/01-app/01-getting-started/18-upgrading.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1, limit=2000][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1027, limit=2000][0m
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+[0m
+[0m$ [0mnpm run build
+> agent-glossary@0.1.0 build
+> next build
+
+▲ Next.js 16.2.2 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.1s
+  Running TypeScript ...
+  Finished TypeScript in 2.0s ...
+  Collecting page data using 5 workers ...
+  Generating static pages using 5 workers (0/4) ...
+  Generating static pages using 5 workers (1/4) 
+  Generating static pages using 5 workers (2/4) 
+  Generating static pages using 5 workers (3/4) 
+✓ Generating static pages using 5 workers (4/4) in 337ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+[0m
+[0m$ [0mdate '+%Y-%m-%d %H:%M:%S'
+2026-04-02 22:01:59
+[0m
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/1-implementation/context.md
+[0m
+[0m$ [0mgit status --short
+M .workspaces/1-implementation/context.md
+ M .workspaces/logs/loop.log
+ M src/components/whiteboard.tsx
+[0m
+[0m$ [0mgit diff -- src/components/whiteboard.tsx .workspaces/1-implementation/context.md
+diff --git a/.workspaces/1-implementation/context.md b/.workspaces/1-implementation/context.md
+index 447e574..02b4bf8 100644
+--- a/.workspaces/1-implementation/context.md
++++ b/.workspaces/1-implementation/context.md
+@@ -1,9 +1,9 @@
+ # Workspace 1 — Implementation
+ 
+ ## Stato
+-- **Iterazione**: 2
+-- **Ultimo aggiornamento**: 2026-04-02 21:48:40
+-- **Stato**: completed
++- **Iterazione**: 3
++- **Ultimo aggiornamento**: 2026-04-02 22:01:59
++- **Stato**: in_progress
+ 
+ ## Obiettivo
+ Implementare l'app "Agent Glossary Whiteboard" usando PixiJS v8 + Next.js.
+@@ -259,3 +259,10 @@ La whiteboard rappresenta 100 subsection correnti allineate alle macroaree princ
+ - [x] Allineato il canvas a `concepts.md` con `Session Replay` e `Trace Grading` nelle metriche/visuali dell'area Observability
+ - [x] Confermato il comportamento della bubble selezionata: resta evidenziata anche durante il filtro search
+ - [x] Aggiornato il PRD workspace 2 alla iterazione corrente e sincronizzato il totale canvas a 101 concept nodes
++
++## Iterazione 3 (Richiesta utente corrente) — Completata
++- [x] Letti i riferimenti richiesti: `workspace 1 context`, `concepts.md`, `pixijs-reference.md`, `workspace 2 context`, `findings.md`, PRD workspace 2
++- [x] Tradotti in modo piu visibile i segnali harness/context/reference-navigation: signal legend estesa a 6 cue e signal chip anche a livello macroarea
++- [x] Layout reso piu chiaro senza aumentare densita: packing bolle limitato a max 6 colonne mantenendo bolle equal-size
++- [x] Confermati vincoli chiave: rendering full-canvas PixiJS v8 vanilla, font Inter, peso da `alternatives` (ring+badge), hover glow, click panel, zoom/pan
++- [x] Verifica tecnica: `npm run build` completata con successo
+diff --git a/src/components/whiteboard.tsx b/src/components/whiteboard.tsx
+index 3b476d3..fc78cab 100644
+--- a/src/components/whiteboard.tsx
++++ b/src/components/whiteboard.tsx
+@@ -340,8 +340,7 @@ function getBubbleColumns(count: number): number {
+   if (count <= 3) return count;
+   if (count <= 8) return 4;
+   if (count <= 12) return 5;
+-  if (count <= 16) return 6;
+-  return 7;
++  return 6;
+ }
+ 
+ function getConceptSignal(conceptName: string): SignalInfo | null {
+@@ -358,6 +357,20 @@ function getConceptSignal(conceptName: string): SignalInfo | null {
+   return null;
+ }
+ 
++function getMacroareaSignals(area: MacroareaConfig): SignalInfo[] {
++  const unique: SignalInfo[] = [];
++  const seen = new Set<SignalInfo['key']>();
++
++  for (const concept of area.concepts) {
++    const signal = getConceptSignal(concept.name);
++    if (!signal || seen.has(signal.key)) continue;
++    seen.add(signal.key);
++    unique.push(signal);
++  }
++
++  return unique.slice(0, 3);
++}
++
+ function getBubbleReferenceScore(concept: ConceptData): number {
+   return getReferenceCount(concept.alternatives);
+ }
+@@ -1103,13 +1116,13 @@ function createSignalLegend(compact = false): Container {
+ 
+   const padX = 10;
+   const padY = 8;
+-  const chipW = 98;
++  const chipW = 96;
+   const chipH = 20;
+   const chipGap = 8;
+   const headerH = 16;
+-  const items = SIGNAL_LEGEND.slice(0, 4);
++  const items = SIGNAL_LEGEND;
+   const w = padX * 2 + chipW * 2 + chipGap;
+-  const h = padY * 2 + headerH + chipH * 2 + chipGap;
++  const h = padY * 2 + headerH + chipH * 3 + chipGap * 2;
+ 
+   const bg = new Graphics();
+   bg.roundRect(0, 0, w, h, 12);
+@@ -1147,11 +1160,11 @@ function createSignalLegend(compact = false): Container {
+     chip.eventMode = 'none';
+     container.addChild(chip);
+ 
+-    const label = new Text({
+-      text: item.label,
++      const label = new Text({
++        text: item.label,
+       style: new TextStyle({
+         fontFamily: '"Inter", sans-serif',
+-        fontSize: 8,
++        fontSize: 7,
+         fontWeight: 'bold',
+         fill: item.color,
+         letterSpacing: 0.5,
+@@ -1162,14 +1175,14 @@ function createSignalLegend(compact = false): Container {
+     label.eventMode = 'none';
+     container.addChild(label);
+ 
+-    const helper = new Text({
+-      text: item.helper,
+-      style: new TextStyle({
+-        fontFamily: '"Inter", sans-serif',
+-        fontSize: 7,
+-        fill: '#64748b',
+-      }),
+-    });
++      const helper = new Text({
++        text: item.helper,
++        style: new TextStyle({
++          fontFamily: '"Inter", sans-serif',
++          fontSize: 6,
++          fill: '#64748b',
++        }),
++      });
+     helper.x = x + 8;
+     helper.y = y + 11;
+     helper.eventMode = 'none';
+@@ -1317,6 +1330,38 @@ export default function Whiteboard() {
+         areaContainer.addChild(conceptCountBg);
+         areaContainer.addChild(conceptCount);
+ 
++        const areaSignals = getMacroareaSignals(area);
++        if (areaSignals.length > 0) {
++          let chipX = 42;
++          for (const signal of areaSignals) {
++            const chipLabel = new Text({
++              text: signal.label,
++              style: new TextStyle({
++                fontFamily: '"Inter", sans-serif',
++                fontSize: 8,
++                fontWeight: 'bold',
++                fill: signal.color,
++                letterSpacing: 0.45,
++              }),
++            });
++            const chipW = chipLabel.width + 14;
++
++            const chipBg = new Graphics();
++            chipBg.roundRect(chipX, 50, chipW, 15, 7);
++            chipBg.fill({ color: '#ffffff', alpha: 0.85 });
++            chipBg.stroke({ color: signal.color, width: 1, alpha: 0.35 });
++            chipBg.eventMode = 'none';
++            areaContainer.addChild(chipBg);
++
++            chipLabel.x = chipX + 7;
++            chipLabel.y = 54;
++            chipLabel.eventMode = 'none';
++            areaContainer.addChild(chipLabel);
++
++            chipX += chipW + 6;
++          }
++        }
++
+         const bubbles = layoutBubbles(area.concepts, pos.x, pos.y);
+ 
+         for (const { concept, x, y, radius } of bubbles) {
+[0m
+[0m$ [0mgit log -6 --oneline
+cc9a072 loop iter 3: workspace 2 (Improvements & PRD) completed
+5a68391 refine whiteboard replay and eval signals
+a424af8 loop iter 3: workspace 3 (Research & Content) completed
+ce82415 loop iter 2: workspace 1 (Implementation) completed
+773b989 Improve whiteboard signal cues and spacing
+98856f8 loop iter 2: workspace 2 (Improvements & PRD) completed
+[0m
+[0m$ [0mgit add "src/components/whiteboard.tsx" ".workspaces/1-implementation/context.md" && git commit -m "clarify whiteboard signal cues without increasing density" && git status --short
+[main be5f0c4] clarify whiteboard signal cues without increasing density
+ 2 files changed, 71 insertions(+), 19 deletions(-)
+ M .workspaces/logs/loop.log
+[0m
+Implemented and committed iteration 3 updates for the whiteboard focus goals.
+
+- I made the harness/context/reference-navigation cues more visible directly on-canvas:
+  - extended the signal legend from 4 to 6 cues in `src/components/whiteboard.tsx`
+  - added per-macroarea signal chips (derived from concepts in that macroarea) in `src/components/whiteboard.tsx`
+- I made layout clearer (not denser) while keeping equal-size bubbles:
+  - capped subsection packing to max 6 columns so dense areas don’t over-compress horizontally in `src/components/whiteboard.tsx`
+- I kept the core constraints intact:
+  - PixiJS v8 vanilla rendering, full canvas, Inter font, equal-size bubbles, project weight from `alternatives`, hover/click/zoom/pan behavior unchanged
+- I updated implementation state in `/.workspaces/1-implementation/context.md` with this execution’s results and timestamp.
+- Validation: `npm run build` passes.
+
+Commit created:
+- `be5f0c4` — `clarify whiteboard signal cues without increasing density`
+
+Note: there is an unrelated existing local modification in `/.workspaces/logs/loop.log` left uncommitted.
+[0;32m[2026-04-02 22:02:28] ✓[0m Workspace Implementation completed successfully
