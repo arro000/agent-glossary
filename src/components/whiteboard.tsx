@@ -40,6 +40,8 @@ const COL_STEP = AREA_WIDTH + COL_GAP;
 const ROW_STEP = AREA_HEIGHT + ROW_GAP;
 const MIN_RADIUS = 24;
 const MAX_RADIUS = 62;
+const ZOOM_LERP = 0.12;
+const PAN_LERP = 0.15;
 
 const MACROAREAS: MacroareaConfig[] = [
   {
@@ -52,7 +54,7 @@ const MACROAREAS: MacroareaConfig[] = [
       { name: 'Session\nMemory', popularity: 10, description: 'Memoria del contesto conversazionale corrente', alternatives: 'Context window, Summary compression, Sliding window', category: 'Runtime' },
       { name: 'Vector\nDatabase', popularity: 8, description: 'DB per ricerca semantica su embeddings (RAG)', alternatives: 'ChromaDB, Pinecone, Weaviate, Qdrant, Milvus, FAISS', category: 'Storage' },
       { name: 'Context Window\nManagement', popularity: 10, description: 'Gestione del limite di token del modello', alternatives: 'Truncation, Summarization, Chunking, Hierarchical context', category: 'Runtime' },
-      { name: 'Temporal\nMemory', popularity: 7, description: 'Memoria che traccia come i fatti cambiano nel tempo con finestre di validità', alternatives: 'Graphiti, Zep, knowledge graphs con validità temporale', category: 'Storage' },
+      { name: 'Temporal\nMemory', popularity: 7, description: 'Memoria che traccia come i fatti cambiano nel tempo con finestre di validit\u00e0', alternatives: 'Graphiti, Zep, knowledge graphs con validit\u00e0 temporale', category: 'Storage' },
       { name: 'Tiered\nMemory', popularity: 7, description: 'Architettura a livelli: core memory, recall memory, archive', alternatives: 'Letta (MemGPT), custom tiered systems', category: 'Architecture' },
       { name: 'Procedural\nMemory', popularity: 6, description: 'Memoria che memorizza workflow e conoscenze procedurali', alternatives: 'Mem0 procedural memory, Letta skills, workflow templates', category: 'Storage' },
       { name: 'Token\nBudget', popularity: 7, description: 'Allocazione dinamica di token per system/user/tool output', alternatives: 'Fixed budget, Priority-based, Adaptive', category: 'Optimization' },
@@ -69,8 +71,8 @@ const MACROAREAS: MacroareaConfig[] = [
       { name: 'File I/O', popularity: 10, description: 'Lettura, scrittura, ricerca nei file del progetto', alternatives: 'read/write/search/patch tools', category: 'System' },
       { name: 'Web Search', popularity: 9, description: 'Ricerca su internet per informazioni aggiornate', alternatives: 'Tavily, SerpAPI, Brave Search, Bing API, Firecrawl', category: 'Information' },
       { name: 'Browser\nAutomation', popularity: 8, description: 'Controllo di un browser per interagire con siti web', alternatives: 'Playwright, Puppeteer, Browserbase, Selenium', category: 'Interaction' },
-      { name: 'MCP', popularity: 9, description: 'Model Context Protocol — protocollo standard per tool esterni (Linux Foundation)', alternatives: 'REST APIs, gRPC, OpenAI function calling, A2A', category: 'Integration' },
-      { name: 'A2A', popularity: 9, description: 'Agent-to-Agent Protocol — comunicazione tra agenti AI indipendenti (Linux Foundation)', alternatives: 'MCP (complementare), custom gRPC/REST, LangGraph inter-agent channels', category: 'Integration' },
+      { name: 'MCP', popularity: 9, description: 'Model Context Protocol \u2014 protocollo standard per tool esterni (Linux Foundation)', alternatives: 'REST APIs, gRPC, OpenAI function calling, A2A', category: 'Integration' },
+      { name: 'A2A', popularity: 9, description: 'Agent-to-Agent Protocol \u2014 comunicazione tra agenti AI indipendenti (Linux Foundation)', alternatives: 'MCP (complementare), custom gRPC/REST, LangGraph inter-agent channels', category: 'Integration' },
       { name: 'API Client', popularity: 8, description: 'Chiamate HTTP a API esterne per integrare servizi', alternatives: 'fetch, axios, openapi clients, SDK wrappers', category: 'Integration' },
     ],
   },
@@ -80,9 +82,9 @@ const MACROAREAS: MacroareaConfig[] = [
     bg: '#EDE9FE',
     border: '#C4B5FD',
     concepts: [
-      { name: 'System\nPrompt', popularity: 10, description: 'Istruzioni di base che definiscono personalità e comportamento dell\'agente', alternatives: 'Static system prompt, Dynamic assembly, Prompt templates', category: 'Core' },
+      { name: 'System\nPrompt', popularity: 10, description: 'Istruzioni di base che definiscono personalit\u00e0 e comportamento dell\'agente', alternatives: 'Static system prompt, Dynamic assembly, Prompt templates', category: 'Core' },
       { name: 'Few-Shot\nExamples', popularity: 8, description: 'Esempi di input/output per guidare il modello', alternatives: 'In-context learning, Dynamic few-shot, Retrieved examples', category: 'Technique' },
-      { name: 'Chain-of-\nThought', popularity: 9, description: 'Guidare il modello a ragionare passo per passo', alternatives: 'CoT prompting, Tree-of-Thought, Step-by-step, RepAct', category: 'Technique' },
+      { name: 'Chain-of-\nThought', popularity: 9, description: 'Guidare il modello a ragionare passo per passo', alternatives: 'CoT prompting, Tree-of-Thought, Step-by-step, ReAct', category: 'Technique' },
       { name: 'Structured\nOutput', popularity: 9, description: 'Forzare il modello a produrre output in formato specifico (JSON, etc.)', alternatives: 'JSON mode, Function calling, Outlines, Guidance', category: 'Technique' },
       { name: 'Prompt\nCaching', popularity: 7, description: 'Cachare parti statiche del prompt per ridurre costi e latenza', alternatives: 'Anthropic prompt caching, Semantic caching, KV cache', category: 'Optimization' },
       { name: 'Context\nCompression', popularity: 7, description: 'Comprimere il contesto per rientrare nella finestra di token', alternatives: 'Summarization, Token merging, Key info extraction', category: 'Optimization' },
@@ -94,21 +96,21 @@ const MACROAREAS: MacroareaConfig[] = [
     bg: '#FFEDD5',
     border: '#FDBA74',
     concepts: [
-      { name: 'Agent\nLoop', popularity: 10, description: 'Ciclo pensa→azione→osserva alla base di ogni agente', alternatives: 'RepAct, Plan-and-Execute, Function calling loop', category: 'Core' },
+      { name: 'Agent\nLoop', popularity: 10, description: 'Ciclo pensa\u2192azione\u2192osserva alla base di ogni agente', alternatives: 'ReAct, Plan-and-Execute, Function calling loop', category: 'Core' },
       { name: 'Prompt\nChaining', popularity: 10, description: 'Decomposizione sequenziale dove ogni chiamata LLM processa l\'output della precedente', alternatives: 'Sequential Workflow (AutoGen), Sequential Process (CrewAI), LangGraph chain', category: 'Workflow' },
       { name: 'Routing', popularity: 9, description: 'Classifica l\'input e lo dirige a un processo downstream specializzato', alternatives: 'Selector Group Chat (AutoGen), conditional branching (LangGraph), tool routing', category: 'Workflow' },
-      { name: 'Parallel\nization', popularity: 8, description: 'Sectioning o Voting: scomporre in sotto-task paralleli o eseguire più volte', alternatives: 'Fan-out/fan-in (LangGraph), Concurrent Agents (AutoGen)', category: 'Workflow' },
+      { name: 'Parallel\nization', popularity: 8, description: 'Sectioning o Voting: scomporre in sotto-task paralleli o eseguire pi\u00f9 volte', alternatives: 'Fan-out/fan-in (LangGraph), Concurrent Agents (AutoGen)', category: 'Workflow' },
       { name: 'Orchestrator\nWorkers', popularity: 9, description: 'LLM centrale decompongono task e delega a worker, poi sintetizza risultati', alternatives: 'Hierarchical Process (CrewAI), Magentic-One (AutoGen), LangGraph subgraphs', category: 'Workflow' },
       { name: 'Evaluator\nOptimizer', popularity: 8, description: 'Un LLM genera output mentre un altro valuta e fornisce feedback in un loop', alternatives: 'Multi-Agent Debate (AutoGen), Reflection pattern, code review agents', category: 'Workflow' },
       { name: 'Handoffs /\nSwarm', popularity: 9, description: 'Agenti trasferiscono controllo ad altri agenti tramite function returns', alternatives: 'AutoGen Swarm, LangGraph edge transitions, A2A task delegation', category: 'Coordination' },
       { name: 'GraphFlow /\nState Machine', popularity: 9, description: 'Agenti e tools come nodi in un grafo diretto con stato e routing condizionale', alternatives: 'Temporal workflows, Prefect DAGs, Step Functions', category: 'Orchestration' },
-      { name: 'Multi-\nAgent', popularity: 8, description: 'Più agenti che collaborano o competono su un task', alternatives: 'CrewAI, AutoGen, LangGraph, Swarm', category: 'Pattern' },
+      { name: 'Multi-\nAgent', popularity: 8, description: 'Pi\u00f9 agenti che collaborano o competono su un task', alternatives: 'CrewAI, AutoGen, LangGraph, Swarm', category: 'Pattern' },
       { name: 'Task\nPlanning', popularity: 8, description: 'Decomporre un obiettivo in sotto-task eseguibili', alternatives: 'Plan-and-Execute, Hierarchical planning, Reflexion', category: 'Strategy' },
       { name: 'Tool\nRouting', popularity: 8, description: 'Selezionare il tool giusto in base al contesto', alternatives: 'LLM-based routing, Rule-based, Semantic matching', category: 'Strategy' },
       { name: 'Subagent\nDelegation', popularity: 7, description: 'Delegare sotto-task a agenti secondari isolati', alternatives: 'Claude Code, Codex CLI, OpenCode, Subprocess', category: 'Pattern' },
       { name: 'HITL', popularity: 8, description: 'Pattern dove l\'agente richiede approvazione umana prima di azioni ad alto rischio', alternatives: 'OpenAI Agents SDK approval flow, HumanLayer, CAMEL Framework, Permit.io', category: 'Pattern' },
       { name: 'Async\nBackground', popularity: 7, description: 'Agenti che lavorano in cloud VM producendo risultati in modo asincrono', alternatives: 'Jules (Google), OpenAI Codex, Devin, GitHub Copilot Agent', category: 'Pattern' },
-      { name: 'ACI', popularity: 7, description: 'Agent-Computer Interface — design dei tool per agenti come HCI per umani', alternatives: 'Function calling best practices, tool design guides', category: 'Methodology' },
+      { name: 'ACI', popularity: 7, description: 'Agent-Computer Interface \u2014 design dei tool per agenti come HCI per umani', alternatives: 'Function calling best practices, tool design guides', category: 'Methodology' },
       { name: 'Cron /\nScheduling', popularity: 6, description: 'Eseguire task agentici in modo programmato', alternatives: 'APScheduler, Cron expressions, Event-driven', category: 'Automation' },
     ],
   },
@@ -124,7 +126,7 @@ const MACROAREAS: MacroareaConfig[] = [
       { name: 'Quantization', popularity: 7, description: 'Ridurre dimensione del modello (GGUF, GPTQ, AWQ)', alternatives: 'GGUF/llama.cpp, vLLM, bitsandbytes, EXL2', category: 'Optimization' },
       { name: 'Streaming', popularity: 9, description: 'Output in tempo reale token per token', alternatives: 'SSE, WebSocket, Server-Sent Events', category: 'UX' },
       { name: 'Embeddings', popularity: 8, description: 'Rappresentazioni vettoriali del testo per ricerca semantica', alternatives: 'OpenAI ada-002, Cohere, BGE, Nomic, Jina', category: 'Representation' },
-      { name: 'Reasoning\nModels', popularity: 9, description: 'Modelli con capacità di ragionamento esteso (o1, o3, DeepSeek-R1)', alternatives: 'OpenAI o1/o3, DeepSeek-R1, QwQ, Claude thinking', category: 'Architecture' },
+      { name: 'Reasoning\nModels', popularity: 9, description: 'Modelli con capacit\u00e0 di ragionamento esteso (o1, o3, DeepSeek-R1)', alternatives: 'OpenAI o1/o3, DeepSeek-R1, QwQ, Claude thinking', category: 'Architecture' },
     ],
   },
   {
@@ -236,6 +238,7 @@ interface BubbleState {
   bubble: Graphics;
   targetScale: number;
   currentScale: number;
+  baseAlpha: number;
   concept: ConceptData;
   macroarea: MacroareaConfig;
 }
@@ -287,7 +290,7 @@ function createMinimap(
 
   const bg = new Graphics();
   bg.roundRect(0, 0, mmW, mmH, 8);
-  bg.fill({ color: '#ffffff', alpha: 0.85 });
+  bg.fill({ color: '#ffffff', alpha: 0.88 });
   bg.stroke({ color: '#d1d5db', width: 1 });
   bg.eventMode = 'none';
   mm.addChild(bg);
@@ -344,9 +347,6 @@ function createMinimap(
   });
 
   (mm as unknown as Record<string, unknown>)._updateViewport = updateViewport;
-  (mm as unknown as Record<string, unknown>)._scale = scale;
-  (mm as unknown as Record<string, unknown>)._offsetX = offsetX;
-  (mm as unknown as Record<string, unknown>)._offsetY = offsetY;
 
   return mm;
 }
@@ -397,6 +397,200 @@ function createZoomBtn(label: string, onClick: () => void): Container {
   return btn;
 }
 
+function drawMagnifyingGlass(g: Graphics, cx: number, cy: number, size: number) {
+  const r = size * 0.42;
+  const handleLen = size * 0.35;
+  const angle = Math.PI / 4;
+  g.circle(cx, cy, r);
+  g.stroke({ color: '#9ca3af', width: 1.5, cap: 'round' });
+  g.moveTo(cx + r * 0.7 * Math.cos(angle), cy + r * 0.7 * Math.sin(angle));
+  g.lineTo(cx + r * 0.7 * Math.cos(angle) + handleLen * Math.cos(angle), cy + r * 0.7 * Math.sin(angle) + handleLen * Math.sin(angle));
+  g.stroke({ color: '#9ca3af', width: 1.8, cap: 'round' });
+}
+
+function createSearchBar(): {
+  container: Container;
+  bg: Graphics;
+  textDisplay: Text;
+  placeholder: Text;
+  clearBtn: Container;
+  matchLabel: Text;
+  iconGfx: Graphics;
+} {
+  const w = 300;
+  const h = 38;
+  const pad = 12;
+
+  const container = new Container();
+  container.eventMode = 'static';
+  container.cursor = 'text';
+
+  const shadow = new Graphics();
+  shadow.roundRect(2, 3, w, h, 12);
+  shadow.fill({ color: '#000000', alpha: 0.06 });
+  shadow.eventMode = 'none';
+  container.addChild(shadow);
+
+  const bg = new Graphics();
+  bg.roundRect(0, 0, w, h, 12);
+  bg.fill({ color: '#ffffff', alpha: 0.95 });
+  bg.stroke({ color: '#d1d5db', width: 1 });
+  bg.eventMode = 'none';
+  container.addChild(bg);
+
+  const iconGfx = new Graphics();
+  drawMagnifyingGlass(iconGfx, pad + 8, h / 2, 16);
+  iconGfx.eventMode = 'none';
+  container.addChild(iconGfx);
+
+  const placeholder = new Text({
+    text: 'Search concepts...',
+    style: new TextStyle({
+      fontFamily: '"Inter", sans-serif',
+      fontSize: 13,
+      fill: '#9ca3af',
+    }),
+  });
+  placeholder.x = pad + 24;
+  placeholder.y = (h - placeholder.height) / 2;
+  container.addChild(placeholder);
+
+  const textDisplay = new Text({
+    text: '',
+    style: new TextStyle({
+      fontFamily: '"Inter", sans-serif',
+      fontSize: 13,
+      fill: '#1f2937',
+    }),
+  });
+  textDisplay.x = pad + 24;
+  textDisplay.y = (h - textDisplay.height) / 2;
+  container.addChild(textDisplay);
+
+  const clearBtn = new Container();
+  clearBtn.visible = false;
+  clearBtn.eventMode = 'static';
+  clearBtn.cursor = 'pointer';
+  const clearBg = new Graphics();
+  clearBg.circle(0, 0, 10);
+  clearBg.fill({ color: '#e5e7eb' });
+  clearBg.eventMode = 'none';
+  clearBtn.addChild(clearBg);
+  const clearX = new Text({
+    text: '\u00D7',
+    style: new TextStyle({ fontFamily: '"Inter", sans-serif', fontSize: 13, fontWeight: 'bold', fill: '#6b7280' }),
+  });
+  clearX.anchor.set(0.5);
+  clearBtn.addChild(clearX);
+  clearBtn.x = w - pad - 10;
+  clearBtn.y = h / 2;
+  container.addChild(clearBtn);
+
+  clearBtn.on('pointerover', () => {
+    clearBg.clear();
+    clearBg.circle(0, 0, 10);
+    clearBg.fill({ color: '#d1d5db' });
+  });
+  clearBtn.on('pointerout', () => {
+    clearBg.clear();
+    clearBg.circle(0, 0, 10);
+    clearBg.fill({ color: '#e5e7eb' });
+  });
+  clearBtn.on('pointerdown', (e) => {
+    e.stopPropagation();
+  });
+
+  const matchLabel = new Text({
+    text: '',
+    style: new TextStyle({
+      fontFamily: '"Inter", sans-serif',
+      fontSize: 11,
+      fontWeight: 'bold',
+      fill: '#6b7280',
+    }),
+  });
+  matchLabel.x = w + 10;
+  matchLabel.y = (h - matchLabel.height) / 2;
+  matchLabel.visible = false;
+  container.addChild(matchLabel);
+
+  return { container, bg, textDisplay, placeholder, clearBtn, matchLabel, iconGfx };
+}
+
+function createLegend(): Container {
+  const pad = 10;
+  const itemH = 22;
+  const w = 170;
+  const h = MACROAREAS.length * itemH + pad * 2 + 22;
+
+  const container = new Container();
+
+  const shadow = new Graphics();
+  shadow.roundRect(2, 3, w, h, 10);
+  shadow.fill({ color: '#000000', alpha: 0.06 });
+  shadow.eventMode = 'none';
+  container.addChild(shadow);
+
+  const bg = new Graphics();
+  bg.roundRect(0, 0, w, h, 10);
+  bg.fill({ color: '#ffffff', alpha: 0.88 });
+  bg.stroke({ color: '#e5e7eb', width: 1 });
+  bg.eventMode = 'none';
+  container.addChild(bg);
+
+  const header = new Text({
+    text: 'MACROAREAS',
+    style: new TextStyle({
+      fontFamily: '"Inter", sans-serif',
+      fontSize: 9,
+      fontWeight: 'bold',
+      fill: '#9ca3af',
+      letterSpacing: 1.2,
+    }),
+  });
+  header.x = pad;
+  header.y = pad;
+  container.addChild(header);
+
+  let y = pad + 22;
+  for (const area of MACROAREAS) {
+    const dot = new Graphics();
+    dot.roundRect(pad, y, 14, 14, 4);
+    dot.fill({ color: area.color, alpha: 0.7 });
+    dot.eventMode = 'none';
+    container.addChild(dot);
+
+    const txt = new Text({
+      text: area.name,
+      style: new TextStyle({
+        fontFamily: '"Inter", sans-serif',
+        fontSize: 11,
+        fill: '#374151',
+      }),
+    });
+    txt.x = pad + 20;
+    txt.y = y + 1;
+    container.addChild(txt);
+
+    const count = new Text({
+      text: `${area.concepts.length}`,
+      style: new TextStyle({
+        fontFamily: '"Inter", sans-serif',
+        fontSize: 10,
+        fill: '#9ca3af',
+      }),
+    });
+    count.anchor.set(1, 0);
+    count.x = w - pad;
+    count.y = y + 2;
+    container.addChild(count);
+
+    y += itemH;
+  }
+
+  return container;
+}
+
 export default function Whiteboard() {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -441,6 +635,10 @@ export default function Whiteboard() {
       world.x = Math.max(20, (window.innerWidth - totalW * fitScale) / 2);
       world.y = Math.max(20, (window.innerHeight - totalH * fitScale) / 2);
 
+      let targetScale = fitScale;
+      let targetPanX = world.x;
+      let targetPanY = world.y;
+
       app.stage.addChild(world);
 
       let needsGridRedraw = true;
@@ -450,6 +648,8 @@ export default function Whiteboard() {
       world.addChildAt(grid, 0);
 
       const bubbleStates: BubbleState[] = [];
+      const macroareaContainers: Container[] = [];
+      const introStart = Date.now();
 
       for (let i = 0; i < MACROAREAS.length; i++) {
         const area = MACROAREAS[i];
@@ -458,6 +658,8 @@ export default function Whiteboard() {
         const areaContainer = new Container();
         areaContainer.x = pos.x;
         areaContainer.y = pos.y;
+        areaContainer.alpha = 0;
+        macroareaContainers.push(areaContainer);
 
         const shadow = new Graphics();
         shadow.roundRect(3, 4, AREA_WIDTH, AREA_HEIGHT, 12);
@@ -510,6 +712,7 @@ export default function Whiteboard() {
           bubbleContainer.y = by;
           bubbleContainer.eventMode = 'static';
           bubbleContainer.cursor = 'pointer';
+          bubbleContainer.alpha = 0;
 
           const hitR = radius + 4;
           bubbleContainer.hitArea = new Circle(hitR, hitR, hitR);
@@ -520,11 +723,11 @@ export default function Whiteboard() {
 
           const bubble = new Graphics();
           bubble.circle(0, 0, radius);
-          bubble.fill({ color: '#ffffff', alpha: 0.6 });
+          bubble.fill({ color: '#ffffff', alpha: 0.65 });
           bubble.circle(0, 0, radius);
           bubble.stroke({ color: area.color, width: 1.5, alpha: 0.5 });
           bubble.circle(0, 0, radius - 4);
-          bubble.fill({ color: area.border, alpha: 0.15 });
+          bubble.fill({ color: area.border, alpha: 0.12 });
           bubble.eventMode = 'none';
           bubbleContainer.addChild(bubble);
 
@@ -550,22 +753,25 @@ export default function Whiteboard() {
             glow,
             bubble,
             targetScale: 1,
-            currentScale: 1,
+            currentScale: 0.3,
+            baseAlpha: 1,
             concept,
             macroarea: area,
           };
 
-          bubbleContainer.on('pointerover', () => {
+          bubbleContainer.on('pointerover', (e) => {
             state.targetScale = 1.06;
             glow.clear();
             glow.circle(0, 0, radius + 14);
             glow.fill({ color: area.color, alpha: 0.08 });
             glow.circle(0, 0, radius + 7);
             glow.fill({ color: area.color, alpha: 0.15 });
+            showTooltip(concept.name, e.globalX, e.globalY);
           });
           bubbleContainer.on('pointerout', () => {
             state.targetScale = 1;
             glow.clear();
+            hideTooltip();
           });
 
           areaContainer.addChild(bubbleContainer);
@@ -581,10 +787,18 @@ export default function Whiteboard() {
         const wx = (cx - world.x) / world.scale.x;
         const wy = (cy - world.y) / world.scale.y;
         const ns = Math.max(0.2, Math.min(3, newScale));
-        world.scale.set(ns);
-        world.x = cx - wx * ns;
-        world.y = cy - wy * ns;
-        needsGridRedraw = true;
+        targetScale = ns;
+        targetPanX = cx - wx * ns;
+        targetPanY = cy - wy * ns;
+      }
+
+      function zoomToPoint(newScale: number, mx: number, my: number) {
+        const wx = (mx - world.x) / world.scale.x;
+        const wy = (my - world.y) / world.scale.y;
+        const ns = Math.max(0.2, Math.min(3, newScale));
+        targetScale = ns;
+        targetPanX = mx - wx * ns;
+        targetPanY = my - wy * ns;
       }
 
       function zoomToFit() {
@@ -592,12 +806,14 @@ export default function Whiteboard() {
           (window.innerWidth - 40) / totalW,
           (window.innerHeight - 40) / totalH,
         )));
-        zoomToCenter(s);
+        const cx = (window.innerWidth - totalW * s) / 2;
+        const cy = (window.innerHeight - totalH * s) / 2;
+        targetScale = s;
+        targetPanX = Math.max(20, cx);
+        targetPanY = Math.max(20, cy);
       }
 
-      let minimapViewport: Graphics | null = null;
       const minimap = createMinimap(worldBounds, window.innerWidth, window.innerHeight, world);
-      minimapViewport = minimap.children[minimap.children.length - 1] as Graphics;
       app.stage.addChild(minimap);
 
       const zoomContainer = new Container();
@@ -607,7 +823,7 @@ export default function Whiteboard() {
 
       const zoomBg = new Graphics();
       zoomBg.roundRect(0, 0, 40, 136, 10);
-      zoomBg.fill({ color: '#ffffff', alpha: 0.85 });
+      zoomBg.fill({ color: '#ffffff', alpha: 0.88 });
       zoomBg.stroke({ color: '#d1d5db', width: 1 });
       zoomBg.eventMode = 'none';
       zoomContainer.addChild(zoomBg);
@@ -650,22 +866,221 @@ export default function Whiteboard() {
 
       app.stage.addChild(zoomContainer);
 
-      app.ticker.add(() => {
+      const searchBar = createSearchBar();
+      searchBar.container.x = (window.innerWidth - 300) / 2;
+      searchBar.container.y = 14;
+      app.stage.addChild(searchBar.container);
+
+      const legend = createLegend();
+      legend.x = window.innerWidth - 170 - 14;
+      legend.y = 14;
+      app.stage.addChild(legend);
+
+      const tooltip = new Container();
+      tooltip.visible = false;
+      tooltip.label = 'tooltip';
+
+      const tooltipBg = new Graphics();
+      tooltipBg.eventMode = 'none';
+      tooltip.addChild(tooltipBg);
+
+      const tooltipText = new Text({
+        text: '',
+        style: new TextStyle({
+          fontFamily: '"Inter", sans-serif',
+          fontSize: 12,
+          fontWeight: 'bold',
+          fill: '#ffffff',
+        }),
+      });
+      tooltip.addChild(tooltipText);
+
+      const tooltipSub = new Text({
+        text: '',
+        style: new TextStyle({
+          fontFamily: '"Inter", sans-serif',
+          fontSize: 10,
+          fill: '#d1d5db',
+        }),
+      });
+      tooltip.addChild(tooltipSub);
+
+      app.stage.addChild(tooltip);
+
+      function showTooltip(name: string, x: number, y: number) {
+        if (panel) return;
+        const cleanName = name.replace(/\n/g, ' ');
+        tooltipText.text = cleanName;
+        tooltipText.x = 10;
+        tooltipText.y = 6;
+        tooltipSub.x = 10;
+        tooltipSub.y = 22;
+        tooltipBg.clear();
+        const tw = Math.max(tooltipText.width, tooltipSub.width) + 20;
+        tooltipBg.roundRect(0, 0, tw, 38, 8);
+        tooltipBg.fill({ color: '#1f2937', alpha: 0.92 });
+        tooltip.x = Math.min(x + 15, window.innerWidth - tw - 10);
+        tooltip.y = Math.max(y - 44, 5);
+        tooltip.visible = true;
+      }
+
+      function hideTooltip() {
+        tooltip.visible = false;
+      }
+
+      const hiddenInput = document.createElement('input');
+      hiddenInput.type = 'text';
+      hiddenInput.placeholder = '';
+      hiddenInput.setAttribute('autocomplete', 'off');
+      hiddenInput.setAttribute('autocorrect', 'off');
+      hiddenInput.setAttribute('autocapitalize', 'off');
+      hiddenInput.setAttribute('spellcheck', 'false');
+      hiddenInput.style.cssText = 'position:fixed;left:-9999px;top:0;opacity:0;pointer-events:none;width:1px;height:1px;';
+      document.body.appendChild(hiddenInput);
+
+      let searchQuery = '';
+      let searchActive = false;
+
+      searchBar.container.on('pointerdown', (e) => {
+        e.stopPropagation();
+        hiddenInput.focus();
+      });
+
+      searchBar.clearBtn.on('pointerdown', (e) => {
+        e.stopPropagation();
+        hiddenInput.value = '';
+        hiddenInput.dispatchEvent(new Event('input'));
+        hiddenInput.focus();
+      });
+
+      hiddenInput.addEventListener('focus', () => {
+        searchActive = true;
+        searchBar.bg.clear();
+        searchBar.bg.roundRect(0, 0, 300, 38, 12);
+        searchBar.bg.fill({ color: '#ffffff', alpha: 1 });
+        searchBar.bg.stroke({ color: '#93c5fd', width: 1.5 });
+      });
+
+      hiddenInput.addEventListener('blur', () => {
+        searchActive = false;
+        searchBar.bg.clear();
+        searchBar.bg.roundRect(0, 0, 300, 38, 12);
+        searchBar.bg.fill({ color: '#ffffff', alpha: 0.95 });
+        searchBar.bg.stroke({ color: '#d1d5db', width: 1 });
+      });
+
+      hiddenInput.addEventListener('input', () => {
+        searchQuery = hiddenInput.value;
+        applySearch(searchQuery);
+      });
+
+      function applySearch(query: string) {
+        const q = query.toLowerCase().trim();
+        searchBar.textDisplay.text = query;
+        searchBar.placeholder.visible = !query;
+        searchBar.clearBtn.visible = query.length > 0;
+        searchBar.matchLabel.visible = false;
+
+        if (!q) {
+          for (const s of bubbleStates) {
+            s.baseAlpha = 1;
+          }
+          for (const mc of macroareaContainers) {
+            mc.alpha = 1;
+          }
+          return;
+        }
+
+        let matchCount = 0;
+        const areaMatchFlags = new Array(MACROAREAS.length).fill(false);
+
         for (const s of bubbleStates) {
-          if (Math.abs(s.currentScale - s.targetScale) > 0.001) {
-            s.currentScale += (s.targetScale - s.currentScale) * 0.18;
-            s.container.scale.set(s.currentScale);
+          const name = s.concept.name.replace(/\n/g, ' ').toLowerCase();
+          const desc = s.concept.description.toLowerCase();
+          const matched = name.includes(q) || desc.includes(q);
+          if (matched) {
+            s.baseAlpha = 1;
+            matchCount++;
+            const areaIdx = MACROAREAS.indexOf(s.macroarea);
+            if (areaIdx >= 0) areaMatchFlags[areaIdx] = true;
+          } else {
+            s.baseAlpha = 0.12;
           }
         }
+
+        for (let i = 0; i < macroareaContainers.length; i++) {
+          macroareaContainers[i].alpha = areaMatchFlags[i] ? 1 : 0.15;
+        }
+
+        searchBar.matchLabel.text = `${matchCount} match${matchCount !== 1 ? 'es' : ''}`;
+        searchBar.matchLabel.visible = true;
+      }
+
+      app.ticker.add(() => {
+        const introElapsed = Date.now() - introStart;
+
+        for (let mi = 0; mi < macroareaContainers.length; mi++) {
+          const areaDelay = mi * 60;
+          const t = Math.min(1, Math.max(0, (introElapsed - areaDelay) / 500));
+          if (t < 1 && t > 0) {
+            macroareaContainers[mi].alpha = t;
+          }
+        }
+
+        const introDone = introElapsed > MACROAREAS.length * 60 + 500;
+
+        for (const s of bubbleStates) {
+          const introIdx = bubbleStates.indexOf(s);
+          const bubbleDelay = introIdx * 15;
+          let introT = 1;
+          if (!introDone) {
+            introT = Math.min(1, Math.max(0, (introElapsed - bubbleDelay) / 400));
+          }
+
+          if (Math.abs(s.currentScale - s.targetScale) > 0.001) {
+            s.currentScale += (s.targetScale - s.currentScale) * 0.18;
+          }
+          s.container.scale.set(s.currentScale * introT);
+
+          const targetAlpha = s.baseAlpha * introT;
+          if (Math.abs(s.container.alpha - targetAlpha) > 0.01) {
+            s.container.alpha += (targetAlpha - s.container.alpha) * 0.15;
+          }
+        }
+
+        if (introDone) {
+          for (const s of bubbleStates) {
+            if (s.baseAlpha >= 1) s.container.alpha = 1;
+          }
+        }
+
+        if (!dragging) {
+          const ds = Math.abs(world.scale.x - targetScale);
+          const dx = Math.abs(world.x - targetPanX);
+          const dy = Math.abs(world.y - targetPanY);
+
+          if (ds > 0.0001 || dx > 0.1 || dy > 0.1) {
+            world.scale.x += (targetScale - world.scale.x) * ZOOM_LERP;
+            world.scale.y = world.scale.x;
+            world.x += (targetPanX - world.x) * PAN_LERP;
+            world.y += (targetPanY - world.y) * PAN_LERP;
+            needsGridRedraw = true;
+          } else if (ds > 0 || dx > 0 || dy > 0) {
+            world.scale.set(targetScale);
+            world.x = targetPanX;
+            world.y = targetPanY;
+          }
+        }
+
         if (needsGridRedraw) {
           redrawGrid(grid, world, app.renderer.width / (window.devicePixelRatio || 1), app.renderer.height / (window.devicePixelRatio || 1));
           needsGridRedraw = false;
         }
-        if (minimapViewport) {
-          const mmData = minimap as unknown as Record<string, unknown>;
-          const updateFn = mmData._updateViewport as () => void;
-          if (updateFn) updateFn();
-        }
+
+        const mmData = minimap as unknown as Record<string, unknown>;
+        const updateFn = mmData._updateViewport as () => void;
+        if (updateFn) updateFn();
+
         zoomLabel.text = `${Math.round(world.scale.x * 100)}%`;
 
         if (panelFadeDir !== 0 && panel) {
@@ -682,7 +1097,6 @@ export default function Whiteboard() {
         }
       });
 
-      // Zoom & Pan
       app.stage.eventMode = 'static';
       app.stage.hitArea = new Rectangle(0, 0, window.innerWidth, window.innerHeight);
       app.stage.cursor = 'grab';
@@ -696,6 +1110,8 @@ export default function Whiteboard() {
       app.stage.on('pointerdown', (e) => {
         if (e.target !== app.stage) return;
         dragging = true;
+        targetPanX = world.x;
+        targetPanY = world.y;
         dragSX = e.clientX;
         dragSY = e.clientY;
         worldSX = world.x;
@@ -704,9 +1120,19 @@ export default function Whiteboard() {
       });
 
       app.stage.on('pointermove', (e) => {
+        if (tooltip.visible) {
+          tooltipBg.clear();
+          const tw = Math.max(tooltipText.width, tooltipSub.width) + 20;
+          tooltipBg.roundRect(0, 0, tw, 38, 8);
+          tooltipBg.fill({ color: '#1f2937', alpha: 0.92 });
+          tooltip.x = Math.min(e.globalX + 15, window.innerWidth - tw - 10);
+          tooltip.y = Math.max(e.globalY - 44, 5);
+        }
         if (!dragging) return;
         world.x = worldSX + (e.clientX - dragSX);
         world.y = worldSY + (e.clientY - dragSY);
+        targetPanX = world.x;
+        targetPanY = world.y;
         needsGridRedraw = true;
       });
 
@@ -720,27 +1146,25 @@ export default function Whiteboard() {
       app.canvas.addEventListener('wheel', (e: WheelEvent) => {
         e.preventDefault();
         const factor = e.deltaY > 0 ? 0.92 : 1.08;
-        const ns = Math.max(0.2, Math.min(3, world.scale.x * factor));
-        const mx = e.clientX;
-        const my = e.clientY;
-        const wx = (mx - world.x) / world.scale.x;
-        const wy = (my - world.y) / world.scale.y;
-        world.scale.set(ns);
-        world.x = mx - wx * ns;
-        world.y = my - wy * ns;
-        needsGridRedraw = true;
+        zoomToPoint(world.scale.x * factor, e.clientX, e.clientY);
       }, { passive: false });
 
-      // Detail panel
       let panel: Container | null = null;
       let panelFadeDir: number = 0;
 
       function closePanel() {
         if (!panel || panelFadeDir === -1) return;
         panelFadeDir = -1;
+        hideTooltip();
       }
 
       function openPanel(data: { concept: ConceptData; macroarea: MacroareaConfig }) {
+        if (data.concept.name.replace(/\n/g, ' ').toLowerCase().includes(searchQuery.toLowerCase().trim()) || !searchQuery.trim()) {
+          // ok to open
+        } else {
+          return;
+        }
+        hideTooltip();
         if (panel) {
           app.stage.removeChild(panel);
           panel.destroy({ children: true });
@@ -844,11 +1268,11 @@ export default function Whiteboard() {
             fill: data.macroarea.color,
           }),
         });
-        const badgeBg = new Graphics();
-        badgeBg.roundRect(px + pad - 4, cy - 3, badgeTxt.width + 10, badgeTxt.height + 6, 5);
-        badgeBg.fill({ color: data.macroarea.color, alpha: 0.1 });
-        badgeBg.eventMode = 'none';
-        root.addChild(badgeBg);
+        const badgeBgGfx = new Graphics();
+        badgeBgGfx.roundRect(px + pad - 4, cy - 3, badgeTxt.width + 10, badgeTxt.height + 6, 5);
+        badgeBgGfx.fill({ color: data.macroarea.color, alpha: 0.1 });
+        badgeBgGfx.eventMode = 'none';
+        root.addChild(badgeBgGfx);
         badgeTxt.x = px + pad + 1;
         badgeTxt.y = cy;
         root.addChild(badgeTxt);
@@ -971,7 +1395,15 @@ export default function Whiteboard() {
       }
 
       const onKey = (e: KeyboardEvent) => {
-        if (e.key === 'Escape') closePanel();
+        if (e.key === 'Escape') {
+          if (searchActive && searchQuery) {
+            hiddenInput.value = '';
+            hiddenInput.dispatchEvent(new Event('input'));
+            return;
+          }
+          closePanel();
+        }
+        if (searchActive) return;
         if (e.key === '+' || e.key === '=') zoomToCenter(world.scale.x * 1.2);
         if (e.key === '-' || e.key === '_') zoomToCenter(world.scale.x / 1.2);
         if (e.key === '0') zoomToFit();
@@ -991,12 +1423,17 @@ export default function Whiteboard() {
         minimap.y = window.innerHeight - 110 - 12;
         zoomContainer.x = 20;
         zoomContainer.y = window.innerHeight - 180;
+        searchBar.container.x = (window.innerWidth - 300) / 2;
+        searchBar.container.y = 14;
+        legend.x = window.innerWidth - 170 - 14;
+        legend.y = 14;
       };
       window.addEventListener('resize', onResize);
 
       cleanup = () => {
         window.removeEventListener('keydown', onKey);
         window.removeEventListener('resize', onResize);
+        document.body.removeChild(hiddenInput);
         if (panel) {
           app.stage.removeChild(panel);
           panel.destroy({ children: true });
