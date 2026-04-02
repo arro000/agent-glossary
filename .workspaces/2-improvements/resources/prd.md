@@ -1,7 +1,7 @@
-# PRD — Iterazione 1
+# PRD — Iterazione 2
 
 ## Obiettivo
-Raffinare la whiteboard per rappresentare il glossario come una macchina agentica: macroaree, harness, memoria, contesto, tools, skills, navigazione tra riferimenti e osservability.
+Raffinare la whiteboard per rappresentare il glossario come una macchina agentica: macroaree, harness, memoria, contesto, tools, skills, navigazione tra riferimenti, observability e discovery.
 
 ## Changes
 - [x] Setup PixiJS Application con griglia quadrettata
@@ -18,6 +18,8 @@ Raffinare la whiteboard per rappresentare il glossario come una macchina agentic
 - [x] Raffinamento visuale dell'attuale iterazione: header macroarea piu leggibili, bubble equal-size piu bilanciate, emoji piu riconoscibili e project weight piu chiaro
 - [x] Miglioramento feedback interaction: tooltip e selezione restano leggibili su viewport piccole senza introdurre overlay HTML
 - [x] Conservato il vincolo full-canvas PixiJS v8 vanilla con font Inter e layout responsive
+- [x] Allineamento finale al dataset `concepts.md`: `Context Graph` e `Durable Execution` aggiunti, per un totale di 100 subsection bubbles coerenti con la taxonomy corrente
+- [x] Signal chip e visual cues tenuti discreti ma leggibili per harness, context, reference navigation e replay-aware workflows
 
 ## Dettagli Tecnici
 Vedi `context.md` per le specifiche complete.
@@ -33,8 +35,9 @@ Vedi `context.md` per le specifiche complete.
 - Il peso progetto deve restare codificato in modo discreto ma immediatamente interpretabile (ring + badge + panel)
 - Le macroaree devono rimanere pastello e distinte, ma senza competere con la leggibilita delle bubble
 - Le emoji devono restare riconoscibili anche su bubble compatte e ad alto DPR
+- Context graph, reference navigation e durable execution devono avere segnali visivi distintivi ma non invasivi
 
-## Criticità
+## Criticita
 - Performance con molte bolle: usare Container per culling e redraw minimo della griglia
 - Font Inter deve essere caricato prima del rendering PixiJS
 - Gestione responsive del canvas su resize

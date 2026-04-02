@@ -105,6 +105,7 @@ const MACROAREAS: MacroareaConfig[] = [
       { name: 'Context\nCompression', popularity: 7, description: 'Comprimere il contesto per rientrare nella finestra di token', alternatives: 'Summarization, Token merging, Key info extraction', category: 'Optimization' },
       { name: 'Eval\nHarness', popularity: 8, description: 'Runner strutturato per prompt, agenti e RAG con dataset, scoring, regression checks e integrazione CI', alternatives: 'promptfoo, Inspect AI, OpenAI Evals, custom CI evals', category: 'Quality' },
       { name: 'Harness /\nRuntime Scaffold', popularity: 9, description: 'Tutto lo strato attorno all\'LLM che prepara il prompt, gestisce hooks, tools, memory, traces, eval e state', alternatives: 'Claude Code harness, agent runtime, LLM OS, outer loop', category: 'Runtime' },
+      { name: 'Durable\nExecution', popularity: 8, description: 'Esecuzione persistente che conserva stato e progressi tra interruzioni, retry e resume', alternatives: 'LangGraph durable execution, Temporal workflows, checkpointed state machines', category: 'Runtime' },
     ],
   },
   {
@@ -201,6 +202,7 @@ const MACROAREAS: MacroareaConfig[] = [
     concepts: [
       { name: 'Agentic\nRAG', popularity: 9, description: 'Pattern RAG dove l\'agente decide attivamente quando, come e se recuperare informazioni. Include Self-RAG, Corrective RAG, Adaptive RAG.', alternatives: 'Traditional RAG, LangChain agentic RAG, LlamaIndex agent workflows', category: 'Pattern' },
       { name: 'Deep Research\nAgent', popularity: 9, description: 'Agente che conduce ricerca multi-step: pianifica query, naviga il web, sintetizza report con citazioni e self-critica', alternatives: 'GPT Researcher, STORM, Tongyi DeepResearch, DeepSearcher', category: 'Pattern' },
+      { name: 'Context\nGraph', popularity: 8, description: 'Grafo temporale di entità, relazioni, episodi e provenance che permette di recuperare contesto evolutivo invece di comprimere soltanto la chat history', alternatives: 'Graphiti, Zep, GraphRAG, temporal knowledge graph', category: 'Navigation' },
       { name: 'Reference\nNavigation', popularity: 8, description: 'Esplorazione dei riferimenti già visti: recupero semantico, pinning, citazioni, summary incrementali e navigazione tra fonti correlate invece della sola compressione del contesto', alternatives: 'retrieval browser, citation graph, memory browsing, semantic search UI', category: 'Navigation' },
       { name: 'Repo Map /\nCodebase Map', popularity: 8, description: 'Mappa strutturale del codebase per navigazione e editing su repository grandi, spesso derivata da tree-sitter o analisi statica per mostrare file e dipendenze rilevanti', alternatives: 'Aider repomap, semantic code graph, file tree summaries', category: 'Navigation' },
     ],
@@ -256,7 +258,9 @@ function getBubbleEmoji(areaName: string, category: string, conceptName: string)
   const conceptKey = conceptName.replace(/\n/g, ' ').toLowerCase();
   if (conceptKey.includes('harness / runtime scaffold')) return '🧱';
   if (conceptKey.includes('eval harness')) return '🧪';
+  if (conceptKey.includes('durable execution')) return '🔁';
   if (conceptKey.includes('context window')) return '🪟';
+  if (conceptKey.includes('context graph')) return '🕸️';
   if (conceptKey.includes('reference navigation')) return '🔎';
   if (conceptKey.includes('repo map') || conceptKey.includes('codebase map')) return '🗺️';
   if (conceptKey.includes('trace replay')) return '🎞️';
@@ -324,7 +328,9 @@ function getConceptSignal(conceptName: string): { label: string; color: string }
   const key = conceptName.replace(/\n/g, ' ').toLowerCase();
   if (key.includes('harness / runtime scaffold')) return { label: 'HARNESS', color: '#0284c7' };
   if (key.includes('eval harness')) return { label: 'EVAL', color: '#7c3aed' };
+  if (key.includes('durable execution')) return { label: 'REPLAY', color: '#7c3aed' };
   if (key.includes('context window')) return { label: 'CONTEXT', color: '#2563eb' };
+  if (key.includes('context graph')) return { label: 'CONTEXT', color: '#2563eb' };
   if (key.includes('reference navigation')) return { label: 'REF NAV', color: '#0f766e' };
   if (key.includes('repo map') || key.includes('codebase map')) return { label: 'REPO MAP', color: '#0f766e' };
   return null;

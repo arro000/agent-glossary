@@ -1,8 +1,8 @@
 # Workspace 1 — Implementation
 
 ## Stato
-- **Iterazione**: 1
-- **Ultimo aggiornamento**: 2026-04-02 21:40:12
+- **Iterazione**: 2
+- **Ultimo aggiornamento**: 2026-04-02 22:10:00
 - **Stato**: completed
 
 ## Obiettivo
@@ -37,11 +37,11 @@ Una whiteboard quadrettata interattiva che mostra un glossario visuale dell'ecos
 11. **Business Automation** — 2 concetti: Visual Agent Builder, Low-Code Agent Platform
 12. **Protocol Extensions** — 2 concetti: MCP Apps, Agent Registry / Discovery
 
-**Totale: 69 concetti** (era 62 nell'iterazione 2)
+**Totale: 100 concetti** (dataset corrente allineato a `concepts.md`)
 
 ## Dati
 I concetti/strumenti per ogni macroarea stanno nel file `resources/concepts.md`.
-La whiteboard rappresenta 69 subsection correnti allineate alle macroaree principali del database.
+La whiteboard rappresenta 100 subsection correnti allineate alle macroaree principali del database.
 
 ## Dettagli Implementativi
 
@@ -233,6 +233,13 @@ La whiteboard rappresenta 69 subsection correnti allineate alle macroaree princi
 - [x] Rafforzata la traduzione visiva di harness/context/reference-navigation con signal chip dedicati nelle subsection bubble (`HARNESS`, `CONTEXT`, `REF NAV`, `REPO MAP`, `EVAL`)
 - [x] Layout reso piu chiaro senza aumentare densita: macroaree piu ariose (dimensioni/gap aumentati) e bubble packing aggiornato per dataset denso mantenendo bubble equal-size
 - [x] Confermato encoding del peso progetto tramite reference count (`alternatives`) senza cambiare il diametro delle bubble
+
+## Iterazione 2 (Questa esecuzione) — Completata
+- [x] Sincronizzato il dataset visuale con `resources/concepts.md` aggiungendo `Context Graph` e `Durable Execution`
+- [x] Allineato il totale subsection a **100** bolle, coerente con la taxonomy corrente
+- [x] Aggiornato il PRD di workspace 2 alla nuova iterazione con vincoli su context graph, reference navigation e durable execution
+- [x] Rafforzati i signal cue per i pattern harness/context/replay senza introdurre overlay HTML
+- [x] Verifica tecnica eseguita: `npm run build` completata con successo
 
 ## Comandi Dopo Ogni Iterazione
 1. Aggiorna questo file con lo stato attuale
