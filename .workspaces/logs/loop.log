@@ -451,3 +451,277 @@ Commit:
 
 Note: `.workspaces/logs/loop.log` is still modified and was intentionally not committed.
 [0;32m[2026-04-02 21:27:40] ✓[0m Workspace Improvements & PRD completed successfully
+ 1 file changed, 170 insertions(+)
+To https://github.com/arro000/agent-glossary.git
+   1a05359..161e049  main -> main
+[0;32m[2026-04-02 21:27:41] ✓[0m Workspace changes committed and pushed
+[0;36m[2026-04-02 21:27:41][0m Launching OpenCode for workspace Implementation...
+[0m
+> build · gpt-5.3-codex
+[0m
+[0m→ [0mRead .workspaces/1-implementation/context.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/pixijs-reference.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .workspaces/2-improvements/context.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .workspaces/2-improvements/resources/prd.md[90m [offset=1, limit=2000][0m
+[0m✱ [0mGlob "src/**/*.{ts,tsx,css}"[90m in . · 4 matches[0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1, limit=2400][0m
+[0m→ [0mRead src/app/page.tsx[90m [offset=1, limit=400][0m
+[0m→ [0mRead src/app/globals.css[90m [offset=1, limit=400][0m
+[0m→ [0mRead src/app/layout.tsx[90m [offset=1, limit=300][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1103, limit=2400][0m
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+
+LSP errors detected in src/components/whiteboard.tsx, please fix:
+<diagnostics file="/home/arro/projects/agent-glossary/src/components/whiteboard.tsx">
+ERROR [1196:25] Expected 3 arguments, but got 2.
+</diagnostics>
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+[0m
+[0m$ [0mnpm run build
+> agent-glossary@0.1.0 build
+> next build
+
+▲ Next.js 16.2.2 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.1s
+  Running TypeScript ...
+  Finished TypeScript in 1995ms ...
+  Collecting page data using 5 workers ...
+  Generating static pages using 5 workers (0/4) ...
+  Generating static pages using 5 workers (1/4) 
+  Generating static pages using 5 workers (2/4) 
+  Generating static pages using 5 workers (3/4) 
+✓ Generating static pages using 5 workers (4/4) in 343ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+[0m
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/1-implementation/context.md
+[0m
+[0m$ [0mgit status --short
+M .workspaces/1-implementation/context.md
+ M .workspaces/logs/loop.log
+ M src/components/whiteboard.tsx
+[0m
+[0m$ [0mgit diff -- src/components/whiteboard.tsx .workspaces/1-implementation/context.md
+diff --git a/.workspaces/1-implementation/context.md b/.workspaces/1-implementation/context.md
+index 77e6d31..41d2f45 100644
+--- a/.workspaces/1-implementation/context.md
++++ b/.workspaces/1-implementation/context.md
+@@ -1,9 +1,9 @@
+ # Workspace 1 — Implementation
+ 
+ ## Stato
+-- **Iterazione**: 5
+-- **Ultimo aggiornamento**: 2026-04-02 18:18:09
+-- **Stato**: completed
++- **Iterazione**: 1
++- **Ultimo aggiornamento**: 2026-04-02 21:27:41
++- **Stato**: in_progress
+ 
+ ## Obiettivo
+ Implementare l'app "Agent Glossary Whiteboard" usando PixiJS v8 + Next.js.
+@@ -215,6 +215,14 @@ La whiteboard rappresenta 69 subsection correnti allineate alle macroaree princi
+ - [x] Ring segmentato reso piu contrastato per comunicare meglio il project-weight a colpo d'occhio
+ - [x] Verifica finale: `npm run build` completata con successo
+ 
++## Iterazione 1 (Richiesta utente corrente) — Completata
++- [x] Letto il contesto richiesto (`context.md`, `resources/concepts.md`, `resources/pixijs-reference.md`, `workspace 2 context`, `research findings`) e verificato PRD presente in `.workspaces/2-improvements/resources/prd.md`
++- [x] Tradotti i segnali harness/context/reference-navigation in elementi visivamente piu riconoscibili nelle bubbles (emoji dedicate per Harness Runtime Scaffold, Context Window, Reference Navigation, Repo Map e Trace Replay)
++- [x] Migliorata la leggibilita del layout senza aumentare densita: macroaree piu ariose (dimensioni/gap aumentati) e packing bubbles piu bilanciato
++- [x] Mantenuti i vincoli chiave: bolle equal-size, project-weight codificato da refs (ring+badge), hover glow, click panel, zoom/pan
++- [x] Fix UI search bar: focus/blur ora ridisegnano il box con dimensioni reali anche in viewport compatta
++- [x] Verifica tecnica: `npm run build` completata con successo
++
+ ## File Principali
+ - `src/components/whiteboard.tsx` — Componente principale con tutta la logica PixiJS
+ - `src/app/page.tsx` — Pagina che renderizza il whiteboard
+diff --git a/src/components/whiteboard.tsx b/src/components/whiteboard.tsx
+index ff2f660..0bcb734 100644
+--- a/src/components/whiteboard.tsx
++++ b/src/components/whiteboard.tsx
+@@ -30,15 +30,15 @@ interface MacroareaConfig {
+ const GRID_SIZE = 40;
+ const GRID_COLOR = '#e5e5e5';
+ const BG_COLOR = '#fafafa';
+-const AREA_WIDTH = 720;
+-const AREA_HEIGHT = 460;
+-const COL_GAP = 80;
+-const ROW_GAP = 60;
+-const START_X = 80;
+-const START_Y = 60;
++const AREA_WIDTH = 760;
++const AREA_HEIGHT = 500;
++const COL_GAP = 96;
++const ROW_GAP = 72;
++const START_X = 64;
++const START_Y = 52;
+ const COL_STEP = AREA_WIDTH + COL_GAP;
+ const ROW_STEP = AREA_HEIGHT + ROW_GAP;
+-const BUBBLE_RADIUS = 46;
++const BUBBLE_RADIUS = 44;
+ const PROJECT_WEIGHT_SEGMENTS = 10;
+ const ZOOM_LERP = 0.12;
+ const PAN_LERP = 0.15;
+@@ -252,7 +252,15 @@ function getAreaPosition(index: number) {
+   return { x: START_X + col * COL_STEP, y: START_Y + row * ROW_STEP };
+ }
+ 
+-function getBubbleEmoji(areaName: string, category: string): string {
++function getBubbleEmoji(areaName: string, category: string, conceptName: string): string {
++  const conceptKey = conceptName.replace(/\n/g, ' ').toLowerCase();
++  if (conceptKey.includes('harness / runtime scaffold')) return '🧱';
++  if (conceptKey.includes('eval harness')) return '🧪';
++  if (conceptKey.includes('context window')) return '🪟';
++  if (conceptKey.includes('reference navigation')) return '🔎';
++  if (conceptKey.includes('repo map') || conceptKey.includes('codebase map')) return '🗺️';
++  if (conceptKey.includes('trace replay')) return '🎞️';
++
+   const key = `${areaName} ${category}`.toLowerCase();
+   if (key.includes('memory')) return '🧠';
+   if (key.includes('tool') || key.includes('action')) return '🛠️';
+@@ -306,9 +314,9 @@ function getReferenceCount(alternatives: string): number {
+ 
+ function getBubbleColumns(count: number): number {
+   if (count <= 3) return count;
+-  if (count <= 6) return 3;
+-  if (count <= 10) return 4;
+-  return Math.min(6, Math.max(4, Math.ceil(Math.sqrt(count * 1.2))));
++  if (count <= 8) return 4;
++  if (count <= 13) return 5;
++  return Math.min(5, Math.max(4, Math.ceil(Math.sqrt(count * 1.15))));
+ }
+ 
+ function getBubbleReferenceScore(concept: ConceptData): number {
+@@ -405,9 +413,9 @@ function drawProjectWeightRing(
+ 
+ function layoutBubbles(concepts: ConceptData[], ax: number, ay: number) {
+   const n = concepts.length;
+-  const padX = 30;
+-  const padY = 20;
+-  const headerH = 38;
++  const padX = 34;
++  const padY = 26;
++  const headerH = 54;
+   const availW = AREA_WIDTH - padX * 2;
+   const availH = AREA_HEIGHT - headerH - padY * 2;
+ 
+@@ -754,9 +762,13 @@ function createSearchBar(screenW: number, compact = false): {
+   clearBtn: Container;
+   matchLabel: Text;
+   iconGfx: Graphics;
++  width: number;
++  height: number;
++  radius: number;
+ } {
+   const w = compact ? Math.min(Math.max(screenW - 24, 280), 360) : 300;
+   const h = compact ? 46 : 38;
++  const radius = 12;
+   const pad = compact ? 14 : 12;
+ 
+   const container = new Container();
+@@ -770,7 +782,7 @@ function createSearchBar(screenW: number, compact = false): {
+   container.addChild(shadow);
+ 
+   const bg = new Graphics();
+-  bg.roundRect(0, 0, w, h, 12);
++  bg.roundRect(0, 0, w, h, radius);
+   bg.fill({ color: '#ffffff', alpha: 0.95 });
+   bg.stroke({ color: '#d1d5db', width: 1 });
+   bg.eventMode = 'none';
+@@ -852,7 +864,7 @@ function createSearchBar(screenW: number, compact = false): {
+   matchLabel.visible = false;
+   container.addChild(matchLabel);
+ 
+-  return { container, bg, textDisplay, placeholder, clearBtn, matchLabel, iconGfx };
++  return { container, bg, textDisplay, placeholder, clearBtn, matchLabel, iconGfx, width: w, height: h, radius };
+ }
+ 
+ function createLegend(onAreaClick: (areaIndex: number) => void, compact = false): Container {
+@@ -1162,7 +1174,7 @@ export default function Whiteboard() {
+         areaContainer.addChild(label);
+ 
+         const conceptCount = new Text({
+-          text: `${area.concepts.length} subsections`,
++          text: `${area.concepts.length} subsections • weighted by refs`,
+           style: new TextStyle({
+             fontFamily: '"Inter", sans-serif',
+             fontSize: 10,
+@@ -1181,7 +1193,7 @@ export default function Whiteboard() {
+           const by = y - pos.y;
+           const referenceCount = getReferenceCount(concept.alternatives);
+           const displayLabel = getBubbleLabel(concept.name);
+-          const emoji = getBubbleEmoji(area.name, concept.category);
++          const emoji = getBubbleEmoji(area.name, concept.category, concept.name);
+           const searchIndex = buildSearchHaystack(concept, area.name);
+ 
+           const bubbleContainer = new Container();
+@@ -1430,7 +1442,7 @@ export default function Whiteboard() {
+       app.stage.addChild(zoomContainer);
+ 
+       const searchBar = createSearchBar(window.innerWidth, compactMode);
+-      searchBar.container.x = Math.max(12, (window.innerWidth - (compactMode ? Math.min(Math.max(window.innerWidth - 24, 280), 360) : 300)) / 2);
++      searchBar.container.x = Math.max(12, (window.innerWidth - searchBar.width) / 2);
+       searchBar.container.y = compactMode ? 10 : 14;
+       app.stage.addChild(searchBar.container);
+ 
+@@ -1534,7 +1546,7 @@ export default function Whiteboard() {
+       hiddenInput.addEventListener('focus', () => {
+         searchActive = true;
+         searchBar.bg.clear();
+-        searchBar.bg.roundRect(0, 0, 300, 38, 12);
++        searchBar.bg.roundRect(0, 0, searchBar.width, searchBar.height, searchBar.radius);
+         searchBar.bg.fill({ color: '#ffffff', alpha: 1 });
+         searchBar.bg.stroke({ color: '#93c5fd', width: 1.5 });
+       });
+@@ -1542,7 +1554,7 @@ export default function Whiteboard() {
+       hiddenInput.addEventListener('blur', () => {
+         searchActive = false;
+         searchBar.bg.clear();
+-        searchBar.bg.roundRect(0, 0, 300, 38, 12);
++        searchBar.bg.roundRect(0, 0, searchBar.width, searchBar.height, searchBar.radius);
+         searchBar.bg.fill({ color: '#ffffff', alpha: 0.95 });
+         searchBar.bg.stroke({ color: '#d1d5db', width: 1 });
+       });
+[0m
+[0m$ [0mgit log -8 --oneline
+161e049 loop iter 1: workspace 2 (Improvements & PRD) completed
+a0293cb Improve whiteboard metadata caching and selection feedback
+1a05359 loop iter 1: workspace 3 (Research & Content) completed
+992fc85 Sync whiteboard with updated taxonomy
+79773b8 loop iter 1: workspace 3 (Research & Content) completed
+b909d89 Improve mobile navigation for whiteboard
+c40e5fe loop iter 5: workspace 3 (Research & Content) completed
+2300813 loop iter 5: workspace 2 (Improvements & PRD) completed
+[0m
+[0m$ [0mgit add src/components/whiteboard.tsx .workspaces/1-implementation/context.md && git commit -m "Improve whiteboard clarity with weighted concept cues" && git status --short
+[main dd15666] Improve whiteboard clarity with weighted concept cues
+ 2 files changed, 44 insertions(+), 24 deletions(-)
+ M .workspaces/logs/loop.log
+[0m
+Implemented and committed. I checked the PRD at `.workspaces/2-improvements/resources/prd.md` (it exists, baseline constraints), then applied the iteration focus to make the board clearer without increasing visual density.
+
+- Updated whiteboard layout spacing and macroarea sizing for better readability while keeping bubble diameter uniform in `src/components/whiteboard.tsx`.
+- Kept subsection bubbles equal-size and project-weighted (refs still drive weight styling, not size), and added clearer macroarea weight messaging (`subsections • weighted by refs`) in `src/components/whiteboard.tsx`.
+- Made harness/context/reference-navigation ideas more visibly recognizable with explicit concept emoji mappings (including Harness Runtime Scaffold, Context Window, Reference Navigation, Repo Map, Trace Replay) in `src/components/whiteboard.tsx`.
+- Fixed search bar focus/blur redraw sizing so compact/mobile rendering remains correct in `src/components/whiteboard.tsx`.
+- Updated implementation status/context notes in `.workspaces/1-implementation/context.md`.
+- Verified with `npm run build` (successful).
+
+Commit:
+- `dd15666` — `Improve whiteboard clarity with weighted concept cues`
+
+Note:
+- I committed only the relevant files; `.workspaces/logs/loop.log` remains modified and uncommitted.
+[0;32m[2026-04-02 21:29:53] ✓[0m Workspace Implementation completed successfully
