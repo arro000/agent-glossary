@@ -5561,3 +5561,1184 @@ Commits:
 
 Note: `.workspaces/logs/loop.log` keeps getting updated by the workspace logger.
 [0;32m[2026-04-02 18:11:55] ✓[0m Workspace Improvements & PRD completed successfully
+ 1 file changed, 26 insertions(+)
+To https://github.com/arro000/agent-glossary.git
+   4d13964..2d0f924  main -> main
+[0;32m[2026-04-02 18:11:56] ✓[0m Workspace changes committed and pushed
+[0;36m[2026-04-02 18:11:56][0m Launching OpenCode for workspace Research & Content...
+[0m
+> build · gpt-5.4-mini
+[0m
+I’m pulling the current research state first, then I’ll fill gaps with source-backed entries and update the iteration context.
+[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/3-research/context.md[90m [offset=1, limit=200][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1, limit=400][0m
+I’ve confirmed the workspace already has prior research for protocols, voice, and curated lists. Next I’m checking what’s missing so I only add genuinely new, source-backed entries.
+[0m✱ [0mGrep "Awesome|awesome|registry|discovery|voice|browser|MCP Servers|GitHub Copilot|Claude Code"[90m in .workspaces/3-research/resources/findings.md · 69 matches[0m
+[0m→ [0mRead .workspaces/3-research/resources/guides.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .workspaces/3-research/resources/awesome-agents-scan.md[90m [offset=1, limit=260][0m
+I found the scan and the existing curated-list entries. I’m checking the exact surrounding entries now so I can extend the list without duplicating or drifting from the current schema.
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=960, limit=180][0m
+[0m→ [0mRead .workspaces/3-research/resources/guides.md[90m [offset=260, limit=120][0m
+I’m now looking for additional high-signal curated repositories beyond the ones already in the whiteboard, especially directories and example hubs that help researchers find runnable projects fast.
+[0m✱ [0mGrep "^### Agent Registry / Discovery|^### AG-UI Protocol|^### Semantic Kernel|^### Voice Agent|^### Browser Automation|^### Curated Repos|^### Awesome MCP Servers"[90m in .workspaces/1-implementation/resources/concepts.md · 4 matches[0m
+[0m
+[0m$ [0mgh search repos "awesome mcp" --limit 10
+punkpeye/awesome-mcp-servers	A collection of MCP servers.	public	2026-04-02T17:51:59Z
+appcypher/awesome-mcp-servers	Awesome MCP Servers - A curated list of Model Context Protocol servers	public	2026-04-02T17:50:32Z
+wong2/awesome-mcp-servers	A curated list of Model Context Protocol (MCP) servers	public	2026-04-02T16:13:43Z
+punkpeye/awesome-mcp-clients	A collection of MCP clients.	public	2026-04-02T11:14:12Z
+yzfly/Awesome-MCP-ZH	MCP 资源精选， MCP指南，Claude MCP，MCP Servers, MCP Clients	public	2026-04-02T13:58:10Z
+chatmcp/mcpso	directory for Awesome MCP Servers	public	2026-04-02T17:00:35Z
+TensorBlock/awesome-mcp-servers	A comprehensive collection of Model Context Protocol (MCP) servers	public	2026-04-02T16:32:04Z
+MobinX/awesome-mcp-list	A concise list for mcp servers	public	2026-03-30T03:40:03Z
+YuzeHao2023/Awesome-MCP-Servers	A curated list of Model Context Protocol (MCP) servers	public	2026-04-02T11:11:46Z
+punkpeye/awesome-mcp-devtools	A curated list of developer tools, SDKs, libraries, and testing utilities for Model Context Protocol (MCP) server development.	public	2026-04-01T20:27:37Z
+[0m
+[0m$ [0mgh search repos "awesome agents" --limit 10
+nibzard/awesome-agentic-patterns	A curated catalogue of awesome agentic AI patterns	public	2026-04-02T18:08:13Z
+kyrolabs/awesome-agents	🤖 Awesome list of AI Agents	public	2026-04-02T17:10:32Z
+cloudflare/awesome-agents	Awesome Agents	public	2026-04-01T13:24:18Z
+DavidZWZ/Awesome-Deep-Research	[Up-to-date] Awesome Agentic Deep Research Resources	public	2026-04-02T15:28:03Z
+futantan/agent-skills.md	Find awesome Agent Skills	public	2026-04-02T12:07:45Z
+littleben/awesomeAgentskills	A curated collection of skills for Claude Code and other AI agents | 精选的 Claude Code 和其他 AI 智能体技能集合	public	2026-04-02T16:12:53Z
+lawvable/awesome-legal-skills	A curated list of awesome Agent Skills for automating legal work	public	2026-04-02T16:52:14Z
+AgentMemoryWorld/Awesome-Agent-Memory	[Up-To-Date] Awesome Agent Memory Paper Resource	public	2026-04-01T22:54:21Z
+Kunlun-Zhu/Awesome-Agents-Research		public	2025-11-03T11:52:37Z
+BigTaige/Awesome-Agent-Training	Awesome Agent Training	public	2025-10-23T07:03:19Z
+[0m
+[0m$ [0mgh search repos "voice agents" --limit 10
+huggingface/speech-to-speech	Build local voice agents with open-source models	public	2026-04-02T16:17:51Z
+openai/openai-agents-js	A lightweight, powerful framework for multi-agent workflows and voice agents	public	2026-04-02T17:26:54Z
+second-state/echokit_server	Open Source Voice Agent Platform	public	2026-03-31T14:10:30Z
+dograh-hq/dograh	Open Source Voice Agent Platform	public	2026-04-02T16:07:07Z
+Anil-matcha/AI-Voice-Agent	Self-hosted AI voice agent	public	2026-04-01T09:06:58Z
+murf-ai/ten-days-of-voice-agents-2025		public	2026-03-27T12:20:56Z
+miuda-ai/active-call	A SIP/WebRTC voice agent	public	2026-04-02T16:29:31Z
+cartesia-ai/line	Cartesia Line SDK for voice agents.	public	2026-04-02T16:15:07Z
+deepgram-devs/deepgram-voice-agent-demo	Demo for Deepgram Voice Agent API	public	2026-03-18T06:21:12Z
+hkjarral/AVA-AI-Voice-Agent-for-Asterisk	An open-source AI Voice Agent that integrates with Asterisk/FreePBX using Audiosocket/RTP technology	public	2026-04-02T10:47:15Z
+[0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=450, limit=70][0m
+[0m
+[0m$ [0mgh search repos "awesome voice agents" --limit 10
+yzfly/awesome-voice-agents	A curated list of voice AI agent frameworks, tools, resources, and best practices	public	2026-03-19T07:40:24Z
+[0m
+[0m$ [0mgh search repos "awesome browser use" --limit 10
+browser-use/awesome-prompts	Table of awesome Browser Use prompts	public	2026-03-31T02:53:25Z
+metehan777/awesome-browser-use-prompts	Awesome & categorized browser-use prompts	public	2026-01-06T18:09:14Z
+WTFoss/awesome-browser-use		public	2025-05-17T18:00:48Z
+[0m
+[0m$ [0mgh search repos "awesome agent skills" --limit 10
+VoltAgent/awesome-agent-skills	Claude Code Skills and 1000+ agent skills from official dev teams and the community, compatible with Codex, Antigravity, Gemini CLI, Cursor and others.	public	2026-04-02T17:54:25Z
+heilcheng/awesome-agent-skills	A curated list of skills, tools, tutorials, and capabilities for AI coding agents (Claude, Codex, Antigravity, Copilot, VS Code)	public	2026-04-02T17:37:59Z
+libukai/awesome-agent-skills	Agent Skills 终极指南：快速入门、资源推荐、精选技能与实用工具 ｜The Ultimate Guide to Agent Skills: QuickStart, Resources, Features&Toolkit	public	2026-04-02T16:46:16Z
+futantan/agent-skills.md	Find awesome Agent Skills	public	2026-04-02T12:07:45Z
+skillmatic-ai/awesome-agent-skills	The definitive resource for Agent Skills - modular capabilities revolutionizing AI agent architecture	public	2026-04-02T15:16:30Z
+JackyST0/awesome-agent-skills	🤖 精选的 AI Agent Skills 列表，适用于 Cursor、Claude Code、GitHub Copilot 等 AI 编程工具	public	2026-04-02T16:41:13Z
+lawvable/awesome-legal-skills	A curated list of awesome Agent Skills for automating legal work	public	2026-04-02T16:52:14Z
+kodustech/awesome-agent-skills	Curated list of Agent Skills for AI coding agents like Claude Code, Codex and Cursor.	public	2026-04-02T16:55:15Z
+itgoyo/awesome-agent-skills	收集全网最热门的Agent-Skills项目	public	2026-04-01T21:15:27Z
+mayurrathi/awesome-agent-skills	The ultimate open-source library of highly-structured prompts, tools, and specialized capabilities for autonomous AI agents.	public	2026-03-27T03:31:29Z
+[0m
+I’ve got the main directory-style repos. I’m broadening to “similar curated repos” now: example hubs and resource collections that are actually used to bootstrap agent projects.
+[0m$ [0mgh search repos "awesome voice agents" --limit 20
+yzfly/awesome-voice-agents	A curated list of voice AI agent frameworks, tools, resources, and best practices	public	2026-03-19T07:40:24Z
+[0m
+[0m$ [0mgh search repos "deep research resources" --limit 10
+DavidZWZ/Awesome-Deep-Research	[Up-to-date] Awesome Agentic Deep Research Resources	public	2026-04-02T15:28:03Z
+[0m
+[0m$ [0mgh search repos "awesome agents ai" --limit 20
+nibzard/awesome-agentic-patterns	A curated catalogue of awesome agentic AI patterns	public	2026-04-02T18:08:13Z
+DharminJoshi/Awesome-Agentic-AI-Learning-Resource-By-DevKay	Awesome Agentic AI Learning Resource by DevKay is a curated roadmap for mastering Agentic AI—from ML foundations to production-ready agents. Features a 0–12+ month path, hands-on projects, top resources, agent architectures, and tools like LangChain and AutoGen.	public	2026-04-02T00:25:01Z
+nikhilbalaji92/awesome-agentic-ai-cloud-native-resources	awesome-agentic-ai-cloud-native-resources for training purposes	public	2026-03-20T17:37:26Z
+[0m
+[0m$ [0mgh search repos "browser use examples" --limit 10
+browser-use/browser-use-examples		public	2026-03-21T17:25:50Z
+abheemid/Browser_use_examples	Browser-use examples	public	2026-03-20T16:08:46Z
+fcela/browser_use_example	simple browser_use example	public	2026-02-27T02:55:56Z
+VJlaxmi/BrowserUseExamples		public	2025-01-19T17:42:27Z
+carsonmulligan/browser-use-examples	🤖 Browser use automation examples	public	2025-11-11T14:29:32Z
+NajiAboo/browser-user-examples	browser user examples	public	2025-08-14T13:03:09Z
+coffeeblackai/browser-use-examples		public	2025-06-20T17:05:57Z
+bighadj22/Browser-Use-examples		public	2025-02-17T17:06:59Z
+arslan-enes/browser-use-examples		public	2025-01-28T12:25:06Z
+[0m
+[0m$ [0mgh repo view browser-use/browser-use-examples --json name,description,stargazerCount,url,updatedAt
+{"description":"","name":"browser-use-examples","stargazerCount":6,"updatedAt":"2026-03-21T17:25:50Z","url":"https://github.com/browser-use/browser-use-examples"}
+[0m
+[0m$ [0mgh repo view DavidZWZ/Awesome-Deep-Research --json name,description,stargazerCount,url,updatedAt
+{"description":"[Up-to-date] Awesome Agentic Deep Research Resources","name":"Awesome-Deep-Research","stargazerCount":696,"updatedAt":"2026-04-02T15:28:03Z","url":"https://github.com/DavidZWZ/Awesome-Deep-Research"}
+[0m
+[0m$ [0mgh repo view nibzard/awesome-agentic-patterns --json name,description,stargazerCount,url,updatedAt
+{"description":"A curated catalogue of awesome agentic AI patterns","name":"awesome-agentic-patterns","stargazerCount":4145,"updatedAt":"2026-04-02T18:08:13Z","url":"https://github.com/nibzard/awesome-agentic-patterns"}
+[0m
+[0m$ [0mgh repo view yzfly/awesome-voice-agents --json name,description,stargazerCount,url,updatedAt
+{"description":"A curated list of voice AI agent frameworks, tools, resources, and best practices","name":"awesome-voice-agents","stargazerCount":21,"updatedAt":"2026-03-19T07:40:24Z","url":"https://github.com/yzfly/awesome-voice-agents"}
+[0m
+[0m$ [0mgh repo view cloudflare/awesome-agents --json name,description,stargazerCount,url,updatedAt
+{"description":"Awesome Agents","name":"awesome-agents","stargazerCount":188,"updatedAt":"2026-04-01T13:24:18Z","url":"https://github.com/cloudflare/awesome-agents"}
+[0m
+[0m$ [0mgh repo view kyrolabs/awesome-agents --json name,description,stargazerCount,url,updatedAt
+{"description":"🤖 Awesome list of AI Agents","name":"awesome-agents","stargazerCount":2090,"updatedAt":"2026-04-02T17:10:32Z","url":"https://github.com/kyrolabs/awesome-agents"}
+[0m
+I’ve got candidate repos and rough metadata. Next I’m pulling README structure from the strongest ones so the entries capture the actual sections researchers will use, not just repo names.
+[0m$ [0mgh api -H "Accept: application/vnd.github.raw" repos/browser-use/browser-use-examples/readme
+<img src="./assets/cloud-banner-examples.png" alt="Browser Use Examples" width="full"/>
+
+# 🤖 Browser Use Examples
+
+> A collection of Browser Use SDK examples.
+
+### TypeScript
+
+- **[scrapper](./scrapper/README.md)**: A utility for extracting complex, scattered data about entities, saving results to a database, and providing live previews of scraping progress.
+- **[agent](./agent/README.md)**: Demonstrates how to create an agent that can browse the web and execute browser tasks using Browser Use, including integration with Vercel AI SDK and chat interfaces.
+- **[discord](./discord/README.md)**: An example Discord bot that uses the Browser Use Cloud API to execute browser tasks and interact with users via Discord commands.
+
+### Python
+
+- **[slack](./slack/README.md)**: An example Slack bot that listens for mentions and interacts with users using the Browser Use SDK, including setup for local development and required Slack permissions.
+[0m
+[0m$ [0mgh api -H "Accept: application/vnd.github.raw" repos/yzfly/awesome-voice-agents/readme
+# Awesome Voice Agents [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+
+> A curated list of voice AI agent frameworks, tools, resources, and best practices | 精选的语音 AI Agent 框架、工具、资源和最佳实践
+
+Welcome to **Awesome Voice Agents**! This is a carefully curated collection of resources related to voice AI agents, covering core technologies such as endpoint detection, turn-taking management, real-time speech recognition, and speech synthesis.
+
+本项目精心收录语音 AI Agent 相关的优质资源，涵盖端点检测、话轮管理、实时语音识别、语音合成等核心技术。
+
+**Maintainer | 维护者: 云中江树**
+
+💬 **Join Voice Agent Community | 加入 Voice Agent 交流群**  
+Add WeChat | 添加微信: **1796060717**  
+欢迎 Voice Agent 从业者和爱好者加入交流！
+
+---
+
+## Contents | 目录
+
+- [Frameworks & Platforms | 框架与平台](#frameworks--platforms--框架与平台)
+- [VAD (Voice Activity Detection) | 语音活动检测](#vad-voice-activity-detection--语音活动检测)
+- [Turn Detection & Endpointing | 话轮检测与端点检测](#turn-detection--endpointing--话轮检测与端点检测)
+- [STT (Speech-to-Text) | 语音转文本](#stt-speech-to-text--语音转文本)
+- [TTS (Text-to-Speech) | 文本转语音](#tts-text-to-speech--文本转语音)
+- [Developer Communities & Resources | 开发者社区与资源](#developer-communities--resources--开发者社区与资源)
+- [Learning Resources | 学习资源](#learning-resources--学习资源)
+- [Contributing | 贡献指南](#contributing--贡献指南)
+
+---
+
+## Frameworks & Platforms | 框架与平台
+
+### Comprehensive Frameworks | 综合性框架
+
+| Name | Stars | Description | Notes |
+|------|-------|-------------|-------|
+| [TEN Framework](https://github.com/TEN-framework/ten-framework) | ![GitHub Repo stars](https://badgen.net/github/stars/TEN-framework/ten-framework) | Open-source framework for conversational voice AI agents with multimodal capabilities (voice, vision, avatar). Low-latency, high-quality real-time assistant. | 支持多模态，低延迟高质量。[Demo](https://agent.theten.ai/) |
+| [Pipecat](https://github.com/pipecat-ai/pipecat) | ![GitHub Repo stars](https://badgen.net/github/stars/pipecat-ai/pipecat) | Open Source framework for voice and multimodal conversational AI. Modular design with support for multiple STT, LLM, TTS services. | 模块化设计，支持多平台 SDK |
+| [LiveKit Agents](https://github.com/livekit/agents) | ![GitHub Repo stars](https://badgen.net/github/stars/livekit/agents) | Powerful framework for building realtime voice AI agents. Fully open-source, WebRTC support, built-in semantic turn detection. | 完全开源，内置语义话轮检测 |
+| [OpenAI Realtime Agents](https://github.com/openai/openai-realtime-agents) | ![GitHub Repo stars](https://badgen.net/github/stars/openai/openai-realtime-agents) | Advanced agentic patterns built on OpenAI Realtime API. Multi-agent collaboration, handoffs, tool use. | OpenAI 官方示例，支持多 Agent |
+| [openai-agents-js](https://github.com/openai/openai-agents-js) | ![GitHub Repo stars](https://badgen.net/github/stars/openai/openai-agents-js) | A lightweight, powerful framework for multi-agent workflows and voice agents. | OpenAI 官方示例，支持多 Agent 和语音Agent |
+| [call-center-ai](https://github.com/microsoft/call-center-ai) | ![GitHub Repo stars](https://badgen.net/github/stars/microsoft/call-center-ai) | Send a phone call from AI agent, in an API call. Or, directly call the bot from the configured phone number! | 基于 Azure 和 OpenAI GPT 的 AI 驱动呼叫中心解决方案。|
+| [Vocode Core](https://github.com/vocodedev/vocode-core) | ![GitHub Repo stars](https://badgen.net/github/stars/vocodedev/vocode-core) | Build voice-based LLM agents. Modular and open source. Real-time streaming conversations. | 支持电话、Zoom 等场景部署 |
+| [Bolna](https://github.com/bolna-ai/bolna) | ![GitHub Repo stars](https://badgen.net/github/stars/bolna-ai/bolna) | End-to-end open source production-ready voice agents platform. Build voice assistants through JSON config. | 生产就绪，支持 Twilio/Plivo |
+
+
+### Specialized Solutions | 专用解决方案
+
+| Name | Stars | Description | Notes |
+|------|-------|-------------|-------|
+| [BentoVoiceAgent](https://github.com/bentoml/BentoVoiceAgent) | ![GitHub Repo stars](https://badgen.net/github/stars/bentoml/BentoVoiceAgent) | Build phone calling voice agents fully powered by open source models. Uses BentoML for deployment. | 完全基于开源模型 |
+---
+
+## VAD (Voice Activity Detection) | 语音活动检测
+
+Voice Activity Detection (VAD) is a key technology for identifying the presence of human speech in audio streams.
+
+VAD 是识别音频流中是否存在人声的关键技术，用于过滤静音、减少计算成本、改善下游处理准确性。
+
+### Core VAD Models | 核心 VAD 模型
+
+| Name | Stars | Description | Notes |
+|------|-------|-------------|-------|
+| [Silero VAD](https://github.com/snakers4/silero-vad) | ![GitHub Repo stars](https://badgen.net/github/stars/snakers4/silero-vad) | Pre-trained enterprise-grade Voice Activity Detector. High-performance, low-latency, multi-language support. | ⭐ 最流行的 VAD 模型，支持 WebAssembly |
+| [VAD (Browser)](https://github.com/ricky0123/vad) | ![GitHub Repo stars](https://badgen.net/github/stars/ricky0123/vad) | Voice activity detector for the browser with a simple API. Pure frontend implementation. | 浏览器端 VAD，零后端依赖 |
+| [py-webrtcvad](https://github.com/wiseman/py-webrtcvad) | ![GitHub Repo stars](https://badgen.net/github/stars/wiseman/py-webrtcvad) | Python interface to Google WebRTC Voice Activity Detector. Classic signal processing approach. | 经典轻量方案，快速 |
+
+### Noise Cancellation | 降噪增强
+
+| Name | Stars | Description | Notes |
+|------|-------|-------------|-------|
+| [Krisp AI](https://krisp.ai/) | - | AI-powered background voice and noise cancellation. Krisp Server SDK for voice agents. | 显著改善 VAD 准确性，减少误触发 |
+
+---
+
+## Turn Detection & Endpointing | 话轮检测与端点检测
+
+Turn Detection/Endpointing determines when a user has finished speaking - a core component of natural conversation.
+
+话轮检测判断用户何时结束说话，是实现自然对话的核心技术。
+
+### Intelligent Turn Detection Models | 智能话轮检测模型
+
+| Name | Stars | Description | Notes |
+|------|-------|-------------|-------|
+| [Smart Turn (Pipecat)](https://github.com/pipecat-ai/smart-turn) | ![GitHub Repo stars](https://badgen.net/github/stars/pipecat-ai/smart-turn) | Open-source turn detection model (BSD 2-clause). Supports 23 languages. Semantic and audio feature-based. No GPU required for real-time inference. | 完全开源，提供 Fal 托管服务（免费）|
+| [LiveKit Turn Detector](https://github.com/livekit/agents) | ![GitHub Repo stars](https://badgen.net/github/stars/livekit/agents) | Transformer-based semantic analysis. 85% true positive rate, ~50ms inference time. | 基于 Transformer，结合 VAD 效果最佳 |
+
+### Commercial Solutions | 商业解决方案
+
+| Name | Description | Notes |
+|------|-------------|-------|
+| [OpenAI Realtime API](https://platform.openai.com/docs/guides/realtime) | Semantic VAD with context-aware turn detection. Built into end-to-end model. | 上下文感知，端到端 |
+| [AssemblyAI Universal-Streaming](https://www.assemblyai.com/blog/turn-detection-endpointing-voice-agent) | Intelligent endpointing with semantic analysis. Real-time streaming transcription. | 语义端点检测，实时流式 |
+| [Retell AI Turn-Taking](https://www.retellai.com/) | Enterprise-grade turn-taking management. Adaptive endpointing, handles complex noise environments. | 企业级方案，适应噪音环境 |
+
+---
+
+## STT (Speech-to-Text) | 语音转文本
+
+### Realtime Whisper Implementations | Whisper 实时流式实现
+
+OpenAI Whisper is the most powerful open-source speech recognition model, but doesn't natively support real-time streaming. The following projects implement streaming transcription:
+
+| Name | Stars | Description | Notes |
+|------|-------|-------------|-------|
+| [Whisper Streaming (UFAL)](https://github.com/ufal/whisper_streaming) | ![GitHub Repo stars](https://badgen.net/github/stars/ufal/whisper_streaming) | Whisper realtime streaming for long speech-to-text. Local agreement policy with self-adaptive latency. 3.3s latency. | 使用局部一致性策略，自适应延迟 |
+| [WhisperLive](https://github.com/collabora/WhisperLive) | ![GitHub Repo stars](https://badgen.net/github/stars/collabora/WhisperLive) | Nearly-live implementation of OpenAI's Whisper. TensorRT acceleration support. Browser extensions and iOS client. | 支持 TensorRT 加速和多平台 |
+| [Whisper Real Time](https://github.com/davabase/whisper_real_time) | ![GitHub Repo stars](https://badgen.net/github/stars/davabase/whisper_real_time) | Real time transcription with OpenAI Whisper. Continuously records and concatenates audio. | 简单易用的实时转录演示 |
+| [VoiceStreamAI](https://github.com/alesaccoia/VoiceStreamAI) | ![GitHub Repo stars](https://badgen.net/github/stars/alesaccoia/VoiceStreamAI) | Near-realtime audio transcription using self-hosted Whisper and WebSocket. Supports Faster Whisper, integrated VAD. | WebSocket 架构，分块处理策略 |
+| [speech-to-text (reriiasu)](https://github.com/reriiasu/speech-to-text) | ![GitHub Repo stars](https://badgen.net/github/stars/reriiasu/speech-to-text) | Real-time transcription using faster-whisper. HTML GUI with WebSocket support. SRT subtitle generation. | 提供 GUI，支持字幕生成 |
+| [Whispering](https://github.com/shirayu/whispering) | ![GitHub Repo stars](https://badgen.net/github/stars/shirayu/whispering) | Streaming transcriber with whisper. Client-server architecture support. | 支持客户端-服务器架构 |
+
+### Commercial STT APIs | 商业 STT 服务
+
+| Name | Description | Notes |
+|------|-------------|-------|
+| [OpenAI Whisper API](https://platform.openai.com/docs/guides/speech-to-text) | Cloud-based Whisper API. Easy integration, pay-as-you-go pricing. | 云端 Whisper，按需付费 |
+| [Azure Speech Services](https://azure.microsoft.com/products/ai-services/speech-to-text) | Microsoft's STT service. Multi-language support, custom model training. | 支持多语言，自定义模型 |
+| [Deepgram](https://deepgram.com/) | Enterprise-grade real-time STT API. Ultra-low latency, streaming transcription. | 超低延迟，流式转录 |
+| [AssemblyAI](https://www.assemblyai.com/) | Speech AI API with Universal-Streaming model. Immutable transcription, intelligent endpointing. | 不可变转录，智能端点检测 |
+
+---
+
+## TTS (Text-to-Speech) | 文本转语音
+
+### Open Source TTS Models | 开源 TTS 模型
+
+| Name | Stars | Description | Notes |
+|------|-------|-------------|-------|
+| [GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS) | ![GitHub Repo stars](https://badgen.net/github/stars/RVC-Boss/GPT-SoVITS) | Few-shot voice cloning TTS. High-quality synthesis. | 少样本语音克隆 |
+| [Bark](https://github.com/suno-ai/bark) | ![GitHub Repo stars](https://badgen.net/github/stars/suno-ai/bark) | Transformer-based TTS model. Generates highly realistic audio including music, sound effects. | 可生成音乐和音效 |
+| [Coqui TTS](https://github.com/coqui-ai/TTS) | ![GitHub Repo stars](https://badgen.net/github/stars/coqui-ai/TTS) | Deep learning TTS toolkit. 1100+ pre-trained models. Voice cloning support. | ⭐ 最全面的开源 TTS 工具箱 |
+| [Piper TTS](https://github.com/rhasspy/piper) | ![GitHub Repo stars](https://badgen.net/github/stars/rhasspy/piper) | Fast, local neural TTS. Real-time synthesis with low resource usage. | 实时合成，低资源占用 |
+| [Silero Models](https://github.com/snakers4/silero-models) | ![GitHub Repo stars](https://badgen.net/github/stars/snakers4/silero-models) | Pre-trained text-to-speech models made embarrassingly simple. Multi-language support. | 简单易用，高质量 |
+
+### Commercial TTS APIs | 商业 TTS 服务
+
+| Name | Description | Notes |
+|------|-------------|-------|
+| [ElevenLabs](https://elevenlabs.io/) | High-quality AI voice generation. Ultra-realistic speech, voice cloning, multi-language support. | 最高质量的商业 TTS |
+| [OpenAI TTS](https://platform.openai.com/docs/guides/text-to-speech) | OpenAI's text-to-speech API. High-quality, low-latency, multiple voice options. | 高质量低延迟 |
+| [Azure Speech Services](https://azure.microsoft.com/products/ai-services/text-to-speech) | Microsoft TTS with neural voices. Custom voice creation, SSML support. | 神经语音，自定义音色 |
+| [Cartesia](https://cartesia.ai/) | Real-time streaming TTS. Ultra-low latency, natural intonation. | 超低延迟流式 TTS |
+| [Deepgram Aura](https://deepgram.com/aura) | Real-time text-to-speech. Conversational voice quality. | 对话式语音，低延迟 |
+
+---
+
+## Developer Communities & Resources | 开发者社区与资源
+
+### Communities | 社区平台
+
+| Name | Description | Notes |
+|------|-------------|-------|
+| [RTE Community](https://www.rtecommunity.dev/) | Real-Time Engagement developer community. Technical articles, developer exchange, best practices. | 实时互动技术开发者社区 |
+| [Voice Agent Knowledge Base (Feishu)](https://realtime.feishu.cn/docx/FFcedfbkNoNA3OxeD2IcdRWbnLf) | Comprehensive Voice Agent knowledge base in Chinese. Systematic tutorials, practical experience. | Voice Agent 中文知识库 |
+
+### Platforms & Tools | 开发平台与工具
+
+| Name | Description | Notes |
+|------|-------------|-------|
+| [Vapi](https://vapi.ai/) | Platform for quickly building voice AI agents. Low-code, rich integrations, telephony support. | 低代码快速构建平台 |
+| [Retell AI](https://www.retellai.com/) | Conversational AI platform with enterprise-grade turn-taking management. | 企业级话轮管理 |
+| [Tavus](https://www.tavus.io/) | Real-time conversational video API. Transformer-based turn detection, multimodal video+voice. | 视频+语音多模态 |
+
+### Technical Blogs & Documentation | 技术博客与文档
+
+| Name | Description | Notes |
+|------|-------------|-------|
+| [Voice AI & Voice Agents Primer](https://voiceaiandvoiceagents.com/) | Comprehensive illustrated guide to voice AI. Architecture design, technical overview, best practices. | 全面的语音 AI 图解指南 |
+| [AssemblyAI Blog: Turn Detection](https://www.assemblyai.com/blog/turn-detection-endpointing-voice-agent) | In-depth analysis of turn detection. Algorithm comparison, latency analysis. | 话轮检测深度解析 |
+| [LiveKit Blog: Transformer Turn Detection](https://blog.livekit.io/using-a-transformer-to-improve-end-of-turn-detection/) | Using transformers to improve endpointing. Technical details, performance comparison. | Transformer 改进端点检测 |
+| [Krisp Blog: Turn-Taking](https://krisp.ai/blog/improving-turn-taking-of-ai-voice-agents-with-background-voice-cancellation/) | Background noise cancellation improves turn-taking. Evaluation and results. | 背景噪音消除改善话轮 |
+| [Speechmatics: Semantic Turn Detection](https://blog.speechmatics.com/semantic-turn-detection) | Semantic turn detection with SLM. Implementation guide, threshold tuning. | 使用 SLM 的语义话轮检测 |
+| [Agora: TEN VAD & Turn Detection](https://www.agora.io/en/blog/making-voice-ai-agents-more-human-with-ten-vad-and-turn-detection/) | Making voice agents more human with TEN VAD and Turn Detection. | TEN 的 VAD 和话轮检测 |
+
+## Related Awesome Lists | 相关资源
+
+- [awesome-voice-conversion](https://github.com/JeffC0628/awesome-voice-conversion)
+- [awesome-ai-agents](https://github.com/e2b-dev/awesome-ai-agents)
+
+---
+
+## License | 许可证
+
+[![CC0](https://licensebuttons.net/p/zero/1.0/88x31.png)](https://creativecommons.org/publicdomain/zero/1.0/)
+
+To the extent possible under law, the contributors have waived all copyright and related rights to this work.
+
+---
+
+## Acknowledgments | 致谢
+
+Thanks to all open-source contributors making voice AI technology more accessible and powerful!
+
+If this list helps you, please give it a ⭐️!
+
+---
+
+**Maintainer | 维护者: 云中江树**  
+**WeChat | 微信: 1796060717** (加入 Voice Agent 交流群)  
+
+Welcome to exchange and discuss Voice Agent technology through Issues or PRs!  
+欢迎通过 Issues 或 PR 交流讨论 Voice Agent 相关技术！
+[0m
+[0m$ [0mgh api -H "Accept: application/vnd.github.raw" repos/kyrolabs/awesome-agents/readme
+# 🤖 Awesome Agents
+
+Awesome Agents is a curated list of open-source tools and products to build AI agents.
+
+> 🆕 **Featured:** [ClaudeClaw](https://github.com/sbusso/claudeclaw) — Persistent agent orchestrator as a Claude Code plugin. Multi-channel routing (Slack, WhatsApp, Telegram), OS-level sandbox isolation, composable extension system. [Read more →](https://github.com/sbusso/claudeclaw)
+
+## Table of Contents
+
+- [🤖 Awesome Agents](#-awesome-agents)
+  - [Table of Contents](#table-of-contents)
+  - [Frameworks](#frameworks)
+  - [Testing and Evaluation](#testing-and-evaluation)
+  - [Software Development](#software-development)
+  - [Research](#research)
+  - [Conversational / General Agents](#conversational--general-agents)
+  - [Game / Simulation](#game--simulation)
+  - [Knowledge Management](#knowledge-management)
+  - [Automation](#automation)
+    - [Browser](#browser)
+    - [Multimodal](#multimodal)
+
+## Frameworks
+
+- [llama-agentic-system](https://github.com/meta-llama/llama-agentic-system): Agentic components of the Llama Stack APIs ![GitHub Repo stars](https://img.shields.io/github/stars/meta-llama/llama-agentic-system?style=social)
+- [Transformers Agents](https://huggingface.co/docs/transformers/transformers_agents): Provides a natural language API on top of transformers
+- [LlamaIndex](https://github.com/jerryjliu/llama_index): provides a central interface to connect your LLM's with external data. ![GitHub Repo stars](https://img.shields.io/github/stars/jerryjliu/llama_index?style=social)
+- [LangChain](https://github.com/hwchase17/langchain): the original 🐍 ![GitHub Repo stars](https://img.shields.io/github/stars/hwchase17/langchain?style=social)
+- [Botpress](https://github.com/botpress/botpress): The building blocks for building chatbots ![GitHub Repo stars](https://img.shields.io/github/stars/botpress/botpress?style=social)
+- [Haystack](https://github.com/deepset-ai/haystack): NLP framework to interact with your data using Transformer models and LLMs ![GitHub Repo stars](https://img.shields.io/github/stars/deepset-ai/haystack?style=social)
+- [Semantic Kernel](https://github.com/microsoft/semantic-kernel): Microsoft C# SDK to integrate cutting-edge LLM technology quickly and easily into your apps ![GitHub Repo stars](https://img.shields.io/github/stars/microsoft/semantic-kernel?style=social)
+- [Agent-LLM](https://github.com/Josh-XT/Agent-LLM): An Artificial Intelligence Automation Platform. ![GitHub Repo stars](https://img.shields.io/github/stars/Josh-XT/Agent-LLM?style=social)
+- [LLM Agents](https://github.com/mpaepper/llm_agents): Build agents which are controlled by LLMs ![GitHub Repo stars](https://img.shields.io/github/stars/mpaepper/llm_agents?style=social)
+- [e2b](https://github.com/e2b-dev/e2b): Open-source platform for building & deploying virtual developers’ agents
+- [Dust](https://github.com/dust-tt/dust): Design and Deploy Large Language Model Apps ![GitHub Repo stars](https://img.shields.io/github/stars/dust-tt/dust?style=social)
+- [MetaGPT](https://github.com/geekan/MetaGPT): The Multi-Agent Meta Programming Framework: Given one line Requirement, return PRD, Design, Tasks, Repo and CI ![GitHub Repo stars](https://img.shields.io/github/stars/geekan/MetaGPT?style=social)
+- [AgentFlow](https://github.com/simonmesmith/agentflow): About Complex LLM Workflows from Simple JSON. ![GitHub Repo stars](https://img.shields.io/github/stars/simonmesmith/agentflow?style=social)
+- [Lagent](https://github.com/InternLM/lagent): A lightweight framework for building LLM-based agents ![GitHub Repo stars](https://img.shields.io/github/stars/InternLM/lagent?style=social)
+- [Autogen](https://github.com/microsoft/autogen): Enable Next-Gen Large Language Model Applications. ![GitHub Repo stars](https://img.shields.io/github/stars/microsoft/autogen?style=social)
+- [AG2](https://github.com/ag2ai/ag2): AG2 (from AutoGen creators) is an open-source programming framework for building AI agents and facilitating cooperation among multiple agents to solve tasks. ![GitHub Repo stars](https://img.shields.io/github/stars/ag2ai/ag2?style=social)
+- [AgentVerse](https://github.com/openbmb/agentverse) Provides a flexible framework that simplifies the process of building custom multi-agent environments for LLMs ![GitHub Repo stars](https://img.shields.io/github/stars/openbmb/agentverse?style=social)
+- [Maestro](https://github.com/Doriandarko/maestro): A framework for Claude Opus to intelligently orchestrate subagents. ![GitHub Repo stars](https://img.shields.io/github/stars/Doriandarko/maestro?style=social)
+- [AgentScope](https://github.com/modelscope/agentscope): Start building LLM-empowered multi-agent applications in an easier way. ![GitHub Repo stars](https://img.shields.io/github/stars/modelscope/agentscope?style=social)
+- [CrewAI](https://github.com/joaomdmoura/crewai): Cutting-edge framework for orchestrating role-playing, autonomous AI agents. ![GitHub Repo stars](https://img.shields.io/github/stars/joaomdmoura/crewai?style=social)
+- [Swarm](https://github.com/openai/swarm): Educational framework exploring ergonomic, lightweight multi-agent orchestration by OpenAI. ![GitHub Repo stars](https://img.shields.io/github/stars/openai/swarm?style=social)
+- [agency-swarm](https://github.com/VRSEN/agency-swarm): Reliable agent framework built on top of the latest OpenAI Assistants API. ![GitHub Repo stars](https://img.shields.io/github/stars/VRSEN/agency-swarm?style=social)
+- [Upsonic](https://github.com/upsonic/upsonic): Reliable agent framework that supports MCP. ![GitHub Repo stars](https://img.shields.io/github/stars/upsonic/upsonic?style=social)
+- [Mastra](https://github.com/mastra-ai/mastra): Mastra is an opinionated TypeScript framework that helps you build AI applications and features quickly. ![GitHub Repo stars](https://img.shields.io/github/stars/mastra-ai/mastra?style=social)
+- [Vectara-agentic](https://github.com/vectara/py-vectara-agentic): Vectara-agentic is a framework for creating AI Assistants and agents using Vectara.
+- [Portia AI](https://github.com/portiaAI/portia-sdk-python/) Portia is a new open source agentic Python framework designed for creating reliable agents in production. ![GitHub Repo stars](https://img.shields.io/github/stars/portiaAI/portia-sdk-python?style=social)
+- [AgentDock](https://github.com/AgentDock/AgentDock): Stop wrestling with countless APIs and complex integrations. AgentDock provides the open-source foundation to build, manage, and deploy production-ready AI agents and workflows, frictionlessly. ![GitHub Repo stars](https://img.shields.io/github/stars/agentdock/agentdock?style=social)
+- [Modus](https://github.com/hypermodeinc/modus): An open source, serverless framework for building intelligent agents and APIs in Go or AssemblyScript (a TypeScript-like language).
+- [Swarms Framework](https://github.com/kyegomez/swarms) Bleeding-Edge Multi-Agent Orchestration Framework for Enterprise Applications ![GitHub Repo stars](https://img.shields.io/github/stars/kyegomez/swarms?style=social)
+- [Strands Agents SDK](https://github.com/strands-agents/sdk-python): A model-driven approach to building AI agents in just a few lines of code. ![GitHub Repo stars](https://img.shields.io/github/stars/strands-agents/sdk-python?style=social)
+- [AgentUp](https://github.com/RedDotRocket/AgentUp): Designed with security, scalability, and extensibility at its foundation, AgentUp streamlines development through a configuration-driven architecture and rich plugin ecosystem ![GitHub Repo stars](https://img.shields.io/github/stars/RedDotRocket/AgentUp?style=social)
+- [VoltAgent](https://github.com/VoltAgent/voltagent) - An open source TypeScript Framework for building AI agents with built-in LLM observability. ![GitHub Repo stars](https://img.shields.io/github/stars/voltagent/voltagent?style=social)
+- [Agentic Context Engine](https://github.com/kayba-ai/agentic-context-engine): Self-improving agents that learn from execution feedback. LangChain integration for agents that curate their own context. ![GitHub Repo stars](https://img.shields.io/github/stars/kayba-ai/agentic-context-engine?style=social)
+- [Astron](https://github.com/iflytek/astron-agent): Enterprise-grade, commercial-friendly agentic workflow platform for building next-generation SuperAgents.
+- [Ailoy](https://github.com/brekkylab/ailoy): A comprehensive framework for building AI agents that run anywhere, with full local-AI and WASM support.
+- [PraisonAI](https://github.com/MervinPraison/PraisonAI): Production-ready Multi-AI Agents framework with self-reflection. Fastest agent instantiation (3.77μs), 100+ LLM support, MCP integration, workflows, memory, and both Python & JavaScript SDKs. ![GitHub Repo stars](https://img.shields.io/github/stars/MervinPraison/PraisonAI?style=social)
+- [AgentField](https://github.com/Agent-Field/agentfield): Open-source infrastructure for AI backends. Kubernetes for orchestration, Okta for identity—production-ready from day one. ![GitHub Repo stars](https://img.shields.io/github/stars/Agent-Field/agentfield?style=social)
+- [Cortex Memory](https://github.com/sopaco/cortex-mem): A complete solution for agent memory, from extraction and vector search to automated optimization, with a REST API, MCP, CLI, and insights dashboard out-of-the-box.
+- [Pipecat](https://github.com/pipecat-ai/pipecat): Open Source framework for voice and multimodal conversational AI. ![GitHub Repo stars](https://img.shields.io/github/stars/pipecat-ai/pipecat?style=social)
+- [LoongFlow](https://github.com/baidu-baige/LoongFlow): A Evolve Agent Development Framework. From atomic components and development frameworks to core scenario Agents ![GitHub Repo stars](https://img.shields.io/github/stars/baidu-baige/LoongFlow?style=social)
+- [Agentset](https://github.com/agentset-ai/agentset): Open-source production-ready RAG platform with built-in agentic reasoning, hybrid search, and multimodal support. ![GitHub Repo stars](https://img.shields.io/github/stars/agentset-ai/agentset?style=social)
+- [Pilot Protocol](https://github.com/TeoSlayer/pilotprotocol): An overlay network stack that gives AI agents virtual addresses, encrypted UDP tunnels, NAT traversal, and mutual trust. Zero dependencies, written in Go. ![GitHub Repo stars](https://img.shields.io/github/stars/TeoSlayer/pilotprotocol?style=social)
+- [hcom](https://github.com/aannoo/hcom): Let AI agents message, watch, and spawn each other across terminals. Claude Code, Gemini CLI, Codex, OpenCode. ![GitHub Repo stars](https://img.shields.io/github/stars/aannoo/hcom?style=social)
+- [nanobot](https://github.com/HKUDS/nanobot): Ultra-lightweight personal AI assistant framework (~4,000 lines of Python). Supports MCP, 9+ chat channels, and extensible skills system. ![GitHub Repo stars](https://img.shields.io/github/stars/HKUDS/nanobot?style=social)
+- [NeuroLink](https://github.com/juspay/neurolink): TypeScript agent framework with multi-step agentic loops, per-step tool execution control (`prepareStep`), persistent memory (Redis/S3/SQLite), HITL workflows, MCP client integration, and 13 LLM providers. ![GitHub Repo stars](https://img.shields.io/github/stars/juspay/neurolink?style=social)
+- [OpenClaw](https://github.com/openclaw/openclaw): Open-source AI agent framework that turns LLMs into persistent, proactive personal AI agents with multi-channel messaging (Signal, Telegram, Discord, WhatsApp), cron scheduling, memory systems, MCP integration, skill plugins, sub-agent spawning, and browser automation. ![GitHub Repo stars](https://img.shields.io/github/stars/openclaw/openclaw?style=social)
+- [Awesome OpenClaw Agents](https://github.com/mergisi/awesome-openclaw-agents): Curated collection of 100+ production-ready SOUL.md agent templates for OpenClaw, covering productivity, development, marketing, and business automation. ![GitHub Repo stars](https://img.shields.io/github/stars/mergisi/awesome-openclaw-agents?style=social)
+- [FIM Agent](https://github.com/fim-ai/fim-agent): AI-powered Connector Hub — Python async framework with dynamic DAG planning, ReAct agent, MCP client, RAG with grounded generation, and a connector platform that turns any API into agent tools. ![GitHub Repo stars](https://img.shields.io/github/stars/fim-ai/fim-agent?style=social)
+- [Hive](https://github.com/aden-hive/hive): Open-source AI agent framework for building goal-driven, self-improving autonomous agents. Define outcomes in natural language and auto-generate agent graphs with built-in evolution loops, MCP integration, and 100+ tools. ![GitHub Repo stars](https://img.shields.io/github/stars/aden-hive/hive?style=social)
+- [ConnectOnion](https://github.com/openonion/connectonion): Simple Python framework for production-ready AI agents — 2-line creation, functions as tools, 12 lifecycle hooks, plugin system, multi-agent networking with trust ![GitHub Repo stars](https://img.shields.io/github/stars/openonion/connectonion?style=social)
+- [AVP: Agent Vector Protocol](https://github.com/VectorArc/avp-python): Agents communicate via KV-cache and hidden states instead of text — 2x faster, 56% fewer tokens. Supports HuggingFace, vLLM, llama.cpp, Ollama. ![GitHub Repo stars](https://img.shields.io/github/stars/VectorArc/avp-python?style=social)
+
+## Testing and Evaluation
+- [Voice Lab](https://github.com/saharmor/voice-lab): A comprehensive testing and evaluation framework for voice agents across language models, prompts, and agent personas. ![GitHub Repo stars](https://img.shields.io/github/stars/saharmor/voice-lab?style=social)
+- [Open-RAG-Eval](https://github.com/vectara/open-rag-eval): an open source RAG evaluation framework that does not require golden answers, and can be used to evaluate performance of RAG tools connected to an AI Agent (Agentic RAG)
+- [EvoAgentX](https://github.com/EvoAgentX/EvoAgentX): EvoAgentX is building a Self-Evolving Ecosystem of AI Agents, it will give you automated framework for evaluating and evolving agentic workflows. ![GitHub Repo stars](https://img.shields.io/github/stars/EvoAgentX/EvoAgentX?style=social)
+- [Arize-Phoenix](https://github.com/Arize-ai/phoenix): Arize-Phoenix is an open source library for agent testing, evaluation and observability. ![GitHub Repo stars](https://img.shields.io/github/stars/Arize-ai/phoenix?style=social)
+- [voicetest](https://github.com/voicetestdev/voicetest): Open-source test harness for voice agents with support for Retell, VAPI, Bland, and LiveKit. Run autonomous simulations and evaluate with LLM judges. ![GitHub Repo stars](https://img.shields.io/github/stars/voicetestdev/voicetest?style=social)
+- [Manifest](https://github.com/mnfst/manifest): Open-source, real-time cost observability platform for AI agents. Track tokens, costs, messages, and model usage with a local-first dashboard. Supports 28+ LLM models, OTLP ingestion, self-hosted. ![GitHub Repo stars](https://img.shields.io/github/stars/mnfst/manifest?style=social)
+* [ai-evaluation](https://github.com/future-agi/ai-evaluation): Open-source Python/TypeScript SDK for evaluating LLM agents with 50+ local metrics, LLM-as-Judge augmentation, guardrail scanners (jailbreak, PII, injection), streaming assessment, and AutoEval pipelines with CI/CD support. [![GitHub Repo stars](https://img.shields.io/github/stars/future-agi/ai-evaluation?style=social)](https://github.com/future-agi/ai-evaluation)
+* [traceAI](https://github.com/future-agi/traceAI): Open-source OpenTelemetry-native tracing framework that auto-instruments 20+ AI frameworks and LLM providers (OpenAI, Anthropic, LangChain, LlamaIndex, CrewAI, Bedrock) capturing prompts, tokens, latency, and errors out of the box. [![GitHub Repo stars](https://img.shields.io/github/stars/future-agi/traceAI?style=social)](https://github.com/future-agi/traceAI)
+- [AIR Blackbox](https://github.com/airblackbox/gateway): Open-source EU AI Act compliance scanner and runtime trust layer for Python AI agents. HMAC-SHA256 tamper-evident audit chains, PII detection, prompt injection blocking, and risk classification. Trust layers for LangChain, CrewAI, AutoGen, OpenAI, Google ADK, and Claude Agent SDK. ![GitHub Repo stars](https://img.shields.io/github/stars/airblackbox/gateway?style=social)
+## Software Development
+
+- [MetaGPT](https://github.com/geekan/MetaGPT): The Multi-Agent Framework: First AI Software Company, Towards Natural Language Programming ![GitHub Repo stars](https://img.shields.io/github/stars/geekan/MetaGPT?style=social)
+- [OpenHands](https://github.com/All-Hands-AI/OpenHands): 🙌 OpenHands: Code Less, Make More. (formerly OpenDevin), a platform for software development agents powered by AI ![GitHub Repo stars](https://img.shields.io/github/stars/All-Hands-AI/OpenHands?style=social)
+- [GPT Pilot](https://github.com/Pythagora-io/gpt-pilot): GPT Pilot is the core technology for the Pythagora VS Code extension that aims to provide the first real AI developer companion. ![GitHub Repo stars](https://img.shields.io/github/stars/Pythagora-io/gpt-pilot?style=social)
+- [Aider](https://github.com/Aider-AI/aider): aider is AI pair programming in your terminal ![GitHub Repo stars](https://img.shields.io/github/stars/Aider-AI/aider?style=social)
+- [Devika](https://github.com/stitionai/devika): Devika is an Agentic AI Software Engineer that can understand high-level human instructions, break them down into steps, research relevant information, and write code to achieve the given objective ![GitHub Repo stars](https://img.shields.io/github/stars/stitionai/devika?style=social)
+- [RepoAgent](https://github.com/OpenBMB/RepoAgent): An LLM-powered repository agent designed to assist developers and teams in generating documentation and understanding repositories quickly ![GitHub Repo stars](https://img.shields.io/github/stars/OpenBMB/RepoAgent?style=social)
+- [DSPy](https://github.com/stanfordnlp/dspy): The framework for programming—not prompting—foundation models ![GitHub Repo stars](https://img.shields.io/github/stars/stanfordnlp/dspy?style=social)
+- [ThinkGPT](https://github.com/alaeddine-13/thinkgpt): Agent techniques to augment your LLM and push it beyond its limits ![GitHub Repo stars](https://img.shields.io/github/stars/alaeddine-13/thinkgpt?style=social)
+- [PyCodeAGI](https://github.com/chakkaradeep/pyCodeAGI): A small AGI experiment to generate a Python app given what app the user wants to build ![GitHub Repo stars](https://img.shields.io/github/stars/chakkaradeep/pyCodeAGI?style=social)
+- [SuperAGI](https://github.com/TransformerOptimus/SuperAGI): SuperAGI - A dev-first open source autonomous AI agent framework ![GitHub Repo stars](https://img.shields.io/github/stars/TransformerOptimus/SuperAGI?style=social)
+- [Plandex](https://github.com/plandex-ai/plandex): An AI coding engine for complex tasks ![GitHub Repo stars](https://img.shields.io/github/stars/plandex-ai/plandex?style=social)
+- [Codel](https://github.com/semanser/codel): ✨ Fully autonomous AI Agent that can perform complicated tasks and projects using terminal, browser, and editor. ![GitHub Repo stars](https://img.shields.io/github/stars/semanser/codel?style=social)
+- [DB GPT](https://github.com/csunny/DB-GPT): Interact your data and environment using the local GPT, no data leaks, 100% privately, 100% security ![GitHub Repo stars](https://img.shields.io/github/stars/csunny/DB-GPT?style=social)
+- [Agency](https://github.com/neurocult/agency): 🕵️‍♂️ Library designed for developers eager to explore the potential of Large Language Models (LLMs) and other generative AI through a clean, effective, and Go-idiomatic approach ![GitHub Repo stars](https://img.shields.io/github/stars/neurocult/agency?style=social)
+- [TaskWeaver](https://github.com/microsoft/TaskWeaver): A code-first agent framework for seamlessly planning and executing data analytics tasks. ![GitHub Repo stars](https://img.shields.io/github/stars/microsoft/TaskWeaver?style=social)
+- [MicroAgent](https://github.com/aymenfurter/microagents): Agents Capable of Self-Editing Their Prompts / Python Code ![GitHub Repo stars](https://img.shields.io/github/stars/aymenfurter/microagents?style=social)
+- [SWE Agent](https://github.com/princeton-nlp/swe-agent): SWE-agent takes a GitHub issue and tries to automatically fix it, using GPT-4, or your LM of choice. ![GitHub Repo stars](https://img.shields.io/github/stars/princeton-nlp/swe-agent?style=social)
+- [AgentRun](https://github.com/Jonathan-Adly/AgentRun): The easiest, and fastest way to run AI-generated Python code safely ![GitHub Repo stars](https://img.shields.io/github/stars/Jonathan-Adly/AgentRun?style=social)
+- [Claude Engineer](https://github.com/Doriandarko/claude-engineer): Claude Engineer is an interactive command-line interface (CLI) that leverages the power of Anthropic's Claude-3.5-Sonnet model to assist with software development tasks.
+- [Vision agent](https://github.com/landing-ai/vision-agent): Vision Agent is a library that helps you utilize agent frameworks to generate code to solve your vision task. ![GitHub Repo stars](https://img.shields.io/github/stars/landing-ai/vision-agent?style=social)
+- [Nous](https://github.com/TrafficGuard/nous): TypeScript AI agent platform with Autonomous agents, Software developer agents, AI code review agents and more. ![GitHub Repo stars](https://img.shields.io/github/stars/TrafficGuard/nous?style=social)
+- [Cline](https://github.com/cline/cline): Open-source AI coding agent giving developers direct access to frontier models with full transparency. ![GitHub Repo stars](https://img.shields.io/github/stars/cline/cline?style=social)
+- [OpenCode](https://github.com/sst/opencode): The AI coding agent built for the terminal. ![GitHub Repo stars](https://img.shields.io/github/stars/sst/opencode?style=social)
+- [Stakpak](https://github.com/stakpak/agent): Open-source DevOps agent to help you secure, deploy, and maintain production-ready infrastructure. ![GitHub Repo stars](https://img.shields.io/github/stars/stakpak/agent?style=social)
+- [ReviewCerberus](https://github.com/Kirill89/reviewcerberus) - 100% free, open-source AI code review tool for analyzing git branch differences with comprehensive security, performance, and quality analysis.
+- [Hivemoot Colony](https://github.com/hivemoot/colony): An autonomous agent governance platform where AI agents vote on features, review code, and ship releases without human intervention. Includes a live governance dashboard. ![GitHub Repo stars](https://img.shields.io/github/stars/hivemoot/colony?style=social)
+- [Dorothy](https://github.com/Charlie85270/Dorothy): Open-source desktop app to orchestrate multiple AI CLI agents (Claude Code, Codex, Gemini) simultaneously with automations, Kanban management, remote control, and MCP servers. ![GitHub Repo stars](https://img.shields.io/github/stars/Charlie85270/Dorothy?style=social)
+- [VibeGrid](https://github.com/jcanizalez/vibegrid): Terminal manager for AI coding agents with multi-agent grid, task queues, workflow automation, headless execution, inline diff review, and Claude Code hooks. ![GitHub Repo stars](https://img.shields.io/github/stars/jcanizalez/vibegrid?style=social)
+- [Greywall](https://github.com/GreyhavenHQ/greywall): Deny-by-default command sandbox for AI coding agents with filesystem isolation, network control via transparent proxy, built-in profiles for agents like Claude Code or OpenCode, and learning mode for auto-generating configs. ![GitHub Repo stars](https://img.shields.io/github/stars/GreyhavenHQ/greywall?style=social)
+
+## Research
+
+- [GPT Researcher](https://github.com/assafelovic/gpt-researcher): GPT Researcher is an autonomous agent designed for comprehensive online research on a variety of tasks. ![GitHub Repo stars](https://img.shields.io/github/stars/assafelovic/gpt-researcher?style=social)
+- [BlockAGI](https://github.com/blockpipe/blockagi): BlockAGI conducts iterative, domain-specific research, and outputs detailed narrative reports to showcase its findings ![GitHub Repo stars](https://img.shields.io/github/stars/blockpipe/blockagi?style=social)
+- [data-to-paper](https://github.com/Technion-Kishony-lab/data-to-paper): data-to-paper: AI-driven research from data to human-verifiable research papers ![GitHub Repo stars](https://img.shields.io/github/stars/Technion-Kishony-lab/data-to-paper?style=social)
+- [AI Scientist](https://github.com/SakanaAI/AI-Scientist): The AI Scientist: Towards Fully Automated Open-Ended Scientific ![GitHub Repo stars](https://img.shields.io/github/stars/SakanaAI/AI-Scientist?style=social)
+- [Storm](https://github.com/stanford-oval/storm): An LLM-powered knowledge curation system that researches a topic and generates a full-length report with citations. ![GitHub Repo stars](https://img.shields.io/github/stars/stanford-oval/storm?style=social)
+- [OpenLens AI](https://github.com/jarrycyx/openlens-ai): Fully Autonomous Research Agent for Health Infomatics ![GitHub Repo stars](https://img.shields.io/github/stars/jarrycyx/openlens-ai?style=social)
+- [GenoMAS](https://github.com/Liu-Hy/GenoMAS): A multi-agent framework for scientific discovery that automates gene expression analysis through code-driven workflows. ![GitHub Repo stars](https://img.shields.io/github/stars/Liu-Hy/GenoMAS?style=social)
+- [DeepAnalyze](https://github.com/ruc-datalab/DeepAnalyze): first agentic LLM for autonomous data science, supporting specific data tasks (data preparation, analysis, modeling, visualization, and insight) and data-oriented deep research (produce analyst-grade research reports). [![GitHub Repo stars](https://img.shields.io/github/stars/ruc-datalab/DeepAnalyze?style=social&label=Code+Stars)](https://github.com/ruc-datalab/DeepAnalyze)
+- [AIDE](https://github.com/WecoAI/aideml): AI-Driven Exploration — ML engineering agent that uses tree search to automate experiment design, code generation, and evaluation against any metric. ![GitHub Repo stars](https://img.shields.io/github/stars/WecoAI/aideml?style=social)
+
+## Conversational / General Agents
+
+- [CollosalAI Chat](https://github.com/hpcaitech/ColossalAI/tree/main/applications/Chat): implement LLM with RLHF, powered by the Colossal-AI project ![GitHub Repo stars](https://img.shields.io/github/stars/hpcaitech/ColossalAI?style=social)
+- [RasaGPT](https://github.com/paulpierre/RasaGPT): RasaGPT is the first headless LLM chatbot platform built on top of Rasa and Langchain. ![GitHub Repo stars](https://img.shields.io/github/stars/paulpierre/RasaGPT?style=social)
+- [SuperAgent](https://github.com/homanp/superagent): Deploy LLM Agents to production ![GitHub Repo stars](https://img.shields.io/github/stars/homanp/superagent?style=social)
+- [BabyAGI UI](https://github.com/miurla/babyagi-ui): Make it easier to run and develop with babyagi in a web app, like a ChatGPT ![GitHub Repo stars](https://img.shields.io/github/stars/miurla/babyagi-ui?style=social)
+- [ix](https://github.com/kreneskyp/ix): Autonomous GPT-4 agent platform ![GitHub Repo stars](https://img.shields.io/github/stars/kreneskyp/ix?style=social)
+- [Multi-Modal LangChain agents in Production](https://github.com/steamship-packages/langchain-agent-production-starter): Deploy LangChain Agents and connect them to Telegram ![GitHub Repo stars](https://img.shields.io/github/stars/steamship-packages/langchain-agent-production-starter?style=social)
+- [Autonomous HR Chatbot](https://github.com/stepanogil/autonomous-hr-chatbot): An autonomous agent that can answer HR related queries autonomously using the tools it has on hand ![GitHub Repo stars](https://img.shields.io/github/stars/stepanogil/autonomous-hr-chatbot?style=social)
+- [LLama Cpp Agent](https://github.com/Maximilian-Winter/llama-cpp-agent): The llama-cpp-agent framework is a tool designed for easy interaction with Large Language Models ![GitHub Repo stars](https://img.shields.io/github/stars/Maximilian-Winter/llama-cpp-agent?style=social)
+- [Memgpt](https://github.com/cpacker/memgpt): Create LLM agents with long-term memory and custom tools 📚🦙 ![Github Repo stars](https://img.shields.io/github/stars/cpacker/memgpt?style=social)
+- [joinly](https://github.com/joinly-ai/joinly): Voice-first AI Assistant for online meetings that can actively participate and solve tasks live during the meeting ![GitHub Repo stars](https://img.shields.io/github/stars/joinly-ai/joinly?style=social)
+- [Gobii](https://github.com/gobii-ai/gobii-platform): Gobii is an open-source platform for deploying and managing browser-use agents at scale with a conversational interface and API ![GitHub Repo stars](https://img.shields.io/github/stars/gobii-ai/gobii-platform?style=social)
+- [ClaudeClaw](https://github.com/sbusso/claudeclaw): Persistent agent orchestrator plugin for Claude Code — multi-channel routing (Slack, WhatsApp, Telegram), OS-level sandbox isolation, composable extensions, structured memory, webhook triggers ![GitHub Repo stars](https://img.shields.io/github/stars/sbusso/claudeclaw?style=social)
+
+## Game / Simulation
+
+- [Camel-AutoGPT](https://github.com/SamurAIGPT/Camel-AutoGPT): role-playing approach for LLMs and auto-agents like BabyAGI & AutoGPT ![GitHub Repo stars](https://img.shields.io/github/stars/SamurAIGPT/Camel-AutoGPT?style=social)
+- [SkyAGI](https://github.com/litanlitudan/skyagi): Emerging human-behavior simulation capability in LLM agents ![GitHub Repo stars](https://img.shields.io/github/stars/litanlitudan/skyagi?style=social)
+- [Voyager](https://github.com/MineDojo/Voyager): An Open-Ended Embodied Agent with Large Language Models ![GitHub Repo stars](https://img.shields.io/github/stars/MineDojo/Voyager?style=social)
+
+## Knowledge Management
+
+- [Private GPT](https://github.com/imartinez/privateGPT): Interact privately with your documents using the power of GPT, 100% privately, no data leaks ![GitHub Repo stars](https://img.shields.io/github/stars/imartinez/privateGPT?style=social)
+- [Local GPT](https://github.com/PromtEngineer/localGPT): Inspired on Private GPT with the GPT4ALL model replaced with the Vicuna-7B model and using the InstructorEmbeddings instead of LlamaEmbeddings ![GitHub Repo stars](https://img.shields.io/github/stars/PromtEngineer/localGPT?style=social)
+- [LLocalSearch](https://github.com/nilsherzig/LLocalSearch): LLocalSearch is a completely locally running search aggregator using LLM Agents. The user can ask a question and the system will use a chain of LLMs to find the answer. The user can see the progress of the agents and the final answer. No OpenAI or Google API keys are needed. ![GitHub Repo stars](https://img.shields.io/github/stars/nilsherzig/LLocalSearch?style=social)
+- [Second Brain AI Agent](https://github.com/flepied/second-brain-agent): A streamlit app to dialog with your second brain notes using OpenAI and ChromaDB locally. ![GitHub Repo stars](https://img.shields.io/github/stars/flepied/second-brain-agent?style=social)
+- [SAGE](https://github.com/l33tdawg/sage): Institutional memory for AI agents — every memory goes through BFT consensus before it's committed. 4 application validators, 13 MCP tools, runs locally. ![GitHub Repo stars](https://img.shields.io/github/stars/l33tdawg/sage?style=social)
+- [Hindsight](https://github.com/vectorize-io/hindsight): State-of-the-art long-term memory for AI agents by Vectorize. Open source, self-hostable, with integrations for LangChain, CrewAI, LlamaIndex, Vercel AI SDK, MCP, and more. ![GitHub Repo stars](https://img.shields.io/github/stars/vectorize-io/hindsight?style=social)
+
+## Automation
+
+- [DemoGPT](https://github.com/melih-unsal/DemoGPT): DemoGPT enables you to create quick demos by just using prompt. It applies ToT approach on Langchain documentation tree. ![GitHub Repo stars](https://img.shields.io/github/stars/melih-unsal/DemoGPT?style=social)
+- [RestGPT](https://github.com/Yifan-Song793/RestGPT): An LLM-based autonomous agent controlling real-world applications via RESTful APIs ![GitHub Repo stars](https://img.shields.io/github/stars/Yifan-Song793/RestGPT?style=social)
+- [XAgent](https://github.com/OpenBMB/XAgent): An Autonomous LLM Agent for Complex Task Solving ![GitHub Repo stars](https://img.shields.io/github/stars/OpenBMB/XAgent?style=social)
+- [LLM Agents](https://github.com/mpaepper/llm_agents): Build agents which are controlled by LLMs ![GitHub Repo stars](https://img.shields.io/github/stars/mpaepper/llm_agents?style=social)
+- [uAgents](https://github.com/fetchai/uAgents): A fast and lightweight framework for creating decentralized agents with ease. ![GitHub Repo stars](https://img.shields.io/github/stars/fetchai/uAgents?style=social)
+- [Maestro](https://github.com/Doriandarko/maestro): A framework for Claude Opus to intelligently orchestrate subagents. ![GitHub Repo stars](https://img.shields.io/github/stars/Doriandarko/maestro?style=social)
+- [llama-agents](https://github.com/run-llama/llama-agents): llama-agents is an async-first framework for building, iterating, and productionizing multi-agent systems, including multi-agent communication, distributed tool execution, human-in-the-loop, and more ![GitHub Repo stars](https://img.shields.io/github/stars/run-llama/llama-agents?style=social)
+- [Phidata](https://github.com/phidatahq/phidata): Build AI Assistants with memory, knowledge and tools. ![GitHub Repo stars](https://img.shields.io/github/stars/phidatahq/phidata?style=social)
+- [AgentK](https://github.com/mikekelly/AgentK): An autoagentic AGI that is self-evolving and modular. ![GitHub Repo stars](https://img.shields.io/github/stars/mikekelly/AgentK?style=social)
+- [ADAS](https://github.com/ShengranHu/ADAS): Automated Design of Agentic Systems ![GitHub Repo stars](https://img.shields.io/github/stars/ShengranHu/ADAS?style=social)
+- [Giselle](https://github.com/giselles-ai/giselle): Giselle is an agentic workflow builder that empowers you to create AI-driven solutions with ease. ![Github Repo stars](https://img.shields.io/github/stars/giselles-ai/giselle?style=social)
+- [Untether](https://github.com/littlebearapps/untether): Telegram bridge for AI coding agents — remote task control with progress streaming, interactive permissions, voice input, and cost tracking. Supports Claude Code, Codex, OpenCode, Pi, Gemini CLI, and Amp. ![GitHub Repo stars](https://img.shields.io/github/stars/littlebearapps/untether?style=social)
+- [SwiftAutoGUI](https://github.com/NakaokaRei/SwiftAutoGUI): A Swift library for macOS automation with a built-in AI agent that autonomously observes the screen, reasons, and executes actions using the ReAct pattern. Also provides programmatic mouse, keyboard, screenshot, and image recognition APIs. ![GitHub Repo stars](https://img.shields.io/github/stars/NakaokaRei/SwiftAutoGUI?style=social)
+
+### Browser
+
+- [AgentGPT](https://github.com/reworkd/AgentGPT): AI Agents with Langchain & OpenAI (Vercel / Nextjs) ![GitHub Repo stars](https://img.shields.io/github/stars/reworkd/AgentGPT?style=social)
+- [OpenAgents](https://github.com/xlang-ai/OpenAgents): An Open Platform for Language Agents in the Wild ![GitHub Repo stars](https://img.shields.io/github/stars/xlang-ai/OpenAgents?style=social)
+- [Steel Browser](https://github.com/steel-dev/steel-browser): Open-source browser infrastructure for AI agents with session-backed automation, extraction, screenshots/PDFs, an AI-native CLI, and a reusable steel-browser skill. ![GitHub Repo stars](https://img.shields.io/github/stars/steel-dev/steel-browser?style=social)
+[0m
+[0m$ [0mgh api -H "Accept: application/vnd.github.raw" repos/cloudflare/awesome-agents/readme
+# Awesome Agents [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+
+> A curated list of awesome projects (AI agents/MCPs etc) using the [Cloudflare Agents SDK](https://developers.cloudflare.com/agents/)
+
+The Cloudflare Agents SDK enables developers to build powerful, distributed AI agents that run on Cloudflare's global network. This repository is a curated collection of AI agent projects and tools that showcase the capabilities and potential of building with the SDK.
+
+## Contents
+
+- [Projects](#projects)
+- [Getting Started](#getting-started)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Projects
+
+### Communication & Messaging
+
+- **[Slack Agent](./agents/slack)** - An AI agent for Slack integration and automation
+- **[Personal Discord Agent](./agents/discord-agent)** - A hackable AI agent with persistent memory that lives in your Discord DMs.
+- **[Cloudflare Discord Agent](./agents/cloudflare-docs-discord-bot)** - A Discord agent that answers questions about Cloudflare using RAG with [Cloudflare Docs MCP](https://github.com/cloudflare/mcp-server-cloudflare/tree/main/apps/docs-vectorize).
+
+## Getting Started
+
+To explore or run any of these projects:
+
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/cloudflare/awesome-agents.git
+   cd awesome-agents
+   ```
+
+2. Navigate to the specific project directory:
+   ```bash
+   cd agents/[project-name]
+   ```
+
+3. Follow the project-specific README for setup instructions
+
+
+## Contributing
+
+We welcome contributions! If you've built an awesome project with the Cloudflare Agents SDK, we'd love to feature it here.
+
+### Submission Guidelines
+
+1. **Fork this repository**
+2. **Create a new directory** under `agents/` for your project
+3. **Include a comprehensive README** with:
+   - Project description
+   - Features
+   - Setup instructions
+   - Usage examples
+   - Screenshots/demos (if applicable)
+4. **Ensure your code is well-documented** and follows best practices
+5. **Submit a pull request** with a clear description of your project
+
+### Quality Standards
+
+Projects should:
+- Be functional and well-tested
+- Include clear documentation
+- Follow TypeScript/JavaScript best practices
+
+## Resources
+
+- [Cloudflare Agents SDK Documentation](https://developers.cloudflare.com/agents/)
+- [Cloudflare Workers Documentation](https://developers.cloudflare.com/workers/)
+
+## License
+
+This repository is licensed under the MIT License - see individual project directories for specific project licenses.
+[0m
+[0m$ [0mgh api -H "Accept: application/vnd.github.raw" repos/nibzard/awesome-agentic-patterns/readme
+# Awesome Agentic Patterns
+
+![Awesome Agentic Patterns](/agentic-patterns.jpeg)
+
+A curated catalogue of **agentic AI patterns** — real‑world tricks, workflows, and mini‑architectures that help autonomous or semi‑autonomous AI agents get useful work done in production.
+
+> **Why?**
+> Tutorials show toy demos. Real products hide the messy bits. This list surfaces the repeatable patterns that bridge the gap so we can all ship smarter, faster agents.
+
+---
+
+## What counts as a pattern?
+
+* **Repeatable** – more than one team is using it.
+* **Agent‑centric** – improves how an AI agent senses, reasons, or acts.
+* **Traceable** – backed by a public reference: blog post, talk, repo, or paper.
+
+If your link ticks those boxes, it belongs here.
+
+---
+
+## 🌐 Explore the Website
+
+**Visit:** [https://agentic-patterns.com](https://agentic-patterns.com)
+
+The website offers powerful discovery tools beyond this README:
+
+- **Pattern Explorer**: Browse, filter, and search all patterns by category, status, complexity, and more
+- **Compare Tool**: Side-by-side comparison of multiple patterns with shared attributes
+- **Decision Explorer**: Interactive guide to find the right pattern for your use case
+- **Graph Visualization**: Visual map of pattern relationships and connections
+- **Pattern Packs**: Curated collections of patterns for common agent architectures
+- **Developer Guides**: In-depth documentation on pattern selection and usage
+- **Dark Mode**: Full theme support for comfortable reading in any environment
+
+Built with [Astro](https://astro.build), deployed on [Vercel](https://vercel.com), source code in [`apps/web/`](./apps/web/).
+
+---
+
+## Quick Tour of Categories
+
+<!-- AUTO-GENERATED TOC START -->
+|  Category                                              |  What you'll find                                         |
+| ------------------------------------------------------ | --------------------------------------------------------- |
+| [**Context & Memory**](#context-memory)               | Sliding-window curation, vector cache, episodic memory    |
+| [**Feedback Loops**](#feedback-loops)                 | Compilers, CI, human review, self-healing retries         |
+| [**Learning & Adaptation**](#learning-adaptation)     | Agent RFT, skill libraries, variance-based RL             |
+| [**Orchestration & Control**](#orchestration-control) | Task decomposition, sub-agent spawning, tool routing      |
+| [**Reliability & Eval**](#reliability-eval)           | Guardrails, eval harnesses, logging, reproducibility      |
+| [**Security & Safety**](#security-safety)             | Isolated VMs, PII tokenization, security scanning         |
+| [**Tool Use & Environment**](#tool-use-environment)   | Shell, browser, DB, Playwright, sandbox tricks            |
+| [**UX & Collaboration**](#ux-collaboration)           | Prompt hand-offs, staged commits, async background agents |
+<!-- AUTO-GENERATED TOC END -->
+
+*Categories are fluid — open a PR if you see a better slice!*
+The tables below are auto‑generated from the `patterns/` folder.
+
+---
+
+<!-- …existing content above… -->
+
+<!-- AUTO-GENERATED PATTERNS START -->
+
+### <a name="context-memory"></a>Context & Memory
+
+- [Agent-Powered Codebase Q&A / Onboarding](patterns/agent-powered-codebase-qa-onboarding.md)
+- [Context Window Anxiety Management](patterns/context-window-anxiety-management.md)
+- [Context Window Auto-Compaction](patterns/context-window-auto-compaction.md)
+- [Context-Minimization Pattern](patterns/context-minimization-pattern.md)
+- [Curated Code Context Window](patterns/curated-code-context-window.md)
+- [Curated File Context Window](patterns/curated-file-context-window.md)
+- [Dynamic Context Injection](patterns/dynamic-context-injection.md)
+- [Episodic Memory Retrieval & Injection](patterns/episodic-memory-retrieval-injection.md)
+- [Filesystem-Based Agent State](patterns/filesystem-based-agent-state.md)
+- [Layered Configuration Context](patterns/layered-configuration-context.md)
+- [Memory Synthesis from Execution Logs](patterns/memory-synthesis-from-execution-logs.md)
+- [Proactive Agent State Externalization](patterns/proactive-agent-state-externalization.md)
+- [Progressive Disclosure for Large Files](patterns/progressive-disclosure-large-files.md)
+- [Prompt Caching via Exact Prefix Preservation](patterns/prompt-caching-via-exact-prefix-preservation.md)
+- [Self-Identity Accumulation](patterns/self-identity-accumulation.md)
+- [Semantic Context Filtering Pattern](patterns/semantic-context-filtering.md)
+- [Tool Search Lazy Loading](patterns/tool-search-lazy-loading.md)
+- [Working Memory via TodoWrite](patterns/working-memory-via-todos.md)
+
+### <a name="feedback-loops"></a>Feedback Loops
+
+- [AI-Assisted Code Review / Verification](patterns/ai-assisted-code-review-verification.md)
+- [Background Agent with CI Feedback](patterns/background-agent-ci.md)
+- [Coding Agent CI Feedback Loop](patterns/coding-agent-ci-feedback-loop.md)
+- [Dogfooding with Rapid Iteration for Agent Improvement](patterns/dogfooding-with-rapid-iteration-for-agent-improvement.md)
+- [Graph of Thoughts (GoT)](patterns/graph-of-thoughts.md)
+- [Incident-to-Eval Synthesis](patterns/incident-to-eval-synthesis.md)
+- [Inference-Healed Code Review Reward](patterns/inference-healed-code-review-reward.md)
+- [Iterative Prompt & Skill Refinement](patterns/iterative-prompt-skill-refinement.md)
+- [Reflection Loop](patterns/reflection.md)
+- [Rich Feedback Loops > Perfect Prompts](patterns/rich-feedback-loops.md)
+- [Self-Critique Evaluator Loop](patterns/self-critique-evaluator-loop.md)
+- [Self-Discover: LLM Self-Composed Reasoning Structures](patterns/self-discover-reasoning-structures.md)
+- [Spec-As-Test Feedback Loop](patterns/spec-as-test-feedback-loop.md)
+- [Tool Use Incentivization via Reward Shaping](patterns/tool-use-incentivization-via-reward-shaping.md)
+
+### <a name="learning-adaptation"></a>Learning & Adaptation
+
+- [Agent Reinforcement Fine-Tuning (Agent RFT)](patterns/agent-reinforcement-fine-tuning.md)
+- [Compounding Engineering Pattern](patterns/compounding-engineering-pattern.md)
+- [Frontier-Focused Development](patterns/frontier-focused-development.md)
+- [Memory Reinforcement Learning (MemRL)](patterns/memory-reinforcement-learning-memrl.md)
+- [Shipping as Research](patterns/shipping-as-research.md)
+- [Skill Library Evolution](patterns/skill-library-evolution.md)
+- [Variance-Based RL Sample Selection](patterns/variance-based-rl-sample-selection.md)
+
+### <a name="orchestration-control"></a>Orchestration & Control
+
+- [Action-Selector Pattern](patterns/action-selector-pattern.md)
+- [Agent Modes by Model Personality](patterns/agent-modes-by-model-personality.md)
+- [Agent-Driven Research](patterns/agent-driven-research.md)
+- [Artifact-Driven Analysis Pipeline Orchestration](patterns/multi-step-analysis-pipeline-orchestration.md)
+- [Autonomous Workflow Agent Architecture](patterns/autonomous-workflow-agent-architecture.md)
+- [Budget-Aware Model Routing with Hard Cost Caps](patterns/budget-aware-model-routing-with-hard-cost-caps.md)
+- [Burn the Boats](patterns/burn-the-boats.md)
+- [Conditional Parallel Tool Execution](patterns/parallel-tool-execution.md)
+- [Continuous Autonomous Task Loop Pattern](patterns/continuous-autonomous-task-loop-pattern.md)
+- [Cross-Cycle Consensus Relay](patterns/cross-cycle-consensus-relay.md)
+- [Custom Sandboxed Background Agent](patterns/custom-sandboxed-background-agent.md)
+- [Discrete Phase Separation](patterns/discrete-phase-separation.md)
+- [Disposable Scaffolding Over Durable Features](patterns/disposable-scaffolding-over-durable-features.md)
+- [Distributed Execution with Cloud Workers](patterns/distributed-execution-cloud-workers.md)
+- [Dual LLM Pattern](patterns/dual-llm-pattern.md)
+- [Economic Value Signaling in Multi-Agent Networks](patterns/economic-value-signaling-multi-agent.md)
+- [Explicit Posterior-Sampling Planner](patterns/explicit-posterior-sampling-planner.md)
+- [Factory over Assistant](patterns/factory-over-assistant.md)
+- [Feature List as Immutable Contract](patterns/feature-list-as-immutable-contract.md)
+- [Hybrid LLM/Code Workflow Coordinator](patterns/hybrid-llm-code-workflow-coordinator.md)
+- [Inference-Time Scaling](patterns/inference-time-scaling.md)
+- [Initializer-Maintainer Dual Agent Architecture](patterns/initializer-maintainer-dual-agent.md)
+- [Inversion of Control](patterns/inversion-of-control.md)
+- [Iterative Multi-Agent Brainstorming](patterns/iterative-multi-agent-brainstorming.md)
+- [Lane-Based Execution Queueing](patterns/lane-based-execution-queueing.md)
+- [Language Agent Tree Search (LATS)](patterns/language-agent-tree-search-lats.md)
+- [LLM Map-Reduce Pattern](patterns/llm-map-reduce-pattern.md)
+- [Multi-Model Orchestration for Complex Edits](patterns/multi-model-orchestration-for-complex-edits.md)
+- [Opponent Processor / Multi-Agent Debate Pattern](patterns/opponent-processor-multi-agent-debate.md)
+- [Oracle and Worker Multi-Model Approach](patterns/oracle-and-worker-multi-model.md)
+- [Parallel Tool Call Learning](patterns/parallel-tool-call-learning.md)
+- [Plan-Then-Execute Pattern](patterns/plan-then-execute-pattern.md)
+- [Planner-Worker Separation for Long-Running Agents](patterns/planner-worker-separation-for-long-running-agents.md)
+- [Progressive Autonomy with Model Evolution](patterns/progressive-autonomy-with-model-evolution.md)
+- [Progressive Complexity Escalation](patterns/progressive-complexity-escalation.md)
+- [Recursive Best-of-N Delegation](patterns/recursive-best-of-n-delegation.md)
+- [Self-Rewriting Meta-Prompt Loop](patterns/self-rewriting-meta-prompt-loop.md)
+- [Specification-Driven Agent Development](patterns/specification-driven-agent-development.md)
+- [Stop Hook Auto-Continue Pattern](patterns/stop-hook-auto-continue-pattern.md)
+- [Sub-Agent Spawning](patterns/sub-agent-spawning.md)
+- [Subject Hygiene for Task Delegation](patterns/subject-hygiene.md)
+- [Swarm Migration Pattern](patterns/swarm-migration-pattern.md)
+- [Three-Stage Perception Architecture](patterns/three-stage-perception-architecture.md)
+- [Tool Capability Compartmentalization](patterns/tool-capability-compartmentalization.md)
+- [Tool Selection Guide](patterns/tool-selection-guide.md)
+- [Tree-of-Thought Reasoning](patterns/tree-of-thought-reasoning.md)
+- [Workspace-Native Multi-Agent Orchestration](patterns/workspace-native-multi-agent-orchestration.md)
+
+### <a name="reliability-eval"></a>Reliability & Eval
+
+- [Action Caching & Replay Pattern](patterns/action-caching-replay.md)
+- [Adaptive Sandbox Fan-Out Controller](patterns/adaptive-sandbox-fanout-controller.md)
+- [Anti-Reward-Hacking Grader Design](patterns/anti-reward-hacking-grader-design.md)
+- [Asynchronous Coding Agent Pipeline](patterns/asynchronous-coding-agent-pipeline.md)
+- [Canary Rollout and Automatic Rollback for Agent Policy Changes](patterns/canary-rollout-and-automatic-rollback-for-agent-policy-changes.md)
+- [CriticGPT-Style Code Review](patterns/criticgpt-style-evaluation.md)
+- [Extended Coherence Work Sessions](patterns/extended-coherence-work-sessions.md)
+- [Failover-Aware Model Fallback](patterns/failover-aware-model-fallback.md)
+- [Lethal Trifecta Threat Model](patterns/lethal-trifecta-threat-model.md)
+- [LLM Observability](patterns/llm-observability.md)
+- [Merged Code + Language Skill Model](patterns/merged-code-language-skill-model.md)
+- [No-Token-Limit Magic](patterns/no-token-limit-magic.md)
+- [Reliability Problem Map Checklist for RAG and Agents](patterns/wfgy-reliability-problem-map.md)
+- [RLAIF (Reinforcement Learning from AI Feedback)](patterns/rlaif-reinforcement-learning-from-ai-feedback.md)
+- [Schema Validation Retry with Cross-Step Learning](patterns/schema-validation-retry-cross-step-learning.md)
+- [Structured Output Specification](patterns/structured-output-specification.md)
+- [Subagent Compilation Checker](patterns/subagent-compilation-checker.md)
+- [Versioned Constitution Governance](patterns/versioned-constitution-governance.md)
+- [Workflow Evals with Mocked Tools](patterns/workflow-evals-with-mocked-tools.md)
+
+### <a name="security-safety"></a>Security & Safety
+
+- [Deterministic Security Scanning Build Loop](patterns/deterministic-security-scanning-build-loop.md)
+- [External Credential Sync](patterns/external-credential-sync.md)
+- [Hook-Based Safety Guard Rails for Autonomous Code Agents](patterns/hook-based-safety-guard-rails.md)
+- [Isolated VM per RL Rollout](patterns/isolated-vm-per-rl-rollout.md)
+- [Non-Custodial Spending Controls](patterns/non-custodial-spending-controls.md)
+- [PII Tokenization](patterns/pii-tokenization.md)
+- [Sandboxed Tool Authorization](patterns/sandboxed-tool-authorization.md)
+- [Soulbound Identity Verification](patterns/soulbound-identity-verification.md)
+- [Transitive Vouch-Chain Trust](patterns/transitive-vouch-chain-trust.md)
+- [Zero-Trust Agent Mesh](patterns/zero-trust-agent-mesh.md)
+
+### <a name="tool-use-environment"></a>Tool Use & Environment
+
+- [Agent SDK for Programmatic Control](patterns/agent-sdk-for-programmatic-control.md)
+- [Agent-First Tooling and Logging](patterns/agent-first-tooling-and-logging.md)
+- [Agentic Search Over Vector Embeddings](patterns/agentic-search-over-vector-embeddings.md)
+- [AI Web Search Agent Loop](patterns/ai-web-search-agent-loop.md)
+- [CLI-First Skill Design](patterns/cli-first-skill-design.md)
+- [CLI-Native Agent Orchestration](patterns/cli-native-agent-orchestration.md)
+- [Code Mode MCP Tool Interface Improvement Pattern](patterns/code-first-tool-interface-pattern.md)
+- [Code-Over-API Pattern](patterns/code-over-api-pattern.md)
+- [Code-Then-Execute Pattern](patterns/code-then-execute-pattern.md)
+- [Dual-Use Tool Design](patterns/dual-use-tool-design.md)
+- [Dynamic Code Injection (On-Demand File Fetch)](patterns/dynamic-code-injection-on-demand-file-fetch.md)
+- [Egress Lockdown (No-Exfiltration Channel)](patterns/egress-lockdown-no-exfiltration-channel.md)
+- [Intelligent Bash Tool Execution](patterns/intelligent-bash-tool-execution.md)
+- [LLM-Friendly API Design](patterns/llm-friendly-api-design.md)
+- [Multi-Platform Communication Aggregation](patterns/multi-platform-communication-aggregation.md)
+- [Multi-Platform Webhook Triggers](patterns/multi-platform-webhook-triggers.md)
+- [Patch Steering via Prompted Tool Selection](patterns/patch-steering-via-prompted-tool-selection.md)
+- [Progressive Tool Discovery](patterns/progressive-tool-discovery.md)
+- [Shell Command Contextualization](patterns/shell-command-contextualization.md)
+- [Static Service Manifest for Agents](patterns/static-service-manifest-for-agents.md)
+- [Tool Use Steering via Prompting](patterns/tool-use-steering-via-prompting.md)
+- [Virtual Machine Operator Agent](patterns/virtual-machine-operator-agent.md)
+- [Visual AI Multimodal Integration](patterns/visual-ai-multimodal-integration.md)
+
+### <a name="ux-collaboration"></a>UX & Collaboration
+
+- [Abstracted Code Representation for Review](patterns/abstracted-code-representation-for-review.md)
+- [Agent-Assisted Scaffolding](patterns/agent-assisted-scaffolding.md)
+- [Agent-Friendly Workflow Design](patterns/agent-friendly-workflow-design.md)
+- [AI-Accelerated Learning and Skill Development](patterns/ai-accelerated-learning-and-skill-development.md)
+- [Chain-of-Thought Monitoring & Interruption](patterns/chain-of-thought-monitoring-interruption.md)
+- [Codebase Optimization for Agents](patterns/codebase-optimization-for-agents.md)
+- [Democratization of Tooling via Agents](patterns/democratization-of-tooling-via-agents.md)
+- [Dev Tooling Assumptions Reset](patterns/dev-tooling-assumptions-reset.md)
+- [Human-in-the-Loop Approval Framework](patterns/human-in-loop-approval-framework.md)
+- [Latent Demand Product Discovery](patterns/latent-demand-product-discovery.md)
+- [Milestone Escrow for Agent Resource Funding](patterns/agentfund-crowdfunding.md)
+- [Proactive Trigger Vocabulary](patterns/proactive-trigger-vocabulary.md)
+- [Seamless Background-to-Foreground Handoff](patterns/seamless-background-to-foreground-handoff.md)
+- [Spectrum of Control / Blended Initiative](patterns/spectrum-of-control-blended-initiative.md)
+- [Team-Shared Agent Configuration as Code](patterns/team-shared-agent-configuration.md)
+- [Verbose Reasoning Transparency](patterns/verbose-reasoning-transparency.md)
+
+<!-- AUTO-GENERATED PATTERNS END -->
+
+<!-- …existing content below… -->
+
+---
+
+## For AI Assistants (llms.txt)
+
+This project includes [`llms.txt`](https://agentic-patterns.com/llms.txt), a machine-readable documentation file designed to help AI assistants and LLMs understand and recommend appropriate patterns.
+
+**What's included:**
+- Pattern categories and their purposes
+- Key patterns with concise descriptions
+- Usage guidelines for AI assistants
+- Pattern selection strategies based on use case requirements
+
+**For developers building AI assistants:**
+The `llms.txt` file can be provided to LLMs as context to improve pattern recommendations. It's optimized for:
+- RAG systems indexing this catalogue
+- AI coding assistants suggesting patterns
+- LLM-powered tools that recommend agentic patterns
+
+**Access:** https://agentic-patterns.com/llms.txt (also available in [`apps/web/public/llms.txt`](./apps/web/public/llms.txt))
+
+---
+
+## Contributing in 3 steps
+
+1. **Fork & branch** → `git checkout -b add-my-pattern`
+2. **Add a pattern file** under `patterns/` using the template above.
+3. **Run** `bun run build:data` to refresh the generated README sections and site data.
+4. **Open a PR** titled `Add: my-pattern-name`.
+5. This repository is pattern-first: proposals that are primarily product announcements or promotions will be rejected, even if technically valid.
+
+See [`CONTRIBUTING.md`](https://github.com/nibzard/awesome-agentic-patterns/blob/main/CONTRIBUTING.md) for the fine print.
+
+---
+
+## Inspiration
+
+This project started after the write‑up [**"What Sourcegraph learned building AI coding agents"**](https://www.nibzard.com/ampcode) (28 May 2025) and the ongoing *Raising an Agent* video diary. Many first patterns come straight from those lessons — thanks to everyone sharing their journey in the open!
+
+---
+
+## License
+
+Apache‑2.0. See [`LICENSE`](https://github.com/nibzard/awesome-agentic-patterns/blob/main/LICENSE).
+
+---
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=nibzard/awesome-agentic-patterns&type=date&legend=top-left)](https://www.star-history.com/#nibzard/awesome-agentic-patterns&type=date&legend=top-left)
+[0m
+[0m$ [0mgh api -H "Accept: application/vnd.github.raw" repos/DavidZWZ/Awesome-Deep-Research/readme
+# 🤖 Awesome Agentic Deep Research Resources
+
+![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)
+[![arXiv](https://img.shields.io/badge/arXiv-Agentic_Deep_Research-b31b1b.svg)]()
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)]()
+[![Contribution Welcome](https://img.shields.io/badge/Contributions-welcome-blue)]()
+[![Code](https://img.shields.io/badge/Code-GithubRepo-c8a4bf.svg)](https://github.com/DavidZWZ/Awesome-Deep-Research) 
+
+<p align="center">
+    <img src="https://i.imgur.com/waxVImv.png" alt="Oryx Video-ChatGPT">
+</p>
+
+Welcome to Awesome-Deep-Research! 🚀 This repository serves as your comprehensive guide to the cutting-edge world of Agentic Deep Research. We've meticulously curated a collection of resources for you.
+
+<p align="center">
+  <img src="./Assets/DeepResearch.png" alt="DeepResearch Framework" width="80%" />
+</p>
+
+Whether you're a researcher, developer, or enthusiast, this repository is your gateway to exploring the fascinating intersection of artificial intelligence and autonomous agents. For a detailed analysis of the changing paradigm in information search, check out our position paper: **[From Web Search towards Agentic Deep Research: Incentivizing Search with Reasoning Agents](https://arxiv.org/abs/2506.18959)** 📄, which outlines existing domain trends and future directions. For researchers interested in the broader intersection of RAG and Reasoning, we also recommend exploring our comprehensive collection at **[Awesome-RAG-Reasoning](https://github.com/DavidZWZ/Awesome-RAG-Reasoning)** 🔥🔥🔥.
+
+## Table of Contents
+- [🎯 Industry-leading products and solutions](#industry-leading-products)
+- [🔧 Open-source implementations and tools](#open-source-implementations)
+- [📚 Latest research papers and breakthroughs](#latest-research-papers)
+- [🏆 Evaluation benchmarks and practical applications](#benchmarks-and-applications)
+- [🤝 Contributing and Citations](#contributing-and-citations)
+
+
+## Industry-Leading Products
+- <img src="https://www.google.com/s2/favicons?sz=24&domain_url=gemini.google.com" width="20" style="vertical-align: -10px;"/> [Gemini Deep Research](https://gemini.google/overview/deep-research/?hl=en): Google's advanced research assistant for deep analysis (December 11, 2024)
+- <img src="https://www.google.com/s2/favicons?sz=24&domain_url=openai.com" width="20" style="vertical-align: -10px;"/> [Deep Research](https://openai.com/index/introducing-deep-research/): OpenAI's deep research platform [[API Guide]](https://cookbook.openai.com/examples/deep_research_api/introduction_to_deep_research_api) (February 2, 2025) 
+- <img src="https://www.google.com/s2/favicons?sz=24&domain_url=perplexity.ai" width="16" style="vertical-align: -15px;"/> [Perplexity Deep Research](https://www.perplexity.ai/hub/blog/introducing-perplexity-deep-research): Perplexity's product for in-depth research and analysis (February 14, 2025)
+- <img src="https://www.google.com/s2/favicons?sz=24&domain_url=x.ai" width="20" style="vertical-align: -10px;"/> [Grok Agents](https://x.ai/news/grok-3): xAI's autonomous DeepSearch agents powered by Grok-3 (February 19, 2025)
+- <img src="https://www.google.com/s2/favicons?sz=24&domain_url=microsoft.com" width="16" style="vertical-align: -10px;"/> [Copilot Researcher](https://www.microsoft.com/en-us/microsoft-365/blog/2025/03/25/introducing-researcher-and-analyst-in-microsoft-365-copilot/): Researcher and Analyst in Microsoft 365 Copilot (March 25, 2025)
+- <img src="https://www.google.com/s2/favicons?sz=24&domain_url=anthropic.com" width="20" style="vertical-align: -10px;"/> [Research](https://www.anthropic.com/news/research): Anthropic's research platform to find and reason with information (April 15, 2025)
+- <img src="https://www.google.com/s2/favicons?sz=24&domain_url=manus.im" width="20" style="vertical-align: -10px;"/> [Manus](https://manus.im/): Advanced research and analysis platform (March 6, 2025)
+- 🦌 [DeerFlow](https://deerflow.tech/): ByteDance's research and analysis solution (May 9, 2025)
+- <img src="https://www.google.com/s2/favicons?sz=24&domain_url=chat.qwen.ai" width="16" style="vertical-align: -15px;"/> [Deep Research](https://chat.qwen.ai/?inputFeature=deep_research): Alibaba's Qwen-powered research assistant (May 14, 2025)
+- <img src="https://www.google.com/s2/favicons?sz=24&domain_url=moonshot.cn" width="16" style="vertical-align: -10px;"/> [Kimi-Researcher](https://moonshotai.github.io/Kimi-Researcher/): Moonshot's research assistant powered by Kimi (June 20, 2025)
+
+
+## Open-Source Implementations
+- [gemini-fullstack-langgraph-quickstart](https://github.com/google-gemini/gemini-fullstack-langgraph-quickstart): Gemini fullstack and LangGraph integration. ![GitHub Repo stars](https://img.shields.io/github/stars/google-gemini/gemini-fullstack-langgraph-quickstart?style=social)
+- [multi-agent research system](https://github.com/anthropics/anthropic-cookbook/tree/main/patterns/agents/prompts): Multi-agent research system by Anthropic. [Blog post](https://www.anthropic.com/engineering/built-multi-agent-research-system) ![GitHub Repo stars](https://img.shields.io/github/stars/anthropics/anthropic-cookbook?style=social)
+- [gpt-researcher](https://github.com/assafelovic/gpt-researcher): Autonomous agent for comprehensive research tasks. ![GitHub Repo stars](https://img.shields.io/github/stars/assafelovic/gpt-researcher?style=social)
+- [DeerFlow](https://github.com/bytedance/deer-flow): ByteDance's open-source deep research framework. ![GitHub Repo stars](https://img.shields.io/github/stars/bytedance/deer-flow?style=social)
+- [r1-reasoning-rag](https://github.com/deansaco/r1-reasoning-rag): Reasoning-augmented retrieval-augmented generation framework. ![GitHub Repo stars](https://img.shields.io/github/stars/deansaco/r1-reasoning-rag?style=social)
+- [nanoDeepResearch](https://github.com/liyuan24/nanoDeepResearch): Lightweight deep research toolkit. ![GitHub Repo stars](https://img.shields.io/github/stars/liyuan24/nanoDeepResearch?style=social)
+- [deep-research (Aomni)](https://github.com/dzhng/deep-research): Deep research assistant by Aomni. ![GitHub Repo stars](https://img.shields.io/github/stars/dzhng/deep-research?style=social)
+- [deep-research (u14app)](https://github.com/u14app/deep-research): Deep research platform by u14app. ![GitHub Repo stars](https://img.shields.io/github/stars/u14app/deep-research?style=social)
+- [open-deep-research](https://github.com/btahir/open-deep-research): Open-source deep research framework. ![GitHub Repo stars](https://img.shields.io/github/stars/btahir/open-deep-research?style=social)
+- [deep-searcher](https://github.com/zilliztech/deep-searcher): Deep search and research toolkit. ![GitHub Repo stars](https://img.shields.io/github/stars/zilliztech/deep-searcher?style=social)
+- [node-DeepResearch](https://github.com/jina-ai/node-DeepResearch): Deep research toolkit to find the right answers. ![GitHub Repo stars](https://img.shields.io/github/stars/jina-ai/node-DeepResearch?style=social)
+- [Auto-Deep-Research](https://github.com/HKUDS/Auto-Deep-Research): Automated deep research agent. ![GitHub Repo stars](https://img.shields.io/github/stars/HKUDS/Auto-Deep-Research?style=social)
+- [langgraph-deep-research](https://github.com/foreveryh/langgraph-deep-research): Deep research workflows with LangGraph. ![GitHub Repo stars](https://img.shields.io/github/stars/foreveryh/langgraph-deep-research?style=social)
+- [DeepResearchAgent](https://github.com/SkyworkAI/DeepResearchAgent): Deep research agent by SkyworkAI. ![GitHub Repo stars](https://img.shields.io/github/stars/SkyworkAI/DeepResearchAgent?style=social)
+- [OpenManus](https://github.com/FoundationAgents/OpenManus): An open-source framework for building general AI agents. ![GitHub Repo stars](https://img.shields.io/github/stars/FoundationAgents/OpenManus?style=social)
+- [PraisonAI](https://github.com/MervinPraison/PraisonAI): Production-ready multi-agent framework with built-in deep research capabilities. ![GitHub Repo stars](https://img.shields.io/github/stars/MervinPraison/PraisonAI?style=social)
+- [AtomSearcher](https://github.com/antgroup/Research-Venus): An Automated deep research agent. ![GitHub Repo stars](https://img.shields.io/github/stars/antgroup/Research-Venus?style=social)
+
+## Latest Research Papers
+
+🔥🔥🔥 This section showcases the most recent and impactful research papers in the field of Agentic Deep Research. Each paper represents a significant advancement in the development of autonomous research agents, search capabilities, and reasoning frameworks. The papers are organized chronologically, with the most recent publications at the top. Key areas covered include:
+- 🤖 Agentic frameworks for deep research
+- 🔍 Search-enhanced reasoning models
+- 🌐 Web agents for deep research
+- 🔄 Reasoning and retrieval-augmented generation
+- 📊 Multimodal deep research
+
+🚀🚀🚀 Stay tuned for the hottest breakthroughs in the field!
+
+
+| Title | Date & Code | Base model | Optimization | Search Engine | Agent Architecture | Training Dataset | Evaluation Dataset |
+| --- | :---: | --- | --- | --- | --- | --- | --- |
+| [Dr. Zero: Self-Evolving Search Agents without Training Data](https://arxiv.org/abs/2601.07055) | [2026/01/11](https://github.com/facebookresearch/drzero) [![GitHub stars](https://img.shields.io/github/stars/facebookresearch/drzero?style=social)](https://github.com/facebookresearch/drzero) | Qwen2.5-3B-Instruct, Qwen2.5-7B-Instruct | HRPO | Web Search | Multi-Agent | – | NQ, TriviaQA, PopQA, HotpotQA, 2WikiMultihopQA (2WikiMQA), MuSiQue, Bamboogle |
+| [LEAPS: An LLM-Empowered Adaptive Plugin for Taobao AI Search](https://arxiv.org/abs/2601.05513) | [2026/01/09]() | Qwen3-14B | REINFORCE++, GRPO, GSPO | Local Retrieval | Single-Agent | – | – |
+| [SmartSearch: Process Reward-Guided Query Refinement for Search Agents](https://arxiv.org/abs/2601.04888) | [2026/01/08](https://github.com/RUC-NLPIR/SmartSearch) [![GitHub stars](https://img.shields.io/github/stars/RUC-NLPIR/SmartSearch?style=social)](https://github.com/RUC-NLPIR/SmartSearch) | Qwen2.5-3B-Instruct | SFT, DPO, GRPO | Web Search | Single-Agent | Asearcher-Base | 2WikiMultihopQA, HotpotQA, Bamboogle, MuSiQue, GAIA, WebWalker |
+| [O-Researcher: An Open Ended Deep Research Model via Multi-Agent Distillation and Agentic RL](https://arxiv.org/abs/2601.03743v1) | [2026/01/07](https://github.com/OPPO-PersonalAI/O-Researcher) [![GitHub stars](https://img.shields.io/github/stars/OPPO-PersonalAI/O-Researcher?style=social)](https://github.com/OPPO-PersonalAI/O-Researcher) | Qwen-2.5-72B-Instruct | GRPO | Web Search | Multi-Agent | Zhihu-KOL, WideSearch, ELI5 | DeepResearch Bench, DeepResearchGym |
+| [WebAnchor: Anchoring Agent Planning to Stabilize Long-Horizon Web Reasoning](https://arxiv.org/abs/2601.03164) | [2026/01/06]() | WebSailor-3B/7B, Tongyi-DR-30B, Qwen-2.5-72B | GRPO | Local Retrieval | Single-Agent | – | BrowseComp-en, BrowseComp-zh, XBench-DeepSearch, GAIA |
+| [Budget-Aware Tool-Use Enables Effective Agent Scaling](https://arxiv.org/abs/2511.17006) | [2025/11/21]() | Gemini-2.5-Flash, Gemini-2.5-Pro, Claude-Sonnet-4 | Prompting | Web Search | Single-Agent | – | – |
+| [AutoTool: Efficient Tool Selection for Large Language Model Agents](https://arxiv.org/abs/2511.14650) | [2025/11/18](https://github.com/jiajingyyyyyy/AutoTool) [![GitHub stars](https://img.shields.io/github/stars/jiajingyyyyyy/AutoTool?style=social)](https://github.com/jiajingyyyyyy/AutoTool) | Llama4-Scout-17B | Prompting | Web Search | Single-Agent | – | AlfWorld, ScienceWorld, ToolQuery-Academia |
+| [Multi-Agent Deep Research: Training Multi-Agent Systems with M-GRPO](https://arxiv.org/abs/2511.13288) | [2025/11/17](https://github.com/AQ-MedAI/MrlX) [![GitHub stars](https://img.shields.io/github/stars/AQ-MedAI/MrlX?style=social)](https://github.com/AQ-MedAI/MrlX) | Qwen3-30B-A3B | M-GRPO | Web Search | Multi-Agent | – | GAIA, XBench-DeepSearch, WebWalkerQA |
+| [Tongyi DeepResearch Technical Report](https://arxiv.org/abs/2510.24701) | [2025/10/28](https://github.com/Alibaba-NLP/DeepResearch) [![GitHub stars](https://img.shields.io/github/stars/Alibaba-NLP/DeepResearch?style=social)](https://github.com/Alibaba-NLP/DeepResearch) | Qwen3-30B-A3B-Base | SFT, RL | Web Search | Single-Agent | – | HLE, BrowseComp, BrowseComp-ZH, GAIA, XBench-DeepSearch, WebWalkerQA, FRAMES, XBench-DeepSearch-2510 |
+| [TOOLRM: Towards Agentic Tool-Use Reward Modeling](https://arxiv.org/abs/2510.26167) | [2025/10/30](https://github.com/lirenhao1997/ToolRM) [![GitHub stars](https://img.shields.io/github/stars/lirenhao1997/ToolRM?style=social)](https://github.com/lirenhao1997/ToolRM) | Qwen3-4B, Qwen3-8B | RL | Web Search | Single-Agent | ToolPref-Pairwise-30K | TRBench, ACEBench |
+| [ToolScope: An Agentic Framework for Vision-Guided and Long-Horizon Tool Use](https://arxiv.org/abs/2510.27363) | [2025/10/31]() | GPT-4o, Gemini-2.5, Qwen2.5-VL, Llama-3.2-Vision | Prompting | Local Retrieval | Multi-Agent | – | – |
+| [WebSeer: Training Deeper Search Agents through Reinforcement Learning with Self-Reflection](https://arxiv.org/abs/2510.18798) | [2025/10/21](https://github.com/99hgz/WebSeer) [![GitHub stars](https://img.shields.io/github/stars/99hgz/WebSeer?style=social)](https://github.com/99hgz/WebSeer) | Qwen-2.5-14B, Qwen-3-14B | RL (cold start + RL; self-reflection) | Web Search | Single-Agent | – | HotpotQA, SimpleQA |
+| [Enterprise Deep Research: Steerable MultiAgent Deep Research for Enterprise Analytics](https://arxiv.org/pdf/2510.17797) | [2025/10/20](https://github.com/SalesforceAIResearch/enterprise-deep-research) [![GitHub stars](https://img.shields.io/github/stars/SalesforceAIResearch/enterprise-deep-research?style=social)](https://github.com/SalesforceAIResearch/enterprise-deep-research) | – | Prompting | Web Search | Multi-Agent | – | DeepResearch Bench, DeepConsult |
+| [Stop-RAG: Value-Based Retrieval Control for Iterative RAG](https://arxiv.org/abs/2510.14337) | [2025/10/16](https://github.com/chosolbee/Stop-RAG) [![GitHub stars](https://img.shields.io/github/stars/chosolbee/Stop-RAG?style=social)](https://github.com/chosolbee/Stop-RAG) | Llama-3.1-8B-Instruct | Fine-tuning | Local Retrieval | Single-Agent | MuSiQue, HotpotQA, 2WikiMultihopQA | HotpotQA, MuSiQue, 2WikiMultihopQA |
+| [Towards Agentic Self-Learning LLMs in Search Environment](https://arxiv.org/abs/2510.14253) | [2025/10/16](https://github.com/forangel2014/Towards-Agentic-Self-Learning) [![GitHub stars](https://img.shields.io/github/stars/forangel2014/Towards-Agentic-Self-Learning?style=social)](https://github.com/forangel2014/Towards-Agentic-Self-Learning) | Qwen-2.5-7B-Instruct | RL | Web Search | Multi-Agent | – | NQ, TriviaQA, PopQA, HotpotQA, 2WikiMultiHopQA, MuSiQue, Bamboogle |
+| [GOAT: A Training Framework for Goal-Oriented Agent with Tools](https://arxiv.org/abs/2510.12218) | [2025/10/14]() | Qwen-2-7B, Llama-3-8B-Instruct, Llama-3-70B-Instruct | Fine-tuning | Web Search | Single-Agent | – | GOATBench |
+| [ResearStudio: A Human-Intervenable Framework for Building Controllable Deep-Research Agents](https://arxiv.org/abs/2510.12194) | [2025/10/14](https://github.com/ResearAI/ResearStudio) [![GitHub stars](https://img.shields.io/github/stars/ResearAI/ResearStudio?style=social)](https://github.com/ResearAI/ResearStudio) | gpt-4.1, gpt-4.1-mini, o4-mini, Llama-3.3-70B | Prompting | Web Search | Single-Agent | – | GAIA |
+| [HiPRAG: Hierarchical Process Rewards for Efficient Agentic Retrieval Augmented Generation](https://arxiv.org/abs/2510.07794) | [2025/10/09](https://github.com/qualidea1217/HiPRAG) [![GitHub stars](https://img.shields.io/github/stars/qualidea1217/HiPRAG?style=social)](https://github.com/qualidea1217/HiPRAG) | Qwen2.5-3B-Instruct, Qwen2.5-7B-Instruct, Llama-3.2-3B-Instruct | PPO, GRPO | Web Search | Single-Agent | NQ, HotpotQA | NQ, TriviaQA, PopQA, HotpotQA, 2Wiki, MuSiQue, Bamboogle |
+| [A2SEARCH: Ambiguity-Aware Question Answering with Reinforcement Learning](https://arxiv.org/abs/2510.07958) | [2025/10/09](https://github.com/zfj1998/A2Search) [![GitHub stars](https://img.shields.io/github/stars/zfj1998/A2Search?style=social)](https://github.com/zfj1998/A2Search) | Qwen-2.5 family | RL | Web Search | Single-Agent | NQ | MuSiQue, HotpotQA, 2Wiki, Bamboogle, NQ, TriviaQA, PopQA, AmbigQA |
+| [ReSeek: A Self-Correcting Framework for Search Agents with Instructive Rewards](https://arxiv.org/pdf/2510.00568) | [2025/10/01](https://tencentbac.github.io/ReSeek/) | Qwen2.5-7B-Instruct, Qwen2.5-3B-Instruct | GRPO | Web Search, Local Retrieval | Single-Agent | NQ, HotpotQA | NQ, TriviaQA, PopQA, HotpotQA, 2WikiMQA, MuSiQue, Bamboogle, FictionalHot |
+| [Process-Supervised Reinforcement Learning for Interactive Multimodal Tool-Use Agents](https://arxiv.org/abs/2509.14480) | [2025/09/17]() | Qwen3-8B, Qwen2.5-Omni-7B | RL | Local Retrieval | Single-Agent | τ-bench, APIGen-MT | τ-bench |
+| [ReSum: Unlocking Long-Horizon Search Intelligence via Context Summarization](https://arxiv.org/abs/2509.13313) | [2025/09/16](https://github.com/Alibaba-NLP/DeepResearch) [![GitHub stars](https://img.shields.io/github/stars/Alibaba-NLP/DeepResearch?style=social)](https://github.com/Alibaba-NLP/DeepResearch) | Qwen3-30B-A3B-Thinking | GRPO, SFT | Web Search | Single-Agent | SailorFog-QA | BrowseComp-en/zh |
+| [WebWeaver: Structuring Web-Scale Evidence with Dynamic Outlines for Open-Ended Deep Research](https://arxiv.org/abs/2509.13312) | [2025/09/16](https://github.com/Alibaba-NLP/DeepResearch) [![GitHub stars](https://img.shields.io/github/stars/Alibaba-NLP/DeepResearch?style=social)](https://github.com/Alibaba-NLP/DeepResearch) | Qwen3-30B-A3B-Instruct | SFT | Web Search | Single-Agent | WebWeaver-3k | BrowseComp-en/zh, GAIA, XBench-DeepSearch |
+| [WebResearcher: Unleashing Unbounded Reasoning Capability in Long-Horizon Agents](https://arxiv.org/abs/2509.13309) | [2025/09/16](https://github.com/Alibaba-NLP/DeepResearch) [![GitHub stars](https://img.shields.io/github/stars/Alibaba-NLP/DeepResearch?style=social)](https://github.com/Alibaba-NLP/DeepResearch) | Qwen3-30B-A3B | RFT, RL | Web Search | Multi-Agent | WebFrontier | BrowseComp-en/zh, GAIA, WebWalkerQA, FRAMES, HotpotQA, MuSiQue, 2WikiMultiHopQA |
+| [WebSailor-V2: Bridging the Chasm to Proprietary Agents via Synthetic Data and Scalable RL](https://arxiv.org/abs/2509.13305) | [2025/09/16](https://github.com/Alibaba-NLP/DeepResearch) [![GitHub stars](https://img.shields.io/github/stars/Alibaba-NLP/DeepResearch?style=social)](https://github.com/Alibaba-NLP/DeepResearch) | Qwen3-30B-A3B | SFT, RL | Web Search, Local Retrieval | Single-Agent | SailorFog-QA-V2 | BrowseComp-EN, BrowseComp-ZH, HLE |
+| [WebExplorer: Explore and Evolve for Training Long-Horizon Web Agents](https://arxiv.org/abs/2509.06501) | [2025/09/08](https://github.com/hkust-nlp/WebExplorer) [![GitHub stars](https://img.shields.io/github/stars/hkust-nlp/WebExplorer?style=social)](https://github.com/hkust-nlp/WebExplorer) | Qwen3-8B | GRPO, SFT | Web Search | Single-Agent | WebExplorer-QA | BrowseComp-en/zh, GAIA, WebWalkerQA, FRAMES, XBench-DeepSearch, HLE |
+| [Atom-Searcher: Enhancing Agentic Deep Research via Fine-Grained Atomic Thought Reward](https://arxiv.org/abs/2508.12800) | [2025/08/18](https://github.com/antgroup/Research-Venus) [![GitHub stars](https://img.shields.io/github/stars/antgroup/Research-Venus?style=social)](https://github.com/antgroup/Research-Venus) | Qwen2.5-7B | RL(GRPO) | Web Search | Single-Agent | NQ, SimpleQA, HotpotQA, 2WikiMultiHopQA, MuSiQue, MultiHopRAG | Bamboogle, NQ, SimpleQA, HotpotQA, 2WikiMultiHopQA, MuSiQue, MultiHopRAG |
+| [MMSearch-R1: Incentivizing LMMs to Search](https://arxiv.org/pdf/2506.20670) | [2025/06/25](https://github.com/EvolvingLMMs-Lab/multimodal-search-r1) [![GitHub stars](https://img.shields.io/github/stars/EvolvingLMMs-Lab/multimodal-search-r1?style=social)](https://github.com/RAG-Gym/RAG-Gym) | Qwen2.5-VL-7B | RL(GRPO) | Web Search | Single-Agent | VQA, MetaClip, FVQA, InfoSeek | FVQA-test, InfoSeek, MMSearch, SimpleVQA, LiveVQA |
+| [VideoDeepResearch: Long Video Understanding With Agentic Tool Using](https://arxiv.org/abs/2506.10821) | [2025/06/12](https://github.com/yhy-2000/VideoDeepResearch) [![GitHub stars](https://img.shields.io/github/stars/yhy-2000/VideoDeepResearch?style=social)](https://github.com/yhy-2000/VideoDeepResearch) | GPT-4o, Gemini1.5-pro, Qwen2.5-VL-72B-Instruct | Prompting | Local Retrieval | Multi-Agent | – | MLVU, Video-MME, LVBench, LongVideoBench |
+| [Multimodal DeepResearcher: Generating Text-Chart Interleaved Reports From Scratch with Agentic Framework](https://arxiv.org/abs/2506.02454) | [2025/06/03]() | Claude3.7-Sonnet, GPT-4o-mini, Qwen3-235B-A22B, Qwen2.5-VL-72B-Instruct | Prompting | Web Search | Multi-Agent | – | Pew Research, Our World in Data, Open Knowledge Foundation |
+| [RAG-Gym: Systematic Optimization of Language Agents for Retrieval-Augmented Generation](https://arxiv.org/pdf/2502.13957v2) | [2025/05/31](https://github.com/RAG-Gym/RAG-Gym) [![GitHub stars](https://img.shields.io/github/stars/RAG-Gym/RAG-Gym?style=social)](https://github.com/RAG-Gym/RAG-Gym) | Llama3.1-8B-Instruct, Qwen2.5-7B-Instruct, GPT-4o-mini | SFT, RL(PPO, DPO) | Local Retrieval | Single-Agent | HotpotQA, MedQA | HotpotQA, 2Wiki, Bamboogle, MedQA |
+| [MaskSearch: A Universal Pre-Training Framework to Enhance Agentic Search Capability](https://arxiv.org/pdf/2505.20285) | [2025/05/27](https://github.com/Alibaba-NLP/MaskSearch) [![GitHub stars](https://img.shields.io/github/stars/Alibaba-NLP/MaskSearch?style=social)](https://github.com/Alibaba-NLP/MaskSearch) | Llama3.1-8B, Llama3.2-3B, Llama3.2-1B, Llama3, Qwen2.5-7B, Qwen2.5-3B, Qwen2.5-1.5B, Qwen2.5 | SFT, RL(DAPO) | Local Retrieval | Multi-Agent | HotpotQA | HotpotQA, FanoutQA, Musique, 2WikiMultiHopQA, Bamboogle, FreshQA |
+| [SimpleDeepSearcher: Deep Information Seeking via Web-Powered Reasoning Trajectory Synthesis](https://arxiv.org/pdf/2505.16834) | [2025/05/25](https://github.com/RUCAIBox/SimpleDeepSearcher?tab=readme-ov-file) [![GitHub stars](https://img.shields.io/github/stars/RUCAIBox/SimpleDeepSearcher?style=social)](https://github.com/weizhepei/WebAgent-R1) | Qwen2.5-7B-Instruct, Qwen2.5-32B-Instruct, DeepseekDistilled-Qwen2.5-32B, QwQ-32B | SFT | Web Search | Single-Agent | NQ, SimpleQA, HotpotQA, 2WikiMultiHopQA, MuSiQue, MultiHopRAG | Bamboogle, FRAMES, GAIA, NQ, SimpleQA, HotpotQA, 2WikiMultiHopQA, MuSiQue, MultiHopRAG |
+| [WebAgent-R1: Training Web Agents via End-to-End Multi-Turn Reinforcement Learning](https://arxiv.org/abs/2505.16421) | [2025/05/22](https://github.com/weizhepei/WebAgent-R1) [![GitHub stars](https://img.shields.io/github/stars/weizhepei/WebAgent-R1?style=social)](https://github.com/weizhepei/WebAgent-R1) | Qwen2.5-3B, Llama3.1-8B | SFT, RL(M-GRPO) | Web Search | Single-Agent | WebArena-Lite, WebArena | WebArena-Lite, WebArena |
+| [R1-Searcher++: Incentivizing the Dynamic Knowledge Acquisition of LLMs via Reinforcement Learning](https://arxiv.org/abs/2505.17005) | [2025/05/22](https://github.com/RUCAIBox/R1-Searcher-plus) [![GitHub stars](https://img.shields.io/github/stars/RUCAIBox/R1-Searcher-plus?style=social)](https://github.com/RUCAIBox/R1-Searcher-plus) | Qwen2.5-7B-Instruct | SFT, RL | Local Retrieval | Single-Agent | HotpotQA, 2WikiMultiHopQA | HotpotQA, 2WikiMultiHopQA, Musique, Bamboogle |
+| [Process vs. Outcome Reward: Which is Better for Agentic RAG Reinforcement Learning](https://arxiv.org/abs/2505.14069) | [2025/05/22](https://github.com/wlzhang2020/ReasonRAG) [![GitHub stars](https://img.shields.io/github/stars/wlzhang2020/ReasonRAG?style=social)](https://github.com/wlzhang2020/ReasonRAG) | Qwen2.5-7B-Instruct | RL(DPO) | Local Retrieval | Single-Agent | PopQA, HotpotQA, 2WikiMultihopQA | PopQA, HotpotQA, 2WikiMultiHopQA, Bamboogle, MuSiQue |
+| [s3 - Efficient Yet Effective Search Agent Training via RL](https://arxiv.org/abs/2505.14146) | [2025/05/20](https://github.com/pat-jj/s3) [![GitHub stars](https://img.shields.io/github/stars/pat-jj/s3?style=social)](https://github.com/pat-jj/s3) | Qwen2.5-7B-Instruct | RL(PPO) | Local Retrieval | Single-Agent | NQ, HotpotQA | NQ, TriviaQA, PopQA, HotpotQA, 2wiki, Musique, MedQA-US, MedMCQA, PubMedQA, BioASQ-Y/N, MMLU-Med |
+| [Demystifying and Enhancing the Efficiency of Large Language Model Based Search Agents](https://arxiv.org/pdf/2505.12065) | [2025/05/17](https://github.com/tiannuo-yang/SearchAgent-X) [![GitHub stars](https://img.shields.io/github/stars/tiannuo-yang/SearchAgent-X?style=social)](https://github.com/tiannuo-yang/SearchAgent-X) | Qwen2.5-14B, Qwen2.5-7B | Prompting | Local Retrieval | Single-Agent | – | Musique, NQ, 2WikiMultiHopQA, HotpotQA, Bamboogle, StrategyQA |
+| [Reinforced Internal-External Knowledge Synergistic Reasoning for Efficient Adaptive Search Agent](https://arxiv.org/abs/2505.07596) | [2025/05/12](https://github.com/hzy312/knowledge-r1) [![GitHub stars](https://img.shields.io/github/stars/hzy312/knowledge-r1?style=social)](https://github.com/hzy312/knowledge-r1) | Qwen2.5-3B-Instruct, Qwen2.5-7B-Instruct | RL(GRPO) | Local Retrieval | Single-Agent | NQ, HotpotQA | PopQA, 2WikiMultihopQA |
+| [ZeroSearch: Incentivize the Search Capability of LLMs without Searching](https://arxiv.org/pdf/2505.04588) | [2025/05/07](https://github.com/Alibaba-NLP/ZeroSearch) [![GitHub stars](https://img.shields.io/github/stars/Alibaba-NLP/ZeroSearch?style=social)](https://github.com/Alibaba-NLP/ZeroSearch) | Qwen2.5-3B-Base, Qwen2.5-7B-Base, Qwen2.5-7B-Instruct, Qwen2.5-3B-Instruct, Llama3.2-3B-Instruct, Llama3.2-3B-Base | RL(Reinforce, GRPO, PPO) | Web Search | Single-Agent | NQ, HotpotQA | NQ, TriviaQA, PopQA, HotpotQA, 2WikiMultiHopQA, Musique, Bamboogle |
+| [Webthinker: Empowering large reasoning models with deep research capability](https://arxiv.org/abs/2504.21776) | [2025/04/30](https://github.com/RUC-NLPIR/WebThinker) [![GitHub stars](https://img.shields.io/github/stars/RUC-NLPIR/WebThinker?style=social)](https://github.com/RUC-NLPIR/WebThinker) | GPT-o1, GPT-o3, Deepseek-R1, QwQ-32B, Qwen2.5-32B-Instruct | RL(DPO) | Web Search | Single-Agent | SuperGPQA, WebWalkerQA, OpenThoughts, NaturalReasoning, NuminaMath | GPQA, GAIA, WebWalkerQA, Humanity’s Last Exam |
+| [Pangu Ultra: Pushing the Limits of Dense Large Language Models on Ascend NPUs](https://arxiv.org/abs/2504.07866) | [2025/04/11](https://github.com/pangu-tech/pangu-ultra) [![GitHub stars](https://img.shields.io/github/stars/pangu-tech/pangu-ultra?style=social)](https://github.com/pangu-tech/pangu-ultra) | Pangu Ultra-135B | SFT, RL | Local Retrieval | Single-Agent | – | – |
+| [Open Deep Search: Democratizing Search with Open-source Reasoning Agents](https://arxiv.org/pdf/2503.20201) | [2025/03/26](https://github.com/sentient-agi/OpenDeepSearch) [![GitHub stars](https://img.shields.io/github/stars/sentient-agi/OpenDeepSearch?style=social)](https://github.com/sentient-agi/OpenDeepSearch) | Llama3.1-70B, Deepseek-R1 | Prompting | Web Search | Single-Agent | – | SimpleQA, FRAME |
+| [DeepResearcher: Scaling Deep Research via Reinforcement Learning in Real-world Environments](https://arxiv.org/pdf/2504.03160?) | [2025/03/26](https://github.com/GAIR-NLP/DeepResearcher) [![GitHub stars](https://img.shields.io/github/stars/GAIR-NLP/DeepResearcher?style=social)](https://github.com/GAIR-NLP/DeepResearcher) | Qwen2.5-7B-Instruct | RL(GRPO) | Web Search | Multi-Agent | NQ, TQ, HotpotQA, 2WikiMultiHopQA | MuSiQue, Bamboogle, PopQA, NQ, TQ, HotpotQA, 2WikiMultiHopQA |
+| [ReSearch: Learning to Reason with Search for LLMs via Reinforcement Learning](https://arxiv.org/pdf/2503.19470) | [2025/03/25](https://github.com/Agent-RL/ReSearch) [![GitHub stars](https://img.shields.io/github/stars/Agent-RL/ReSearch?style=social)](https://github.com/Agent-RL/ReSearch) | Qwen2.5-7B-Instruct, Qwen2.5-32B-Instruct | RL(GRPO) | Web Search | Single-Agent | MuSiQue | HotpotQA, 2WikiMultiHopQA, Musique, Bamboogle |
+| [Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning](https://arxiv.org/pdf/2503.09516) | [2025/03/12](https://github.com/PeterGriffinJin/Search-R1) [![GitHub stars](https://img.shields.io/github/stars/PeterGriffinJin/Search-R1?style=social)](https://github.com/PeterGriffinJin/Search-R1) | Qwen2.5-7B-Instruct, Qwen2.5-7B-Base, Qwen2.5-3B-Instruct, Qwen2.5-3B-Base | RL(PPO, GRPO) | Web Search | Single-Agent | NQ, HotpotQA | NQ, TriviaQA, PopQA, HotpotQA, 2WikiMultiHopQA, Musique, Bamboogle |
+| [Beyond Outlining: Heterogeneous Recursive Planning for Adaptive Long-form Writing with Language Models](https://arxiv.org/pdf/2503.08275) | [2025/03/11](https://github.com/principia-ai/WriteHERE) [![GitHub stars](https://img.shields.io/github/stars/principia-ai/WriteHERE?style=social)](https://github.com/principia-ai/WriteHERE) | GPT-4o, Claude3.5-Sonnet | Prompting | Web Search | Multi-Agent | – | TELL ME A STORY, WildSeek |
+| [R1-Searcher: Incentivizing the Search Capability in LLMs via Reinforcement Learning](https://arxiv.org/pdf/2503.05592) | [2025/03/07](https://github.com/RUCAIBox/R1-Searcher) [![GitHub stars](https://img.shields.io/github/stars/RUCAIBox/R1-Searcher?style=social)](https://github.com/RUCAIBox/R1-Searcher) | Qwen2.5-7B-Base, Llama3.1-8B-Instruct | SFT, RL(GRPO, Reinforce++) | Web Search, Local Retrieval | Single-Agent | HotpotQA, 2WikiMultiHopQA | HotpotQA, 2WikiMultiHopQA, Musique, Bamboogle |
+| [AutoAgent: A Fully-Automated and Zero-Code Framework for LLM Agents](https://arxiv.org/pdf/2502.05957#page=1.62) | [2025/02/18](https://github.com/HKUDS/AutoAgent?tab=readme-ov-file) [![GitHub stars](https://img.shields.io/github/stars/HKUDS/AutoAgent?style=social)](https://github.com/HKUDS/AutoAgent?tab=readme-ov-file) | Claude3.5-Sonnet | Prompting | Web Search | Multi-Agent | – | GAIA |
+| [Agentic Reasoning: Reasoning LLMs with Tools for the Deep Research](https://arxiv.org/abs/2502.04644) | [2025/02/07](https://github.com/theworldofagents/Agentic-Reasoning) [![GitHub stars](https://img.shields.io/github/stars/theworldofagents/Agentic-Reasoning?style=social)](https://github.com/theworldofagents/Agentic-Reasoning) | N/A | Prompting | Web Search | Multi-Agent | – | GPQA |
+| [Search-o1: Agentic Search-Enhanced Large Reasoning Models](https://arxiv.org/pdf/2501.05366) | [2025/01/09](https://github.com/sunnynexus/Search-o1) [![GitHub stars](https://img.shields.io/github/stars/sunnynexus/Search-o1?style=social)](https://github.com/sunnynexus/Search-o1) | QwQ-32B-Preview | Prompting | Web Search | Single-Agent | – | GPQA, MATH500, AMC2023, AIME2024, LiveCodeBench, NQ, TriviaQA, HotpotQA, 2WikiMultiHopQA, MuSiQue, Bamboogle |
+
+
+## Benchmarks and Applications
+
+<p align="center">
+  <img src="./Assets/bench.png" alt="Benchmarks Plot" width="80%" />
+</p>
+
+- Humanity's Last Exam [[Paper]](https://arxiv.org/abs/2501.14249) [[Code]](https://github.com/centerforaisafety/hle) ![GitHub Repo stars](https://img.shields.io/github/stars/centerforaisafety/hle?style=social)
+- BrowseComp: A Simple Yet Challenging Benchmark for Browsing Agents [[Paper]](https://arxiv.org/pdf/2504.12516) [[Code]](https://github.com/openai/simple-evals) ![GitHub Repo stars](https://img.shields.io/github/stars/openai/simple-evals?style=social)
+- BrowseComp-ZH: Benchmarking Web Browsing Ability of Large Language Models in Chinese ['[Paper]'](https://arxiv.org/pdf/2504.19314) [[Code]](https://github.com/PALIN2018/BrowseComp-ZH) ![GitHub Repo stars](https://img.shields.io/github/stars/PALIN2018/BrowseComp-ZH?style=social)
+- DeepResearch Bench: A Comprehensive Benchmark for Deep Research Agents [[Paper]](https://arxiv.org/pdf/2506.11763) [[Code]](https://github.com/Ayanami0730/deep_research_bench) ![GitHub Repo stars](https://img.shields.io/github/stars/Ayanami0730/deep_research_bench?style=social)
+- MedBrowseComp: Benchmarking Medical Deep Research and Computer Use [[Paper]](https://arxiv.org/pdf/2505.14963) [[Code]](https://github.com/shan23chen/MedBrowseComp) ![GitHub Repo stars](https://img.shields.io/github/stars/shan23chen/MedBrowseComp?style=social)
+- Mind2Web 2: Evaluating Agentic Search with Agent-as-a-Judge [[Paper]](https://arxiv.org/pdf/2506.21506) [[Code]](https://github.com/OSU-NLP-Group/Mind2Web-2) ![GitHub Repo stars](https://img.shields.io/github/stars/OSU-NLP-Group/Mind2Web-2?style=social)
+
+
+
+## Contributing and Citations
+
+🤝 We welcome contributions to expand this comprehensive collection of Agentic Deep Research resources! 
+
+### 📝 How to Contribute
+
+**Adding New Research Papers and Benchmarks:**
+- Submit an issue with the paper details (title, arXiv link, all the categories in our paper table, and GitHub repo if available)
+- Or create a pull request with the paper added to the research papers table or the benchmarks section
+
+**Adding New Open-Source Implementations and New Products:**
+- Submit an issue with the repository details (name, description, release data, GitHub link if available)
+- Or create a pull request with the implementation added to the open-source and products section
+
+
+### 📖 Citation
+
+🔥🔥🔥 If you find this repository useful, please cite our papers:
+
+```bibtex
+@article{zhang2025web,
+  title={From Web Search towards Agentic Deep Research: Incentivizing Search with Reasoning Agents},
+  author={Zhang, Weizhi and Li, Yangning and Bei, Yuanchen and Luo, Junyu and Wan, Guancheng and Yang, Liangwei and Xie, Chenxuan and Yang, Yuyao and Huang, Wei-Chieh and Miao, Chunyu and others},
+  journal={arXiv preprint arXiv:2506.18959},
+  year={2025}
+}
+
+@article{li2025towards,
+  title={Towards Agentic RAG with Deep Reasoning: A Survey of RAG-Reasoning Systems in LLMs},
+  author={Li, Yangning and Zhang, Weizhi and Yang, Yuyao and Huang, Wei-Chieh and Wu, Yaozu and Luo, Junyu and Bei, Yuanchen and Zou, Henry Peng and Luo, Xiao and Zhao, Yusheng and others},
+  journal={arXiv preprint arXiv:2507.09477},
+  year={2025}
+}
+```
+[0m
+I’ve got a few stronger candidates now: two broad “awesome agents” directories, one voice-agent list, one deep-research list, and browser-use example repos. I’m checking whether the whiteboard already has a concept slot for the Cloudflare ecosystem before I decide whether to add or just reference it.
+[0m✱ [0mGrep "Cloudflare Agents SDK|Cloudflare Agents|browser-use|voice agents|deep research|awesome-agents"[90m in .workspaces/1-implementation/resources/concepts.md · 1 match[0m
+[0m
+[0m$ [0mgh search repos "awesome MCP clients" --limit 10
+punkpeye/awesome-mcp-clients	A collection of MCP clients.	public	2026-04-02T11:14:12Z
+rdhandapani88/awesome-mcp-clients		public	2025-09-02T02:54:44Z
+AmazingBecca/awesome-mcp-clients	A collection of MCP clients.	public	2026-03-24T23:05:55Z
+joypaul162/punkpeye-awesome-mcp-clients		public	2025-08-07T17:33:01Z
+[0m
+[0m$ [0mgh search repos "awesome deep research" --limit 10
+DavidZWZ/Awesome-Deep-Research	[Up-to-date] Awesome Agentic Deep Research Resources	public	2026-04-02T15:28:03Z
+ai-agents-2030/awesome-deep-research-agent		public	2026-04-02T17:21:30Z
+langgptai/awesome-deep-research-prompts	Prompts for deep research （openai， gemini，qwen）	public	2026-03-26T15:00:06Z
+Peilin-FF/Awesome-Deep-Research	This repo collects research papers that use AI tools and are in the field of scientific research (including computer science, agronomy, chemistry, physics, etc.). We call this method as Deep-Research.	public	2026-03-17T11:21:53Z
+scienceaix/deepresearch	Awesome Deep Research list! For more details, please refer to our survey paper -- A Comprehensive Survey of Deep Research: Systems, Methodologies, and Applications	public	2026-04-02T10:12:56Z
+AaronAust1n/awesome-deep-research	Awesome Deep Research Implementations	public	2026-02-24T14:03:35Z
+ngc436/awesome-deep-research	A list of resources on the topic of deep research implementation	public	2025-07-08T01:05:32Z
+closedloop-technologies/awesome-deep-researchers		public	2026-04-02T10:20:17Z
+wyattowalsh/awesome-deep-research	Compilation of info on AI `deep research` tools	public	2026-03-17T12:28:45Z
+www6v/awesome-deepResearch	deepResearch open source, works, survey	public	2025-10-30T08:38:21Z
+[0m
+[0m$ [0mgh search repos "browser automation examples" --limit 10
+coskundeniz/selenium-examples	Selenium browser automation examples with Python	public	2024-08-12T20:08:25Z
+cagataycali/nightmare-examples	Cool nightmarejs browser automation examples.	public	2023-10-13T19:51:18Z
+adegard/TagIE_Scripts	TagIE Browser Automation Examples and Strategies	public	2020-01-13T00:50:44Z
+Work-In-Progress-For-Health/playwright-examples-using-javascript	Playwright browser automation examples using JavaScript programming	public	2025-08-28T13:43:47Z
+Work-In-Progress-For-Health/playwright-examples-using-python	Playwright browser automation examples using Python programming	public	2025-08-28T13:43:39Z
+um-software-testing/reddit-puppeteer	Puppeteer browser automation example	public	2019-09-14T23:26:13Z
+alexE-895/browser-automation-example	Simple browser automation example using Playwright	public	2026-03-13T08:19:44Z
+spraddles/symfony-panther-brower-automation	a Browser automation example using Symfony Panther	public	2025-08-04T16:35:17Z
+Work-In-Progress-For-Health/selenium-examples-using-python	Selenium browser automation examples using Python programming	public	2025-05-31T13:22:32Z
+spraddles/laravel-dusk	a Browser automation example using Laravel Dusk	public	2022-01-14T02:17:37Z
+[0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=397, limit=55][0m
+[0m
+[0m$ [0mgh repo view kyrolabs/awesome-agents --json homepageUrl,primaryLanguage,licenseInfo
+{"homepageUrl":"","licenseInfo":null,"primaryLanguage":null}
+[0m
+[0m$ [0mgh repo view yzfly/awesome-voice-agents --json homepageUrl,primaryLanguage,licenseInfo
+{"homepageUrl":"","licenseInfo":{"key":"cc0-1.0","name":"Creative Commons Zero v1.0 Universal","nickname":""},"primaryLanguage":null}
+[0m
+[0m$ [0mgh repo view cloudflare/awesome-agents --json homepageUrl,primaryLanguage,licenseInfo
+{"homepageUrl":"","licenseInfo":null,"primaryLanguage":{"name":"TypeScript"}}
+[0m
+I have enough to write the new entries. Before I edit, I’m checking whether there’s already a guide entry for Cloudflare so I don’t duplicate it and can keep the guide list tight.
+[0m✱ [0mGrep "Cloudflare|awesome-agents|Browser Use Examples|Awesome Agents|Awesome Voice Agents|Awesome Deep Research|awesome-agentic-patterns"[90m in .workspaces/3-research/resources/guides.md · 0 matches[0m
+[0m✱ [0mGrep "Cloudflare|Awesome Agents|Awesome Voice Agents|Awesome Deep Research|awesome-agentic-patterns|browser-use-examples"[90m in .workspaces/3-research/resources/findings.md · 1 match[0m
+I’ve got the source material and metadata. I’m writing the new repo entries, a small framework update for Cloudflare, and the next research requests in one pass so the workspace stays consistent.
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/resources/findings.md
+[0m✗ [0mapply_patch failed
+[91m[1mError: [0mapply_patch verification failed: Error: Failed to find expected lines in /home/arro/projects/agent-glossary/.workspaces/3-research/resources/guides.md:
+## Iteration 2 Guides (2026-04-02)
+The guide patch missed the exact anchor because the file layout ends a bit differently than expected. I’m patching against the actual tail now.
+[0m→ [0mRead .workspaces/3-research/resources/guides.md[90m [offset=330, limit=80][0m
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/resources/guides.md
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/resources/research-requests.md
+[0m✗ [0mapply_patch failed
+[91m[1mError: [0mapply_patch verification failed: Error: Failed to find expected lines in /home/arro/projects/agent-glossary/.workspaces/1-implementation/resources/concepts.md:
+### Claude Agent SDK
+- **popularity**: 9
+- **description**: SDK Anthropic che espone il motore di Claude Code come libreria. Tools built-in (file I/O, bash, web search), subagenti, MCP, hooks, sessioni, permessi. Multi-cloud (API, Bedrock, Vertex, Azure).
+- **alternatives**: OpenAI Agents SDK, Google ADK, Pydantic AI
+- **category**: Framework
+
+## Business Automation
+The concepts file shifted a bit too, so I’m re-reading the exact region and patching against the real text rather than guessing offsets.
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=455, limit=60][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=425, limit=25][0m
+[0m✗ [0mapply_patch failed
+[91m[1mError: [0mapply_patch verification failed: Error: Failed to find expected lines in /home/arro/projects/agent-glossary/.workspaces/1-implementation/resources/concepts.md:
+### Claude Agent SDK
+- **popularity**: 9
+- **description**: SDK Anthropic che espone il motore di Claude Code come libreria. Tools built-in (file I/O, bash, web search), subagenti, MCP, hooks, sessioni, permessi. Multi-cloud (API, Bedrock, Vertex, Azure).
+- **alternatives**: OpenAI Agents SDK, Google ADK, Pydantic AI
+- **category**: Framework
+
+## Business Automation
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/1-implementation/resources/concepts.md
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/1-implementation/resources/concepts.md
+I’m finalizing the workspace state now. I need a current timestamp for the context file, then I’ll write the summary of this sweep and the next-step research queue.
+[0m
+[0m$ [0mdate '+%F %T'
+2026-04-02 18:16:05
+[0m
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/context.md
+The edits are in. I’m doing a quick verification pass on the new sections and the context summary so I can catch formatting issues before I wrap up.
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1040, limit=120][0m
+[0m→ [0mRead .workspaces/3-research/resources/guides.md[90m [offset=350, limit=120][0m
+[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=120, limit=80][0m
+[0m→ [0mRead .workspaces/3-research/context.md[90m [offset=1, limit=140][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=455, limit=90][0m
+[0m✱ [0mGrep "Cloudflare Agents SDK"[90m in .workspaces/1-implementation/resources/concepts.md · 1 match[0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=429, limit=15][0m
+[0m✱ [0mGrep "Aggiornamento Corrente - Curated Repo Sweep|Cloudflare Awesome Agents|Next Focus"[90m in .workspaces/3-research/context.md · 3 matches[0m
+Updated the research workspace:
+- Added 6 new curated-repo findings in `.workspaces/3-research/resources/findings.md`.
+- Added 5 new guide entries in `.workspaces/3-research/resources/guides.md`.
+- Expanded `.workspaces/1-implementation/resources/concepts.md` with `Cloudflare Agents SDK` and broader `Agent Registry / Discovery` coverage.
+- Added next-iteration research requests in `.workspaces/3-research/resources/research-requests.md`.
+- Refreshed `.workspaces/3-research/context.md` to the current completed state.
+[0;32m[2026-04-02 18:16:46] ✓[0m Workspace Research & Content completed successfully

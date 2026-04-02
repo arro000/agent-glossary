@@ -1077,3 +1077,55 @@
 - **popularity**: 7
 - **alternatives**: OpenLLMetry, Langfuse, Arize Phoenix, W&B Weave
 - **why_include**: Most complete open stack for turning GenAI telemetry into an operational workflow.
+
+---
+
+# Iteration 11 - Curated Repository Sweep
+
+## Cloudflare Awesome Agents
+- **macroarea**: Cloudflare Agents SDK / Curated Lists
+- **url**: https://github.com/cloudflare/awesome-agents
+- **description**: Curated collection of runnable projects built with the Cloudflare Agents SDK. The repo points directly to example agents, setup instructions, and the Cloudflare agent docs, so it is a compact ecosystem map rather than a generic link dump.
+- **popularity**: 6
+- **alternatives**: awesome-llm-apps, kyrolabs/awesome-agents, awesome-agentic-patterns
+- **why_include**: Good source for studying one SDK's project surface and how example repos are organized around it.
+
+## Awesome Agents (Kyrolabs)
+- **macroarea**: Research / Curated Lists
+- **url**: https://github.com/kyrolabs/awesome-agents
+- **description**: Broad awesome-list covering frameworks, testing and evaluation, software development, research, conversational agents, games, knowledge management, and automation. It works well as a landscape map because each section links to concrete repos and products.
+- **popularity**: 8
+- **alternatives**: cloudflare/awesome-agents, awesome-llm-apps, awesome-agentic-patterns
+- **why_include**: Useful high-level survey repo when you need breadth before narrowing to a subsystem.
+
+## Awesome Voice Agents
+- **macroarea**: Voice / Curated Lists
+- **url**: https://github.com/yzfly/awesome-voice-agents
+- **description**: Curated list of voice AI agent frameworks, tools, resources, and best practices. It is organized by stack layers such as VAD, turn detection, STT, TTS, communities, and learning resources, which makes it useful for mapping the voice pipeline.
+- **popularity**: 4
+- **alternatives**: LiveKit docs, Pipecat resources, Vapi docs
+- **why_include**: Compact index for the voice-agent substack and adjacent tutorials.
+
+## Awesome Agentic Patterns
+- **macroarea**: Orchestration / Pattern Catalog
+- **url**: https://github.com/nibzard/awesome-agentic-patterns
+- **description**: Curated catalogue of repeatable agentic AI patterns with a companion website, pattern explorer, compare tool, decision explorer, and graph visualization. It bridges the gap between high-level concepts and implementation-ready workflows.
+- **popularity**: 8
+- **alternatives**: Anthropic Building Effective Agents, LangGraph pattern docs, AutoGen design patterns
+- **why_include**: Strong source for turning abstract agent ideas into concrete repeatable architectures.
+
+## Awesome Deep Research
+- **macroarea**: Research / Deep Research Directory
+- **url**: https://github.com/DavidZWZ/Awesome-Deep-Research
+- **description**: Resource hub for agentic deep research, split across products, open-source implementations, papers, and benchmarks. It is useful because it tracks both mainstream products and the open-source code that mirrors them.
+- **popularity**: 7
+- **alternatives**: GPT Researcher, STORM, Open Deep Search, DeepResearchAgent
+- **why_include**: Strong one-stop map for deep-research systems and the benchmark ecosystem around them.
+
+## Browser Use Examples
+- **macroarea**: Browser Automation / Example Repos
+- **url**: https://github.com/browser-use/browser-use-examples
+- **description**: Example repo for Browser Use with TypeScript and Python starters. The examples cover a scraper, a browser agent integrated with Vercel AI SDK, a Discord bot, and a Slack bot, so it is immediately useful for researchers who need runnable code.
+- **popularity**: 4
+- **alternatives**: Browser Use docs, Playwright MCP examples, Stagehand examples
+- **why_include**: Concrete starter surface for browser-agent experimentation and integrations.

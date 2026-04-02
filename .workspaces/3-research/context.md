@@ -1,8 +1,8 @@
 # Workspace 3 — Research & Content Discovery
 
 ## Stato
-- **Iterazione**: 3
-- **Ultimo aggiornamento**: 2026-04-02 18:45:00
+- **Iterazione**: 4
+- **Ultimo aggiornamento**: 2026-04-02 18:16:05
 - **Stato**: completed
 
 ## Risultati Iterazione 1
@@ -198,6 +198,25 @@ La passata attuale ha coperto la capa di curated repositories e discovery, con f
 1. **Curated repos are the fastest research path**: the best directories now expose skills, hooks, templates, and runnable examples instead of only pointing to tools.
 2. **Discovery is becoming a layer**: MCP servers, agent cards, and registry-style catalogs are increasingly part of the ecosystem, not just an index.
 3. **Vendor ecosystems are converging on customization assets**: Claude Code, Copilot, and cross-vendor skill packs all now have active curated collections.
+
+## Aggiornamento Corrente - Curated Repo Sweep
+
+### Cosa e' stato aggiunto
+- Curated list / discovery repos: Cloudflare Awesome Agents, Awesome Agents (Kyrolabs), Awesome Voice Agents, Awesome Agentic Patterns, Awesome Deep Research, Browser Use Examples.
+- Framework data: added Cloudflare Agents SDK as a new framework entry.
+- Discovery layer data: expanded Agent Registry / Discovery to include more awesome-lists and llms.txt-style indexes.
+- Guides: added official Cloudflare docs plus learning hubs for patterns, deep research, voice agents, and browser-use examples.
+
+### Nuovi segnali
+1. Curated repos are still the fastest researcher-stage entry point because they collapse a noisy ecosystem into runnable projects and linked examples.
+2. Pattern catalogs with discovery tooling are becoming as useful as tool directories, especially when they ship compare and decision views.
+3. Voice and browser automation now have their own mini-ecosystems of example repos, which is better than only following framework docs.
+
+### Next Focus
+- Cloudflare Agents SDK ecosystem and runnable examples.
+- MCP clients and devtools directories for discovery and debugging.
+- Browser automation starter repos and example hubs.
+- Voice agent starter repos across LiveKit, Pipecat, Vapi, Daily, and Retell.
 
 ## Aggiornamento Corrente
 - `findings.md` è stato esteso con un addendum di repo/esempi pratici: AG-UI Dojo, LiveKit starter projects, Anthropic computer-use demo e OpenLIT.

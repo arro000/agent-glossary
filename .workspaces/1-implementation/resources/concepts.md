@@ -432,6 +432,12 @@
 - **alternatives**: OpenAI Agents SDK, Google ADK, Pydantic AI
 - **category**: Framework
 
+### Cloudflare Agents SDK
+- **popularity**: 6
+- **description**: SDK Cloudflare per agenti distribuiti che girano sulla rete globale di Cloudflare. L'ecosistema tende a ruotare attorno a example repos e progetti runnable piu che a una sola app monolitica.
+- **alternatives**: Mastra, OpenAI Agents SDK, LangGraph, Cloudflare Workers
+- **category**: Framework
+
 ## Business Automation
 
 ### Visual Agent Builder
@@ -456,8 +462,8 @@
 
 ### Agent Registry / Discovery
 - **popularity**: 6
-- **description**: Livello di scoperta per agenti, skill e capability tramite registry, directory e capability cards. Serve a collegare ecosistemi multi-vendor con metadata condivisi; esempi: A2A Agent Cards, NANDA, Virtuals, ERC-8004 e curated lists come Awesome MCP Servers.
-- **alternatives**: A2A Agent Cards, MCP registries, Glama directories, custom catalogs
+- **description**: Livello di scoperta per agenti, skill e capability tramite registry, directory e capability cards. Serve a collegare ecosistemi multi-vendor con metadata condivisi; esempi: A2A Agent Cards, NANDA, Virtuals, ERC-8004 e curated lists come Awesome MCP Servers, Awesome Agents, Awesome Deep Research, Awesome Voice Agents.
+- **alternatives**: A2A Agent Cards, MCP registries, Glama directories, custom catalogs, awesome-agent lists, llms.txt indexes
 - **category**: Integration
 
 ## Observability (updated)

@@ -128,3 +128,16 @@
 
 ### Priorità Media
 3. **Segmented ring legibility** — come rendere piu leggibile un ring a segmenti su sfondi pastello e in piccoli cerchi?
+
+## Iterazione 11 — Nuove Richieste
+
+### Priorità Alta
+1. **Cloudflare Agents SDK ecosystem** — esempi concreti, project templates, and how it compares to Mastra/OpenAI Agents SDK for researcher-stage projects.
+2. **Browser automation example hubs** — browser-use-examples, Stagehand, Playwright MCP, Steel Browser, Gobii: which repos are most runnable and best documented?
+
+### Priorità Media
+3. **MCP clients and devtools directories** — awesome-mcp-clients, awesome-mcp-devtools, Glama, and related registries: which ones help most for discovery and debugging?
+4. **Voice agent starter repos** — LiveKit, Pipecat, Vapi, Daily, Retell, openai-agents-js: which example repos are strongest for the researcher stage?
+
+### Esplorazione
+5. **Curated repo quality signals** — which metadata, site search, llms.txt, and machine-readable indexes make an awesome-list actually useful?

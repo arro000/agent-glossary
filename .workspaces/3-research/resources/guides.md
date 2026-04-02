@@ -359,3 +359,37 @@
 - **source**: Arindam200 / AWS Strands
 - **description**: Eight-lesson hands-on course covering agent fundamentals, MCP integration, human-in-the-loop, multi-agent orchestration, observability, safety, and production patterns. It is a practical companion to the AWS Strands examples in `awesome-ai-apps`.
 - **relevance**: Strong beginner-friendly guided path for the Strands ecosystem.
+
+---
+
+## Iteration 11 Guides (2026-04-02)
+
+### Cloudflare Agents SDK Documentation
+- **url**: https://developers.cloudflare.com/agents/
+- **source**: Cloudflare
+- **description**: Official documentation for the Cloudflare Agents SDK, including getting started material and project guidance for distributed agents on Cloudflare's network.
+- **relevance**: Best primary source for the Cloudflare agent ecosystem.
+
+### Awesome Agentic Patterns
+- **url**: https://agentic-patterns.com
+- **source**: nibzard / community
+- **description**: Interactive pattern explorer, compare tool, decision explorer, and graph visualizations for agentic patterns.
+- **relevance**: Best discovery surface for reusable agent architectures.
+
+### Awesome Deep Research
+- **url**: https://github.com/DavidZWZ/Awesome-Deep-Research
+- **source**: DavidZWZ
+- **description**: Curated map of deep research products, open-source implementations, papers, and benchmarks.
+- **relevance**: Good entry point when mapping deep-research ecosystems.
+
+### Awesome Voice Agents
+- **url**: https://github.com/yzfly/awesome-voice-agents
+- **source**: yzfly
+- **description**: Curated voice-agent stack map covering frameworks, VAD, turn detection, STT, TTS, and learning resources.
+- **relevance**: Useful primer for voice-agent researchers.
+
+### Browser Use Examples
+- **url**: https://github.com/browser-use/browser-use-examples
+- **source**: browser-use
+- **description**: Starter example collection for Browser Use in TypeScript and Python.
+- **relevance**: Handy runnable repo for browser-agent onboarding.
