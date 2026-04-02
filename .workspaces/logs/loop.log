@@ -4550,3 +4550,372 @@ Added:
 
 I left the unrelated `.workspaces/logs/loop.log` change alone.
 [0;32m[2026-04-02 22:16:07] ✓[0m Workspace Research & Content completed successfully
+ 6 files changed, 328 insertions(+), 2 deletions(-)
+To https://github.com/arro000/agent-glossary.git
+   5297ca3..ffaea90  main -> main
+[0;32m[2026-04-02 22:16:08] ✓[0m Workspace changes committed and pushed
+[0;36m[2026-04-02 22:16:08][0m Launching OpenCode for workspace Improvements & PRD...
+[0m
+> build · gpt-5.4-mini
+[0m
+I’m going to read the current app, the spec, and the research notes first so I can translate them into code changes without guessing.
+[0m✱ [0mGlob "src/**"[90m in . · 5 matches[0m
+[0m→ [0mRead .workspaces/1-implementation/context.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/pixijs-reference.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/2-improvements/resources/prd.md[90m [offset=1, limit=400][0m
+I’ve got the spec and research. Next I’m reading the current implementation so I can patch the actual PixiJS scene instead of only updating docs.
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1, limit=400][0m
+[0m→ [0mRead src/app/page.tsx[90m [offset=1, limit=200][0m
+[0m→ [0mRead src/app/layout.tsx[90m [offset=1, limit=200][0m
+[0m→ [0mRead src/app/globals.css[90m [offset=1, limit=240][0m
+I’ve identified the main scene file. I’m searching for the specific interaction and rendering paths so I can change the right pieces rather than reworking the whole component.
+[0m✱ [0mGrep "function .*|const .* =|useEffect\(|addEventListener|wheel|pointer|zoom|pan|minimap|legend|search|panel|tooltip"[90m in src/components/whiteboard.tsx · 617 matches[0m
+[0m✱ [0mGrep "Cloudflare|Session Replay|Trace Grading|Context Graph|Reference Navigation|Durable Execution|Harness / Runtime Scaffold|signal"[90m in .workspaces/1-implementation/resources/concepts.md · 10 matches[0m
+[0m✱ [0mGrep "Iteration 4|Iteration 5|Iteration 6|Current Workspace Pass|Richiesta utente corrente"[90m in .workspaces/1-implementation/context.md · 11 matches[0m
+[0m✱ [0mGrep "research-request|requests|TODO|open questions|needs research"[90m in .workspaces/3-research/resources · 4 matches[0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=400, limit=260][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=660, limit=260][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=920, limit=260][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1180, limit=260][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1700, limit=260][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1960, limit=260][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1440, limit=260][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=2220, limit=260][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=2480, limit=220][0m
+I found the app is already substantial, so I’m targeting the missing polish and the research-driven cues instead of rewriting the scene. I’m reading the affected concept rows now to keep the dataset and PRD consistent with the current taxonomy.
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=430, limit=240][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=620, limit=120][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=360, limit=80][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1360, limit=80][0m
+[0m✱ [0mGrep "OpenAI Responses Compaction|Sourcegraph Code Search|Mastra Server Middleware|LangSmith Custom Middleware|compaction"[90m in src/components/whiteboard.tsx · 0 matches[0m
+[0m✱ [0mGrep "OpenAI Responses Compaction|Sourcegraph Code Search|Mastra Server Middleware|LangSmith Custom Middleware|compaction"[90m in .workspaces/1-implementation/resources/concepts.md · 2 matches[0m
+[0m✱ [0mGrep "Current state|Iteration 4|Iteration 5|Iteration 6|Iteration 7"[90m in .workspaces/2-improvements/context.md · 0 matches[0m
+I have enough context to start changing the scene. I’m turning the research into concrete UI/data constraints first, then I’ll patch the PixiJS board and update the workspace docs to match.
+[0m
+[0m# [0mTodos
+[ ] Update PRD/context to reflect iteration 5 research constraints and current state
+[ ] Patch PixiJS board for research-driven visual cues and layout polish
+[ ] Sync concepts dataset if missing research-relevant subsection entries
+[ ] Add research requests for unresolved topics
+[ ] Build the app and fix any regressions
+[ ] Commit the completed changes
+[0m
+I’m updating the PRD and workspace context now so the implementation stays aligned with the new research signals before I touch the scene graph.
+[0m→ [0mRead .workspaces/2-improvements/context.md[90m [offset=1, limit=260][0m
+[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=1, limit=240][0m
+[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=240, limit=80][0m
+I’m patching the scene now: adding the missing compaction and code-intelligence concepts, tightening the signal mappings, and polishing the research cues without changing the equal-size bubble model.
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/1-implementation/resources/concepts.md
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/2-improvements/resources/prd.md
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/resources/research-requests.md
+I’m making one readability tweak before testing: the new code-intelligence node needs a shorter visual label so it stays legible inside a fixed-size bubble.
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+I’ve finished the main code patch. I’m reading the edited sections once to catch any syntax or data-shape mistakes before I run the build.
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=50, limit=120][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=270, limit=120][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=110, limit=120][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=380, limit=120][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=340, limit=120][0m
+The code changes are in place. I’m running a production build now to catch any PixiJS or TypeScript regressions before I update the workspace state and commit.
+[0m
+[0m$ [0mnpm run build
+> agent-glossary@0.1.0 build
+> next build
+
+▲ Next.js 16.2.2 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.3s
+  Running TypeScript ...
+  Finished TypeScript in 2.1s ...
+  Collecting page data using 5 workers ...
+  Generating static pages using 5 workers (0/4) ...
+  Generating static pages using 5 workers (1/4) 
+  Generating static pages using 5 workers (2/4) 
+  Generating static pages using 5 workers (3/4) 
+✓ Generating static pages using 5 workers (4/4) in 345ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+[0m
+The build passed. I’m updating the workspace logs now so the current implementation state and the new research-driven taxonomy changes are recorded consistently.
+[0m✗ [0mapply_patch failed
+[91m[1mError: [0mapply_patch verification failed: Error: Failed to find expected lines in /home/arro/projects/agent-glossary/.workspaces/2-improvements/context.md:
+## Iterazione 4 (Questa esecuzione) — Completata
+- [x] Allineati i concept del canvas al taxonomy corrente aggiungendo `Session Replay` e `Trace Grading`
+- [x] La bubble selezionata resta evidenziata anche mentre la search filtra gli altri nodi
+- [x] PRD riallineato a iterazione 4 con focus su replay/eval signals e stato attuale della board
+[0m→ [0mRead .workspaces/2-improvements/context.md[90m [offset=120, limit=60][0m
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/2-improvements/context.md
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/1-implementation/context.md
+The code and workspace logs are updated. I’m checking the final diff now so I can commit only the intended files and summarize the exact scope cleanly.
+[0m
+[0m$ [0mgit status --short
+M .workspaces/1-implementation/context.md
+ M .workspaces/1-implementation/resources/concepts.md
+ M .workspaces/2-improvements/context.md
+ M .workspaces/2-improvements/resources/prd.md
+ M .workspaces/3-research/resources/research-requests.md
+ M .workspaces/logs/loop.log
+ M src/components/whiteboard.tsx
+[0m
+[0m$ [0mgit diff -- src/components/whiteboard.tsx .workspaces/1-implementation/resources/concepts.md .workspaces/2-improvements/resources/prd.md .workspaces/2-improvements/context.md .workspaces/3-research/resources/research-requests.md
+diff --git a/.workspaces/1-implementation/resources/concepts.md b/.workspaces/1-implementation/resources/concepts.md
+index d7ee56a..375664c 100644
+--- a/.workspaces/1-implementation/resources/concepts.md
++++ b/.workspaces/1-implementation/resources/concepts.md
+@@ -149,8 +149,8 @@
+ 
+ ### Harness / Runtime Scaffold
+ - **popularity**: 9
+-- **description**: Tutto lo strato attorno all'LLM che prepara il prompt, gestisce hooks, tools, memory, traces, eval e state
+-- **alternatives**: Claude Code harness, agent runtime, LLM OS, outer loop
++- **description**: Tutto lo strato attorno all'LLM che prepara il prompt, gestisce hooks, tools, memory, traces, eval, state e compaction.
++- **alternatives**: Claude Code harness, OpenAI Responses compaction, agent runtime, Mastra middleware, LangSmith middleware
+ - **category**: Runtime
+ 
+ ### Durable Execution
+@@ -451,13 +451,19 @@
+ ### Reference Navigation
+ - **popularity**: 8
+ - **description**: Esplorazione dei riferimenti già visti: recupero semantico, pinning, citazioni, summary incrementali e navigazione tra fonti correlate invece della sola compressione del contesto
+-- **alternatives**: retrieval browser, citation graph, memory browsing, semantic search UI
++- **alternatives**: retrieval browser, citation graph, memory browsing, semantic search UI, Sourcegraph Code Search / MCP
+ - **category**: Navigation
+ 
+ ### Repo Map / Codebase Map
+ - **popularity**: 8
+ - **description**: Mappa strutturale del codebase per navigazione e editing su repository grandi, spesso derivata da tree-sitter o analisi statica per mostrare file e dipendenze rilevanti
+-- **alternatives**: Aider repomap, semantic code graph, file tree summaries
++- **alternatives**: Aider repomap, semantic code graph, file tree summaries, Sourcegraph code intelligence
++- **category**: Navigation
++
++### Sourcegraph Code Search / MCP
++- **popularity**: 9
++- **description**: Code intelligence layer con search, code graph e surface MCP per navigare codebase enormi in modo dependency-aware.
++- **alternatives**: Sourcegraph deep search, code search UI, Aider repo map, Context7
+ - **category**: Navigation
+ 
+ ## Frameworks & SDKs
+diff --git a/.workspaces/2-improvements/context.md b/.workspaces/2-improvements/context.md
+index a35b620..249b8d1 100644
+--- a/.workspaces/2-improvements/context.md
++++ b/.workspaces/2-improvements/context.md
+@@ -1,8 +1,8 @@
+ # Workspace 2 — Improvements & Implementation
+ 
+ ## Stato
+-- **Iterazione**: 4
+-- **Ultimo aggiornamento**: 2026-04-02 22:09:37
++- **Iterazione**: 5
++- **Ultimo aggiornamento**: 2026-04-02 22:40:00
+ - **Stato**: completed
+ 
+ ## Obiettivo
+@@ -148,3 +148,9 @@ Analizzare l'implementazione corrente, identificare miglioramenti, e IMPLEMENTAR
+ - [x] Tooltip hover aggiornato per mostrare anche il signal sintetico del nodo senza introdurre nuovi overlay
+ - [x] Signal matching reso piu robusto per harness, context, retrieval, repo map, replay, eval e protocol/discovery pattern
+ - [x] PRD workspace 2 riallineato alla nuova iterazione e stato corrente aggiornato a `completed`
++
++## Iterazione 5 (Questa esecuzione) — Completata
++- [x] Allineati i concept e i cue visuali al research set corrente: `Compaction` e `Sourcegraph Code Search / MCP`
++- [x] Rafforzati helper e signal legend per compaction, policy middleware e code-intelligence surfaces senza introdurre clutter
++- [x] PRD aggiornato alla iterazione 5 e research requests estese con i follow-up ancora aperti
++- [x] Verifica tecnica: `npm run build` completata con successo
+diff --git a/.workspaces/2-improvements/resources/prd.md b/.workspaces/2-improvements/resources/prd.md
+index 8dc7a33..be6908d 100644
+--- a/.workspaces/2-improvements/resources/prd.md
++++ b/.workspaces/2-improvements/resources/prd.md
+@@ -1,4 +1,4 @@
+-# PRD — Iterazione 4
++# PRD — Iterazione 5
+ 
+ ## Obiettivo
+ Raffinare la whiteboard per rappresentare il glossario come una macchina agentica: macroaree, harness, memoria, contesto, tools, skills, navigazione tra riferimenti, observability e discovery.
+@@ -8,6 +8,7 @@ Raffinare la whiteboard per rappresentare il glossario come una macchina agentic
+ - [x] Rendering macroaree con sfondo pastello
+ - [x] Rendering bolle dentro macroaree con dimensione uniforme, emoji riconoscibili e peso progetto codificato separatamente
+ - [x] Inserire/raffinare i concetti harness, context navigation e reference retrieval nella tassonomia
++- [x] Allineare i segnali visuali di harness/context/reference navigation con compaction, policy middleware e code intelligence surfaces
+ - [x] Zoom & pan interattivi
+ - [x] Hover effect sulle bolle
+ - [x] Click per mostrare dettagli (panel)
+@@ -17,9 +18,10 @@ Raffinare la whiteboard per rappresentare il glossario come una macchina agentic
+ - [x] Stato selezione persistente della bubble aperta per feedback visivo piu chiaro senza aggiungere clutter
+ - [x] Raffinamento visuale dell'attuale iterazione: header macroarea piu leggibili, bubble equal-size piu bilanciate, emoji piu riconoscibili e project weight piu chiaro
+ - [x] Signal legend ampliata con cue `INTEROP` per discovery/protocol UI, piu tooltip hover con segnale sintetico
++- [x] Compaction e code-intelligence surfaces resi visibili tramite concept dedicati e helper/alternative aggiornati invece di aggiungere overlay
+ - [x] Miglioramento feedback interaction: tooltip e selezione restano leggibili su viewport piccole senza introdurre overlay HTML
+ - [x] Conservato il vincolo full-canvas PixiJS v8 vanilla con font Inter e layout responsive
+-- [x] Allineamento finale al dataset `concepts.md`: `Context Graph`, `Durable Execution`, `Session Replay` e `Trace Grading` visibili, per un totale di 101 subsection bubbles coerenti con la taxonomy corrente
++- [x] Allineamento finale al dataset `concepts.md`: `Compaction`, `Context Graph`, `Sourcegraph Code Search / MCP`, `Durable Execution`, `Session Replay` e `Trace Grading` visibili, coerenti con la taxonomy corrente
+ - [x] Signal chip e visual cues tenuti discreti ma leggibili per harness, context, reference navigation, replay-aware e eval-aware workflows
+ 
+ ## Dettagli Tecnici
+@@ -36,7 +38,8 @@ Vedi `context.md` per le specifiche complete.
+ - Il peso progetto deve restare codificato in modo discreto ma immediatamente interpretabile (ring + badge + panel)
+ - Le macroaree devono rimanere pastello e distinte, ma senza competere con la leggibilita delle bubble
+ - Le emoji devono restare riconoscibili anche su bubble compatte e ad alto DPR
+-- Context graph, reference navigation, durable execution, session replay e trace grading devono avere segnali visivi distintivi ma non invasivi
++- Context graph, reference navigation, compaction, durable execution, session replay e trace grading devono avere segnali visivi distintivi ma non invasivi
++- Policy surfaces e code-intelligence surfaces devono restare leggibili tramite copy, helper e signal chip, non tramite nuove UI chrome
+ - Discovery/protocol UI deve avere un cue dedicato senza aumentare la densita delle bubble
+ 
+ ## Criticita
+diff --git a/.workspaces/3-research/resources/research-requests.md b/.workspaces/3-research/resources/research-requests.md
+index 4cc15d0..5092e36 100644
+--- a/.workspaces/3-research/resources/research-requests.md
++++ b/.workspaces/3-research/resources/research-requests.md
+@@ -289,3 +289,11 @@
+ ### Priorità Media
+ 3. **Trace-to-eval pipelines** — OpenAI Trace Grading, LangSmith evaluations, Langfuse experiments, promptfoo, Inspect AI: quali coppie trace replay + regression loop funzionano davvero bene?
+ 4. **Reference-aware retrieval ranking** — Context7, Sourcegraph, Aider repo map, Graphiti, Zep, OpenAI File Search: come cambiano ranking, provenance e pinning in uso reale?
++
++## Iterazione 26 — Nuove Richieste
++
++### Priorità Alta
++1. **Sourcegraph code intelligence UX** — quali segnali visivi e metadati minimi rendono chiari code search, dependency-aware navigation e MCP surface in una board fixed-size?
++
++### Priorità Media
++2. **Compaction + policy middleware ergonomics** — come OpenAI Responses compaction, Mastra middleware e LangSmith middleware vanno esposti in una tassonomia harness senza aggiungere clutter?
+diff --git a/src/components/whiteboard.tsx b/src/components/whiteboard.tsx
+index d2af0ff..116829b 100644
+--- a/src/components/whiteboard.tsx
++++ b/src/components/whiteboard.tsx
+@@ -53,10 +53,10 @@ interface SignalInfo {
+ }
+ 
+ const SIGNAL_LEGEND: SignalInfo[] = [
+-  { key: 'harness', label: 'HARNESS', color: '#0284c7', helper: 'hooks + sessions' },
++  { key: 'harness', label: 'HARNESS', color: '#0284c7', helper: 'hooks + sessions + compaction' },
+   { key: 'context', label: 'CONTEXT', color: '#2563eb', helper: 'window + graph' },
+-  { key: 'refnav', label: 'REF NAV', color: '#0f766e', helper: 'citations + search' },
+-  { key: 'repomap', label: 'REPO MAP', color: '#0891b2', helper: 'code intelligence' },
++  { key: 'refnav', label: 'REF NAV', color: '#0f766e', helper: 'citations + code search' },
++  { key: 'repomap', label: 'REPO MAP', color: '#0891b2', helper: 'code graphs' },
+   { key: 'replay', label: 'REPLAY', color: '#7c3aed', helper: 'session + trace' },
+   { key: 'eval', label: 'EVAL', color: '#c026d3', helper: 'grading loop' },
+   { key: 'interop', label: 'INTEROP', color: '#ea580c', helper: 'registry + UI' },
+@@ -115,13 +115,14 @@ const MACROAREAS: MacroareaConfig[] = [
+       { name: 'System\nPrompt', popularity: 10, description: 'Istruzioni di base che definiscono personalit\u00e0 e comportamento dell\'agente', alternatives: 'Static system prompt, Dynamic assembly, Prompt templates', category: 'Core' },
+       { name: 'Prompt\nAssembly', popularity: 8, description: 'Composizione dinamica del messaggio finale al modello a partire da istruzioni, memoria, schema tool e slice di contesto', alternatives: 'instruction builder, prompt templates, context builder, static system prompt', category: 'Runtime' },
+       { name: 'Hook\nSystem', popularity: 8, description: 'Strato event-driven che attiva comandi, prompt o agenti in punti specifici del lifecycle dell\'agente', alternatives: 'lifecycle middleware, event listeners, permission guards, prompt-based hooks', category: 'Runtime' },
++      { name: 'Compaction', popularity: 8, description: 'Riduzione server-side o controllata del contesto di una sessione mantenendo uno stato opaco sufficiente per continuare il workflow nelle turn successive', alternatives: 'OpenAI Responses compaction, summary compression, checkpoint pruning, manual transcript pruning', category: 'Runtime' },
+       { name: 'Few-Shot\nExamples', popularity: 8, description: 'Esempi di input/output per guidare il modello', alternatives: 'In-context learning, Dynamic few-shot, Retrieved examples', category: 'Technique' },
+       { name: 'Chain-of-\nThought', popularity: 9, description: 'Guidare il modello a ragionare passo per passo', alternatives: 'CoT prompting, Tree-of-Thought, Step-by-step, ReAct', category: 'Technique' },
+       { name: 'Structured\nOutput', popularity: 9, description: 'Forzare il modello a produrre output in formato specifico (JSON, etc.)', alternatives: 'JSON mode, Function calling, Outlines, Guidance', category: 'Technique' },
+       { name: 'Prompt\nCaching', popularity: 7, description: 'Cachare parti statiche del prompt per ridurre costi e latenza', alternatives: 'Anthropic prompt caching, Semantic caching, KV cache', category: 'Optimization' },
+       { name: 'Context\nCompression', popularity: 7, description: 'Comprimere il contesto per rientrare nella finestra di token', alternatives: 'Summarization, Token merging, Key info extraction', category: 'Optimization' },
+       { name: 'Eval\nHarness', popularity: 8, description: 'Runner strutturato per prompt, agenti e RAG con dataset, scoring, regression checks e integrazione CI', alternatives: 'promptfoo, Inspect AI, OpenAI Evals, custom CI evals', category: 'Quality' },
+-      { name: 'Harness /\nRuntime Scaffold', popularity: 9, description: 'Tutto lo strato attorno all\'LLM che prepara il prompt, gestisce hooks, tools, memory, traces, eval e state', alternatives: 'Claude Code harness, agent runtime, LLM OS, outer loop', category: 'Runtime' },
++      { name: 'Harness /\nRuntime Scaffold', popularity: 9, description: 'Tutto lo strato attorno all\'LLM che prepara il prompt, gestisce hooks, tools, memory, traces, eval, state e compaction', alternatives: 'Claude Code harness, OpenAI Responses compaction, agent runtime, Mastra middleware, LangSmith middleware', category: 'Runtime' },
+       { name: 'Durable\nExecution', popularity: 8, description: 'Esecuzione persistente che conserva stato e progressi tra interruzioni, retry e resume', alternatives: 'LangGraph durable execution, Temporal workflows, checkpointed state machines', category: 'Runtime' },
+     ],
+   },
+@@ -222,8 +223,9 @@ const MACROAREAS: MacroareaConfig[] = [
+       { name: 'Agentic\nRAG', popularity: 9, description: 'Pattern RAG dove l\'agente decide attivamente quando, come e se recuperare informazioni. Include Self-RAG, Corrective RAG, Adaptive RAG.', alternatives: 'Traditional RAG, LangChain agentic RAG, LlamaIndex agent workflows', category: 'Pattern' },
+       { name: 'Deep Research\nAgent', popularity: 9, description: 'Agente che conduce ricerca multi-step: pianifica query, naviga il web, sintetizza report con citazioni e self-critica', alternatives: 'GPT Researcher, STORM, Tongyi DeepResearch, DeepSearcher', category: 'Pattern' },
+       { name: 'Context\nGraph', popularity: 8, description: 'Grafo temporale di entità, relazioni, episodi e provenance che permette di recuperare contesto evolutivo invece di comprimere soltanto la chat history', alternatives: 'Graphiti, Zep, GraphRAG, temporal knowledge graph', category: 'Navigation' },
+-      { name: 'Reference\nNavigation', popularity: 8, description: 'Esplorazione dei riferimenti già visti: recupero semantico, pinning, citazioni, summary incrementali e navigazione tra fonti correlate invece della sola compressione del contesto', alternatives: 'retrieval browser, citation graph, memory browsing, semantic search UI', category: 'Navigation' },
+-      { name: 'Repo Map /\nCodebase Map', popularity: 8, description: 'Mappa strutturale del codebase per navigazione e editing su repository grandi, spesso derivata da tree-sitter o analisi statica per mostrare file e dipendenze rilevanti', alternatives: 'Aider repomap, semantic code graph, file tree summaries', category: 'Navigation' },
++      { name: 'Reference\nNavigation', popularity: 8, description: 'Esplorazione dei riferimenti già visti: recupero semantico, pinning, citazioni, summary incrementali e navigazione tra fonti correlate invece della sola compressione del contesto', alternatives: 'retrieval browser, citation graph, memory browsing, semantic search UI, Sourcegraph Code Search / MCP', category: 'Navigation' },
++      { name: 'Repo Map /\nCodebase Map', popularity: 8, description: 'Mappa strutturale del codebase per navigazione e editing su repository grandi, spesso derivata da tree-sitter o analisi statica per mostrare file e dipendenze rilevanti', alternatives: 'Aider repomap, semantic code graph, file tree summaries, Sourcegraph code intelligence', category: 'Navigation' },
++      { name: 'Sourcegraph\nCode Search', popularity: 9, description: 'Code intelligence layer con search, code graph e surface MCP per navigare codebase enormi in modo dependency-aware', alternatives: 'Sourcegraph deep search, code search UI, Aider repo map, Context7', category: 'Navigation' },
+     ],
+   },
+   {
+@@ -277,6 +279,7 @@ function getBubbleEmoji(areaName: string, category: string, conceptName: string)
+   const conceptKey = conceptName.replace(/\n/g, ' ').toLowerCase();
+   if (conceptKey.includes('harness / runtime scaffold')) return '🧱';
+   if (conceptKey.includes('eval harness')) return '🧪';
++  if (conceptKey.includes('compaction')) return '🗜️';
+   if (conceptKey.includes('durable execution')) return '🔁';
+   if (conceptKey.includes('session replay')) return '🎬';
+   if (conceptKey.includes('trace grading')) return '🏷️';
+@@ -284,6 +287,7 @@ function getBubbleEmoji(areaName: string, category: string, conceptName: string)
+   if (conceptKey.includes('context graph')) return '🕸️';
+   if (conceptKey.includes('reference navigation')) return '🔎';
+   if (conceptKey.includes('repo map') || conceptKey.includes('codebase map')) return '🗺️';
++  if (conceptKey.includes('sourcegraph') || conceptKey.includes('code search')) return '🛰️';
+   if (conceptKey.includes('trace replay')) return '🎞️';
+ 
+   const key = `${areaName} ${category}`.toLowerCase();
+@@ -348,7 +352,7 @@ const SIGNAL_RULES: Array<{ signal: SignalInfo; matchers: RegExp[] }> = [
+   {
+     signal: SIGNAL_LEGEND[0],
+     matchers: [
+-      /harness|runtime scaffold|hook system|prompt assembly|durable execution|session memory|temporal memory|tiered memory/i,
++      /harness|runtime scaffold|hook system|prompt assembly|compaction|middleware|durable execution|session memory|temporal memory|tiered memory/i,
+     ],
+   },
+   {
+@@ -357,11 +361,11 @@ const SIGNAL_RULES: Array<{ signal: SignalInfo; matchers: RegExp[] }> = [
+   },
+   {
+     signal: SIGNAL_LEGEND[2],
+-    matchers: [/reference navigation|retrieval|file search|sourcegraph code search/i],
++    matchers: [/reference navigation|retrieval|file search|sourcegraph|code search|code intelligence/i],
+   },
+   {
+     signal: SIGNAL_LEGEND[3],
+-    matchers: [/repo map|codebase map|aider repo map|code search|sourcegraph/i],
++    matchers: [/repo map|codebase map|aider repo map|code graph|sourcegraph/i],
+   },
+   {
+     signal: SIGNAL_LEGEND[4],
+[0m
+I’ve got the final scope. I’m checking recent commit style once, then I’ll stage only the implementation and workspace files, leaving the unrelated log file alone.
+[0m$ [0mgit log -5 --oneline
+ffaea90 loop iter 5: workspace 3 (Research & Content) completed
+5297ca3 loop iter 4: workspace 1 (Implementation) completed
+f32d09e clarify coordination concepts and open up whiteboard layout
+a3b3434 loop iter 4: workspace 2 (Improvements & PRD) completed
+d213332 refine whiteboard signal cues and hover metadata
+[0m
+[0m$ [0mgit add src/components/whiteboard.tsx .workspaces/1-implementation/resources/concepts.md .workspaces/1-implementation/context.md .workspaces/2-improvements/resources/prd.md .workspaces/2-improvements/context.md .workspaces/3-research/resources/research-requests.md && git commit -m "loop iter 5: add compaction and code-search cues"
+[main fe21600] loop iter 5: add compaction and code-search cues
+ 6 files changed, 51 insertions(+), 18 deletions(-)
+[0m
+[0m$ [0mgit status --short
+M .workspaces/logs/loop.log
+[0m
+The commit is done. I’m marking the session tasks complete, with the only remaining change being an unrelated log file that I left untouched.
+[0m# [0mTodos
+[x] Update PRD/context to reflect iteration 5 research constraints and current state
+[x] Patch PixiJS board for research-driven visual cues and layout polish
+[x] Sync concepts dataset if missing research-relevant subsection entries
+[x] Add research requests for unresolved topics
+[x] Build the app and fix any regressions
+[x] Commit the completed changes
+[0m
+Implemented and committed.
+
+- Added compaction and Sourcegraph code-search concepts/cues to the PixiJS board.
+- Updated the PRD and both workspace context files for iteration 5.
+- Added new research follow-ups.
+- `npm run build` passed.
+- Commit: `fe21600` `loop iter 5: add compaction and code-search cues`
+
+One unrelated file remains modified and uncommitted: `.workspaces/logs/loop.log`.
+[0;32m[2026-04-02 22:21:08] ✓[0m Workspace Improvements & PRD completed successfully
