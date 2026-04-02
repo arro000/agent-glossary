@@ -919,7 +919,7 @@ export default function Whiteboard() {
       const totalH = 4 * AREA_HEIGHT + 3 * ROW_GAP + START_Y * 2;
       const worldBounds = { x: 0, y: 0, w: totalW, h: totalH };
 
-      const fitScale = Math.min(1, Math.max(0.55, Math.min(
+      const fitScale = Math.min(1, Math.max(0.2, Math.min(
         (window.innerWidth - 40) / totalW,
         (window.innerHeight - 40) / totalH,
       )));
@@ -1177,7 +1177,7 @@ export default function Whiteboard() {
       }
 
       function zoomToFit() {
-        const s = Math.min(1, Math.max(0.55, Math.min(
+        const s = Math.min(1, Math.max(0.2, Math.min(
           (window.innerWidth - 40) / totalW,
           (window.innerHeight - 40) / totalH,
         )));
@@ -1558,11 +1558,12 @@ export default function Whiteboard() {
       app.stage.on('pointerup', endDrag);
       app.stage.on('pointerupoutside', endDrag);
 
-      app.canvas.addEventListener('wheel', (e: WheelEvent) => {
+      const onWheel = (e: WheelEvent) => {
         e.preventDefault();
         const factor = e.deltaY > 0 ? 0.92 : 1.08;
         zoomToPoint(world.scale.x * factor, e.clientX, e.clientY);
-      }, { passive: false });
+      };
+      app.canvas.addEventListener('wheel', onWheel, { passive: false });
 
       let panel: Container | null = null;
       let panelFadeDir: number = 0;
@@ -1575,7 +1576,10 @@ export default function Whiteboard() {
       }
 
       function openPanel(data: { concept: ConceptData; macroarea: MacroareaConfig }) {
-        if (data.concept.name.replace(/\n/g, ' ').toLowerCase().includes(searchQuery.toLowerCase().trim()) || !searchQuery.trim()) {
+        const loweredQuery = searchQuery.toLowerCase().trim();
+        const loweredName = data.concept.name.replace(/\n/g, ' ').toLowerCase();
+        const loweredDesc = data.concept.description.toLowerCase();
+        if (loweredName.includes(loweredQuery) || loweredDesc.includes(loweredQuery) || !loweredQuery) {
           // ok to open
         } else {
           return;
@@ -1845,8 +1849,8 @@ export default function Whiteboard() {
         app.canvas.style.height = `${window.innerHeight}px`;
         app.stage.hitArea = new Rectangle(0, 0, window.innerWidth, window.innerHeight);
         needsGridRedraw = true;
-        minimap.x = window.innerWidth - 180 - 12;
-        minimap.y = window.innerHeight - 110 - 12;
+        minimap.x = window.innerWidth - minimap.width - 12;
+        minimap.y = window.innerHeight - minimap.height - 12;
         zoomContainer.x = 20;
         zoomContainer.y = window.innerHeight - 196;
         searchBar.container.x = (window.innerWidth - 300) / 2;
@@ -1861,6 +1865,7 @@ export default function Whiteboard() {
         window.removeEventListener('resize', onResize);
         legendCleanup?.();
         document.body.removeChild(hiddenInput);
+        app.canvas.removeEventListener('wheel', onWheel);
         if (panel) {
           app.stage.removeChild(panel);
           panel.destroy({ children: true });

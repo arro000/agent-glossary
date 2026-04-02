@@ -1,8 +1,8 @@
 # Workspace 1 — Implementation
 
 ## Stato
-- **Iterazione**: 1
-- **Ultimo aggiornamento**: 2026-04-02 18:11:00
+- **Iterazione**: 2
+- **Ultimo aggiornamento**: 2026-04-02 17:49:21
 - **Stato**: completed
 
 ## Obiettivo
@@ -171,6 +171,13 @@ Tutti i concetti dal database sono ora rappresentati nella whiteboard.
 - [x] Confermati requisiti UI principali: bolle equal-size con emoji+titolo, hover glow, click panel dettagli, zoom wheel e pan drag
 - [x] Verifica tecnica eseguita: `npm run build` OK
 - [x] Verifica lint eseguita: errori presenti solo in artefatti generati `.netlify/**` (fuori scope funzionale)
+
+## Iterazione 2 (Richiesta utente corrente) — Completata
+- [x] Verificato PRD in `.workspaces/2-improvements/resources/prd.md` (presente, baseline iteration)
+- [x] Migliorata responsivita zoom-to-fit: scala minima ridotta a `0.2` per rendere navigabile la board anche su viewport piccoli
+- [x] Corretto filtro apertura panel: ora rispetta la ricerca su **nome o descrizione** (coerente con il filtro realtime)
+- [x] Corretto repositioning minimap su resize usando dimensioni reali del container (`minimap.width/height`)
+- [x] Aggiunto cleanup del listener wheel del canvas in teardown per evitare leak su remount
 
 ## File Principali
 - `src/components/whiteboard.tsx` — Componente principale con tutta la logica PixiJS
