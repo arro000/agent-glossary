@@ -1041,3 +1041,39 @@
 - **popularity**: 6
 - **alternatives**: OWASP LLM resources, security skill packs, vertical GPT directories
 - **why_include**: Good example of a domain-specific agent directory and a source for security-oriented beads.
+
+---
+
+# Iteration 8 - Research-Stage Example Repos
+
+## AG-UI Dojo
+- **macroarea**: UI Protocol / Examples
+- **url**: https://dojo.ag-ui.com/
+- **description**: Official demo and walkthrough hub for AG-UI. It packages framework-specific examples, previews, and implementation notes so researchers can compare shared state, generative UI, and human-in-the-loop behavior across stacks.
+- **popularity**: 6
+- **alternatives**: CopilotKit docs demos, Vercel AI SDK generative UI examples, custom protocol demos
+- **why_include**: Best hands-on surface for understanding how AG-UI behaves in real apps.
+
+## LiveKit Agent Starter Projects
+- **macroarea**: Realtime / Voice Starter Repos
+- **url**: https://github.com/livekit-examples/agent-starter-python
+- **description**: LiveKit's ready-to-run Python starter for voice agents, with tests, deployment scaffolding, and an AGENTS.md tuned for coding-agent workflows. The sibling Node starter follows the same structure for JS teams.
+- **popularity**: 6
+- **alternatives**: Vapi examples, Daily AI toolkit samples, Retell quickstarts
+- **why_include**: Strong practical starting point for voice-agent researchers who want runnable code rather than platform marketing.
+
+## Anthropic Computer Use Reference Implementation
+- **macroarea**: Browser Automation / Reference Repo
+- **url**: https://github.com/anthropics/anthropic-quickstarts/tree/main/computer-use-demo
+- **description**: Docker-based reference implementation for Claude computer use. It includes the virtual desktop, tool handlers, and agent loop needed to reproduce desktop/browser automation safely.
+- **popularity**: 7
+- **alternatives**: Playwright agents, Browser Use, Stagehand, operator-style harnesses
+- **why_include**: Best concrete implementation to study when researching computer-use agents.
+
+## OpenLIT
+- **macroarea**: Observability / Reference Stack
+- **url**: https://github.com/openlit/openlit
+- **description**: OpenTelemetry-native AI engineering platform with SDKs, dashboards, evaluations, prompt management, and many integrations. It bridges GenAI semantic conventions to a usable stack for tracing and governance.
+- **popularity**: 7
+- **alternatives**: OpenLLMetry, Langfuse, Arize Phoenix, W&B Weave
+- **why_include**: Most complete open stack for turning GenAI telemetry into an operational workflow.

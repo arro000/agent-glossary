@@ -106,3 +106,16 @@
 
 ## Iterazione 8 — Da esplorare
 7. **PixiJS v8 emoji rendering** — pratiche migliori per mantenere emoji/icon leggibili e crisp dentro Text su canvas ad alto DPI
+
+## Iterazione 9 — Nuove Richieste
+
+### Priorità Alta
+1. **Browser automation ecosystem** — Browser Use, Stagehand, Playwright MCP, Firecrawl, operator-style frameworks: quali sono davvero usabili per researcher/browsing agents?
+2. **Voice agent evaluation stack** — test, simulation, and eval tooling per LiveKit, Vapi, Daily, Retell; quali repos e harness sono più utili?
+
+### Priorità Media
+3. **Agent registry/discovery adoption** — A2A Agent Cards, NANDA, ERC-8004, Glama, MCP registries: quali directory e capability cards hanno adozione reale?
+4. **Vertical finance/support agent stacks** — OpenBB, FinRobot, FinGPT, customer-support templates e altri example repos da promuovere come beads.
+
+### Esplorazione
+5. **Curated repo quality signals** — quali metadati, README patterns e machine-readable index fanno davvero la differenza nelle awesome-lists?

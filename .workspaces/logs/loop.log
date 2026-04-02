@@ -4790,3 +4790,239 @@ Commit: `62ed952` (`refine fixed-size bubble encoding`)
 
 Only remaining dirty file is `.workspaces/logs/loop.log` (left untouched).
 [0;32m[2026-04-02 18:02:20] ✓[0m Workspace Improvements & PRD completed successfully
+ 1 file changed, 542 insertions(+)
+To https://github.com/arro000/agent-glossary.git
+   48b4e66..c6e5600  main -> main
+[0;32m[2026-04-02 18:02:21] ✓[0m Workspace changes committed and pushed
+[0;36m[2026-04-02 18:02:21][0m Launching OpenCode for workspace Research & Content...
+[0m
+> build · gpt-5.4-mini
+[0m
+I’m reading the existing whiteboard context and current research queue first, then I’ll pull in new sources and update the structured notes.
+[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/3-research/context.md[90m [offset=1, limit=200][0m
+I have the current scope. Next I’m checking which of these topics are already represented on the whiteboard so I can update, not duplicate, the structure.
+[0m✱ [0mGrep "Semantic Kernel|CrewAI|Vercel AI SDK|AG-UI|LiveKit|Vapi|Daily|Retell|OpenTelemetry|BrowseComp|SWE-Lancer|llama.cpp|Ollama|MLX-LM|Agent Registry|MCP Inspector|Computer Use|FinRobot|FinGPT"[90m in .workspaces/1-implementation/resources · 32 matches[0m
+[0m→ [0mRead .workspaces/3-research/resources/guides.md[90m [offset=1, limit=400][0m
+[0m✱ [0mGlob "**/*awesome*"[90m in . · 1 match[0m
+The whiteboard already has most of the requested concepts, so I’m reading the framework sections now to see what needs enrichment versus new entries.
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=400, limit=180][0m
+[0m→ [0mRead .workspaces/3-research/resources/awesome-agents-scan.md[90m [offset=1, limit=400][0m
+I’m pulling the primary sources now: official docs for each requested topic plus the curated repositories that surface concrete examples.
+[0m% [0mWebFetch https://opentelemetry.io/docs/specs/semconv/gen-ai/
+[0m% [0mWebFetch https://docs.crewai.com/en/concepts/flows
+[0m% [0mWebFetch https://modelcontextprotocol.io/docs/tools/inspector
+[0m% [0mWebFetch https://docs.livekit.io/agents/start/voice-ai-quickstart/
+[0m% [0mWebFetch https://docs.ollama.com/quickstart
+[0m% [0mWebFetch https://ag-ui.com
+[0m% [0mWebFetch https://sdk.vercel.ai/docs/agents/overview
+[0m% [0mWebFetch https://www.traceloop.com/openllmetry
+[0m% [0mWebFetch https://docs.vapi.ai/quickstart/introduction.mdx
+[0m% [0mWebFetch https://learn.microsoft.com/en-us/semantic-kernel/frameworks/agent/
+[0m% [0mWebFetch https://github.com/openlit/openlit
+[0m% [0mWebFetch https://docs.anthropic.com/en/docs/build-with-claude/computer-use
+I’ve got the main sources. I’m checking whether the whiteboard needs any new nodes or just richer metadata before I write the findings file.
+[0m✱ [0mGrep "A2UI|Generative UI|Browser Use|OpenLIT|MCP Inspector|LiveKit Agents|Vapi|Semantic Kernel Agent Framework|Terminal-Bench|SWE-Lancer|BrowseComp|Sotopia|FinRobot|FinGPT"[90m in .workspaces/1-implementation/resources · 11 matches[0m
+[0m✱ [0mGrep "^## |^# "[90m in .workspaces/3-research/resources/findings.md · 134 matches[0m
+[0m✱ [0mGrep "awesome-llm-apps|awesome-claude-code|awesome-agent-skills|awesome-copilot|awesome-ai-apps|awesome-n8n-templates|Awesome-GPT-Agents"[90m in .workspaces/3-research/resources · 37 matches[0m
+There are already some Iteration 3 entries in the findings file, so I’m reading that section before I append anything to avoid overwriting or duplicating it.
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=740, limit=340][0m
+[0m→ [0mRead .workspaces/3-research/resources/beads-roadmap.md[90m [offset=1, limit=160][0m
+[0m✱ [0mGrep "CopilotKit|AG-UI Dojo|Agent Framework|OpenAI Agent SDK|Cloudflare Agents|Oracle Agent Spec|A2A Middleware|Agno|LlamaIndex|Bedrock AgentCore"[90m in .workspaces/1-implementation/resources · 2 matches[0m
+[0m✱ [0mGrep "CopilotKit|AG-UI Dojo|Agent Framework|OpenAI Agent SDK|Cloudflare Agents|Oracle Agent Spec|A2A Middleware|Agno|LlamaIndex|Bedrock AgentCore"[90m in .workspaces/3-research/resources · 19 matches[0m
+I’m adding a small research-stage addendum with concrete example repos and official demo surfaces, plus the next research queue and a context refresh.
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/resources/findings.md
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/resources/guides.md
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/resources/research-requests.md
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/context.md
+The research notes and next-iteration queue are updated. I’m doing a quick diff/status check now to make sure the edits landed cleanly.
+[0m
+[0m$ [0mgit status --short
+M .workspaces/3-research/context.md
+ M .workspaces/3-research/resources/findings.md
+ M .workspaces/3-research/resources/guides.md
+ M .workspaces/3-research/resources/research-requests.md
+ M .workspaces/logs/loop.log
+[0m
+[0m$ [0mgit diff -- .workspaces/3-research/resources/findings.md .workspaces/3-research/resources/guides.md .workspaces/3-research/resources/research-requests.md .workspaces/3-research/context.md
+diff --git a/.workspaces/3-research/context.md b/.workspaces/3-research/context.md
+index 8fcf895..babc1dc 100644
+--- a/.workspaces/3-research/context.md
++++ b/.workspaces/3-research/context.md
+@@ -1,9 +1,9 @@
+ # Workspace 3 — Research & Content Discovery
+ 
+ ## Stato
+-- **Iterazione**: 7
+-- **Ultimo aggiornamento**: 2026-04-02 17:55:22
+-- **Stato**: completed
++- **Iterazione**: 3
++- **Ultimo aggiornamento**: 2026-04-02 18:45:00
++- **Stato**: in_progress
+ 
+ ## Risultati Iterazione 1
+ 
+@@ -199,5 +199,10 @@ La passata attuale ha coperto la capa di curated repositories e discovery, con f
+ 2. **Discovery is becoming a layer**: MCP servers, agent cards, and registry-style catalogs are increasingly part of the ecosystem, not just an index.
+ 3. **Vendor ecosystems are converging on customization assets**: Claude Code, Copilot, and cross-vendor skill packs all now have active curated collections.
+ 
++## Aggiornamento Corrente
++- `findings.md` è stato esteso con un addendum di repo/esempi pratici: AG-UI Dojo, LiveKit starter projects, Anthropic computer-use demo e OpenLIT.
++- `guides.md` ora include i primi tre come punti di partenza pratici per UI, voice e computer use.
++- `research-requests.md` ha una nuova Iterazione 9 su browser automation, voice eval, registry/discovery, verticale finance/support e quality signals per curated lists.
++
+ ### Next Iteration
+ Vedi `resources/research-requests.md` per le nuove richieste dell'Iterazione 7.
+diff --git a/.workspaces/3-research/resources/findings.md b/.workspaces/3-research/resources/findings.md
+index 065e973..3656ab7 100644
+--- a/.workspaces/3-research/resources/findings.md
++++ b/.workspaces/3-research/resources/findings.md
+@@ -1041,3 +1041,39 @@
+ - **popularity**: 6
+ - **alternatives**: OWASP LLM resources, security skill packs, vertical GPT directories
+ - **why_include**: Good example of a domain-specific agent directory and a source for security-oriented beads.
++
++---
++
++# Iteration 8 - Research-Stage Example Repos
++
++## AG-UI Dojo
++- **macroarea**: UI Protocol / Examples
++- **url**: https://dojo.ag-ui.com/
++- **description**: Official demo and walkthrough hub for AG-UI. It packages framework-specific examples, previews, and implementation notes so researchers can compare shared state, generative UI, and human-in-the-loop behavior across stacks.
++- **popularity**: 6
++- **alternatives**: CopilotKit docs demos, Vercel AI SDK generative UI examples, custom protocol demos
++- **why_include**: Best hands-on surface for understanding how AG-UI behaves in real apps.
++
++## LiveKit Agent Starter Projects
++- **macroarea**: Realtime / Voice Starter Repos
++- **url**: https://github.com/livekit-examples/agent-starter-python
++- **description**: LiveKit's ready-to-run Python starter for voice agents, with tests, deployment scaffolding, and an AGENTS.md tuned for coding-agent workflows. The sibling Node starter follows the same structure for JS teams.
++- **popularity**: 6
++- **alternatives**: Vapi examples, Daily AI toolkit samples, Retell quickstarts
++- **why_include**: Strong practical starting point for voice-agent researchers who want runnable code rather than platform marketing.
++
++## Anthropic Computer Use Reference Implementation
++- **macroarea**: Browser Automation / Reference Repo
++- **url**: https://github.com/anthropics/anthropic-quickstarts/tree/main/computer-use-demo
++- **description**: Docker-based reference implementation for Claude computer use. It includes the virtual desktop, tool handlers, and agent loop needed to reproduce desktop/browser automation safely.
++- **popularity**: 7
++- **alternatives**: Playwright agents, Browser Use, Stagehand, operator-style harnesses
++- **why_include**: Best concrete implementation to study when researching computer-use agents.
++
++## OpenLIT
++- **macroarea**: Observability / Reference Stack
++- **url**: https://github.com/openlit/openlit
++- **description**: OpenTelemetry-native AI engineering platform with SDKs, dashboards, evaluations, prompt management, and many integrations. It bridges GenAI semantic conventions to a usable stack for tracing and governance.
++- **popularity**: 7
++- **alternatives**: OpenLLMetry, Langfuse, Arize Phoenix, W&B Weave
++- **why_include**: Most complete open stack for turning GenAI telemetry into an operational workflow.
+diff --git a/.workspaces/3-research/resources/guides.md b/.workspaces/3-research/resources/guides.md
+index ef468d1..17d12dc 100644
+--- a/.workspaces/3-research/resources/guides.md
++++ b/.workspaces/3-research/resources/guides.md
+@@ -278,6 +278,24 @@
+ - **description**: OpenTelemetry-native AI observability stack with SDKs, dashboards, prompt management, and evaluations. The docs emphasize one-line instrumentation and broad framework/provider coverage.
+ - **relevance**: Concrete implementation of OTEL-first agent observability.
+ 
++### AG-UI Dojo
++- **url**: https://dojo.ag-ui.com/
++- **source**: CopilotKit / AG-UI
++- **description**: Official demo hub for AG-UI with framework-specific walkthroughs, previews, and implementation details. Useful for studying shared state, tool-based generative UI, and HITL flows.
++- **relevance**: Best practical companion to the AG-UI protocol docs.
++
++### LiveKit Agent Starter Projects
++- **url**: https://github.com/livekit-examples/agent-starter-python
++- **source**: LiveKit Examples
++- **description**: Ready-to-run Python starter project for LiveKit Agents, including tests, deployment scaffolding, and an AGENTS.md optimized for coding agents. The Node starter mirrors the same setup for JS teams.
++- **relevance**: Best concrete repo for starting a voice-agent implementation quickly.
++
++### Anthropic Computer Use Reference Implementation
++- **url**: https://github.com/anthropics/anthropic-quickstarts/tree/main/computer-use-demo
++- **source**: Anthropic Quickstarts
++- **description**: Docker-based reference implementation containing the virtual desktop, tool handlers, and agent loop for computer-use agents. It is the most practical starting point for studying safe desktop automation.
++- **relevance**: Canonical reference for computer-use style automation.
++
+ ---
+ 
+ ## Evaluation and Benchmarks
+diff --git a/.workspaces/3-research/resources/research-requests.md b/.workspaces/3-research/resources/research-requests.md
+index c196358..5190af1 100644
+--- a/.workspaces/3-research/resources/research-requests.md
++++ b/.workspaces/3-research/resources/research-requests.md
+@@ -106,3 +106,16 @@
+ 
+ ## Iterazione 8 — Da esplorare
+ 7. **PixiJS v8 emoji rendering** — pratiche migliori per mantenere emoji/icon leggibili e crisp dentro Text su canvas ad alto DPI
++
++## Iterazione 9 — Nuove Richieste
++
++### Priorità Alta
++1. **Browser automation ecosystem** — Browser Use, Stagehand, Playwright MCP, Firecrawl, operator-style frameworks: quali sono davvero usabili per researcher/browsing agents?
++2. **Voice agent evaluation stack** — test, simulation, and eval tooling per LiveKit, Vapi, Daily, Retell; quali repos e harness sono più utili?
++
++### Priorità Media
++3. **Agent registry/discovery adoption** — A2A Agent Cards, NANDA, ERC-8004, Glama, MCP registries: quali directory e capability cards hanno adozione reale?
++4. **Vertical finance/support agent stacks** — OpenBB, FinRobot, FinGPT, customer-support templates e altri example repos da promuovere come beads.
++
++### Esplorazione
++5. **Curated repo quality signals** — quali metadati, README patterns e machine-readable index fanno davvero la differenza nelle awesome-lists?
+[0m
+I noticed the workspace status marker is still `in_progress` and the footer still points at the old next-step iteration. I’m correcting that so the context file reflects the finished pass cleanly.
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/context.md
+[0m
+[0m$ [0mgit status --short
+M .workspaces/3-research/context.md
+ M .workspaces/3-research/resources/findings.md
+ M .workspaces/3-research/resources/guides.md
+ M .workspaces/3-research/resources/research-requests.md
+ M .workspaces/logs/loop.log
+[0m
+[0m$ [0mgit diff -- .workspaces/3-research/context.md | sed -n '1,120p'
+diff --git a/.workspaces/3-research/context.md b/.workspaces/3-research/context.md
+index 8fcf895..0289088 100644
+--- a/.workspaces/3-research/context.md
++++ b/.workspaces/3-research/context.md
+@@ -1,8 +1,8 @@
+ # Workspace 3 — Research & Content Discovery
+ 
+ ## Stato
+-- **Iterazione**: 7
+-- **Ultimo aggiornamento**: 2026-04-02 17:55:22
++- **Iterazione**: 3
++- **Ultimo aggiornamento**: 2026-04-02 18:45:00
+ - **Stato**: completed
+ 
+ ## Risultati Iterazione 1
+@@ -199,5 +199,10 @@ La passata attuale ha coperto la capa di curated repositories e discovery, con f
+ 2. **Discovery is becoming a layer**: MCP servers, agent cards, and registry-style catalogs are increasingly part of the ecosystem, not just an index.
+ 3. **Vendor ecosystems are converging on customization assets**: Claude Code, Copilot, and cross-vendor skill packs all now have active curated collections.
+ 
++## Aggiornamento Corrente
++- `findings.md` è stato esteso con un addendum di repo/esempi pratici: AG-UI Dojo, LiveKit starter projects, Anthropic computer-use demo e OpenLIT.
++- `guides.md` ora include i primi tre come punti di partenza pratici per UI, voice e computer use.
++- `research-requests.md` ha una nuova Iterazione 9 su browser automation, voice eval, registry/discovery, verticale finance/support e quality signals per curated lists.
++
+ ### Next Iteration
+-Vedi `resources/research-requests.md` per le nuove richieste dell'Iterazione 7.
++Vedi `resources/research-requests.md` per le nuove richieste dell'Iterazione 9.
+[0m
+Updated:
+- `.workspaces/3-research/resources/findings.md` with an addendum for AG-UI Dojo, LiveKit starter repos, Anthropic computer-use demo, and OpenLIT
+- `.workspaces/3-research/resources/guides.md` with matching practical guides
+- `.workspaces/3-research/resources/research-requests.md` with a new Iteration 9 queue
+- `.workspaces/3-research/context.md` to reflect the current completed state
+
+Main takeaways:
+- AG-UI is now grounded with a concrete demo surface
+- Voice research now has runnable starter repos
+- Computer use now has a canonical reference implementation
+- The next research pass is focused on browser automation, voice evals, registry/discovery, and finance/support verticals
+[0;32m[2026-04-02 18:05:06] ✓[0m Workspace Research & Content completed successfully

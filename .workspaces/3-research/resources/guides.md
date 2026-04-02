@@ -278,6 +278,24 @@
 - **description**: OpenTelemetry-native AI observability stack with SDKs, dashboards, prompt management, and evaluations. The docs emphasize one-line instrumentation and broad framework/provider coverage.
 - **relevance**: Concrete implementation of OTEL-first agent observability.
 
+### AG-UI Dojo
+- **url**: https://dojo.ag-ui.com/
+- **source**: CopilotKit / AG-UI
+- **description**: Official demo hub for AG-UI with framework-specific walkthroughs, previews, and implementation details. Useful for studying shared state, tool-based generative UI, and HITL flows.
+- **relevance**: Best practical companion to the AG-UI protocol docs.
+
+### LiveKit Agent Starter Projects
+- **url**: https://github.com/livekit-examples/agent-starter-python
+- **source**: LiveKit Examples
+- **description**: Ready-to-run Python starter project for LiveKit Agents, including tests, deployment scaffolding, and an AGENTS.md optimized for coding agents. The Node starter mirrors the same setup for JS teams.
+- **relevance**: Best concrete repo for starting a voice-agent implementation quickly.
+
+### Anthropic Computer Use Reference Implementation
+- **url**: https://github.com/anthropics/anthropic-quickstarts/tree/main/computer-use-demo
+- **source**: Anthropic Quickstarts
+- **description**: Docker-based reference implementation containing the virtual desktop, tool handlers, and agent loop for computer-use agents. It is the most practical starting point for studying safe desktop automation.
+- **relevance**: Canonical reference for computer-use style automation.
+
 ---
 
 ## Evaluation and Benchmarks

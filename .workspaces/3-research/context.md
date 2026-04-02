@@ -1,8 +1,8 @@
 # Workspace 3 — Research & Content Discovery
 
 ## Stato
-- **Iterazione**: 7
-- **Ultimo aggiornamento**: 2026-04-02 17:55:22
+- **Iterazione**: 3
+- **Ultimo aggiornamento**: 2026-04-02 18:45:00
 - **Stato**: completed
 
 ## Risultati Iterazione 1
@@ -199,5 +199,10 @@ La passata attuale ha coperto la capa di curated repositories e discovery, con f
 2. **Discovery is becoming a layer**: MCP servers, agent cards, and registry-style catalogs are increasingly part of the ecosystem, not just an index.
 3. **Vendor ecosystems are converging on customization assets**: Claude Code, Copilot, and cross-vendor skill packs all now have active curated collections.
 
+## Aggiornamento Corrente
+- `findings.md` è stato esteso con un addendum di repo/esempi pratici: AG-UI Dojo, LiveKit starter projects, Anthropic computer-use demo e OpenLIT.
+- `guides.md` ora include i primi tre come punti di partenza pratici per UI, voice e computer use.
+- `research-requests.md` ha una nuova Iterazione 9 su browser automation, voice eval, registry/discovery, verticale finance/support e quality signals per curated lists.
+
 ### Next Iteration
-Vedi `resources/research-requests.md` per le nuove richieste dell'Iterazione 7.
+Vedi `resources/research-requests.md` per le nuove richieste dell'Iterazione 9.
