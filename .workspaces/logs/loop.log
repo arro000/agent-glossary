@@ -1,43 +1,65 @@
-[0;36m[2026-04-02 17:06:50][0m Starting Agent Glossary loop...
-[0;36m[2026-04-02 17:06:50][0m Project: /home/arro/projects/agent-glossary
-[0;36m[2026-04-02 17:06:50][0m Max iterations: 5
-[0;36m[2026-04-02 17:06:50][0m Log: /home/arro/projects/agent-glossary/.workspaces/logs/loop.log
-[0;36m[2026-04-02 17:06:50][0m Press Ctrl+C or run '.workspaces/loop.sh stop' to interrupt.
+[0;36m[2026-04-02 17:37:25][0m Starting Agent Glossary loop...
+[0;36m[2026-04-02 17:37:25][0m Project: /home/arro/projects/agent-glossary
+[0;36m[2026-04-02 17:37:25][0m Max iterations: 5
+[0;36m[2026-04-02 17:37:25][0m Log: /home/arro/projects/agent-glossary/.workspaces/logs/loop.log
+[0;36m[2026-04-02 17:37:25][0m Press Ctrl+C or run '.workspaces/loop.sh stop' to interrupt.
 
 ╔══════════════════════════════════════════════════════════╗
-║  AGENT GLOSSARY LOOP — Started 2026-04-02 17:06:50          ║
+║  AGENT GLOSSARY LOOP — Started 2026-04-02 17:37:25          ║
 ║  Max iterations: 5                         ║
 ╚══════════════════════════════════════════════════════════╝
 
-[0;32m[2026-04-02 17:06:50] ✓[0m Loop started (PID: 21274)
-[0;36m[2026-04-02 17:06:50][0m Launching OpenCode for workspace Implementation...
+[0;32m[2026-04-02 17:37:25] ✓[0m Loop started (PID: 26264)
+[0;36m[2026-04-02 17:37:25][0m Launching OpenCode for workspace Implementation...
 [0m
 > build · gpt-5.3-codex
 [0m
-[0m→ [0mRead .workspaces/1-implementation/context.md[90m [offset=1, limit=2000][0m
-[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=2000][0m
-[0m→ [0mRead .workspaces/1-implementation/resources/pixijs-reference.md[90m [offset=1, limit=2000][0m
-[0m→ [0mRead .workspaces/2-improvements/resources/prd.md[90m [offset=1, limit=2000][0m
-[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1, limit=2500][0m
-[0m→ [0mRead src/app/page.tsx[90m [offset=1, limit=400][0m
-[0m→ [0mRead src/app/globals.css[90m [offset=1, limit=400][0m
-[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1273, limit=2000][0m
-[0m→ [0mRead node_modules/next/dist/docs[90m [offset=1, limit=200][0m
-[0m→ [0mRead node_modules/next/dist/docs/01-app/index.md[90m [offset=1, limit=120][0m
-[0m✱ [0mGlob "src/**/*.{ts,tsx,md,json}"[90m in . · 3 matches[0m
-[0m→ [0mRead package.json[90m [offset=1, limit=220][0m
+[0m→ [0mRead .workspaces/1-implementation/context.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/pixijs-reference.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/2-improvements/resources/prd.md[90m [offset=1, limit=400][0m
+[0m✱ [0mGlob "src/**/*.tsx"[90m in . · 3 matches[0m
+[0m→ [0mRead src/app/globals.css[90m [offset=1, limit=220][0m
+[0m→ [0mRead src/app/page.tsx[90m [offset=1, limit=200][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1, limit=400][0m
+[0m✱ [0mGlob "src/**/*.ts"[90m in . · 0 matches[0m
 [0m
 [0m$ [0mgit status --short
 M .workspaces/1-implementation/context.md
  M .workspaces/logs/loop.log
  M .workspaces/loop.pid
 [0m
-[0m⚙ [0mapply_patch Success. Updated the following files:
-M src/components/whiteboard.tsx
-[0m⚙ [0mapply_patch Success. Updated the following files:
-M .workspaces/1-implementation/context.md
+[0m✱ [0mGrep "popularity|getReferenceCount|getProjectWeightTier|BUBBLE_RADIUS|scale|pointerover|wheel|pointerdown|panel|alternatives"[90m in src/components · 178 matches[0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=401, limit=500][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=901, limit=500][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1401, limit=500][0m
 [0m
-[0m$ [0mnpm run lint && npm run build
+[0m$ [0mnpm run build
+> agent-glossary@0.1.0 build
+> next build
+
+▲ Next.js 16.2.2 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.2s
+  Running TypeScript ...
+  Finished TypeScript in 1927ms ...
+  Collecting page data using 5 workers ...
+  Generating static pages using 5 workers (0/4) ...
+  Generating static pages using 5 workers (1/4) 
+  Generating static pages using 5 workers (2/4) 
+  Generating static pages using 5 workers (3/4) 
+✓ Generating static pages using 5 workers (4/4) in 331ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+[0m
+[0m$ [0mnpm run lint
 > agent-glossary@0.1.0 lint
 > eslint
 
@@ -488,935 +510,867 @@ M .workspaces/1-implementation/context.md
    1:11698  warning  'A' is defined but never used                                          @typescript-eslint/no-unused-vars
    1:11700  warning  't' is defined but never used                                          @typescript-eslint/no-unused-vars
 
-...916257 bytes truncated...
+...915904 bytes truncated...
 
-The tool call succeeded but the output was truncated. Full output saved to: /home/arro/.local/share/opencode/tool-output/tool_d4f2b06f3001L2OsjGoQIucXsD
+The tool call succeeded but the output was truncated. Full output saved to: /home/arro/.local/share/opencode/tool-output/tool_d4f467c2b0010XBo69FhoU3Ll0
 Use the Task tool to have explore agent process this file with Grep and Read (with offset/limit). Do NOT read the full file yourself - delegate to save context.
 [0m
-[0m$ [0mnpm run build
-> agent-glossary@0.1.0 build
-> next build
-
-▲ Next.js 16.2.2 (Turbopack)
-
-  Creating an optimized production build ...
-✓ Compiled successfully in 2.2s
-  Running TypeScript ...
-  Finished TypeScript in 1938ms ...
-  Collecting page data using 5 workers ...
-  Generating static pages using 5 workers (0/4) ...
-  Generating static pages using 5 workers (1/4) 
-  Generating static pages using 5 workers (2/4) 
-  Generating static pages using 5 workers (3/4) 
-✓ Generating static pages using 5 workers (4/4) in 326ms
-  Finalizing page optimization ...
-
-Route (app)
-┌ ○ /
-└ ○ /_not-found
-
-
-○  (Static)  prerendered as static content
-[0m
-[0m$ [0mnpx eslint src
-/home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-  579:65  warning  'screenH' is defined but never used       @typescript-eslint/no-unused-vars
-  745:24  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-  755:19  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
-
-✖ 3 problems (2 errors, 1 warning)
-[0m
 [0m⚙ [0mapply_patch Success. Updated the following files:
-M src/components/whiteboard.tsx
-[0m
-[0m$ [0mnpx eslint src
-[0m
-[0m$ [0mnpm run build
-> agent-glossary@0.1.0 build
-> next build
-
-▲ Next.js 16.2.2 (Turbopack)
-
-  Creating an optimized production build ...
-✓ Compiled successfully in 2.2s
-  Running TypeScript ...
-  Finished TypeScript in 1927ms ...
-  Collecting page data using 5 workers ...
-  Generating static pages using 5 workers (0/4) ...
-  Generating static pages using 5 workers (1/4) 
-  Generating static pages using 5 workers (2/4) 
-  Generating static pages using 5 workers (3/4) 
-✓ Generating static pages using 5 workers (4/4) in 330ms
-  Finalizing page optimization ...
-
-Route (app)
-┌ ○ /
-└ ○ /_not-found
-
-
-○  (Static)  prerendered as static content
+M .workspaces/1-implementation/context.md
 [0m
 [0m$ [0mgit status --short
 M .workspaces/1-implementation/context.md
  M .workspaces/logs/loop.log
  M .workspaces/loop.pid
- M src/components/whiteboard.tsx
 [0m
-[0m$ [0mgit diff -- src/components/whiteboard.tsx .workspaces/1-implementation/context.md
+[0m$ [0mgit log -8 --oneline
+80ef41b Add awesome agents scan and bead roadmap
+f0e899a Polish macroarea readability and document iteration 2 state
+fb4c419 loop iter 1: workspace 3 (Research & Content) completed
+abd0ff1 loop iter 1: workspace 2 (Improvements & PRD) completed
+05a255a Refine weighted subsection bubbles
+10fb41e loop iter 1: workspace 1 (Implementation) completed
+b07a21a Polish whiteboard interactions for iteration 1
+49864b8 Refocus research on awesome agents and auto-push loop
+[0m
+[0m$ [0mgit diff --staged; git diff
 diff --git a/.workspaces/1-implementation/context.md b/.workspaces/1-implementation/context.md
-index 94b3e6c..e99719c 100644
+index 7d3b16d..22443d6 100644
 --- a/.workspaces/1-implementation/context.md
 +++ b/.workspaces/1-implementation/context.md
-@@ -2,7 +2,7 @@
+@@ -1,8 +1,8 @@
+ # Workspace 1 — Implementation
  
  ## Stato
- - **Iterazione**: 1
--- **Ultimo aggiornamento**: 2026-04-02 18:02:00
-+- **Ultimo aggiornamento**: 2026-04-02 18:12:00
+-- **Iterazione**: 2
+-- **Ultimo aggiornamento**: 2026-04-02 18:07:00
++- **Iterazione**: 1
++- **Ultimo aggiornamento**: 2026-04-02 18:11:00
  - **Stato**: completed
  
  ## Obiettivo
-@@ -141,6 +141,13 @@ Tutti i concetti dal database sono ora rappresentati nella whiteboard.
- - [x] Badge bolla e barra "PROJECT WEIGHT" nel panel mostrano il conteggio riferimenti
- - [x] Hover glow, click panel, zoom (wheel) e pan (drag) verificati nel flusso esistente
+@@ -157,6 +157,14 @@ Tutti i concetti dal database sono ora rappresentati nella whiteboard.
+ - [x] Build produzione eseguita con successo
+ - [x] `npm run lint` ancora bloccato da errori preesistenti in file generati `.netlify/**` (fuori scope app)
  
-+## Iterazione 1 (Questa esecuzione) — Completata
-+- [x] Requisiti chiave confermati: PixiJS v8 vanilla, rendering full-canvas, font Inter, bolle equal-size
-+- [x] Confermata leggibilita bolle con emoji/icona + titolo in ogni subsection
-+- [x] Confermato peso delle bolle basato su numero di riferimenti/progetti (`alternatives`)
-+- [x] Corretto hit area delle bolle per interazioni pointer precise (`Circle(0, 0, radius)`)
-+- [x] Migliorato layout controlli zoom evitando overlap tra pulsanti (+, -, fit)
++## Iterazione 1 (Richiesta utente corrente) — Completata
++- [x] Letto il contesto richiesto: `context.md`, `resources/concepts.md`, `resources/pixijs-reference.md`
++- [x] Trovato PRD in `.workspaces/2-improvements/resources/prd.md` e verificata la coerenza con i vincoli richiesti
++- [x] Confermato stato implementazione whiteboard PixiJS v8 vanilla con rendering full-canvas (no overlay HTML per contenuti)
++- [x] Confermati requisiti UI principali: bolle equal-size con emoji+titolo, hover glow, click panel dettagli, zoom wheel e pan drag
++- [x] Verifica tecnica eseguita: `npm run build` OK
++- [x] Verifica lint eseguita: errori presenti solo in artefatti generati `.netlify/**` (fuori scope funzionale)
 +
  ## File Principali
  - `src/components/whiteboard.tsx` — Componente principale con tutta la logica PixiJS
  - `src/app/page.tsx` — Pagina che renderizza il whiteboard
-diff --git a/src/components/whiteboard.tsx b/src/components/whiteboard.tsx
-index fe67d6d..45a6bd2 100644
---- a/src/components/whiteboard.tsx
-+++ b/src/components/whiteboard.tsx
-@@ -576,7 +576,7 @@ function createSearchBar(): {
-   return { container, bg, textDisplay, placeholder, clearBtn, matchLabel, iconGfx };
- }
+diff --git a/.workspaces/logs/loop.log b/.workspaces/logs/loop.log
+index adda537..d960414 100644
+--- a/.workspaces/logs/loop.log
++++ b/.workspaces/logs/loop.log
+@@ -1,43 +1,65 @@
+-[0;36m[2026-04-02 17:06:50][0m Starting Agent Glossary loop...
+-[0;36m[2026-04-02 17:06:50][0m Project: /home/arro/projects/agent-glossary
+-[0;36m[2026-04-02 17:06:50][0m Max iterations: 5
+-[0;36m[2026-04-02 17:06:50][0m Log: /home/arro/projects/agent-glossary/.workspaces/logs/loop.log
+-[0;36m[2026-04-02 17:06:50][0m Press Ctrl+C or run '.workspaces/loop.sh stop' to interrupt.
++[0;36m[2026-04-02 17:37:25][0m Starting Agent Glossary loop...
++[0;36m[2026-04-02 17:37:25][0m Project: /home/arro/projects/agent-glossary
++[0;36m[2026-04-02 17:37:25][0m Max iterations: 5
++[0;36m[2026-04-02 17:37:25][0m Log: /home/arro/projects/agent-glossary/.workspaces/logs/loop.log
++[0;36m[2026-04-02 17:37:25][0m Press Ctrl+C or run '.workspaces/loop.sh stop' to interrupt.
  
--function createLegend(onAreaClick: (areaIndex: number) => void, screenH: number): Container {
-+function createLegend(onAreaClick: (areaIndex: number) => void): Container {
-   const pad = 10;
-   const itemH = 22;
-   const w = 190;
-@@ -742,7 +742,7 @@ function createLegend(onAreaClick: (areaIndex: number) => void, screenH: number)
-       e.stopPropagation();
-     });
+ ╔══════════════════════════════════════════════════════════╗
+-║  AGENT GLOSSARY LOOP — Started 2026-04-02 17:06:50          ║
++║  AGENT GLOSSARY LOOP — Started 2026-04-02 17:37:25          ║
+ ║  Max iterations: 5                         ║
+ ╚══════════════════════════════════════════════════════════╝
  
--    const onMove = (e: any) => {
-+    const onMove = (e: PointerEvent) => {
-       if (!isDragging) return;
-       scrollY = Math.max(-maxY, Math.min(0, scrollY + e.movementY));
-       listContainer.y = headerH + headerPad + scrollY;
-@@ -752,7 +752,7 @@ function createLegend(onAreaClick: (areaIndex: number) => void, screenH: number)
-     window.addEventListener('pointermove', onMove);
-     window.addEventListener('pointerup', onUp);
+-[0;32m[2026-04-02 17:06:50] ✓[0m Loop started (PID: 21274)
+-[0;36m[2026-04-02 17:06:50][0m Launching OpenCode for workspace Implementation...
++[0;32m[2026-04-02 17:37:25] ✓[0m Loop started (PID: 26264)
++[0;36m[2026-04-02 17:37:25][0m Launching OpenCode for workspace Implementation...
+ [0m
+ > build · gpt-5.3-codex
+ [0m
+-[0m→ [0mRead .workspaces/1-implementation/context.md[90m [offset=1, limit=2000][0m
+-[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=2000][0m
+-[0m→ [0mRead .workspaces/1-implementation/resources/pixijs-reference.md[90m [offset=1, limit=2000][0m
+-[0m→ [0mRead .workspaces/2-improvements/resources/prd.md[90m [offset=1, limit=2000][0m
+-[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1, limit=2500][0m
+-[0m→ [0mRead src/app/page.tsx[90m [offset=1, limit=400][0m
+-[0m→ [0mRead src/app/globals.css[90m [offset=1, limit=400][0m
+-[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1273, limit=2000][0m
+-[0m→ [0mRead node_modules/next/dist/docs[90m [offset=1, limit=200][0m
+-[0m→ [0mRead node_modules/next/dist/docs/01-app/index.md[90m [offset=1, limit=120][0m
+-[0m✱ [0mGlob "src/**/*.{ts,tsx,md,json}"[90m in . · 3 matches[0m
+-[0m→ [0mRead package.json[90m [offset=1, limit=220][0m
++[0m→ [0mRead .workspaces/1-implementation/context.md[90m [offset=1, limit=400][0m
++[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=400][0m
++[0m→ [0mRead .workspaces/1-implementation/resources/pixijs-reference.md[90m [offset=1, limit=400][0m
++[0m→ [0mRead .workspaces/2-improvements/resources/prd.md[90m [offset=1, limit=400][0m
++[0m✱ [0mGlob "src/**/*.tsx"[90m in . · 3 matches[0m
++[0m→ [0mRead src/app/globals.css[90m [offset=1, limit=220][0m
++[0m→ [0mRead src/app/page.tsx[90m [offset=1, limit=200][0m
++[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1, limit=400][0m
++[0m✱ [0mGlob "src/**/*.ts"[90m in . · 0 matches[0m
+ [0m
+ [0m$ [0mgit status --short
+ M .workspaces/1-implementation/context.md
+  M .workspaces/logs/loop.log
+  M .workspaces/loop.pid
+ [0m
+-[0m⚙ [0mapply_patch Success. Updated the following files:
+-M src/components/whiteboard.tsx
+-[0m⚙ [0mapply_patch Success. Updated the following files:
+-M .workspaces/1-implementation/context.md
++[0m✱ [0mGrep "popularity|getReferenceCount|getProjectWeightTier|BUBBLE_RADIUS|scale|pointerover|wheel|pointerdown|panel|alternatives"[90m in src/components · 178 matches[0m
++[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=401, limit=500][0m
++[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=901, limit=500][0m
++[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1401, limit=500][0m
+ [0m
+-[0m$ [0mnpm run lint && npm run build
++[0m$ [0mnpm run build
++> agent-glossary@0.1.0 build
++> next build
++
++▲ Next.js 16.2.2 (Turbopack)
++
++  Creating an optimized production build ...
++✓ Compiled successfully in 2.2s
++  Running TypeScript ...
++  Finished TypeScript in 1927ms ...
++  Collecting page data using 5 workers ...
++  Generating static pages using 5 workers (0/4) ...
++  Generating static pages using 5 workers (1/4) 
++  Generating static pages using 5 workers (2/4) 
++  Generating static pages using 5 workers (3/4) 
++✓ Generating static pages using 5 workers (4/4) in 331ms
++  Finalizing page optimization ...
++
++Route (app)
++┌ ○ /
++└ ○ /_not-found
++
++
++○  (Static)  prerendered as static content
++[0m
++[0m$ [0mnpm run lint
+ > agent-glossary@0.1.0 lint
+ > eslint
  
--    (container as any)._cleanupScroll = () => {
-+    (container as unknown as Record<string, unknown>)._cleanupScroll = () => {
-       window.removeEventListener('pointermove', onMove);
-       window.removeEventListener('pointerup', onUp);
-     };
-@@ -885,7 +885,7 @@ export default function Whiteboard() {
-           bubbleContainer.alpha = 0;
+@@ -488,935 +510,16 @@ M .workspaces/1-implementation/context.md
+    1:11698  warning  'A' is defined but never used                                          @typescript-eslint/no-unused-vars
+    1:11700  warning  't' is defined but never used                                          @typescript-eslint/no-unused-vars
  
-           const hitR = radius + 4;
--          bubbleContainer.hitArea = new Circle(hitR, hitR, hitR);
-+          bubbleContainer.hitArea = new Circle(0, 0, hitR);
+-...916257 bytes truncated...
++...915904 bytes truncated...
  
-           const glow = new Graphics();
-           glow.eventMode = 'none';
-@@ -1028,11 +1028,11 @@ export default function Whiteboard() {
- 
-       const zoomContainer = new Container();
-       zoomContainer.x = 20;
--      zoomContainer.y = window.innerHeight - 180;
-+      zoomContainer.y = window.innerHeight - 196;
-       zoomContainer.label = 'zoom-controls';
- 
-       const zoomBg = new Graphics();
--      zoomBg.roundRect(0, 0, 40, 136, 10);
-+      zoomBg.roundRect(0, 0, 40, 152, 10);
-       zoomBg.fill({ color: '#ffffff', alpha: 0.88 });
-       zoomBg.stroke({ color: '#d1d5db', width: 1 });
-       zoomBg.eventMode = 'none';
-@@ -1057,21 +1057,21 @@ export default function Whiteboard() {
-       });
-       zoomLabel.anchor.set(0.5);
-       zoomLabel.x = 20;
--      zoomLabel.y = 58;
-+      zoomLabel.y = 56;
-       zoomContainer.addChild(zoomLabel);
- 
-       const plusBtn = createZoomBtn('+', () => {
-         zoomToCenter(world.scale.x * 1.25);
-       });
-       plusBtn.x = 0;
--      plusBtn.y = 72;
-+      plusBtn.y = 64;
-       zoomContainer.addChild(plusBtn);
- 
-       const fitBtn = createZoomBtn('\u2922', () => {
-         zoomToFit();
-       });
-       fitBtn.x = 0;
--      fitBtn.y = 88;
-+      fitBtn.y = 104;
-       zoomContainer.addChild(fitBtn);
- 
-       app.stage.addChild(zoomContainer);
-@@ -1094,7 +1094,7 @@ export default function Whiteboard() {
-         targetScale = ns;
-         targetPanX = window.innerWidth / 2 - areaCX * ns;
-         targetPanY = window.innerHeight / 2 - areaCY * ns;
--      }, window.innerHeight);
-+      });
-       legend.x = window.innerWidth - 190 - 14;
-       legend.y = 14;
-       app.stage.addChild(legend);
-@@ -1679,7 +1679,7 @@ export default function Whiteboard() {
-         minimap.x = window.innerWidth - 180 - 12;
-         minimap.y = window.innerHeight - 110 - 12;
-         zoomContainer.x = 20;
--        zoomContainer.y = window.innerHeight - 180;
-+        zoomContainer.y = window.innerHeight - 196;
-         searchBar.container.x = (window.innerWidth - 300) / 2;
-         searchBar.container.y = 14;
-         legend.x = window.innerWidth - 190 - 14;
+-The tool call succeeded but the output was truncated. Full output saved to: /home/arro/.local/share/opencode/tool-output/tool_d4f2b06f3001L2OsjGoQIucXsD
++The tool call succeeded but the output was truncated. Full output saved to: /home/arro/.local/share/opencode/tool-output/tool_d4f467c2b0010XBo69FhoU3Ll0
+ Use the Task tool to have explore agent process this file with Grep and Read (with offset/limit). Do NOT read the full file yourself - delegate to save context.
+ [0m
+-[0m$ [0mnpm run build
+-> agent-glossary@0.1.0 build
+-> next build
+-
+-▲ Next.js 16.2.2 (Turbopack)
+-
+-  Creating an optimized production build ...
+-✓ Compiled successfully in 2.2s
+-  Running TypeScript ...
+-  Finished TypeScript in 1938ms ...
+-  Collecting page data using 5 workers ...
+-  Generating static pages using 5 workers (0/4) ...
+-  Generating static pages using 5 workers (1/4) 
+-  Generating static pages using 5 workers (2/4) 
+-  Generating static pages using 5 workers (3/4) 
+-✓ Generating static pages using 5 workers (4/4) in 326ms
+-  Finalizing page optimization ...
+-
+-Route (app)
+-┌ ○ /
+-└ ○ /_not-found
+-
+-
+-○  (Static)  prerendered as static content
+-[0m
+-[0m$ [0mnpx eslint src
+-/home/arro/projects/agent-glossary/src/components/whiteboard.tsx
+-  579:65  warning  'screenH' is defined but never used       @typescript-eslint/no-unused-vars
+-  745:24  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+-  755:19  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+-
+-✖ 3 problems (2 errors, 1 warning)
+-[0m
+ [0m⚙ [0mapply_patch Success. Updated the following files:
+-M src/components/whiteboard.tsx
+-[0m
+-[0m$ [0mnpx eslint src
+-[0m
+-[0m$ [0mnpm run build
+-> agent-glossary@0.1.0 build
+-> next build
+-
+-▲ Next.js 16.2.2 (Turbopack)
+-
+-  Creating an optimized production build ...
+-✓ Compiled successfully in 2.2s
+-  Running TypeScript ...
+-  Finished TypeScript in 1927ms ...
+-  Collecting page data using 5 workers ...
+-  Generating static pages using 5 workers (0/4) ...
+-  Generating static pages using 5 workers (1/4) 
+-  Generating static pages using 5 workers (2/4) 
+-  Generating static pages using 5 workers (3/4) 
+-✓ Generating static pages using 5 workers (4/4) in 330ms
+-  Finalizing page optimization ...
+-
+-Route (app)
+-┌ ○ /
+-└ ○ /_not-found
+-
+-
+-○  (Static)  prerendered as static content
++M .workspaces/1-implementation/context.md
+ [0m
+ [0m$ [0mgit status --short
+ M .workspaces/1-implementation/context.md
+  M .workspaces/logs/loop.log
+  M .workspaces/loop.pid
+- M src/components/whiteboard.tsx
+ [0m
+-[0m$ [0mgit diff -- src/components/whiteboard.tsx .workspaces/1-implementation/context.md
+-diff --git a/.workspaces/1-implementation/context.md b/.workspaces/1-implementation/context.md
+-index 94b3e6c..e99719c 100644
+---- a/.workspaces/1-implementation/context.md
+-+++ b/.workspaces/1-implementation/context.md
+-@@ -2,7 +2,7 @@
+- 
+- ## Stato
+- - **Iterazione**: 1
+--- **Ultimo aggiornamento**: 2026-04-02 18:02:00
+-+- **Ultimo aggiornamento**: 2026-04-02 18:12:00
+- - **Stato**: completed
+- 
+- ## Obiettivo
+-@@ -141,6 +141,13 @@ Tutti i concetti dal database sono ora rappresentati nella whiteboard.
+- - [x] Badge bolla e barra "PROJECT WEIGHT" nel panel mostrano il conteggio riferimenti
+- - [x] Hover glow, click panel, zoom (wheel) e pan (drag) verificati nel flusso esistente
+- 
+-+## Iterazione 1 (Questa esecuzione) — Completata
+-+- [x] Requisiti chiave confermati: PixiJS v8 vanilla, rendering full-canvas, font Inter, bolle equal-size
+-+- [x] Confermata leggibilita bolle con emoji/icona + titolo in ogni subsection
+-+- [x] Confermato peso delle bolle basato su numero di riferimenti/progetti (`alternatives`)
+-+- [x] Corretto hit area delle bolle per interazioni pointer precise (`Circle(0, 0, radius)`)
+-+- [x] Migliorato layout controlli zoom evitando overlap tra pulsanti (+, -, fit)
+-+
+- ## File Principali
+- - `src/components/whiteboard.tsx` — Componente principale con tutta la logica PixiJS
+- - `src/app/page.tsx` — Pagina che renderizza il whiteboard
+-diff --git a/src/components/whiteboard.tsx b/src/components/whiteboard.tsx
+-index fe67d6d..45a6bd2 100644
+---- a/src/components/whiteboard.tsx
+-+++ b/src/components/whiteboard.tsx
+-@@ -576,7 +576,7 @@ function createSearchBar(): {
+-   return { container, bg, textDisplay, placeholder, clearBtn, matchLabel, iconGfx };
+- }
+- 
+--function createLegend(onAreaClick: (areaIndex: number) => void, screenH: number): Container {
+-+function createLegend(onAreaClick: (areaIndex: number) => void): Container {
+-   const pad = 10;
+-   const itemH = 22;
+-   const w = 190;
+-@@ -742,7 +742,7 @@ function createLegend(onAreaClick: (areaIndex: number) => void, screenH: number)
+-       e.stopPropagation();
+-     });
+- 
+--    const onMove = (e: any) => {
+-+    const onMove = (e: PointerEvent) => {
+-       if (!isDragging) return;
+-       scrollY = Math.max(-maxY, Math.min(0, scrollY + e.movementY));
+-       listContainer.y = headerH + headerPad + scrollY;
+-@@ -752,7 +752,7 @@ function createLegend(onAreaClick: (areaIndex: number) => void, screenH: number)
+-     window.addEventListener('pointermove', onMove);
+-     window.addEventListener('pointerup', onUp);
+- 
+--    (container as any)._cleanupScroll = () => {
+-+    (container as unknown as Record<string, unknown>)._cleanupScroll = () => {
+-       window.removeEventListener('pointermove', onMove);
+-       window.removeEventListener('pointerup', onUp);
+-     };
+-@@ -885,7 +885,7 @@ export default function Whiteboard() {
+-           bubbleContainer.alpha = 0;
+- 
+-           const hitR = radius + 4;
+--          bubbleContainer.hitArea = new Circle(hitR, hitR, hitR);
+-+          bubbleContainer.hitArea = new Circle(0, 0, hitR);
+- 
+-           const glow = new Graphics();
+-           glow.eventMode = 'none';
+-@@ -1028,11 +1028,11 @@ export default function Whiteboard() {
+- 
+-       const zoomContainer = new Container();
+-       zoomContainer.x = 20;
+--      zoomContainer.y = window.innerHeight - 180;
+-+      zoomContainer.y = window.innerHeight - 196;
+-       zoomContainer.label = 'zoom-controls';
+- 
+-       const zoomBg = new Graphics();
+--      zoomBg.roundRect(0, 0, 40, 136, 10);
+-+      zoomBg.roundRect(0, 0, 40, 152, 10);
+-       zoomBg.fill({ color: '#ffffff', alpha: 0.88 });
+-       zoomBg.stroke({ color: '#d1d5db', width: 1 });
+-       zoomBg.eventMode = 'none';
+-@@ -1057,21 +1057,21 @@ export default function Whiteboard() {
+-       });
+-       zoomLabel.anchor.set(0.5);
+-       zoomLabel.x = 20;
+--      zoomLabel.y = 58;
+-+      zoomLabel.y = 56;
+-       zoomContainer.addChild(zoomLabel);
+- 
+-       const plusBtn = createZoomBtn('+', () => {
+-         zoomToCenter(world.scale.x * 1.25);
+-       });
+-       plusBtn.x = 0;
+--      plusBtn.y = 72;
+-+      plusBtn.y = 64;
+-       zoomContainer.addChild(plusBtn);
+- 
+-       const fitBtn = createZoomBtn('\u2922', () => {
+-         zoomToFit();
+-       });
+-       fitBtn.x = 0;
+--      fitBtn.y = 88;
+-+      fitBtn.y = 104;
+-       zoomContainer.addChild(fitBtn);
+- 
+-       app.stage.addChild(zoomContainer);
+-@@ -1094,7 +1094,7 @@ export default function Whiteboard() {
+-         targetScale = ns;
+-         targetPanX = window.innerWidth / 2 - areaCX * ns;
+-         targetPanY = window.innerHeight / 2 - areaCY * ns;
+--      }, window.innerHeight);
+-+      });
+-       legend.x = window.innerWidth - 190 - 14;
+-       legend.y = 14;
+-       app.stage.addChild(legend);
+-@@ -1679,7 +1679,7 @@ export default function Whiteboard() {
+-         minimap.x = window.innerWidth - 180 - 12;
+-         minimap.y = window.innerHeight - 110 - 12;
+-         zoomContainer.x = 20;
+--        zoomContainer.y = window.innerHeight - 180;
+-+        zoomContainer.y = window.innerHeight - 196;
+-         searchBar.container.x = (window.innerWidth - 300) / 2;
+-         searchBar.container.y = 14;
+-         legend.x = window.innerWidth - 190 - 14;
+-[0m
+-[0m$ [0mgit log -6 --oneline
+-49864b8 Refocus research on awesome agents and auto-push loop
+-f7f2c01 Update bubble weight to reference counts
+-2c642c0 Shift glossary bubbles to equal subsection projects
+-af4e400 Ignore local Netlify metadata
+-b69fc2e Add PixiJS agent glossary whiteboard
+-1cd2ec2 loop iter 3: implementation changes
+-[0m
+-[0m$ [0mgit add "src/components/whiteboard.tsx" ".workspaces/1-implementation/context.md" && git commit -m "Polish whiteboard interactions for iteration 1" -m "Improve bubble hit targets and zoom control spacing so navigation feels reliable and clear, while keeping equal-size subsection bubbles and reference-based project weight behavior documented in workspace context." && git status --short
+-[main b07a21a] Polish whiteboard interactions for iteration 1
+- 2 files changed, 19 insertions(+), 12 deletions(-)
+- M .workspaces/logs/loop.log
+- M .workspaces/loop.pid
+-[0m
+-Implemented iteration 1 and committed the work.
+-
+-- Updated bubble interaction precision by fixing hit areas to be centered on each bubble in `src/components/whiteboard.tsx:888`.
+-- Polished zoom controls layout to avoid button overlap and improve usability in `src/components/whiteboard.tsx:1031`, `src/components/whiteboard.tsx:1035`, `src/components/whiteboard.tsx:1067`, `src/components/whiteboard.tsx:1074`, `src/components/whiteboard.tsx:1682`.
+-- Cleaned typing issues in legend scrolling (removed unused arg, replaced `any`) in `src/components/whiteboard.tsx:579`, `src/components/whiteboard.tsx:745`, `src/components/whiteboard.tsx:755`, `src/components/whiteboard.tsx:1097`.
+-- Updated workspace status/context with this iteration’s state and completed checklist in `.workspaces/1-implementation/context.md:5` and `.workspaces/1-implementation/context.md:144`.
+-- Kept core rules aligned with your brief: PixiJS v8 vanilla via `useRef/useEffect`, full canvas rendering, Inter font, equal-size subsection bubbles, emoji+title recognition, and reference-count weight display.
+-
+-Validation run:
+-- `npx eslint src` passes.
+-- `npm run build` passes.
+-- `npm run lint` still fails due pre-existing generated files under `.netlify/...` (not touched by this change).
+-
+-Commit:
+-- `b07a21a` — `Polish whiteboard interactions for iteration 1`
+-[0;32m[2026-04-02 17:09:38] ✓[0m Workspace Implementation completed successfully
+- 2 files changed, 653 insertions(+), 2514 deletions(-)
+-To https://github.com/arro000/agent-glossary.git
+-   49864b8..10fb41e  main -> main
+-[0;32m[2026-04-02 17:09:39] ✓[0m Workspace changes committed and pushed
+-[0;36m[2026-04-02 17:09:39][0m Launching OpenCode for workspace Improvements & PRD...
+-[0m
+-> build · gpt-5.4-mini
+-[0m
+-I’m checking the current implementation and the spec files first, then I’ll wire the missing PixiJS pieces into `src/` and verify with a build.
+-[0m→ [0mRead .workspaces/1-implementation/context.md[90m [offset=1, limit=400][0m
+-[0m→ [0mRead .workspaces/1-implementation/resources/pixijs-reference.md[90m [offset=1, limit=400][0m
+-[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=400][0m
+-[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1, limit=400][0m
+-[0m✱ [0mGlob "src/**/*"[90m in . · 5 matches[0m
+-I’ve got the spec and the data model. Next I’m reading the current Pixi whiteboard code so I can patch the missing interactions and rework the subsection bubbles without changing the app structure more than necessary.
+-[0m→ [0mRead src/app/page.tsx[90m [offset=1, limit=200][0m
+-[0m→ [0mRead src/app/globals.css[90m [offset=1, limit=300][0m
+-[0m→ [0mRead src/app/layout.tsx[90m [offset=1, limit=200][0m
+-[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1, limit=400][0m
+-[0m✱ [0mGlob ".workspaces/3-research/resources/*"[90m in . · 3 matches[0m
+-The whiteboard is already partially built, but I need to verify how bubbles are sized and weighted before changing them. I’m checking the existing render/update logic and the improvements workspace state next.
+-[0m✱ [0mGrep "project weight|alternatives|popularity|detail panel|search|minimap|zoom|pan|hitArea|emoji"[90m in src/components/whiteboard.tsx · 202 matches[0m
+-[0m→ [0mRead .workspaces/2-improvements/context.md[90m [offset=1, limit=300][0m
+-[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=1, limit=300][0m
+-[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=820, limit=420][0m
+-[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1220, limit=320][0m
+-[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1540, limit=260][0m
+-I’m changing the bubble rendering now: keeping the circles equal-sized, making the emoji/title more legible, and adding a compact project-weight meter so the visual weight comes from project/reference count instead of bubble size.
+-[0m⚙ [0mapply_patch Success. Updated the following files:
+-M src/components/whiteboard.tsx
+-
+-LSP errors detected in src/components/whiteboard.tsx, please fix:
+-<diagnostics file="/home/arro/projects/agent-glossary/src/components/whiteboard.tsx">
+-ERROR [919:15] Object literal may only specify known properties, and 'strokeThickness' does not exist in type 'Partial<TextStyleOptions>'.
+-</diagnostics>
+-[0m⚙ [0mapply_patch Success. Updated the following files:
+-M src/components/whiteboard.tsx
+-The visual change is in place. I’m sanity-checking the edited block for syntax and then I’ll run a production build so I can catch any Pixi/TypeScript issues before I update the workspace state.
+-[0m⚙ [0mapply_patch Success. Updated the following files:
+-M .workspaces/3-research/resources/research-requests.md
+-[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=874, limit=110][0m
+-[0m
+-[0m$ [0mnpm run build
+-> agent-glossary@0.1.0 build
+-> next build
+-
+-▲ Next.js 16.2.2 (Turbopack)
+-
+-  Creating an optimized production build ...
+-✓ Compiled successfully in 2.1s
+-  Running TypeScript ...
+-  Finished TypeScript in 1956ms ...
+-  Collecting page data using 5 workers ...
+-  Generating static pages using 5 workers (0/4) ...
+-  Generating static pages using 5 workers (1/4) 
+-  Generating static pages using 5 workers (2/4) 
+-  Generating static pages using 5 workers (3/4) 
+-✓ Generating static pages using 5 workers (4/4) in 334ms
+-  Finalizing page optimization ...
+-
+-Route (app)
+-┌ ○ /
+-└ ○ /_not-found
+-
+-
+-○  (Static)  prerendered as static content
+-[0m
+-The build passed. I’m updating the workspace notes now so the implementation state matches the code and the next iteration has the right context.
+-[0m⚙ [0mapply_patch Success. Updated the following files:
+-M .workspaces/2-improvements/context.md
+-[0m
+-[0m$ [0mgit status --short
+-M .workspaces/2-improvements/context.md
+- M .workspaces/3-research/resources/research-requests.md
+- M .workspaces/logs/loop.log
+- M src/components/whiteboard.tsx
+-[0m
+-[0m$ [0mgit diff -- src/components/whiteboard.tsx .workspaces/2-improvements/context.md .workspaces/3-research/resources/research-requests.md
+-diff --git a/.workspaces/2-improvements/context.md b/.workspaces/2-improvements/context.md
+-index bd6e51e..86c9daa 100644
+---- a/.workspaces/2-improvements/context.md
+-+++ b/.workspaces/2-improvements/context.md
+-@@ -1,9 +1,9 @@
+- # Workspace 2 — Improvements & Implementation
+- 
+- ## Stato
+--- **Iterazione**: 4
+--- **Ultimo aggiornamento**: 2026-04-02 16:10:05
+--- **Stato**: in_progress
+-+- **Iterazione**: 1
+-+- **Ultimo aggiornamento**: 2026-04-02 18:42:00
+-+- **Stato**: completed
+- 
+- ## Obiettivo
+- Analizzare l'implementazione corrente, identificare miglioramenti, e IMPLEMENTARLI direttamente sul codice. Le bolle devono restare uguali tra loro, con emoji/icon e peso dato dai progetti/referenze della sotto-sezione. Non scrivere solo PRD — cambia il codice.
+-@@ -69,6 +69,12 @@ Analizzare l'implementazione corrente, identificare miglioramenti, e IMPLEMENTAR
+- - **Bubble white alpha**: leggermente aumentata (0.6 → 0.65) per migliorare leggibilità
+- - **Bubble inner fill**: ridotto (0.15 → 0.12) per look più pulito
+- 
+-+### Iterazione 1 — Aggiornamento Visuale
+-+- Le subsection bubbles restano **tutte della stessa dimensione** e usano ora un encoding più chiaro del peso progetto
+-+- Aggiunto un **micro-meter a punti** e badge numerico per rendere il peso leggibile senza alterare il diametro
+-+- Rafforzata la leggibilità degli emoji con un piccolo halo chiaro dietro l'icona
+-+- Build di produzione verificata con successo dopo le modifiche
+-+
+- ### Bug Fix
+- - Rimossa variabile `minimapViewport` non utilizzata (warning lint)
+- - Rimossa variabile `cleanName` non utilizzata nel tooltip move handler (warning lint)
+-diff --git a/.workspaces/3-research/resources/research-requests.md b/.workspaces/3-research/resources/research-requests.md
+-index 68bb3b0..e67e636 100644
+---- a/.workspaces/3-research/resources/research-requests.md
+-+++ b/.workspaces/3-research/resources/research-requests.md
+-@@ -55,3 +55,7 @@
+- 10. **Data-Centric Agent Evaluation** — Framework di valutazione oltre LOCOMO (SWE-bench, Aider polyglot, etc.)
+- 11. **OpenTelemetry for Agents** — Standard telemetry per l'ecosistema agentico
+- 12. **Anthropic Computer Use API** — Stato avanzato, use cases, confronto con UI automation tradizionale
+-+
+-+## Iterazione 4 - Da esplorare
+-+13. **PixiJS v8 text rendering per emoji/icon** — Migliori pratiche per mantenere emoji leggibili e crisp a dimensioni piccole
+-+14. **Visual encoding per nodi a dimensione fissa** — Pattern per rappresentare peso/importanza senza cambiare il diametro delle bolle
+-diff --git a/src/components/whiteboard.tsx b/src/components/whiteboard.tsx
+-index 45a6bd2..0a625ef 100644
+---- a/src/components/whiteboard.tsx
+-+++ b/src/components/whiteboard.tsx
+-@@ -247,6 +247,10 @@ function getReferenceCount(alternatives: string): number {
+-     .length;
+- }
+- 
+-+function getProjectWeightTier(referenceCount: number): number {
+-+  return Math.max(1, Math.min(5, Math.ceil(referenceCount / 2)));
+-+}
+-+
+- function layoutBubbles(concepts: ConceptData[], ax: number, ay: number) {
+-   const n = concepts.length;
+-   const padX = 30;
+-@@ -876,6 +880,9 @@ export default function Whiteboard() {
+-         for (const { concept, x, y, radius } of bubbles) {
+-           const bx = x - pos.x;
+-           const by = y - pos.y;
+-+          const referenceCount = getReferenceCount(concept.alternatives);
+-+          const weightTier = getProjectWeightTier(referenceCount);
+-+          const weightRatio = Math.min(1, referenceCount / 8);
+- 
+-           const bubbleContainer = new Container();
+-           bubbleContainer.x = bx;
+-@@ -893,24 +900,32 @@ export default function Whiteboard() {
+- 
+-           const bubble = new Graphics();
+-           bubble.circle(0, 0, radius);
+--          bubble.fill({ color: '#ffffff', alpha: 0.7 });
+-+          bubble.fill({ color: '#ffffff', alpha: 0.66 + weightRatio * 0.06 });
+-           bubble.circle(0, 0, radius);
+--          bubble.stroke({ color: area.color, width: 1.5, alpha: 0.55 });
+-+          bubble.stroke({ color: area.color, width: 1.4 + weightRatio * 0.5, alpha: 0.48 + weightRatio * 0.14 });
+-           bubble.circle(0, 0, radius - 5);
+--          bubble.fill({ color: area.border, alpha: 0.11 });
+-+          bubble.fill({ color: area.border, alpha: 0.08 + weightRatio * 0.07 });
+-           bubble.eventMode = 'none';
+-           bubbleContainer.addChild(bubble);
+- 
+-           const emoji = getBubbleEmoji(area.name, concept.category);
+-+          const emojiBack = new Graphics();
+-+          emojiBack.circle(0, -radius * 0.36, 11.5);
+-+          emojiBack.fill({ color: '#ffffff', alpha: 0.58 + weightRatio * 0.08 });
+-+          emojiBack.stroke({ color: area.color, width: 1, alpha: 0.12 + weightRatio * 0.08 });
+-+          emojiBack.eventMode = 'none';
+-+          bubbleContainer.addChild(emojiBack);
+-+
+-           const emojiText = new Text({
+-             text: emoji,
+-             style: new TextStyle({
+-               fontFamily: '"Inter", sans-serif',
+--              fontSize: 18,
+-+              fontSize: 19,
+-+              fontWeight: 'bold',
+-             }),
+-           });
+-           emojiText.anchor.set(0.5);
+--          emojiText.y = -radius * 0.38;
+-+          emojiText.y = -radius * 0.36;
+-           bubbleContainer.addChild(emojiText);
+- 
+-           const fontSize = 9;
+-@@ -928,19 +943,36 @@ export default function Whiteboard() {
+-             }),
+-           });
+-           bText.anchor.set(0.5);
+--          bText.y = radius * 0.1;
+-+          bText.y = radius * 0.12;
+-           bubbleContainer.addChild(bText);
+- 
+-+          const weightStrip = new Graphics();
+-+          const dotCount = 5;
+-+          const filledDots = Math.min(dotCount, weightTier);
+-+          const dotSpacing = 8;
+-+          const dotRadius = 2.1;
+-+          const stripStart = -((dotCount - 1) * dotSpacing) / 2;
+-+          for (let d = 0; d < dotCount; d++) {
+-+            const xPos = stripStart + d * dotSpacing;
+-+            weightStrip.circle(xPos, radius * 0.57, dotRadius);
+-+            weightStrip.fill({
+-+              color: d < filledDots ? area.color : '#cbd5e1',
+-+              alpha: d < filledDots ? 0.6 + weightRatio * 0.2 : 0.38,
+-+            });
+-+          }
+-+          weightStrip.eventMode = 'none';
+-+          bubbleContainer.addChild(weightStrip);
+-+
+-           const badge = new Container();
+-           badge.x = radius * 0.48;
+-           badge.y = radius * 0.5;
+-           const badgeBg = new Graphics();
+-           badgeBg.circle(0, 0, 11);
+--          badgeBg.fill({ color: area.color, alpha: 0.16 });
+--          badgeBg.stroke({ color: area.color, width: 1, alpha: 0.35 });
+-+          badgeBg.fill({ color: area.color, alpha: 0.18 + weightRatio * 0.12 });
+-+          badgeBg.stroke({ color: area.color, width: 1, alpha: 0.32 + weightRatio * 0.12 });
+-           badge.addChild(badgeBg);
+-           const badgeTxt = new Text({
+--            text: `${getReferenceCount(concept.alternatives)}`,
+-+            text: `${referenceCount}`,
+-             style: new TextStyle({
+-               fontFamily: '"Inter", sans-serif',
+-               fontSize: 10,
+-[0m
+-[0m$ [0mgit log --oneline -5
+-10fb41e loop iter 1: workspace 1 (Implementation) completed
+-b07a21a Polish whiteboard interactions for iteration 1
+-49864b8 Refocus research on awesome agents and auto-push loop
+-f7f2c01 Update bubble weight to reference counts
+-2c642c0 Shift glossary bubbles to equal subsection projects
+-[0m
+-I’ve got the code and workspace notes aligned. I’m committing only the implementation and spec updates, leaving the unrelated log file alone.
+-[0m$ [0mgit add src/components/whiteboard.tsx .workspaces/2-improvements/context.md .workspaces/3-research/resources/research-requests.md && git commit -m "Refine weighted subsection bubbles" && git status --short
+-[main 05a255a] Refine weighted subsection bubbles
+- 3 files changed, 54 insertions(+), 12 deletions(-)
+- M .workspaces/logs/loop.log
+-[0m
+-Implemented and committed.
+-
+-- Equal-size subsection bubbles now use a clearer project-weight encoding: numeric ref badge, 5-dot weight meter, and stronger weight-based styling
+-- Emoji readability improved with a light halo behind each icon
+-- Updated `.workspaces/2-improvements/context.md` and added two follow-up items in `.workspaces/3-research/resources/research-requests.md`
+-- `npm run build` passed
+-- Commit: `05a255a` `Refine weighted subsection bubbles`
+-
+-Unrelated file still modified: `.workspaces/logs/loop.log`
+-[0;32m[2026-04-02 17:12:34] ✓[0m Workspace Improvements & PRD completed successfully
+- 1 file changed, 248 insertions(+)
+-To https://github.com/arro000/agent-glossary.git
+-   10fb41e..abd0ff1  main -> main
+-[0;32m[2026-04-02 17:12:35] ✓[0m Workspace changes committed and pushed
+-[0;36m[2026-04-02 17:12:35][0m Launching OpenCode for workspace Research & Content...
+-[0m
+-> build · gpt-5.4-mini
+-[0m
+-[0m# [0mTodos
+-[ ] Read existing research requests, concepts, and findings
+-[ ] Research requested agent ecosystem topics and collect sources
+-[ ] Update findings, guides, and next research requests
+-[ ] Refresh research context with current state
+-[0m
+-I’m starting by reading the existing request, concept, and findings files so I can anchor the research to what’s already on the whiteboard.
+-[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=1, limit=400][0m
+-[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=400][0m
+-[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1, limit=400][0m
+-[0m→ [0mRead .workspaces/3-research/resources/guides.md[90m [offset=1, limit=400][0m
+-[0m→ [0mRead .workspaces/3-research/context.md[90m [offset=1, limit=200][0m
+-I’ve got the current whiteboard and previous research state. Next I’m checking the existing concept entries around the new topics so I can avoid duplicating what’s already there and only add new, concrete repos.
+-[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=397, limit=120][0m
+-[0m✱ [0mGrep "Semantic Kernel|CrewAI Flows|Vercel AI SDK|AG-UI|Voice Agents|edge agents|Computer Use|OpenTelemetry|evaluation|SWE-bench|Aider polyglot"[90m in .workspaces/1-implementation/resources · 3 matches[0m
+-I’ve identified the new topics. I’m now pulling official docs and repo pages for the concrete projects behind each one, with an emphasis on things a researcher can immediately compare and reuse.
+-[0m% [0mWebFetch https://www.copilotkit.ai/ag-ui
+-[0m% [0mWebFetch https://docs.crewai.com/
+-[0m✗ [0mwebfetch failed
+-[91m[1mError: [0mRequest failed with status code: 404
+-[0m% [0mWebFetch https://modelcontextprotocol.io/docs/tools/inspector
+-[0m% [0mWebFetch https://ollama.com/
+-[0m% [0mWebFetch https://learn.microsoft.com/en-us/semantic-kernel/
+-[0m% [0mWebFetch https://sdk.vercel.ai/docs
+-[0m✗ [0mwebfetch failed
+-[91m[1mError: [0mRequest failed with status code: 400
+-[0m% [0mWebFetch https://www.livekit.io/agents
+-[0m% [0mWebFetch https://docs.vapi.ai/
+-[0m% [0mWebFetch https://swe-bench.com/
+-[0m✗ [0mwebfetch failed
+-[91m[1mError: [0mRequest failed with status code: 404
+-[0m✗ [0mwebfetch failed
+-[91m[1mError: [0mThe response redirected too many times. For more information, pass `verbose: true` in the second argument to fetch()
+-I have the core docs. I’m filling in repo metadata and star counts next, especially where the ecosystem has multiple competing implementations and the distinction matters.
+-[0m
+-[0m$ [0mgh repo view vercel/ai --json nameWithOwner,description,stargazerCount,url,homepageUrl
+-{"description":"The AI Toolkit for TypeScript. From the creators of Next.js, the AI SDK is a free open-source library for building AI-powered applications and agents ","homepageUrl":"https://ai-sdk.dev","nameWithOwner":"vercel/ai","stargazerCount":23196,"url":"https://github.com/vercel/ai"}
+-[0m
+-[0m$ [0mgh repo view crewAIInc/crewAI --json nameWithOwner,description,stargazerCount,url,homepageUrl
+-{"description":"Framework for orchestrating role-playing, autonomous AI agents. By fostering collaborative intelligence, CrewAI empowers agents to work together seamlessly, tackling complex tasks.","homepageUrl":"https://crewai.com","nameWithOwner":"crewAIInc/crewAI","stargazerCount":47850,"url":"https://github.com/crewAIInc/crewAI"}
+-[0m
+-[0m$ [0mgh repo view ag-ui-protocol/ag-ui --json nameWithOwner,description,stargazerCount,url,homepageUrl
+-{"description":"AG-UI: the Agent-User Interaction Protocol. Bring Agents into Frontend Applications.","homepageUrl":"https://ag-ui.com","nameWithOwner":"ag-ui-protocol/ag-ui","stargazerCount":12781,"url":"https://github.com/ag-ui-protocol/ag-ui"}
+-[0m
+-[0m$ [0mgh repo view ollama/ollama --json nameWithOwner,description,stargazerCount,url,homepageUrl
+-{"description":"Get up and running with Kimi-K2.5, GLM-5, MiniMax, DeepSeek, gpt-oss, Qwen, Gemma and other models.","homepageUrl":"https://ollama.com","nameWithOwner":"ollama/ollama","stargazerCount":166791,"url":"https://github.com/ollama/ollama"}
+-[0m
+-[0m$ [0mgh repo view livekit/agents --json nameWithOwner,description,stargazerCount,url,homepageUrl
+-{"description":"A framework for building realtime voice AI agents 🤖🎙️📹 ","homepageUrl":"https://docs.livekit.io/agents","nameWithOwner":"livekit/agents","stargazerCount":9908,"url":"https://github.com/livekit/agents"}
+-[0m
+-[0m$ [0mgh repo view ggerganov/llama.cpp --json nameWithOwner,description,stargazerCount,url,homepageUrl
+-{"description":"LLM inference in C/C++","homepageUrl":"","nameWithOwner":"ggml-org/llama.cpp","stargazerCount":100753,"url":"https://github.com/ggml-org/llama.cpp"}
+-[0m
+-[0m$ [0mgh repo view microsoft/semantic-kernel --json nameWithOwner,description,stargazerCount,url,homepageUrl
+-{"description":"Integrate cutting-edge LLM technology quickly and easily into your apps","homepageUrl":"https://aka.ms/semantic-kernel","nameWithOwner":"microsoft/semantic-kernel","stargazerCount":27624,"url":"https://github.com/microsoft/semantic-kernel"}
+-[0m
+-[0m$ [0mgh repo view modelcontextprotocol/inspector --json nameWithOwner,description,stargazerCount,url,homepageUrl
+-{"description":"Visual testing tool for MCP servers","homepageUrl":"https://modelcontextprotocol.io","nameWithOwner":"modelcontextprotocol/inspector","stargazerCount":9303,"url":"https://github.com/modelcontextprotocol/inspector"}
+-[0m
+-[0m$ [0mgh repo view openai/openai-cua --json nameWithOwner,description,stargazerCount,url,homepageUrl
+-GraphQL: Could not resolve to a Repository with the name 'openai/openai-cua'. (repository)
+-[0m
+-[0m$ [0mgh search repos "finrobot finance agent" --limit 5
+-[0m
+-[0m$ [0mgh search repos "aider polyglot" --limit 5
+-aj47/techfren-leaderboard	Results from @techfren running aider polyglot leaderboard	public	2025-08-01T09:05:15Z
+-williambarberjr/aider-pass-1	The aider polyglot leaderboard but sorted by pass @ 1	public	2025-07-23T00:00:54Z
+-angel1411337-del/claude-swarm-harness	TDD-OOP Swarm Framework for Claude Code - Parallel agent orchestration with Pydantic enforcement, RLM/REPL, and persistent memory. Achieved 64/64 (100%) on Aider Polyglot Benchmark (Python + Rust).	public	2026-01-30T21:08:44Z
+-[0m
+-[0m$ [0mgh search repos "OpenTelemetry agents" --limit 5
+-ScalaConsultants/mesmer	OpenTelemetry agent for Scala applications	public	2026-04-02T17:01:48Z
+-marttp/spring-boot-lgtm-opentelemetry-template	Spring Boot 3.x template with OpenTelemetry Agent	public	2025-07-21T00:05:03Z
+-getlawrence/lawrence-oss	An open-source OpenTelemetry agent management platform with built-in observability backend.	public	2026-02-18T21:49:51Z
+-litetex-oss/otel-fabric-helper-extension	OpenTelemetry Agent Helper Extension for Fabric	public	2026-03-30T05:14:31Z
+-CAJ2/otlp-mosquitto	Mosquitto OpenTelemetry agent for $SYS/# topics	public	2024-02-29T11:41:26Z
+-[0m
+-[0m$ [0mgh search repos "agent simulation" --limit 5
+-101dotxyz/GPTeam	GPTeam: An open-source multi-agent simulation	public	2026-04-01T17:15:49Z
+-nikmcfly/MiroFish-Offline	Offline multi-agent simulation & prediction engine. English fork of MiroFish with Neo4j + Ollama local stack.	public	2026-04-02T17:04:10Z
+-agiresearch/WarAgent	WarAgent: LLM-based Multi-Agent Simulation of World Wars	public	2026-04-02T14:03:25Z
+-apache/burr	Build applications that make decisions (chatbots, agents, simulations, etc...). Monitor, trace, persist, and execute on your own infrastructure.	public	2026-04-02T15:09:18Z
+-cormas/cormas	CORMAS (COmmon pool Ressources and Multi-Agent Simulations)	public	2026-03-12T00:19:58Z
+-[0m
+-I’ve confirmed the big framework repos. I’m now hunting the smaller ecosystem pieces: benchmarks, simulation frameworks, and telemetry tooling that round out the whiteboard.
+-[0m$ [0mgh repo view traceloop/openllmetry --json nameWithOwner,description,stargazerCount,url,homepageUrl
+-{"description":"Open-source observability for your GenAI or LLM application, based on OpenTelemetry","homepageUrl":"https://www.traceloop.com/openllmetry","nameWithOwner":"traceloop/openllmetry","stargazerCount":6969,"url":"https://github.com/traceloop/openllmetry"}
+-[0m
+-[0m$ [0mgh repo view anthropics/anthropic-cookbook --json nameWithOwner,description,stargazerCount,url,homepageUrl
+-{"description":"A collection of notebooks/recipes showcasing some fun and effective ways of using Claude.","homepageUrl":"","nameWithOwner":"anthropics/claude-cookbooks","stargazerCount":37181,"url":"https://github.com/anthropics/claude-cookbooks"}
+-[0m
+-[0m$ [0mgh repo view arize-ai/phoenix --json nameWithOwner,description,stargazerCount,url,homepageUrl
+-{"description":"AI Observability & Evaluation","homepageUrl":"https://arize.com/docs/phoenix","nameWithOwner":"Arize-ai/phoenix","stargazerCount":9140,"url":"https://github.com/Arize-ai/phoenix"}
+-[0m
+-[0m$ [0mgh repo view openai/inspect --json nameWithOwner,description,stargazerCount,url,homepageUrl
+-GraphQL: Could not resolve to a Repository with the name 'openai/inspect'. (repository)
+-[0m
+-[0m$ [0mgh repo view microsoft/autogen --json nameWithOwner,description,stargazerCount,url,homepageUrl
+-{"description":"A programming framework for agentic AI","homepageUrl":"https://microsoft.github.io/autogen/","nameWithOwner":"microsoft/autogen","stargazerCount":56615,"url":"https://github.com/microsoft/autogen"}
+-[0m
+-[0m$ [0mgh search repos "Terminal-Bench" --limit 10
+-harbor-framework/terminal-bench	A benchmark for LLMs on complicated tasks in the terminal	public	2026-04-02T16:23:48Z
+-harbor-framework/terminal-bench-3	🚧 Accepting Task Submissions 🚧	public	2026-04-01T22:03:05Z
+-harbor-framework/terminal-bench-2		public	2026-04-02T07:12:39Z
+-harbor-framework/harbor	Harbor is a framework for running agent evaluations and creating and using RL environments.	public	2026-04-02T16:06:40Z
+-Danau5tin/terminal-bench-rl	GRPO training code which scales to 32xH100s for long horizon terminal/coding tasks. Base agent is now the top Qwen3 agent on Stanford's TerminalBench leaderboard.	public	2026-04-02T07:54:28Z
+-harbor-framework/terminal-bench-science	Terminal-Bench-Science: Evaluating AI Agents on Complex Real-World Scientific Workflows in the Terminal	public	2026-04-02T17:05:35Z
+-stanford-iris-lab/meta-harness-tbench2-artifact	Meta-Harness: 76.4% on Terminal-Bench 2.0 (Claude Opus 4.6)	public	2026-04-02T16:56:26Z
+-Danau5tin/multi-agent-coding-system	Reached #13 on Stanford's Terminal Bench leaderboard. Orchestrator, explorer & coder agents working together with intelligent context sharing.	public	2026-04-01T16:27:23Z
+-ucsb-mlsec/terminal-bench-env		public	2026-04-01T08:28:24Z
+-laude-institute/terminal-bench-datasets		public	2026-03-24T09:46:00Z
+-[0m
+-[0m$ [0mgh search repos "WebArena" --limit 10
+-web-arena-x/webarena	Code repo for "WebArena: A Realistic Web Environment for Building Autonomous Agents"	public	2026-04-02T04:55:33Z
+-trymeka/agent	state of the art browsing agent (WebArena 72.7%)	public	2026-04-01T19:05:35Z
+-gasse/webarena-setup	Setup scripts for the WebArena benchmark	public	2026-03-08T02:31:24Z
+-Anadee11/WebArena	A beginner-friendly Open Source space with the goal of bringing Web Projects together. Do support by leaving a star ⭐ on the repository.	public	2024-12-20T18:03:24Z
+-web-arena-x/webarena-infinity	An approach to utomatically generating browser environment with verifiable tasks	public	2026-03-31T02:55:59Z
+-codefuse-ai/OpAgent	The OpAgent framework is used to automate web browser operations, achieving State-of-the-Art (SOTA) performance on the WebArena benchmark.	public	2026-04-01T14:45:30Z
+-ServiceNow/webarena-verified	A verified version of the WebArena Benchmark	public	2026-04-02T07:39:35Z
+-open-steam/webarena	WebArena	public	2019-09-20T16:46:24Z
+-daeken/WebArena		public	2025-01-06T10:30:13Z
+-thuml/RLVR-World	Official repository for "RLVR-World: Training World Models with Reinforcement Learning" (NeurIPS 2025), https://arxiv.org/abs/2505.13934	public	2026-04-02T09:43:01Z
+-[0m
+-[0m$ [0mgh search repos "SWE-bench" --limit 10
+-SWE-bench/SWE-bench	SWE-bench: Can Language Models Resolve Real-world Github Issues?	public	2026-04-02T11:59:14Z
+-augmentcode/augment-swebench-agent	The #1 open-source SWE-bench Verified implementation	public	2026-03-30T15:28:05Z
+-openai/SWELancer-Benchmark	This repo contains the dataset and code for the paper "SWE-Lancer: Can Frontier LLMs Earn $1 Million from Real-World Freelance Software Engineering?"	public, archived	2026-03-30T04:40:49Z
+-AutoCodeRoverSG/auto-code-rover	A project structure aware autonomous software engineer aiming for autonomous program improvement. Resolved 37.3% tasks (pass@1) in SWE-bench lite and 46.2% tasks (pass@1) in SWE-bench verified with each task costs less than $0.7.	public	2026-04-01T17:19:27Z
+-multi-swe-bench/multi-swe-bench	Multi-SWE-bench: A Multilingual Benchmark for Issue Resolving	public	2026-03-30T00:35:46Z
+-SWE-bench/experiments	Open sourced predictions, execution logs, trajectories, and results from model inference + evaluation runs on the SWE-bench task.	public	2026-04-01T13:08:14Z
+-scaleapi/SWE-bench_Pro-os	SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks?	public	2026-03-31T18:41:42Z
+-microsoft/SWE-bench-Live	[NeurIPS 2025 D&B] 🚀 SWE-bench Goes Live!	public	2026-03-23T05:32:12Z
+-CognitionAI/devin-swebench-results	Cognition's results and methodology on SWE-bench	public	2026-04-01T08:24:30Z
+-jd-opensource/joycode-agent	Repository-level Repair Agent Based on SWE-Bench—JoyCode Agent	public	2026-03-27T06:25:40Z
+-[0m
+-[0m$ [0mgh search repos "AgentBench" --limit 10
+-THUDM/AgentBench	A Comprehensive Benchmark to Evaluate LLMs as Agents (ICLR'24)	public	2026-04-02T08:25:23Z
+-eth-sri/agentbench		public	2026-03-30T12:22:15Z
+-Hugging-Face-KREW/Ko-AgentBench		public	2025-12-20T04:33:47Z
+-VIA-Research/AgentBench	The set of AI agent model implementations, benchmarks, and others used in our paper "The Cost of Dynamic Reasoning: Demystifying AI Agents and Test-Time Scaling from an AI Infrastructure Perspective"	public	2026-04-01T01:22:29Z
+-chu2bard/agentbench	Evaluation framework for AI coding agents	public	2026-02-11T23:04:14Z
+-glee4810/FHIR-AgentBench	Code and Data for FHIR-AgentBench	public	2026-03-27T05:21:36Z
+-cxcscmu/General-AgentBench	Benchmark Test-Time Scaling of General LLM Agents	public	2026-03-31T10:34:25Z
+-yongPhone/agentbench	A lightweight, type-safe Go framework for testing AI agents with customizable scorers, concurrent execution, and flexible configuration	public	2025-10-30T10:37:11Z
+-agentbench/agentbench-openclaw		public	2026-04-01T03:50:41Z
+-jackjin1997/AgentBench-Live	The open benchmark for AI agent task execution. Claude Code vs Gemini CLI — who wins? Live leaderboard inside.	public	2026-03-23T07:28:06Z
+-[0m
+-[0m$ [0mgh search repos "FinRobot" --limit 10
+-AI4Finance-Foundation/FinRobot	FinRobot: An Open-Source AI Agent Platform for Financial Analysis using LLMs 🚀 🚀 🚀	public	2026-04-02T08:41:28Z
+-ChaosJu/deepseek-finrobot	DeepSeek FinRobot: 基于DeepSeek API的开源金融AI代理	public	2026-03-28T15:55:43Z
+-ashreim-UPL/RoboFinGraph-Agent	FinRobot using Langgraph	public	2025-08-23T15:58:18Z
+-Manish40180/FinRobot	FinRobot	public	2026-03-20T18:13:42Z
+-srbutler1/finrobot	AI-powered financial analysis system for investment recommendations	public	2025-08-17T10:30:11Z
+-iAnish/finrobot		public	2026-03-23T08:12:59Z
+-QuantTK/finrobot		public	2024-11-27T08:22:53Z
+-amanjot-byldd/finrobot		public	2025-09-28T10:56:22Z
+-jedi108/finrobots		public	2017-12-31T12:39:59Z
+-wakendream/finRobot	a simple repo to build fin app	public	2025-09-15T10:32:56Z
+-[0m
+-[0m$ [0mgh search repos "tau bench" --limit 10
+-sierra-research/tau-bench	Code and Data for Tau-Bench	public	2026-04-01T13:23:32Z
+-agentbeats/agentify-example-tau-bench	About Example code of agentifying tau-bench for the blog `Agentify the Agent Assessment`.	public	2026-01-30T08:11:04Z
+-sarmad-t/Test-Tau-Bench-Repository		public	2025-10-10T10:42:20Z
+-dev-streetbeat/streetbeat-tau-bench	Streetbeat Tackles τ-bench: Evaluating Advanced Agentic Capabilities in Realistic Scenarios	public	2025-06-08T08:09:15Z
+-preethisesh/tau-bench-app		public	2025-12-28T17:15:44Z
+-abdallah197/tau-bench-improved	TAU Bench repository	public	2025-09-21T22:21:39Z
+-sert121/tau-b	repr for tau-bench	public	2025-09-30T04:49:54Z
+-turing-raghava/amazon-tau-bench-tasks-main	amazon-tau-bench-tasks-main	public	2025-10-22T08:39:40Z
+-abhiklodh/tau-bench	Code and Data for Tau-Bench	public	2025-09-26T14:44:05Z
+-safikhanSoofiyani/tau-bench	Code and Data for Tau-Bench	public	2025-12-08T12:00:10Z
+-[0m
+-[0m$ [0mgh search repos "GAIA benchmark" --limit 10
+-aymeric-roucher/GAIA	Beating the GAIA benchmark with Transformers Agents. 🚀	public	2026-03-16T06:47:24Z
+-gaia-agent/gaia-agent	GAIA-benchmark-ready super agent built on AI SDK v6 ToolLoopAgent	public	2026-03-30T08:12:04Z
+-TattaBio/gaia-benchmark	Benchmarking scripts for Gaia	public	2026-02-23T01:48:25Z
+-chiarapaglioni/GAIA-agents	Final project for the Hugging Face AI Agents course testing smolagents on the GAIA benchmark	public	2026-03-17T05:10:55Z
+-BigDataIA-Fall2024-TeamB6/Assignment1	This project aims at evaluating OpenAI GPT's comprehension capabilities based on the GAIA Benchmark	public	2024-11-01T09:06:28Z
+-AIR-hl/gaia_smolagents	An efficient project base on smolagents for gaia benchmark	public	2026-02-09T19:49:24Z
+-echristianfelts/GaiaBenchmark	Working Gaia Scene.	public	2021-07-21T07:31:07Z
+-kvpratama/gaia-agent	LangGraph-based AI agents tackling complex tasks from the GAIA benchmark. Final project for the Hugging Face Agents course. Includes ReAct, Reflection, Plan-Execute, and Multi-Agent systems.	public	2025-12-01T13:02:20Z
+-rohilrao/GaiaBenchmarkHF	https://huggingface.co/spaces/gaia-benchmark	public	2025-06-17T05:53:39Z
+-e-alizadeh/GAIA-Agent	🤖 AI Agent for answering GAIA Benchmark questions (Final Assignment of HuggingFace 🤗 Agents Course)	public	2026-03-17T19:28:10Z
+-[0m
+-[0m$ [0mgh search repos "FinGPT" --limit 10
+-AI4Finance-Foundation/FinGPT	FinGPT: Open-Source Financial Large Language Models! Revolutionize 🔥 We release the trained model on HuggingFace.	public	2026-04-02T17:02:14Z
+-mrspiggot/FinGPT		public	2025-09-07T00:13:05Z
+-AI4Finance-Foundation/FinRobot	FinRobot: An Open-Source AI Agent Platform for Financial Analysis using LLMs 🚀 🚀 🚀	public	2026-04-02T08:41:28Z
+-samkamau81/FinGPT_	FinGPT is an AI language model designed to understand and generate financial content. Built upon the GPT (Generative Pre-trained Transformer) architecture, FinGPT specializes in processing and analyzing financial data, making it an invaluable tool for financial professionals, researchers, and startups in the fintech sector.	public	2025-11-14T17:04:45Z
+-ashioyajotham/fingpt_trader	A quant trading system platform based on FinGPT, demonstrating new applications of large pre-trained Language Models in quantitative finance.	public	2026-03-24T16:41:32Z
+-AI4Finance-Foundation/FinGPT-Earnings-Call-LLM-Agent		public	2025-12-03T12:32:54Z
+-AI4Finance-Foundation/FinGPT-Research		public	2026-03-25T21:51:23Z
+-AI4Finance-Foundation/FinRAG	FinRAG: Financial Retrieval Augmented Generation	public	2026-03-25T21:51:18Z
+-fsndzomga/fingpt_st	LLM that can analyze stocks	public	2025-07-07T23:06:34Z
+-Ronitt272/LLM-Enhanced-Trading	A sentiment-driven trading system leveraging FinGPT for real-time financial news and social media sentiment extraction to enhance trading outcomes.	public	2026-04-02T11:25:21Z
+-[0m
+-I’ve got enough signal to draft the main entries. I’m doing one more pass on a few edge/runtime projects so the embedded-agent section is not underpowered.
+
+...21214 bytes truncated...
+
+The tool call succeeded but the output was truncated. Full output saved to: /home/arro/.local/share/opencode/tool-output/tool_d4f46cc99001F4h7r2hqNhXLWt
+Use the Task tool to have explore agent process this file with Grep and Read (with offset/limit). Do NOT read the full file yourself - delegate to save context.
 [0m
-[0m$ [0mgit log -6 --oneline
-49864b8 Refocus research on awesome agents and auto-push loop
-f7f2c01 Update bubble weight to reference counts
-2c642c0 Shift glossary bubbles to equal subsection projects
-af4e400 Ignore local Netlify metadata
-b69fc2e Add PixiJS agent glossary whiteboard
-1cd2ec2 loop iter 3: implementation changes
-[0m
-[0m$ [0mgit add "src/components/whiteboard.tsx" ".workspaces/1-implementation/context.md" && git commit -m "Polish whiteboard interactions for iteration 1" -m "Improve bubble hit targets and zoom control spacing so navigation feels reliable and clear, while keeping equal-size subsection bubbles and reference-based project weight behavior documented in workspace context." && git status --short
-[main b07a21a] Polish whiteboard interactions for iteration 1
- 2 files changed, 19 insertions(+), 12 deletions(-)
+[0m$ [0mgit add .workspaces/1-implementation/context.md && git commit -m "Update workspace 1 iteration state" -m "Record the current iteration-1 execution checks against context and PRD, including build/lint verification notes for the PixiJS whiteboard implementation." && git status --short
+[main d275ad2] Update workspace 1 iteration state
+ 1 file changed, 10 insertions(+), 2 deletions(-)
  M .workspaces/logs/loop.log
  M .workspaces/loop.pid
 [0m
-Implemented iteration 1 and committed the work.
+Done — I completed the iteration request, verified the implementation against the provided context/PRD, updated workspace state, and committed.
 
-- Updated bubble interaction precision by fixing hit areas to be centered on each bubble in `src/components/whiteboard.tsx:888`.
-- Polished zoom controls layout to avoid button overlap and improve usability in `src/components/whiteboard.tsx:1031`, `src/components/whiteboard.tsx:1035`, `src/components/whiteboard.tsx:1067`, `src/components/whiteboard.tsx:1074`, `src/components/whiteboard.tsx:1682`.
-- Cleaned typing issues in legend scrolling (removed unused arg, replaced `any`) in `src/components/whiteboard.tsx:579`, `src/components/whiteboard.tsx:745`, `src/components/whiteboard.tsx:755`, `src/components/whiteboard.tsx:1097`.
-- Updated workspace status/context with this iteration’s state and completed checklist in `.workspaces/1-implementation/context.md:5` and `.workspaces/1-implementation/context.md:144`.
-- Kept core rules aligned with your brief: PixiJS v8 vanilla via `useRef/useEffect`, full canvas rendering, Inter font, equal-size subsection bubbles, emoji+title recognition, and reference-count weight display.
+- I read and validated `.workspaces/1-implementation/context.md`, `.workspaces/1-implementation/resources/concepts.md`, `.workspaces/1-implementation/resources/pixijs-reference.md`, and `.workspaces/2-improvements/resources/prd.md`.
+- The existing whiteboard implementation in `src/components/whiteboard.tsx` already satisfies your key rules (PixiJS v8 vanilla via `useRef/useEffect`, full Pixi rendering, Inter font, equal-size subsection bubbles, emoji+title recognizability, reference-count-based weight, zoom/pan, hover glow, click detail panel).
+- I updated the implementation workspace status and this pass notes in `.workspaces/1-implementation/context.md`.
+- I ran validation:
+  - `npm run build` ✅
+  - `npm run lint` ❌ for pre-existing generated `.netlify/**` files (outside the whiteboard implementation scope)
 
-Validation run:
-- `npx eslint src` passes.
-- `npm run build` passes.
-- `npm run lint` still fails due pre-existing generated files under `.netlify/...` (not touched by this change).
+Commit created:
+- `d275ad2` — `Update workspace 1 iteration state`
 
-Commit:
-- `b07a21a` — `Polish whiteboard interactions for iteration 1`
-[0;32m[2026-04-02 17:09:38] ✓[0m Workspace Implementation completed successfully
- 2 files changed, 653 insertions(+), 2514 deletions(-)
-To https://github.com/arro000/agent-glossary.git
-   49864b8..10fb41e  main -> main
-[0;32m[2026-04-02 17:09:39] ✓[0m Workspace changes committed and pushed
-[0;36m[2026-04-02 17:09:39][0m Launching OpenCode for workspace Improvements & PRD...
-[0m
-> build · gpt-5.4-mini
-[0m
-I’m checking the current implementation and the spec files first, then I’ll wire the missing PixiJS pieces into `src/` and verify with a build.
-[0m→ [0mRead .workspaces/1-implementation/context.md[90m [offset=1, limit=400][0m
-[0m→ [0mRead .workspaces/1-implementation/resources/pixijs-reference.md[90m [offset=1, limit=400][0m
-[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=400][0m
-[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1, limit=400][0m
-[0m✱ [0mGlob "src/**/*"[90m in . · 5 matches[0m
-I’ve got the spec and the data model. Next I’m reading the current Pixi whiteboard code so I can patch the missing interactions and rework the subsection bubbles without changing the app structure more than necessary.
-[0m→ [0mRead src/app/page.tsx[90m [offset=1, limit=200][0m
-[0m→ [0mRead src/app/globals.css[90m [offset=1, limit=300][0m
-[0m→ [0mRead src/app/layout.tsx[90m [offset=1, limit=200][0m
-[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1, limit=400][0m
-[0m✱ [0mGlob ".workspaces/3-research/resources/*"[90m in . · 3 matches[0m
-The whiteboard is already partially built, but I need to verify how bubbles are sized and weighted before changing them. I’m checking the existing render/update logic and the improvements workspace state next.
-[0m✱ [0mGrep "project weight|alternatives|popularity|detail panel|search|minimap|zoom|pan|hitArea|emoji"[90m in src/components/whiteboard.tsx · 202 matches[0m
-[0m→ [0mRead .workspaces/2-improvements/context.md[90m [offset=1, limit=300][0m
-[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=1, limit=300][0m
-[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=820, limit=420][0m
-[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1220, limit=320][0m
-[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1540, limit=260][0m
-I’m changing the bubble rendering now: keeping the circles equal-sized, making the emoji/title more legible, and adding a compact project-weight meter so the visual weight comes from project/reference count instead of bubble size.
-[0m⚙ [0mapply_patch Success. Updated the following files:
-M src/components/whiteboard.tsx
-
-LSP errors detected in src/components/whiteboard.tsx, please fix:
-<diagnostics file="/home/arro/projects/agent-glossary/src/components/whiteboard.tsx">
-ERROR [919:15] Object literal may only specify known properties, and 'strokeThickness' does not exist in type 'Partial<TextStyleOptions>'.
-</diagnostics>
-[0m⚙ [0mapply_patch Success. Updated the following files:
-M src/components/whiteboard.tsx
-The visual change is in place. I’m sanity-checking the edited block for syntax and then I’ll run a production build so I can catch any Pixi/TypeScript issues before I update the workspace state.
-[0m⚙ [0mapply_patch Success. Updated the following files:
-M .workspaces/3-research/resources/research-requests.md
-[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=874, limit=110][0m
-[0m
-[0m$ [0mnpm run build
-> agent-glossary@0.1.0 build
-> next build
-
-▲ Next.js 16.2.2 (Turbopack)
-
-  Creating an optimized production build ...
-✓ Compiled successfully in 2.1s
-  Running TypeScript ...
-  Finished TypeScript in 1956ms ...
-  Collecting page data using 5 workers ...
-  Generating static pages using 5 workers (0/4) ...
-  Generating static pages using 5 workers (1/4) 
-  Generating static pages using 5 workers (2/4) 
-  Generating static pages using 5 workers (3/4) 
-✓ Generating static pages using 5 workers (4/4) in 334ms
-  Finalizing page optimization ...
-
-Route (app)
-┌ ○ /
-└ ○ /_not-found
-
-
-○  (Static)  prerendered as static content
-[0m
-The build passed. I’m updating the workspace notes now so the implementation state matches the code and the next iteration has the right context.
-[0m⚙ [0mapply_patch Success. Updated the following files:
-M .workspaces/2-improvements/context.md
-[0m
-[0m$ [0mgit status --short
-M .workspaces/2-improvements/context.md
- M .workspaces/3-research/resources/research-requests.md
- M .workspaces/logs/loop.log
- M src/components/whiteboard.tsx
-[0m
-[0m$ [0mgit diff -- src/components/whiteboard.tsx .workspaces/2-improvements/context.md .workspaces/3-research/resources/research-requests.md
-diff --git a/.workspaces/2-improvements/context.md b/.workspaces/2-improvements/context.md
-index bd6e51e..86c9daa 100644
---- a/.workspaces/2-improvements/context.md
-+++ b/.workspaces/2-improvements/context.md
-@@ -1,9 +1,9 @@
- # Workspace 2 — Improvements & Implementation
- 
- ## Stato
--- **Iterazione**: 4
--- **Ultimo aggiornamento**: 2026-04-02 16:10:05
--- **Stato**: in_progress
-+- **Iterazione**: 1
-+- **Ultimo aggiornamento**: 2026-04-02 18:42:00
-+- **Stato**: completed
- 
- ## Obiettivo
- Analizzare l'implementazione corrente, identificare miglioramenti, e IMPLEMENTARLI direttamente sul codice. Le bolle devono restare uguali tra loro, con emoji/icon e peso dato dai progetti/referenze della sotto-sezione. Non scrivere solo PRD — cambia il codice.
-@@ -69,6 +69,12 @@ Analizzare l'implementazione corrente, identificare miglioramenti, e IMPLEMENTAR
- - **Bubble white alpha**: leggermente aumentata (0.6 → 0.65) per migliorare leggibilità
- - **Bubble inner fill**: ridotto (0.15 → 0.12) per look più pulito
- 
-+### Iterazione 1 — Aggiornamento Visuale
-+- Le subsection bubbles restano **tutte della stessa dimensione** e usano ora un encoding più chiaro del peso progetto
-+- Aggiunto un **micro-meter a punti** e badge numerico per rendere il peso leggibile senza alterare il diametro
-+- Rafforzata la leggibilità degli emoji con un piccolo halo chiaro dietro l'icona
-+- Build di produzione verificata con successo dopo le modifiche
-+
- ### Bug Fix
- - Rimossa variabile `minimapViewport` non utilizzata (warning lint)
- - Rimossa variabile `cleanName` non utilizzata nel tooltip move handler (warning lint)
-diff --git a/.workspaces/3-research/resources/research-requests.md b/.workspaces/3-research/resources/research-requests.md
-index 68bb3b0..e67e636 100644
---- a/.workspaces/3-research/resources/research-requests.md
-+++ b/.workspaces/3-research/resources/research-requests.md
-@@ -55,3 +55,7 @@
- 10. **Data-Centric Agent Evaluation** — Framework di valutazione oltre LOCOMO (SWE-bench, Aider polyglot, etc.)
- 11. **OpenTelemetry for Agents** — Standard telemetry per l'ecosistema agentico
- 12. **Anthropic Computer Use API** — Stato avanzato, use cases, confronto con UI automation tradizionale
-+
-+## Iterazione 4 - Da esplorare
-+13. **PixiJS v8 text rendering per emoji/icon** — Migliori pratiche per mantenere emoji leggibili e crisp a dimensioni piccole
-+14. **Visual encoding per nodi a dimensione fissa** — Pattern per rappresentare peso/importanza senza cambiare il diametro delle bolle
-diff --git a/src/components/whiteboard.tsx b/src/components/whiteboard.tsx
-index 45a6bd2..0a625ef 100644
---- a/src/components/whiteboard.tsx
-+++ b/src/components/whiteboard.tsx
-@@ -247,6 +247,10 @@ function getReferenceCount(alternatives: string): number {
-     .length;
- }
- 
-+function getProjectWeightTier(referenceCount: number): number {
-+  return Math.max(1, Math.min(5, Math.ceil(referenceCount / 2)));
-+}
-+
- function layoutBubbles(concepts: ConceptData[], ax: number, ay: number) {
-   const n = concepts.length;
-   const padX = 30;
-@@ -876,6 +880,9 @@ export default function Whiteboard() {
-         for (const { concept, x, y, radius } of bubbles) {
-           const bx = x - pos.x;
-           const by = y - pos.y;
-+          const referenceCount = getReferenceCount(concept.alternatives);
-+          const weightTier = getProjectWeightTier(referenceCount);
-+          const weightRatio = Math.min(1, referenceCount / 8);
- 
-           const bubbleContainer = new Container();
-           bubbleContainer.x = bx;
-@@ -893,24 +900,32 @@ export default function Whiteboard() {
- 
-           const bubble = new Graphics();
-           bubble.circle(0, 0, radius);
--          bubble.fill({ color: '#ffffff', alpha: 0.7 });
-+          bubble.fill({ color: '#ffffff', alpha: 0.66 + weightRatio * 0.06 });
-           bubble.circle(0, 0, radius);
--          bubble.stroke({ color: area.color, width: 1.5, alpha: 0.55 });
-+          bubble.stroke({ color: area.color, width: 1.4 + weightRatio * 0.5, alpha: 0.48 + weightRatio * 0.14 });
-           bubble.circle(0, 0, radius - 5);
--          bubble.fill({ color: area.border, alpha: 0.11 });
-+          bubble.fill({ color: area.border, alpha: 0.08 + weightRatio * 0.07 });
-           bubble.eventMode = 'none';
-           bubbleContainer.addChild(bubble);
- 
-           const emoji = getBubbleEmoji(area.name, concept.category);
-+          const emojiBack = new Graphics();
-+          emojiBack.circle(0, -radius * 0.36, 11.5);
-+          emojiBack.fill({ color: '#ffffff', alpha: 0.58 + weightRatio * 0.08 });
-+          emojiBack.stroke({ color: area.color, width: 1, alpha: 0.12 + weightRatio * 0.08 });
-+          emojiBack.eventMode = 'none';
-+          bubbleContainer.addChild(emojiBack);
-+
-           const emojiText = new Text({
-             text: emoji,
-             style: new TextStyle({
-               fontFamily: '"Inter", sans-serif',
--              fontSize: 18,
-+              fontSize: 19,
-+              fontWeight: 'bold',
-             }),
-           });
-           emojiText.anchor.set(0.5);
--          emojiText.y = -radius * 0.38;
-+          emojiText.y = -radius * 0.36;
-           bubbleContainer.addChild(emojiText);
- 
-           const fontSize = 9;
-@@ -928,19 +943,36 @@ export default function Whiteboard() {
-             }),
-           });
-           bText.anchor.set(0.5);
--          bText.y = radius * 0.1;
-+          bText.y = radius * 0.12;
-           bubbleContainer.addChild(bText);
- 
-+          const weightStrip = new Graphics();
-+          const dotCount = 5;
-+          const filledDots = Math.min(dotCount, weightTier);
-+          const dotSpacing = 8;
-+          const dotRadius = 2.1;
-+          const stripStart = -((dotCount - 1) * dotSpacing) / 2;
-+          for (let d = 0; d < dotCount; d++) {
-+            const xPos = stripStart + d * dotSpacing;
-+            weightStrip.circle(xPos, radius * 0.57, dotRadius);
-+            weightStrip.fill({
-+              color: d < filledDots ? area.color : '#cbd5e1',
-+              alpha: d < filledDots ? 0.6 + weightRatio * 0.2 : 0.38,
-+            });
-+          }
-+          weightStrip.eventMode = 'none';
-+          bubbleContainer.addChild(weightStrip);
-+
-           const badge = new Container();
-           badge.x = radius * 0.48;
-           badge.y = radius * 0.5;
-           const badgeBg = new Graphics();
-           badgeBg.circle(0, 0, 11);
--          badgeBg.fill({ color: area.color, alpha: 0.16 });
--          badgeBg.stroke({ color: area.color, width: 1, alpha: 0.35 });
-+          badgeBg.fill({ color: area.color, alpha: 0.18 + weightRatio * 0.12 });
-+          badgeBg.stroke({ color: area.color, width: 1, alpha: 0.32 + weightRatio * 0.12 });
-           badge.addChild(badgeBg);
-           const badgeTxt = new Text({
--            text: `${getReferenceCount(concept.alternatives)}`,
-+            text: `${referenceCount}`,
-             style: new TextStyle({
-               fontFamily: '"Inter", sans-serif',
-               fontSize: 10,
-[0m
-[0m$ [0mgit log --oneline -5
-10fb41e loop iter 1: workspace 1 (Implementation) completed
-b07a21a Polish whiteboard interactions for iteration 1
-49864b8 Refocus research on awesome agents and auto-push loop
-f7f2c01 Update bubble weight to reference counts
-2c642c0 Shift glossary bubbles to equal subsection projects
-[0m
-I’ve got the code and workspace notes aligned. I’m committing only the implementation and spec updates, leaving the unrelated log file alone.
-[0m$ [0mgit add src/components/whiteboard.tsx .workspaces/2-improvements/context.md .workspaces/3-research/resources/research-requests.md && git commit -m "Refine weighted subsection bubbles" && git status --short
-[main 05a255a] Refine weighted subsection bubbles
- 3 files changed, 54 insertions(+), 12 deletions(-)
- M .workspaces/logs/loop.log
-[0m
-Implemented and committed.
-
-- Equal-size subsection bubbles now use a clearer project-weight encoding: numeric ref badge, 5-dot weight meter, and stronger weight-based styling
-- Emoji readability improved with a light halo behind each icon
-- Updated `.workspaces/2-improvements/context.md` and added two follow-up items in `.workspaces/3-research/resources/research-requests.md`
-- `npm run build` passed
-- Commit: `05a255a` `Refine weighted subsection bubbles`
-
-Unrelated file still modified: `.workspaces/logs/loop.log`
-[0;32m[2026-04-02 17:12:34] ✓[0m Workspace Improvements & PRD completed successfully
- 1 file changed, 248 insertions(+)
-To https://github.com/arro000/agent-glossary.git
-   10fb41e..abd0ff1  main -> main
-[0;32m[2026-04-02 17:12:35] ✓[0m Workspace changes committed and pushed
-[0;36m[2026-04-02 17:12:35][0m Launching OpenCode for workspace Research & Content...
-[0m
-> build · gpt-5.4-mini
-[0m
-[0m# [0mTodos
-[ ] Read existing research requests, concepts, and findings
-[ ] Research requested agent ecosystem topics and collect sources
-[ ] Update findings, guides, and next research requests
-[ ] Refresh research context with current state
-[0m
-I’m starting by reading the existing request, concept, and findings files so I can anchor the research to what’s already on the whiteboard.
-[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=1, limit=400][0m
-[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=400][0m
-[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1, limit=400][0m
-[0m→ [0mRead .workspaces/3-research/resources/guides.md[90m [offset=1, limit=400][0m
-[0m→ [0mRead .workspaces/3-research/context.md[90m [offset=1, limit=200][0m
-I’ve got the current whiteboard and previous research state. Next I’m checking the existing concept entries around the new topics so I can avoid duplicating what’s already there and only add new, concrete repos.
-[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=397, limit=120][0m
-[0m✱ [0mGrep "Semantic Kernel|CrewAI Flows|Vercel AI SDK|AG-UI|Voice Agents|edge agents|Computer Use|OpenTelemetry|evaluation|SWE-bench|Aider polyglot"[90m in .workspaces/1-implementation/resources · 3 matches[0m
-I’ve identified the new topics. I’m now pulling official docs and repo pages for the concrete projects behind each one, with an emphasis on things a researcher can immediately compare and reuse.
-[0m% [0mWebFetch https://www.copilotkit.ai/ag-ui
-[0m% [0mWebFetch https://docs.crewai.com/
-[0m✗ [0mwebfetch failed
-[91m[1mError: [0mRequest failed with status code: 404
-[0m% [0mWebFetch https://modelcontextprotocol.io/docs/tools/inspector
-[0m% [0mWebFetch https://ollama.com/
-[0m% [0mWebFetch https://learn.microsoft.com/en-us/semantic-kernel/
-[0m% [0mWebFetch https://sdk.vercel.ai/docs
-[0m✗ [0mwebfetch failed
-[91m[1mError: [0mRequest failed with status code: 400
-[0m% [0mWebFetch https://www.livekit.io/agents
-[0m% [0mWebFetch https://docs.vapi.ai/
-[0m% [0mWebFetch https://swe-bench.com/
-[0m✗ [0mwebfetch failed
-[91m[1mError: [0mRequest failed with status code: 404
-[0m✗ [0mwebfetch failed
-[91m[1mError: [0mThe response redirected too many times. For more information, pass `verbose: true` in the second argument to fetch()
-I have the core docs. I’m filling in repo metadata and star counts next, especially where the ecosystem has multiple competing implementations and the distinction matters.
-[0m
-[0m$ [0mgh repo view vercel/ai --json nameWithOwner,description,stargazerCount,url,homepageUrl
-{"description":"The AI Toolkit for TypeScript. From the creators of Next.js, the AI SDK is a free open-source library for building AI-powered applications and agents ","homepageUrl":"https://ai-sdk.dev","nameWithOwner":"vercel/ai","stargazerCount":23196,"url":"https://github.com/vercel/ai"}
-[0m
-[0m$ [0mgh repo view crewAIInc/crewAI --json nameWithOwner,description,stargazerCount,url,homepageUrl
-{"description":"Framework for orchestrating role-playing, autonomous AI agents. By fostering collaborative intelligence, CrewAI empowers agents to work together seamlessly, tackling complex tasks.","homepageUrl":"https://crewai.com","nameWithOwner":"crewAIInc/crewAI","stargazerCount":47850,"url":"https://github.com/crewAIInc/crewAI"}
-[0m
-[0m$ [0mgh repo view ag-ui-protocol/ag-ui --json nameWithOwner,description,stargazerCount,url,homepageUrl
-{"description":"AG-UI: the Agent-User Interaction Protocol. Bring Agents into Frontend Applications.","homepageUrl":"https://ag-ui.com","nameWithOwner":"ag-ui-protocol/ag-ui","stargazerCount":12781,"url":"https://github.com/ag-ui-protocol/ag-ui"}
-[0m
-[0m$ [0mgh repo view ollama/ollama --json nameWithOwner,description,stargazerCount,url,homepageUrl
-{"description":"Get up and running with Kimi-K2.5, GLM-5, MiniMax, DeepSeek, gpt-oss, Qwen, Gemma and other models.","homepageUrl":"https://ollama.com","nameWithOwner":"ollama/ollama","stargazerCount":166791,"url":"https://github.com/ollama/ollama"}
-[0m
-[0m$ [0mgh repo view livekit/agents --json nameWithOwner,description,stargazerCount,url,homepageUrl
-{"description":"A framework for building realtime voice AI agents 🤖🎙️📹 ","homepageUrl":"https://docs.livekit.io/agents","nameWithOwner":"livekit/agents","stargazerCount":9908,"url":"https://github.com/livekit/agents"}
-[0m
-[0m$ [0mgh repo view ggerganov/llama.cpp --json nameWithOwner,description,stargazerCount,url,homepageUrl
-{"description":"LLM inference in C/C++","homepageUrl":"","nameWithOwner":"ggml-org/llama.cpp","stargazerCount":100753,"url":"https://github.com/ggml-org/llama.cpp"}
-[0m
-[0m$ [0mgh repo view microsoft/semantic-kernel --json nameWithOwner,description,stargazerCount,url,homepageUrl
-{"description":"Integrate cutting-edge LLM technology quickly and easily into your apps","homepageUrl":"https://aka.ms/semantic-kernel","nameWithOwner":"microsoft/semantic-kernel","stargazerCount":27624,"url":"https://github.com/microsoft/semantic-kernel"}
-[0m
-[0m$ [0mgh repo view modelcontextprotocol/inspector --json nameWithOwner,description,stargazerCount,url,homepageUrl
-{"description":"Visual testing tool for MCP servers","homepageUrl":"https://modelcontextprotocol.io","nameWithOwner":"modelcontextprotocol/inspector","stargazerCount":9303,"url":"https://github.com/modelcontextprotocol/inspector"}
-[0m
-[0m$ [0mgh repo view openai/openai-cua --json nameWithOwner,description,stargazerCount,url,homepageUrl
-GraphQL: Could not resolve to a Repository with the name 'openai/openai-cua'. (repository)
-[0m
-[0m$ [0mgh search repos "finrobot finance agent" --limit 5
-[0m
-[0m$ [0mgh search repos "aider polyglot" --limit 5
-aj47/techfren-leaderboard	Results from @techfren running aider polyglot leaderboard	public	2025-08-01T09:05:15Z
-williambarberjr/aider-pass-1	The aider polyglot leaderboard but sorted by pass @ 1	public	2025-07-23T00:00:54Z
-angel1411337-del/claude-swarm-harness	TDD-OOP Swarm Framework for Claude Code - Parallel agent orchestration with Pydantic enforcement, RLM/REPL, and persistent memory. Achieved 64/64 (100%) on Aider Polyglot Benchmark (Python + Rust).	public	2026-01-30T21:08:44Z
-[0m
-[0m$ [0mgh search repos "OpenTelemetry agents" --limit 5
-ScalaConsultants/mesmer	OpenTelemetry agent for Scala applications	public	2026-04-02T17:01:48Z
-marttp/spring-boot-lgtm-opentelemetry-template	Spring Boot 3.x template with OpenTelemetry Agent	public	2025-07-21T00:05:03Z
-getlawrence/lawrence-oss	An open-source OpenTelemetry agent management platform with built-in observability backend.	public	2026-02-18T21:49:51Z
-litetex-oss/otel-fabric-helper-extension	OpenTelemetry Agent Helper Extension for Fabric	public	2026-03-30T05:14:31Z
-CAJ2/otlp-mosquitto	Mosquitto OpenTelemetry agent for $SYS/# topics	public	2024-02-29T11:41:26Z
-[0m
-[0m$ [0mgh search repos "agent simulation" --limit 5
-101dotxyz/GPTeam	GPTeam: An open-source multi-agent simulation	public	2026-04-01T17:15:49Z
-nikmcfly/MiroFish-Offline	Offline multi-agent simulation & prediction engine. English fork of MiroFish with Neo4j + Ollama local stack.	public	2026-04-02T17:04:10Z
-agiresearch/WarAgent	WarAgent: LLM-based Multi-Agent Simulation of World Wars	public	2026-04-02T14:03:25Z
-apache/burr	Build applications that make decisions (chatbots, agents, simulations, etc...). Monitor, trace, persist, and execute on your own infrastructure.	public	2026-04-02T15:09:18Z
-cormas/cormas	CORMAS (COmmon pool Ressources and Multi-Agent Simulations)	public	2026-03-12T00:19:58Z
-[0m
-I’ve confirmed the big framework repos. I’m now hunting the smaller ecosystem pieces: benchmarks, simulation frameworks, and telemetry tooling that round out the whiteboard.
-[0m$ [0mgh repo view traceloop/openllmetry --json nameWithOwner,description,stargazerCount,url,homepageUrl
-{"description":"Open-source observability for your GenAI or LLM application, based on OpenTelemetry","homepageUrl":"https://www.traceloop.com/openllmetry","nameWithOwner":"traceloop/openllmetry","stargazerCount":6969,"url":"https://github.com/traceloop/openllmetry"}
-[0m
-[0m$ [0mgh repo view anthropics/anthropic-cookbook --json nameWithOwner,description,stargazerCount,url,homepageUrl
-{"description":"A collection of notebooks/recipes showcasing some fun and effective ways of using Claude.","homepageUrl":"","nameWithOwner":"anthropics/claude-cookbooks","stargazerCount":37181,"url":"https://github.com/anthropics/claude-cookbooks"}
-[0m
-[0m$ [0mgh repo view arize-ai/phoenix --json nameWithOwner,description,stargazerCount,url,homepageUrl
-{"description":"AI Observability & Evaluation","homepageUrl":"https://arize.com/docs/phoenix","nameWithOwner":"Arize-ai/phoenix","stargazerCount":9140,"url":"https://github.com/Arize-ai/phoenix"}
-[0m
-[0m$ [0mgh repo view openai/inspect --json nameWithOwner,description,stargazerCount,url,homepageUrl
-GraphQL: Could not resolve to a Repository with the name 'openai/inspect'. (repository)
-[0m
-[0m$ [0mgh repo view microsoft/autogen --json nameWithOwner,description,stargazerCount,url,homepageUrl
-{"description":"A programming framework for agentic AI","homepageUrl":"https://microsoft.github.io/autogen/","nameWithOwner":"microsoft/autogen","stargazerCount":56615,"url":"https://github.com/microsoft/autogen"}
-[0m
-[0m$ [0mgh search repos "Terminal-Bench" --limit 10
-harbor-framework/terminal-bench	A benchmark for LLMs on complicated tasks in the terminal	public	2026-04-02T16:23:48Z
-harbor-framework/terminal-bench-3	🚧 Accepting Task Submissions 🚧	public	2026-04-01T22:03:05Z
-harbor-framework/terminal-bench-2		public	2026-04-02T07:12:39Z
-harbor-framework/harbor	Harbor is a framework for running agent evaluations and creating and using RL environments.	public	2026-04-02T16:06:40Z
-Danau5tin/terminal-bench-rl	GRPO training code which scales to 32xH100s for long horizon terminal/coding tasks. Base agent is now the top Qwen3 agent on Stanford's TerminalBench leaderboard.	public	2026-04-02T07:54:28Z
-harbor-framework/terminal-bench-science	Terminal-Bench-Science: Evaluating AI Agents on Complex Real-World Scientific Workflows in the Terminal	public	2026-04-02T17:05:35Z
-stanford-iris-lab/meta-harness-tbench2-artifact	Meta-Harness: 76.4% on Terminal-Bench 2.0 (Claude Opus 4.6)	public	2026-04-02T16:56:26Z
-Danau5tin/multi-agent-coding-system	Reached #13 on Stanford's Terminal Bench leaderboard. Orchestrator, explorer & coder agents working together with intelligent context sharing.	public	2026-04-01T16:27:23Z
-ucsb-mlsec/terminal-bench-env		public	2026-04-01T08:28:24Z
-laude-institute/terminal-bench-datasets		public	2026-03-24T09:46:00Z
-[0m
-[0m$ [0mgh search repos "WebArena" --limit 10
-web-arena-x/webarena	Code repo for "WebArena: A Realistic Web Environment for Building Autonomous Agents"	public	2026-04-02T04:55:33Z
-trymeka/agent	state of the art browsing agent (WebArena 72.7%)	public	2026-04-01T19:05:35Z
-gasse/webarena-setup	Setup scripts for the WebArena benchmark	public	2026-03-08T02:31:24Z
-Anadee11/WebArena	A beginner-friendly Open Source space with the goal of bringing Web Projects together. Do support by leaving a star ⭐ on the repository.	public	2024-12-20T18:03:24Z
-web-arena-x/webarena-infinity	An approach to utomatically generating browser environment with verifiable tasks	public	2026-03-31T02:55:59Z
-codefuse-ai/OpAgent	The OpAgent framework is used to automate web browser operations, achieving State-of-the-Art (SOTA) performance on the WebArena benchmark.	public	2026-04-01T14:45:30Z
-ServiceNow/webarena-verified	A verified version of the WebArena Benchmark	public	2026-04-02T07:39:35Z
-open-steam/webarena	WebArena	public	2019-09-20T16:46:24Z
-daeken/WebArena		public	2025-01-06T10:30:13Z
-thuml/RLVR-World	Official repository for "RLVR-World: Training World Models with Reinforcement Learning" (NeurIPS 2025), https://arxiv.org/abs/2505.13934	public	2026-04-02T09:43:01Z
-[0m
-[0m$ [0mgh search repos "SWE-bench" --limit 10
-SWE-bench/SWE-bench	SWE-bench: Can Language Models Resolve Real-world Github Issues?	public	2026-04-02T11:59:14Z
-augmentcode/augment-swebench-agent	The #1 open-source SWE-bench Verified implementation	public	2026-03-30T15:28:05Z
-openai/SWELancer-Benchmark	This repo contains the dataset and code for the paper "SWE-Lancer: Can Frontier LLMs Earn $1 Million from Real-World Freelance Software Engineering?"	public, archived	2026-03-30T04:40:49Z
-AutoCodeRoverSG/auto-code-rover	A project structure aware autonomous software engineer aiming for autonomous program improvement. Resolved 37.3% tasks (pass@1) in SWE-bench lite and 46.2% tasks (pass@1) in SWE-bench verified with each task costs less than $0.7.	public	2026-04-01T17:19:27Z
-multi-swe-bench/multi-swe-bench	Multi-SWE-bench: A Multilingual Benchmark for Issue Resolving	public	2026-03-30T00:35:46Z
-SWE-bench/experiments	Open sourced predictions, execution logs, trajectories, and results from model inference + evaluation runs on the SWE-bench task.	public	2026-04-01T13:08:14Z
-scaleapi/SWE-bench_Pro-os	SWE-Bench Pro: Can AI Agents Solve Long-Horizon Software Engineering Tasks?	public	2026-03-31T18:41:42Z
-microsoft/SWE-bench-Live	[NeurIPS 2025 D&B] 🚀 SWE-bench Goes Live!	public	2026-03-23T05:32:12Z
-CognitionAI/devin-swebench-results	Cognition's results and methodology on SWE-bench	public	2026-04-01T08:24:30Z
-jd-opensource/joycode-agent	Repository-level Repair Agent Based on SWE-Bench—JoyCode Agent	public	2026-03-27T06:25:40Z
-[0m
-[0m$ [0mgh search repos "AgentBench" --limit 10
-THUDM/AgentBench	A Comprehensive Benchmark to Evaluate LLMs as Agents (ICLR'24)	public	2026-04-02T08:25:23Z
-eth-sri/agentbench		public	2026-03-30T12:22:15Z
-Hugging-Face-KREW/Ko-AgentBench		public	2025-12-20T04:33:47Z
-VIA-Research/AgentBench	The set of AI agent model implementations, benchmarks, and others used in our paper "The Cost of Dynamic Reasoning: Demystifying AI Agents and Test-Time Scaling from an AI Infrastructure Perspective"	public	2026-04-01T01:22:29Z
-chu2bard/agentbench	Evaluation framework for AI coding agents	public	2026-02-11T23:04:14Z
-glee4810/FHIR-AgentBench	Code and Data for FHIR-AgentBench	public	2026-03-27T05:21:36Z
-cxcscmu/General-AgentBench	Benchmark Test-Time Scaling of General LLM Agents	public	2026-03-31T10:34:25Z
-yongPhone/agentbench	A lightweight, type-safe Go framework for testing AI agents with customizable scorers, concurrent execution, and flexible configuration	public	2025-10-30T10:37:11Z
-agentbench/agentbench-openclaw		public	2026-04-01T03:50:41Z
-jackjin1997/AgentBench-Live	The open benchmark for AI agent task execution. Claude Code vs Gemini CLI — who wins? Live leaderboard inside.	public	2026-03-23T07:28:06Z
-[0m
-[0m$ [0mgh search repos "FinRobot" --limit 10
-AI4Finance-Foundation/FinRobot	FinRobot: An Open-Source AI Agent Platform for Financial Analysis using LLMs 🚀 🚀 🚀	public	2026-04-02T08:41:28Z
-ChaosJu/deepseek-finrobot	DeepSeek FinRobot: 基于DeepSeek API的开源金融AI代理	public	2026-03-28T15:55:43Z
-ashreim-UPL/RoboFinGraph-Agent	FinRobot using Langgraph	public	2025-08-23T15:58:18Z
-Manish40180/FinRobot	FinRobot	public	2026-03-20T18:13:42Z
-srbutler1/finrobot	AI-powered financial analysis system for investment recommendations	public	2025-08-17T10:30:11Z
-iAnish/finrobot		public	2026-03-23T08:12:59Z
-QuantTK/finrobot		public	2024-11-27T08:22:53Z
-amanjot-byldd/finrobot		public	2025-09-28T10:56:22Z
-jedi108/finrobots		public	2017-12-31T12:39:59Z
-wakendream/finRobot	a simple repo to build fin app	public	2025-09-15T10:32:56Z
-[0m
-[0m$ [0mgh search repos "tau bench" --limit 10
-sierra-research/tau-bench	Code and Data for Tau-Bench	public	2026-04-01T13:23:32Z
-agentbeats/agentify-example-tau-bench	About Example code of agentifying tau-bench for the blog `Agentify the Agent Assessment`.	public	2026-01-30T08:11:04Z
-sarmad-t/Test-Tau-Bench-Repository		public	2025-10-10T10:42:20Z
-dev-streetbeat/streetbeat-tau-bench	Streetbeat Tackles τ-bench: Evaluating Advanced Agentic Capabilities in Realistic Scenarios	public	2025-06-08T08:09:15Z
-preethisesh/tau-bench-app		public	2025-12-28T17:15:44Z
-abdallah197/tau-bench-improved	TAU Bench repository	public	2025-09-21T22:21:39Z
-sert121/tau-b	repr for tau-bench	public	2025-09-30T04:49:54Z
-turing-raghava/amazon-tau-bench-tasks-main	amazon-tau-bench-tasks-main	public	2025-10-22T08:39:40Z
-abhiklodh/tau-bench	Code and Data for Tau-Bench	public	2025-09-26T14:44:05Z
-safikhanSoofiyani/tau-bench	Code and Data for Tau-Bench	public	2025-12-08T12:00:10Z
-[0m
-[0m$ [0mgh search repos "GAIA benchmark" --limit 10
-aymeric-roucher/GAIA	Beating the GAIA benchmark with Transformers Agents. 🚀	public	2026-03-16T06:47:24Z
-gaia-agent/gaia-agent	GAIA-benchmark-ready super agent built on AI SDK v6 ToolLoopAgent	public	2026-03-30T08:12:04Z
-TattaBio/gaia-benchmark	Benchmarking scripts for Gaia	public	2026-02-23T01:48:25Z
-chiarapaglioni/GAIA-agents	Final project for the Hugging Face AI Agents course testing smolagents on the GAIA benchmark	public	2026-03-17T05:10:55Z
-BigDataIA-Fall2024-TeamB6/Assignment1	This project aims at evaluating OpenAI GPT's comprehension capabilities based on the GAIA Benchmark	public	2024-11-01T09:06:28Z
-AIR-hl/gaia_smolagents	An efficient project base on smolagents for gaia benchmark	public	2026-02-09T19:49:24Z
-echristianfelts/GaiaBenchmark	Working Gaia Scene.	public	2021-07-21T07:31:07Z
-kvpratama/gaia-agent	LangGraph-based AI agents tackling complex tasks from the GAIA benchmark. Final project for the Hugging Face Agents course. Includes ReAct, Reflection, Plan-Execute, and Multi-Agent systems.	public	2025-12-01T13:02:20Z
-rohilrao/GaiaBenchmarkHF	https://huggingface.co/spaces/gaia-benchmark	public	2025-06-17T05:53:39Z
-e-alizadeh/GAIA-Agent	🤖 AI Agent for answering GAIA Benchmark questions (Final Assignment of HuggingFace 🤗 Agents Course)	public	2026-03-17T19:28:10Z
-[0m
-[0m$ [0mgh search repos "FinGPT" --limit 10
-AI4Finance-Foundation/FinGPT	FinGPT: Open-Source Financial Large Language Models! Revolutionize 🔥 We release the trained model on HuggingFace.	public	2026-04-02T17:02:14Z
-mrspiggot/FinGPT		public	2025-09-07T00:13:05Z
-AI4Finance-Foundation/FinRobot	FinRobot: An Open-Source AI Agent Platform for Financial Analysis using LLMs 🚀 🚀 🚀	public	2026-04-02T08:41:28Z
-samkamau81/FinGPT_	FinGPT is an AI language model designed to understand and generate financial content. Built upon the GPT (Generative Pre-trained Transformer) architecture, FinGPT specializes in processing and analyzing financial data, making it an invaluable tool for financial professionals, researchers, and startups in the fintech sector.	public	2025-11-14T17:04:45Z
-ashioyajotham/fingpt_trader	A quant trading system platform based on FinGPT, demonstrating new applications of large pre-trained Language Models in quantitative finance.	public	2026-03-24T16:41:32Z
-AI4Finance-Foundation/FinGPT-Earnings-Call-LLM-Agent		public	2025-12-03T12:32:54Z
-AI4Finance-Foundation/FinGPT-Research		public	2026-03-25T21:51:23Z
-AI4Finance-Foundation/FinRAG	FinRAG: Financial Retrieval Augmented Generation	public	2026-03-25T21:51:18Z
-fsndzomga/fingpt_st	LLM that can analyze stocks	public	2025-07-07T23:06:34Z
-Ronitt272/LLM-Enhanced-Trading	A sentiment-driven trading system leveraging FinGPT for real-time financial news and social media sentiment extraction to enhance trading outcomes.	public	2026-04-02T11:25:21Z
-[0m
-I’ve got enough signal to draft the main entries. I’m doing one more pass on a few edge/runtime projects so the embedded-agent section is not underpowered.
-[0m$ [0mgh repo view LiveKit/agents-js --json nameWithOwner,description,stargazerCount,url,homepageUrl
-{"description":"Build realtime multimodal AI agents with Node.js","homepageUrl":"https://docs.livekit.io/agents","nameWithOwner":"livekit/agents-js","stargazerCount":793,"url":"https://github.com/livekit/agents-js"}
-[0m
-[0m$ [0mgh repo view openai/openai-agents-python --json nameWithOwner,description,stargazerCount,url,homepageUrl
-{"description":"A lightweight, powerful framework for multi-agent workflows","homepageUrl":"https://openai.github.io/openai-agents-python/","nameWithOwner":"openai/openai-agents-python","stargazerCount":20514,"url":"https://github.com/openai/openai-agents-python"}
-[0m
-[0m$ [0mgh repo view ml-explore/mlx --json nameWithOwner,description,stargazerCount,url,homepageUrl
-{"description":"MLX: An array framework for Apple silicon","homepageUrl":"https://ml-explore.github.io/mlx/","nameWithOwner":"ml-explore/mlx","stargazerCount":24986,"url":"https://github.com/ml-explore/mlx"}
-[0m
-[0m$ [0mgh search repos "open telemetry genai" --limit 10
-[0m
-[0m$ [0mgh search repos "agent simulation" --limit 10
-101dotxyz/GPTeam	GPTeam: An open-source multi-agent simulation	public	2026-04-01T17:15:49Z
-nikmcfly/MiroFish-Offline	Offline multi-agent simulation & prediction engine. English fork of MiroFish with Neo4j + Ollama local stack.	public	2026-04-02T17:04:10Z
-agiresearch/WarAgent	WarAgent: LLM-based Multi-Agent Simulation of World Wars	public	2026-04-02T14:03:25Z
-apache/burr	Build applications that make decisions (chatbots, agents, simulations, etc...). Monitor, trace, persist, and execute on your own infrastructure.	public	2026-04-02T15:09:18Z
-cormas/cormas	CORMAS (COmmon pool Ressources and Multi-Agent Simulations)	public	2026-03-12T00:19:58Z
-HKUST-DB-Capstone2020/Market-Agent-Simulation	Simulated markets based on Zero-Intelligence agent	public	2026-02-07T12:00:24Z
-TheoLvs/westworld	Multi-agent simulation library in Python	public	2026-03-22T02:50:04Z
-my-HenryS/multi-agent-simulation	A ready-to-use pedestrian simulation platform	public	2024-08-26T05:36:06Z
-velocitybolt/synkro	AI agent simulation framework	public	2026-03-25T05:26:41Z
-gta0804/MASS	Official implementation of MASS: Multi-Agent Simulation Scaling for Portfolio Construction	public	2026-03-30T11:11:17Z
-[0m
-[0m$ [0mgh search repos "AG-UI protocol" --limit 10
-CopilotKit/CopilotKit	The Frontend Stack for Agents & Generative UI. React + Angular. Makers of the AG-UI Protocol	public	2026-04-02T17:05:09Z
-Folken2/ag-ui-crewai-research	Example of how to implement AG-UI protocol together with CrewAI agents.	public	2026-02-24T02:34:40Z
-langgraph4j/langgraph4j-copilotkit	Make Langgraph4j copliant with AG-UI protocol plus CopilotKit integration	public	2026-03-31T01:44:02Z
-MadLongTom/demo-agent-ui-protocols	AG-UI、A2UI 与 MCP-UI 的设计哲学与工程实践	public	2026-03-27T06:31:21Z
-conda-forge/ag-ui-protocol-feedstock	A conda-smithy repository for ag-ui-protocol.	public	2026-04-01T17:58:27Z
-DaveDushi/copilotkit-claudecode-bridge	Bridge between CopilotKit (AG-UI protocol) and Claude Code CLI.	public	2026-03-05T12:14:27Z
-Contextable/ag-ui-4k	ag-ui-4k is a multiplatform client library that enables applications to connect to and communicate with AI agents using the AG-UI protocol	public	2026-02-24T02:59:40Z
-BradenStitt/AG-UI-Protocol-Demo	A hands-on demo of the new AG-UI protocol that bridges PydanticAI Python agents with CopilotKit React UIs.	public	2025-10-01T14:28:17Z
-cristofima/TaskAgent-AgenticAI	An intelligent task management assistant built with .NET, Next.js, Microsoft Agent Framework, AG-UI protocol, and Azure OpenAI, demonstrating Clean Architecture and autonomous AI agent capabilities	public	2026-04-01T05:44:56Z
-Klammertime/ag-ui-cloudflare	Native AG-UI protocol adapter for Cloudflare Workers AI - Power CopilotKit with edge AI (68% faster, 93% cheaper)	public	2026-02-12T21:27:36Z
-[0m
-[0m$ [0mgh search repos "generative agents" --limit 10
-joonspk-research/generative_agents	Generative Agents: Interactive Simulacra of Human Behavior	public	2026-04-02T13:32:36Z
-nmatter1/smallville	Generative Agents for video games. Based on Generative Agents: Interactive Simulacra of Human Behavior	public	2026-04-02T00:10:35Z
-mkturkcan/generative-agents	Working, locally-running, low-cost implementation of Generative Agents: Interactive Simulacra of Human Behavior.	public	2026-03-31T00:39:54Z
-x-glacier/GenerativeAgentsCN	本项目为Generative Agents项目的重构+深度汉化版本，旨在为中文用户提供一个利于维护的基础版本，以便后续实验或功能拓展。	public	2026-04-02T11:38:04Z
-mluogh/eastworld	Framework for Generative Agents in Games	public	2026-03-24T19:44:30Z
-HumanoidAgents/HumanoidAgents	Humanoid Agents: Platform for Simulating Human-like Generative Agents	public	2026-03-20T16:58:35Z
-LehengTHU/Agent4Rec	[SIGIR 2024 perspective] The implementation of paper "On Generative Agents in Recommendation"	public	2026-04-01T17:17:43Z
-goruck/home-generative-agent	A home assistant generative agent integration based on langchain and langgraph.	public	2026-03-31T21:00:36Z
-mluogh/grontown	A murder mystery featuring generative agents	public	2025-07-11T19:45:44Z
-SwiftSage/SwiftSage	SwiftSage: A Generative Agent with Fast and Slow Thinking for Complex Interactive Tasks	public	2026-01-22T16:44:49Z
-[0m
-[0m$ [0mgh search repos "sotopia" --limit 10
-sotopia-lab/sotopia	Sotopia: an Open-ended Social Learning Environment (ICLR 2024 spotlight)	public	2026-04-02T16:23:41Z
-sotopia-lab/sotopia-rl	Sotopia-RL: Reward Design for Social Intelligence	public	2026-03-29T07:35:09Z
-sotopia-lab/sotopia-pi	Sotopia-π: Interactive Learning of Socially Intelligent Language Agents (ACL 2024)	public	2026-03-29T07:34:31Z
-sotopia-lab/sotopia-lab.github.io		public	2025-08-07T03:37:39Z
-sotopia-lab/sotopia-space	A synced repository for https://huggingface.co/spaces/wdplx/sotopia-space/	public	2025-03-15T05:27:36Z
-MozerWang/AMPO	[ICLR 2026] Adaptive Social Learning via Mode Policy Optimization for Language Agents	public	2026-03-27T02:51:31Z
-WYRipple/SOTOPIA-Omega	SOTOPIA-Ω: Dynamic Strategy Injection Learning and Social Instruction Following Evaluation for Social Agents (ACL 2025 main)	public	2026-03-29T07:34:55Z
-sotopia-lab/sotopia-verifiable	A collection of verifiable games in sotopia format	public	2026-02-13T05:12:48Z
-Bekaboo/sotopia-tom	Sotopia (https://github.com/sotopia-lab/sotopia) with theory of mind	public	2025-10-20T19:33:06Z
-ProKil/sotopia-chatbot		public	2024-06-07T18:11:08Z
-[0m
-The benchmark and simulation landscape is clearer now. I’m collecting the last few repo stats so the findings entries can be specific instead of generic.
-[0m$ [0mgh repo view AI4Finance-Foundation/FinGPT --json nameWithOwner,description,stargazerCount,url,homepageUrl
-{"description":"FinGPT: Open-Source Financial Large Language Models!  Revolutionize 🔥    We release the trained model on HuggingFace.","homepageUrl":"https://ai4finance.org/research/fingpt-open-source-finllm.html","nameWithOwner":"AI4Finance-Foundation/FinGPT","stargazerCount":18976,"url":"https://github.com/AI4Finance-Foundation/FinGPT"}
-[0m
-[0m$ [0mgh repo view SWE-bench/SWE-bench --json nameWithOwner,description,stargazerCount,url,homepageUrl
-{"description":"SWE-bench: Can Language Models Resolve Real-world Github Issues?","homepageUrl":"https://www.swebench.com","nameWithOwner":"SWE-bench/SWE-bench","stargazerCount":4602,"url":"https://github.com/SWE-bench/SWE-bench"}
-[0m
-[0m$ [0mgh repo view AI4Finance-Foundation/FinRobot --json nameWithOwner,description,stargazerCount,url,homepageUrl
-{"description":"FinRobot: An Open-Source AI Agent Platform for Financial Analysis using LLMs 🚀 🚀 🚀 ","homepageUrl":"https://finrobot.ai","nameWithOwner":"AI4Finance-Foundation/FinRobot","stargazerCount":6531,"url":"https://github.com/AI4Finance-Foundation/FinRobot"}
-[0m
-[0m$ [0mgh repo view harbor-framework/terminal-bench --json nameWithOwner,description,stargazerCount,url,homepageUrl
-{"description":"A benchmark for LLMs on complicated tasks in the terminal","homepageUrl":"https://www.tbench.ai","nameWithOwner":"harbor-framework/terminal-bench","stargazerCount":1848,"url":"https://github.com/harbor-framework/terminal-bench"}
-[0m
-[0m$ [0mgh repo view THUDM/AgentBench --json nameWithOwner,description,stargazerCount,url,homepageUrl
-{"description":"A Comprehensive Benchmark to Evaluate LLMs as Agents (ICLR'24)","homepageUrl":"","nameWithOwner":"THUDM/AgentBench","stargazerCount":3294,"url":"https://github.com/THUDM/AgentBench"}
-[0m
-[0m$ [0mgh repo view CopilotKit/CopilotKit --json nameWithOwner,description,stargazerCount,url,homepageUrl
-{"description":"The Frontend Stack for Agents & Generative UI. React + Angular.  Makers of the AG-UI Protocol","homepageUrl":"https://docs.copilotkit.ai","nameWithOwner":"CopilotKit/CopilotKit","stargazerCount":29931,"url":"https://github.com/CopilotKit/CopilotKit"}
-[0m
-[0m$ [0mgh repo view sierra-research/tau-bench --json nameWithOwner,description,stargazerCount,url,homepageUrl
-{"description":"Code and Data for Tau-Bench","homepageUrl":"","nameWithOwner":"sierra-research/tau-bench","stargazerCount":1152,"url":"https://github.com/sierra-research/tau-bench"}
-[0m
-[0m$ [0mgh repo view sotopia-lab/sotopia --json nameWithOwner,description,stargazerCount,url,homepageUrl
-{"description":"Sotopia: an Open-ended Social Learning Environment (ICLR 2024 spotlight)","homepageUrl":"https://docs.sotopia.world","nameWithOwner":"sotopia-lab/sotopia","stargazerCount":293,"url":"https://github.com/sotopia-lab/sotopia"}
-[0m
-[0m$ [0mgh repo view web-arena-x/webarena --json nameWithOwner,description,stargazerCount,url,homepageUrl
-{"description":"Code repo for \"WebArena: A Realistic Web Environment for Building Autonomous Agents\"","homepageUrl":"https://webarena.dev","nameWithOwner":"web-arena-x/webarena","stargazerCount":1416,"url":"https://github.com/web-arena-x/webarena"}
-[0m
-[0m$ [0mgh repo view joonspk-research/generative_agents --json nameWithOwner,description,stargazerCount,url,homepageUrl
-{"description":"Generative Agents: Interactive Simulacra of Human Behavior","homepageUrl":"","nameWithOwner":"joonspk-research/generative_agents","stargazerCount":21046,"url":"https://github.com/joonspk-research/generative_agents"}
-[0m
-[0m✗ [0mwebfetch failed
-[91m[1mError: [0mUnable to connect. Is the computer able to access the url?
-[0m% [0mWebFetch https://docs.sotopia.world/
-[0m✗ [0mwebfetch failed
-[91m[1mError: [0mRequest failed with status code: 404
-[0m% [0mWebFetch https://docs.anthropic.com/en/docs/build-with-claude/computer-use
-[0m% [0mWebFetch https://docs.ollama.com/quickstart
-[0m% [0mWebFetch https://docs.livekit.io/agents/start/voice-ai-quickstart/
-[0m% [0mWebFetch https://docs.vapi.ai/quickstart/introduction.mdx
-[0m% [0mWebFetch https://sdk.vercel.ai/docs/agents/workflows
-[0m% [0mWebFetch https://learn.microsoft.com/en-us/semantic-kernel/frameworks/agent/
-[0m% [0mWebFetch https://docs.vapi.ai/assistants/examples/inbound-support.mdx
-[0m% [0mWebFetch https://docs.crewai.com/en/concepts/flows
-[0m% [0mWebFetch https://docs.crewai.com/en/concepts/agents
-[0m% [0mWebFetch https://www.traceloop.com/openllmetry
-[0m% [0mWebFetch https://sdk.vercel.ai/docs/agents/overview
-[0m✗ [0mwebfetch failed
-[91m[1mError: [0mRequest failed with status code: 404
-I’ve got the core docs now. I’m checking one more Apple-silicon inference repo so the edge/runtime section isn’t just one desktop CLI plus one C++ runtime.
-[0m
-[0m$ [0mgh repo view ml-explore/mlx-lm --json nameWithOwner,description,stargazerCount,url,homepageUrl
-{"description":"Run LLMs with MLX","homepageUrl":"","nameWithOwner":"ml-explore/mlx-lm","stargazerCount":4352,"url":"https://github.com/ml-explore/mlx-lm"}
-[0m
-[0m$ [0mgh search repos "OpenTelemetry semantic conventions genai" --limit 10
-[0m
-[0m$ [0mgh search repos "computer use demo anthro" --limit 10
-[0m
-[0m$ [0mgh search repos "MLX language model" --limit 10
-fblissjr/useful-llm-scripts-and-notebooks	Apple MLX language model (mlx-lm) scripts, notebooks, exploration and tinkering	public	2025-12-23T21:31:32Z
-machiabeli/mlx-lm	MLX language model inference	public	2026-02-15T03:30:24Z
-scouzi1966/MLXLMProbe	Universal probing and interpretability tool for MLX language models on Apple Silicon	public	2026-03-01T10:15:36Z
-darrenoakey/mlx-server	Ollama API-compatible server for running MLX language models on Apple Silicon	public	2026-03-26T23:52:10Z
-machiabeli/mlx-lm-rs	MLX language model inference in Rust	public	2026-02-15T03:28:52Z
-[0m
-I’ve got the source material and repo stats. I’m editing the research files now: adding the new findings/guides, then wiring the next-iteration questions and the workspace context.
-[0m✗ [0mapply_patch failed
-[91m[1mError: [0mapply_patch verification failed: Error: Failed to find expected lines in /home/arro/projects/agent-glossary/.workspaces/3-research/resources/findings.md:
-## Mixture of Agents (MoA)
-- **macroarea**: Coordination Pattern
-- **url**: https://microsoft.github.io/autogen/stable/user-guide/core-user-guide/design-patterns/mixture-of-agents.html
-- **description**: Layers of agents where each layer aggregates responses from the previous layer. Proposer agents generate diverse outputs, aggregator synthesizes them. Inspired by mixture-of-experts in ML.
-- **popularity**: 6
-- **alternatives**: Voting (parallelization), Multi-Agent Debate
-- **why_include**: Novel pattern for combining diverse model capabilities; useful when mixing specialized models.
-
----
-
----
-
-# Emerging Trends
-The first patch missed the exact file tail. I’m reading the ends of the files and then I’ll apply a tighter patch with only append/update hunks.
-[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=340, limit=120][0m
-[0m→ [0mRead .workspaces/3-research/resources/guides.md[90m [offset=150, limit=120][0m
-[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=54, limit=40][0m
-[0m→ [0mRead .workspaces/3-research/context.md[90m [offset=1, limit=120][0m
-I have the exact file tails now. I’m appending the new sections cleanly instead of trying to splice into the middle of the existing research history.
-[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=460, limit=120][0m
-[0m→ [0mRead .workspaces/3-research/resources/guides.md[90m [offset=191, limit=120][0m
-[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=59, limit=40][0m
-[0m✗ [0mapply_patch failed
-[91m[1mError: [0mapply_patch verification failed: Error: Failed to find expected lines in /home/arro/projects/agent-glossary/.workspaces/3-research/resources/findings.md:
-### why_include**: Novel pattern for combining diverse model capabilities; useful when mixing specialized models.
-
----
-
----
-
-# MCP Extensions
-The combined patch failed on a context typo, not on the content itself. I’m splitting it into smaller patches so one mismatch doesn’t block the rest.
-[0m✗ [0mapply_patch failed
-[91m[1mError: [0mapply_patch verification failed: Error: Failed to find expected lines in /home/arro/projects/agent-glossary/.workspaces/3-research/resources/findings.md:
-- **popularity**: 6
-- **alternatives**: Voting (parallelization), Multi-Agent Debate
-- **why_include**: Novel pattern for combining diverse model capabilities; useful when mixing specialized models.
-
----
-
----
-
-# MCP Extensions
-[0m✗ [0mapply_patch failed
-[91m[1mError: [0mapply_patch verification failed: Error: Failed to find expected lines in /home/arro/projects/agent-glossary/.workspaces/3-research/resources/findings.md:
-- **popularity**: 6
-- **alternatives**: Voting (parallelization), Multi-Agent Debate
-- **why_include**: Novel pattern for combining diverse model capabilities; useful when mixing specialized models.
-
----
-
----
-
-# Emerging Trends
-The findings file is harder to splice because it’s long and already has several section boundaries. I’m grabbing the actual tail so I can append the new iteration cleanly at the end instead of fighting the existing headings.
-[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=700, limit=80][0m
-[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=730, limit=80][0m
-[0m⚙ [0mapply_patch Success. Updated the following files:
-M .workspaces/3-research/resources/findings.md
-[0m⚙ [0mapply_patch Success. Updated the following files:
-M .workspaces/3-research/resources/guides.md
-[0m✗ [0mapply_patch failed
-[91m[1mError: [0mapply_patch verification failed: Error: Failed to find expected lines in /home/arro/projects/agent-glossary/.workspaces/3-research/resources/research-requests.md:
-## Iterazione 4 - Da esplorare
-13. **PixiJS v8 text rendering per emoji/icon** — Migliori practiche per mantenere emoji leggibili e crisp a dimensioni piccole
-14. **Visual encoding per nodi a dimensione fissa** — Pattern per rappresentare peso/importanza senza cambiare il diametro delle bolle
-[0m⚙ [0mapply_patch Success. Updated the following files:
-M .workspaces/3-research/resources/research-requests.md
-[0m⚙ [0mapply_patch Success. Updated the following files:
-M .workspaces/3-research/context.md
-The research files are updated. I’m making one last whiteboard pass in `concepts.md` so the new high-signal tools also show up in the main glossary, not just the research workspace.
-[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=435, limit=80][0m
-[0m⚙ [0mapply_patch Success. Updated the following files:
-M .workspaces/1-implementation/resources/concepts.md
-The content is in place. I’m doing a quick sanity check on the diff and workspace status so I can catch any formatting mistakes before I wrap up.
-[0m
-[0m$ [0mgit status --short
-M .workspaces/1-implementation/resources/concepts.md
- M .workspaces/3-research/context.md
- M .workspaces/3-research/resources/findings.md
- M .workspaces/3-research/resources/guides.md
- M .workspaces/3-research/resources/research-requests.md
- M .workspaces/logs/loop.log
-[0m
-[0m$ [0mgit diff --stat
-.workspaces/1-implementation/resources/concepts.md |  62 +++
- .workspaces/3-research/context.md                  |  48 ++-
- .workspaces/3-research/resources/findings.md       | 172 +++++++++
- .workspaces/3-research/resources/guides.md         |  98 +++++
- .../3-research/resources/research-requests.md      |  16 +
- .workspaces/logs/loop.log                          | 415 +++++++++++++++++++++
- 6 files changed, 809 insertions(+), 2 deletions(-)
-[0m
-[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=740, limit=120][0m
-[0m→ [0mRead .workspaces/3-research/resources/guides.md[90m [offset=185, limit=120][0m
-[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=54, limit=40][0m
-[0m→ [0mRead .workspaces/3-research/context.md[90m [offset=1, limit=140][0m
-[0m
-[0m# [0mTodos
-[x] Read existing research requests, concepts, and findings
-[x] Research requested agent ecosystem topics and collect sources
-[x] Update findings, guides, and next research requests
-[x] Refresh research context with current state
-[0m
-The research workspace is updated. I’m doing one final status check so I can report exactly what changed and call out the unrelated workspace file that was already dirty.
-[0m$ [0mgit status --short
-M .workspaces/1-implementation/resources/concepts.md
- M .workspaces/3-research/context.md
- M .workspaces/3-research/resources/findings.md
- M .workspaces/3-research/resources/guides.md
- M .workspaces/3-research/resources/research-requests.md
- M .workspaces/logs/loop.log
-[0m
-Updated the research workspace with Iteration 3 coverage:
-
-- `/.workspaces/3-research/resources/findings.md`: added concrete entries for AG-UI, Semantic Kernel, CrewAI Flows, Vercel AI SDK, MCP Inspector, LiveKit Agents, Vapi, OpenLLMetry, Anthropic Computer Use, Ollama, llama.cpp, MLX-LM, SWE-bench, Terminal-Bench, WebArena, TAU-bench, AgentBench, Sotopia, Generative Agents, FinRobot, and FinGPT.
-- `/.workspaces/3-research/resources/guides.md`: added official docs/quickstarts for the new topics.
-- `/.workspaces/3-research/resources/research-requests.md`: added Iteration 5 follow-up questions.
-- `/.workspaces/3-research/context.md`: refreshed to Iteration 3 with current state and takeaways.
-- `/.workspaces/1-implementation/resources/concepts.md`: added the new high-signal concepts to the whiteboard.
-
-Unrelated dirty file still present: `/.workspaces/logs/loop.log` unchanged by me.
-[0;32m[2026-04-02 17:19:30] ✓[0m Workspace Research & Content completed successfully
+If you want, next I can make lint green by excluding generated `.netlify/**` artifacts from ESLint in project config.
+[0;32m[2026-04-02 17:39:05] ✓[0m Workspace Implementation completed successfully
