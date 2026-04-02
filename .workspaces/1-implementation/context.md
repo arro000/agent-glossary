@@ -1,8 +1,8 @@
 # Workspace 1 — Implementation
 
 ## Stato
-- **Iterazione**: 2
-- **Ultimo aggiornamento**: 2026-04-02
+- **Iterazione**: 3
+- **Ultimo aggiornamento**: 2026-04-02 (completata)
 - **Stato**: completed
 
 ## Obiettivo
@@ -23,7 +23,7 @@ Una whiteboard quadrettata interattiva che mostra un glossario visuale dell'ecos
 - **Bolle concetti**: Cerchi/ellissi dentro ogni macroarea, dimensione proporzionale alla popolarità/importanza
 - **Nessun collegamento**: Le bolle sono posizionate spazialmente, zero linee tra loro
 
-## Macroaree (iniziali)
+## Macroaree (12 totali, grid 3x4)
 1. **Memory & State** — 8 concetti: Persistent Memory, Session Memory, Vector Database, Context Window Management, Temporal Memory, Tiered Memory, Procedural Memory, Token Budget
 2. **Tools & Actions** — 8 concetti: Code Execution Sandbox, Terminal/Shell Access, File I/O, Web Search, Browser Automation, MCP, A2A, API Client
 3. **Prompt Engineering** — 6 concetti: System Prompt, Few-Shot Examples, Chain-of-Thought, Structured Output, Prompt Caching, Context Compression
@@ -32,8 +32,12 @@ Una whiteboard quadrettata interattiva che mostra un glossario visuale dell'ecos
 6. **Skills & Plugins** — 4 concetti: Skill System, Custom Tool Creation, Workflow Automation, PRD Generation
 7. **Observability** — 7 concetti: Logging & Tracing, Observability Platform, Cost Tracking, Evaluation & Benchmarks, Debugging Tools, Safety & Guardrails, Agent Governance
 8. **Infrastructure** — 6 concetti: Docker & Containers, GPU Cloud, Serverless, CI/CD, Git Integration, Environment Management
+9. **Knowledge & Retrieval** — 2 concetti: Agentic RAG, Deep Research Agent
+10. **Frameworks & SDKs** — 6 concetti: Google ADK, OpenAI Agents SDK, Mastra, Pydantic AI, Strands Agents SDK, Claude Agent SDK
+11. **Business Automation** — 2 concetti: Visual Agent Builder, Low-Code Agent Platform
+12. **Protocol Extensions** — 1 concetto: MCP Apps
 
-**Totale: 62 concetti** (era 48 nell'iterazione 1)
+**Totale: 67 concetti** (era 62 nell'iterazione 2)
 
 ## Dati
 I concetti/strumenti per ogni macroarea stanno nel file `resources/concepts.md`.
@@ -52,17 +56,17 @@ Tutti i concetti dal database sono ora rappresentati nella whiteboard.
 - Zoom/pan attivi
 
 ### Macroaree
-- Rettangoli 720x460px (aumentato da 360) con bordo pastello e angoli arrotondati (12px)
+- Rettangoli 720x460px con bordo pastelle e angoli arrotondati (12px)
 - Etichetta macroarea + contatore concetti in alto a sinistra
 - Sfondo semi-trasparente (alpha 0.55)
-- Layout: griglia 2x4 con gap 80px orizzontale, 60px verticale
+- Layout: griglia 3x4 con gap 80px orizzontale, 60px verticale
 - Ombra sottile per profondità
 
 ### Bolle
 - Cerchi con raggio proporzionale alla popolarità (min 24px per pop 6, max 62px per pop 10)
 - **Adaptive scaling**: per macroaree dense (es. Orchestration con 16 items), le bolle vengono scalate per adattarsi allo spazio disponibile
 - Layout automatico: 4-6 colonne a seconda del numero di concetti
-- Colore pastello sfumato della macroarea genitore
+- Colore pastelle sfumato della macroarea genitore
 - Hover: glow a due livelli + scale 1.06x (animazione smooth con lerp 0.18)
 - Click: apre detail panel con fade-in
 
@@ -80,13 +84,23 @@ Tutti i concetti dal database sono ora rappresentati nella whiteboard.
 - Chiusura: pulsante ✕, click backdrop, o tasto ESC
 - Dimensione: 400x310px, centrato
 
+### Search Bar
+- Barra di ricerca centrata in alto
+- Filtra bolle e macroaree in tempo reale
+- Contatore risultati visibili
+- Hidden input HTML per supporto tastiera nativo
+
+### Legend
+- Pannello legenda con tutte le macroaree in alto a destra
+- Colore + nome + conteggio concetti per area
+
 ### Minimap
 - Angolo in basso a destra (180x110px)
 - Click-to-navigate sulla minimap
 
 ## Iterazione 1 — Completata
 - [x] Setup PixiJS Application con griglia quadrettata
-- [x] Rendering 8 macroaree con sfondo pastello
+- [x] Rendering 8 macroaree con sfondo pastelle
 - [x] Rendering bolle dentro macroaree con dimensione proporzionale
 - [x] Zoom & pan interattivi
 - [x] Hover effect sulle bolle (glow + scale)
@@ -106,6 +120,17 @@ Tutti i concetti dal database sono ora rappresentati nella whiteboard.
 - [x] **Zoom buttons** (+/−/fit) con indicatore percentuale zoom
 - [x] **Keyboard shortcuts**: +/- zoom, 0 zoom-to-fit
 - [x] **Initial zoom-to-fit** al caricamento
+- [x] Build e lint passano senza errori/warnings
+
+## Iterazione 3 — Completata
+- [x] **4 nuove macroaree** aggiunte da concepts.md (da 8 a 12 totali)
+  - Knowledge & Retrieval (2 concetti: Agentic RAG, Deep Research Agent)
+  - Frameworks & SDKs (6 concetti: Google ADK, OpenAI Agents SDK, Mastra, Pydantic AI, Strands Agents SDK, Claude Agent SDK)
+  - Business Automation (2 concetti: Visual Agent Builder, Low-Code Agent Platform)
+  - Protocol Extensions (1 concetto: MCP Apps)
+- [x] **Layout grid espanso** da 2x4 a 3x4 per accomodare 12 macroaree
+- [x] **5 nuovi concetti** aggiunti (da 62 a 67 totali)
+- [x] **Observability Platform** descrizione aggiornata con AgentOps
 - [x] Build e lint passano senza errori/warnings
 
 ## File Principali

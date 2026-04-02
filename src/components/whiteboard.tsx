@@ -148,7 +148,7 @@ const MACROAREAS: MacroareaConfig[] = [
     border: '#FACC15',
     concepts: [
       { name: 'Logging &\nTracing', popularity: 8, description: 'Tracciare le azioni dell\'agente per debug e audit', alternatives: 'LangSmith, Langfuse, Weave, Phoenix, OpenLLMetry, Custom logging', category: 'Monitoring' },
-      { name: 'Observability\nPlatform', popularity: 9, description: 'Piattaforma completa per tracing, evaluation, prompt management e deployment', alternatives: 'Langfuse, LangSmith, Arize Phoenix, W&B Weave, Helicone', category: 'Monitoring' },
+      { name: 'Observability\nPlatform', popularity: 9, description: 'Piattaforma completa per tracing, evaluation, prompt management e deployment. Leader: Langfuse. Pi\u00f9 feature-complete: LangSmith. Nuovi: AgentOps.', alternatives: 'Langfuse, LangSmith, Arize Phoenix, W&B Weave, Helicone, AgentOps', category: 'Monitoring' },
       { name: 'Cost\nTracking', popularity: 8, description: 'Monitorare token usage e costi per sessione/task', alternatives: 'Usage dashboards, Token counting, Provider billing APIs', category: 'Monitoring' },
       { name: 'Evaluation &\nBenchmarks', popularity: 7, description: 'Valutare le performance dell\'agente su task specifici', alternatives: 'LM Eval Harness, Custom evals, A/B testing, Human eval', category: 'Quality' },
       { name: 'Debugging\nTools', popularity: 7, description: 'Tool per ispezionare e debuggare il comportamento dell\'agente', alternatives: 'Replay tools, Inspector UI, Trace viewers', category: 'Debug' },
@@ -170,11 +170,54 @@ const MACROAREAS: MacroareaConfig[] = [
       { name: 'Environment\nManagement', popularity: 7, description: 'Gestione di ambienti dev diversi (local, remote, sandbox)', alternatives: 'Devcontainers, SSH remotes, Daytona, E2B, Modal', category: 'Runtime' },
     ],
   },
+  {
+    name: 'Knowledge & Retrieval',
+    color: '#06B6D4',
+    bg: '#CFFAFE',
+    border: '#67E8F9',
+    concepts: [
+      { name: 'Agentic\nRAG', popularity: 9, description: 'Pattern RAG dove l\'agente decide attivamente quando, come e se recuperare informazioni. Include Self-RAG, Corrective RAG, Adaptive RAG.', alternatives: 'Traditional RAG, LangChain agentic RAG, LlamaIndex agent workflows', category: 'Pattern' },
+      { name: 'Deep Research\nAgent', popularity: 9, description: 'Agente che conduce ricerca multi-step: pianifica query, naviga il web, sintetizza report con citazioni e self-critica', alternatives: 'GPT Researcher, STORM, Tongyi DeepResearch, DeepSearcher', category: 'Pattern' },
+    ],
+  },
+  {
+    name: 'Frameworks & SDKs',
+    color: '#EC4899',
+    bg: '#FCE7F3',
+    border: '#F9A8D4',
+    concepts: [
+      { name: 'Google\nADK', popularity: 9, description: 'Framework open-source Google per agenti AI. Model-agnostic, SDK in Python/TypeScript/Go/Java. Reference per A2A.', alternatives: 'LangGraph, OpenAI Agents SDK, Mastra, Strands Agents, Pydantic AI, Claude Agent SDK', category: 'Framework' },
+      { name: 'OpenAI Agents\nSDK', popularity: 10, description: 'Framework lightweight OpenAI per multi-agent workflows. Handoffs, guardrails, HITL, sessioni, tracing, voice agents.', alternatives: 'LangGraph, Google ADK, CrewAI, Claude Agent SDK, Strands Agents', category: 'Framework' },
+      { name: 'Mastra', popularity: 8, description: 'Framework TypeScript-first per agenti AI. Workflow a grafi, RAG, memoria, MCP, eval, osservabilit\u00e0. Integrazione Next.js. YC W25.', alternatives: 'LangGraph, Vercel AI SDK, Pydantic AI, Google ADK', category: 'Framework' },
+      { name: 'Pydantic\nAI', popularity: 8, description: 'Framework Python type-safe dal team Pydantic. Agent generici, validation automatica, 15+ provider, MCP e A2A nativi.', alternatives: 'LangGraph, Google ADK, Strands Agents, Claude Agent SDK', category: 'Framework' },
+      { name: 'Strands\nAgents SDK', popularity: 7, description: 'SDK open-source Amazon/AWS. Model-driven: il modello orchestra, lo sviluppatore definisce tools e prompt. Nativo MCP, A2A, Bedrock.', alternatives: 'OpenAI Agents SDK, Claude Agent SDK, Google ADK', category: 'Framework' },
+      { name: 'Claude Agent\nSDK', popularity: 9, description: 'SDK Anthropic che espone il motore di Claude Code come libreria. Tools built-in, subagenti, MCP, hooks, sessioni, permessi.', alternatives: 'OpenAI Agents SDK, Google ADK, Pydantic AI', category: 'Framework' },
+    ],
+  },
+  {
+    name: 'Business Automation',
+    color: '#84CC16',
+    bg: '#ECFCCB',
+    border: '#BEF264',
+    concepts: [
+      { name: 'Visual Agent\nBuilder', popularity: 8, description: 'Piattaforma no-code/low-code per workflow multi-agente con canvas visuale. Deployment come API, MCP server o chatbot.', alternatives: 'Dify, Langflow, Flowise, n8n, Coze', category: 'Platform' },
+      { name: 'Low-Code Agent\nPlatform', popularity: 8, description: 'Piattaforma automazione con AI agent integrate. Bridge tra automazione business tradizionale e agenti AI.', alternatives: 'n8n, Zapier, Make.com, Activepieces', category: 'Platform' },
+    ],
+  },
+  {
+    name: 'Protocol Extensions',
+    color: '#64748B',
+    bg: '#F1F5F9',
+    border: '#CBD5E1',
+    concepts: [
+      { name: 'MCP\nApps', popularity: 7, description: 'Estensione ufficiale MCP (SEP-1865) che permette ai server di fornire UI HTML interattive renderizzate inline nelle conversazioni AI', alternatives: 'N/A (estensione unica)', category: 'Integration' },
+    ],
+  },
 ];
 
 function getAreaPosition(index: number) {
-  const col = index % 2;
-  const row = Math.floor(index / 2);
+  const col = index % 3;
+  const row = Math.floor(index / 3);
   return { x: START_X + col * COL_STEP, y: START_Y + row * ROW_STEP };
 }
 
@@ -622,7 +665,7 @@ export default function Whiteboard() {
 
       const world = new Container();
 
-      const totalW = 2 * AREA_WIDTH + COL_GAP + START_X * 2;
+      const totalW = 3 * AREA_WIDTH + 2 * COL_GAP + START_X * 2;
       const totalH = 4 * AREA_HEIGHT + 3 * ROW_GAP + START_Y * 2;
       const worldBounds = { x: 0, y: 0, w: totalW, h: totalH };
 
