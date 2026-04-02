@@ -128,3 +128,18 @@ I topic nuovi della iterazione 3 sono stati coperti con focus su progetti concre
 3. **Voice agents are now a real platform category**: LiveKit and Vapi both go beyond demos into deployment/testing/telephony.
 4. **Evaluation is fragmenting into task-specific families**: coding, terminal, web, tool-use, and social simulation now have distinct benchmarks.
 5. **Local inference is a first-class path**: Ollama, llama.cpp, and MLX-LM are core infrastructure for edge/restricted environments.
+
+## Awesome Agents Scan
+
+### Repos Curati Trovati
+- Shubhamsaboo/awesome-llm-apps — AI Agents, Starter AI Agents, Advanced AI Agents, Voice AI Agents, Multi-agent Teams
+- hesreallyhim/awesome-claude-code — Agent Skills, Workflows & Knowledge Guides, Tooling, IDE Integrations, Usage Monitors
+- VoltAgent/awesome-agent-skills — skills library enorme per diversi coding agent
+- github/awesome-copilot — instructions, agents, skills e tools per Copilot
+- Arindam200/awesome-ai-apps — Starter Agents, Voice Agents, Featured AI Apps
+- enescingoz/awesome-n8n-templates — automation templates e workflow builders
+- fr0gger/Awesome-GPT-Agents — cybersecurity GPT agents
+
+### Beads Roadmap
+Vedi `resources/beads-roadmap.md` per la suddivisione iterazione-per-iterazione.
+Vedi `resources/awesome-agents-scan.md` per la mappa dei repo e delle sottosezioni da convertire in bead.
