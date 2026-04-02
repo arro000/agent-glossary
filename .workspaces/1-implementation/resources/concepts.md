@@ -135,6 +135,30 @@
 - **alternatives**: Summarization, Token merging, Key info extraction
 - **category**: Optimization
 
+### Eval Harness
+- **popularity**: 8
+- **description**: Runner strutturato per prompt, agenti e RAG con dataset, scoring, regression checks e integrazione CI
+- **alternatives**: promptfoo, Inspect AI, OpenAI Evals, custom CI evals
+- **category**: Quality
+
+### Harness / Runtime Scaffold
+- **popularity**: 9
+- **description**: Tutto lo strato attorno all'LLM che prepara il prompt, gestisce hooks, tools, memory, traces, eval e state
+- **alternatives**: Claude Code harness, agent runtime, LLM OS, outer loop
+- **category**: Runtime
+
+### Prompt Assembly
+- **popularity**: 8
+- **description**: Composizione dinamica del messaggio finale al modello a partire da istruzioni, memoria, schema dei tool e slice di contesto
+- **alternatives**: instruction builder, prompt templates, context builder, static system prompt
+- **category**: Runtime
+
+### Hook System
+- **popularity**: 8
+- **description**: Strato event-driven che attiva comandi, prompt o agenti in punti specifici del lifecycle dell'agente, come pre/post tool use, compaction e change events
+- **alternatives**: lifecycle middleware, event listeners, permission guards, prompt-based hooks
+- **category**: Runtime
+
 ## Orchestration
 ### Agent Loop
 - **popularity**: 10
@@ -331,6 +355,12 @@
 - **alternatives**: Replay tools, Inspector UI, Trace viewers
 - **category**: Debug
 
+### Trace Replay
+- **popularity**: 8
+- **description**: Replay di sessioni e tool call per ricostruire failure long-horizon e confrontare run diverse
+- **alternatives**: AgentOps replay, LangSmith replay, Langfuse session replay, custom transcript viewers
+- **category**: Debug
+
 ### Safety & Guardrails
 - **popularity**: 7
 - **description**: Meccanismi per prevenire comportamenti indesiderati
@@ -393,6 +423,18 @@
 - **description**: Agente che conduce ricerca multi-step in autonomia: pianifica query, naviga il web, legge centinaia di fonti, sintetizza report con citazioni e self-critica. Opera su tempi lunghi (minuti-ore). Implementazioni: OpenAI Deep Research, Gemini Deep Research, GPT Researcher, STORM, Tongyi DeepResearch.
 - **alternatives**: GPT Researcher, STORM, Tongyi DeepResearch, DeepSearcher
 - **category**: Pattern
+
+### Reference Navigation
+- **popularity**: 8
+- **description**: Esplorazione dei riferimenti già visti: recupero semantico, pinning, citazioni, summary incrementali e navigazione tra fonti correlate invece della sola compressione del contesto
+- **alternatives**: retrieval browser, citation graph, memory browsing, semantic search UI
+- **category**: Navigation
+
+### Repo Map / Codebase Map
+- **popularity**: 8
+- **description**: Mappa strutturale del codebase per navigazione e editing su repository grandi, spesso derivata da tree-sitter o analisi statica per mostrare file e dipendenze rilevanti
+- **alternatives**: Aider repomap, semantic code graph, file tree summaries
+- **category**: Navigation
 
 ## Frameworks & SDKs
 

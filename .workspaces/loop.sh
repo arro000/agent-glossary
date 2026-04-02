@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # agent-glossary loop controller
-# Gestisce il ciclo: Implementation → Improvements → Research → repeat
+# Gestisce il ciclo: Research → Improvements → Implementation → repeat
 #
 # Uso:
 #   ./loop.sh start [--max N]    Avvia il loop (N iterazioni max, default infinite)
@@ -108,8 +108,15 @@ You are implementing the Agent Glossary Whiteboard app.
 Read the full context from .workspaces/1-implementation/context.md for specifications.
 Read .workspaces/1-implementation/resources/concepts.md for subsection/project data.
 Read .workspaces/1-implementation/resources/pixijs-reference.md for PixiJS v8 API reference.
+Read .workspaces/2-improvements/context.md for the latest coordination notes.
+Read .workspaces/3-research/resources/findings.md for the latest research signals.
 
 This is iteration $iteration. Check if there's a PRD in .workspaces/2-improvements/resources/prd.md — if it exists, implement the changes described there.
+
+Current coordination goal:
+- translate the harness/context/reference-navigation ideas into visible whiteboard concepts
+- keep subsection bubbles equal-size and project-weighted
+- make the layout clearer, not denser
 
 Key rules:
 - PixiJS v8 vanilla (NOT @pixi/react) — mount canvas via useRef/useEffect
@@ -134,20 +141,25 @@ Read .workspaces/1-implementation/context.md for full specifications.
 Read .workspaces/1-implementation/resources/concepts.md for subsection/project data.
 Read .workspaces/1-implementation/resources/pixijs-reference.md for PixiJS v8 API.
 Read .workspaces/3-research/resources/findings.md for new discoveries.
+Read .workspaces/2-improvements/resources/prd.md and keep it aligned with the current iteration.
 
 CRITICAL: You must WRITE CODE and CHANGE files in src/. Do not just analyze or write documentation.
 
 Your job:
-1. If nothing is implemented yet, implement it (follow specs in context.md)
+1. Translate research into concrete PRD and implementation constraints
 2. If something is half-done, complete it
-3. If something works, improve it (layout, interactivity, visuals, performance)
-4. Rework subsection bubbles so they stay equal-size, emoji-recognizable, and project-weighted
+3. Improve layout, interactivity, visuals, and performance without adding clutter
+4. Keep subsection bubbles equal-size, emoji-recognizable, and project-weighted
 5. Update subsection/project data in .workspaces/1-implementation/resources/concepts.md if needed
 6. Add research requests for topics you need more info on in .workspaces/3-research/resources/research-requests.md
 7. Test with npm run build after significant changes
 8. Commit your changes
 
 This is iteration $iteration. Focus on writing real code and making the app work better.
+
+Coordination note:
+- if research introduces a better harness/context/navigation pattern, reflect it in the PRD before touching code
+- avoid duplicating concepts already present in concepts.md unless the source data changed
 
 Key rules:
 - PixiJS v8 vanilla (NOT @pixi/react) — mount canvas via useRef/useEffect
@@ -170,6 +182,11 @@ Read .workspaces/3-research/resources/research-requests.md for what to research.
 Read .workspaces/1-implementation/resources/concepts.md for what's already on the whiteboard.
 Read .workspaces/3-research/resources/findings.md for previous findings.
 
+Current research priority:
+- harness / runtime scaffold: everything around the LLM (prompt assembly, hooks, tools, memory, traces, eval)
+- context navigation: how agents retrieve, rank, and explore prior references instead of only compressing them
+- reference-aware retrieval, trace-driven debugging, and eval loops that improve the harness itself
+
 Your job:
 1. Research each topic using web search (curl, read URLs, etc.)
 2. Focus on projects/tools/frameworks that belong to a subsection, not just abstract concepts
@@ -188,6 +205,8 @@ Format for findings:
 - **why_include**: Why it deserves to be on the whiteboard
 
 This is iteration $iteration. Focus on completeness and accuracy.
+
+When the source material suggests a missing concept, add it to concepts.md only if it is concrete and reusable, not just a synonym.
 
 After researching, update .workspaces/3-research/context.md with current state.
 PROMPT
@@ -286,8 +305,8 @@ run_loop() {
 
     header "ITERATION $iteration"
 
-    # Run each workspace in sequence
-    for ws in 1 2 3; do
+    # Run each workspace in sequence (research feeds improvements, improvements feed implementation)
+    for ws in 3 2 1; do
       # Check if we're still supposed to be running
       if [[ "$(read_state)" == "stopping" ]]; then
         log_warn "Loop stopped by user request"

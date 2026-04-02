@@ -159,3 +159,26 @@
 
 ### Esplorazione
 5. **Long-horizon benchmark harnesses** — repo-level tooling around SWE-bench Verified, Terminal-Bench 2.0, WebArena-x, BrowseComp, and SWE-Lancer.
+
+## Iterazione 14 — Nuove Richieste
+
+### Priorità Alta
+1. **Harness / runtime scaffolds** — what lives around the LLM: prompt assembly, pre/post hooks, tools, memory, traces, eval, state, and code-optimized outer loops like Meta-Harness.
+2. **Reference navigation / context exploration** — patterns and tools for navigating prior references, citations, pinning, retrieval ranking, and trace-aware browsing instead of only context compression.
+
+### Priorità Media
+3. **Trace-driven debugging** — how successful harnesses keep execution traces searchable and use them to diagnose long-horizon failures.
+4. **Outer-loop harness optimization** — papers and practical repos that mutate harness code, run evals, and search the Pareto frontier of accuracy vs token cost.
+
+## Iterazione 15 — Nuove Richieste
+
+### Priorità Alta
+1. **Hook systems comparison** — Claude Code hooks vs OpenAI Agents SDK guardrails vs LangGraph middleware vs Mastra/Strands lifecycle hooks; which are actually expressive and shareable?
+2. **Eval harness showdown** — promptfoo vs inspect_ai vs openai/evals vs LangSmith evals for agent and RAG regression testing.
+
+### Priorità Media
+3. **Reference-aware retrieval patterns** — repo maps, code graphs, Context7, Aider, Graphiti, Zep: how do they rank, pin, and navigate references?
+4. **Trace replay / session replay tools** — AgentOps, Langfuse, LangSmith, Phoenix, OpenLIT: which UIs are most useful for debugging long-horizon agent failures?
+
+### Esplorazione
+5. **Prompt assembly and context injection** — CLAUDE.md, skills, prompt templates, dynamic context assembly, and prompt caching patterns across harnesses.

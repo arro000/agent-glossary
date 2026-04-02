@@ -1,8 +1,8 @@
 # Workspace 3 — Research & Content Discovery
 
 ## Stato
-- **Iterazione**: 12
-- **Ultimo aggiornamento**: 2026-04-02 18:26:01
+- **Iterazione**: 14
+- **Ultimo aggiornamento**: 2026-04-02 19:45:30
 - **Stato**: completed
 
 ## Risultati Iterazione 1
@@ -222,6 +222,24 @@ La passata attuale ha coperto la capa di curated repositories e discovery, con f
 - `findings.md` è stato esteso con un addendum di repo/esempi pratici: AG-UI Dojo, LiveKit starter projects, Anthropic computer-use demo e OpenLIT.
 - `guides.md` ora include i primi tre come punti di partenza pratici per UI, voice e computer use.
 - `research-requests.md` ha una nuova Iterazione 9 su browser automation, voice eval, registry/discovery, verticale finance/support e quality signals per curated lists.
+
+## Aggiornamento Corrente - Harness / Runtime Scaffold + Reference Navigation
+
+### Cosa è stato aggiunto
+- Harness layer: Claude Code Hooks e Claude Code Subagents come primitive concrete per policy, compaction, automation e context isolation.
+- Eval stack: Promptfoo, Inspect AI, and OpenAI Evals come harness concreti per regression testing e red-teaming.
+- Reference-aware retrieval: Context7 resta il layer migliore per docs fresche; il whiteboard ora traccia anche repo maps/codebase maps come concetto separato.
+- Concepts: Prompt Assembly, Hook System, Repo Map / Codebase Map, Eval Harness, and Trace Replay aggiunti al vocabolario di implementation.
+
+### Nuovi segnali
+1. The harness is increasingly a programmable outer loop, not just a prompt wrapper.
+2. Context navigation splits into docs retrieval, repo mapping, and temporal memory graphs rather than a single RAG bucket.
+3. Eval tooling is converging on CI-friendly regression loops, with promptfoo and OpenAI Evals as the most practical first stops and Inspect AI as the research-grade option.
+
+### Next Focus
+- Compare hook systems across Claude Code, OpenAI Agents SDK, LangGraph, Mastra, and Strands.
+- Compare eval harnesses with a focus on dataset format, scoring, and CI ergonomics.
+- Expand the reference-navigation layer with more repo-map and trace-replay examples if needed.
 
 ## Aggiornamento Corrente - Iterazione 12
 

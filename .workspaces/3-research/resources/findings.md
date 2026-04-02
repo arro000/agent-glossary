@@ -531,6 +531,22 @@
 - **alternatives**: OpenAI Agents SDK, LangGraph, Google ADK, CrewAI, AutoGen
 - **why_include**: Only first-party Anthropic SDK for building production agents. Full Claude Code engine as a programmable library. Subagents, MCP, multi-cloud deployment.
 
+## Claude Code Hooks
+- **macroarea**: Harness / Runtime Scaffold
+- **url**: https://docs.anthropic.com/en/docs/claude-code/hooks-guide
+- **description**: Deterministic lifecycle hooks for Claude Code that can run shell commands, HTTP callbacks, prompt-based checks, or subagent verifications around tool use, compaction, notifications, and config changes. They can block, allow, or annotate actions and are the cleanest place to enforce policy or re-inject context.
+- **popularity**: 9
+- **alternatives**: Claude Code subagents, agent middleware, permission guards, prompt-based validators
+- **why_include**: This is the harness control plane: it turns Claude Code into a programmable outer loop with policy, automation, and context reinjection.
+
+## Claude Code Subagents
+- **macroarea**: Harness / Runtime Scaffold
+- **url**: https://docs.anthropic.com/en/docs/claude-code/subagents
+- **description**: Isolated assistants with their own context windows, tool restrictions, permissions, and optional persistent memory. Built-ins like Explore and Plan keep exploration out of the main thread, and custom subagents can be scoped per project or user.
+- **popularity**: 9
+- **alternatives**: agent teams, worker agents, planner/researcher splits, background tasks
+- **why_include**: Core primitive for context isolation and parallel research without polluting the main conversation.
+
 ---
 
 # Deep Research Agents (Pattern)
@@ -628,6 +644,30 @@
 - **github_stars**: 51.4k
 - **description**: Fetches up-to-date, version-specific library docs and code examples into coding agents. Eliminates hallucinated APIs.
 - **category**: documentation, coding agents
+
+## Promptfoo
+- **macroarea**: Eval Harness
+- **url**: https://github.com/promptfoo/promptfoo
+- **description**: CLI and library for prompt, agent, and RAG evaluation with declarative configs, CI/CD integration, side-by-side model comparisons, and red teaming. Focuses on repeatable regression testing rather than one-off checks.
+- **popularity**: 8
+- **alternatives**: Inspect AI, OpenAI Evals, custom harnesses, LangSmith evals
+- **why_include**: Best practical OSS eval harness for iterating on prompts and agent behavior in CI.
+
+## Inspect AI
+- **macroarea**: Eval Harness
+- **url**: https://github.com/UKGovernmentBEIS/inspect_ai
+- **description**: Python evaluation framework from the UK AI Security Institute with prompt engineering, tool usage, multi-turn dialog, and model-graded evaluations. Ships a large library of pre-built evals and extensible scoring/elicitation support.
+- **popularity**: 7
+- **alternatives**: promptfoo, OpenAI Evals, custom Py evals, HELM
+- **why_include**: Strong research-grade eval harness with many prebuilt tasks and model-graded evaluation support.
+
+## OpenAI Evals
+- **macroarea**: Eval Harness
+- **url**: https://github.com/openai/evals
+- **description**: Open-source eval registry and framework for LLM systems with templates, custom evals, and benchmark management. Useful for private evals and benchmark-driven iteration loops.
+- **popularity**: 8
+- **alternatives**: promptfoo, Inspect AI, custom evals, LangSmith evals
+- **why_include**: Canonical OpenAI eval harness and registry; good reference for benchmark-driven iteration.
 
 ## Playwright MCP
 - **macroarea**: Browser Automation

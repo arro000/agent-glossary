@@ -529,3 +529,55 @@
 - **source**: Joon Sung Park research repo
 - **description**: Research code for the canonical long-horizon social simulation paper.
 - **relevance**: Baseline reference for human-like agent simulation.
+
+---
+
+## Iteration 14 Guides (2026-04-02)
+
+### Claude Code Hooks Guide
+- **url**: https://docs.anthropic.com/en/docs/claude-code/hooks-guide
+- **source**: Anthropic
+- **description**: Step-by-step guide to Notification, PostToolUse, PreToolUse, compaction reinjection, config auditing, and permission automation with hooks. Shows command, HTTP, prompt, and agent hook styles.
+- **relevance**: Best practical entry point for the harness-policy layer around Claude Code.
+
+### Claude Code Subagents
+- **url**: https://docs.anthropic.com/en/docs/claude-code/subagents
+- **source**: Anthropic
+- **description**: Explains built-in and custom subagents, tool restrictions, memory scopes, hooks, and foreground/background execution. Includes patterns for isolation, parallel research, and chaining subagents.
+- **relevance**: Core guide for context isolation and delegation.
+
+### Aider Repo Map
+- **url**: https://aider.chat/docs/repomap.html
+- **source**: Aider
+- **description**: Documents Aider's codebase map and how it uses structure to work in larger repositories.
+- **relevance**: Best reference for codebase-map style navigation.
+
+### Context7 Platform
+- **url**: https://github.com/upstash/context7
+- **source**: Upstash
+- **description**: README for Context7's MCP server and CLI/skills flow. Shows how to fetch up-to-date library docs and use version-specific context.
+- **relevance**: Best guide for reference-aware documentation retrieval.
+
+### Promptfoo Getting Started
+- **url**: https://www.promptfoo.dev/docs/getting-started/
+- **source**: Promptfoo
+- **description**: Quickstart for running evals, comparing models, and iterating locally with declarative configs.
+- **relevance**: Best practical tutorial for eval harness iteration.
+
+### Promptfoo Red Teaming
+- **url**: https://www.promptfoo.dev/docs/red-team/
+- **source**: Promptfoo
+- **description**: Guide for vulnerability scanning and red teaming of prompts, agents, and RAG systems.
+- **relevance**: Strong source for harness hardening workflows.
+
+### Inspect AI README
+- **url**: https://github.com/UKGovernmentBEIS/inspect_ai
+- **source**: UK AI Security Institute
+- **description**: Project README summarizing prompt engineering, tool usage, multi-turn dialogs, model-graded evals, and the prebuilt eval library.
+- **relevance**: Good research-grade eval harness intro.
+
+### OpenAI Evals README
+- **url**: https://github.com/openai/evals
+- **source**: OpenAI
+- **description**: Explains the eval registry, custom evals, benchmark templates, and build/run workflow.
+- **relevance**: Best reference for OpenAI-style benchmark iteration.
