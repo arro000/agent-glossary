@@ -273,3 +273,9 @@
 ### Priorità Media
 3. **Trace-to-eval flywheels** — come trace grading, session replay e dataset extraction si collegano in cicli di regression testing pratici?
 4. **Reference ranking policies** — come Context7, Sourcegraph, Aider repo maps, Graphiti, Zep e OpenAI File Search ordinano, pinzano e citano fonti?
+
+## Iterazione 24 — Da esplorare
+
+### Priorità Media
+1. **PixiJS v8 compact signal chips** — best practices per mantenere leggibili label brevi, helper text e emoji su chip molto piccoli a 2x/3x DPR.
+2. **Interop/discovery iconography** — quale encoding visivo distingue meglio registry, discovery, protocol UI e code-intelligence cues senza aggiungere clutter?

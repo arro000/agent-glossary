@@ -1,8 +1,8 @@
 # Workspace 2 — Improvements & Implementation
 
 ## Stato
-- **Iterazione**: 3
-- **Ultimo aggiornamento**: 2026-04-02 22:00:00
+- **Iterazione**: 4
+- **Ultimo aggiornamento**: 2026-04-02 22:09:37
 - **Stato**: completed
 
 ## Obiettivo
@@ -142,3 +142,9 @@ Analizzare l'implementazione corrente, identificare miglioramenti, e IMPLEMENTAR
 - [x] Allineati i concept del canvas al taxonomy corrente aggiungendo `Session Replay` e `Trace Grading`
 - [x] La bubble selezionata resta evidenziata anche mentre la search filtra gli altri nodi
 - [x] PRD riallineato a iterazione 3 con focus su replay/eval signals e stato attuale della board
+
+## Iterazione 4 (Questa esecuzione) — Completata
+- [x] Signal legend ampliata con cue `INTEROP` e helper piu espliciti per harness/context/refnav/repomap/replay/eval
+- [x] Tooltip hover aggiornato per mostrare anche il signal sintetico del nodo senza introdurre nuovi overlay
+- [x] Signal matching reso piu robusto per harness, context, retrieval, repo map, replay, eval e protocol/discovery pattern
+- [x] PRD workspace 2 riallineato alla nuova iterazione e stato corrente aggiornato a `completed`

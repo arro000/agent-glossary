@@ -46,19 +46,20 @@ const EMOJI_FONT_FAMILY = '"Inter", "Apple Color Emoji", "Segoe UI Emoji", "Noto
 const MOBILE_BREAKPOINT = 768;
 
 interface SignalInfo {
-  key: 'harness' | 'eval' | 'replay' | 'context' | 'refnav' | 'repomap';
+  key: 'harness' | 'eval' | 'replay' | 'context' | 'refnav' | 'repomap' | 'interop';
   label: string;
   color: string;
   helper: string;
 }
 
 const SIGNAL_LEGEND: SignalInfo[] = [
-  { key: 'harness', label: 'HARNESS', color: '#0284c7', helper: 'runtime scaffold' },
-  { key: 'context', label: 'CONTEXT', color: '#2563eb', helper: 'state window + graph' },
-  { key: 'refnav', label: 'REF NAV', color: '#0f766e', helper: 'source traversal' },
-  { key: 'repomap', label: 'REPO MAP', color: '#0f766e', helper: 'codebase navigation' },
-  { key: 'replay', label: 'REPLAY', color: '#7c3aed', helper: 'durable trace loops' },
-  { key: 'eval', label: 'EVAL', color: '#7c3aed', helper: 'regression harness' },
+  { key: 'harness', label: 'HARNESS', color: '#0284c7', helper: 'hooks + sessions' },
+  { key: 'context', label: 'CONTEXT', color: '#2563eb', helper: 'window + graph' },
+  { key: 'refnav', label: 'REF NAV', color: '#0f766e', helper: 'citations + search' },
+  { key: 'repomap', label: 'REPO MAP', color: '#0891b2', helper: 'code intelligence' },
+  { key: 'replay', label: 'REPLAY', color: '#7c3aed', helper: 'session + trace' },
+  { key: 'eval', label: 'EVAL', color: '#c026d3', helper: 'grading loop' },
+  { key: 'interop', label: 'INTEROP', color: '#ea580c', helper: 'registry + UI' },
 ];
 
 function isCompactViewport() {
@@ -343,17 +344,44 @@ function getBubbleColumns(count: number): number {
   return 6;
 }
 
+const SIGNAL_RULES: Array<{ signal: SignalInfo; matchers: RegExp[] }> = [
+  {
+    signal: SIGNAL_LEGEND[0],
+    matchers: [
+      /harness|runtime scaffold|hook system|prompt assembly|durable execution|session memory|temporal memory|tiered memory/i,
+    ],
+  },
+  {
+    signal: SIGNAL_LEGEND[1],
+    matchers: [/context graph|context window|context compression|context/i],
+  },
+  {
+    signal: SIGNAL_LEGEND[2],
+    matchers: [/reference navigation|retrieval|file search|sourcegraph code search/i],
+  },
+  {
+    signal: SIGNAL_LEGEND[3],
+    matchers: [/repo map|codebase map|aider repo map|code search|sourcegraph/i],
+  },
+  {
+    signal: SIGNAL_LEGEND[4],
+    matchers: [/session replay|trace replay|logging & tracing|openai agents sdk tracing/i],
+  },
+  {
+    signal: SIGNAL_LEGEND[5],
+    matchers: [/eval harness|trace grading|evaluation & benchmarks|data-centric agent evaluation/i],
+  },
+  {
+    signal: SIGNAL_LEGEND[6],
+    matchers: [/mcp apps|agent registry|discovery|ag-ui|a2ui|\bmcp\b|\ba2a\b|protocol/i],
+  },
+];
+
 function getConceptSignal(conceptName: string): SignalInfo | null {
-  const key = conceptName.replace(/\n/g, ' ').toLowerCase();
-  if (key.includes('harness / runtime scaffold')) return SIGNAL_LEGEND[0];
-  if (key.includes('eval harness')) return SIGNAL_LEGEND[5];
-  if (key.includes('durable execution')) return SIGNAL_LEGEND[4];
-  if (key.includes('session replay')) return SIGNAL_LEGEND[4];
-  if (key.includes('trace grading')) return SIGNAL_LEGEND[5];
-  if (key.includes('context window')) return SIGNAL_LEGEND[1];
-  if (key.includes('context graph')) return SIGNAL_LEGEND[1];
-  if (key.includes('reference navigation')) return SIGNAL_LEGEND[2];
-  if (key.includes('repo map') || key.includes('codebase map')) return SIGNAL_LEGEND[3];
+  const key = conceptName.replace(/\n/g, ' ');
+  for (const rule of SIGNAL_RULES) {
+    if (rule.matchers.some((matcher) => matcher.test(key))) return rule.signal;
+  }
   return null;
 }
 
@@ -1116,13 +1144,15 @@ function createSignalLegend(compact = false): Container {
 
   const padX = 10;
   const padY = 8;
-  const chipW = 96;
+  const chipW = 102;
   const chipH = 20;
   const chipGap = 8;
   const headerH = 16;
   const items = SIGNAL_LEGEND;
-  const w = padX * 2 + chipW * 2 + chipGap;
-  const h = padY * 2 + headerH + chipH * 3 + chipGap * 2;
+  const cols = 2;
+  const rows = Math.ceil(items.length / cols);
+  const w = padX * 2 + chipW * cols + chipGap * (cols - 1);
+  const h = padY * 2 + headerH + chipH * rows + chipGap * (rows - 1);
 
   const bg = new Graphics();
   bg.roundRect(0, 0, w, h, 12);
@@ -1148,8 +1178,8 @@ function createSignalLegend(compact = false): Container {
 
   for (let i = 0; i < items.length; i++) {
     const item = items[i];
-    const col = i % 2;
-    const row = Math.floor(i / 2);
+    const col = i % cols;
+    const row = Math.floor(i / cols);
     const x = padX + col * (chipW + chipGap);
     const y = padY + headerH + row * (chipH + chipGap);
 
@@ -1549,7 +1579,7 @@ export default function Whiteboard() {
             state.targetScale = 1.06;
             state.weightRing.alpha = 1;
             refreshGlow('hover');
-            showTooltip(`${emoji} ${displayLabel}`, concept.category, referenceCount, e.globalX, e.globalY);
+            showTooltip(`${emoji} ${displayLabel}`, concept.category, referenceCount, conceptSignal?.label ?? null, e.globalX, e.globalY);
           });
           bubbleContainer.on('pointerout', () => {
             state.targetScale = 1;
@@ -1714,13 +1744,13 @@ export default function Whiteboard() {
 
       app.stage.addChild(tooltip);
 
-      function showTooltip(name: string, category: string, referenceCount: number, x: number, y: number) {
+      function showTooltip(name: string, category: string, referenceCount: number, signalLabel: string | null, x: number, y: number) {
         if (panel || compactMode) return;
         const cleanName = name.replace(/\n/g, ' ');
         tooltipText.text = cleanName;
         tooltipText.x = 10;
         tooltipText.y = 6;
-        tooltipSub.text = `${category} · ${referenceCount} refs`;
+        tooltipSub.text = signalLabel ? `${category} · ${referenceCount} refs · ${signalLabel}` : `${category} · ${referenceCount} refs`;
         tooltipSub.x = 10;
         tooltipSub.y = 22;
         tooltipBg.clear();

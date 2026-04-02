@@ -1,4 +1,4 @@
-# PRD — Iterazione 3
+# PRD — Iterazione 4
 
 ## Obiettivo
 Raffinare la whiteboard per rappresentare il glossario come una macchina agentica: macroaree, harness, memoria, contesto, tools, skills, navigazione tra riferimenti, observability e discovery.
@@ -16,6 +16,7 @@ Raffinare la whiteboard per rappresentare il glossario come una macchina agentic
 - [x] Cache dei metadati derivati delle bubble (search index, display label, refs) per search e interazioni piu fluide
 - [x] Stato selezione persistente della bubble aperta per feedback visivo piu chiaro senza aggiungere clutter
 - [x] Raffinamento visuale dell'attuale iterazione: header macroarea piu leggibili, bubble equal-size piu bilanciate, emoji piu riconoscibili e project weight piu chiaro
+- [x] Signal legend ampliata con cue `INTEROP` per discovery/protocol UI, piu tooltip hover con segnale sintetico
 - [x] Miglioramento feedback interaction: tooltip e selezione restano leggibili su viewport piccole senza introdurre overlay HTML
 - [x] Conservato il vincolo full-canvas PixiJS v8 vanilla con font Inter e layout responsive
 - [x] Allineamento finale al dataset `concepts.md`: `Context Graph`, `Durable Execution`, `Session Replay` e `Trace Grading` visibili, per un totale di 101 subsection bubbles coerenti con la taxonomy corrente
@@ -36,6 +37,7 @@ Vedi `context.md` per le specifiche complete.
 - Le macroaree devono rimanere pastello e distinte, ma senza competere con la leggibilita delle bubble
 - Le emoji devono restare riconoscibili anche su bubble compatte e ad alto DPR
 - Context graph, reference navigation, durable execution, session replay e trace grading devono avere segnali visivi distintivi ma non invasivi
+- Discovery/protocol UI deve avere un cue dedicato senza aumentare la densita delle bubble
 
 ## Criticita
 - Performance con molte bolle: usare Container per culling e redraw minimo della griglia
