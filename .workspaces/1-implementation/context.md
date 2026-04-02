@@ -1,7 +1,7 @@
 # Workspace 1 — Implementation
 
 ## Stato
-- **Iterazione**: 1
+- **Iterazione**: 2
 - **Ultimo aggiornamento**: 2026-04-02
 - **Stato**: completed
 
@@ -24,65 +24,67 @@ Una whiteboard quadrettata interattiva che mostra un glossario visuale dell'ecos
 - **Nessun collegamento**: Le bolle sono posizionate spazialmente, zero linee tra loro
 
 ## Macroaree (iniziali)
-1. **Memory & State** — Persistent memory, session memory, vector DB, context window, token management
-2. **Tools & Actions** — Code execution, terminal, file I/O, web search, browser, API calls, MCP
-3. **Prompt Engineering** — System prompts, few-shot, chain-of-thought, structured output, prompt templates
-4. **Orchestration** — Agent loops, multi-agent, planning, task decomposition, tool routing
-5. **Inference & Models** — LLM providers, model selection, context length, quantization, streaming
-6. **Skills & Plugins** — Skill systems, plugin architecture, reusable workflows, custom tools
-7. **Observability** — Logging, tracing, cost tracking, eval, benchmarks, debugging
-8. **Infrastructure** — Docker, GPU cloud, serverless, CI/CD, deployment, environments
+1. **Memory & State** — 8 concetti: Persistent Memory, Session Memory, Vector Database, Context Window Management, Temporal Memory, Tiered Memory, Procedural Memory, Token Budget
+2. **Tools & Actions** — 8 concetti: Code Execution Sandbox, Terminal/Shell Access, File I/O, Web Search, Browser Automation, MCP, A2A, API Client
+3. **Prompt Engineering** — 6 concetti: System Prompt, Few-Shot Examples, Chain-of-Thought, Structured Output, Prompt Caching, Context Compression
+4. **Orchestration** — 16 concetti: Agent Loop, Prompt Chaining, Routing, Parallelization, Orchestrator-Workers, Evaluator-Optimizer, Handoffs/Swarm, GraphFlow/State Machine, Multi-Agent, Task Planning, Tool Routing, Subagent Delegation, HITL, Async Background, ACI, Cron/Scheduling
+5. **Inference & Models** — 7 concetti: LLM Providers, Model Selection, Context Length, Quantization, Streaming, Embeddings, Reasoning Models
+6. **Skills & Plugins** — 4 concetti: Skill System, Custom Tool Creation, Workflow Automation, PRD Generation
+7. **Observability** — 7 concetti: Logging & Tracing, Observability Platform, Cost Tracking, Evaluation & Benchmarks, Debugging Tools, Safety & Guardrails, Agent Governance
+8. **Infrastructure** — 6 concetti: Docker & Containers, GPU Cloud, Serverless, CI/CD, Git Integration, Environment Management
+
+**Totale: 62 concetti** (era 48 nell'iterazione 1)
 
 ## Dati
 I concetti/strumenti per ogni macroarea stanno nel file `resources/concepts.md`.
-Dopo ogni iterazione, aggiorna le dimensioni/popolarità delle bolle in base ai dati trovati.
+Tutti i concetti dal database sono ora rappresentati nella whiteboard.
 
 ## Dettagli Implementativi
 
 ### PixiJS Setup
-- Usa PixiJS v8 vanilla (NON @pixi/react). Crea un canvas e mountalo via useRef/useEffect.
-- Tutto il rendering è dentro PixiJS — zero HTML overlay per i contenuti.
-- Testo con `PIXI.Text` usando font Inter (caricato via CSS, PixiJS lo rileva automaticamente).
+- PixiJS v8 vanilla (NON @pixi/react). Canvas montato via useRef/useEffect.
+- Tutto il rendering in PixiJS — zero HTML overlay.
+- Testo con `PIXI.Text` usando font Inter (caricato via CSS, await document.fonts.ready).
 
 ### Griglia
 - Linee grigio chiaro (#e5e5e5) su sfondo bianco (#fafafa)
-- Spacing: 40px
-- La griglia si estende oltre il viewport (per supportare zoom/pan)
-- Estensione: -2000 a 6000px in entrambe le direzioni
+- Spacing: 40px, dinamica con viewport culling
+- Zoom/pan attivi
 
 ### Macroaree
-- Rettangoli 720x360px con bordo pastello e angoli arrotondati (12px)
-- Etichetta in alto a sinistra con nome macroarea (font bold, colore tema)
-- Sfondo semi-trasparente del colore della macroarea (alpha 0.55)
-- Layout: griglia 2x4 (2 colonne, 4 righe) con gap 80px orizzontale, 50px verticale
+- Rettangoli 720x460px (aumentato da 360) con bordo pastello e angoli arrotondati (12px)
+- Etichetta macroarea + contatore concetti in alto a sinistra
+- Sfondo semi-trasparente (alpha 0.55)
+- Layout: griglia 2x4 con gap 80px orizzontale, 60px verticale
 - Ombra sottile per profondità
 
 ### Bolle
 - Cerchi con raggio proporzionale alla popolarità (min 24px per pop 6, max 62px per pop 10)
-- Colore pastello sfumato della macroarea genitore (bordo + fill)
-- Testo centrato dentro (nome strumento/concetto, word wrap)
-- Hover: glow a due livelli + scale 1.06x
-- Click: apre detail panel
+- **Adaptive scaling**: per macroaree dense (es. Orchestration con 16 items), le bolle vengono scalate per adattarsi allo spazio disponibile
+- Layout automatico: 4-6 colonne a seconda del numero di concetti
+- Colore pastello sfumato della macroarea genitore
+- Hover: glow a due livelli + scale 1.06x (animazione smooth con lerp 0.18)
+- Click: apre detail panel con fade-in
 
 ### Zoom & Pan
 - Scroll wheel = zoom (centrato sul cursore, fattore 0.92/1.08)
-- Drag = pan della whiteboard (solo su sfondo, non su bolle)
+- Drag = pan (solo su sfondo, non su bolle)
 - Zoom range: 0.2x - 3x
-- Cursor: grab/grabbing
+- **Zoom buttons**: +/−/fit (angolo in basso a sinistra) con indicatore percentuale zoom
+- **Keyboard shortcuts**: +/- zoom, 0 zoom-to-fit, ESC chiudi panel
+- **Initial zoom-to-fit**: la whiteboard si adatta automaticamente al viewport al caricamento
 
-### Dettagli Panel (PixiJS nativo)
-Quando clicchi una bolla, appare un panel PixiJS (non HTML) con:
-- Nome (titolo bold 18px)
-- Badge macroarea con colore tema
-- Descrizione (2-3 righe, word wrap)
-- Barra popolarità (label + barra progressiva colorata)
-- Categoria
-- Alternatives (elenco strumenti simili)
-- Pulsante chiudi (✕) + backdrop click + ESC
-- Dimensione: 400x310px, centrato sullo schermo
+### Dettagli Panel
+- Fade-in su apertura, **fade-out su chiusura** (animazione alpha 0↔1)
+- Nome, badge macroarea, descrizione, barra popolarità, categoria, alternative
+- Chiusura: pulsante ✕, click backdrop, o tasto ESC
+- Dimensione: 400x310px, centrato
+
+### Minimap
+- Angolo in basso a destra (180x110px)
+- Click-to-navigate sulla minimap
 
 ## Iterazione 1 — Completata
-Tutte le feature PRD implementate:
 - [x] Setup PixiJS Application con griglia quadrettata
 - [x] Rendering 8 macroaree con sfondo pastello
 - [x] Rendering bolle dentro macroaree con dimensione proporzionale
@@ -90,6 +92,21 @@ Tutte le feature PRD implementate:
 - [x] Hover effect sulle bolle (glow + scale)
 - [x] Click per mostrare dettagli (panel con nome, descrizione, macroarea, popolarità, categoria, alternative)
 - [x] Build e lint passano senza errori
+
+## Iterazione 2 — Completata
+- [x] **16 nuovi concetti** aggiunti da concepts.md (da 48 a 62 totali)
+  - Memory & State: +Temporal Memory, +Tiered Memory, +Procedural Memory
+  - Tools & Actions: +A2A
+  - Orchestration: +Prompt Chaining, +Routing, +Parallelization, +Orchestrator-Workers, +Evaluator-Optimizer, +Handoffs/Swarm, +GraphFlow/State Machine, +HITL, +Async Background, +ACI
+  - Observability: +Observability Platform, +Agent Governance
+- [x] **AREA_HEIGHT aumentato** da 360 a 460px per accomodare più bolle
+- [x] **Adaptive layout**: le bolle vengono scalate automaticamente per macroaree dense (6 colonne per Orchestration)
+- [x] **Contatore concetti** per ogni macroarea (etichetta sotto il nome)
+- [x] **Panel fade-out** animazione su chiusura (alpha 1→0)
+- [x] **Zoom buttons** (+/−/fit) con indicatore percentuale zoom
+- [x] **Keyboard shortcuts**: +/- zoom, 0 zoom-to-fit
+- [x] **Initial zoom-to-fit** al caricamento
+- [x] Build e lint passano senza errori/warnings
 
 ## File Principali
 - `src/components/whiteboard.tsx` — Componente principale con tutta la logica PixiJS

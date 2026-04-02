@@ -8,6 +8,7 @@ import {
   Container,
   TextStyle,
   Rectangle,
+  Circle,
 } from 'pixi.js';
 
 interface ConceptData {
@@ -30,9 +31,9 @@ const GRID_SIZE = 40;
 const GRID_COLOR = '#e5e5e5';
 const BG_COLOR = '#fafafa';
 const AREA_WIDTH = 720;
-const AREA_HEIGHT = 360;
+const AREA_HEIGHT = 460;
 const COL_GAP = 80;
-const ROW_GAP = 50;
+const ROW_GAP = 60;
 const START_X = 80;
 const START_Y = 60;
 const COL_STEP = AREA_WIDTH + COL_GAP;
@@ -47,11 +48,14 @@ const MACROAREAS: MacroareaConfig[] = [
     bg: '#DBEAFE',
     border: '#93C5FD',
     concepts: [
-      { name: 'Persistent Memory', popularity: 9, description: 'Memory that persists across different agent sessions, enabling long-term knowledge retention.', alternatives: 'Vector DB (semantic), File-based (key-value), Context injection', category: 'Storage' },
-      { name: 'Session Memory', popularity: 10, description: 'Current conversational context memory, maintaining the flow of interaction within a session.', alternatives: 'Context window, Summary compression, Sliding window', category: 'Runtime' },
-      { name: 'Vector Database', popularity: 8, description: 'Database for semantic search on embeddings, powering RAG (Retrieval Augmented Generation).', alternatives: 'ChromaDB, Pinecone, Weaviate, Qdrant, Milvus, FAISS', category: 'Storage' },
-      { name: 'Context Window\nManagement', popularity: 10, description: 'Managing the token limit of the model to fit all relevant information.', alternatives: 'Truncation, Summarization, Chunking, Hierarchical context', category: 'Runtime' },
-      { name: 'Token Budget', popularity: 7, description: 'Dynamic allocation of tokens across system prompt, user input, and tool output.', alternatives: 'Fixed budget, Priority-based, Adaptive', category: 'Optimization' },
+      { name: 'Persistent\nMemory', popularity: 9, description: 'Memoria che sopravvive tra sessioni diverse dell\'agente', alternatives: 'Vector DB (semantic), File-based (key-value), Context injection', category: 'Storage' },
+      { name: 'Session\nMemory', popularity: 10, description: 'Memoria del contesto conversazionale corrente', alternatives: 'Context window, Summary compression, Sliding window', category: 'Runtime' },
+      { name: 'Vector\nDatabase', popularity: 8, description: 'DB per ricerca semantica su embeddings (RAG)', alternatives: 'ChromaDB, Pinecone, Weaviate, Qdrant, Milvus, FAISS', category: 'Storage' },
+      { name: 'Context Window\nManagement', popularity: 10, description: 'Gestione del limite di token del modello', alternatives: 'Truncation, Summarization, Chunking, Hierarchical context', category: 'Runtime' },
+      { name: 'Temporal\nMemory', popularity: 7, description: 'Memoria che traccia come i fatti cambiano nel tempo con finestre di validità', alternatives: 'Graphiti, Zep, knowledge graphs con validità temporale', category: 'Storage' },
+      { name: 'Tiered\nMemory', popularity: 7, description: 'Architettura a livelli: core memory, recall memory, archive', alternatives: 'Letta (MemGPT), custom tiered systems', category: 'Architecture' },
+      { name: 'Procedural\nMemory', popularity: 6, description: 'Memoria che memorizza workflow e conoscenze procedurali', alternatives: 'Mem0 procedural memory, Letta skills, workflow templates', category: 'Storage' },
+      { name: 'Token\nBudget', popularity: 7, description: 'Allocazione dinamica di token per system/user/tool output', alternatives: 'Fixed budget, Priority-based, Adaptive', category: 'Optimization' },
     ],
   },
   {
@@ -60,13 +64,14 @@ const MACROAREAS: MacroareaConfig[] = [
     bg: '#D1FAE5',
     border: '#6EE7B7',
     concepts: [
-      { name: 'Code Execution\nSandbox', popularity: 9, description: 'Execute code in isolated environments (Python, Node, etc.) for safe testing.', alternatives: 'E2B, Modal, Docker sandbox, Jupyter kernel', category: 'Execution' },
-      { name: 'Terminal/Shell\nAccess', popularity: 10, description: 'Direct access to the system shell for running arbitrary commands.', alternatives: 'Direct shell, PTY mode, SSH, Docker exec', category: 'System' },
-      { name: 'File I/O', popularity: 10, description: 'Read, write, and search files in the project directory.', alternatives: 'read/write/search/patch tools', category: 'System' },
-      { name: 'Web Search', popularity: 9, description: 'Search the internet for up-to-date information and documentation.', alternatives: 'Tavily, SerpAPI, Brave Search, Bing API, Firecrawl', category: 'Information' },
-      { name: 'Browser\nAutomation', popularity: 8, description: 'Control a browser to interact with websites, fill forms, and extract data.', alternatives: 'Playwright, Puppeteer, Browserbase, Selenium', category: 'Interaction' },
-      { name: 'MCP', popularity: 9, description: 'Model Context Protocol \u2014 standard protocol for connecting external tools to the agent.', alternatives: 'Function calling, REST APIs, gRPC', category: 'Integration' },
-      { name: 'API Client', popularity: 8, description: 'HTTP calls to external APIs for integrating third-party services.', alternatives: 'fetch, axios, openapi clients, SDK wrappers', category: 'Integration' },
+      { name: 'Code Execution\nSandbox', popularity: 9, description: 'Esecuzione codice in ambiente isolato (Python, Node, etc.)', alternatives: 'E2B, Daytona, Modal, Docker sandbox, Jupyter kernel, StackBlitz, Fly.io Machines', category: 'Execution' },
+      { name: 'Terminal/Shell\nAccess', popularity: 10, description: 'Accesso alla shell del sistema per comandi arbitrari', alternatives: 'Direct shell, PTY mode, SSH, Docker exec', category: 'System' },
+      { name: 'File I/O', popularity: 10, description: 'Lettura, scrittura, ricerca nei file del progetto', alternatives: 'read/write/search/patch tools', category: 'System' },
+      { name: 'Web Search', popularity: 9, description: 'Ricerca su internet per informazioni aggiornate', alternatives: 'Tavily, SerpAPI, Brave Search, Bing API, Firecrawl', category: 'Information' },
+      { name: 'Browser\nAutomation', popularity: 8, description: 'Controllo di un browser per interagire con siti web', alternatives: 'Playwright, Puppeteer, Browserbase, Selenium', category: 'Interaction' },
+      { name: 'MCP', popularity: 9, description: 'Model Context Protocol — protocollo standard per tool esterni (Linux Foundation)', alternatives: 'REST APIs, gRPC, OpenAI function calling, A2A', category: 'Integration' },
+      { name: 'A2A', popularity: 9, description: 'Agent-to-Agent Protocol — comunicazione tra agenti AI indipendenti (Linux Foundation)', alternatives: 'MCP (complementare), custom gRPC/REST, LangGraph inter-agent channels', category: 'Integration' },
+      { name: 'API Client', popularity: 8, description: 'Chiamate HTTP a API esterne per integrare servizi', alternatives: 'fetch, axios, openapi clients, SDK wrappers', category: 'Integration' },
     ],
   },
   {
@@ -75,12 +80,12 @@ const MACROAREAS: MacroareaConfig[] = [
     bg: '#EDE9FE',
     border: '#C4B5FD',
     concepts: [
-      { name: 'System Prompt', popularity: 10, description: "Base instructions that define the agent's personality, role, and behavior.", alternatives: 'Static system prompt, Dynamic assembly, Prompt templates', category: 'Core' },
-      { name: 'Few-Shot\nExamples', popularity: 8, description: "Input/output examples to guide the model's response format and style.", alternatives: 'In-context learning, Dynamic few-shot, Retrieved examples', category: 'Technique' },
-      { name: 'Chain-of-Thought', popularity: 9, description: 'Guide the model to reason step by step for complex problems.', alternatives: 'CoT prompting, Tree-of-Thought, Step-by-step, ReAct', category: 'Technique' },
-      { name: 'Structured\nOutput', popularity: 9, description: 'Force the model to produce output in a specific format (JSON, XML, etc.).', alternatives: 'JSON mode, Function calling, Outlines, Guidance', category: 'Technique' },
-      { name: 'Prompt Caching', popularity: 7, description: 'Cache static parts of the prompt to reduce cost and latency.', alternatives: 'Anthropic prompt caching, Semantic caching, KV cache', category: 'Optimization' },
-      { name: 'Context\nCompression', popularity: 7, description: "Compress context to fit within the model's context window.", alternatives: 'Summarization, Token merging, Key info extraction', category: 'Optimization' },
+      { name: 'System\nPrompt', popularity: 10, description: 'Istruzioni di base che definiscono personalità e comportamento dell\'agente', alternatives: 'Static system prompt, Dynamic assembly, Prompt templates', category: 'Core' },
+      { name: 'Few-Shot\nExamples', popularity: 8, description: 'Esempi di input/output per guidare il modello', alternatives: 'In-context learning, Dynamic few-shot, Retrieved examples', category: 'Technique' },
+      { name: 'Chain-of-\nThought', popularity: 9, description: 'Guidare il modello a ragionare passo per passo', alternatives: 'CoT prompting, Tree-of-Thought, Step-by-step, RepAct', category: 'Technique' },
+      { name: 'Structured\nOutput', popularity: 9, description: 'Forzare il modello a produrre output in formato specifico (JSON, etc.)', alternatives: 'JSON mode, Function calling, Outlines, Guidance', category: 'Technique' },
+      { name: 'Prompt\nCaching', popularity: 7, description: 'Cachare parti statiche del prompt per ridurre costi e latenza', alternatives: 'Anthropic prompt caching, Semantic caching, KV cache', category: 'Optimization' },
+      { name: 'Context\nCompression', popularity: 7, description: 'Comprimere il contesto per rientrare nella finestra di token', alternatives: 'Summarization, Token merging, Key info extraction', category: 'Optimization' },
     ],
   },
   {
@@ -89,12 +94,22 @@ const MACROAREAS: MacroareaConfig[] = [
     bg: '#FFEDD5',
     border: '#FDBA74',
     concepts: [
-      { name: 'Agent Loop', popularity: 10, description: 'The think \u2192 act \u2192 observe cycle that is the foundation of every agent.', alternatives: 'ReAct, Plan-and-Execute, Function calling loop', category: 'Core' },
-      { name: 'Multi-Agent', popularity: 8, description: 'Multiple agents collaborating or competing to complete a task.', alternatives: 'CrewAI, AutoGen, LangGraph, Swarm', category: 'Pattern' },
-      { name: 'Task Planning', popularity: 8, description: 'Decompose a goal into executable sub-tasks with dependencies.', alternatives: 'Plan-and-Execute, Hierarchical planning, Reflexion', category: 'Strategy' },
-      { name: 'Tool Routing', popularity: 8, description: 'Select the right tool based on the current context and task.', alternatives: 'LLM-based routing, Rule-based, Semantic matching', category: 'Strategy' },
-      { name: 'Subagent\nDelegation', popularity: 7, description: 'Delegate sub-tasks to isolated secondary agents for parallel work.', alternatives: 'Claude Code, Codex CLI, OpenCode, Subprocess', category: 'Pattern' },
-      { name: 'Cron/Scheduling', popularity: 6, description: 'Execute agent tasks on a scheduled basis (periodic or cron-based).', alternatives: 'APScheduler, Cron expressions, Event-driven', category: 'Automation' },
+      { name: 'Agent\nLoop', popularity: 10, description: 'Ciclo pensa→azione→osserva alla base di ogni agente', alternatives: 'RepAct, Plan-and-Execute, Function calling loop', category: 'Core' },
+      { name: 'Prompt\nChaining', popularity: 10, description: 'Decomposizione sequenziale dove ogni chiamata LLM processa l\'output della precedente', alternatives: 'Sequential Workflow (AutoGen), Sequential Process (CrewAI), LangGraph chain', category: 'Workflow' },
+      { name: 'Routing', popularity: 9, description: 'Classifica l\'input e lo dirige a un processo downstream specializzato', alternatives: 'Selector Group Chat (AutoGen), conditional branching (LangGraph), tool routing', category: 'Workflow' },
+      { name: 'Parallel\nization', popularity: 8, description: 'Sectioning o Voting: scomporre in sotto-task paralleli o eseguire più volte', alternatives: 'Fan-out/fan-in (LangGraph), Concurrent Agents (AutoGen)', category: 'Workflow' },
+      { name: 'Orchestrator\nWorkers', popularity: 9, description: 'LLM centrale decompongono task e delega a worker, poi sintetizza risultati', alternatives: 'Hierarchical Process (CrewAI), Magentic-One (AutoGen), LangGraph subgraphs', category: 'Workflow' },
+      { name: 'Evaluator\nOptimizer', popularity: 8, description: 'Un LLM genera output mentre un altro valuta e fornisce feedback in un loop', alternatives: 'Multi-Agent Debate (AutoGen), Reflection pattern, code review agents', category: 'Workflow' },
+      { name: 'Handoffs /\nSwarm', popularity: 9, description: 'Agenti trasferiscono controllo ad altri agenti tramite function returns', alternatives: 'AutoGen Swarm, LangGraph edge transitions, A2A task delegation', category: 'Coordination' },
+      { name: 'GraphFlow /\nState Machine', popularity: 9, description: 'Agenti e tools come nodi in un grafo diretto con stato e routing condizionale', alternatives: 'Temporal workflows, Prefect DAGs, Step Functions', category: 'Orchestration' },
+      { name: 'Multi-\nAgent', popularity: 8, description: 'Più agenti che collaborano o competono su un task', alternatives: 'CrewAI, AutoGen, LangGraph, Swarm', category: 'Pattern' },
+      { name: 'Task\nPlanning', popularity: 8, description: 'Decomporre un obiettivo in sotto-task eseguibili', alternatives: 'Plan-and-Execute, Hierarchical planning, Reflexion', category: 'Strategy' },
+      { name: 'Tool\nRouting', popularity: 8, description: 'Selezionare il tool giusto in base al contesto', alternatives: 'LLM-based routing, Rule-based, Semantic matching', category: 'Strategy' },
+      { name: 'Subagent\nDelegation', popularity: 7, description: 'Delegare sotto-task a agenti secondari isolati', alternatives: 'Claude Code, Codex CLI, OpenCode, Subprocess', category: 'Pattern' },
+      { name: 'HITL', popularity: 8, description: 'Pattern dove l\'agente richiede approvazione umana prima di azioni ad alto rischio', alternatives: 'OpenAI Agents SDK approval flow, HumanLayer, CAMEL Framework, Permit.io', category: 'Pattern' },
+      { name: 'Async\nBackground', popularity: 7, description: 'Agenti che lavorano in cloud VM producendo risultati in modo asincrono', alternatives: 'Jules (Google), OpenAI Codex, Devin, GitHub Copilot Agent', category: 'Pattern' },
+      { name: 'ACI', popularity: 7, description: 'Agent-Computer Interface — design dei tool per agenti come HCI per umani', alternatives: 'Function calling best practices, tool design guides', category: 'Methodology' },
+      { name: 'Cron /\nScheduling', popularity: 6, description: 'Eseguire task agentici in modo programmato', alternatives: 'APScheduler, Cron expressions, Event-driven', category: 'Automation' },
     ],
   },
   {
@@ -103,13 +118,13 @@ const MACROAREAS: MacroareaConfig[] = [
     bg: '#FEE2E2',
     border: '#FCA5A5',
     concepts: [
-      { name: 'LLM Providers', popularity: 10, description: 'Providers of large language models (OpenAI, Anthropic, Google, etc.).', alternatives: 'OpenRouter, Together AI, Fireworks, Groq, DeepInfra', category: 'Infrastructure' },
-      { name: 'Model Selection', popularity: 9, description: 'Choose the right model for each task based on cost, quality, and speed.', alternatives: 'Smart routing, Cost optimization, Quality/performance tradeoff', category: 'Strategy' },
-      { name: 'Context Length', popularity: 8, description: "The model's context window size, ranging from 4k to 1M+ tokens.", alternatives: 'Extended context, Sliding window, Hierarchical memory', category: 'Constraint' },
-      { name: 'Quantization', popularity: 7, description: 'Reduce model size for local deployment (GGUF, GPTQ, AWQ formats).', alternatives: 'GGUF/llama.cpp, vLLM, bitsandbytes, EXL2', category: 'Optimization' },
-      { name: 'Streaming', popularity: 9, description: 'Real-time token-by-token output for responsive user experience.', alternatives: 'SSE, WebSocket, Server-Sent Events', category: 'UX' },
-      { name: 'Embeddings', popularity: 8, description: 'Vector representations of text for semantic search and similarity.', alternatives: 'OpenAI ada-002, Cohere, BGE, Nomic, Jina', category: 'Representation' },
-      { name: 'Reasoning\nModels', popularity: 9, description: 'Models with extended reasoning capabilities (o1, o3, DeepSeek-R1).', alternatives: 'OpenAI o1/o3, DeepSeek-R1, QwQ, Claude thinking', category: 'Architecture' },
+      { name: 'LLM\nProviders', popularity: 10, description: 'Fornitori di modelli LLM (OpenAI, Anthropic, Google, etc.)', alternatives: 'OpenRouter, Together AI, Fireworks, Groq, DeepInfra', category: 'Infrastructure' },
+      { name: 'Model\nSelection', popularity: 9, description: 'Scegliere il modello giusto per il task', alternatives: 'Smart routing, Cost optimization, Quality/performance tradeoff', category: 'Strategy' },
+      { name: 'Context\nLength', popularity: 8, description: 'Finestra di contesto del modello (4k-1M+ tokens)', alternatives: 'Extended context, Sliding window, Hierarchical memory', category: 'Constraint' },
+      { name: 'Quantization', popularity: 7, description: 'Ridurre dimensione del modello (GGUF, GPTQ, AWQ)', alternatives: 'GGUF/llama.cpp, vLLM, bitsandbytes, EXL2', category: 'Optimization' },
+      { name: 'Streaming', popularity: 9, description: 'Output in tempo reale token per token', alternatives: 'SSE, WebSocket, Server-Sent Events', category: 'UX' },
+      { name: 'Embeddings', popularity: 8, description: 'Rappresentazioni vettoriali del testo per ricerca semantica', alternatives: 'OpenAI ada-002, Cohere, BGE, Nomic, Jina', category: 'Representation' },
+      { name: 'Reasoning\nModels', popularity: 9, description: 'Modelli con capacità di ragionamento esteso (o1, o3, DeepSeek-R1)', alternatives: 'OpenAI o1/o3, DeepSeek-R1, QwQ, Claude thinking', category: 'Architecture' },
     ],
   },
   {
@@ -118,10 +133,10 @@ const MACROAREAS: MacroareaConfig[] = [
     bg: '#CCFBF1',
     border: '#5EEAD4',
     concepts: [
-      { name: 'Skill System', popularity: 7, description: 'System of reusable skills/capabilities that extend agent functionality.', alternatives: 'Plugin architecture, Reusable prompts, Workflow templates', category: 'Architecture' },
-      { name: 'Custom Tool\nCreation', popularity: 8, description: 'Allow users or agents to create new tools and integrate them.', alternatives: 'MCP servers, Function definitions, Script wrappers', category: 'Extensibility' },
-      { name: 'Workflow\nAutomation', popularity: 7, description: 'Predefined chains of actions for recurring automated tasks.', alternatives: 'n8n, Zapier, Custom pipelines, DAG-based', category: 'Automation' },
-      { name: 'PRD Generation', popularity: 6, description: 'Generate requirements documents from textual specifications.', alternatives: 'AI-assisted specs, Template-based, Manual + AI review', category: 'Planning' },
+      { name: 'Skill\nSystem', popularity: 7, description: 'Sistema di skills/caratteristiche riutilizzabili per l\'agente', alternatives: 'Plugin architecture, Reusable prompts, Workflow templates', category: 'Architecture' },
+      { name: 'Custom Tool\nCreation', popularity: 8, description: 'Permettere all\'utente o all\'agente di creare nuovi tool', alternatives: 'MCP servers, Function definitions, Script wrappers', category: 'Extensibility' },
+      { name: 'Workflow\nAutomation', popularity: 7, description: 'Catene di azioni predefinite per task ricorrenti', alternatives: 'n8n, Zapier, Custom pipelines, DAG-based', category: 'Automation' },
+      { name: 'PRD\nGeneration', popularity: 6, description: 'Generare documenti di requisiti da specifiche testuali', alternatives: 'AI-assisted specs, Template-based, Manual + AI review', category: 'Planning' },
     ],
   },
   {
@@ -130,11 +145,13 @@ const MACROAREAS: MacroareaConfig[] = [
     bg: '#FEF9C3',
     border: '#FACC15',
     concepts: [
-      { name: 'Logging &\nTracing', popularity: 8, description: 'Track agent actions for debugging, auditing, and optimization.', alternatives: 'LangSmith, LangFuse, Weave, Phoenix, Custom logging', category: 'Monitoring' },
-      { name: 'Cost Tracking', popularity: 8, description: 'Monitor token usage and costs per session or task.', alternatives: 'Usage dashboards, Token counting, Provider billing APIs', category: 'Monitoring' },
-      { name: 'Evaluation &\nBenchmarks', popularity: 7, description: 'Evaluate agent performance on specific tasks and metrics.', alternatives: 'LM Eval Harness, Custom evals, A/B testing, Human eval', category: 'Quality' },
-      { name: 'Debugging\nTools', popularity: 7, description: 'Inspect and debug agent behavior with replay and trace viewers.', alternatives: 'Replay tools, Inspector UI, Trace viewers', category: 'Debug' },
-      { name: 'Safety &\nGuardrails', popularity: 7, description: 'Mechanisms to prevent undesired or harmful behavior.', alternatives: 'Input/output filtering, Permission systems, Approval flows', category: 'Safety' },
+      { name: 'Logging &\nTracing', popularity: 8, description: 'Tracciare le azioni dell\'agente per debug e audit', alternatives: 'LangSmith, Langfuse, Weave, Phoenix, OpenLLMetry, Custom logging', category: 'Monitoring' },
+      { name: 'Observability\nPlatform', popularity: 9, description: 'Piattaforma completa per tracing, evaluation, prompt management e deployment', alternatives: 'Langfuse, LangSmith, Arize Phoenix, W&B Weave, Helicone', category: 'Monitoring' },
+      { name: 'Cost\nTracking', popularity: 8, description: 'Monitorare token usage e costi per sessione/task', alternatives: 'Usage dashboards, Token counting, Provider billing APIs', category: 'Monitoring' },
+      { name: 'Evaluation &\nBenchmarks', popularity: 7, description: 'Valutare le performance dell\'agente su task specifici', alternatives: 'LM Eval Harness, Custom evals, A/B testing, Human eval', category: 'Quality' },
+      { name: 'Debugging\nTools', popularity: 7, description: 'Tool per ispezionare e debuggare il comportamento dell\'agente', alternatives: 'Replay tools, Inspector UI, Trace viewers', category: 'Debug' },
+      { name: 'Safety &\nGuardrails', popularity: 7, description: 'Meccanismi per prevenire comportamenti indesiderati', alternatives: 'Input/output filtering, Permission systems, Approval flows, Geordie AI', category: 'Safety' },
+      { name: 'Agent\nGovernance', popularity: 6, description: 'Framework di governance per deployment sicuro di agenti AI in produzione', alternatives: 'WEF framework, Microsoft Power Platform governance, Collibra', category: 'Governance' },
     ],
   },
   {
@@ -143,12 +160,12 @@ const MACROAREAS: MacroareaConfig[] = [
     bg: '#E0E7FF',
     border: '#A5B4FC',
     concepts: [
-      { name: 'Docker &\nContainers', popularity: 9, description: 'Isolated environments for code execution and deployment.', alternatives: 'Docker, Podman, Containerd, Kubernetes', category: 'Runtime' },
-      { name: 'GPU Cloud', popularity: 7, description: 'Cloud platforms with GPU access for training and inference.', alternatives: 'Modal, RunPod, Lambda Labs, Vast.ai, AWS, GCP', category: 'Compute' },
-      { name: 'Serverless', popularity: 6, description: 'Serverless execution for lightweight agent functions.', alternatives: 'AWS Lambda, Cloudflare Workers, Vercel Edge, Netlify Functions', category: 'Runtime' },
-      { name: 'CI/CD', popularity: 8, description: 'Automated pipelines for testing, building, and deploying.', alternatives: 'GitHub Actions, GitLab CI, CircleCI, ArgoCD', category: 'Automation' },
-      { name: 'Git Integration', popularity: 9, description: 'The agent works directly in the git repository.', alternatives: 'gh CLI, git commands, PR automation, Code review bots', category: 'Workflow' },
-      { name: 'Environment\nManagement', popularity: 7, description: 'Manage different development environments (local, remote, sandbox).', alternatives: 'Devcontainers, SSH remotes, Daytona, E2B, Modal', category: 'Runtime' },
+      { name: 'Docker &\nContainers', popularity: 9, description: 'Ambienti isolati per esecuzione e deployment', alternatives: 'Docker, Podman, Containerd, Kubernetes', category: 'Runtime' },
+      { name: 'GPU Cloud', popularity: 7, description: 'Piattaforme cloud con GPU per training e inference', alternatives: 'Modal, RunPod, Lambda Labs, Vast.ai, AWS, GCP', category: 'Compute' },
+      { name: 'Serverless', popularity: 6, description: 'Esecuzione senza gestione di server', alternatives: 'AWS Lambda, Cloudflare Workers, Vercel Edge, Netlify Functions', category: 'Runtime' },
+      { name: 'CI/CD', popularity: 8, description: 'Pipeline automatiche per test, build e deploy', alternatives: 'GitHub Actions, GitLab CI, CircleCI, ArgoCD', category: 'Automation' },
+      { name: 'Git\nIntegration', popularity: 9, description: 'L\'agente lavora direttamente nel repo git', alternatives: 'gh CLI, git commands, PR automation, Code review bots', category: 'Workflow' },
+      { name: 'Environment\nManagement', popularity: 7, description: 'Gestione di ambienti dev diversi (local, remote, sandbox)', alternatives: 'Devcontainers, SSH remotes, Daytona, E2B, Modal', category: 'Runtime' },
     ],
   },
 ];
@@ -172,32 +189,34 @@ function layoutBubbles(concepts: ConceptData[], ax: number, ay: number) {
   const availW = AREA_WIDTH - padX * 2;
   const availH = AREA_HEIGHT - headerH - padY * 2;
 
-  const items = concepts.map((c, i) => ({
+  let items = concepts.map((c) => ({
     concept: c,
     radius: getRadius(c.popularity),
-    index: i,
   }));
 
-  const totalArea = items.reduce((s, it) => s + Math.PI * it.radius * it.radius, 0);
-  const packingDensity = 0.55;
-  const neededW = Math.sqrt(totalArea / packingDensity) * 1.1;
-  const neededH = Math.sqrt((totalArea / packingDensity) * (availH / availW)) * 1.1;
+  let cols: number;
+  if (n <= 4) cols = n;
+  else if (n <= 8) cols = Math.min(n, 5);
+  else cols = 6;
 
-  const fitW = Math.min(neededW, availW);
-  const fitH = Math.min(neededH, availH);
-
-  const offX = ax + padX + (availW - fitW) / 2;
-  const offY = ay + headerH + padY + (availH - fitH) / 2;
-
-  const cols = Math.ceil(Math.sqrt(n * (fitW / fitH)));
   const rows = Math.ceil(n / cols);
-  const cellW = fitW / cols;
-  const cellH = fitH / rows;
+  const cellW = availW / cols;
+  const cellH = availH / rows;
+
+  const maxDiameter = Math.max(...items.map((it) => it.radius * 2));
+  const maxFit = Math.min(cellW, cellH) - 6;
+
+  if (maxDiameter > maxFit && maxFit > 0) {
+    const scale = maxFit / maxDiameter;
+    items = items.map((it) => ({ ...it, radius: it.radius * scale }));
+  }
+
+  const offX = ax + padX;
+  const offY = ay + headerH + padY;
 
   return items.map((it, i) => {
     const col = i % cols;
     const row = Math.floor(i / cols);
-    const isLastCol = col === cols - 1;
     const isLastRow = row === rows - 1;
     const itemsInRow = isLastRow ? n - row * cols : cols;
     const rowOffsetX = isLastRow ? (cols - itemsInRow) * cellW / 2 : 0;
@@ -256,7 +275,6 @@ function createMinimap(
   screenW: number,
   screenH: number,
   world: Container,
-  app: Application,
 ): Container {
   const mmW = 180;
   const mmH = 110;
@@ -325,7 +343,58 @@ function createMinimap(
     world.y = screenH / 2 - targetWY * world.scale.y;
   });
 
+  (mm as unknown as Record<string, unknown>)._updateViewport = updateViewport;
+  (mm as unknown as Record<string, unknown>)._scale = scale;
+  (mm as unknown as Record<string, unknown>)._offsetX = offsetX;
+  (mm as unknown as Record<string, unknown>)._offsetY = offsetY;
+
   return mm;
+}
+
+function createZoomBtn(label: string, onClick: () => void): Container {
+  const btn = new Container();
+  btn.eventMode = 'static';
+  btn.cursor = 'pointer';
+
+  const bg = new Graphics();
+  bg.roundRect(0, 0, 40, 40, 10);
+  bg.fill({ color: '#ffffff', alpha: 0.92 });
+  bg.stroke({ color: '#d1d5db', width: 1 });
+  bg.eventMode = 'none';
+  btn.addChild(bg);
+
+  const txt = new Text({
+    text: label,
+    style: new TextStyle({
+      fontFamily: '"Inter", sans-serif',
+      fontSize: 22,
+      fontWeight: 'bold',
+      fill: '#374151',
+    }),
+  });
+  txt.anchor.set(0.5);
+  txt.x = 20;
+  txt.y = 20;
+  btn.addChild(txt);
+
+  btn.on('pointerover', () => {
+    bg.clear();
+    bg.roundRect(0, 0, 40, 40, 10);
+    bg.fill({ color: '#f3f4f6', alpha: 0.95 });
+    bg.stroke({ color: '#9ca3af', width: 1 });
+  });
+  btn.on('pointerout', () => {
+    bg.clear();
+    bg.roundRect(0, 0, 40, 40, 10);
+    bg.fill({ color: '#ffffff', alpha: 0.92 });
+    bg.stroke({ color: '#d1d5db', width: 1 });
+  });
+  btn.on('pointerdown', (e) => {
+    e.stopPropagation();
+    onClick();
+  });
+
+  return btn;
 }
 
 export default function Whiteboard() {
@@ -336,8 +405,7 @@ export default function Whiteboard() {
     let cleanup: (() => void) | null = null;
 
     (async () => {
-      await document.fonts.load('600 12px "Inter"').catch(() => {});
-      await document.fonts.load('700 12px "Inter"').catch(() => {});
+      await document.fonts.ready;
 
       const app = new Application();
       await app.init({
@@ -362,20 +430,25 @@ export default function Whiteboard() {
 
       const totalW = 2 * AREA_WIDTH + COL_GAP + START_X * 2;
       const totalH = 4 * AREA_HEIGHT + 3 * ROW_GAP + START_Y * 2;
-      world.x = Math.max(20, (window.innerWidth - totalW) / 2);
-      world.y = Math.max(20, (window.innerHeight - totalH) / 2);
+      const worldBounds = { x: 0, y: 0, w: totalW, h: totalH };
+
+      const fitScale = Math.min(1, Math.max(0.55, Math.min(
+        (window.innerWidth - 40) / totalW,
+        (window.innerHeight - 40) / totalH,
+      )));
+
+      world.scale.set(fitScale);
+      world.x = Math.max(20, (window.innerWidth - totalW * fitScale) / 2);
+      world.y = Math.max(20, (window.innerHeight - totalH * fitScale) / 2);
 
       app.stage.addChild(world);
 
-      const worldBounds = { x: 0, y: 0, w: totalW, h: totalH };
+      let needsGridRedraw = true;
 
-      // Dynamic grid
       const grid = new Graphics();
       grid.eventMode = 'none';
       world.addChildAt(grid, 0);
-      redrawGrid(grid, world, window.innerWidth, window.innerHeight);
 
-      // Macroareas & Bubbles
       const bubbleStates: BubbleState[] = [];
 
       for (let i = 0; i < MACROAREAS.length; i++) {
@@ -386,14 +459,12 @@ export default function Whiteboard() {
         areaContainer.x = pos.x;
         areaContainer.y = pos.y;
 
-        // Shadow
         const shadow = new Graphics();
         shadow.roundRect(3, 4, AREA_WIDTH, AREA_HEIGHT, 12);
         shadow.fill({ color: '#000000', alpha: 0.04 });
         shadow.eventMode = 'none';
         areaContainer.addChild(shadow);
 
-        // Background
         const bgGfx = new Graphics();
         bgGfx.roundRect(0, 0, AREA_WIDTH, AREA_HEIGHT, 12);
         bgGfx.fill({ color: area.bg, alpha: 0.55 });
@@ -401,7 +472,6 @@ export default function Whiteboard() {
         bgGfx.eventMode = 'none';
         areaContainer.addChild(bgGfx);
 
-        // Label
         const label = new Text({
           text: area.name,
           style: new TextStyle({
@@ -416,7 +486,19 @@ export default function Whiteboard() {
         label.y = 10;
         areaContainer.addChild(label);
 
-        // Bubbles
+        const conceptCount = new Text({
+          text: `${area.concepts.length} concepts`,
+          style: new TextStyle({
+            fontFamily: '"Inter", sans-serif',
+            fontSize: 10,
+            fill: area.color,
+          }),
+        });
+        conceptCount.alpha = 0.6;
+        conceptCount.x = 18;
+        conceptCount.y = 30;
+        areaContainer.addChild(conceptCount);
+
         const bubbles = layoutBubbles(area.concepts, pos.x, pos.y);
 
         for (const { concept, x, y, radius } of bubbles) {
@@ -428,6 +510,9 @@ export default function Whiteboard() {
           bubbleContainer.y = by;
           bubbleContainer.eventMode = 'static';
           bubbleContainer.cursor = 'pointer';
+
+          const hitR = radius + 4;
+          bubbleContainer.hitArea = new Circle(hitR, hitR, hitR);
 
           const glow = new Graphics();
           glow.eventMode = 'none';
@@ -443,7 +528,7 @@ export default function Whiteboard() {
           bubble.eventMode = 'none';
           bubbleContainer.addChild(bubble);
 
-          const fontSize = Math.max(8, Math.round(radius * 0.22));
+          const fontSize = Math.max(8, Math.round(radius * 0.24));
           const bText = new Text({
             text: concept.name,
             style: new TextStyle({
@@ -471,7 +556,7 @@ export default function Whiteboard() {
           };
 
           bubbleContainer.on('pointerover', () => {
-            state.targetScale = 1.08;
+            state.targetScale = 1.06;
             glow.clear();
             glow.circle(0, 0, radius + 14);
             glow.fill({ color: area.color, alpha: 0.08 });
@@ -490,15 +575,86 @@ export default function Whiteboard() {
         world.addChild(areaContainer);
       }
 
-      // Smooth animation ticker
-      let needsGridRedraw = false;
+      function zoomToCenter(newScale: number) {
+        const cx = window.innerWidth / 2;
+        const cy = window.innerHeight / 2;
+        const wx = (cx - world.x) / world.scale.x;
+        const wy = (cy - world.y) / world.scale.y;
+        const ns = Math.max(0.2, Math.min(3, newScale));
+        world.scale.set(ns);
+        world.x = cx - wx * ns;
+        world.y = cy - wy * ns;
+        needsGridRedraw = true;
+      }
+
+      function zoomToFit() {
+        const s = Math.min(1, Math.max(0.55, Math.min(
+          (window.innerWidth - 40) / totalW,
+          (window.innerHeight - 40) / totalH,
+        )));
+        zoomToCenter(s);
+      }
+
+      let minimapViewport: Graphics | null = null;
+      const minimap = createMinimap(worldBounds, window.innerWidth, window.innerHeight, world);
+      minimapViewport = minimap.children[minimap.children.length - 1] as Graphics;
+      app.stage.addChild(minimap);
+
+      const zoomContainer = new Container();
+      zoomContainer.x = 20;
+      zoomContainer.y = window.innerHeight - 180;
+      zoomContainer.label = 'zoom-controls';
+
+      const zoomBg = new Graphics();
+      zoomBg.roundRect(0, 0, 40, 136, 10);
+      zoomBg.fill({ color: '#ffffff', alpha: 0.85 });
+      zoomBg.stroke({ color: '#d1d5db', width: 1 });
+      zoomBg.eventMode = 'none';
+      zoomContainer.addChild(zoomBg);
+
+      const minusBtn = createZoomBtn('\u2212', () => {
+        zoomToCenter(world.scale.x / 1.25);
+      });
+      minusBtn.x = 0;
+      minusBtn.y = 8;
+      zoomContainer.addChild(minusBtn);
+
+      const zoomLabel = new Text({
+        text: `${Math.round(world.scale.x * 100)}%`,
+        style: new TextStyle({
+          fontFamily: '"Inter", sans-serif',
+          fontSize: 11,
+          fontWeight: 'bold',
+          fill: '#6b7280',
+          align: 'center',
+        }),
+      });
+      zoomLabel.anchor.set(0.5);
+      zoomLabel.x = 20;
+      zoomLabel.y = 58;
+      zoomContainer.addChild(zoomLabel);
+
+      const plusBtn = createZoomBtn('+', () => {
+        zoomToCenter(world.scale.x * 1.25);
+      });
+      plusBtn.x = 0;
+      plusBtn.y = 72;
+      zoomContainer.addChild(plusBtn);
+
+      const fitBtn = createZoomBtn('\u2922', () => {
+        zoomToFit();
+      });
+      fitBtn.x = 0;
+      fitBtn.y = 88;
+      zoomContainer.addChild(fitBtn);
+
+      app.stage.addChild(zoomContainer);
+
       app.ticker.add(() => {
-        let anyChanged = false;
         for (const s of bubbleStates) {
           if (Math.abs(s.currentScale - s.targetScale) > 0.001) {
             s.currentScale += (s.targetScale - s.currentScale) * 0.18;
             s.container.scale.set(s.currentScale);
-            anyChanged = true;
           }
         }
         if (needsGridRedraw) {
@@ -506,7 +662,23 @@ export default function Whiteboard() {
           needsGridRedraw = false;
         }
         if (minimapViewport) {
-          updateMinimapViewport();
+          const mmData = minimap as unknown as Record<string, unknown>;
+          const updateFn = mmData._updateViewport as () => void;
+          if (updateFn) updateFn();
+        }
+        zoomLabel.text = `${Math.round(world.scale.x * 100)}%`;
+
+        if (panelFadeDir !== 0 && panel) {
+          panel!.alpha += panelFadeDir * 0.1;
+          if (panelFadeDir === 1 && panel!.alpha >= 1) {
+            panel!.alpha = 1;
+            panelFadeDir = 0;
+          } else if (panelFadeDir === -1 && panel!.alpha <= 0) {
+            app.stage.removeChild(panel!);
+            panel!.destroy({ children: true });
+            panel = null;
+            panelFadeDir = 0;
+          }
         }
       });
 
@@ -559,52 +731,23 @@ export default function Whiteboard() {
         needsGridRedraw = true;
       }, { passive: false });
 
-      // Minimap
-      let minimapViewport: Graphics | null = null;
-      let updateMinimapViewport: () => void = () => {};
-
-      const minimap = createMinimap(worldBounds, window.innerWidth, window.innerHeight, world, app);
-      minimapViewport = minimap.children[minimap.children.length - 1] as Graphics;
-
-      updateMinimapViewport = () => {
-        minimapViewport?.clear();
-        const mmW = 180;
-        const mmH = 110;
-        const scaleX = mmW / worldBounds.w;
-        const scaleY = mmH / worldBounds.h;
-        const scale = Math.min(scaleX, scaleY) * 0.9;
-        const offsetX = (mmW - worldBounds.w * scale) / 2;
-        const offsetY = (mmH - worldBounds.h * scale) / 2;
-
-        const sw = window.innerWidth;
-        const sh = window.innerHeight;
-        const vx = (-world.x / world.scale.x - worldBounds.x) * scale + offsetX;
-        const vy = (-world.y / world.scale.y - worldBounds.y) * scale + offsetY;
-        const vw = (sw / world.scale.x) * scale;
-        const vh = (sh / world.scale.y) * scale;
-        minimapViewport!.rect(vx, vy, vw, vh);
-        minimapViewport!.fill({ color: '#3b82f6', alpha: 0.08 });
-        minimapViewport!.stroke({ color: '#3b82f6', width: 1, alpha: 0.5 });
-      };
-
-      app.stage.addChild(minimap);
-
       // Detail panel
       let panel: Container | null = null;
-      let panelAlpha = 0;
-      let panelAnimating = false;
+      let panelFadeDir: number = 0;
 
       function closePanel() {
-        if (!panel) return;
-        app.stage.removeChild(panel);
-        panel.destroy({ children: true });
-        panel = null;
-        panelAlpha = 0;
-        panelAnimating = false;
+        if (!panel || panelFadeDir === -1) return;
+        panelFadeDir = -1;
       }
 
       function openPanel(data: { concept: ConceptData; macroarea: MacroareaConfig }) {
-        closePanel();
+        if (panel) {
+          app.stage.removeChild(panel);
+          panel.destroy({ children: true });
+          panel = null;
+        }
+        panelFadeDir = 0;
+
         const pw = 400;
         const ph = 310;
         const pad = 22;
@@ -636,14 +779,12 @@ export default function Whiteboard() {
         cardBg.eventMode = 'none';
         root.addChild(cardBg);
 
-        // Top accent bar
         const accentBar = new Graphics();
         accentBar.roundRect(px, py, pw, 5, 16);
         accentBar.fill({ color: data.macroarea.color, alpha: 0.8 });
         accentBar.eventMode = 'none';
         root.addChild(accentBar);
 
-        // Close btn
         const closeBtn = new Container();
         closeBtn.x = px + pw - 38;
         closeBtn.y = py + 12;
@@ -678,7 +819,6 @@ export default function Whiteboard() {
 
         let cy = py + pad + 6;
 
-        // Title
         const title = new Text({
           text: data.concept.name.replace(/\n/g, ' '),
           style: new TextStyle({
@@ -695,7 +835,6 @@ export default function Whiteboard() {
         root.addChild(title);
         cy += 28;
 
-        // Macroarea badge
         const badgeTxt = new Text({
           text: data.macroarea.name,
           style: new TextStyle({
@@ -715,7 +854,6 @@ export default function Whiteboard() {
         root.addChild(badgeTxt);
         cy += 26;
 
-        // Description
         const desc = new Text({
           text: data.concept.description,
           style: new TextStyle({
@@ -732,7 +870,6 @@ export default function Whiteboard() {
         root.addChild(desc);
         cy += desc.height + 12;
 
-        // Popularity
         const popLbl = new Text({
           text: 'POPULARITY',
           style: new TextStyle({
@@ -778,7 +915,6 @@ export default function Whiteboard() {
         root.addChild(barFill);
         cy += barH + 16;
 
-        // Category
         const catTxt = new Text({
           text: `Category: ${data.concept.category}`,
           style: new TextStyle({
@@ -792,7 +928,6 @@ export default function Whiteboard() {
         root.addChild(catTxt);
         cy += 22;
 
-        // Alternatives
         const altLbl = new Text({
           text: 'ALTERNATIVES',
           style: new TextStyle({
@@ -824,8 +959,7 @@ export default function Whiteboard() {
         root.addChild(altTxt);
 
         panel = root;
-        panelAlpha = 0;
-        panelAnimating = true;
+        panelFadeDir = 1;
         app.stage.addChild(root);
       }
 
@@ -836,23 +970,14 @@ export default function Whiteboard() {
         });
       }
 
-      // Panel fade-in ticker
-      const panelFadeFn = () => {
-        if (!panelAnimating || !panel) return;
-        panelAlpha += 0.08;
-        if (panelAlpha >= 1) {
-          panelAlpha = 1;
-          panelAnimating = false;
-        }
-        panel.alpha = panelAlpha;
+      const onKey = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') closePanel();
+        if (e.key === '+' || e.key === '=') zoomToCenter(world.scale.x * 1.2);
+        if (e.key === '-' || e.key === '_') zoomToCenter(world.scale.x / 1.2);
+        if (e.key === '0') zoomToFit();
       };
-      app.ticker.add(panelFadeFn);
-
-      // ESC to close
-      const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') closePanel(); };
       window.addEventListener('keydown', onKey);
 
-      // Resize
       const onResize = () => {
         const dpr = window.devicePixelRatio || 1;
         app.renderer.resize(window.innerWidth * dpr, window.innerHeight * dpr);
@@ -864,14 +989,19 @@ export default function Whiteboard() {
         needsGridRedraw = true;
         minimap.x = window.innerWidth - 180 - 12;
         minimap.y = window.innerHeight - 110 - 12;
+        zoomContainer.x = 20;
+        zoomContainer.y = window.innerHeight - 180;
       };
       window.addEventListener('resize', onResize);
 
       cleanup = () => {
         window.removeEventListener('keydown', onKey);
         window.removeEventListener('resize', onResize);
-        app.ticker.remove(panelFadeFn);
-        closePanel();
+        if (panel) {
+          app.stage.removeChild(panel);
+          panel.destroy({ children: true });
+          panel = null;
+        }
         app.destroy(true);
       };
     })();
