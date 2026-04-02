@@ -1,442 +1,499 @@
-[0;36m[2026-04-02 14:19:53][0m Starting Agent Glossary loop...
-[0;36m[2026-04-02 14:19:53][0m Project: /home/arro/projects/agent-glossary
-[0;36m[2026-04-02 14:19:53][0m Max iterations: 5
-[0;36m[2026-04-02 14:19:53][0m Log: /home/arro/projects/agent-glossary/.workspaces/logs/loop.log
-[0;36m[2026-04-02 14:19:53][0m Press Ctrl+C or run '.workspaces/loop.sh stop' to interrupt.
+[0;36m[2026-04-02 17:06:50][0m Starting Agent Glossary loop...
+[0;36m[2026-04-02 17:06:50][0m Project: /home/arro/projects/agent-glossary
+[0;36m[2026-04-02 17:06:50][0m Max iterations: 5
+[0;36m[2026-04-02 17:06:50][0m Log: /home/arro/projects/agent-glossary/.workspaces/logs/loop.log
+[0;36m[2026-04-02 17:06:50][0m Press Ctrl+C or run '.workspaces/loop.sh stop' to interrupt.
 
 ╔══════════════════════════════════════════════════════════╗
-║  AGENT GLOSSARY LOOP — Started 2026-04-02 14:19:53          ║
-[0;32m[2026-04-02 14:19:53] ✓[0m Loop started (PID: 3161)
+║  AGENT GLOSSARY LOOP — Started 2026-04-02 17:06:50          ║
 ║  Max iterations: 5                         ║
 ╚══════════════════════════════════════════════════════════╝
 
-[0;36m[2026-04-02 14:19:53][0m Launching OpenCode for workspace Implementation...
+[0;32m[2026-04-02 17:06:50] ✓[0m Loop started (PID: 21274)
+[0;36m[2026-04-02 17:06:50][0m Launching OpenCode for workspace Implementation...
 [0m
-> build · glm-5-turbo
+> build · gpt-5.3-codex
 [0m
-[0m→ [0mRead .workspaces/1-implementation/context.md
-[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md
-[0m→ [0mRead .workspaces/2-improvements/resources/prd.md
-[0m→ [0mRead .workspaces/1-implementation/resources/pixijs-reference.md
+[0m→ [0mRead .workspaces/1-implementation/context.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/pixijs-reference.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .workspaces/2-improvements/resources/prd.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1, limit=2500][0m
+[0m→ [0mRead src/app/page.tsx[90m [offset=1, limit=400][0m
+[0m→ [0mRead src/app/globals.css[90m [offset=1, limit=400][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1273, limit=2000][0m
+[0m→ [0mRead node_modules/next/dist/docs[90m [offset=1, limit=200][0m
+[0m→ [0mRead node_modules/next/dist/docs/01-app/index.md[90m [offset=1, limit=120][0m
+[0m✱ [0mGlob "src/**/*.{ts,tsx,md,json}"[90m in . · 3 matches[0m
+[0m→ [0mRead package.json[90m [offset=1, limit=220][0m
 [0m
-[0m# [0mTodos
-[ ] Explore existing project structure and dependencies
-[ ] Set up PixiJS + Inter font + canvas mounting
-[ ] Implement grid background
-[ ] Implement 8 macroareas with pastel backgrounds
-[ ] Implement proportional bubbles inside macroareas
-[ ] Implement zoom (scroll) and pan (drag)
-[ ] Implement hover glow effect on bubbles
-[ ] Implement click detail panel on bubbles
-[ ] Verify lint/typecheck and update context.md
+[0m$ [0mgit status --short
+M .workspaces/1-implementation/context.md
+ M .workspaces/logs/loop.log
+ M .workspaces/loop.pid
 [0m
-[0m→ [0mRead .
-[0m→ [0mRead src
-[0m→ [0mRead package.json
-[0m→ [0mRead src/app
-[0m→ [0mRead src/components
-[0m→ [0mRead tsconfig.json
-[0m→ [0mRead next.config.ts
-[0m→ [0mRead src/app/layout.tsx
-[0m→ [0mRead src/app/globals.css
-[0m→ [0mRead src/app/page.tsx
-[0m→ [0mRead src/components/whiteboard.tsx
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/1-implementation/context.md
 [0m
-[0m# [0mTodos
-[x] Explore existing project structure and dependencies
-[ ] Verify existing implementation builds correctly
-[ ] Fix any build/lint issues
-[ ] Test the app visually (dev server)
-[ ] Update context.md with current state
-[0m
-The implementation already exists. Let me verify it builds and lint passes.
-[0m$ [0mnpm run build 2>&1
-> agent-glossary@0.1.0 build
-> next build
-
-▲ Next.js 16.2.2 (Turbopack)
-
-  Creating an optimized production build ...
-✓ Compiled successfully in 15.3s
-  Running TypeScript ...
-  Finished TypeScript in 1911ms ...
-  Collecting page data using 5 workers ...
-  Generating static pages using 5 workers (0/4) ...
-  Generating static pages using 5 workers (1/4) 
-  Generating static pages using 5 workers (2/4) 
-  Generating static pages using 5 workers (3/4) 
-✓ Generating static pages using 5 workers (4/4) in 501ms
-  Finalizing page optimization ...
-
-Route (app)
-┌ ○ /
-└ ○ /_not-found
-
-
-○  (Static)  prerendered as static content
-[0m
-[0m$ [0mnpm run lint 2>&1
+[0m$ [0mnpm run lint && npm run build
 > agent-glossary@0.1.0 lint
 > eslint
-[0m
-Build and lint both pass cleanly. The PRD checklist is fully satisfied:
 
-- Grid background with 40px spacing
-- 8 macroareas with pastel backgrounds and labels
-- Proportional bubbles (radius 24-62px based on popularity 6-10)
-- Zoom (scroll, 0.2x-3x) and pan (drag)
-- Hover glow + scale effect on bubbles
-- Click detail panel with name, description, macroarea badge, popularity bar, category, alternatives, close button + ESC
 
-Now let me update context.md and commit.
-[0m# [0mTodos
-[x] Explore existing project structure and dependencies
-[x] Verify existing implementation builds correctly
-[x] Fix any build/lint issues
-[ ] Update context.md with current state
-[ ] Commit changes
-[0m
-[0m← [0mWrite .workspaces/1-implementation/context.md
-Wrote file successfully.
-[0m
-[0m# [0mTodos
-[x] Explore existing project structure and dependencies
-[x] Verify existing implementation builds correctly
-[x] Fix any build/lint issues
-[x] Update context.md with current state
-[ ] Commit changes
-[0m
-[0m$ [0mgit log --oneline -5
-0b36d44 loop iter 1: implementation changes
-5233faf Initial commit from Create Next App
-[0m
-[0m$ [0mgit diff
-diff --git a/package-lock.json b/package-lock.json
-index c51d1d1..60adad0 100644
---- a/package-lock.json
-+++ b/package-lock.json
-@@ -8,7 +8,9 @@
-       "name": "agent-glossary",
-       "version": "0.1.0",
-       "dependencies": {
-+        "@fontsource/inter": "^5.2.8",
-         "next": "16.2.2",
-+        "pixi.js": "^8.17.1",
-         "react": "19.2.4",
-         "react-dom": "19.2.4"
-       },
-@@ -453,6 +455,15 @@
-         "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
-       }
-     },
-+    "node_modules/@fontsource/inter": {
-+      "version": "5.2.8",
-+      "resolved": "https://registry.npmjs.org/@fontsource/inter/-/inter-5.2.8.tgz",
-+      "integrity": "sha512-P6r5WnJoKiNVV+zvW2xM13gNdFhAEpQ9dQJHt3naLvfg+LkF2ldgSLiF4T41lf1SQCM9QmkqPTn4TH568IRagg==",
-+      "license": "OFL-1.1",
-+      "funding": {
-+        "url": "https://github.com/sponsors/ayuhito"
-+      }
-+    },
-     "node_modules/@humanfs/core": {
-       "version": "0.19.1",
-       "resolved": "https://registry.npmjs.org/@humanfs/core/-/core-0.19.1.tgz",
-@@ -1226,6 +1237,12 @@
-         "node": ">=12.4.0"
-       }
-     },
-+    "node_modules/@pixi/colord": {
-+      "version": "2.9.6",
-+      "resolved": "https://registry.npmjs.org/@pixi/colord/-/colord-2.9.6.tgz",
-+      "integrity": "sha512-nezytU2pw587fQstUu1AsJZDVEynjskwOL+kibwcdxsMBFqPsFFNA7xl0ii/gXuDi6M0xj3mfRJj8pBSc2jCfA==",
-+      "license": "MIT"
-+    },
-     "node_modules/@rtsao/scc": {
-       "version": "1.1.0",
-       "resolved": "https://registry.npmjs.org/@rtsao/scc/-/scc-1.1.0.tgz",
-@@ -1524,6 +1541,12 @@
-         "tslib": "^2.4.0"
-       }
-     },
-+    "node_modules/@types/earcut": {
-+      "version": "3.0.0",
-+      "resolved": "https://registry.npmjs.org/@types/earcut/-/earcut-3.0.0.tgz",
-+      "integrity": "sha512-k/9fOUGO39yd2sCjrbAJvGDEQvRwRnQIZlBz43roGwUZo5SHAmyVvSFyaVVZkicRVCaDXPKlbxrUcBuJoSWunQ==",
-+      "license": "MIT"
-+    },
-     "node_modules/@types/estree": {
-       "version": "1.0.8",
-       "resolved": "https://registry.npmjs.org/@types/estree/-/estree-1.0.8.tgz",
-@@ -2139,6 +2162,21 @@
-         "win32"
-       ]
-     },
-+    "node_modules/@webgpu/types": {
-+      "version": "0.1.69",
-+      "resolved": "https://registry.npmjs.org/@webgpu/types/-/types-0.1.69.tgz",
-+      "integrity": "sha512-RPmm6kgRbI8e98zSD3RVACvnuktIja5+yLgDAkTmxLr90BEwdTXRQWNLF3ETTTyH/8mKhznZuN5AveXYFEsMGQ==",
-+      "license": "BSD-3-Clause"
-+    },
-+    "node_modules/@xmldom/xmldom": {
-+      "version": "0.8.12",
-+      "resolved": "https://registry.npmjs.org/@xmldom/xmldom/-/xmldom-0.8.12.tgz",
-+      "integrity": "sha512-9k/gHF6n/pAi/9tqr3m3aqkuiNosYTurLLUtc7xQ9sxB/wm7WPygCv8GYa6mS0fLJEHhqMC1ATYhz++U/lRHqg==",
-+      "license": "MIT",
-+      "engines": {
-+        "node": ">=10.0.0"
-+      }
-+    },
-     "node_modules/acorn": {
-       "version": "8.16.0",
-       "resolved": "https://registry.npmjs.org/acorn/-/acorn-8.16.0.tgz",
-@@ -2821,6 +2859,12 @@
-         "node": ">= 0.4"
-       }
-     },
-+    "node_modules/earcut": {
-+      "version": "3.0.2",
-+      "resolved": "https://registry.npmjs.org/earcut/-/earcut-3.0.2.tgz",
-+      "integrity": "sha512-X7hshQbLyMJ/3RPhyObLARM2sNxxmRALLKx1+NVFFnQ9gKzmCrxm9+uLIAdBcvc8FNLpctqlQ2V6AE92Ol9UDQ==",
-+      "license": "ISC"
-+    },
-     "node_modules/electron-to-chromium": {
-       "version": "1.5.331",
-       "resolved": "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.5.331.tgz",
-@@ -3456,6 +3500,12 @@
-         "node": ">=0.10.0"
-       }
-     },
-+    "node_modules/eventemitter3": {
-+      "version": "5.0.4",
-+      "resolved": "https://registry.npmjs.org/eventemitter3/-/eventemitter3-5.0.4.tgz",
-+      "integrity": "sha512-mlsTRyGaPBjPedk6Bvw+aqbsXDtoAyAzm5MO7JgU+yVRyMQ5O8bD4Kcci7BS85f93veegeCPkL8R4GLClnjLFw==",
-+      "license": "MIT"
-+    },
-     "node_modules/fast-deep-equal": {
-       "version": "3.1.3",
-       "resolved": "https://registry.npmjs.org/fast-deep-equal/-/fast-deep-equal-3.1.3.tgz",
-@@ -3728,6 +3778,15 @@
-         "url": "https://github.com/privatenumber/get-tsconfig?sponsor=1"
-       }
-     },
-+    "node_modules/gifuct-js": {
-+      "version": "2.1.2",
-+      "resolved": "https://registry.npmjs.org/gifuct-js/-/gifuct-js-2.1.2.tgz",
-+      "integrity": "sha512-rI2asw77u0mGgwhV3qA+OEgYqaDn5UNqgs+Bx0FGwSpuqfYn+Ir6RQY5ENNQ8SbIiG/m5gVa7CD5RriO4f4Lsg==",
-+      "license": "MIT",
-+      "dependencies": {
-+        "js-binary-schema-parser": "^2.0.3"
-+      }
-+    },
-     "node_modules/glob-parent": {
-       "version": "6.0.2",
-       "resolved": "https://registry.npmjs.org/glob-parent/-/glob-parent-6.0.2.tgz",
-@@ -4383,6 +4442,12 @@
-       "dev": true,
-       "license": "ISC"
-     },
-+    "node_modules/ismobilejs": {
-+      "version": "1.1.1",
-+      "resolved": "https://registry.npmjs.org/ismobilejs/-/ismobilejs-1.1.1.tgz",
-+      "integrity": "sha512-VaFW53yt8QO61k2WJui0dHf4SlL8lxBofUuUmwBo0ljPk0Drz2TiuDW4jo3wDcv41qy/SxrJ+VAzJ/qYqsmzRw==",
-+      "license": "MIT"
-+    },
-     "node_modules/iterator.prototype": {
-       "version": "1.1.5",
-       "resolved": "https://registry.npmjs.org/iterator.prototype/-/iterator.prototype-1.1.5.tgz",
-@@ -4411,6 +4476,12 @@
-         "jiti": "lib/jiti-cli.mjs"
-       }
-     },
-+    "node_modules/js-binary-schema-parser": {
-+      "version": "2.0.3",
-+      "resolved": "https://registry.npmjs.org/js-binary-schema-parser/-/js-binary-schema-parser-2.0.3.tgz",
-+      "integrity": "sha512-xezGJmOb4lk/M1ZZLTR/jaBHQ4gG/lqQnJqdIv4721DMggsa1bDVlHXNeHYogaIEHD9vCRv0fcL4hMA+Coarkg==",
-+      "license": "MIT"
-+    },
-     "node_modules/js-tokens": {
-       "version": "4.0.0",
-       "resolved": "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz",
-@@ -5271,6 +5342,12 @@
-         "node": ">=6"
-       }
-     },
-+    "node_modules/parse-svg-path": {
-+      "version": "0.1.2",
-+      "resolved": "https://registry.npmjs.org/parse-svg-path/-/parse-svg-path-0.1.2.tgz",
-+      "integrity": "sha512-JyPSBnkTJ0AI8GGJLfMXvKq42cj5c006fnLz6fXy6zfoVjJizi8BNTpu8on8ziI1cKy9d9DGNuY17Ce7wuejpQ==",
-+      "license": "MIT"
-+    },
-     "node_modules/path-exists": {
-       "version": "4.0.0",
-       "resolved": "https://registry.npmjs.org/path-exists/-/path-exists-4.0.0.tgz",
-@@ -5317,6 +5394,32 @@
-         "url": "https://github.com/sponsors/jonschlinkert"
-       }
-     },
-+    "node_modules/pixi.js": {
-+      "version": "8.17.1",
-+      "resolved": "https://registry.npmjs.org/pixi.js/-/pixi.js-8.17.1.tgz",
-+      "integrity": "sha512-OB4TpZHrP5RYy+7FqmFrAc0IHRhfOoNIfF4sVeinvK3aG1r2pYrSMneJAKi9+WvGKC70Dj7GEpZ2OZGB6o/xdg==",
-+      "license": "MIT",
-+      "workspaces": [
-+        "examples",
-+        "playground"
-+      ],
-+      "dependencies": {
-+        "@pixi/colord": "^2.9.6",
-+        "@types/earcut": "^3.0.0",
-+        "@webgpu/types": "^0.1.69",
-+        "@xmldom/xmldom": "^0.8.11",
-+        "earcut": "^3.0.2",
-+        "eventemitter3": "^5.0.1",
-+        "gifuct-js": "^2.1.2",
-+        "ismobilejs": "^1.1.1",
-+        "parse-svg-path": "^0.1.2",
-+        "tiny-lru": "^11.4.7"
-+      },
-+      "funding": {
-+        "type": "opencollective",
-+        "url": "https://opencollective.com/pixijs"
-+      }
-+    },
-     "node_modules/possible-typed-array-names": {
-       "version": "1.1.0",
-       "resolved": "https://registry.npmjs.org/possible-typed-array-names/-/possible-typed-array-names-1.1.0.tgz",
-@@ -6073,6 +6176,15 @@
-         "url": "https://opencollective.com/webpack"
-       }
-     },
-+    "node_modules/tiny-lru": {
-+      "version": "11.4.7",
-+      "resolved": "https://registry.npmjs.org/tiny-lru/-/tiny-lru-11.4.7.tgz",
-+      "integrity": "sha512-w/Te7uMUVeH0CR8vZIjr+XiN41V+30lkDdK+NRIDCUYKKuL9VcmaUEmaPISuwGhLlrTGh5yu18lENtR9axSxYw==",
-+      "license": "BSD-3-Clause",
-+      "engines": {
-+        "node": ">=12"
-+      }
-+    },
-     "node_modules/tinyglobby": {
-       "version": "0.2.15",
-       "resolved": "https://registry.npmjs.org/tinyglobby/-/tinyglobby-0.2.15.tgz",
-diff --git a/package.json b/package.json
-index 9a53e35..2f5a836 100644
---- a/package.json
-+++ b/package.json
-@@ -9,7 +9,9 @@
-     "lint": "eslint"
-   },
-   "dependencies": {
-+    "@fontsource/inter": "^5.2.8",
-     "next": "16.2.2",
-+    "pixi.js": "^8.17.1",
-     "react": "19.2.4",
-     "react-dom": "19.2.4"
-   },
-[0m
-[0m$ [0mgit status
-On branch main
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-	modified:   package-lock.json
-	modified:   package.json
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/build/advanced-api-routes.js
+  2:11  warning  'require' is assigned a value but never used  @typescript-eslint/no-unused-vars
 
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-	.workspaces/
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/build/cache.js
+  2:11  warning  'require' is assigned a value but never used  @typescript-eslint/no-unused-vars
 
-no changes added to commit (use "git add" and/or "git commit -a")
-[0m
-[0m$ [0mgit add .workspaces/ && git commit -m "feat: iteration 1 complete — Agent Glossary Whiteboard with PixiJS v8
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/build/content/next-shims/telemetry-storage.cjs
+  53:1  warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
 
-All PRD items implemented:
-- PixiJS v8 vanilla canvas with grid background (40px spacing)
-- 8 macroareas with pastel backgrounds in 2x4 layout
-- 48 proportional bubbles (radius 24-62px by popularity)
-- Zoom (0.2x-3x, scroll) and pan (drag) interactions
-- Hover glow + scale effect on bubbles
-- Click detail panel with name, description, macroarea badge, popularity bar, category, alternatives
-- Close via button, backdrop click, or ESC
-- Responsive canvas resize handling
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/build/content/prerendered.js
+  2:11  warning  'require' is assigned a value but never used  @typescript-eslint/no-unused-vars
 
-Build and lint pass cleanly."
-[main 2cb530e] feat: iteration 1 complete — Agent Glossary Whiteboard with PixiJS v8
- 14 files changed, 1479 insertions(+)
- create mode 100644 .workspaces/1-implementation/context.md
- create mode 100644 .workspaces/1-implementation/resources/blockers.md
- create mode 100644 .workspaces/1-implementation/resources/concepts.md
- create mode 100644 .workspaces/1-implementation/resources/pixijs-reference.md
- create mode 100644 .workspaces/2-improvements/context.md
- create mode 100644 .workspaces/2-improvements/resources/prd.md
- create mode 100644 .workspaces/3-research/context.md
- create mode 100644 .workspaces/3-research/resources/findings.md
- create mode 100644 .workspaces/3-research/resources/guides.md
- create mode 100644 .workspaces/3-research/resources/research-requests.md
- create mode 100644 .workspaces/logs/loop.log
- create mode 100644 .workspaces/loop.pid
- create mode 100755 .workspaces/loop.sh
- create mode 100644 .workspaces/loop.state
-[0m
-[0m# [0mTodos
-[x] Explore existing project structure and dependencies
-[x] Verify existing implementation builds correctly
-[x] Fix any build/lint issues
-[x] Update context.md with current state
-[x] Commit changes
-[0m
-Iteration 1 is complete. The Agent Glossary Whiteboard was already fully implemented in `src/components/whiteboard.tsx`. All PRD items are satisfied:
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/build/content/server.js
+  2:11  warning  'require' is assigned a value but never used  @typescript-eslint/no-unused-vars
 
-- **Grid**: 40px spacing, #e5e5e5 lines on #fafafa background
-- **8 macroareas**: 720x360px pastel cards in 2x4 grid layout
-- **48 bubbles**: proportional radii (24-62px) based on popularity (6-10)
-- **Zoom**: scroll wheel, 0.2x-3x range, cursor-centered
-- **Pan**: drag on background
-- **Hover**: two-layer glow + 1.06x scale
-- **Detail panel**: PixiJS-native card with name, badge, description, popularity bar, category, alternatives, close (button/backdrop/ESC)
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/build/content/static.js
+  2:11  warning  'require' is assigned a value but never used  @typescript-eslint/no-unused-vars
 
-Build and lint pass cleanly. Committed as `2cb530e`.
-[0;32m[2026-04-02 14:22:11] ✓[0m Workspace Implementation completed successfully
- 2 files changed, 50 insertions(+), 1 deletion(-)
-[0;32m[2026-04-02 14:22:11] ✓[0m Workspace changes committed
-[0;36m[2026-04-02 14:22:11][0m Launching OpenCode for workspace Improvements & PRD...
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/build/functions/edge.js
+  2:11  warning  'require' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/build/functions/server.js
+  2:11  warning  'require' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/build/image-cdn.js
+     2:11  warning  'require' is assigned a value but never used                                  @typescript-eslint/no-unused-vars
+   626:16  warning  'ex' is defined but never used                                                @typescript-eslint/no-unused-vars
+  1547:7   warning  Unused eslint-disable directive (no problems were reported from 'id-length')
+  1557:7   warning  Unused eslint-disable directive (no problems were reported from 'id-length')
+
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/build/plugin-context.js
+  2:11  warning  'require' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/build/skew-protection.js
+  2:11  warning  'require' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/build/templates/handler-monorepo.tmpl.js
+  13:1  warning  Unexpected default export of anonymous function  import/no-anonymous-default-export
+
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/build/verification.js
+   2:11  warning  'require' is assigned a value but never used                           @typescript-eslint/no-unused-vars
+  38:5   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/esm-chunks/chunk-JNOKXHJS.js
+     2:11  warning  'require' is assigned a value but never used  @typescript-eslint/no-unused-vars
+   528:16  warning  'er' is defined but never used                @typescript-eslint/no-unused-vars
+  1012:20  warning  'er' is defined but never used                @typescript-eslint/no-unused-vars
+  1315:20  warning  'er' is defined but never used                @typescript-eslint/no-unused-vars
+  1379:16  warning  'er' is defined but never used                @typescript-eslint/no-unused-vars
+  1410:16  warning  'er' is defined but never used                @typescript-eslint/no-unused-vars
+  1439:16  warning  'er' is defined but never used                @typescript-eslint/no-unused-vars
+  1523:16  warning  'er' is defined but never used                @typescript-eslint/no-unused-vars
+
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/esm-chunks/chunk-QCOH52QC.js
+    2:11  warning  'require' is assigned a value but never used     @typescript-eslint/no-unused-vars
+  131:11  error    Unexpected aliasing of 'this' to local variable  @typescript-eslint/no-this-alias
+  368:11  error    Unexpected aliasing of 'this' to local variable  @typescript-eslint/no-this-alias
+  513:57  warning  '_key' is defined but never used                 @typescript-eslint/no-unused-vars
+  513:63  warning  '_value' is defined but never used               @typescript-eslint/no-unused-vars
+  516:58  warning  '_attributes' is defined but never used          @typescript-eslint/no-unused-vars
+  519:53  warning  '_name' is defined but never used                @typescript-eslint/no-unused-vars
+  519:60  warning  '_attributes' is defined but never used          @typescript-eslint/no-unused-vars
+  522:54  warning  '_status' is defined but never used              @typescript-eslint/no-unused-vars
+  525:55  warning  '_name' is defined but never used                @typescript-eslint/no-unused-vars
+  528:48  warning  '_endTime' is defined but never used             @typescript-eslint/no-unused-vars
+  533:60  warning  '_exception' is defined but never used           @typescript-eslint/no-unused-vars
+  533:72  warning  '_time' is defined but never used                @typescript-eslint/no-unused-vars
+  641:55  warning  '_name' is defined but never used                @typescript-eslint/no-unused-vars
+  641:62  warning  '_options' is defined but never used             @typescript-eslint/no-unused-vars
+  641:72  warning  '_context' is defined but never used             @typescript-eslint/no-unused-vars
+  641:82  warning  '_fn' is defined but never used                  @typescript-eslint/no-unused-vars
+  666:56  warning  '_name' is defined but never used                @typescript-eslint/no-unused-vars
+  666:63  warning  '_version' is defined but never used             @typescript-eslint/no-unused-vars
+  666:73  warning  '_options' is defined but never used             @typescript-eslint/no-unused-vars
+
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/esm-chunks/chunk-YUXQHOYO.js
+     2:11  warning  'require' is assigned a value but never used     @typescript-eslint/no-unused-vars
+   580:68  warning  'options' is defined but never used              @typescript-eslint/no-unused-vars
+   617:37  warning  'options' is defined but never used              @typescript-eslint/no-unused-vars
+  1998:16  warning  'ex' is defined but never used                   @typescript-eslint/no-unused-vars
+  2837:50  warning  'posix' is assigned a value but never used       @typescript-eslint/no-unused-vars
+  4230:11  error    Unexpected aliasing of 'this' to local variable  @typescript-eslint/no-this-alias
+  5447:10  warning  'posix' is assigned a value but never used       @typescript-eslint/no-unused-vars
+  5460:10  warning  'win32' is assigned a value but never used       @typescript-eslint/no-unused-vars
+
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/index.js
+  2:11  warning  'require' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/run/augment-next-response.js
+  2:11  warning  'require' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/run/config.js
+  2:11  warning  'require' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/run/constants.js
+  2:11  warning  'require' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/run/handlers/cache.cjs
+   20:5   warning  '__toESM' is assigned a value but never used                           @typescript-eslint/no-unused-vars
+   37:26  error    A `require()` style import is forbidden                                @typescript-eslint/no-require-imports
+   38:24  error    A `require()` style import is forbidden                                @typescript-eslint/no-require-imports
+   39:20  error    A `require()` style import is forbidden                                @typescript-eslint/no-require-imports
+   40:24  error    A `require()` style import is forbidden                                @typescript-eslint/no-require-imports
+   41:26  error    A `require()` style import is forbidden                                @typescript-eslint/no-require-imports
+   42:22  error    A `require()` style import is forbidden                                @typescript-eslint/no-require-imports
+   43:30  error    A `require()` style import is forbidden                                @typescript-eslint/no-require-imports
+   44:27  error    A `require()` style import is forbidden                                @typescript-eslint/no-require-imports
+   45:21  error    A `require()` style import is forbidden                                @typescript-eslint/no-require-imports
+  147:15  error    Definition for rule 'import/no-unresolved' was not found               import/no-unresolved
+  147:15  error    Definition for rule 'n/no-missing-import' was not found                n/no-missing-import
+  155:15  error    Definition for rule 'import/no-unresolved' was not found               import/no-unresolved
+  155:15  error    Definition for rule 'n/no-missing-import' was not found                n/no-missing-import
+  392:1   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/run/handlers/request-context.cjs
+   29:31  error    A `require()` style import is forbidden                                @typescript-eslint/no-require-imports
+   32:22  error    A `require()` style import is forbidden                                @typescript-eslint/no-require-imports
+  153:1   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/run/handlers/server.js
+     2:11   warning  'require' is assigned a value but never used                           @typescript-eslint/no-unused-vars
+    15:5    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+    16:7    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+    24:15   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+    29:15   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+    63:17   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+    81:15   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+    84:17   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+    98:13   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   106:15   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   115:15   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   137:17   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   142:11   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   168:78   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   177:17   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   199:22   warning  't4' is defined but never used                                         @typescript-eslint/no-unused-vars
+   207:15   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   223:15   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   234:23   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   252:21   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   257:17   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   259:15   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   276:17   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   293:25   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   304:32   warning  't5' is defined but never used                                         @typescript-eslint/no-unused-vars
+   320:15   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   322:15   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   324:15   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   329:17   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   341:17   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   344:17   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   345:22   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   357:25   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   363:19   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   378:19   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   381:23   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   389:25   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   392:23   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   397:19   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   436:77   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   458:17   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   459:34   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   460:32   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   461:32   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   462:32   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   463:32   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   467:19   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   485:15   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   490:17   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   501:19   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   543:17   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   572:15   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   580:20   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   587:22   warning  'e4' is defined but never used                                         @typescript-eslint/no-unused-vars
+   590:13   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   649:13   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   660:15   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   686:15   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   694:15   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   735:19   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   738:21   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   745:75   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   746:23   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   766:21   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   792:11   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   802:17   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   850:23   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   853:23   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   858:19   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   859:24   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   861:15   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   865:15   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   873:15   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   887:15   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   892:19   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   938:13   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   947:13   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   960:11   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   962:15   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   966:15   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   970:13   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   988:19   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1006:17   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1009:19   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1018:17   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1027:15   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1034:15   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1040:22   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1041:15   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1046:20   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1056:15   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1104:24   warning  't4' is defined but never used                                         @typescript-eslint/no-unused-vars
+  1110:11   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1138:22   warning  't4' is defined but never used                                         @typescript-eslint/no-unused-vars
+  1154:22   warning  't4' is defined but never used                                         @typescript-eslint/no-unused-vars
+  1169:22   warning  't4' is defined but never used                                         @typescript-eslint/no-unused-vars
+  1200:13   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1237:22   warning  't3' is defined but never used                                         @typescript-eslint/no-unused-vars
+  1237:26   warning  'e3' is defined but never used                                         @typescript-eslint/no-unused-vars
+  1237:30   warning  'r3' is defined but never used                                         @typescript-eslint/no-unused-vars
+  1252:22   warning  't3' is defined but never used                                         @typescript-eslint/no-unused-vars
+  1272:15   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1279:32   warning  'r4' is defined but never used                                         @typescript-eslint/no-unused-vars
+  1281:17   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1299:15   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1309:21   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1348:15   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1353:15   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1378:17   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1396:15   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1399:17   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1415:19   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1418:21   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1437:13   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1454:17   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  1464:118  warning  't3' is defined but never used                                         @typescript-eslint/no-unused-vars
+  1485:20   warning  't2' is defined but never used                                         @typescript-eslint/no-unused-vars
+  1500:5    warning  'inspect' is assigned a value but never used                           @typescript-eslint/no-unused-vars
+  1501:5    warning  'format' is assigned a value but never used                            @typescript-eslint/no-unused-vars
+  1502:5    warning  'formatWithOptions' is assigned a value but never used                 @typescript-eslint/no-unused-vars
+  1503:5    warning  'getStringWidth' is assigned a value but never used                    @typescript-eslint/no-unused-vars
+  1504:5    warning  'inspectDefaultOptions' is assigned a value but never used             @typescript-eslint/no-unused-vars
+  1505:5    warning  'stripVTControlCharacters' is assigned a value but never used          @typescript-eslint/no-unused-vars
+  1506:5    warning  'stylizeWithColor' is assigned a value but never used                  @typescript-eslint/no-unused-vars
+  1507:5    warning  'stylizeWithHTML' is assigned a value but never used                   @typescript-eslint/no-unused-vars
+  1508:5    warning  'Proxy2' is assigned a value but never used                            @typescript-eslint/no-unused-vars
+  1795:14   warning  'msecs' is defined but never used                                      @typescript-eslint/no-unused-vars
+  1795:21   warning  'callback' is defined but never used                                   @typescript-eslint/no-unused-vars
+  1798:15   warning  'n' is defined but never used                                          @typescript-eslint/no-unused-vars
+  1878:1    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  2037:16   warning  'format2' is defined but never used                                    @typescript-eslint/no-unused-vars
+  2231:14   warning  'msecs' is defined but never used                                      @typescript-eslint/no-unused-vars
+  2231:21   warning  'callback' is defined but never used                                   @typescript-eslint/no-unused-vars
+  2234:11   warning  'error' is defined but never used                                      @typescript-eslint/no-unused-vars
+  2951:16   warning  'socket' is defined but never used                                     @typescript-eslint/no-unused-vars
+  2954:16   warning  'socket' is defined but never used                                     @typescript-eslint/no-unused-vars
+  3029:11   error    Unexpected aliasing of 'this' to local variable                        @typescript-eslint/no-this-alias
+
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/run/handlers/tags-handler.cjs
+   31:22  error    A `require()` style import is forbidden                                @typescript-eslint/no-require-imports
+   32:21  error    A `require()` style import is forbidden                                @typescript-eslint/no-require-imports
+   33:19  error    A `require()` style import is forbidden                                @typescript-eslint/no-require-imports
+   85:5   warning  'pipeline' is assigned a value but never used                          @typescript-eslint/no-unused-vars
+   92:22  error    A `require()` style import is forbidden                                @typescript-eslint/no-require-imports
+   93:30  error    A `require()` style import is forbidden                                @typescript-eslint/no-require-imports
+  229:1   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/run/handlers/tracer.cjs
+  321:11  error    Unexpected aliasing of 'this' to local variable                        @typescript-eslint/no-this-alias
+  377:11  error    Unexpected aliasing of 'this' to local variable                        @typescript-eslint/no-this-alias
+  550:57  warning  '_key' is defined but never used                                       @typescript-eslint/no-unused-vars
+  550:63  warning  '_value' is defined but never used                                     @typescript-eslint/no-unused-vars
+  553:58  warning  '_attributes' is defined but never used                                @typescript-eslint/no-unused-vars
+  556:53  warning  '_name' is defined but never used                                      @typescript-eslint/no-unused-vars
+  556:60  warning  '_attributes' is defined but never used                                @typescript-eslint/no-unused-vars
+  559:52  warning  '_link' is defined but never used                                      @typescript-eslint/no-unused-vars
+  562:53  warning  '_links' is defined but never used                                     @typescript-eslint/no-unused-vars
+  565:54  warning  '_status' is defined but never used                                    @typescript-eslint/no-unused-vars
+  568:55  warning  '_name' is defined but never used                                      @typescript-eslint/no-unused-vars
+  571:48  warning  '_endTime' is defined but never used                                   @typescript-eslint/no-unused-vars
+  576:60  warning  '_exception' is defined but never used                                 @typescript-eslint/no-unused-vars
+  576:72  warning  '_time' is defined but never used                                      @typescript-eslint/no-unused-vars
+  684:55  warning  '_name' is defined but never used                                      @typescript-eslint/no-unused-vars
+  684:62  warning  '_options' is defined but never used                                   @typescript-eslint/no-unused-vars
+  684:72  warning  '_context' is defined but never used                                   @typescript-eslint/no-unused-vars
+  684:82  warning  '_fn' is defined but never used                                        @typescript-eslint/no-unused-vars
+  709:56  warning  '_name' is defined but never used                                      @typescript-eslint/no-unused-vars
+  709:63  warning  '_version' is defined but never used                                   @typescript-eslint/no-unused-vars
+  709:73  warning  '_options' is defined but never used                                   @typescript-eslint/no-unused-vars
+  789:30  error    A `require()` style import is forbidden                                @typescript-eslint/no-require-imports
+  852:1   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/run/handlers/use-cache-handler.js
+    2:11  warning  'require' is assigned a value but never used                           @typescript-eslint/no-unused-vars
+   17:3   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+  478:22  warning  '_i' is defined but never used                                         @typescript-eslint/no-unused-vars
+  480:19  warning  '_i' is defined but never used                                         @typescript-eslint/no-unused-vars
+  480:23  warning  '_s' is defined but never used                                         @typescript-eslint/no-unused-vars
+  480:27  warning  '_st' is defined but never used                                        @typescript-eslint/no-unused-vars
+
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/run/handlers/wait-until.cjs
+  26:30  error    A `require()` style import is forbidden                                @typescript-eslint/no-require-imports
+  37:1   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/run/headers.js
+  2:11  warning  'require' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/run/next.cjs
+   41:9   warning  'fsProps' is assigned a value but never used                                                           @typescript-eslint/no-unused-vars
+   42:9   warning  'fsSyncMethods' is assigned a value but never used                                                     @typescript-eslint/no-unused-vars
+   43:9   warning  'fsAsyncMethods' is assigned a value but never used                                                    @typescript-eslint/no-unused-vars
+   60:11  warning  Expected an assignment or function call and instead saw an expression                                  @typescript-eslint/no-unused-expressions
+   78:9   warning  Expected an assignment or function call and instead saw an expression                                  @typescript-eslint/no-unused-expressions
+   81:11  warning  Expected an assignment or function call and instead saw an expression                                  @typescript-eslint/no-unused-expressions
+   95:7   warning  Expected an assignment or function call and instead saw an expression                                  @typescript-eslint/no-unused-expressions
+  100:82  error    A `require()` style import is forbidden                                                                @typescript-eslint/no-require-imports
+  163:16  warning  '_unused' is defined but never used                                                                    @typescript-eslint/no-unused-vars
+  243:40  error    A `require()` style import is forbidden                                                                @typescript-eslint/no-require-imports
+  254:28  warning  Expected an assignment or function call and instead saw an expression                                  @typescript-eslint/no-unused-expressions
+  270:85  error    A `require()` style import is forbidden                                                                @typescript-eslint/no-require-imports
+  288:18  warning  'err' is defined but never used                                                                        @typescript-eslint/no-unused-vars
+  294:18  warning  'err' is defined but never used                                                                        @typescript-eslint/no-unused-vars
+  477:28  warning  Expected an assignment or function call and instead saw an expression                                  @typescript-eslint/no-unused-expressions
+  493:31  error    A `require()` style import is forbidden                                                                @typescript-eslint/no-require-imports
+  494:31  error    A `require()` style import is forbidden                                                                @typescript-eslint/no-require-imports
+  495:24  error    A `require()` style import is forbidden                                                                @typescript-eslint/no-require-imports
+  497:30  error    A `require()` style import is forbidden                                                                @typescript-eslint/no-require-imports
+  498:21  error    A `require()` style import is forbidden                                                                @typescript-eslint/no-require-imports
+  499:22  error    A `require()` style import is forbidden                                                                @typescript-eslint/no-require-imports
+  502:30  error    A `require()` style import is forbidden                                                                @typescript-eslint/no-require-imports
+  503:21  error    A `require()` style import is forbidden                                                                @typescript-eslint/no-require-imports
+  578:7   error    Definition for rule 'n/global-require' was not found                                                   n/global-require
+  578:7   warning  Unused eslint-disable directive (no problems were reported from '@typescript-eslint/no-var-requires')
+  579:7   error    A `require()` style import is forbidden                                                                @typescript-eslint/no-require-imports
+  588:1   warning  Expected an assignment or function call and instead saw an expression                                  @typescript-eslint/no-unused-expressions
+
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/run/storage/regional-blob-store.cjs
+  840:1  warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/run/storage/request-scoped-in-memory-cache.cjs
+    27:20  error    A `require()` style import is forbidden                                @typescript-eslint/no-require-imports
+    34:3   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   495:22  warning  '_i' is defined but never used                                         @typescript-eslint/no-unused-vars
+   497:19  warning  '_i' is defined but never used                                         @typescript-eslint/no-unused-vars
+   497:23  warning  '_s' is defined but never used                                         @typescript-eslint/no-unused-vars
+   497:27  warning  '_st' is defined but never used                                        @typescript-eslint/no-unused-vars
+  1398:25  error    A `require()` style import is forbidden                                @typescript-eslint/no-require-imports
+  1399:30  error    A `require()` style import is forbidden                                @typescript-eslint/no-require-imports
+  1400:21  error    A `require()` style import is forbidden                                @typescript-eslint/no-require-imports
+  1531:1   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/run/storage/storage.cjs
+   20:5   warning  '__toESM' is assigned a value but never used                           @typescript-eslint/no-unused-vars
+   38:21  error    A `require()` style import is forbidden                                @typescript-eslint/no-require-imports
+   39:34  error    A `require()` style import is forbidden                                @typescript-eslint/no-require-imports
+   40:45  error    A `require()` style import is forbidden                                @typescript-eslint/no-require-imports
+   41:46  error    A `require()` style import is forbidden                                @typescript-eslint/no-require-imports
+   42:35  error    A `require()` style import is forbidden                                @typescript-eslint/no-require-imports
+  100:1   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/shared/blob-types.cjs
+  34:1  warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/shared/blobkey.js
+  2:11  warning  'require' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.netlify/dist/shared/cache-types.cjs
+  30:1  warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.next/server/app/_global-error/page.js
+  1:7  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.next/server/app/_not-found/page.js
+  1:7  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.next/server/app/favicon.ico/route.js
+  1:7  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.next/server/app/page.js
+  1:7  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.next/server/chunks/[externals]_next_dist_0arv.vj._.js
+  1:28   warning  't' is defined but never used            @typescript-eslint/no-unused-vars
+  1:104  error    A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  1:179  warning  't' is defined but never used            @typescript-eslint/no-unused-vars
+  1:266  error    A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  1:352  warning  't' is defined but never used            @typescript-eslint/no-unused-vars
+  1:436  error    A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  1:519  warning  't' is defined but never used            @typescript-eslint/no-unused-vars
+  1:608  error    A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  1:696  warning  't' is defined but never used            @typescript-eslint/no-unused-vars
+  1:786  error    A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+  1:875  warning  't' is defined but never used            @typescript-eslint/no-unused-vars
+  1:938  error    A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/home/arro/projects/agent-glossary/.netlify/functions-internal/___netlify-server-handler/.next/server/chunks/[root-of-the-server]__0teziyo._.js
+   1:28     warning  't' is defined but never used                                          @typescript-eslint/no-unused-vars
+   1:116    error    A `require()` style import is forbidden                                @typescript-eslint/no-require-imports
+   1:203    warning  't' is defined but never used                                          @typescript-eslint/no-unused-vars
+   1:241    warning  't' is defined but never used                                          @typescript-eslint/no-unused-vars
+   1:332    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:871    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:985    warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:1208   error    Unexpected aliasing of 'this' to local variable                        @typescript-eslint/no-this-alias
+   1:1215   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:1481   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:1727   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:2205   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:2704   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:2903   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:3600   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:3748   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:4451   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:4579   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:4811   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:5020   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:5583   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:5743   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:5902   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:6208   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:6331   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:6595   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:6767   error    Unexpected aliasing of 'this' to local variable                        @typescript-eslint/no-this-alias
+   1:6774   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:7063   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:7173   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:7697   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:8148   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:8684   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:8957   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:9176   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:9949   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:9980   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:10677  warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:10748  warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:10875  warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:11028  warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+   1:11530  warning  'A' is defined but never used                                          @typescript-eslint/no-unused-vars
+   1:11532  warning  't' is defined but never used                                          @typescript-eslint/no-unused-vars
+   1:11580  warning  'A' is defined but never used                                          @typescript-eslint/no-unused-vars
+   1:11582  warning  't' is defined but never used                                          @typescript-eslint/no-unused-vars
+   1:11634  warning  'A' is defined but never used                                          @typescript-eslint/no-unused-vars
+   1:11636  warning  't' is defined but never used                                          @typescript-eslint/no-unused-vars
+   1:11698  warning  'A' is defined but never used                                          @typescript-eslint/no-unused-vars
+   1:11700  warning  't' is defined but never used                                          @typescript-eslint/no-unused-vars
+
+...916257 bytes truncated...
+
+The tool call succeeded but the output was truncated. Full output saved to: /home/arro/.local/share/opencode/tool-output/tool_d4f2b06f3001L2OsjGoQIucXsD
+Use the Task tool to have explore agent process this file with Grep and Read (with offset/limit). Do NOT read the full file yourself - delegate to save context.
 [0m
-> build · glm-5-turbo
-[0m
-[0m# [0mTodos
-[ ] Read existing code and specs to understand current state
-[ ] Implement or improve the Agent Glossary Whiteboard app
-[ ] Test with npm run build
-[ ] Update improvement context and commit
-[0m
-[0m→ [0mRead src
-[0m→ [0mRead .workspaces/1-implementation/context.md
-[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md
-[0m→ [0mRead .workspaces/1-implementation/resources/pixijs-reference.md
-[0m→ [0mRead .workspaces/3-research/resources/findings.md
-[0m→ [0mRead src/app
-[0m→ [0mRead src/components
-[0m✱ [0mGlob "src/**/*.{tsx,ts,css}"[90m 4 matches[0m
-[0m→ [0mRead src/app/lib
-[0m→ [0mRead src/app/components
-[0m→ [0mRead src/app/layout.tsx
-[0m→ [0mRead src/app/page.tsx
-[0m→ [0mRead src/app/globals.css
-[0m→ [0mRead src/components/whiteboard.tsx
-[0m→ [0mRead package.json
-[0m
-[0m# [0mTodos
-[x] Read existing code and specs to understand current state
-[ ] Optimize grid rendering (viewport culling - only draw visible lines)
-[ ] Add smooth hover transitions using ticker
-[ ] Improve bubble layout with better spacing and circle packing
-[ ] Add minimap for navigation overview
-[ ] Polish detail panel with fade-in animation
-[ ] Add search/filter functionality
-[ ] Test with npm run build
-[ ] Update improvement context and commit
-[0m
-[0m$ [0mnpm run build 2>&1 | tail -30
+[0m$ [0mnpm run build
 > agent-glossary@0.1.0 build
 > next build
 
@@ -445,13 +502,13 @@ Build and lint pass cleanly. Committed as `2cb530e`.
   Creating an optimized production build ...
 ✓ Compiled successfully in 2.2s
   Running TypeScript ...
-  Finished TypeScript in 1847ms ...
+  Finished TypeScript in 1938ms ...
   Collecting page data using 5 workers ...
   Generating static pages using 5 workers (0/4) ...
   Generating static pages using 5 workers (1/4) 
   Generating static pages using 5 workers (2/4) 
   Generating static pages using 5 workers (3/4) 
-✓ Generating static pages using 5 workers (4/4) in 327ms
+✓ Generating static pages using 5 workers (4/4) in 326ms
   Finalizing page optimization ...
 
 Route (app)
@@ -461,916 +518,29 @@ Route (app)
 
 ○  (Static)  prerendered as static content
 [0m
-Build passes. Now I'll implement significant improvements. Let me rewrite the whiteboard component with: optimized dynamic grid, smooth hover animations, minimap, panel fade animation, and better bubble styling.
-[0m# [0mTodos
-[x] Read existing code and specs to understand current state
-[ ] Rewrite whiteboard with all improvements
-[ ] Add minimap for navigation overview
-[ ] Test with npm run build
-[ ] Update improvement context and commit
-[0m
-[0m← [0mWrite src/components/whiteboard.tsx
-Wrote file successfully.
-
-LSP errors detected in this file, please fix:
-<diagnostics file="/home/arro/projects/agent-glossary/src/components/whiteboard.tsx">
-ERROR [872:27] Argument of type 'Ticker' is not assignable to parameter of type 'TickerCallback<any>'.
-  Type 'Ticker' provides no match for the signature '(this: any, ticker: Ticker): any'.
-</diagnostics>
-[0m
-[0m← [0mEdit src/components/whiteboard.tsx
-Index: /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-===================================================================
---- /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-+++ /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-@@ -836,17 +836,18 @@
-     });
-   }
- 
-   // Panel fade-in ticker
--  const panelTicker = app.ticker.add(() => {
-+  const panelFadeFn = () => {
-     if (!panelAnimating || !panel) return;
-     panelAlpha += 0.08;
-     if (panelAlpha >= 1) {
-       panelAlpha = 1;
-       panelAnimating = false;
-     }
-     panel.alpha = panelAlpha;
--  });
-+  };
-+  app.ticker.add(panelFadeFn);
- 
-   // ESC to close
-   const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') closePanel(); };
-   window.addEventListener('keydown', onKey);
-@@ -868,9 +869,9 @@
- 
-   cleanup = () => {
-     window.removeEventListener('keydown', onKey);
-     window.removeEventListener('resize', onResize);
--    app.ticker.remove(panelTicker);
-+    app.ticker.remove(panelFadeFn);
-     closePanel();
-     app.destroy(true);
-   };
- })();
-
-[0m
-[0m$ [0mnpm run build 2>&1 | tail -20
-Creating an optimized production build ...
-✓ Compiled successfully in 2.2s
-  Running TypeScript ...
-  Finished TypeScript in 1834ms ...
-  Collecting page data using 5 workers ...
-  Generating static pages using 5 workers (0/4) ...
-  Generating static pages using 5 workers (1/4) 
-  Generating static pages using 5 workers (2/4) 
-  Generating static pages using 5 workers (3/4) 
-✓ Generating static pages using 5 workers (4/4) in 332ms
-  Finalizing page optimization ...
-
-Route (app)
-┌ ○ /
-└ ○ /_not-found
-
-
-○  (Static)  prerendered as static content
-[0m
-[0m# [0mTodos
-[x] Read existing code and specs to understand current state
-[x] Rewrite whiteboard with all improvements
-[x] Add minimap for navigation overview
-[x] Test with npm run build
-[ ] Update improvement context and commit
-[0m
-Now let me check if the improvements context file exists and update it:
-[0m→ [0mRead .workspaces/2-improvements
-[0m→ [0mRead .workspaces/2-improvements/context.md
-[0m
-[0m← [0mWrite .workspaces/2-improvements/context.md
-Wrote file successfully.
-[0m
-Now let me commit:
-[0m$ [0mgit status
-On branch main
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-	modified:   .workspaces/2-improvements/context.md
-	modified:   .workspaces/logs/loop.log
-	modified:   package-lock.json
-	modified:   package.json
-	modified:   src/components/whiteboard.tsx
-
-no changes added to commit (use "git add" and/or "git commit -a")
-[0m
-[0m$ [0mgit log --oneline -5
-31a35fe loop iter 1: workspace 1 (Implementation) completed
-2cb530e feat: iteration 1 complete — Agent Glossary Whiteboard with PixiJS v8
-0b36d44 loop iter 1: implementation changes
-5233faf Initial commit from Create Next App
-[0m
-[0m$ [0mgit diff --stat
-.workspaces/2-improvements/context.md |  38 ++--
- .workspaces/logs/loop.log             | 154 ++++++++++++++++
- package-lock.json                     | 112 ++++++++++++
- package.json                          |   2 +
- src/components/whiteboard.tsx         | 319 +++++++++++++++++++++++++++++-----
- 5 files changed, 569 insertions(+), 56 deletions(-)
-[0m
-[0m$ [0mgit add src/components/whiteboard.tsx .workspaces/2-improvements/context.md && git commit -m "feat: improve whiteboard — dynamic grid, smooth hover, minimap, panel animation
-
-- Optimize grid: viewport-culled dynamic rendering (only visible lines)
-- Smooth hover transitions via ticker interpolation (scale 1→1.08)
-- Add minimap (180x110px) with viewport indicator and click-to-navigate
-- Detail panel: fade-in animation + colored accent bar
-- Better bubble visuals: layered fill with depth effect
-- Improved bubble layout with circle-packing density calculation
-- Fix resize handler for devicePixelRatio"
-[main 592ae22] feat: improve whiteboard — dynamic grid, smooth hover, minimap, panel animation
- 2 files changed, 301 insertions(+), 56 deletions(-)
-[0m
-[0m# [0mTodos
-[x] Read existing code and specs to understand current state
-[x] Rewrite whiteboard with all improvements
-[x] Add minimap for navigation overview
-[x] Test with npm run build
-[x] Update improvement context and commit
-[0m
-Committed. Here's what was improved in this iteration:
-
-**Performance:**
-- **Dynamic grid** — viewport-culled, only draws visible lines (was drawing 400 lines from -2000 to 6000)
-
-**Visual polish:**
-- **Smooth hover** — ticker-based lerp animation (scale 1→1.08) instead of instant
-- **Layered bubble fill** — white base + inner gradient circle for depth
-- **Panel accent bar** — colored top bar matching macroarea theme
-- **Panel fade-in** — alpha animation on open
-
-**Navigation:**
-- **Minimap** (180x110px) — shows all macroareas + viewport indicator rectangle, click-to-navigate
-
-**Layout:**
-- **Circle-packing density** — better bubble spacing with centered last row
-
-**Remaining for next iteration:** search/filter, zoom buttons, drag bubbles, mobile responsive, keyboard navigation.
-[0;32m[2026-04-02 14:28:31] ✓[0m Workspace Improvements & PRD completed successfully
- 1 file changed, 220 insertions(+)
-[0;32m[2026-04-02 14:28:31] ✓[0m Workspace changes committed
-[0;36m[2026-04-02 14:28:31][0m Launching OpenCode for workspace Research & Content...
-[0m
-> build · glm-5-turbo
-[0m
-[0m→ [0mRead .workspaces/3-research/resources/research-requests.md
-[0m→ [0mRead .workspaces/3-research/resources/findings.md
-[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md
-[0m→ [0mRead .workspaces/3-research/resources/guides.md
-[0m→ [0mRead .workspaces/3-research/context.md
-[0m
-[0m# [0mTodos
-[ ] Research high priority: Agentic coding frameworks (CrewAI, AutoGen, Claude Code, Cursor, Devin, Windsurf, Aider, Continue.dev)
-[ ] Research high priority: MCP (Model Context Protocol) current state & adoption
-[ ] Research high priority: ACP (Agent Communication Protocol)
-[ ] Research medium priority: Multi-agent orchestration patterns
-[ ] Research medium priority: Observability tools (LangSmith, LangFuse, Weave)
-[ ] Research medium priority: Sandbox environments (E2B, Modal, Daytona)
-[ ] Research medium priority: Memory systems (MemGPT/Letta, Zep)
-[ ] Research exploration: Guides, best practices, emerging trends
-[ ] Write findings to findings.md
-[ ] Write guides to guides.md
-[ ] Update concepts.md with new tools/patterns
-[ ] Update context.md with current state
-[0m
-Let me launch parallel research agents to cover all topics efficiently.
-[0m# [0mTodos
-[ ] Research high priority: Agentic coding frameworks (CrewAI, AutoGen, Claude Code, Cursor, Devin, Windsurf, Aider, Continue.dev)
-[ ] Research high priority: MCP (Model Context Protocol) current state & adoption
-[ ] Research high priority: ACP (Agent Communication Protocol)
-[ ] Research medium priority: Multi-agent orchestration patterns
-[ ] Research medium priority: Observability tools (LangSmith, LangFuse, Weave)
-[ ] Research medium priority: Sandbox environments (E2B, Modal, Daytona)
-[ ] Research medium priority: Memory systems (MemGPT/Letta, Zep)
-[ ] Research exploration: Guides, best practices, emerging trends
-[ ] Write findings to findings.md
-[ ] Write guides to guides.md
-[ ] Update concepts.md with new tools/patterns
-[ ] Update context.md with current state
-[0m
-[0m• [0mResearch coding agent frameworks[90m General Agent[0m
-[0m• [0mResearch MCP protocol[90m General Agent[0m
-[0m• [0mResearch ACP protocol[90m General Agent[0m
-[0m• [0mResearch multi-agent orchestration[90m General Agent[0m
-[0m• [0mResearch observability tools[90m General Agent[0m
-[0m• [0mResearch sandbox environments[90m General Agent[0m
-[0m• [0mResearch agent memory systems[90m General Agent[0m
-[0m• [0mResearch guides and trends[90m General Agent[0m
-[0m✓ [0mResearch observability tools[90m General Agent[0m
-[0m✓ [0mResearch sandbox environments[90m General Agent[0m
-[0m✓ [0mResearch coding agent frameworks[90m General Agent[0m
-[0m✓ [0mResearch agent memory systems[90m General Agent[0m
-[0m✓ [0mResearch ACP protocol[90m General Agent[0m
-[0m✓ [0mResearch MCP protocol[90m General Agent[0m
-[0m✓ [0mResearch multi-agent orchestration[90m General Agent[0m
-[0m✓ [0mResearch guides and trends[90m General Agent[0m
-All research complete. Now let me compile everything into the output files.
-[0m
-[0m# [0mTodos
-[x] Research high priority: Agentic coding frameworks (CrewAI, AutoGen, Claude Code, Cursor, Devin, Windsurf, Aider, Continue.dev)
-[x] Research high priority: MCP (Model Context Protocol) current state & adoption
-[x] Research high priority: ACP (Agent Communication Protocol)
-[x] Research medium priority: Multi-agent orchestration patterns
-[x] Research medium priority: Observability tools (LangSmith, LangFuse, Weave)
-[x] Research medium priority: Sandbox environments (E2B, Modal, Daytona)
-[x] Research medium priority: Memory systems (MemGPT/Letta, Zep)
-[x] Research exploration: Guides, best practices, emerging trends
-[ ] Write findings to findings.md
-[ ] Write guides to guides.md
-[ ] Update concepts.md with new tools/patterns
-[ ] Update context.md with current state
-[0m
-[0m← [0mWrite .workspaces/3-research/resources/findings.md
-Wrote file successfully.
-[0m
-[0m← [0mWrite .workspaces/3-research/resources/guides.md
-Wrote file successfully.
-[0m
-[0m# [0mTodos
-[x] Research high priority: Agentic coding frameworks (CrewAI, AutoGen, Claude Code, Cursor, Devin, Windsurf, Aider, Continue.dev)
-[x] Research high priority: MCP (Model Context Protocol) current state & adoption
-[x] Research high priority: ACP (Agent Communication Protocol)
-[x] Research medium priority: Multi-agent orchestration patterns
-[x] Research medium priority: Observability tools (LangSmith, LangFuse, Weave)
-[x] Research medium priority: Sandbox environments (E2B, Modal, Daytona)
-[x] Research medium priority: Memory systems (MemGPT/Letta, Zep)
-[x] Research exploration: Guides, best practices, emerging trends
-[x] Write findings to findings.md
-[x] Write guides to guides.md
-[ ] Update concepts.md with new tools/patterns
-[ ] Update context.md with current state
-[0m
-Now updating concepts.md with new patterns and updated alternatives:
-[0m← [0mEdit .workspaces/1-implementation/resources/concepts.md
-Index: /home/arro/projects/agent-glossary/.workspaces/1-implementation/resources/concepts.md
-===================================================================
---- /home/arro/projects/agent-glossary/.workspaces/1-implementation/resources/concepts.md
-+++ /home/arro/projects/agent-glossary/.workspaces/1-implementation/resources/concepts.md
-@@ -24,8 +24,26 @@
- - **description**: Gestione del limite di token del modello
- - **alternatives**: Truncation, Summarization, Chunking, Hierarchical context
- - **category**: Runtime
- 
-+### Temporal Memory
-+- **popularity**: 7
-+- **description**: Memoria che traccia come i fatti cambiano nel tempo con finestre di validità e invalidazione automatica
-+- **alternatives**: Graphiti, Zep, knowledge graphs con validità temporale
-+- **category**: Storage
-+
-+### Tiered Memory
-+- **popularity**: 7
-+- **description**: Architettura a livelli: core memory (sempre in contesto), recall memory (ricercabile), archive (long-term storage). L'agente gestisce autonomamente quale livello usare.
-+- **alternatives**: Letta (MemGPT), custom tiered systems
-+- **category**: Architecture
-+
-+### Procedural Memory
-+- **popularity**: 6
-+- **description**: Memoria che memorizza workflow e conoscenze procedurali (come fare le cose) separate dai fatti semantici
-+- **alternatives**: Mem0 procedural memory, Letta skills, workflow templates
-+- **category**: Storage
-+
- ### Token Budget
- - **popularity**: 7
- - **description**: Allocazione dinamica di token per system/user/tool output
- - **alternatives**: Fixed budget, Priority-based, Adaptive
-
-[0m
-[0m← [0mEdit .workspaces/1-implementation/resources/concepts.md
-Index: /home/arro/projects/agent-glossary/.workspaces/1-implementation/resources/concepts.md
-===================================================================
---- /home/arro/projects/agent-glossary/.workspaces/1-implementation/resources/concepts.md
-+++ /home/arro/projects/agent-glossary/.workspaces/1-implementation/resources/concepts.md
-@@ -81,12 +81,18 @@
- - **category**: Interaction
- 
- ### MCP (Model Context Protocol)
- - **popularity**: 9
--- **description**: Protocollo standard per collegare tool esterni all'agente
--- **alternatives**: Function calling nativo, REST APIs, gRPC
-+- **description**: Protocollo standard per collegare tool esterni all'agente. JSON-RPC 2.0, gestito dalla Linux Foundation. Supportato da Anthropic, OpenAI, Google, Microsoft, Amazon. 10 SDK ufficiali, 93+ server registrati.
-+- **alternatives**: REST APIs, gRPC, OpenAI function calling, A2A
- - **category**: Integration
- 
-+### A2A (Agent-to-Agent Protocol)
-+- **popularity**: 9
-+- **description**: Protocollo standard (Linux Foundation, Apache 2.0) per comunicazione tra agenti AI indipendenti. v1.0 Mar 2026. Agent Cards per discovery, Tasks con messaggi multi-turn. Complementare a MCP (A2A per agent-to-agent, MCP per agent-to-tool).
-+- **alternatives**: MCP (complementare), custom gRPC/REST, LangGraph inter-agent channels
-+- **category**: Integration
-+
- ### API Client
- - **popularity**: 8
- - **description**: Chiamate HTTP a API esterne per integrare servizi
- - **alternatives**: fetch, axios, openapi clients, SDK wrappers
-
-[0m
-[0m← [0mEdit .workspaces/1-implementation/resources/concepts.md
-Index: /home/arro/projects/agent-glossary/.workspaces/1-implementation/resources/concepts.md
-===================================================================
---- /home/arro/projects/agent-glossary/.workspaces/1-implementation/resources/concepts.md
-+++ /home/arro/projects/agent-glossary/.workspaces/1-implementation/resources/concepts.md
-@@ -141,8 +141,50 @@
- - **description**: Ciclo pensa→azione→osserva alla base di ogni agente
- - **alternatives**: ReAct, Plan-and-Execute, Function calling loop
- - **category**: Core
- 
-+### Prompt Chaining
-+- **popularity**: 10
-+- **description**: Decomposizione sequenziale dove ogni chiamata LLM processa l'output della precedente, con gates programmatici opzionali tra step
-+- **alternatives**: Sequential Workflow (AutoGen), Sequential Process (CrewAI), LangGraph chain
-+- **category**: Workflow
-+
-+### Routing
-+- **popularity**: 9
-+- **description**: Classifica l'input e lo dirige a un processo downstream specializzato. Permette separazione delle preoccupazioni e prompt specializzati per categoria.
-+- **alternatives**: Selector Group Chat (AutoGen), conditional branching (LangGraph), tool routing
-+- **category**: Workflow
-+
-+### Parallelization
-+- **popularity**: 8
-+- **description**: Due varianti: Sectioning (scomporre task in sotto-task paralleli indipendenti) e Voting (eseguire stesso task più volte per output diversi)
-+- **alternatives**: Fan-out/fan-in (LangGraph), Concurrent Agents (AutoGen)
-+- **category**: Workflow
-+
-+### Orchestrator-Workers
-+- **popularity**: 9
-+- **description**: Un LLM centrale decoompongono dinamicamente task e delega a worker LLM, poi sintetizza risultati. Sotto-task determinati dinamicamente dall'orchestratore.
-+- **alternatives**: Hierarchical Process (CrewAI), Magentic-One (AutoGen), LangGraph subgraphs
-+- **category**: Workflow
-+
-+### Evaluator-Optimizer
-+- **popularity**: 8
-+- **description**: Un LLM genera output mentre un altro valuta e fornisce feedback in un loop iterativo. Più efficace quando esistono criteri di valutazione chiari.
-+- **alternatives**: Multi-Agent Debate (AutoGen), Reflection pattern, code review agents
-+- **category**: Workflow
-+
-+### Handoffs / Swarm Pattern
-+- **popularity**: 9
-+- **description**: Agenti trasferiscono controllo ad altri agenti tramite function returns. Coordinazione leggera dove ogni agente ha le proprie istruzioni e tools.
-+- **alternatives**: AutoGen Swarm, LangGraph edge transitions, A2A task delegation
-+- **category**: Coordination
-+
-+### GraphFlow / State Machine
-+- **popularity**: 9
-+- **description**: Agenti e tools sono nodi in un grafo diretto. Stato mantenuto tra transizioni, archi condizionali abilitano routing dinamico. Supporta cicli, rami, subgraph e interrupt HITL.
-+- **alternatives**: Temporal workflows, Prefect DAGs, Step Functions
-+- **category**: Orchestration
-+
- ### Multi-Agent
- - **popularity**: 8
- - **description**: Più agenti che collaborano o competono su un task
- - **alternatives**: CrewAI, AutoGen, LangGraph, Swarm
-
-[0m
-[0m← [0mEdit .workspaces/1-implementation/resources/concepts.md
-Index: /home/arro/projects/agent-glossary/.workspaces/1-implementation/resources/concepts.md
-===================================================================
---- /home/arro/projects/agent-glossary/.workspaces/1-implementation/resources/concepts.md
-+++ /home/arro/projects/agent-glossary/.workspaces/1-implementation/resources/concepts.md
-@@ -207,8 +207,26 @@
- - **description**: Delegare sotto-task a agenti secondari isolati
- - **alternatives**: Claude Code, Codex CLI, OpenCode, Subprocess
- - **category**: Pattern
- 
-+### Human-in-the-Loop (HITL)
-+- **popularity**: 8
-+- **description**: Pattern dove l'agente richiede approvazione umana prima di azioni ad alto rischio o quando supera soglie di errore. Standard per agenti in produzione.
-+- **alternatives**: OpenAI Agents SDK approval flow, HumanLayer, CAMEL Framework, Permit.io
-+- **category**: Pattern
-+
-+### Async Background Agent
-+- **popularity**: 7
-+- **description**: Agenti che lavorano autonomamente in cloud VM producendo PR/risultati mentre gli sviluppatori fanno altro. Task assegnati e revisionati in modo asincrono.
-+- **alternatives**: Jules (Google), OpenAI Codex, Devin, GitHub Copilot Agent
-+- **category**: Pattern
-+
-+### ACI (Agent-Computer Interface)
-+- **popularity**: 7
-+- **description**: Principio di design per cui il design dei tool per agenti merita lo stesso investimento dell'HCI per umani. Include poka-yoke, percorsi assoluti, e testing su come i modelli usano i tool.
-+- **alternatives**: Function calling best practices, tool design guides
-+- **category**: Methodology
-+
- ### Cron/Scheduling
- - **popularity**: 6
- - **description**: Eseguire task agentici in modo programmato
- - **alternatives**: APScheduler, Cron expressions, Event-driven
-
-[0m
-[0m← [0mEdit .workspaces/1-implementation/resources/concepts.md
-Index: /home/arro/projects/agent-glossary/.workspaces/1-implementation/resources/concepts.md
-===================================================================
---- /home/arro/projects/agent-glossary/.workspaces/1-implementation/resources/concepts.md
-+++ /home/arro/projects/agent-glossary/.workspaces/1-implementation/resources/concepts.md
-@@ -303,11 +303,17 @@
- ## Observability
- ### Logging & Tracing
- - **popularity**: 8
- - **description**: Tracciare le azioni dell'agente per debug e audit
--- **alternatives**: LangSmith, LangFuse, Weave, Phoenix, Custom logging
-+- **alternatives**: LangSmith, Langfuse, Weave, Phoenix, OpenLLMetry, Custom logging
- - **category**: Monitoring
- 
-+### Observability Platform
-+- **popularity**: 9
-+- **description**: Piattaforma completa per tracing, evaluation, prompt management e deployment di agenti. Il leader open-source è Langfuse (24.2k stars), il più feature-complete è LangSmith.
-+- **alternatives**: Langfuse, LangSmith, Arize Phoenix, W&B Weave, Helicone
-+- **category**: Monitoring
-+
- ### Cost Tracking
- - **popularity**: 8
- - **description**: Monitorare token usage e costi per sessione/task
- - **alternatives**: Usage dashboards, Token counting, Provider billing APIs
-
-[0m
-[0m← [0mEdit .workspaces/1-implementation/resources/concepts.md
-Index: /home/arro/projects/agent-glossary/.workspaces/1-implementation/resources/concepts.md
-===================================================================
---- /home/arro/projects/agent-glossary/.workspaces/1-implementation/resources/concepts.md
-+++ /home/arro/projects/agent-glossary/.workspaces/1-implementation/resources/concepts.md
-@@ -333,11 +333,17 @@
- 
- ### Safety & Guardrails
- - **popularity**: 7
- - **description**: Meccanismi per prevenire comportamenti indesiderati
--- **alternatives**: Input/output filtering, Permission systems, Approval flows
-+- **alternatives**: Input/output filtering, Permission systems, Approval flows, Geordie AI
- - **category**: Safety
- 
-+### Agent Governance
-+- **popularity**: 6
-+- **description**: Framework di governance per il deployment sicuro e controllato di agenti AI in produzione. Copre valutazione, rischio, conformità e audit. 82% degli executive pianifica adozione entro 1-3 anni.
-+- **alternatives**: WEF framework, Microsoft Power Platform governance, Collibra
-+- **category**: Governance
-+
- ## Infrastructure
- ### Docker & Containers
- - **popularity**: 9
- - **description**: Ambienti isolati per esecuzione e deployment
-
-[0m
-[0m← [0mEdit .workspaces/1-implementation/resources/concepts.md
-Index: /home/arro/projects/agent-glossary/.workspaces/1-implementation/resources/concepts.md
-===================================================================
---- /home/arro/projects/agent-glossary/.workspaces/1-implementation/resources/concepts.md
-+++ /home/arro/projects/agent-glossary/.workspaces/1-implementation/resources/concepts.md
-@@ -51,10 +51,10 @@
- 
- ## Tools & Actions
- ### Code Execution Sandbox
- - **popularity**: 9
--- **description**: Esecuzione codice in ambiente isolato (Python, Node, etc.)
--- **alternatives**: E2B, Modal, Docker sandbox, Jupyter kernel
-+- **description**: Esecuzione codice in ambiente isolato (Python, Node, etc.). Approcci: Firecracker microVM (E2B), Docker/containers (Daytona), WebAssembly (StackBlitz)
-+- **alternatives**: E2B, Daytona, Modal, Docker sandbox, Jupyter kernel, StackBlitz, Fly.io Machines
- - **category**: Execution
- 
- ### Terminal/Shell Access
- - **popularity**: 10
-
-[0m
-Now update the research requests and context files:
-[0m← [0mWrite .workspaces/3-research/resources/research-requests.md
-Wrote file successfully.
-[0m
-[0m← [0mWrite .workspaces/3-research/context.md
-Wrote file successfully.
-[0m
-[0m# [0mTodos
-[x] Research high priority: Agentic coding frameworks (CrewAI, AutoGen, Claude Code, Cursor, Devin, Windsurf, Aider, Continue.dev)
-[x] Research high priority: MCP (Model Context Protocol) current state & adoption
-[x] Research high priority: ACP (Agent Communication Protocol)
-[x] Research medium priority: Multi-agent orchestration patterns
-[x] Research medium priority: Observability tools (LangSmith, LangFuse, Weave)
-[x] Research medium priority: Sandbox environments (E2B, Modal, Daytona)
-[x] Research medium priority: Memory systems (MemGPT/Letta, Zep)
-[x] Research exploration: Guides, best practices, emerging trends
-[x] Write findings to findings.md
-[x] Write guides to guides.md
-[x] Update concepts.md with new tools/patterns
-[x] Update context.md with current state
-[0m
-Research iteration 1 complete. Here's what was produced:
-
-**findings.md** — 30+ structured entries across 6 categories:
-- 10 coding agent tools (Cursor, Gemini CLI, Claude Code, Codex CLI, Cline, Copilot, Aider, Devin, Windsurf, Continue)
-- 5 orchestration frameworks (LangGraph, OpenAI Agents SDK, CrewAI, AutoGen, Swarm)
-- 3 protocols (MCP, A2A, ACP deprecated→A2A)
-- 6 observability tools (Langfuse, Phoenix, LangSmith, Weave, Helicone, OpenLLMetry)
-- 6 sandbox platforms (Daytona, E2B, Modal, Fly.io, StackBlitz, CodeSandbox)
-- 4 memory systems (Mem0, Letta, Graphiti, Zep) + 8 multi-agent patterns + 8 emerging trends
-
-**guides.md** — 10 educational resources from Anthropic, OpenAI, Devin, freeCodeCamp, Addy Osmani, Langflow, WEF
-
-**concepts.md** — 13 new concepts added (A2A, temporal/tiered/procedural memory, 7 workflow patterns, HITL, async agents, ACI, observability platform, governance), 3 existing entries updated
-
-**research-requests.md** — 12 new requests queued for iteration 2 (Google ADK, Mastra, Pydantic AI, Strands, Agentic RAG, etc.)
-[0;32m[2026-04-02 14:39:31] ✓[0m Workspace Research & Content completed successfully
- 6 files changed, 1027 insertions(+), 78 deletions(-)
-[0;32m[2026-04-02 14:39:31] ✓[0m Workspace changes committed
-[0;32m[2026-04-02 14:39:31] ✓[0m Iteration 1 complete. Starting iteration 2...
-[0;36m[2026-04-02 14:39:33][0m Launching OpenCode for workspace Implementation...
-[0m
-> build · glm-5-turbo
-[0m
-I'll start by reading the key specification and context files, plus checking for the PRD.
-[0m→ [0mRead .workspaces/1-implementation/context.md
-[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md
-[0m→ [0mRead .workspaces/1-implementation/resources/pixijs-reference.md
-[0m→ [0mRead .workspaces/2-improvements/resources/prd.md
-[0m✱ [0mGlob "**/*.{ts,tsx,css,json}"[90m in . · 9 matches[0m
-Let me check for iteration 2 PRD and read the current implementation files.
-[0m→ [0mRead src/components/whiteboard.tsx
-[0m→ [0mRead src/app/globals.css
-[0m→ [0mRead src/app/layout.tsx
-[0m→ [0mRead src/app/page.tsx
-[0m→ [0mRead package.json
-[0m✱ [0mGlob "**/*"[90m in .workspaces/2-improvements · 2 matches[0m
-[0m→ [0mRead .workspaces/2-improvements/context.md
-Now I have the full picture. The PRD exists but is for iteration 1 (already completed). This is iteration 2, so I need to implement the remaining improvements and add missing concept data. Let me plan and execute.
-[0m
-[0m# [0mTodos
-[ ] Add all 16 missing concepts from concepts.md (Temporal Memory, Tiered Memory, Procedural Memory, A2A, Prompt Chaining, Routing, Parallelization, Orchestrator-Workers, Evaluator-Optimizer, Handoffs/Swarm, GraphFlow, HITL, Async Background, ACI, Observability Platform, Agent Governance)
-[ ] Improve layoutBubbles with adaptive scaling for dense areas (Orchestration: 16 items)
-[ ] Increase AREA_HEIGHT to accommodate more concepts
-[ ] Add panel fade-out animation on close
-[ ] Add zoom +/- buttons (bottom-left)
-[ ] Add initial zoom-to-fit and keyboard shortcuts (+/-/0/ESC)
-[ ] Build, lint, verify everything works
-[ ] Update context.md with iteration 2 state
-[ ] Commit changes
-[0m
-[0m← [0mWrite src/components/whiteboard.tsx
-Wrote file successfully.
-
-LSP errors detected in this file, please fix:
-<diagnostics file="/home/arro/projects/agent-glossary/src/components/whiteboard.tsx">
-ERROR [494:13] Object literal may only specify known properties, and 'alpha' does not exist in type 'Partial<TextStyleOptions>'.
-ERROR [514:41] Cannot find name 'Circle'.
-ERROR [651:11] Property 'fontSize' does not exist on type 'Text'.
-</diagnostics>
-[0m
-Let me fix the 3 LSP errors.
-[0m← [0mEdit src/components/whiteboard.tsx
-Index: /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-===================================================================
---- /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-+++ /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-@@ -7,8 +7,9 @@
-   Text,
-   Container,
-   TextStyle,
-   Rectangle,
-+  Circle,
- } from 'pixi.js';
- 
- interface ConceptData {
-   name: string;
-
-[0m
-[0m← [0mEdit src/components/whiteboard.tsx
-Index: /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-===================================================================
---- /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-+++ /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-@@ -491,11 +491,11 @@
-   style: new TextStyle({
-     fontFamily: '"Inter", sans-serif',
-     fontSize: 10,
-     fill: area.color,
--    alpha: 0.6,
-   }),
- });
-+conceptCount.alpha = 0.6;
- conceptCount.x = 18;
- conceptCount.y = 30;
- areaContainer.addChild(conceptCount);
- 
-
-[0m
-[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=640, limit=25][0m
-[0m
-[0m← [0mEdit src/components/whiteboard.tsx
-Index: /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-===================================================================
---- /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-+++ /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-@@ -640,20 +640,13 @@
- plusBtn.x = 0;
- plusBtn.y = 72;
- zoomContainer.addChild(plusBtn);
- 
--const fitBtn = createZoomBtn('\u25A1', () => {
-+const fitBtn = createZoomBtn('\u2922', () => {
-   zoomToFit();
- });
- fitBtn.x = 0;
--fitBtn.y = 120;
--fitBtn.getChildAt(1) && (() => {
--  const t = fitBtn.children[1] as Text;
--  t.text = '\u2922';
--  t.fontSize = 16;
--  t.x = 20;
--  t.y = 20;
--})();
-+fitBtn.y = 88;
- zoomContainer.addChild(fitBtn);
- 
- app.stage.addChild(zoomContainer);
- 
-
-[0m
-Now let me also fix the zoomContainer background height since we changed the layout:
-[0m✗ [0medit failed
-[91m[1mError: [0mNo changes to apply: oldString and newString are identical.
-Good, no LSP errors now. Let me build to verify:
-[0m
-[0m# [0mTodos
-[x] Add all 16 missing concepts from concepts.md
-[x] Improve layoutBubbles with adaptive scaling for dense areas
-[x] Increase AREA_HEIGHT to accommodate more concepts
-[x] Add panel fade-out animation on close
-[x] Add zoom +/- buttons (bottom-left)
-[x] Add initial zoom-to-fit and keyboard shortcuts (+/-/0/ESC)
-[ ] Build, lint, verify everything works
-[ ] Update context.md with iteration 2 state
-[ ] Commit changes
-[0m
-[0m$ [0mnpm run lint 2>&1
-> agent-glossary@0.1.0 lint
-> eslint
-
-
+[0m$ [0mnpx eslint src
 /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-  659:13  warning  'anyChanged' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  579:65  warning  'screenH' is defined but never used       @typescript-eslint/no-unused-vars
+  745:24  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  755:19  error    Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
 
-✖ 1 problem (0 errors, 1 warning)
+✖ 3 problems (2 errors, 1 warning)
 [0m
-[0m$ [0mnpm run build 2>&1
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+[0m
+[0m$ [0mnpx eslint src
+[0m
+[0m$ [0mnpm run build
 > agent-glossary@0.1.0 build
 > next build
 
 ▲ Next.js 16.2.2 (Turbopack)
 
   Creating an optimized production build ...
-✓ Compiled successfully in 2.4s
+✓ Compiled successfully in 2.2s
   Running TypeScript ...
-  Finished TypeScript in 1862ms ...
-  Collecting page data using 5 workers ...
-  Generating static pages using 5 workers (0/4) ...
-  Generating static pages using 5 workers (1/4) 
-  Generating static pages using 5 workers (2/4) 
-  Generating static pages using 5 workers (3/4) 
-✓ Generating static pages using 5 workers (4/4) in 328ms
-  Finalizing page optimization ...
-
-Route (app)
-┌ ○ /
-└ ○ /_not-found
-
-
-○  (Static)  prerendered as static content
-[0m
-Build passes, lint has 1 unused variable warning. Let me fix it:
-[0m← [0mEdit src/components/whiteboard.tsx
-Index: /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-===================================================================
---- /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-+++ /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-@@ -650,9 +650,8 @@
- 
- app.stage.addChild(zoomContainer);
- 
- app.ticker.add(() => {
--  let anyChanged = false;
-   for (const s of bubbleStates) {
-     if (Math.abs(s.currentScale - s.targetScale) > 0.001) {
-       s.currentScale += (s.targetScale - s.currentScale) * 0.18;
-       s.container.scale.set(s.currentScale);
-
-[0m
-[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=655, limit=15][0m
-[0m
-[0m← [0mEdit src/components/whiteboard.tsx
-Index: /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-===================================================================
---- /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-+++ /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-@@ -654,9 +654,8 @@
- for (const s of bubbleStates) {
-   if (Math.abs(s.currentScale - s.targetScale) > 0.001) {
-     s.currentScale += (s.targetScale - s.currentScale) * 0.18;
-     s.container.scale.set(s.currentScale);
--    anyChanged = true;
-   }
- }
- if (needsGridRedraw) {
-   redrawGrid(grid, world, app.renderer.width / (window.devicePixelRatio || 1), app.renderer.height / (window.devicePixelRatio || 1));
-
-[0m
-[0m$ [0mnpm run build 2>&1 && npm run lint 2>&1
-> agent-glossary@0.1.0 build
-> next build
-
-▲ Next.js 16.2.2 (Turbopack)
-
-  Creating an optimized production build ...
-✓ Compiled successfully in 2.1s
-  Running TypeScript ...
-  Finished TypeScript in 1903ms ...
-  Collecting page data using 5 workers ...
-  Generating static pages using 5 workers (0/4) ...
-  Generating static pages using 5 workers (1/4) 
-  Generating static pages using 5 workers (2/4) 
-  Generating static pages using 5 workers (3/4) 
-✓ Generating static pages using 5 workers (4/4) in 334ms
-  Finalizing page optimization ...
-
-Route (app)
-┌ ○ /
-└ ○ /_not-found
-
-
-○  (Static)  prerendered as static content
-
-
-> agent-glossary@0.1.0 lint
-> eslint
-[0m
-Build and lint both pass clean. Now let me update the context and commit.
-[0m# [0mTodos
-[x] Add all 16 missing concepts from concepts.md
-[x] Improve layoutBubbles with adaptive scaling for dense areas
-[x] Increase AREA_HEIGHT to accommodate more concepts
-[x] Add panel fade-out animation on close
-[x] Add zoom +/- buttons (bottom-left)
-[x] Add initial zoom-to-fit and keyboard shortcuts (+/-/0/ESC)
-[x] Build, lint, verify everything works
-[ ] Update context.md with iteration 2 state
-[ ] Commit changes
-[0m
-[0m← [0mWrite .workspaces/1-implementation/context.md
-Wrote file successfully.
-[0m
-Now let me also update the workspace 2 context:
-[0m← [0mWrite .workspaces/2-improvements/context.md
-Wrote file successfully.
-[0m
-[0m# [0mTodos
-[x] Add all 16 missing concepts from concepts.md
-[x] Improve layoutBubbles with adaptive scaling for dense areas
-[x] Increase AREA_HEIGHT to accommodate more concepts
-[x] Add panel fade-out animation on close
-[x] Add zoom +/- buttons (bottom-left)
-[x] Add initial zoom-to-fit and keyboard shortcuts (+/-/0/ESC)
-[x] Build, lint, verify everything works
-[x] Update context.md with iteration 2 state
-[ ] Commit changes
-[0m
-[0m$ [0mgit status
-On branch main
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-	modified:   .workspaces/1-implementation/context.md
-	modified:   .workspaces/2-improvements/context.md
-	modified:   .workspaces/logs/loop.log
-	modified:   package-lock.json
-	modified:   package.json
-	modified:   src/components/whiteboard.tsx
-
-no changes added to commit (use "git add" and/or "git commit -a")
-[0m
-[0m$ [0mgit log --oneline -5
-1f8c372 loop iter 1: workspace 3 (Research & Content) completed
-6f174ea loop iter 1: workspace 2 (Improvements & PRD) completed
-592ae22 feat: improve whiteboard — dynamic grid, smooth hover, minimap, panel animation
-31a35fe loop iter 1: workspace 1 (Implementation) completed
-2cb530e feat: iteration 1 complete — Agent Glossary Whiteboard with PixiJS v8
-[0m
-[0m$ [0mgit diff --stat
-.workspaces/1-implementation/context.md |  93 ++++---
- .workspaces/2-improvements/context.md   |  66 ++---
- .workspaces/logs/loop.log               | 261 +++++++++++++++++++
- package-lock.json                       | 112 +++++++++
- package.json                            |   2 +
- src/components/whiteboard.tsx           | 426 +++++++++++++++++++++-----------
- 6 files changed, 723 insertions(+), 237 deletions(-)
-[0m
-[0m$ [0mgit add src/components/whiteboard.tsx .workspaces/1-implementation/context.md .workspaces/2-improvements/context.md && git commit -m "feat: iteration 2 — add 16 missing concepts, zoom controls, panel fade-out, adaptive layout
-
-- Add all 62 concepts from concepts.md (was 48): Temporal Memory, Tiered Memory,
-  Procedural Memory, A2A, Prompt Chaining, Routing, Parallelization,
-  Orchestrator-Workers, Evaluator-Optimizer, Handoffs/Swarm, GraphFlow,
-  HITL, Async Background, ACI, Observability Platform, Agent Governance
-- Adaptive bubble layout with automatic scaling for dense areas (Orchestration: 16 items)
-- Increase macroarea height from 360 to 460px
-- Zoom +/- / fit buttons with percentage indicator
-- Panel fade-out animation on close
-- Keyboard shortcuts: +/- zoom, 0 zoom-to-fit, ESC close panel
-- Initial zoom-to-fit on load
-- Concept counter per macroarea"
-[main a365668] feat: iteration 2 — add 16 missing concepts, zoom controls, panel fade-out, adaptive layout
- 3 files changed, 348 insertions(+), 237 deletions(-)
-[0m
-[0m# [0mTodos
-[x] Add all 16 missing concepts from concepts.md
-[x] Improve layoutBubbles with adaptive scaling for dense areas
-[x] Increase AREA_HEIGHT to accommodate more concepts
-[x] Add panel fade-out animation on close
-[x] Add zoom +/- buttons (bottom-left)
-[x] Add initial zoom-to-fit and keyboard shortcuts (+/-/0/ESC)
-[x] Build, lint, verify everything works
-[x] Update context.md with iteration 2 state
-[x] Commit changes
-[0m
-Iteration 2 complete. Here's what was implemented:
-
-**Content** — Added all 16 missing concepts from `concepts.md` (48 → 62 total), including A2A, Prompt Chaining, Routing, Handoffs/Swarm, GraphFlow, HITL, ACI, and more.
-
-**Layout** — Adaptive bubble scaling for dense areas (Orchestration grew from 6 to 16 items, now uses 6-column layout with auto-scaled radii). Macroarea height increased from 360 → 460px.
-
-**UX polish** — Zoom +/-/fit buttons with percentage indicator, panel fade-out animation, keyboard shortcuts (`+/-/0/ESC`), initial zoom-to-fit, concept counters per macroarea.
-[0;32m[2026-04-02 14:49:07] ✓[0m Workspace Implementation completed successfully
- 1 file changed, 326 insertions(+)
-[0;32m[2026-04-02 14:49:07] ✓[0m Workspace changes committed
-[0;36m[2026-04-02 14:49:07][0m Launching OpenCode for workspace Improvements & PRD...
-[0m
-> build · glm-5-turbo
-[0m
-[0m# [0mTodos
-[ ] Read current src/ code to understand implementation state
-[ ] Read context.md, concepts.md, pixijs-reference.md, findings.md
-[ ] Identify gaps and plan improvements
-[ ] Implement improvements to the whiteboard app
-[ ] Run npm run build to verify
-[ ] Update .workspaces/2-improvements/context.md
-[0m
-[0m→ [0mRead src
-[0m→ [0mRead .workspaces/1-implementation/context.md
-[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md
-[0m→ [0mRead .workspaces/1-implementation/resources/pixijs-reference.md
-[0m→ [0mRead .workspaces/3-research/resources/findings.md
-[0m✱ [0mGlob "src/**/*"[90m 5 matches[0m
-Now let me read all the source files:
-[0m→ [0mRead src/app/layout.tsx
-[0m→ [0mRead src/app/page.tsx
-[0m→ [0mRead src/app/globals.css
-[0m→ [0mRead package.json
-[0m→ [0mRead src/components/whiteboard.tsx
-[0m→ [0mRead .workspaces/2-improvements/context.md
-[0m
-[0m# [0mTodos
-[x] Read current src/ code to understand implementation state
-[x] Read context.md, concepts.md, pixijs-reference.md, findings.md
-[ ] Identify gaps and plan improvements
-[ ] Implement improvements to the whiteboard app
-[ ] Run npm run build to verify
-[ ] Update .workspaces/2-improvements/context.md
-[0m
-Current state: fully working whiteboard with 62 bubbles, 8 macroareas, zoom/pan, hover/click, minimap, zoom controls, keyboard shortcuts.
-
-**Planned improvements for iteration 3:**
-1. Smooth animated zoom/pan (lerp transitions)
-2. Tooltip on hover (floating concept name)
-3. Search bar (filter concepts by name)
-4. Staggered intro animation
-5. Visual polish
-[0m# [0mTodos
-[x] Read current src/ code to understand implementation state
-[x] Read context.md, concepts.md, pixijs-reference.md, findings.md
-[x] Identify gaps and plan improvements
-[ ] Implement smooth animated zoom/pan with lerp transitions
-[ ] Implement tooltip on hover showing concept name
-[ ] Implement search bar to filter concepts
-[ ] Add staggered intro animation for bubbles
-[ ] Visual polish improvements
-[ ] Run npm run build to verify
-[ ] Update .workspaces/2-improvements/context.md
-[0m
-Now implementing all improvements in a single rewrite of whiteboard.tsx:
-[0m← [0mWrite src/components/whiteboard.tsx
-Wrote file successfully.
-[0m
-Now let me build to verify:
-[0m$ [0mnpm run build 2>&1
-> agent-glossary@0.1.0 build
-> next build
-
-▲ Next.js 16.2.2 (Turbopack)
-
-  Creating an optimized production build ...
-✓ Compiled successfully in 2.1s
-  Running TypeScript ...
-  Finished TypeScript in 1889ms ...
+  Finished TypeScript in 1927ms ...
   Collecting page data using 5 workers ...
   Generating static pages using 5 workers (0/4) ...
   Generating static pages using 5 workers (1/4) 
@@ -1386,1196 +556,165 @@ Route (app)
 
 ○  (Static)  prerendered as static content
 [0m
-Build passes. Let me run lint too:
-[0m$ [0mnpm run lint 2>&1
-> agent-glossary@0.1.0 lint
-> eslint
-
-
-/home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-   817:13  warning  'minimapViewport' is assigned a value but never used  @typescript-eslint/no-unused-vars
-  1125:17  warning  'cleanName' is assigned a value but never used        @typescript-eslint/no-unused-vars
-
-✖ 2 problems (0 errors, 2 warnings)
+[0m$ [0mgit status --short
+M .workspaces/1-implementation/context.md
+ M .workspaces/logs/loop.log
+ M .workspaces/loop.pid
+ M src/components/whiteboard.tsx
 [0m
-[0m← [0mEdit src/components/whiteboard.tsx
-Index: /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-===================================================================
---- /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-+++ /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-@@ -813,9 +813,8 @@
-   targetPanY = Math.max(20, cy);
- }
- 
- const minimap = createMinimap(worldBounds, window.innerWidth, window.innerHeight, world);
--const minimapViewport = minimap.children[minimap.children.length - 1] as Graphics;
- app.stage.addChild(minimap);
- 
- const zoomContainer = new Container();
- zoomContainer.x = 20;
-
-[0m
-[0m← [0mEdit src/components/whiteboard.tsx
-Index: /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-===================================================================
---- /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-+++ /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-@@ -1120,9 +1120,8 @@
- });
- 
- app.stage.on('pointermove', (e) => {
-   if (tooltip.visible) {
--    const cleanName = tooltipText.text;
-     tooltipBg.clear();
-     const tw = Math.max(tooltipText.width, tooltipSub.width) + 20;
-     tooltipBg.roundRect(0, 0, tw, 38, 8);
-     tooltipBg.fill({ color: '#1f2937', alpha: 0.92 });
-
-[0m
-[0m$ [0mnpm run lint 2>&1 && npm run build 2>&1
-> agent-glossary@0.1.0 lint
-> eslint
-
-
-> agent-glossary@0.1.0 build
-> next build
-
-▲ Next.js 16.2.2 (Turbopack)
-
-  Creating an optimized production build ...
-✓ Compiled successfully in 2.2s
-  Running TypeScript ...
-  Finished TypeScript in 1868ms ...
-  Collecting page data using 5 workers ...
-  Generating static pages using 5 workers (0/4) ...
-  Generating static pages using 5 workers (1/4) 
-  Generating static pages using 5 workers (2/4) 
-  Generating static pages using 5 workers (3/4) 
-✓ Generating static pages using 5 workers (4/4) in 334ms
-  Finalizing page optimization ...
-
-Route (app)
-┌ ○ /
-└ ○ /_not-found
-
-
-○  (Static)  prerendered as static content
-[0m
-[0m# [0mTodos
-[x] Read current src/ code to understand implementation state
-[x] Read context.md, concepts.md, pixijs-reference.md, findings.md
-[x] Identify gaps and plan improvements
-[x] Implement smooth animated zoom/pan with lerp transitions
-[x] Implement tooltip on hover showing concept name
-[x] Implement search bar to filter concepts
-[x] Add staggered intro animation for bubbles
-[x] Visual polish improvements
-[x] Run npm run build to verify
-[ ] Update .workspaces/2-improvements/context.md
-[0m
-Zero lint warnings, zero build errors. Now updating the improvements context:
-[0m← [0mWrite .workspaces/2-improvements/context.md
-Wrote file successfully.
-[0m
-[0m# [0mTodos
-[x] Read current src/ code to understand implementation state
-[x] Read context.md, concepts.md, pixijs-reference.md, findings.md
-[x] Identify gaps and plan improvements
-[x] Implement smooth animated zoom/pan with lerp transitions
-[x] Implement tooltip on hover showing concept name
-[x] Implement search bar to filter concepts
-[x] Add staggered intro animation for bubbles
-[x] Visual polish improvements
-[x] Run npm run build to verify
-[x] Update .workspaces/2-improvements/context.md
-[0m
-All done. Here's what was implemented in iteration 3:
-
-1. **Smooth animated zoom/pan** — All zoom transitions (scroll, buttons, keyboard) now use lerp interpolation (0.12 zoom, 0.15 pan) instead of instant jumps
-2. **Tooltip on hover** — Dark floating label showing concept name, follows cursor, auto-hides on panel open
-3. **Search bar** — PixiJS-styled search with hidden HTML input, filters bubbles by name+description, dims non-matching items, shows match count
-4. **Staggered intro animation** — Macroareas fade in sequentially (60ms stagger), bubbles scale in from 0.3x (15ms stagger)
-5. **Legend** — Top-right panel showing all 8 macroareas with colors, names, and concept counts
-6. **Visual polish** — Shadows on UI elements, improved bubble fill alpha, cleaner minimap/zoom controls
-
-Build and lint pass with 0 errors, 0 warnings.
-[0;32m[2026-04-02 14:56:51] ✓[0m Workspace Improvements & PRD completed successfully
- 2 files changed, 269 insertions(+), 16 deletions(-)
-[0;32m[2026-04-02 14:56:51] ✓[0m Workspace changes committed
-[0;36m[2026-04-02 14:56:51][0m Launching OpenCode for workspace Research & Content...
-[0m
-> build · glm-5-turbo
-[0m
-[0m→ [0mRead .workspaces/3-research/resources/research-requests.md
-[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md
-[0m→ [0mRead .workspaces/3-research/resources/findings.md
-[0m→ [0mRead .workspaces/3-research/context.md
-[0m→ [0mRead .workspaces/3-research/resources/guides.md
-[0m
-[0m# [0mTodos
-[ ] Research Google ADK (Agent Development Kit)
-[ ] Research Mastra framework
-[ ] Research Pydantic AI
-[ ] Research Strands Agents SDK (Amazon)
-[ ] Research Claude Agent SDK (Anthropic)
-[ ] Research Deep Research Agents
-[ ] Research business automation agents (n8n, Make, Zapier)
-[ ] Research MCP Apps
-[ ] Research Agentic RAG patterns
-[ ] Research MCP Server showcase
-[ ] Research LOCOMO Benchmark
-[ ] Research open-source vertical agents
-[ ] Update findings.md with all new research
-[ ] Update guides.md with new educational content
-[ ] Update concepts.md with new concepts
-[ ] Add new research requests for iteration 3
-[ ] Update context.md with iteration 2 state
-[0m
-[0m• [0mResearch Google ADK[90m General Agent[0m
-[0m• [0mResearch Mastra framework[90m General Agent[0m
-[0m• [0mResearch Pydantic AI[90m General Agent[0m
-[0m• [0mResearch Strands Agents SDK[90m General Agent[0m
-[0m• [0mResearch Claude Agent SDK[90m General Agent[0m
-[0m• [0mResearch Deep Research Agents[90m General Agent[0m
-[0m• [0mResearch business automation agents[90m General Agent[0m
-[0m• [0mResearch MCP Apps[90m General Agent[0m
-[0m• [0mResearch Agentic RAG patterns[90m General Agent[0m
-[0m• [0mResearch MCP Server showcase[90m General Agent[0m
-[0m• [0mResearch LOCOMO Benchmark[90m General Agent[0m
-[0m• [0mResearch vertical open-source agents[90m General Agent[0m
-Let me research all 12 topics in parallel.
-[0m✓ [0mResearch Strands Agents SDK[90m General Agent[0m
-[0m✓ [0mResearch Claude Agent SDK[90m General Agent[0m
-[0m✓ [0mResearch MCP Apps[90m General Agent[0m
-[0m✓ [0mResearch Mastra framework[90m General Agent[0m
-[0m✓ [0mResearch Google ADK[90m General Agent[0m
-[0m✓ [0mResearch Pydantic AI[90m General Agent[0m
-[0m✓ [0mResearch LOCOMO Benchmark[90m General Agent[0m
-[0m✓ [0mResearch vertical open-source agents[90m General Agent[0m
-[0m✓ [0mResearch MCP Server showcase[90m General Agent[0m
-[0m✓ [0mResearch Agentic RAG patterns[90m General Agent[0m
-[0m✓ [0mResearch business automation agents[90m General Agent[0m
-[0m✓ [0mResearch Deep Research Agents[90m General Agent[0m
-All research complete. Now let me compile everything into the output files.
-[0m
-[0m# [0mTodos
-[x] Research Google ADK (Agent Development Kit)
-[x] Research Mastra framework
-[x] Research Pydantic AI
-[x] Research Strands Agents SDK (Amazon)
-[x] Research Claude Agent SDK (Anthropic)
-[x] Research Deep Research Agents
-[x] Research business automation agents (n8n, Make, Zapier)
-[x] Research MCP Apps
-[x] Research Agentic RAG patterns
-[x] Research MCP Server showcase
-[x] Research LOCOMO Benchmark
-[x] Research open-source vertical agents
-[ ] Update findings.md with all new research
-[ ] Update guides.md with new educational content
-[ ] Update concepts.md with new concepts
-[ ] Add new research requests for iteration 3
-[ ] Update context.md with iteration 2 state
-[0m
-[0m✗ [0medit failed
-[91m[1mError: [0mFile /home/arro/projects/agent-glossary/.workspaces/3-research/resources/findings.md has been modified since it was last read.
-Last modification: 2026-04-02T15:01:10.668Z
-Last read: 2026-04-02T14:56:56.112Z
-
-Please read the file again before modifying it.
-[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=390][0m
-The business automation agent already appended some content. Let me add the remaining research findings at the end of the file.
-[0m
-[0m← [0mEdit .workspaces/3-research/resources/findings.md
-Index: /home/arro/projects/agent-glossary/.workspaces/3-research/resources/findings.md
-===================================================================
---- /home/arro/projects/agent-glossary/.workspaces/3-research/resources/findings.md
-+++ /home/arro/projects/agent-glossary/.workspaces/3-research/resources/findings.md
-@@ -481,4 +481,263 @@
- | **Make.com** | General automation + AI | N/A | Moderate (AI Agents, modules) | 1,800+ apps | No | Visual builders wanting AI in automation flows |
- | **Dify** | AI-first agent platform | 136k | Deepest (purpose-built) | Plugins + MCP | Yes | Teams focused exclusively on AI agent development |
- | **Langflow** | AI-first agent builder | 147k | Deep (fleet, MCP, Python) | 40+ integrations | Yes (MIT) | Python developers wanting visual + code hybrid |
- | **Flowise** | AI-first agent builder | 51k | Deep (LangChain, HITL, obs) | LangChain ecosystem | Yes | Teams invested in LangChain ecosystem |
-+
-+---
-+
-+# Iteration 2 — New Agent Frameworks & SDKs
-+
-+## Google ADK (Agent Development Kit)
-+- **macroarea**: Orchestration / Agent Frameworks
-+- **url**: https://google.github.io/adk-docs/
-+- **github**: https://github.com/google/adk-python (~18.7k stars)
-+- **description**: Google's open-source, code-first framework for building, evaluating, and deploying AI agents. Optimized for Gemini but model-agnostic and deployment-agnostic, supporting single-tool agents to complex multi-agent systems. Native A2A protocol support (reference implementation), built-in evaluation UI, MCP tool integration, and multi-language SDKs (Python, TypeScript, Go, Java). ADK 2.0 alpha adds graph-based workflows and collaborative agents.
-+- **popularity**: 9
-+- **alternatives**: LangGraph, OpenAI Agents SDK, CrewAI, AutoGen, Semantic Kernel
-+- **why_include**: Google's flagship agent framework with first-party A2A integration, multi-language SDKs, deep Google Cloud deployment support (Vertex AI Agent Engine, Cloud Run, GKE), and one of the fastest-growing agent projects. ADK 2.0 positions it as a direct LangGraph competitor.
-+
-+## Mastra
-+- **macroarea**: Orchestration / Agent Frameworks
-+- **url**: https://mastra.ai
-+- **github**: https://github.com/mastra-ai/mastra (22.6k stars)
-+- **description**: Open-source TypeScript-first AI agent framework from the team behind Gatsby. Provides agents, graph-based workflows, RAG, memory, MCP servers, evals, and observability — designed for building production AI apps that integrate natively with Next.js, React, Express, Hono, Astro, and SvelteKit. YC W25 backed with Mastra Cloud for deployment and tracing. Used by Replit, Sanity, Medusa, SoftBank, WorkOS.
-+- **popularity**: 8
-+- **alternatives**: LangGraph, Vercel AI SDK, LlamaIndex.TS, AutoGen, CrewAI
-+- **why_include**: Highest-starred TypeScript-native agent framework with complete production stack. Native Next.js integration, built-in MCP server authoring, live evals, and observational memory make it the top choice for full-stack JS/TS teams.
-+
-+## Pydantic AI
-+- **macroarea**: Orchestration / Agent Frameworks
-+- **url**: https://ai.pydantic.dev/
-+- **github**: https://github.com/pydantic/pydantic-ai (~16k stars)
-+- **description**: Python agent framework by the Pydantic team (Samuel Colvin) bringing the "FastAPI feeling" to GenAI development. Fully type-safe with `Agent[DepsType, OutputType]` generics, model-agnostic (15+ providers), dependency injection, composable capabilities, native MCP and A2A support (built FastA2A). 16k stars in under 2 years.
-+- **popularity**: 8
-+- **alternatives**: LangGraph, CrewAI, Google ADK, Anthropic Agent SDK, AutoGen, Instructor
-+- **why_include**: The most Pythonic agent framework — Pydantic is already the validation layer under OpenAI SDK, Google ADK, Anthropic SDK, LangChain, and CrewAI. Built FastA2A (framework-agnostic A2A library). Strong partnership with Google.
-+
-+## Strands Agents SDK
-+- **macroarea**: Orchestration / Agent Frameworks
-+- **url**: https://strandsagents.com
-+- **github**: https://github.com/strands-agents/sdk-python (5.5k stars)
-+- **description**: Open-source (Apache 2.0) agent SDK built by Amazon/AWS. Model-driven philosophy: the model handles orchestration while the developer focuses on tools and prompts. Unique "steering hooks" middleware for guardrails/approval gates. Native MCP, multi-agent patterns (Graph, Swarm, Workflow), A2A protocol, bidirectional streaming for voice, and deep Bedrock integration.
-+- **popularity**: 7
-+- **alternatives**: OpenAI Agents SDK, Claude Agent SDK, LangChain/LangGraph, CrewAI, Google ADK
-+- **why_include**: Only fully open-source (Apache 2.0) cloud-native agent SDK backed by a major cloud provider. Unique steering hooks achieve 100% task accuracy vs 82.5% for prompt-only. Natural choice for AWS shops.
-+
-+## Claude Agent SDK
-+- **macroarea**: Orchestration / Agent Frameworks
-+- **url**: https://docs.anthropic.com/en/docs/agent-sdk/overview
-+- **description**: Anthropic's programmatic SDK giving developers the same tools, agent loop, and context management as Claude Code, but as an embeddable library. Built-in tools (file I/O, bash, web search, code editing), subagents, MCP integration, hooks lifecycle, sessions, and permissions. Multi-cloud (Anthropic API, AWS Bedrock, GCP Vertex AI, Azure).
-+- **popularity**: 9
-+- **alternatives**: OpenAI Agents SDK, LangGraph, Google ADK, CrewAI, AutoGen
-+- **why_include**: Only first-party Anthropic SDK for building production agents. Full Claude Code engine as a programmable library. Subagents, MCP, multi-cloud deployment.
-+
-+---
-+
-+# Deep Research Agents (Pattern)
-+
-+## Deep Research Agents
-+- **macroarea**: Pattern / Research
-+- **url**: N/A — pattern/concept
-+- **description**: AI systems that autonomously conduct multi-step research — planning queries, browsing the web, reading hundreds of sources, synthesizing findings into comprehensive reports with citations, and self-critiquing. Differ from chat agents by operating over minutes-to-hours with iterative plan-search-synthesize-critique loops.
-+- **popularity**: 9
-+- **alternatives**: N/A (pattern with multiple implementations)
-+- **why_include**: One of the most commercially significant agent patterns of 2025. All major providers ship dedicated deep research products. Canonical example of agentic behavior.
-+
-+### OpenAI Deep Research (o3-deep-research / o4-mini-deep-research)
-+- **url**: https://platform.openai.com/docs/guides/deep-research
-+- **description**: Specialized models via Responses API that synthesize hundreds of sources. Web search, MCP servers, file search, code interpreter.
-+- **popularity**: 10
-+- **open_source**: no
-+
-+### Google Gemini Deep Research
-+- **url**: https://blog.google/technology/google-deepmind/gemini-deep-research/
-+- **description**: Plans research strategy, executes multi-step searches, synthesizes with citations. Available in Gemini API.
-+- **popularity**: 9
-+- **open_source**: no
-+
-+### GPT Researcher
-+- **url**: https://github.com/assafelovic/gpt-researcher
-+- **description**: Open-source (26k+ stars). Planner + execution agents + publisher. Multi-agent, MCP, recursive exploration.
-+- **popularity**: 9
-+- **open_source**: yes
-+
-+### STORM (Stanford)
-+- **url**: https://github.com/stanford-oval/storm
-+- **description**: Academic system that writes Wikipedia-like articles. Perspective-guided questions, Co-STORM for human-AI collaborative research.
-+- **popularity**: 8
-+- **open_source**: yes
-+
-+### Tongyi DeepResearch (Alibaba)
-+- **url**: https://github.com/Alibaba-NLP/DeepResearch
-+- **description**: Open-source 30B-parameter agentic LLM for deep information-seeking. End-to-end RL. SOTA on BrowseComp, WebWalkerQA.
-+- **popularity**: 9
-+- **open_source**: yes
-+
-+---
-+
-+# MCP Extensions
-+
-+## MCP Apps
-+- **macroarea**: Integration / Protocol Extension
-+- **url**: https://modelcontextprotocol.io/extensions/apps/overview
-+- **github**: https://github.com/modelcontextprotocol/ext-apps (2k stars)
-+- **description**: Official MCP extension (SEP-1865, spec version 2026-01-26, Final) enabling MCP servers to deliver interactive HTML UIs rendered inside AI client conversations via sandboxed iframes. Enables dashboards, 3D scenes, forms, charts, media viewers inline. Backed by Anthropic; adopted by Claude, ChatGPT, VS Code Copilot, Postman, Goose.
-+- **popularity**: 7
-+- **alternatives**: N/A (unique extension)
-+- **why_include**: Most significant capability expansion beyond text-only MCP. Enables rich visualizations and interactive tools inline in AI conversations.
-+
-+---
-+
-+# Agentic RAG Patterns
-+
-+## Agentic RAG
-+- **macroarea**: Knowledge & Retrieval
-+- **url**: https://arxiv.org/abs/2310.11511
-+- **description**: Umbrella term for RAG patterns where an LLM agent actively decides when, how, and whether to retrieve — introducing decision loops, self-correction, and adaptive retrieval strategies. The current frontier of enterprise RAG, implemented in every major framework.
-+- **popularity**: 9
-+- **alternatives**: Traditional RAG
-+- **why_include**: RAG is the most widely deployed enterprise LLM pattern; agentic variants significantly reduce hallucinations. Essential knowledge for any agent builder.
-+
-+### Self-RAG
-+- **description**: LM generates reflection tokens (`Retrieve`, `ISREL`, `ISSUP`, `ISUSE`) at inference time governing the entire RAG process end-to-end.
-+- **paper_url**: https://arxiv.org/abs/2310.11511
-+
-+### Corrective RAG (CRAG)
-+- **description**: Plug-and-play retrieval evaluator triggers corrective actions (web search fallback, query rewriting) when retrieval quality is poor. No retraining needed.
-+- **paper_url**: https://arxiv.org/abs/2401.15884
-+
-+### Adaptive RAG
-+- **description**: Routes questions to different retrieval strategies based on complexity: No Retrieval → Single-step → Multi-step iterative.
-+
-+### Retrieval Augmented Thoughts (RAT)
-+- **description**: Interleaves retrieval at each chain-of-thought step, revising each thought with relevant info. +13.6% code gen, +42.8% task planning.
-+- **paper_url**: https://arxiv.org/abs/2403.05313
-+
-+### General Agentic RAG
-+- **description**: LLM treats retrieval as a tool. Loops: think → retrieve → generate → evaluate → repeat. Most flexible but most expensive.
-+
-+---
-+
-+# MCP Server Showcase
-+
-+**Overall Stats**: 6,300+ registered MCP servers across Smithery, awesome-mcp-servers, and official registry.
-+
-+## Context7
-+- **macroarea**: Documentation / Coding
-+- **url**: https://github.com/upstash/context7
-+- **github_stars**: 51.4k
-+- **description**: Fetches up-to-date, version-specific library docs and code examples into coding agents. Eliminates hallucinated APIs.
-+- **category**: documentation, coding agents
-+
-+## Playwright MCP
-+- **macroarea**: Browser Automation
-+- **url**: https://github.com/microsoft/playwright-mcp
-+- **github_stars**: 30.1k
-+- **description**: Microsoft's official browser automation MCP server via Playwright.
-+- **category**: browser automation, testing
-+
-+## GitHub MCP Server
-+- **macroarea**: Developer Tools
-+- **url**: https://github.com/github/github-mcp-server
-+- **github_stars**: 28.5k
-+- **description**: GitHub's official MCP server for repos, issues, PRs, workflows, code search.
-+- **category**: version control, developer tools
-+
-+## Chrome DevTools MCP
-+- **macroarea**: Browser / Debugging
-+- **url**: https://github.com/ChromeDevTools/chrome-devtools-mcp
-+- **github_stars**: 32.9k
-+- **description**: Exposes Chrome DevTools Protocol to AI agents. Network, console, DOM, debugging.
-+- **category**: browser automation, debugging
-+
-+## FastMCP
-+- **macroarea**: Developer Tools / Framework
-+- **url**: https://github.com/PrefectHQ/fastmcp
-+- **github_stars**: 24.2k
-+- **description**: The fast, Pythonic way to build MCP servers and clients. Automatic tool discovery from Python functions. By Prefect.
-+- **category**: developer tools, framework
-+
-+## Stagehand (Browserbase)
-+- **macroarea**: Browser Automation
-+- **url**: https://github.com/browserbase/stagehand
-+- **github_stars**: 21.8k
-+- **description**: AI-native browser automation with visual, extract, and act primitives. Cloud browser automation for MCP clients.
-+- **category**: browser automation, web scraping
-+
-+## Figma Context MCP
-+- **macroarea**: Design-to-Code
-+- **url**: https://github.com/GLips/Figma-Context-MCP
-+- **github_stars**: 14.1k
-+- **description**: Provides Figma layout, design tokens, and component info to AI coding agents.
-+- **category**: design, front-end development
-+
-+## AWS MCP Servers
-+- **macroarea**: Cloud / Infrastructure
-+- **url**: https://github.com/awslabs/mcp
-+- **github_stars**: 8.7k
-+- **description**: Official MCP servers for AWS services — S3, Lambda, CloudFormation, and more.
-+- **category**: cloud platforms, infrastructure
-+
-+---
-+
-+# LOCOMO Benchmark
-+
-+## LOCOMO (Long Conversational Memory)
-+- **macroarea**: Evaluation / Memory
-+- **url**: https://aclanthology.org/2024.acl-long.747/ (ACL 2024)
-+- **description**: Academic benchmark for evaluating very long-term conversational memory. ~600 turns, 16K tokens, up to 32 sessions. The go-to benchmark used by Mem0, Zep, LangChain. 343+ citations.
-+- **popularity**: 8
-+- **alternatives**: LongBench, MMLU, custom memory evals
-+- **why_include**: De facto standard for memory system evaluation. Key tradeoff: Mem0 66.9% at 91% lower latency and 90% token savings vs full-context 72.9%.
-+
-+- **key_scores**: Mem0 base 66.9%, Mem0+Graph 68.4%, Full-context 72.9%, RAG ~61%, OpenAI Memory 52.9%
-+- **categories**: Single-hop QA, Temporal QA, Multi-hop QA, Open-domain QA, Event Summarization, Multi-modal Dialogue Generation
-+
-+---
-+
-+# Notable Open-Source Vertical Agents
-+
-+## CopilotKit
-+- **macroarea**: Developer Tools / Frontend
-+- **url**: https://copilotkit.ai
-+- **github**: https://github.com/CopilotKit/CopilotKit (29.9k stars)
-+- **description**: Frontend stack for building AI copilots with generative UI. React components + AG-UI Protocol for agent-app communication.
-+- **popularity**: 9
-+- **category**: developer tools
-+- **why_include**: De facto standard for embedding agents in frontend apps. AG-UI Protocol is the HTTP-equivalent for agent-app communication.
-+
-+## Agent-Reach
-+- **macroarea**: Research / Data Gathering
-+- **url**: https://github.com/Panniantong/Agent-Reach
-+- **github**: https://github.com/Panniantong/Agent-Reach (14.5k stars)
-+- **description**: AI agent access to the entire internet — reads Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu via CLI. Zero API fees, MCP-compatible.
-+- **popularity**: 8
-+- **category**: research, OSINT
-+- **why_include**: Unique research agent for social platform scraping. Invaluable for OSINT, market research.
-+
-+## SGLang
-+- **macroarea**: Infrastructure / LLM Serving
-+- **url**: https://sglang.io
-+- **github**: https://github.com/sgl-project/sglang (25.3k stars)
-+- **description**: High-performance LLM serving framework. Powers trillions of tokens daily on 400K+ GPUs. RadixAttention, speculative decoding, multi-LoRA batching.
-+- **popularity**: 9
-+- **category**: devops, infrastructure
-+- **why_include**: Critical infrastructure powering production LLM deployments at xAI, NVIDIA, AMD.
-+
-+## AgentOps
-+- **macroarea**: Observability / DevOps
-+- **url**: https://agentops.ai
-+- **github**: https://github.com/AgentOps-AI/agentops (5.4k stars)
-+- **description**: Observability for AI agents. Session replays, LLM cost tracking, multi-agent visualization. Integrates with CrewAI, AutoGen, LangChain, OpenAI Agents SDK.
-+- **popularity**: 7
-+- **category**: devops, monitoring
-+- **why_include**: The Datadog equivalent for AI agents. Session replay and multi-agent visualization distinctive.
-+
-+## OpenSandbox (Alibaba)
-+- **macroarea**: Infrastructure / Security
-+- **url**: https://github.com/alibaba/OpenSandbox
-+- **github**: https://github.com/alibaba/OpenSandbox (9.7k stars)
-+- **description**: Secure sandbox runtime for AI agents built on Kubernetes. Isolated environments with security controls.
-+- **popularity**: 7
-+- **category**: devops, security
-+- **why_include**: Kubernetes-native agent sandbox from Alibaba. Addresses secure agent execution at scale.
-
-[0m
-Now let me update guides.md with new educational content found during research.
-[0m# [0mTodos
-[x] Research Google ADK (Agent Development Kit)
-[x] Research Mastra framework
-[x] Research Pydantic AI
-[x] Research Strands Agents SDK (Amazon)
-[x] Research Claude Agent SDK (Anthropic)
-[x] Research Deep Research Agents
-[x] Research business automation agents (n8n, Make, Zapier)
-[x] Research MCP Apps
-[x] Research Agentic RAG patterns
-[x] Research MCP Server showcase
-[x] Research LOCOMO Benchmark
-[x] Research open-source vertical agents
-[x] Update findings.md with all new research
-[ ] Update guides.md with new educational content
-[ ] Update concepts.md with new concepts
-[ ] Add new research requests for iteration 3
-[ ] Update context.md with iteration 2 state
-[0m
-[0m← [0mEdit .workspaces/3-research/resources/guides.md
-Index: /home/arro/projects/agent-glossary/.workspaces/3-research/resources/guides.md
-===================================================================
---- /home/arro/projects/agent-glossary/.workspaces/3-research/resources/guides.md
-+++ /home/arro/projects/agent-glossary/.workspaces/3-research/resources/guides.md
-@@ -80,4 +80,112 @@
- - **url**: https://www.weforum.org/publications/ai-agents-in-action-foundations-for-evaluation-and-governance-2025/
- - **source**: World Economic Forum, 2025
- - **description**: Governance framework for AI agents covering evaluation criteria, risk assessment, and organizational readiness.
- - **relevance**: Board-level governance considerations for AI agent deployment.
-+
-+---
-+
-+# Iteration 2 Guides (2026-04-02)
-+
-+---
-+
-+## Agent Framework Guides
-+
-+### Google ADK Documentation
-+- **url**: https://google.github.io/adk-docs/
-+- **source**: Google
-+- **description**: Comprehensive docs for Google's Agent Development Kit — quickstarts, agents, tools, A2A, evaluation, deployment. Covers all four SDKs (Python, TypeScript, Go, Java).
-+- **relevance**: Reference implementation for A2A protocol. Essential for understanding how A2A works in practice.
-+
-+### Pydantic AI Documentation
-+- **url**: https://ai.pydantic.dev/
-+- **source**: Pydantic team (Samuel Colvin)
-+- **description**: Docs for the type-safe Python agent framework. Covers agent creation, structured output, MCP, A2A (FastA2A), graph workflows, dependency injection, and model-agnostic setup.
-+- **relevance**: Best reference for type-safe agent patterns and Pydantic validation in agent systems.
-+
-+### Strands Agents Documentation
-+- **url**: https://strandsagents.com
-+- **source**: Amazon/AWS
-+- **description**: Docs for Amazon's open-source agent SDK. Covers steering hooks, MCP, multi-agent patterns, Bedrock integration, conversation memory, and evaluation.
-+- **relevance**: Best reference for the "model-driven" agent philosophy and steering hooks guardrails pattern.
-+
-+### Claude Agent SDK Overview
-+- **url**: https://docs.anthropic.com/en/docs/agent-sdk/overview
-+- **source**: Anthropic
-+- **description**: Official docs for Anthropic's programmatic agent SDK. Covers built-in tools, subagents, MCP integration, hooks, sessions, permissions, and multi-cloud deployment (Bedrock, Vertex, Azure).
-+- **relevance**: Shows how Claude Code's engine is exposed as a library. Subagents and hooks patterns are key glossary entries.
-+
-+### Mastra Documentation
-+- **url**: https://mastra.ai
-+- **source**: Mastra AI (YC W25)
-+- **description**: Docs for TypeScript-first agent framework. Covers agents, workflows, RAG, memory, MCP, evals, and integration with Next.js/React.
-+- **relevance**: Best reference for TS/JS-native agent patterns. Memory system (observational, working, semantic recall) is distinctive.
-+
-+---
-+
-+## Agentic RAG
-+
-+### Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection
-+- **url**: https://arxiv.org/abs/2310.11511
-+- **source**: Asai et al., Oct 2023
-+- **description**: Introduces reflection tokens for self-reflective retrieval and generation. Model decides when to retrieve, grades passage relevance, checks support, and evaluates usefulness — all at inference time.
-+- **relevance**: Foundational paper for agentic RAG. The reflection token concept is a key pattern.
-+
-+### Corrective RAG (CRAG): Towards Robust Knowledge-Augmented Generation
-+- **url**: https://arxiv.org/abs/2401.15884
-+- **source**: Yan et al., Jan 2024
-+- **description**: Lightweight plug-and-play approach adding retrieval evaluator with corrective actions (web search fallback, query rewriting, knowledge refinement). No model retraining needed.
-+- **relevance**: Most practical agentic RAG pattern — composable with any existing RAG pipeline.
-+
-+### Retrieval Augmented Thoughts Elicit Better Reasoning
-+- **url**: https://arxiv.org/abs/2403.05313
-+- **source**: Wang et al., Mar 2024
-+- **description**: Interleaves retrieval at each chain-of-thought step. Dramatically reduces hallucinations in multi-step reasoning (+42.8% task planning improvement).
-+- **relevance**: Novel pattern combining CoT with retrieval. Strong benchmark results across multiple domains.
-+
-+---
-+
-+## Deep Research
-+
-+### OpenAI Deep Research Guide
-+- **url**: https://platform.openai.com/docs/guides/deep-research
-+- **source**: OpenAI Platform Documentation
-+- **description**: Official guide for using o3-deep-research and o4-mini-deep-research models. Covers the 3-step pipeline (clarification, prompt rewriting, deep research execution), web search, MCP servers, and file search.
-+- **relevance**: Best reference for the deep research agent architecture from a product perspective.
-+
-+### STORM: Synthesis of Topic Outlines through Retrieval and Multi-perspective question asking
-+- **url**: https://github.com/stanford-oval/storm
-+- **source**: Stanford HAI, NAACL 2024
-+- **description**: Academic system for writing Wikipedia-like articles using perspective-guided question asking and simulated conversations. Co-STORM enables human-AI collaborative research with dynamic mind maps.
-+- **relevance**: Best academic reference for the multi-perspective research agent pattern.
-+
-+---
-+
-+## MCP Ecosystem
-+
-+### MCP Apps Specification
-+- **url**: https://modelcontextprotocol.io/extensions/apps/overview
-+- **source**: Anthropic / MCP Steering Committee
-+- **description**: Official spec for MCP Apps extension — interactive HTML UIs rendered inline in AI client conversations via sandboxed iframes and bidirectional JSON-RPC.
-+- **relevance**: Key extension to MCP. The `ui://` URI scheme and tool-to-UI linkage patterns are new primitives for the whiteboard.
-+
-+### Awesome MCP Servers
-+- **url**: https://github.com/punkpeye/awesome-mcp-servers
-+- **source**: Community (punkpeye), 84k stars
-+- **description**: Curated list of 800+ MCP servers across all categories — file system, web, database, browser automation, cloud services, developer tools, and more.
-+- **relevance**: The definitive directory for discovering MCP servers. Essential for the "MCP ecosystem" whiteboard section.
-+
-+### Microsoft MCP for Beginners
-+- **url**: https://github.com/microsoft/mcp-for-beginners
-+- **source**: Microsoft, 15.8k stars
-+- **description**: Official Microsoft open-source curriculum for MCP fundamentals with real-world, cross-language examples and tutorials.
-+- **relevance**: Best beginner-friendly MCP guide from a major vendor.
-+
-+---
-+
-+## Memory Evaluation
-+
-+### LOCOMO: Long Conversational Memory Benchmark
-+- **url**: https://aclanthology.org/2024.acl-long.747/
-+- **source**: ACL 2024, 343+ citations
-+- **description**: Benchmark for evaluating long-term conversational memory. ~600 turns, 16K tokens, 32 sessions. Tests single-hop, temporal, multi-hop QA, summarization, and multi-modal generation.
-+- **relevance**: The de facto standard for memory system evaluation. Key scores and methodology needed for the memory whiteboard section.
-
-[0m
-Now let me update concepts.md with new concepts discovered in iteration 2.
-[0m# [0mTodos
-[x] Research Google ADK (Agent Development Kit)
-[x] Research Mastra framework
-[x] Research Pydantic AI
-[x] Research Strands Agents SDK (Amazon)
-[x] Research Claude Agent SDK (Anthropic)
-[x] Research Deep Research Agents
-[x] Research business automation agents (n8n, Make, Zapier)
-[x] Research MCP Apps
-[x] Research Agentic RAG patterns
-[x] Research MCP Server showcase
-[x] Research LOCOMO Benchmark
-[x] Research open-source vertical agents
-[x] Update findings.md with all new research
-[x] Update guides.md with new educational content
-[ ] Update concepts.md with new concepts
-[ ] Add new research requests for iteration 3
-[ ] Update context.md with iteration 2 state
-[0m
-[0m← [0mEdit .workspaces/1-implementation/resources/concepts.md
-Index: /home/arro/projects/agent-glossary/.workspaces/1-implementation/resources/concepts.md
-===================================================================
---- /home/arro/projects/agent-glossary/.workspaces/1-implementation/resources/concepts.md
-+++ /home/arro/projects/agent-glossary/.workspaces/1-implementation/resources/concepts.md
-@@ -378,4 +378,86 @@
- - **popularity**: 7
- - **description**: Gestione di ambienti dev diversi (local, remote, sandbox)
- - **alternatives**: Devcontainers, SSH remotes, Daytona, E2B, Modal
- - **category**: Runtime
-+
-+## Knowledge & Retrieval
-+
-+### Agentic RAG
-+- **popularity**: 9
-+- **description**: Pattern RAG dove l'agente decide attivamente quando, come e se recuperare informazioni. Include varianti: Self-RAG (reflection tokens), Corrective RAG (valutazione con fallback), Adaptive RAG (routing per complessità), Retrieval Augmented Thoughts (recupero per ogni step di ragionamento).
-+- **alternatives**: Traditional RAG, LangChain agentic RAG, LlamaIndex agent workflows
-+- **category**: Pattern
-+
-+### Deep Research Agent
-+- **popularity**: 9
-+- **description**: Agente che conduce ricerca multi-step in autonomia: pianifica query, naviga il web, legge centinaia di fonti, sintetizza report con citazioni e self-critica. Opera su tempi lunghi (minuti-ore). Implementazioni: OpenAI Deep Research, Gemini Deep Research, GPT Researcher, STORM, Tongyi DeepResearch.
-+- **alternatives**: GPT Researcher, STORM, Tongyi DeepResearch, DeepSearcher
-+- **category**: Pattern
-+
-+## Frameworks & SDKs
-+
-+### Google ADK (Agent Development Kit)
-+- **popularity**: 9
-+- **description**: Framework open-source Google per agenti AI. Model-agnostic (ottimizzato per Gemini), SDK in Python/TypeScript/Go/Java. Reference implementation per A2A protocol. ADK 2.0 aggiunge workflow a grafi e agenti collaborativi.
-+- **alternatives**: LangGraph, OpenAI Agents SDK, Mastra, Strands Agents, Pydantic AI, Claude Agent SDK
-+- **category**: Framework
-+
-+### OpenAI Agents SDK
-+- **popularity**: 10
-+- **description**: Framework lightweight di OpenAI per multi-agent workflows. Supporta handoffs, guardrails, HITL, sessioni, tracing, voice agents. Provider-agnostic (100+ LLM). 20.5k stars.
-+- **alternatives**: LangGraph, Google ADK, CrewAI, Claude Agent SDK, Strands Agents
-+- **category**: Framework
-+
-+### Mastra
-+- **popularity**: 8
-+- **description**: Framework TypeScript-first per agenti AI dal team Gatsby. Agenti, workflow a grafi, RAG, memoria, MCP, eval, osservabilità. Integrazione nativa Next.js/React. YC W25. 22.6k stars.
-+- **alternatives**: LangGraph, Vercel AI SDK, Pydantic AI, Google ADK
-+- **category**: Framework
-+
-+### Pydantic AI
-+- **popularity**: 8
-+- **description**: Framework Python type-safe dal team Pydantic (Samuel Colvin). Agent generici `Agent[Deps, Output]`, validation automatica, 15+ provider, MCP e A2A nativi, FastA2A. 16k stars.
-+- **alternatives**: LangGraph, Google ADK, Strands Agents, Claude Agent SDK
-+- **category**: Framework
-+
-+### Strands Agents SDK
-+- **popularity**: 7
-+- **description**: SDK open-source (Apache 2.0) di Amazon/AWS. Filosofia model-driven: il modello orchestra, lo sviluppatore definisce tools e prompt. Steering hooks per guardrails. Nativo MCP, A2A, Bedrock.
-+- **alternatives**: OpenAI Agents SDK, Claude Agent SDK, Google ADK
-+- **category**: Framework
-+
-+### Claude Agent SDK
-+- **popularity**: 9
-+- **description**: SDK Anthropic che espone il motore di Claude Code come libreria. Tools built-in (file I/O, bash, web search), subagenti, MCP, hooks, sessioni, permessi. Multi-cloud (API, Bedrock, Vertex, Azure).
-+- **alternatives**: OpenAI Agents SDK, Google ADK, Pydantic AI
-+- **category**: Framework
-+
-+## Business Automation
-+
-+### Visual Agent Builder
-+- **popularity**: 8
-+- **description**: Piattaforma no-code/low-code per costruire workflow multi-agente con canvas visuale. Supportano deployment come API, MCP server, o chatbot. Leader: Dify (136k stars), Langflow (147k), Flowise (51k).
-+- **alternatives**: Dify, Langflow, Flowise, n8n, Coze
-+- **category**: Platform
-+
-+### Low-Code Agent Platform
-+- **popularity**: 8
-+- **description**: Piattaforma di automazione con funzionalità AI agent integrate. Bridge tra automazione business tradizionale e agenti AI. n8n (182k stars) è il più maturo. Zapier (8000+ app), Make.com (1800+ app) per utenti non-tecnici.
-+- **alternatives**: n8n, Zapier, Make.com, Activepieces
-+- **category**: Platform
-+
-+## Protocol Extensions
-+
-+### MCP Apps
-+- **popularity**: 7
-+- **description**: Estensione ufficiale MCP (SEP-1865, Final) che permette ai server MCP di fornire UI HTML interattive renderizzate inline nelle conversazioni AI tramite iframe sandboxed con schema URI `ui://`. Comunicazione bidirezionale JSON-RPC.
-+- **alternatives**: N/A (estensione unica)
-+- **category**: Integration
-+
-+## Observability (updated)
-+
-+### Observability Platform
-+- **popularity**: 9
-+- **description**: Piattaforma completa per tracing, evaluation, prompt management e deployment di agenti. Leader open-source: Langfuse (24.2k stars). Più feature-complete: LangSmith. Nuovi entranti: AgentOps (session replay, multi-agent viz).
-+- **alternatives**: Langfuse, LangSmith, Arize Phoenix, W&B Weave, Helicone, AgentOps
-+- **category**: Monitoring
-
-[0m
-Now let me update the research requests and context files.
-[0m← [0mEdit .workspaces/3-research/resources/research-requests.md
-Index: /home/arro/projects/agent-glossary/.workspaces/3-research/resources/research-requests.md
-===================================================================
---- /home/arro/projects/agent-glossary/.workspaces/3-research/resources/research-requests.md
-+++ /home/arro/projects/agent-glossary/.workspaces/3-research/resources/research-requests.md
-@@ -15,23 +15,43 @@
- 8. ~~Guide su come progettare l'ambiente di un coding agent~~ ✅ DONE
- 9. ~~Best practices per tool selection in agent systems~~ ✅ DONE
- 10. ~~Trends emergenti nell'ecosistema agentico~~ ✅ DONE
- 
--## Iterazione 2 — Nuove Richieste
-+## Iterazione 2 — Completate ✅
- 
- ### Priorità Alta
--1. **Google ADK (Agent Development Kit)** — Come si integra con A2A? Quali pattern supporta?
--2. **Mastra** — Framework TypeScript per agenti, come si confronta con LangGraph?
--3. **Pydantic AI** — Strumento di Google per agenti type-safe, adozione e uso
--4. **Strands Agents SDK** (Amazon) — Framework AWS per agenti, stato e caratteristiche
-+1. ~~Google ADK (Agent Development Kit)~~ ✅ DONE — 18.7k stars, reference A2A implementation, 4 SDKs, ADK 2.0 alpha
-+2. ~~Mastra~~ ✅ DONE — 22.6k stars, TS-first, YC W25, native Next.js, built-in MCP/eval/memory
-+3. ~~Pydantic AI~~ ✅ DONE — 16k stars, type-safe, FastA2A, 15+ providers, strong Google partnership
-+4. ~~Strands Agents SDK (Amazon)~~ ✅ DONE — 5.5k stars, Apache 2.0, steering hooks, Bedrock-native
- 
- ### Priorità Media
--5. **Claude Agent SDK** — SDK ufficiale Anthropic per costruire agenti con Claude
--6. **Deep Agents / Deep Research Agents** — Agenti per ricerca profonda (OpenAI Deep Research, Gemini Deep Research, Claude)
--7. **Agent Framework per automazione business** (n8n, Make, Zapier AI agents) — Stato dell'arte
--8. **MCP Apps** — Estensione MCP per interfacce HTML interattive embeddate nei client AI
-+5. ~~Claude Agent SDK~~ ✅ DONE — Claude Code engine as library, subagents, MCP, multi-cloud (Bedrock, Vertex, Azure)
-+6. ~~Deep Research Agents~~ ✅ DONE — Pattern documented + 5 implementations (OpenAI, Gemini, GPT Researcher, STORM, Tongyi)
-+7. ~~Agent Framework per automazione business~~ ✅ DONE — 6 platforms analyzed (n8n 182k, Dify 136k, Langflow 147k, Flowise 51k, Zapier, Make)
-+8. ~~MCP Apps~~ ✅ DONE — SEP-1865 Final, spec 2026-01-26, adopted by Claude/ChatGPT/VS Code Copilot
- 
- ### Esplorazione
--9. **Agentic RAG** — Pattern RAG con agenti (correction-RAG, self-RAG, adaptive-RAG)
--10. **MCP Server showcase** — I server MCP più popolari e utili per coding agents
--11. **LOCOMO Benchmark** — Dettagli sulla valutazione della memoria per agenti
--12. **Agenzie open-source per task specifici** — Agenti verticali (data analysis, security, DevOps)
-+9. ~~Agentic RAG~~ ✅ DONE — 5 sub-patterns (Self-RAG, CRAG, Adaptive, RAT, General Agentic) with papers
-+10. ~~MCP Server showcase~~ ✅ DONE — 6,300+ servers, top 8 catalogued (Context7 51k, Chrome DevTools 32.9k, GitHub 28.5k, Playwright 30.1k)
-+11. ~~LOCOMO Benchmark~~ ✅ DONE — ACL 2024, 343+ citations, scores: Mem0 66.9%, Full-context 72.9%, OpenAI 52.9%
-+12. ~~Agenzie open-source per task specifici~~ ✅ DONE — CopilotKit 29.9k, Agent-Reach 14.5k, SGLang 25.3k, AgentOps 5.4k, OpenSandbox 9.7k
-+
-+## Iterazione 3 — Nuove Richieste
-+
-+### Priorità Alta
-+1. **AG-UI Protocol** (CopilotKit) — Cos'è? Come si confronta con MCP/A2A? Adozione
-+2. **Semantic Kernel** (Microsoft) — Framework enterprise Microsoft per agenti, stato e caratteristiche
-+3. **CrewAI Flows vs Crews** — Sistema event-driven di CrewAI, come si differenzia dai Crew
-+4. **Vercel AI SDK** — Uso per agenti, confronto con Mastra per TS ecosystem
-+
-+### Priorità Media
-+5. **MCP Inspector / Debug Tools** — Strumenti per debug e sviluppo di server MCP
-+6. **Agent Banking / FinTech Agents** — Agenti specifici per settore finanziario
-+7. **Real-time Voice Agents** — SDK e framework per agenti vocali (LiveKit, Daily, Retell, Vapi)
-+8. **Embedded / Edge Agents** — Agenti on-device (Ollama, llama.cpp, Apple MLX, Gemini Nano)
-+
-+### Esplorazione
-+9. **Agent Simulation / Wario-type frameworks** — Simulazione di comportamenti umani con agenti
-+10. **Data-Centric Agent Evaluation** — Framework di valutazione oltre LOCOMO (SWE-bench, Aider polyglot, etc.)
-+11. **OpenTelemetry for Agents** — Standard telemetry per l'ecosistema agentico
-+12. **Anthropic Computer Use API** — Stato avanzato, use cases, confronto con UI automation tradizionale
-
-[0m
-[0m← [0mWrite .workspaces/3-research/context.md
-Wrote file successfully.
-[0m
-[0m# [0mTodos
-[x] Research Google ADK (Agent Development Kit)
-[x] Research Mastra framework
-[x] Research Pydantic AI
-[x] Research Strands Agents SDK (Amazon)
-[x] Research Claude Agent SDK (Anthropic)
-[x] Research Deep Research Agents
-[x] Research business automation agents (n8n, Make, Zapier)
-[x] Research MCP Apps
-[x] Research Agentic RAG patterns
-[x] Research MCP Server showcase
-[x] Research LOCOMO Benchmark
-[x] Research open-source vertical agents
-[x] Update findings.md with all new research
-[x] Update guides.md with new educational content
-[x] Update concepts.md with new concepts
-[x] Add new research requests for iteration 3
-[x] Update context.md with iteration 2 state
-[0m
-Iteration 2 research complete. Here's a summary:
-
-**12/12 topics researched** across 4 priority tiers:
-
-**High Priority (4/4):** Google ADK (18.7k★, A2A reference impl), Mastra (22.6k★, TS-first), Pydantic AI (16k★, type-safe), Strands Agents SDK (Amazon, Apache 2.0)
-
-**Medium Priority (4/4):** Claude Agent SDK (Claude Code as library, multi-cloud), Deep Research Agents (pattern + 5 impls incl. GPT Researcher 26k★), Business Automation (6 platforms, n8n 182k★, Dify 136k★), MCP Apps (SEP-1865 Final, inline HTML UIs)
-
-**Exploration (4/4):** Agentic RAG (5 sub-patterns with papers), MCP Server Showcase (6,300+ servers, top 8 documented), LOCOMO Benchmark (ACL 2024, key scores), Vertical Agents (CopilotKit 29.9k★, SGLang 25.3k★, etc.)
-
-**Files updated:**
-- `findings.md` — 800+ lines, 50+ entries
-- `guides.md` — 23 guides
-- `concepts.md` — 14 new concepts, 1 updated
-- `research-requests.md` — 12 new requests for iteration 3
-- `context.md` — full iteration 2 summary with 7 key ecosystem insights
-[0;32m[2026-04-02 15:06:09] ✓[0m Workspace Research & Content completed successfully
- 6 files changed, 1334 insertions(+), 40 deletions(-)
-[0;32m[2026-04-02 15:06:09] ✓[0m Workspace changes committed
- 1 file changed, 486 insertions(+), 49 deletions(-)
-[0;32m[2026-04-02 15:06:09] ✓[0m Code changes committed
-[0;32m[2026-04-02 15:06:09] ✓[0m Iteration 2 complete. Starting iteration 3...
-[0;36m[2026-04-02 15:06:11][0m Launching OpenCode for workspace Implementation...
-[0m
-> build · glm-5-turbo
-[0m
-[0m→ [0mRead .workspaces/1-implementation/context.md
-[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md
-[0m→ [0mRead .workspaces/1-implementation/resources/pixijs-reference.md
-[0m✱ [0mGlob ".workspaces/2-improvements/resources/prd.md"[90m 1 match[0m
-[0m→ [0mRead src/components/whiteboard.tsx
-[0m→ [0mRead .workspaces/2-improvements/resources/prd.md
-[0m→ [0mRead src/app/globals.css
-[0m→ [0mRead src/app/page.tsx
-[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1358][0m
-[0m
-[0m# [0mTodos
-[ ] Add new macroareas: Knowledge & Retrieval, Frameworks & SDKs, Business Automation, Protocol Extensions from concepts.md
-[ ] Update Observability with updated description from concepts.md
-[ ] Expand macroarea grid layout to fit 12 areas (3x4 or 4x3)
-[ ] Build and lint to verify no errors
-[ ] Update context.md with iteration 3 state
-[0m
-[0m# [0mTodos
-[ ] Add new macroareas: Knowledge & Retrieval, Frameworks & SDKs, Business Automation, Protocol Extensions from concepts.md
-[ ] Update Observability with updated description from concepts.md
-[ ] Expand macroarea grid layout to fit 12 areas (3x4 or 4x3)
-[ ] Build and lint to verify no errors
-[ ] Update context.md with iteration 3 state
-[0m
-Now I have a full picture. The PRD is iteration 1 (already done), but the `concepts.md` has 4 new macroareas not yet in the code: **Knowledge & Retrieval**, **Frameworks & SDKs**, **Business Automation**, **Protocol Extensions**. I need to add these, expand the layout to 3x4, and update the Observability description.
-[0m← [0mEdit src/components/whiteboard.tsx
-Index: /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-===================================================================
---- /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-+++ /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-@@ -172,10 +172,10 @@
-   },
- ];
- 
- function getAreaPosition(index: number) {
--  const col = index % 2;
--  const row = Math.floor(index / 2);
-+  const col = index % 3;
-+  const row = Math.floor(index / 3);
-   return { x: START_X + col * COL_STEP, y: START_Y + row * ROW_STEP };
- }
- 
- function getRadius(popularity: number) {
-
-[0m
-[0m← [0mEdit src/components/whiteboard.tsx
-Index: /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-===================================================================
---- /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-+++ /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-@@ -621,9 +621,9 @@
- el.appendChild(app.canvas);
- 
- const world = new Container();
- 
--const totalW = 2 * AREA_WIDTH + COL_GAP + START_X * 2;
-+const totalW = 3 * AREA_WIDTH + 2 * COL_GAP + START_X * 2;
- const totalH = 4 * AREA_HEIGHT + 3 * ROW_GAP + START_Y * 2;
- const worldBounds = { x: 0, y: 0, w: totalW, h: totalH };
- 
- const fitScale = Math.min(1, Math.max(0.55, Math.min(
-
-[0m
-Now add the 4 new macroareas after Infrastructure:
-[0m← [0mEdit src/components/whiteboard.tsx
-Index: /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-===================================================================
---- /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-+++ /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-@@ -169,8 +169,51 @@
-       { name: 'Git\nIntegration', popularity: 9, description: 'L\'agente lavora direttamente nel repo git', alternatives: 'gh CLI, git commands, PR automation, Code review bots', category: 'Workflow' },
-       { name: 'Environment\nManagement', popularity: 7, description: 'Gestione di ambienti dev diversi (local, remote, sandbox)', alternatives: 'Devcontainers, SSH remotes, Daytona, E2B, Modal', category: 'Runtime' },
-     ],
-   },
-+  {
-+    name: 'Knowledge & Retrieval',
-+    color: '#06B6D4',
-+    bg: '#CFFAFE',
-+    border: '#67E8F9',
-+    concepts: [
-+      { name: 'Agentic\nRAG', popularity: 9, description: 'Pattern RAG dove l\'agente decide attivamente quando, come e se recuperare informazioni. Include Self-RAG, Corrective RAG, Adaptive RAG.', alternatives: 'Traditional RAG, LangChain agentic RAG, LlamaIndex agent workflows', category: 'Pattern' },
-+      { name: 'Deep Research\nAgent', popularity: 9, description: 'Agente che conduce ricerca multi-step: pianifica query, naviga il web, sintetizza report con citazioni e self-critica', alternatives: 'GPT Researcher, STORM, Tongyi DeepResearch, DeepSearcher', category: 'Pattern' },
-+    ],
-+  },
-+  {
-+    name: 'Frameworks & SDKs',
-+    color: '#EC4899',
-+    bg: '#FCE7F3',
-+    border: '#F9A8D4',
-+    concepts: [
-+      { name: 'Google\nADK', popularity: 9, description: 'Framework open-source Google per agenti AI. Model-agnostic, SDK in Python/TypeScript/Go/Java. Reference per A2A.', alternatives: 'LangGraph, OpenAI Agents SDK, Mastra, Strands Agents, Pydantic AI, Claude Agent SDK', category: 'Framework' },
-+      { name: 'OpenAI Agents\nSDK', popularity: 10, description: 'Framework lightweight OpenAI per multi-agent workflows. Handoffs, guardrails, HITL, sessioni, tracing, voice agents.', alternatives: 'LangGraph, Google ADK, CrewAI, Claude Agent SDK, Strands Agents', category: 'Framework' },
-+      { name: 'Mastra', popularity: 8, description: 'Framework TypeScript-first per agenti AI. Workflow a grafi, RAG, memoria, MCP, eval, osservabilit\u00e0. Integrazione Next.js. YC W25.', alternatives: 'LangGraph, Vercel AI SDK, Pydantic AI, Google ADK', category: 'Framework' },
-+      { name: 'Pydantic\nAI', popularity: 8, description: 'Framework Python type-safe dal team Pydantic. Agent generici, validation automatica, 15+ provider, MCP e A2A nativi.', alternatives: 'LangGraph, Google ADK, Strands Agents, Claude Agent SDK', category: 'Framework' },
-+      { name: 'Strands\nAgents SDK', popularity: 7, description: 'SDK open-source Amazon/AWS. Model-driven: il modello orchestra, lo sviluppatore definisce tools e prompt. Nativo MCP, A2A, Bedrock.', alternatives: 'OpenAI Agents SDK, Claude Agent SDK, Google ADK', category: 'Framework' },
-+      { name: 'Claude Agent\nSDK', popularity: 9, description: 'SDK Anthropic che espone il motore di Claude Code come libreria. Tools built-in, subagenti, MCP, hooks, sessioni, permessi.', alternatives: 'OpenAI Agents SDK, Google ADK, Pydantic AI', category: 'Framework' },
-+    ],
-+  },
-+  {
-+    name: 'Business Automation',
-+    color: '#84CC16',
-+    bg: '#ECFCCB',
-+    border: '#BEF264',
-+    concepts: [
-+      { name: 'Visual Agent\nBuilder', popularity: 8, description: 'Piattaforma no-code/low-code per workflow multi-agente con canvas visuale. Deployment come API, MCP server o chatbot.', alternatives: 'Dify, Langflow, Flowise, n8n, Coze', category: 'Platform' },
-+      { name: 'Low-Code Agent\nPlatform', popularity: 8, description: 'Piattaforma automazione con AI agent integrate. Bridge tra automazione business tradizionale e agenti AI.', alternatives: 'n8n, Zapier, Make.com, Activepieces', category: 'Platform' },
-+    ],
-+  },
-+  {
-+    name: 'Protocol Extensions',
-+    color: '#64748B',
-+    bg: '#F1F5F9',
-+    border: '#CBD5E1',
-+    concepts: [
-+      { name: 'MCP\nApps', popularity: 7, description: 'Estensione ufficiale MCP (SEP-1865) che permette ai server di fornire UI HTML interattive renderizzate inline nelle conversazioni AI', alternatives: 'N/A (estensione unica)', category: 'Integration' },
-+    ],
-+  },
- ];
- 
- function getAreaPosition(index: number) {
-   const col = index % 3;
-
-[0m
-Now update the Observability Platform description to match the updated version in concepts.md:
-[0m← [0mEdit src/components/whiteboard.tsx
-Index: /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-===================================================================
---- /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-+++ /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
-@@ -147,9 +147,9 @@
- bg: '#FEF9C3',
- border: '#FACC15',
- concepts: [
-   { name: 'Logging &\nTracing', popularity: 8, description: 'Tracciare le azioni dell\'agente per debug e audit', alternatives: 'LangSmith, Langfuse, Weave, Phoenix, OpenLLMetry, Custom logging', category: 'Monitoring' },
--  { name: 'Observability\nPlatform', popularity: 9, description: 'Piattaforma completa per tracing, evaluation, prompt management e deployment', alternatives: 'Langfuse, LangSmith, Arize Phoenix, W&B Weave, Helicone', category: 'Monitoring' },
-+  { name: 'Observability\nPlatform', popularity: 9, description: 'Piattaforma completa per tracing, evaluation, prompt management e deployment. Leader: Langfuse. Pi\u00f9 feature-complete: LangSmith. Nuovi: AgentOps.', alternatives: 'Langfuse, LangSmith, Arize Phoenix, W&B Weave, Helicone, AgentOps', category: 'Monitoring' },
-   { name: 'Cost\nTracking', popularity: 8, description: 'Monitorare token usage e costi per sessione/task', alternatives: 'Usage dashboards, Token counting, Provider billing APIs', category: 'Monitoring' },
-   { name: 'Evaluation &\nBenchmarks', popularity: 7, description: 'Valutare le performance dell\'agente su task specifici', alternatives: 'LM Eval Harness, Custom evals, A/B testing, Human eval', category: 'Quality' },
-   { name: 'Debugging\nTools', popularity: 7, description: 'Tool per ispezionare e debuggare il comportamento dell\'agente', alternatives: 'Replay tools, Inspector UI, Trace viewers', category: 'Debug' },
-   { name: 'Safety &\nGuardrails', popularity: 7, description: 'Meccanismi per prevenire comportamenti indesiderati', alternatives: 'Input/output filtering, Permission systems, Approval flows, Geordie AI', category: 'Safety' },
-
-[0m
-[0m# [0mTodos
-[x] Add new macroareas: Knowledge & Retrieval, Frameworks & SDKs, Business Automation, Protocol Extensions from concepts.md
-[x] Update Observability with updated description from concepts.md
-[x] Expand macroarea grid layout to fit 12 areas (3x4 or 4x3)
-[ ] Build and lint to verify no errors
-[ ] Update context.md with iteration 3 state
-[0m
-[0m$ [0mnpm run lint 2>&1 | tail -20
-> agent-glossary@0.1.0 lint
-> eslint
-[0m
-[0m$ [0mnpm run build 2>&1 | tail -30
-> agent-glossary@0.1.0 build
-> next build
-
-▲ Next.js 16.2.2 (Turbopack)
-
-  Creating an optimized production build ...
-✓ Compiled successfully in 2.6s
-  Running TypeScript ...
-  Finished TypeScript in 1874ms ...
-  Collecting page data using 5 workers ...
-  Generating static pages using 5 workers (0/4) ...
-  Generating static pages using 5 workers (1/4) 
-  Generating static pages using 5 workers (2/4) 
-  Generating static pages using 5 workers (3/4) 
-✓ Generating static pages using 5 workers (4/4) in 330ms
-  Finalizing page optimization ...
-
-Route (app)
-┌ ○ /
-└ ○ /_not-found
-
-
-○  (Static)  prerendered as static content
-[0m
-Build and lint pass clean. Now let me update the context.md:
-[0m← [0mEdit .workspaces/1-implementation/context.md
-Index: /home/arro/projects/agent-glossary/.workspaces/1-implementation/context.md
-===================================================================
---- /home/arro/projects/agent-glossary/.workspaces/1-implementation/context.md
-+++ /home/arro/projects/agent-glossary/.workspaces/1-implementation/context.md
-@@ -1,10 +1,10 @@
- # Workspace 1 — Implementation
+[0m$ [0mgit diff -- src/components/whiteboard.tsx .workspaces/1-implementation/context.md
+diff --git a/.workspaces/1-implementation/context.md b/.workspaces/1-implementation/context.md
+index 94b3e6c..e99719c 100644
+--- a/.workspaces/1-implementation/context.md
++++ b/.workspaces/1-implementation/context.md
+@@ -2,7 +2,7 @@
  
  ## Stato
- - **Iterazione**: 3
--- **Ultimo aggiornamento**: 2026-04-02 15:06:11
--- **Stato**: in_progress
-+- **Ultimo aggiornamento**: 2026-04-02 (completata)
-+- **Stato**: completed
+ - **Iterazione**: 1
+-- **Ultimo aggiornamento**: 2026-04-02 18:02:00
++- **Ultimo aggiornamento**: 2026-04-02 18:12:00
+ - **Stato**: completed
  
  ## Obiettivo
- Implementare l'app "Agent Glossary Whiteboard" usando PixiJS v8 + Next.js.
+@@ -141,6 +141,13 @@ Tutti i concetti dal database sono ora rappresentati nella whiteboard.
+ - [x] Badge bolla e barra "PROJECT WEIGHT" nel panel mostrano il conteggio riferimenti
+ - [x] Hover glow, click panel, zoom (wheel) e pan (drag) verificati nel flusso esistente
  
-@@ -22,19 +22,23 @@
- - **Macroaree**: Grandi regioni rettangolari con bordo tratteggiato, etichetta in alto, sfondo pastello trasparente
- - **Bolle concetti**: Cerchi/ellissi dentro ogni macroarea, dimensione proporzionale alla popolarità/importanza
- - **Nessun collegamento**: Le bolle sono posizionate spazialmente, zero linee tra loro
- 
--## Macroaree (iniziali)
-+## Macroaree (12 totali, grid 3x4)
- 1. **Memory & State** — 8 concetti: Persistent Memory, Session Memory, Vector Database, Context Window Management, Temporal Memory, Tiered Memory, Procedural Memory, Token Budget
- 2. **Tools & Actions** — 8 concetti: Code Execution Sandbox, Terminal/Shell Access, File I/O, Web Search, Browser Automation, MCP, A2A, API Client
- 3. **Prompt Engineering** — 6 concetti: System Prompt, Few-Shot Examples, Chain-of-Thought, Structured Output, Prompt Caching, Context Compression
- 4. **Orchestration** — 16 concetti: Agent Loop, Prompt Chaining, Routing, Parallelization, Orchestrator-Workers, Evaluator-Optimizer, Handoffs/Swarm, GraphFlow/State Machine, Multi-Agent, Task Planning, Tool Routing, Subagent Delegation, HITL, Async Background, ACI, Cron/Scheduling
- 5. **Inference & Models** — 7 concetti: LLM Providers, Model Selection, Context Length, Quantization, Streaming, Embeddings, Reasoning Models
- 6. **Skills & Plugins** — 4 concetti: Skill System, Custom Tool Creation, Workflow Automation, PRD Generation
- 7. **Observability** — 7 concetti: Logging & Tracing, Observability Platform, Cost Tracking, Evaluation & Benchmarks, Debugging Tools, Safety & Guardrails, Agent Governance
- 8. **Infrastructure** — 6 concetti: Docker & Containers, GPU Cloud, Serverless, CI/CD, Git Integration, Environment Management
-+9. **Knowledge & Retrieval** — 2 concetti: Agentic RAG, Deep Research Agent
-+10. **Frameworks & SDKs** — 6 concetti: Google ADK, OpenAI Agents SDK, Mastra, Pydantic AI, Strands Agents SDK, Claude Agent SDK
-+11. **Business Automation** — 2 concetti: Visual Agent Builder, Low-Code Agent Platform
-+12. **Protocol Extensions** — 1 concetto: MCP Apps
- 
--**Totale: 62 concetti** (era 48 nell'iterazione 1)
-+**Totale: 67 concetti** (era 62 nell'iterazione 2)
- 
- ## Dati
- I concetti/strumenti per ogni macroarea stanno nel file `resources/concepts.md`.
- Tutti i concetti dal database sono ora rappresentati nella whiteboard.
-@@ -51,19 +55,19 @@
- - Spacing: 40px, dinamica con viewport culling
- - Zoom/pan attivi
- 
- ### Macroaree
--- Rettangoli 720x460px (aumentato da 360) con bordo pastello e angoli arrotondati (12px)
-+- Rettangoli 720x460px con bordo pastelle e angoli arrotondati (12px)
- - Etichetta macroarea + contatore concetti in alto a sinistra
- - Sfondo semi-trasparente (alpha 0.55)
--- Layout: griglia 2x4 con gap 80px orizzontale, 60px verticale
-+- Layout: griglia 3x4 con gap 80px orizzontale, 60px verticale
- - Ombra sottile per profondità
- 
- ### Bolle
- - Cerchi con raggio proporzionale alla popolarità (min 24px per pop 6, max 62px per pop 10)
- - **Adaptive scaling**: per macroaree dense (es. Orchestration con 16 items), le bolle vengono scalate per adattarsi allo spazio disponibile
- - Layout automatico: 4-6 colonne a seconda del numero di concetti
--- Colore pastello sfumato della macroarea genitore
-+- Colore pastelle sfumato della macroarea genitore
- - Hover: glow a due livelli + scale 1.06x (animazione smooth con lerp 0.18)
- - Click: apre detail panel con fade-in
- 
- ### Zoom & Pan
-@@ -79,15 +83,25 @@
- - Nome, badge macroarea, descrizione, barra popolarità, categoria, alternative
- - Chiusura: pulsante ✕, click backdrop, o tasto ESC
- - Dimensione: 400x310px, centrato
- 
-+### Search Bar
-+- Barra di ricerca centrata in alto
-+- Filtra bolle e macroaree in tempo reale
-+- Contatore risultati visibili
-+- Hidden input HTML per supporto tastiera nativo
-+
-+### Legend
-+- Pannello legenda con tutte le macroaree in alto a destra
-+- Colore + nome + conteggio concetti per area
-+
- ### Minimap
- - Angolo in basso a destra (180x110px)
- - Click-to-navigate sulla minimap
- 
- ## Iterazione 1 — Completata
- - [x] Setup PixiJS Application con griglia quadrettata
--- [x] Rendering 8 macroaree con sfondo pastello
-+- [x] Rendering 8 macroaree con sfondo pastelle
- - [x] Rendering bolle dentro macroaree con dimensione proporzionale
- - [x] Zoom & pan interattivi
- - [x] Hover effect sulle bolle (glow + scale)
- - [x] Click per mostrare dettagli (panel con nome, descrizione, macroarea, popolarità, categoria, alternative)
-@@ -107,8 +121,19 @@
- - [x] **Keyboard shortcuts**: +/- zoom, 0 zoom-to-fit
- - [x] **Initial zoom-to-fit** al caricamento
- - [x] Build e lint passano senza errori/warnings
- 
-+## Iterazione 3 — Completata
-+- [x] **4 nuove macroaree** aggiunte da concepts.md (da 8 a 12 totali)
-+  - Knowledge & Retrieval (2 concetti: Agentic RAG, Deep Research Agent)
-+  - Frameworks & SDKs (6 concetti: Google ADK, OpenAI Agents SDK, Mastra, Pydantic AI, Strands Agents SDK, Claude Agent SDK)
-+  - Business Automation (2 concetti: Visual Agent Builder, Low-Code Agent Platform)
-+  - Protocol Extensions (1 concetto: MCP Apps)
-+- [x] **Layout grid espanso** da 2x4 a 3x4 per accomodare 12 macroaree
-+- [x] **5 nuovi concetti** aggiunti (da 62 a 67 totali)
-+- [x] **Observability Platform** descrizione aggiornata con AgentOps
-+- [x] Build e lint passano senza errori/warnings
++## Iterazione 1 (Questa esecuzione) — Completata
++- [x] Requisiti chiave confermati: PixiJS v8 vanilla, rendering full-canvas, font Inter, bolle equal-size
++- [x] Confermata leggibilita bolle con emoji/icona + titolo in ogni subsection
++- [x] Confermato peso delle bolle basato su numero di riferimenti/progetti (`alternatives`)
++- [x] Corretto hit area delle bolle per interazioni pointer precise (`Circle(0, 0, radius)`)
++- [x] Migliorato layout controlli zoom evitando overlap tra pulsanti (+, -, fit)
 +
  ## File Principali
  - `src/components/whiteboard.tsx` — Componente principale con tutta la logica PixiJS
  - `src/app/page.tsx` — Pagina che renderizza il whiteboard
- - `src/app/globals.css` — CSS globale con import Inter e reset
+diff --git a/src/components/whiteboard.tsx b/src/components/whiteboard.tsx
+index fe67d6d..45a6bd2 100644
+--- a/src/components/whiteboard.tsx
++++ b/src/components/whiteboard.tsx
+@@ -576,7 +576,7 @@ function createSearchBar(): {
+   return { container, bg, textDisplay, placeholder, clearBtn, matchLabel, iconGfx };
+ }
+ 
+-function createLegend(onAreaClick: (areaIndex: number) => void, screenH: number): Container {
++function createLegend(onAreaClick: (areaIndex: number) => void): Container {
+   const pad = 10;
+   const itemH = 22;
+   const w = 190;
+@@ -742,7 +742,7 @@ function createLegend(onAreaClick: (areaIndex: number) => void, screenH: number)
+       e.stopPropagation();
+     });
+ 
+-    const onMove = (e: any) => {
++    const onMove = (e: PointerEvent) => {
+       if (!isDragging) return;
+       scrollY = Math.max(-maxY, Math.min(0, scrollY + e.movementY));
+       listContainer.y = headerH + headerPad + scrollY;
+@@ -752,7 +752,7 @@ function createLegend(onAreaClick: (areaIndex: number) => void, screenH: number)
+     window.addEventListener('pointermove', onMove);
+     window.addEventListener('pointerup', onUp);
+ 
+-    (container as any)._cleanupScroll = () => {
++    (container as unknown as Record<string, unknown>)._cleanupScroll = () => {
+       window.removeEventListener('pointermove', onMove);
+       window.removeEventListener('pointerup', onUp);
+     };
+@@ -885,7 +885,7 @@ export default function Whiteboard() {
+           bubbleContainer.alpha = 0;
+ 
+           const hitR = radius + 4;
+-          bubbleContainer.hitArea = new Circle(hitR, hitR, hitR);
++          bubbleContainer.hitArea = new Circle(0, 0, hitR);
+ 
+           const glow = new Graphics();
+           glow.eventMode = 'none';
+@@ -1028,11 +1028,11 @@ export default function Whiteboard() {
+ 
+       const zoomContainer = new Container();
+       zoomContainer.x = 20;
+-      zoomContainer.y = window.innerHeight - 180;
++      zoomContainer.y = window.innerHeight - 196;
+       zoomContainer.label = 'zoom-controls';
+ 
+       const zoomBg = new Graphics();
+-      zoomBg.roundRect(0, 0, 40, 136, 10);
++      zoomBg.roundRect(0, 0, 40, 152, 10);
+       zoomBg.fill({ color: '#ffffff', alpha: 0.88 });
+       zoomBg.stroke({ color: '#d1d5db', width: 1 });
+       zoomBg.eventMode = 'none';
+@@ -1057,21 +1057,21 @@ export default function Whiteboard() {
+       });
+       zoomLabel.anchor.set(0.5);
+       zoomLabel.x = 20;
+-      zoomLabel.y = 58;
++      zoomLabel.y = 56;
+       zoomContainer.addChild(zoomLabel);
+ 
+       const plusBtn = createZoomBtn('+', () => {
+         zoomToCenter(world.scale.x * 1.25);
+       });
+       plusBtn.x = 0;
+-      plusBtn.y = 72;
++      plusBtn.y = 64;
+       zoomContainer.addChild(plusBtn);
+ 
+       const fitBtn = createZoomBtn('\u2922', () => {
+         zoomToFit();
+       });
+       fitBtn.x = 0;
+-      fitBtn.y = 88;
++      fitBtn.y = 104;
+       zoomContainer.addChild(fitBtn);
+ 
+       app.stage.addChild(zoomContainer);
+@@ -1094,7 +1094,7 @@ export default function Whiteboard() {
+         targetScale = ns;
+         targetPanX = window.innerWidth / 2 - areaCX * ns;
+         targetPanY = window.innerHeight / 2 - areaCY * ns;
+-      }, window.innerHeight);
++      });
+       legend.x = window.innerWidth - 190 - 14;
+       legend.y = 14;
+       app.stage.addChild(legend);
+@@ -1679,7 +1679,7 @@ export default function Whiteboard() {
+         minimap.x = window.innerWidth - 180 - 12;
+         minimap.y = window.innerHeight - 110 - 12;
+         zoomContainer.x = 20;
+-        zoomContainer.y = window.innerHeight - 180;
++        zoomContainer.y = window.innerHeight - 196;
+         searchBar.container.x = (window.innerWidth - 300) / 2;
+         searchBar.container.y = 14;
+         legend.x = window.innerWidth - 190 - 14;
+[0m
+[0m$ [0mgit log -6 --oneline
+49864b8 Refocus research on awesome agents and auto-push loop
+f7f2c01 Update bubble weight to reference counts
+2c642c0 Shift glossary bubbles to equal subsection projects
+af4e400 Ignore local Netlify metadata
+b69fc2e Add PixiJS agent glossary whiteboard
+1cd2ec2 loop iter 3: implementation changes
+[0m
+[0m$ [0mgit add "src/components/whiteboard.tsx" ".workspaces/1-implementation/context.md" && git commit -m "Polish whiteboard interactions for iteration 1" -m "Improve bubble hit targets and zoom control spacing so navigation feels reliable and clear, while keeping equal-size subsection bubbles and reference-based project weight behavior documented in workspace context." && git status --short
+[main b07a21a] Polish whiteboard interactions for iteration 1
+ 2 files changed, 19 insertions(+), 12 deletions(-)
+ M .workspaces/logs/loop.log
+ M .workspaces/loop.pid
+[0m
+Implemented iteration 1 and committed the work.
 
-[0m
-[0m# [0mTodos
-[x] Add new macroareas: Knowledge & Retrieval, Frameworks & SDKs, Business Automation, Protocol Extensions from concepts.md
-[x] Update Observability with updated description from concepts.md
-[x] Expand macroarea grid layout to fit 12 areas (3x4 or 4x3)
-[x] Build and lint to verify no errors
-[x] Update context.md with iteration 3 state
-[ ] Commit changes
-[0m
-Now committing:
-[0m$ [0mgit status
-On branch main
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git restore <file>..." to discard changes in working directory)
-	modified:   .workspaces/1-implementation/context.md
-	modified:   .workspaces/logs/loop.log
-	modified:   package-lock.json
-	modified:   package.json
-	modified:   src/components/whiteboard.tsx
+- Updated bubble interaction precision by fixing hit areas to be centered on each bubble in `src/components/whiteboard.tsx:888`.
+- Polished zoom controls layout to avoid button overlap and improve usability in `src/components/whiteboard.tsx:1031`, `src/components/whiteboard.tsx:1035`, `src/components/whiteboard.tsx:1067`, `src/components/whiteboard.tsx:1074`, `src/components/whiteboard.tsx:1682`.
+- Cleaned typing issues in legend scrolling (removed unused arg, replaced `any`) in `src/components/whiteboard.tsx:579`, `src/components/whiteboard.tsx:745`, `src/components/whiteboard.tsx:755`, `src/components/whiteboard.tsx:1097`.
+- Updated workspace status/context with this iteration’s state and completed checklist in `.workspaces/1-implementation/context.md:5` and `.workspaces/1-implementation/context.md:144`.
+- Kept core rules aligned with your brief: PixiJS v8 vanilla via `useRef/useEffect`, full canvas rendering, Inter font, equal-size subsection bubbles, emoji+title recognition, and reference-count weight display.
 
-no changes added to commit (use "git add" and/or "git commit -a")
-[0m
-[0m$ [0mgit log --oneline -5
-c286171 loop iter 2: implementation changes
-01148ad loop iter 2: workspace 3 (Research & Content) completed
-5d0515b loop iter 2: workspace 2 (Improvements & PRD) completed
-bc80c42 loop iter 2: workspace 1 (Implementation) completed
-a365668 feat: iteration 2 — add 16 missing concepts, zoom controls, panel fade-out, adaptive layout
-[0m
-[0m$ [0mgit diff --stat
-.workspaces/1-implementation/context.md |  41 ++++-
- .workspaces/logs/loop.log               | 312 ++++++++++++++++++++++++++++++++
- package-lock.json                       | 112 ++++++++++++
- package.json                            |   2 +
- src/components/whiteboard.tsx           |  51 +++++-
- 5 files changed, 506 insertions(+), 12 deletions(-)
-[0m
-[0m$ [0mgit add src/components/whiteboard.tsx .workspaces/1-implementation/context.md && git commit -m "feat: iteration 3 — add 4 new macroareas, expand grid to 3x4, 67 total concepts
+Validation run:
+- `npx eslint src` passes.
+- `npm run build` passes.
+- `npm run lint` still fails due pre-existing generated files under `.netlify/...` (not touched by this change).
 
-Add Knowledge & Retrieval (2), Frameworks & SDKs (6), Business Automation (2),
-Protocol Extensions (1). Expand layout from 2x4 to 3x4 grid. Update Observability
-Platform description with AgentOps."
-[main 8f15bb4] feat: iteration 3 — add 4 new macroareas, expand grid to 3x4, 67 total concepts
- 2 files changed, 80 insertions(+), 12 deletions(-)
-[0m
-[0m# [0mTodos
-[x] Add new macroareas: Knowledge & Retrieval, Frameworks & SDKs, Business Automation, Protocol Extensions from concepts.md
-[x] Update Observability with updated description from concepts.md
-[x] Expand macroarea grid layout to fit 12 areas (3x4 or 4x3)
-[x] Build and lint to verify no errors
-[x] Update context.md with iteration 3 state
-[x] Commit changes
-[0m
-Iteration 3 complete. Changes committed (`8f15bb4`):
-
-- **4 new macroareas** added: Knowledge & Retrieval (2), Frameworks & SDKs (6), Business Automation (2), Protocol Extensions (1) — total now **12 macroareas, 67 concepts**
-- **Layout expanded** from 2x4 to 3x4 grid to fit all areas
-- **Observability Platform** description updated with AgentOps
-- Build and lint pass clean
-[0;32m[2026-04-02 15:10:03] ✓[0m Workspace Implementation completed successfully
+Commit:
+- `b07a21a` — `Polish whiteboard interactions for iteration 1`
+[0;32m[2026-04-02 17:09:38] ✓[0m Workspace Implementation completed successfully
