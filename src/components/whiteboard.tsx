@@ -30,10 +30,10 @@ interface MacroareaConfig {
 const GRID_SIZE = 40;
 const GRID_COLOR = '#e5e5e5';
 const BG_COLOR = '#fafafa';
-const AREA_WIDTH = 760;
-const AREA_HEIGHT = 500;
-const COL_GAP = 96;
-const ROW_GAP = 72;
+const AREA_WIDTH = 800;
+const AREA_HEIGHT = 540;
+const COL_GAP = 112;
+const ROW_GAP = 80;
 const START_X = 64;
 const START_Y = 52;
 const COL_STEP = AREA_WIDTH + COL_GAP;
@@ -314,10 +314,20 @@ function getReferenceCount(alternatives: string): number {
 
 function getBubbleColumns(count: number): number {
   if (count <= 3) return count;
-  if (count <= 7) return 4;
-  if (count <= 11) return 5;
-  if (count <= 14) return 5;
-  return 6;
+  if (count <= 8) return 4;
+  if (count <= 12) return 5;
+  if (count <= 16) return 6;
+  return 7;
+}
+
+function getConceptSignal(conceptName: string): { label: string; color: string } | null {
+  const key = conceptName.replace(/\n/g, ' ').toLowerCase();
+  if (key.includes('harness / runtime scaffold')) return { label: 'HARNESS', color: '#0284c7' };
+  if (key.includes('eval harness')) return { label: 'EVAL', color: '#7c3aed' };
+  if (key.includes('context window')) return { label: 'CONTEXT', color: '#2563eb' };
+  if (key.includes('reference navigation')) return { label: 'REF NAV', color: '#0f766e' };
+  if (key.includes('repo map') || key.includes('codebase map')) return { label: 'REPO MAP', color: '#0f766e' };
+  return null;
 }
 
 function getBubbleReferenceScore(concept: ConceptData): number {
@@ -414,9 +424,9 @@ function drawProjectWeightRing(
 
 function layoutBubbles(concepts: ConceptData[], ax: number, ay: number) {
   const n = concepts.length;
-  const padX = 34;
-  const padY = 26;
-  const headerH = 54;
+  const padX = 42;
+  const padY = 34;
+  const headerH = 72;
   const availW = AREA_WIDTH - padX * 2;
   const availH = AREA_HEIGHT - headerH - padY * 2;
 
@@ -1238,6 +1248,7 @@ export default function Whiteboard() {
           bubbleContainer.addChild(bubble);
 
           const bubbleTypography = getBubbleTypography(concept.name, radius);
+          const conceptSignal = getConceptSignal(concept.name);
 
           const titlePlate = new Graphics();
           titlePlate.roundRect(-radius * 0.72, radius * 0.005, radius * 1.44, radius * 0.58, 15);
@@ -1264,6 +1275,35 @@ export default function Whiteboard() {
           emojiText.anchor.set(0.5);
           emojiText.y = bubbleTypography.emojiY;
           bubbleContainer.addChild(emojiText);
+
+          if (conceptSignal) {
+            const signalText = new Text({
+              text: conceptSignal.label,
+              style: new TextStyle({
+                fontFamily: '"Inter", sans-serif',
+                fontSize: 7,
+                fontWeight: 'bold',
+                fill: conceptSignal.color,
+                letterSpacing: 0.6,
+              }),
+            });
+            signalText.anchor.set(0.5);
+
+            const signalWidth = Math.max(44, signalText.width + 10);
+            const signalBg = new Graphics();
+            signalBg.roundRect(-signalWidth / 2, -6, signalWidth, 12, 6);
+            signalBg.fill({ color: '#ffffff', alpha: 0.95 });
+            signalBg.stroke({ color: conceptSignal.color, width: 1, alpha: 0.42 });
+            signalBg.eventMode = 'none';
+
+            const signalChip = new Container();
+            signalChip.x = radius * 0.44;
+            signalChip.y = -radius * 0.59;
+            signalChip.eventMode = 'none';
+            signalChip.addChild(signalBg);
+            signalChip.addChild(signalText);
+            bubbleContainer.addChild(signalChip);
+          }
 
           const bText = new Text({
             text: displayLabel,
@@ -1454,6 +1494,24 @@ export default function Whiteboard() {
       searchBar.container.x = Math.max(12, (window.innerWidth - searchBar.width) / 2);
       searchBar.container.y = compactMode ? 10 : 14;
       app.stage.addChild(searchBar.container);
+
+      const signalHint = new Text({
+        text: 'Signals: HARNESS · CONTEXT · REF NAV',
+        style: new TextStyle({
+          fontFamily: '"Inter", sans-serif',
+          fontSize: 10,
+          fontWeight: 'bold',
+          fill: '#64748b',
+          letterSpacing: 0.5,
+        }),
+      });
+      signalHint.anchor.set(0.5, 0);
+      signalHint.x = window.innerWidth / 2;
+      signalHint.y = searchBar.container.y + searchBar.height + 7;
+      signalHint.alpha = 0.92;
+      signalHint.visible = !compactMode;
+      signalHint.eventMode = 'none';
+      app.stage.addChild(signalHint);
 
       const legend = createLegend((areaIndex: number) => {
         const pos = getAreaPosition(areaIndex);
@@ -2188,6 +2246,9 @@ export default function Whiteboard() {
         const searchW = searchBar.container.width;
         searchBar.container.x = Math.max(12, (window.innerWidth - searchW) / 2);
         searchBar.container.y = compactMode ? 10 : 14;
+        signalHint.visible = !compactMode;
+        signalHint.x = window.innerWidth / 2;
+        signalHint.y = searchBar.container.y + searchBar.height + 7;
         legend.visible = !compactMode;
         legend.x = window.innerWidth - 190 - 14;
         legend.y = 14;

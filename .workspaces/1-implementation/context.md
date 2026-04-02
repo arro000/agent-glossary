@@ -2,8 +2,8 @@
 
 ## Stato
 - **Iterazione**: 1
-- **Ultimo aggiornamento**: 2026-04-02 21:27:41
-- **Stato**: completed
+- **Ultimo aggiornamento**: 2026-04-02 21:40:12
+- **Stato**: in_progress
 
 ## Obiettivo
 Implementare l'app "Agent Glossary Whiteboard" usando PixiJS v8 + Next.js.
@@ -227,6 +227,12 @@ La whiteboard rappresenta 69 subsection correnti allineate alle macroaree princi
 - `src/components/whiteboard.tsx` — Componente principale con tutta la logica PixiJS
 - `src/app/page.tsx` — Pagina che renderizza il whiteboard
 - `src/app/globals.css` — CSS globale con import Inter e reset
+
+## Iterazione 1 (Richiesta utente corrente) — Aggiornamento finale
+- [x] Letti tutti i riferimenti richiesti (`context.md`, `resources/concepts.md`, `resources/pixijs-reference.md`, workspace 2 e findings) e verificato PRD presente
+- [x] Rafforzata la traduzione visiva di harness/context/reference-navigation con signal chip dedicati nelle subsection bubble (`HARNESS`, `CONTEXT`, `REF NAV`, `REPO MAP`, `EVAL`)
+- [x] Layout reso piu chiaro senza aumentare densita: macroaree piu ariose (dimensioni/gap aumentati) e bubble packing aggiornato per dataset denso mantenendo bubble equal-size
+- [x] Confermato encoding del peso progetto tramite reference count (`alternatives`) senza cambiare il diametro delle bubble
 
 ## Comandi Dopo Ogni Iterazione
 1. Aggiorna questo file con lo stato attuale
