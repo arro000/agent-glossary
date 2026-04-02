@@ -43,6 +43,12 @@ const PROJECT_WEIGHT_SEGMENTS = 10;
 const ZOOM_LERP = 0.12;
 const PAN_LERP = 0.15;
 const EMOJI_FONT_FAMILY = '"Inter", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif';
+const MOBILE_BREAKPOINT = 768;
+
+function isCompactViewport() {
+  if (typeof window === 'undefined') return false;
+  return window.innerWidth < MOBILE_BREAKPOINT || window.matchMedia('(pointer: coarse)').matches;
+}
 
 const MACROAREAS: MacroareaConfig[] = [
   {
@@ -570,18 +576,20 @@ function drawDashedRoundedRect(
 function createMinimap(
   worldBounds: { x: number; y: number; w: number; h: number },
   screenW: number,
-  _screenH: number,
+  screenH: number,
   world: Container,
   onNavigate: (targetWX: number, targetWY: number) => void,
+  compact = false,
 ): Container {
-  const mmW = 180;
-  const mmH = _screenH > 300 ? 110 : 70;
-  const mmPad = 12;
+  const mmW = compact ? 156 : 180;
+  const mmH = compact ? 92 : (screenH > 300 ? 110 : 70);
+  const mmPad = compact ? 10 : 12;
   const mmX = screenW - mmW - mmPad;
-  const mmY = _screenH - mmH - mmPad;
+  const mmY = screenH - mmH - mmPad;
 
   const mm = new Container();
   mm.label = 'minimap';
+  mm.visible = !compact;
 
   const bg = new Graphics();
   bg.roundRect(0, 0, mmW, mmH, 8);
@@ -621,7 +629,7 @@ function createMinimap(
     const vx = (-world.x / world.scale.x - worldBounds.x) * scale + offsetX;
     const vy = (-world.y / world.scale.y - worldBounds.y) * scale + offsetY;
     const vw = (screenW / world.scale.x) * scale;
-    const vh = (_screenH / world.scale.y) * scale;
+    const vh = (screenH / world.scale.y) * scale;
     viewportRect.rect(vx, vy, vw, vh);
     viewportRect.fill({ color: '#3b82f6', alpha: 0.08 });
     viewportRect.stroke({ color: '#3b82f6', width: 1, alpha: 0.5 });
@@ -702,7 +710,7 @@ function drawMagnifyingGlass(g: Graphics, cx: number, cy: number, size: number) 
   g.stroke({ color: '#9ca3af', width: 1.8, cap: 'round' });
 }
 
-function createSearchBar(): {
+function createSearchBar(screenW: number, compact = false): {
   container: Container;
   bg: Graphics;
   textDisplay: Text;
@@ -711,9 +719,9 @@ function createSearchBar(): {
   matchLabel: Text;
   iconGfx: Graphics;
 } {
-  const w = 300;
-  const h = 38;
-  const pad = 12;
+  const w = compact ? Math.min(Math.max(screenW - 24, 280), 360) : 300;
+  const h = compact ? 46 : 38;
+  const pad = compact ? 14 : 12;
 
   const container = new Container();
   container.eventMode = 'static';
@@ -811,7 +819,7 @@ function createSearchBar(): {
   return { container, bg, textDisplay, placeholder, clearBtn, matchLabel, iconGfx };
 }
 
-function createLegend(onAreaClick: (areaIndex: number) => void): Container {
+function createLegend(onAreaClick: (areaIndex: number) => void, compact = false): Container {
   const pad = 10;
   const itemH = 22;
   const w = 190;
@@ -824,6 +832,7 @@ function createLegend(onAreaClick: (areaIndex: number) => void): Container {
 
   const container = new Container();
   container.eventMode = 'static';
+  container.visible = !compact;
   let cleanupScroll: (() => void) | null = null;
 
   const shadow = new Graphics();
@@ -1015,7 +1024,7 @@ export default function Whiteboard() {
         height: window.innerHeight,
         background: BG_COLOR,
         antialias: true,
-        resolution: window.devicePixelRatio || 1,
+        resolution: Math.min(window.devicePixelRatio || 1, 2),
         autoDensity: true,
       });
 
@@ -1027,6 +1036,8 @@ export default function Whiteboard() {
       app.canvas.style.display = 'block';
       app.canvas.style.touchAction = 'none';
       el.appendChild(app.canvas);
+
+      let compactMode = isCompactViewport();
 
       const world = new Container();
 
@@ -1307,12 +1318,12 @@ export default function Whiteboard() {
       const minimap = createMinimap(worldBounds, window.innerWidth, window.innerHeight, world, (targetWX: number, targetWY: number) => {
         targetPanX = window.innerWidth / 2 - targetWX * world.scale.x;
         targetPanY = window.innerHeight / 2 - targetWY * world.scale.y;
-      });
+      }, compactMode);
       app.stage.addChild(minimap);
 
       const zoomContainer = new Container();
-      zoomContainer.x = 20;
-      zoomContainer.y = window.innerHeight - 196;
+      zoomContainer.x = compactMode ? 12 : 20;
+      zoomContainer.y = window.innerHeight - (compactMode ? 184 : 196);
       zoomContainer.label = 'zoom-controls';
 
       const zoomBg = new Graphics();
@@ -1360,9 +1371,9 @@ export default function Whiteboard() {
 
       app.stage.addChild(zoomContainer);
 
-      const searchBar = createSearchBar();
-      searchBar.container.x = (window.innerWidth - 300) / 2;
-      searchBar.container.y = 14;
+      const searchBar = createSearchBar(window.innerWidth, compactMode);
+      searchBar.container.x = Math.max(12, (window.innerWidth - (compactMode ? Math.min(Math.max(window.innerWidth - 24, 280), 360) : 300)) / 2);
+      searchBar.container.y = compactMode ? 10 : 14;
       app.stage.addChild(searchBar.container);
 
       const legend = createLegend((areaIndex: number) => {
@@ -1416,7 +1427,7 @@ export default function Whiteboard() {
       app.stage.addChild(tooltip);
 
       function showTooltip(name: string, category: string, referenceCount: number, x: number, y: number) {
-        if (panel) return;
+        if (panel || compactMode) return;
         const cleanName = name.replace(/\n/g, ' ');
         tooltipText.text = cleanName;
         tooltipText.x = 10;
@@ -1643,6 +1654,7 @@ export default function Whiteboard() {
 
       app.stage.on('pointerdown', (e) => {
         if (e.target !== app.stage) return;
+        if (compactMode || (e as unknown as { pointerType?: string }).pointerType === 'touch') return;
         dragging = true;
         targetPanX = world.x;
         targetPanY = world.y;
@@ -1684,6 +1696,96 @@ export default function Whiteboard() {
       };
       app.canvas.addEventListener('wheel', onWheel, { passive: false });
 
+      const touchState = {
+        mode: 'none' as 'none' | 'pan' | 'pinch',
+        lastX: 0,
+        lastY: 0,
+        startDistance: 0,
+        startScale: 1,
+        midX: 0,
+        midY: 0,
+      };
+
+      const getTouchDistance = (t1: Touch, t2: Touch) => Math.hypot(t2.clientX - t1.clientX, t2.clientY - t1.clientY);
+      const getTouchMid = (t1: Touch, t2: Touch) => ({
+        x: (t1.clientX + t2.clientX) / 2,
+        y: (t1.clientY + t2.clientY) / 2,
+      });
+
+      const onTouchStart = (e: TouchEvent) => {
+        if (e.touches.length === 1) {
+          const t = e.touches[0];
+          touchState.mode = 'pan';
+          touchState.lastX = t.clientX;
+          touchState.lastY = t.clientY;
+          dragging = true;
+          dragSX = t.clientX;
+          dragSY = t.clientY;
+          worldSX = world.x;
+          worldSY = world.y;
+          hideTooltip();
+        } else if (e.touches.length >= 2) {
+          const [t1, t2] = [e.touches[0], e.touches[1]];
+          touchState.mode = 'pinch';
+          touchState.startDistance = getTouchDistance(t1, t2);
+          touchState.startScale = world.scale.x;
+          const mid = getTouchMid(t1, t2);
+          touchState.midX = mid.x;
+          touchState.midY = mid.y;
+          dragging = false;
+          hideTooltip();
+        }
+        e.preventDefault();
+      };
+
+      const onTouchMove = (e: TouchEvent) => {
+        if (touchState.mode === 'pinch' && e.touches.length >= 2) {
+          const [t1, t2] = [e.touches[0], e.touches[1]];
+          const mid = getTouchMid(t1, t2);
+          const dist = getTouchDistance(t1, t2);
+          const scaleRatio = dist / Math.max(40, touchState.startDistance);
+          const newScale = touchState.startScale * scaleRatio;
+          const prevMidX = touchState.midX;
+          const prevMidY = touchState.midY;
+          zoomToPoint(newScale, mid.x, mid.y);
+          targetPanX += mid.x - prevMidX;
+          targetPanY += mid.y - prevMidY;
+          touchState.midX = mid.x;
+          touchState.midY = mid.y;
+          needsGridRedraw = true;
+          e.preventDefault();
+          return;
+        }
+
+        if (touchState.mode === 'pan' && e.touches.length === 1) {
+          const t = e.touches[0];
+          const dx = t.clientX - touchState.lastX;
+          const dy = t.clientY - touchState.lastY;
+          touchState.lastX = t.clientX;
+          touchState.lastY = t.clientY;
+          world.x += dx;
+          world.y += dy;
+          targetPanX = world.x;
+          targetPanY = world.y;
+          dragging = true;
+          needsGridRedraw = true;
+          e.preventDefault();
+        }
+      };
+
+      const onTouchEnd = () => {
+        if (touchState.mode !== 'none') {
+          touchState.mode = 'none';
+          dragging = false;
+          app.stage.cursor = 'grab';
+        }
+      };
+
+      app.canvas.addEventListener('touchstart', onTouchStart, { passive: false });
+      app.canvas.addEventListener('touchmove', onTouchMove, { passive: false });
+      app.canvas.addEventListener('touchend', onTouchEnd);
+      app.canvas.addEventListener('touchcancel', onTouchEnd);
+
       let panel: Container | null = null;
       let panelFadeDir: number = 0;
       let panelCard: Container | null = null;
@@ -1711,13 +1813,14 @@ export default function Whiteboard() {
         }
         panelFadeDir = 0;
 
-        const pw = 400;
-        const ph = 310;
-        const pad = 22;
         const sw = window.innerWidth;
         const sh = window.innerHeight;
-        const px = Math.max(10, Math.min(sw - pw - 10, (sw - pw) / 2));
-        const py = Math.max(10, Math.min(sh - ph - 10, (sh - ph) / 2));
+        const isSheet = compactMode;
+        const pw = isSheet ? Math.min(sw - 20, 460) : 400;
+        const ph = isSheet ? Math.min(Math.round(sh * 0.8), 620) : 310;
+        const pad = isSheet ? 18 : 22;
+        const px = isSheet ? Math.max(10, (sw - pw) / 2) : Math.max(10, Math.min(sw - pw - 10, (sw - pw) / 2));
+        const py = isSheet ? Math.max(10, sh - ph - 10) : Math.max(10, Math.min(sh - ph - 10, (sh - ph) / 2));
 
         const root = new Container();
         root.alpha = 0;
@@ -1738,23 +1841,31 @@ export default function Whiteboard() {
         root.addChild(card);
 
         const cardShadow = new Graphics();
-        cardShadow.roundRect(3, 6, pw, ph, 16);
+        cardShadow.roundRect(3, 6, pw, ph, isSheet ? 20 : 16);
         cardShadow.fill({ color: '#000000', alpha: 0.08 });
         cardShadow.eventMode = 'none';
         card.addChild(cardShadow);
 
         const cardBg = new Graphics();
-        cardBg.roundRect(0, 0, pw, ph, 16);
+        cardBg.roundRect(0, 0, pw, ph, isSheet ? 20 : 16);
         cardBg.fill({ color: '#ffffff' });
         cardBg.stroke({ color: '#e5e7eb', width: 1 });
         cardBg.eventMode = 'none';
         card.addChild(cardBg);
 
         const accentBar = new Graphics();
-        accentBar.roundRect(0, 0, pw, 5, 16);
+        accentBar.roundRect(0, 0, pw, 5, isSheet ? 20 : 16);
         accentBar.fill({ color: data.macroarea.color, alpha: 0.8 });
         accentBar.eventMode = 'none';
         card.addChild(accentBar);
+
+        if (isSheet) {
+          const dragHandle = new Graphics();
+          dragHandle.roundRect(pw / 2 - 24, 10, 48, 5, 4);
+          dragHandle.fill({ color: '#d1d5db' });
+          dragHandle.eventMode = 'none';
+          card.addChild(dragHandle);
+        }
 
         const closeBtn = new Container();
         closeBtn.x = pw - 38;
@@ -1788,13 +1899,13 @@ export default function Whiteboard() {
         });
         card.addChild(closeBtn);
 
-        let cy = pad + 6;
+        let cy = pad + (isSheet ? 8 : 6);
 
         const title = new Text({
           text: data.concept.name.replace(/\n/g, ' '),
           style: new TextStyle({
             fontFamily: '"Inter", sans-serif',
-            fontSize: 18,
+            fontSize: isSheet ? 16 : 18,
             fontWeight: 'bold',
             fill: '#111827',
             wordWrap: true,
@@ -1829,11 +1940,11 @@ export default function Whiteboard() {
           text: data.concept.description,
           style: new TextStyle({
             fontFamily: '"Inter", sans-serif',
-            fontSize: 13,
+            fontSize: isSheet ? 12 : 13,
             fill: '#4b5563',
             wordWrap: true,
             wordWrapWidth: pw - pad * 2,
-            lineHeight: 20,
+            lineHeight: isSheet ? 18 : 20,
           }),
         });
         desc.x = pad;
@@ -1960,7 +2071,12 @@ export default function Whiteboard() {
       window.addEventListener('keydown', onKey);
 
       const onResize = () => {
-        const dpr = window.devicePixelRatio || 1;
+        const nextCompactMode = isCompactViewport();
+        if (nextCompactMode !== compactMode && panel) {
+          closePanel();
+        }
+        compactMode = nextCompactMode;
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
         app.renderer.resize(window.innerWidth * dpr, window.innerHeight * dpr);
         app.canvas.width = window.innerWidth * dpr;
         app.canvas.height = window.innerHeight * dpr;
@@ -1968,12 +2084,16 @@ export default function Whiteboard() {
         app.canvas.style.height = `${window.innerHeight}px`;
         app.stage.hitArea = new Rectangle(0, 0, window.innerWidth, window.innerHeight);
         needsGridRedraw = true;
-        minimap.x = window.innerWidth - minimap.width - 12;
-        minimap.y = window.innerHeight - minimap.height - 12;
-        zoomContainer.x = 20;
-        zoomContainer.y = window.innerHeight - 196;
-        searchBar.container.x = (window.innerWidth - 300) / 2;
-        searchBar.container.y = 14;
+        minimap.visible = !compactMode;
+        minimap.x = window.innerWidth - minimap.width - (compactMode ? 10 : 12);
+        minimap.y = window.innerHeight - minimap.height - (compactMode ? 10 : 12);
+        zoomContainer.x = compactMode ? 12 : 20;
+        zoomContainer.y = window.innerHeight - (compactMode ? 184 : 196);
+        zoomContainer.scale.set(compactMode ? 0.94 : 1);
+        const searchW = searchBar.container.width;
+        searchBar.container.x = Math.max(12, (window.innerWidth - searchW) / 2);
+        searchBar.container.y = compactMode ? 10 : 14;
+        legend.visible = !compactMode;
         legend.x = window.innerWidth - 190 - 14;
         legend.y = 14;
       };
@@ -1985,6 +2105,10 @@ export default function Whiteboard() {
         legendCleanup?.();
         document.body.removeChild(hiddenInput);
         app.canvas.removeEventListener('wheel', onWheel);
+        app.canvas.removeEventListener('touchstart', onTouchStart);
+        app.canvas.removeEventListener('touchmove', onTouchMove);
+        app.canvas.removeEventListener('touchend', onTouchEnd);
+        app.canvas.removeEventListener('touchcancel', onTouchEnd);
         if (panel) {
           app.stage.removeChild(panel);
           panel.destroy({ children: true });
@@ -2001,5 +2125,5 @@ export default function Whiteboard() {
     };
   }, []);
 
-  return <div ref={containerRef} className="w-full h-screen overflow-hidden" />;
+  return <div ref={containerRef} className="fixed inset-0 overflow-hidden" />;
 }
