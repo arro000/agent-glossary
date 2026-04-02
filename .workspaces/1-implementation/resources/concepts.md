@@ -135,6 +135,12 @@
 - **alternatives**: Summarization, Token merging, Key info extraction
 - **category**: Optimization
 
+### Compaction
+- **popularity**: 8
+- **description**: Riduzione server-side o controllata del contesto di una sessione mantenendo uno stato opaco sufficiente per continuare il workflow nelle turn successive. Più specifica della semplice summary compression.
+- **alternatives**: OpenAI Responses compaction, summary compression, checkpoint pruning, manual transcript pruning
+- **category**: Runtime
+
 ### Eval Harness
 - **popularity**: 8
 - **description**: Runner strutturato per prompt, agenti e RAG con dataset, scoring, regression checks e integrazione CI

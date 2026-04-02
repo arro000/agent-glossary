@@ -1365,3 +1365,27 @@
 - **popularity**: 9
 - **alternatives**: Aider Repo Map, Context7, Graphiti, Zep
 - **why_include**: Strongest enterprise-grade code search and code-intelligence layer for reference-aware agent navigation.
+
+## OpenAI Responses Compaction
+- **macroarea**: Harness / Runtime Scaffold
+- **url**: https://platform.openai.com/docs/guides/compaction
+- **description**: Server-side and standalone compaction for long-running Responses workflows. It preserves opaque state across turns, supports `previous_response_id` chaining, and gives a direct replacement for manual transcript pruning.
+- **popularity**: 8
+- **alternatives**: LangGraph checkpoints, OpenAI Agents SDK sessions, Temporal workflows, manual summary compression
+- **why_include**: This is the clearest first-party primitive for shrinking context without losing workflow state, which makes it highly relevant to long-horizon harness design.
+
+## Mastra Server Middleware
+- **macroarea**: Harness / Runtime Scaffold
+- **url**: https://mastra.ai/docs/server/middleware
+- **description**: Request middleware for Mastra servers that can authenticate, inject request-scoped context, short-circuit requests, and enforce per-route policy. It runs before or after auth depending on configuration.
+- **popularity**: 7
+- **alternatives**: LangSmith custom middleware, Claude Code hooks, OpenAI Agents SDK guardrails, Strands steering hooks
+- **why_include**: Useful concrete policy layer for agent servers, especially when the harness needs request-scoped auth and context injection.
+
+## LangSmith Custom Middleware
+- **macroarea**: Harness / Runtime Scaffold
+- **url**: https://docs.langchain.com/langsmith/custom-middleware.md
+- **description**: Python-only middleware for LangSmith/LangGraph deployments that lets you intercept requests and responses globally. Useful for logging, header injection, auth checks, and security policies without changing core server logic.
+- **popularity**: 7
+- **alternatives**: Mastra Server Middleware, Claude Code hooks, OpenAI Agents SDK guardrails, FastAPI middleware
+- **why_include**: A reusable server-side policy hook that keeps harness concerns separate from the agent graph itself.

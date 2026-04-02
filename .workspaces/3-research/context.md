@@ -1,8 +1,8 @@
 # Workspace 3 — Research & Content Discovery
 
 ## Stato
-- **Iterazione**: 4
-- **Ultimo aggiornamento**: 2026-04-02
+- **Iterazione**: 25
+- **Ultimo aggiornamento**: 2026-04-02 22:15:43
 - **Stato**: completed
 
 ## Risultati Iterazione 1
@@ -359,3 +359,20 @@ La passata attuale ha coperto la capa di curated repositories e discovery, con f
 - Compare bootstrap artifact patterns across Claude Code, Aider, LangGraph, and OpenAI session workflows.
 - Compare prompt assembly and context injection across the same runtimes.
 - Tighten reference-ranking comparisons across docs retrieval, code intelligence, and temporal memory graphs.
+
+## Aggiornamento Corrente - Iterazione 25
+
+### Cosa è stato aggiornato
+- Harness/runtime: aggiunti `OpenAI Responses Compaction`, `Mastra Server Middleware`, e `LangSmith Custom Middleware` come primitive concrete per state shrinkage e policy surfaces.
+- Concepts: aggiunto `Compaction` come concetto riusabile separato dalla semplice summary compression.
+- Research requests: nuova Iterazione 25 su compaction primitives, server-side policy surfaces, trace-to-eval pipelines, e reference-aware retrieval ranking.
+
+### Segnali attuali
+1. Compaction is now a first-class runtime primitive, not just an implementation detail of summaries.
+2. Server-side policy surfaces are converging on hooks or middleware, but the concrete execution model still differs a lot by stack.
+3. The strongest research next step is to compare trace replay with grading so debugging and regression testing share the same loop.
+
+### Next Focus
+- Compare compaction semantics across OpenAI, LangGraph, and session-backed harnesses.
+- Compare middleware and hook surfaces across Mastra, LangSmith, Claude Code, OpenAI Agents SDK, and Strands.
+- Compare trace-to-eval workflows and reference-ranking behavior in the concrete tools already on the whiteboard.

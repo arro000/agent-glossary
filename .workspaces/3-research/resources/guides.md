@@ -701,3 +701,21 @@
 - **source**: OpenAI Platform
 - **description**: Shows how to use the hosted file_search tool with vector stores inside Responses.
 - **relevance**: Best practical guide for managed retrieval inside the model loop.
+
+### OpenAI Compaction
+- **url**: https://platform.openai.com/docs/guides/compaction
+- **source**: OpenAI Platform
+- **description**: Explains server-side and standalone compaction for long-running Responses workflows, including `previous_response_id` chaining and opaque compaction items.
+- **relevance**: Best first-party guide for shrinking context without manually summarizing everything yourself.
+
+### Mastra Server Middleware
+- **url**: https://mastra.ai/docs/server/middleware
+- **source**: Mastra
+- **description**: Docs for request middleware that can authenticate, inject request-scoped context, short-circuit requests, and alter header behavior around agent routes.
+- **relevance**: Strong practical reference for server-level harness policy in a TS-native stack.
+
+### LangSmith Custom Middleware
+- **url**: https://docs.langchain.com/langsmith/custom-middleware.md
+- **source**: LangChain / LangSmith
+- **description**: Guide for adding custom middleware to LangSmith/LangGraph deployments using a Starlette/FastAPI app. Useful for auth, logging, and response mutation around agent servers.
+- **relevance**: Best first-party reference for Python deployment middleware around LangSmith-backed agent servers.

@@ -279,3 +279,13 @@
 ### Priorità Media
 1. **PixiJS v8 compact signal chips** — best practices per mantenere leggibili label brevi, helper text e emoji su chip molto piccoli a 2x/3x DPR.
 2. **Interop/discovery iconography** — quale encoding visivo distingue meglio registry, discovery, protocol UI e code-intelligence cues senza aggiungere clutter?
+
+## Iterazione 25 — Nuove Richieste
+
+### Priorità Alta
+1. **Compaction primitives** — OpenAI Responses compaction vs LangGraph checkpointing vs OpenAI Agents SDK sessions: quali mantengono davvero stato utile tra turni e quali sono solo summary wrappers?
+2. **Server-side policy surfaces** — Mastra server middleware, LangSmith custom middleware, Claude Code hooks, OpenAI Agents SDK guardrails, Strands steering hooks: quali sono riusabili e shareable nel practice?
+
+### Priorità Media
+3. **Trace-to-eval pipelines** — OpenAI Trace Grading, LangSmith evaluations, Langfuse experiments, promptfoo, Inspect AI: quali coppie trace replay + regression loop funzionano davvero bene?
+4. **Reference-aware retrieval ranking** — Context7, Sourcegraph, Aider repo map, Graphiti, Zep, OpenAI File Search: come cambiano ranking, provenance e pinning in uso reale?
