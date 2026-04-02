@@ -1,8 +1,8 @@
 # Workspace 2 — Improvements & Implementation
 
 ## Stato
-- **Iterazione**: 5
-- **Ultimo aggiornamento**: 2026-04-02 18:48:00
+- **Iterazione**: 1
+- **Ultimo aggiornamento**: 2026-04-02 19:54:53
 - **Stato**: completed
 
 ## Obiettivo
@@ -120,3 +120,8 @@ Analizzare l'implementazione corrente, identificare miglioramenti, e IMPLEMENTAR
 - Badge refs reso piu esplicito (`N refs`) e ring segmentato piu contrastato per una lettura piu rapida del peso progetto
 - Emoji e title plate rinforzati per mantenere riconoscibilita e leggibilita su canvas ad alta densita
 - Verifica finale: `npm run build` completata con successo
+
+## Iterazione 1 (Questa esecuzione) — Completata
+- Sync del canvas con la tassonomia aggiornata: harness/runtime scaffold, reference navigation, repo map, protocol UI, OTel GenAI, edge runtime e voice/realtime cluster
+- Search ampliata su nome, descrizione, categoria e alternative per coprire meglio reference retrieval e discovery
+- PRD allineato con i vincoli attuali e build di produzione verificata con successo (`npm run build`)

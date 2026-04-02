@@ -78,9 +78,15 @@ const MACROAREAS: MacroareaConfig[] = [
       { name: 'File I/O', popularity: 10, description: 'Lettura, scrittura, ricerca nei file del progetto', alternatives: 'read/write/search/patch tools', category: 'System' },
       { name: 'Web Search', popularity: 9, description: 'Ricerca su internet per informazioni aggiornate', alternatives: 'Tavily, SerpAPI, Brave Search, Bing API, Firecrawl', category: 'Information' },
       { name: 'Browser\nAutomation', popularity: 8, description: 'Controllo di un browser per interagire con siti web', alternatives: 'Playwright, Puppeteer, Browserbase, Selenium', category: 'Interaction' },
+      { name: 'Anthropic\nComputer Use', popularity: 8, description: 'Desktop automation via screenshot, mouse and keyboard control. Richiede sandboxing e attenzione a prompt injection.', alternatives: 'Playwright agents, Browser Use, operator-style flows', category: 'Interaction' },
       { name: 'MCP', popularity: 9, description: 'Model Context Protocol \u2014 protocollo standard per tool esterni (Linux Foundation)', alternatives: 'REST APIs, gRPC, OpenAI function calling, A2A', category: 'Integration' },
       { name: 'A2A', popularity: 9, description: 'Agent-to-Agent Protocol \u2014 comunicazione tra agenti AI indipendenti (Linux Foundation)', alternatives: 'MCP (complementare), custom gRPC/REST, LangGraph inter-agent channels', category: 'Integration' },
       { name: 'API Client', popularity: 8, description: 'Chiamate HTTP a API esterne per integrare servizi', alternatives: 'fetch, axios, openapi clients, SDK wrappers', category: 'Integration' },
+      { name: 'LiveKit\nAgents', popularity: 9, description: 'Framework open-source per voice, video e multimodal agents realtime con runtime Python/Node, session management e telephony hooks.', alternatives: 'Vapi, Retell, Daily, OpenAI Realtime', category: 'Realtime' },
+      { name: 'Vapi', popularity: 8, description: 'Platform per voice AI con primitives Assistants e Squads, integrazione telefonica, web, eval e workflow.', alternatives: 'LiveKit Agents, Retell, Daily, OpenAI Realtime', category: 'Realtime / Platform' },
+      { name: 'Daily', popularity: 6, description: 'Stack Daily per voice/video AI con client SDK, Prebuilt UI, REST API e supporto SIP/telephony.', alternatives: 'LiveKit Agents, Vapi, Retell', category: 'Realtime' },
+      { name: 'Retell', popularity: 7, description: 'Piattaforma per AI phone agents con build/test/deploy/monitor e simulation testing.', alternatives: 'Vapi, LiveKit Agents, Daily', category: 'Realtime / Platform' },
+      { name: 'Pipecat', popularity: 8, description: 'Framework open-source per voice e multimodal conversational AI, supportato dalla community Pipecat e dal team Daily.', alternatives: 'LiveKit Agents, Vapi, Daily, Retell', category: 'Realtime' },
     ],
   },
   {
@@ -90,11 +96,15 @@ const MACROAREAS: MacroareaConfig[] = [
     border: '#C4B5FD',
     concepts: [
       { name: 'System\nPrompt', popularity: 10, description: 'Istruzioni di base che definiscono personalit\u00e0 e comportamento dell\'agente', alternatives: 'Static system prompt, Dynamic assembly, Prompt templates', category: 'Core' },
+      { name: 'Prompt\nAssembly', popularity: 8, description: 'Composizione dinamica del messaggio finale al modello a partire da istruzioni, memoria, schema tool e slice di contesto', alternatives: 'instruction builder, prompt templates, context builder, static system prompt', category: 'Runtime' },
+      { name: 'Hook\nSystem', popularity: 8, description: 'Strato event-driven che attiva comandi, prompt o agenti in punti specifici del lifecycle dell\'agente', alternatives: 'lifecycle middleware, event listeners, permission guards, prompt-based hooks', category: 'Runtime' },
       { name: 'Few-Shot\nExamples', popularity: 8, description: 'Esempi di input/output per guidare il modello', alternatives: 'In-context learning, Dynamic few-shot, Retrieved examples', category: 'Technique' },
       { name: 'Chain-of-\nThought', popularity: 9, description: 'Guidare il modello a ragionare passo per passo', alternatives: 'CoT prompting, Tree-of-Thought, Step-by-step, ReAct', category: 'Technique' },
       { name: 'Structured\nOutput', popularity: 9, description: 'Forzare il modello a produrre output in formato specifico (JSON, etc.)', alternatives: 'JSON mode, Function calling, Outlines, Guidance', category: 'Technique' },
       { name: 'Prompt\nCaching', popularity: 7, description: 'Cachare parti statiche del prompt per ridurre costi e latenza', alternatives: 'Anthropic prompt caching, Semantic caching, KV cache', category: 'Optimization' },
       { name: 'Context\nCompression', popularity: 7, description: 'Comprimere il contesto per rientrare nella finestra di token', alternatives: 'Summarization, Token merging, Key info extraction', category: 'Optimization' },
+      { name: 'Eval\nHarness', popularity: 8, description: 'Runner strutturato per prompt, agenti e RAG con dataset, scoring, regression checks e integrazione CI', alternatives: 'promptfoo, Inspect AI, OpenAI Evals, custom CI evals', category: 'Quality' },
+      { name: 'Harness /\nRuntime Scaffold', popularity: 9, description: 'Tutto lo strato attorno all\'LLM che prepara il prompt, gestisce hooks, tools, memory, traces, eval e state', alternatives: 'Claude Code harness, agent runtime, LLM OS, outer loop', category: 'Runtime' },
     ],
   },
   {
@@ -108,6 +118,7 @@ const MACROAREAS: MacroareaConfig[] = [
       { name: 'Routing', popularity: 9, description: 'Classifica l\'input e lo dirige a un processo downstream specializzato', alternatives: 'Selector Group Chat (AutoGen), conditional branching (LangGraph), tool routing', category: 'Workflow' },
       { name: 'Parallel\nization', popularity: 8, description: 'Sectioning o Voting: scomporre in sotto-task paralleli o eseguire pi\u00f9 volte', alternatives: 'Fan-out/fan-in (LangGraph), Concurrent Agents (AutoGen)', category: 'Workflow' },
       { name: 'Orchestrator\nWorkers', popularity: 9, description: 'LLM centrale decompongono task e delega a worker, poi sintetizza risultati', alternatives: 'Hierarchical Process (CrewAI), Magentic-One (AutoGen), LangGraph subgraphs', category: 'Workflow' },
+      { name: 'CrewAI\nFlows', popularity: 8, description: 'Layer event-driven di CrewAI per workflow stateful, branching, persistence e human feedback', alternatives: 'LangGraph, Vercel AI SDK workflows, AutoGen Core', category: 'Workflow' },
       { name: 'Evaluator\nOptimizer', popularity: 8, description: 'Un LLM genera output mentre un altro valuta e fornisce feedback in un loop', alternatives: 'Multi-Agent Debate (AutoGen), Reflection pattern, code review agents', category: 'Workflow' },
       { name: 'Handoffs /\nSwarm', popularity: 9, description: 'Agenti trasferiscono controllo ad altri agenti tramite function returns', alternatives: 'AutoGen Swarm, LangGraph edge transitions, A2A task delegation', category: 'Coordination' },
       { name: 'GraphFlow /\nState Machine', popularity: 9, description: 'Agenti e tools come nodi in un grafo diretto con stato e routing condizionale', alternatives: 'Temporal workflows, Prefect DAGs, Step Functions', category: 'Orchestration' },
@@ -158,9 +169,13 @@ const MACROAREAS: MacroareaConfig[] = [
       { name: 'Observability\nPlatform', popularity: 9, description: 'Piattaforma completa per tracing, evaluation, prompt management e deployment. Leader: Langfuse. Pi\u00f9 feature-complete: LangSmith. Nuovi: AgentOps.', alternatives: 'Langfuse, LangSmith, Arize Phoenix, W&B Weave, Helicone, AgentOps', category: 'Monitoring' },
       { name: 'Cost\nTracking', popularity: 8, description: 'Monitorare token usage e costi per sessione/task', alternatives: 'Usage dashboards, Token counting, Provider billing APIs', category: 'Monitoring' },
       { name: 'Evaluation &\nBenchmarks', popularity: 7, description: 'Valutare le performance dell\'agente su task specifici', alternatives: 'LM Eval Harness, Custom evals, A/B testing, Human eval', category: 'Quality' },
+      { name: 'Data-Centric\nAgent Evaluation', popularity: 8, description: 'Benchmark-first evaluation basata su task reali e non solo metriche astratte. Include SWE-bench, Terminal-Bench 2.0, WebArena, TAU-bench, BrowseComp e SWE-Lancer.', alternatives: 'LOCOMO, custom evals, human eval', category: 'Quality' },
       { name: 'Debugging\nTools', popularity: 7, description: 'Tool per ispezionare e debuggare il comportamento dell\'agente', alternatives: 'Replay tools, Inspector UI, Trace viewers', category: 'Debug' },
+      { name: 'Trace\nReplay', popularity: 8, description: 'Replay di sessioni e tool call per ricostruire failure long-horizon e confrontare run diverse', alternatives: 'AgentOps replay, LangSmith replay, Langfuse session replay, custom transcript viewers', category: 'Debug' },
       { name: 'Safety &\nGuardrails', popularity: 7, description: 'Meccanismi per prevenire comportamenti indesiderati', alternatives: 'Input/output filtering, Permission systems, Approval flows, Geordie AI', category: 'Safety' },
       { name: 'Agent\nGovernance', popularity: 6, description: 'Framework di governance per deployment sicuro di agenti AI in produzione', alternatives: 'WEF framework, Microsoft Power Platform governance, Collibra', category: 'Governance' },
+      { name: 'OpenTelemetry\nfor Agents', popularity: 8, description: 'Pattern di observability per agenti che mappa trace, span ed eventi su OpenTelemetry. Le semantic conventions GenAI sono il lessico standard.', alternatives: 'Langfuse, LangSmith, Arize Phoenix, W&B Weave, Helicone', category: 'Monitoring' },
+      { name: 'OpenTelemetry\nGenAI Semantic Conventions', popularity: 8, description: 'Standard semantico OpenTelemetry per sistemi generativi: model spans, agent spans, events e metrics.', alternatives: 'OpenLLMetry, OpenLIT, vendor-specific tracing schemas', category: 'Monitoring' },
     ],
   },
   {
@@ -172,6 +187,7 @@ const MACROAREAS: MacroareaConfig[] = [
       { name: 'Docker &\nContainers', popularity: 9, description: 'Ambienti isolati per esecuzione e deployment', alternatives: 'Docker, Podman, Containerd, Kubernetes', category: 'Runtime' },
       { name: 'GPU Cloud', popularity: 7, description: 'Piattaforme cloud con GPU per training e inference', alternatives: 'Modal, RunPod, Lambda Labs, Vast.ai, AWS, GCP', category: 'Compute' },
       { name: 'Serverless', popularity: 6, description: 'Esecuzione senza gestione di server', alternatives: 'AWS Lambda, Cloudflare Workers, Vercel Edge, Netlify Functions', category: 'Runtime' },
+      { name: 'Edge Runtime\nStack', popularity: 8, description: 'Stack di inference locale per agenti basato su Ollama, llama.cpp, MLX-LM e LM Studio.', alternatives: 'LM Studio, LocalAI, vLLM', category: 'Runtime' },
       { name: 'CI/CD', popularity: 8, description: 'Pipeline automatiche per test, build e deploy', alternatives: 'GitHub Actions, GitLab CI, CircleCI, ArgoCD', category: 'Automation' },
       { name: 'Git\nIntegration', popularity: 9, description: 'L\'agente lavora direttamente nel repo git', alternatives: 'gh CLI, git commands, PR automation, Code review bots', category: 'Workflow' },
       { name: 'Environment\nManagement', popularity: 7, description: 'Gestione di ambienti dev diversi (local, remote, sandbox)', alternatives: 'Devcontainers, SSH remotes, Daytona, E2B, Modal', category: 'Runtime' },
@@ -185,6 +201,8 @@ const MACROAREAS: MacroareaConfig[] = [
     concepts: [
       { name: 'Agentic\nRAG', popularity: 9, description: 'Pattern RAG dove l\'agente decide attivamente quando, come e se recuperare informazioni. Include Self-RAG, Corrective RAG, Adaptive RAG.', alternatives: 'Traditional RAG, LangChain agentic RAG, LlamaIndex agent workflows', category: 'Pattern' },
       { name: 'Deep Research\nAgent', popularity: 9, description: 'Agente che conduce ricerca multi-step: pianifica query, naviga il web, sintetizza report con citazioni e self-critica', alternatives: 'GPT Researcher, STORM, Tongyi DeepResearch, DeepSearcher', category: 'Pattern' },
+      { name: 'Reference\nNavigation', popularity: 8, description: 'Esplorazione dei riferimenti già visti: recupero semantico, pinning, citazioni, summary incrementali e navigazione tra fonti correlate invece della sola compressione del contesto', alternatives: 'retrieval browser, citation graph, memory browsing, semantic search UI', category: 'Navigation' },
+      { name: 'Repo Map /\nCodebase Map', popularity: 8, description: 'Mappa strutturale del codebase per navigazione e editing su repository grandi, spesso derivata da tree-sitter o analisi statica per mostrare file e dipendenze rilevanti', alternatives: 'Aider repomap, semantic code graph, file tree summaries', category: 'Navigation' },
     ],
   },
   {
@@ -200,6 +218,8 @@ const MACROAREAS: MacroareaConfig[] = [
       { name: 'Strands\nAgents SDK', popularity: 7, description: 'SDK open-source Amazon/AWS. Model-driven: il modello orchestra, lo sviluppatore definisce tools e prompt. Nativo MCP, A2A, Bedrock.', alternatives: 'OpenAI Agents SDK, Claude Agent SDK, Google ADK', category: 'Framework' },
       { name: 'Claude Agent\nSDK', popularity: 9, description: 'SDK Anthropic che espone il motore di Claude Code come libreria. Tools built-in, subagenti, MCP, hooks, sessioni, permessi.', alternatives: 'OpenAI Agents SDK, Google ADK, Pydantic AI', category: 'Framework' },
       { name: 'Cloudflare\nAgents SDK', popularity: 6, description: 'SDK Cloudflare per agenti distribuiti sulla rete globale Cloudflare, orientato a progetti runnable e composabili.', alternatives: 'Mastra, OpenAI Agents SDK, LangGraph, Cloudflare Workers', category: 'Framework' },
+      { name: 'Semantic\nKernel', popularity: 9, description: 'SDK Microsoft per costruire agenti e orchestration multi-linguaggio. L\'Agent Framework aggiunge pattern agentici e collaborazione tra agenti.', alternatives: 'LangGraph, OpenAI Agents SDK, CrewAI, Google ADK', category: 'Framework' },
+      { name: 'Vercel AI\nSDK', popularity: 9, description: 'Toolkit TypeScript-first per buildare app e agenti su React, Next.js, Vue, Svelte e Node.js. Il loop agentico passa da ToolLoopAgent e workflow espliciti.', alternatives: 'Mastra, LangGraph JS, OpenAI Agents SDK, Semantic Kernel', category: 'Framework' },
     ],
   },
   {
@@ -220,6 +240,8 @@ const MACROAREAS: MacroareaConfig[] = [
     concepts: [
       { name: 'MCP\nApps', popularity: 7, description: 'Estensione ufficiale MCP (SEP-1865) che permette ai server di fornire UI HTML interattive renderizzate inline nelle conversazioni AI', alternatives: 'N/A (estensione unica)', category: 'Integration' },
       { name: 'Agent Registry\n/ Discovery', popularity: 6, description: 'Livello di scoperta per agenti, skill e capability tramite registry e capability cards condivise', alternatives: 'A2A Agent Cards, MCP registries, Glama directories, custom catalogs', category: 'Integration' },
+      { name: 'AG-UI\nProtocol', popularity: 7, description: 'Protocollo per la comunicazione bidirezionale tra agenti e applicazioni user-facing. Copre shared state, generative UI, subgraphs e human-in-the-loop.', alternatives: 'MCP Apps, A2UI, Vercel AI SDK Generative UI, custom websocket/event channels', category: 'Integration' },
+      { name: 'A2UI', popularity: 7, description: 'Specifica declarativa di Generative UI originata da Google. Usa payload streaming JSONL-friendly per descrivere widget e layout renderizzabili dal frontend.', alternatives: 'AG-UI, MCP Apps, Vercel AI SDK Generative User Interfaces, Open-JSON-UI', category: 'Integration' },
     ],
   },
 ];
@@ -234,6 +256,7 @@ function getBubbleEmoji(areaName: string, category: string): string {
   const key = `${areaName} ${category}`.toLowerCase();
   if (key.includes('memory')) return '🧠';
   if (key.includes('tool') || key.includes('action')) return '🛠️';
+  if (key.includes('voice') || key.includes('realtime') || key.includes('livekit') || key.includes('vapi') || key.includes('daily') || key.includes('retell') || key.includes('pipecat')) return '🎙️';
   if (key.includes('prompt')) return '✍️';
   if (key.includes('orchestr') || key.includes('workflow') || key.includes('routing')) return '🧭';
   if (key.includes('model') || key.includes('inference') || key.includes('llm')) return '🤖';
@@ -243,6 +266,8 @@ function getBubbleEmoji(areaName: string, category: string): string {
   if (key.includes('retriev') || key.includes('rag') || key.includes('knowledge')) return '📚';
   if (key.includes('framework')) return '⚙️';
   if (key.includes('automation')) return '🚀';
+  if (key.includes('quality') || key.includes('eval')) return '🧪';
+  if (key.includes('runtime') || key.includes('edge')) return '⚡';
   if (key.includes('protocol')) return '🔌';
   return '•';
 }
@@ -251,6 +276,7 @@ function getMacroareaEmoji(areaName: string): string {
   const key = areaName.toLowerCase();
   if (key.includes('memory')) return '🧠';
   if (key.includes('tools') || key.includes('actions')) return '🛠️';
+  if (key.includes('realtime') || key.includes('voice')) return '🎙️';
   if (key.includes('prompt')) return '✍️';
   if (key.includes('orchestr')) return '🧭';
   if (key.includes('inference') || key.includes('models')) return '🤖';
@@ -262,6 +288,10 @@ function getMacroareaEmoji(areaName: string): string {
   if (key.includes('business')) return '🚀';
   if (key.includes('protocol')) return '🔌';
   return '•';
+}
+
+function buildSearchHaystack(concept: ConceptData, areaName: string) {
+  return [concept.name, concept.description, concept.alternatives, concept.category, areaName].join(' ').toLowerCase();
 }
 
 function getReferenceCount(alternatives: string): number {
@@ -1516,9 +1546,7 @@ export default function Whiteboard() {
         const areaMatchFlags = new Array(MACROAREAS.length).fill(false);
 
         for (const s of bubbleStates) {
-          const name = s.concept.name.replace(/\n/g, ' ').toLowerCase();
-          const desc = s.concept.description.toLowerCase();
-          const matched = name.includes(q) || desc.includes(q);
+          const matched = buildSearchHaystack(s.concept, s.macroarea.name).includes(q);
           if (matched) {
             s.baseAlpha = 1;
             s.searchHighlight = true;
@@ -1798,9 +1826,8 @@ export default function Whiteboard() {
 
       function openPanel(data: { concept: ConceptData; macroarea: MacroareaConfig }) {
         const loweredQuery = searchQuery.toLowerCase().trim();
-        const loweredName = data.concept.name.replace(/\n/g, ' ').toLowerCase();
-        const loweredDesc = data.concept.description.toLowerCase();
-        if (loweredName.includes(loweredQuery) || loweredDesc.includes(loweredQuery) || !loweredQuery) {
+        const searchable = buildSearchHaystack(data.concept, data.macroarea.name);
+        if (searchable.includes(loweredQuery) || !loweredQuery) {
           // ok to open
         } else {
           return;
