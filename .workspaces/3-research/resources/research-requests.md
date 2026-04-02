@@ -146,3 +146,16 @@
 
 ### Priorità Media
 1. **PixiJS v8 emoji + label metrics on high-DPI canvases** — best practices for keeping mixed emoji/text bubbles crisp, centered, and readable at 2x/3x DPR.
+
+## Iterazione 13 — Nuove Richieste
+
+### Priorità Alta
+1. **Browser automation stack decision guide** — Browser Use vs Stagehand vs Playwright MCP vs Steel Browser vs browser-use-examples, with emphasis on researcher-stage reproducibility.
+2. **Voice agent starter and eval repos** — LiveKit, Pipecat, Vapi, Daily, and Retell example/starter repos that are most runnable and best documented.
+
+### Priorità Media
+3. **OpenTelemetry GenAI adoption map** — which frameworks already emit GenAI semconv natively, and where OpenLLMetry/OpenLIT still provide the cleanest bridge.
+4. **Agent registry/discovery adoption** — A2A Agent Cards, NANDA, ERC-8004, Glama, and other capability-card / directory systems with real uptake.
+
+### Esplorazione
+5. **Long-horizon benchmark harnesses** — repo-level tooling around SWE-bench Verified, Terminal-Bench 2.0, WebArena-x, BrowseComp, and SWE-Lancer.

@@ -1,8 +1,8 @@
 # Workspace 3 — Research & Content Discovery
 
 ## Stato
-- **Iterazione**: 4
-- **Ultimo aggiornamento**: 2026-04-02 18:16:05
+- **Iterazione**: 12
+- **Ultimo aggiornamento**: 2026-04-02 18:26:01
 - **Stato**: completed
 
 ## Risultati Iterazione 1
@@ -223,5 +223,21 @@ La passata attuale ha coperto la capa di curated repositories e discovery, con f
 - `guides.md` ora include i primi tre come punti di partenza pratici per UI, voice e computer use.
 - `research-requests.md` ha una nuova Iterazione 9 su browser automation, voice eval, registry/discovery, verticale finance/support e quality signals per curated lists.
 
+## Aggiornamento Corrente - Iterazione 12
+
+### Cosa e' stato aggiunto
+- A2UI aggiunto come spec declarativa di Generative UI distinta da AG-UI.
+- Voice stack ampliato con Pipecat e riferimento esplicito a LiveKit, Vapi, Daily e Retell.
+- Edge runtimes aggiornati con LM Studio come opzione concreta alongside Ollama, llama.cpp e MLX-LM.
+- Benchmark family espansa con SWE-bench Verified, Terminal-Bench 2.0 e WebArena-x.
+- Guides aggiornate con source primarie per A2UI, voice, OTEL GenAI, local runtimes e benchmark families.
+
+### Insight Chiave
+1. **A2UI is the declarative UI layer**: AG-UI handles agent-user runtime transport, while A2UI is the concrete generative UI spec to render widgets.
+2. **Voice stacks now split into runtime vs platform**: LiveKit and Pipecat are closer to frameworks, while Vapi and Retell are productized platforms; Daily sits in the media stack layer.
+3. **OTel GenAI is becoming the shared telemetry vocabulary**: OpenLLMetry and OpenLIT remain the most practical bridges while the spec matures.
+4. **Local inference is no longer one-size-fits-all**: LM Studio is now part of the same decision set as Ollama, llama.cpp, and MLX-LM.
+5. **Long-horizon evals are fragmenting by task shape**: code repair, terminal mastery, web browsing, and real work allocation each have their own benchmark family.
+
 ### Next Iteration
-Vedi `resources/research-requests.md` per le nuove richieste dell'Iterazione 9.
+- See `resources/research-requests.md` Iteration 13 for the next research sweep.

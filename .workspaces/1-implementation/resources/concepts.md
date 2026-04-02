@@ -482,6 +482,12 @@
 - **alternatives**: MCP Apps, A2UI, Vercel AI SDK Generative UI, custom websocket/event channels
 - **category**: Integration
 
+### A2UI
+- **popularity**: 7
+- **description**: Specifica declarativa di Generative UI originata da Google. Usa payload streaming JSONL-friendly per descrivere widget e layout renderizzabili dal frontend.
+- **alternatives**: AG-UI, MCP Apps, Vercel AI SDK Generative User Interfaces, Open-JSON-UI
+- **category**: Integration
+
 ### Semantic Kernel
 - **popularity**: 9
 - **description**: SDK Microsoft per costruire agenti e orchestration multi-linguaggio. Il Agent Framework aggiunge pattern agentici e collaborazione tra agenti.
@@ -524,6 +530,12 @@
 - **alternatives**: Vapi, LiveKit Agents, Daily
 - **category**: Realtime / Platform
 
+### Pipecat
+- **popularity**: 8
+- **description**: Framework open-source per voice e multimodal conversational AI, supportato dalla community Pipecat e dal team Daily.
+- **alternatives**: LiveKit Agents, Vapi, Daily, Retell
+- **category**: Realtime
+
 ### OpenTelemetry for Agents
 - **popularity**: 8
 - **description**: Pattern di observability per agenti che mappa trace, span ed eventi su OpenTelemetry. Le semantic conventions GenAI sono il lessico standard; OpenLLMetry e OpenLIT sono i bridge più concreti verso i backend standard.
@@ -544,7 +556,7 @@
 
 ### Edge Runtime Stack
 - **popularity**: 8
-- **description**: Stack di inference locale per agenti basato su Ollama, llama.cpp e MLX-LM. Utile quando servono CPU-only, on-device o Apple Silicon.
+- **description**: Stack di inference locale per agenti basato su Ollama, llama.cpp, MLX-LM e LM Studio. Utile quando servono CPU-only, on-device o Apple Silicon.
 - **alternatives**: LM Studio, LocalAI, vLLM
 - **category**: Runtime
 

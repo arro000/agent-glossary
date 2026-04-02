@@ -393,3 +393,139 @@
 - **source**: browser-use
 - **description**: Starter example collection for Browser Use in TypeScript and Python.
 - **relevance**: Handy runnable repo for browser-agent onboarding.
+
+---
+
+## Iteration 12 Guides (2026-04-02)
+
+### AG-UI and A2UI Explained
+- **url**: https://copilotkit.ai/ag-ui-and-a2ui
+- **source**: CopilotKit
+- **description**: Explains the difference between AG-UI as the agent-user runtime protocol and A2UI as the declarative generative UI spec.
+- **relevance**: Best primary source for the A2UI vs AG-UI distinction.
+
+### AG-UI Generative UI Specs
+- **url**: https://docs.ag-ui.com/concepts/generative-ui-specs
+- **source**: AG-UI docs
+- **description**: Official overview of A2UI, MCP-UI, and Open-JSON-UI as generative UI specs, plus AG-UI as the transport/runtime layer.
+- **relevance**: Useful when mapping the UI/protocol layer of agent apps.
+
+### Vercel AI SDK Generative User Interfaces
+- **url**: https://ai-sdk.dev/docs/ai-sdk-ui/generative-user-interfaces
+- **source**: Vercel
+- **description**: Concrete React/Next.js implementation pattern for rendering tool output as typed UI components.
+- **relevance**: Best practical guide for the TS/React generative UI path.
+
+### LiveKit Voice AI Quickstart
+- **url**: https://docs.livekit.io/agents/start/voice-ai/
+- **source**: LiveKit
+- **description**: Full quickstart for building and deploying a voice assistant in less than 10 minutes, including starter projects, transport, testing, telephony, and deployment.
+- **relevance**: Strongest onboarding guide for the open voice stack.
+
+### Daily AI Toolkit
+- **url**: https://docs.daily.co/guides/products/ai-toolkit
+- **source**: Daily
+- **description**: Introduces Pipecat and the Daily Python SDK as the two main paths for real-time voice and video AI workflows.
+- **relevance**: Best guide for understanding Daily as a media stack rather than a voice-agent framework.
+
+### Vapi Introduction
+- **url**: https://docs.vapi.ai/quickstart/introduction.mdx
+- **source**: Vapi
+- **description**: Quick intro to Assistants and Squads, with phone calls, web integration, and real-time voice agent primitives.
+- **relevance**: Best entry point for the platformized voice-agent path.
+
+### Retell Introduction
+- **url**: https://docs.retellai.com/
+- **source**: Retell AI
+- **description**: Platform overview for building, testing, deploying, and monitoring AI phone agents, including simulation testing.
+- **relevance**: Good reference for phone-agent ops and testing workflows.
+
+### Pipecat Docs
+- **url**: https://docs.pipecat.ai/
+- **source**: Pipecat
+- **description**: Documentation for the open-source voice and multimodal conversational AI framework.
+- **relevance**: Useful open-source alternative for the realtime voice stack.
+
+### OpenTelemetry GenAI Semantic Conventions
+- **url**: https://opentelemetry.io/docs/specs/semconv/gen-ai/
+- **source**: OpenTelemetry
+- **description**: Canonical spec for GenAI spans, metrics, events, and agent spans, including stability opt-in notes.
+- **relevance**: The standard vocabulary layer for telemetry across agent frameworks.
+
+### OpenLLMetry
+- **url**: https://www.traceloop.com/openllmetry
+- **source**: Traceloop
+- **description**: OpenTelemetry-based instrumentation layer with SDKs and broad backend support.
+- **relevance**: Practical bridge from GenAI semconv to existing observability stacks.
+
+### OpenLIT
+- **url**: https://github.com/openlit/openlit
+- **source**: OpenLIT
+- **description**: OpenTelemetry-native AI engineering platform with SDKs, dashboards, evals, prompt management, and broad framework support.
+- **relevance**: Good guide for a full OTEL-first AI engineering stack.
+
+### Ollama Docs
+- **url**: https://docs.ollama.com/
+- **source**: Ollama
+- **description**: Quickstart and API docs for local model runtime and tool integration.
+- **relevance**: Best on-ramp for local inference in the edge runtime path.
+
+### llama.cpp README
+- **url**: https://github.com/ggml-org/llama.cpp
+- **source**: ggml-org
+- **description**: Canonical documentation for the C/C++ inference runtime, quantization, server mode, and hardware backends.
+- **relevance**: Core reference for CPU-first and quantized deployment.
+
+### MLX-LM README
+- **url**: https://github.com/ml-explore/mlx-lm
+- **source**: ml-explore
+- **description**: Python package for generating and fine-tuning models on Apple silicon with MLX, including prompt caching and streaming generation.
+- **relevance**: Best Apple-silicon edge path in the local runtime family.
+
+### LM Studio Home
+- **url**: https://lmstudio.ai/
+- **source**: LM Studio
+- **description**: Local AI app with SDKs, OpenAI-compatible API, and headless server mode.
+- **relevance**: Useful if the runtime needs a GUI-first workflow plus headless deployment.
+
+### SWE-bench Leaderboards
+- **url**: https://www.swebench.com/
+- **source**: SWE-bench
+- **description**: Official leaderboard for the SWE-bench family, including Verified, Lite, Multilingual, and Multimodal tracks.
+- **relevance**: Core guide for code-agent evaluation.
+
+### Terminal-Bench 2.0
+- **url**: https://www.tbench.ai/
+- **source**: Terminal-Bench
+- **description**: Official site for terminal-agent benchmarks, including the 2.0 leaderboard and task examples.
+- **relevance**: Best source for long-horizon terminal evaluation.
+
+### WebArena-x
+- **url**: https://webarena.dev/
+- **source**: WebArena-x
+- **description**: Hub for the WebArena family of benchmarks.
+- **relevance**: Best way to see the browser-agent benchmark family in one place.
+
+### BrowseComp
+- **url**: https://openai.com/index/browsecomp/
+- **source**: OpenAI Research
+- **description**: Benchmark for browsing agents focused on hard-to-find information and strategic search.
+- **relevance**: Important for deep-research and browsing agent evaluation.
+
+### SWE-Lancer
+- **url**: https://openai.com/index/swe-lancer/
+- **source**: OpenAI Research
+- **description**: Benchmark of real freelance software engineering tasks, spanning implementation and managerial decisions.
+- **relevance**: Good next-step benchmark beyond issue-fixing.
+
+### Sotopia Docs
+- **url**: https://docs.sotopia.world/
+- **source**: Sotopia Lab
+- **description**: Documentation for a social learning environment for AI agents.
+- **relevance**: Best entry point for agent simulation work.
+
+### Generative Agents Repo
+- **url**: https://github.com/joonspk-research/generative_agents
+- **source**: Joon Sung Park research repo
+- **description**: Research code for the canonical long-horizon social simulation paper.
+- **relevance**: Baseline reference for human-like agent simulation.

@@ -7328,3 +7328,415 @@ Implemented and committed.
 
 One unrelated file is still modified and uncommitted: `.workspaces/logs/loop.log`.
 [0;32m[2026-04-02 18:22:19] ✓[0m Workspace Improvements & PRD completed successfully
+ 1 file changed, 429 insertions(+)
+To https://github.com/arro000/agent-glossary.git
+   016ad53..2300813  main -> main
+[0;32m[2026-04-02 18:22:20] ✓[0m Workspace changes committed and pushed
+[0;36m[2026-04-02 18:22:20][0m Launching OpenCode for workspace Research & Content...
+[0m
+> build · gpt-5.4-mini
+[0m
+Starting by reading the existing research notes and whiteboard concepts so I can fill gaps without duplicating prior work.
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1, limit=4000][0m
+[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=1, limit=4000][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=4000][0m
+[0m→ [0mRead .workspaces/3-research/context.md[90m [offset=1, limit=4000][0m
+I’ve got the current scope and prior notes. Next I’m checking the rest of the findings file so I can append in the existing style instead of creating duplicates.
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=730, limit=1200][0m
+I’ve confirmed the prior iterations already covered most adjacent areas, so I’m focusing this pass on the new requests: A2UI/Generative UI, voice stacks, GenAI telemetry, edge runtimes, long-horizon benchmarks, and simulation stacks.
+[0m→ [0mRead .workspaces/3-research/resources/guides.md[90m [offset=1, limit=4000][0m
+I’m pulling primary docs and a few example repos now, with emphasis on sources that are actually useful for a researcher stage: official docs, starter projects, and curated discovery hubs.
+[0m% [0mWebFetch https://ai-sdk.dev/docs/ai-sdk-ui/generative-user-interfaces
+[0m% [0mWebFetch https://ag-ui.com
+[0m% [0mWebFetch https://github.com/livekit-examples/agent-starter-python
+[0m✗ [0mwebfetch failed
+[91m[1mError: [0mThe response redirected too many times. For more information, pass `verbose: true` in the second argument to fetch()
+[0m% [0mWebFetch https://docs.ag-ui.com/llms.txt
+[0m% [0mWebFetch https://docs.ag-ui.com/concepts/generative-ui-specs
+[0m% [0mWebFetch https://copilotkit.ai/ag-ui-and-a2ui
+[0m% [0mWebFetch https://github.com/livekit/agents
+I have the protocol split for A2UI vs AG-UI now. Next I’m filling the runtime and benchmark sides so the whiteboard gets concrete projects, not just protocol names.
+[0m% [0mWebFetch https://docs.ollama.com/
+[0m% [0mWebFetch https://lmstudio.ai/
+[0m% [0mWebFetch https://github.com/ggml-org/llama.cpp
+[0m% [0mWebFetch https://github.com/ml-explore/mlx-lm
+[0m% [0mWebFetch https://www.tbench.ai/
+[0m% [0mWebFetch https://www.swebench.com/
+[0m% [0mWebFetch https://webarena.dev/
+[0m% [0mWebFetch https://openai.com/index/browsecomp/
+[0m% [0mWebFetch https://docs.retellai.com/
+[0m% [0mWebFetch https://docs.livekit.io/agents/start/voice-ai-quickstart/
+[0m% [0mWebFetch https://docs.vapi.ai/quickstart/introduction.mdx
+[0m% [0mWebFetch https://docs.daily.co/guides/products/ai-toolkit
+I have enough to write the voice/runtime/benchmark entries. I’m doing one last targeted search for A2UI’s primary references so I can describe it accurately instead of inferring from secondary sources.
+[0m
+[0m$ [0mcurl -Ls 'https://duckduckgo.com/html/?q=%22A2UI%22+Google+Generative+UI' | rg -o 'https?://[^"&]+' | head -n 20
+http://www.w3.org/TR/html4/loose.dtd
+https://duckduckgo.com/
+https://duckduckgo.com/
+[0m
+[0m$ [0mcurl -Ls 'https://duckduckgo.com/html/?q=GPTeam+github+agent+simulation' | rg -o 'uddg=https%3A%2F%2F[^&]+' | sed 's/uddg=//' | python -c 'import sys,urllib.parse; print("\n".join(urllib.parse.unquote(l.strip()) for l in sys.stdin if l.strip()))'
+[0m% [0mWebFetch https://opentelemetry.io/docs/specs/semconv/gen-ai/
+[0m% [0mWebFetch https://pipecat.ai/
+[0m% [0mWebFetch https://github.com/traceloop/openllmetry
+[0m% [0mWebFetch https://github.com/openlit/openlit
+I’ve got enough primary docs for the core entries. I’m doing one focused pass on A2UI and simulation so I can either add a concrete repo or stop inventing one where the ecosystem is still fuzzy.
+[0m
+[0m$ [0mcurl -Ls 'https://duckduckgo.com/html/?q=A2UI+Google+Generative+UI' | python - <<'PY'
+import sys,re,html
+text=sys.stdin.read()
+for m in re.finditer(r'nofollow" class="result__a" href="([^"]+)"', text):
+    print(html.unescape(m.group(1)))
+PY
+I’ve finished the source gathering. Next I’m writing the new findings/guides entries, then I’ll sync the concept map and the workspace context so everything matches.
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/resources/findings.md
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/resources/guides.md
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/1-implementation/resources/concepts.md
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/resources/research-requests.md
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/context.md
+The content is written. I’m updating the workspace header now so the top-level status matches the new material instead of the old iteration stamp.
+[0m
+[0m$ [0mdate '+%Y-%m-%d %H:%M:%S'
+2026-04-02 18:26:01
+[0m
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/context.md
+I’ve finished the edits. I’m doing a quick verification pass on the new sections to catch formatting mistakes before I hand this back.
+[0m→ [0mRead .workspaces/3-research/resources/guides.md[90m [offset=390, limit=260][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1045, limit=220][0m
+[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=123, limit=60][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=470, limit=110][0m
+[0m→ [0mRead .workspaces/3-research/context.md[90m [offset=200, limit=80][0m
+One cleanup pass: I found an old duplicated “Next Iteration” note in the context file, so I’m removing that stale tail to keep the summary unambiguous.
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/context.md
+[0m→ [0mRead .workspaces/3-research/context.md[90m [offset=226, limit=30][0m
+The workspace summary is clean now. I’m checking the final diff so I can report exactly what changed and whether anything looks off.
+[0m
+[0m$ [0mgit status --short
+M .workspaces/1-implementation/resources/concepts.md
+ M .workspaces/3-research/context.md
+ M .workspaces/3-research/resources/findings.md
+ M .workspaces/3-research/resources/guides.md
+ M .workspaces/3-research/resources/research-requests.md
+ M .workspaces/logs/loop.log
+[0m
+[0m$ [0mgit diff -- .workspaces/3-research/resources/findings.md .workspaces/3-research/resources/guides.md .workspaces/1-implementation/resources/concepts.md .workspaces/3-research/resources/research-requests.md .workspaces/3-research/context.md
+diff --git a/.workspaces/1-implementation/resources/concepts.md b/.workspaces/1-implementation/resources/concepts.md
+index 5a65286..e77bb67 100644
+--- a/.workspaces/1-implementation/resources/concepts.md
++++ b/.workspaces/1-implementation/resources/concepts.md
+@@ -482,6 +482,12 @@
+ - **alternatives**: MCP Apps, A2UI, Vercel AI SDK Generative UI, custom websocket/event channels
+ - **category**: Integration
+ 
++### A2UI
++- **popularity**: 7
++- **description**: Specifica declarativa di Generative UI originata da Google. Usa payload streaming JSONL-friendly per descrivere widget e layout renderizzabili dal frontend.
++- **alternatives**: AG-UI, MCP Apps, Vercel AI SDK Generative User Interfaces, Open-JSON-UI
++- **category**: Integration
++
+ ### Semantic Kernel
+ - **popularity**: 9
+ - **description**: SDK Microsoft per costruire agenti e orchestration multi-linguaggio. Il Agent Framework aggiunge pattern agentici e collaborazione tra agenti.
+@@ -524,6 +530,12 @@
+ - **alternatives**: Vapi, LiveKit Agents, Daily
+ - **category**: Realtime / Platform
+ 
++### Pipecat
++- **popularity**: 8
++- **description**: Framework open-source per voice e multimodal conversational AI, supportato dalla community Pipecat e dal team Daily.
++- **alternatives**: LiveKit Agents, Vapi, Daily, Retell
++- **category**: Realtime
++
+ ### OpenTelemetry for Agents
+ - **popularity**: 8
+ - **description**: Pattern di observability per agenti che mappa trace, span ed eventi su OpenTelemetry. Le semantic conventions GenAI sono il lessico standard; OpenLLMetry e OpenLIT sono i bridge più concreti verso i backend standard.
+@@ -544,7 +556,7 @@
+ 
+ ### Edge Runtime Stack
+ - **popularity**: 8
+-- **description**: Stack di inference locale per agenti basato su Ollama, llama.cpp e MLX-LM. Utile quando servono CPU-only, on-device o Apple Silicon.
++- **description**: Stack di inference locale per agenti basato su Ollama, llama.cpp, MLX-LM e LM Studio. Utile quando servono CPU-only, on-device o Apple Silicon.
+ - **alternatives**: LM Studio, LocalAI, vLLM
+ - **category**: Runtime
+ 
+diff --git a/.workspaces/3-research/context.md b/.workspaces/3-research/context.md
+index 4bfd9db..55f7805 100644
+--- a/.workspaces/3-research/context.md
++++ b/.workspaces/3-research/context.md
+@@ -1,8 +1,8 @@
+ # Workspace 3 — Research & Content Discovery
+ 
+ ## Stato
+-- **Iterazione**: 4
+-- **Ultimo aggiornamento**: 2026-04-02 18:16:05
++- **Iterazione**: 12
++- **Ultimo aggiornamento**: 2026-04-02 18:26:01
+ - **Stato**: completed
+ 
+ ## Risultati Iterazione 1
+@@ -223,5 +223,21 @@ La passata attuale ha coperto la capa di curated repositories e discovery, con f
+ - `guides.md` ora include i primi tre come punti di partenza pratici per UI, voice e computer use.
+ - `research-requests.md` ha una nuova Iterazione 9 su browser automation, voice eval, registry/discovery, verticale finance/support e quality signals per curated lists.
+ 
++## Aggiornamento Corrente - Iterazione 12
++
++### Cosa e' stato aggiunto
++- A2UI aggiunto come spec declarativa di Generative UI distinta da AG-UI.
++- Voice stack ampliato con Pipecat e riferimento esplicito a LiveKit, Vapi, Daily e Retell.
++- Edge runtimes aggiornati con LM Studio come opzione concreta alongside Ollama, llama.cpp e MLX-LM.
++- Benchmark family espansa con SWE-bench Verified, Terminal-Bench 2.0 e WebArena-x.
++- Guides aggiornate con source primarie per A2UI, voice, OTEL GenAI, local runtimes e benchmark families.
++
++### Insight Chiave
++1. **A2UI is the declarative UI layer**: AG-UI handles agent-user runtime transport, while A2UI is the concrete generative UI spec to render widgets.
++2. **Voice stacks now split into runtime vs platform**: LiveKit and Pipecat are closer to frameworks, while Vapi and Retell are productized platforms; Daily sits in the media stack layer.
++3. **OTel GenAI is becoming the shared telemetry vocabulary**: OpenLLMetry and OpenLIT remain the most practical bridges while the spec matures.
++4. **Local inference is no longer one-size-fits-all**: LM Studio is now part of the same decision set as Ollama, llama.cpp, and MLX-LM.
++5. **Long-horizon evals are fragmenting by task shape**: code repair, terminal mastery, web browsing, and real work allocation each have their own benchmark family.
++
+ ### Next Iteration
+-Vedi `resources/research-requests.md` per le nuove richieste dell'Iterazione 9.
++- See `resources/research-requests.md` Iteration 13 for the next research sweep.
+diff --git a/.workspaces/3-research/resources/findings.md b/.workspaces/3-research/resources/findings.md
+index 3f8a2a4..60b57f0 100644
+--- a/.workspaces/3-research/resources/findings.md
++++ b/.workspaces/3-research/resources/findings.md
+@@ -1129,3 +1129,55 @@
+ - **popularity**: 4
+ - **alternatives**: Browser Use docs, Playwright MCP examples, Stagehand examples
+ - **why_include**: Concrete starter surface for browser-agent experimentation and integrations.
++
++---
++
++# Iteration 12 - A2UI, voice, telemetry, edge, benchmarks
++
++## A2UI
++- **macroarea**: Integration / UI Protocol
++- **url**: https://copilotkit.ai/ag-ui-and-a2ui
++- **description**: Google-originated declarative generative UI spec for agent responses. It is JSONL-based and streaming, with a focus on platform-agnostic rendering rather than iframe-based app embedding.
++- **popularity**: 7
++- **alternatives**: AG-UI, MCP Apps, Vercel AI SDK Generative User Interfaces, Open-JSON-UI
++- **why_include**: This is the clearest concrete example of the "generative UI spec" layer that sits beside AG-UI.
++
++## Pipecat
++- **macroarea**: Realtime / Voice Framework
++- **url**: https://github.com/pipecat-ai/pipecat
++- **description**: Open-source framework for voice and multimodal conversational AI, supported by the Pipecat community and Daily engineering. It is a practical open runtime for building real-time conversational pipelines.
++- **popularity**: 8
++- **alternatives**: LiveKit Agents, Vapi, Daily, Retell
++- **why_include**: The missing open-source sibling in the voice stack comparison, and a useful Daily-adjacent runtime.
++
++## LM Studio
++- **macroarea**: Edge / Local Runtime
++- **url**: https://lmstudio.ai/
++- **description**: Local AI app and headless runtime for running models privately on your own hardware. It ships JS and Python SDKs, an OpenAI-compatible API, and a no-GUI deployment mode (`llmster`) for servers and CI.
++- **popularity**: 7
++- **alternatives**: Ollama, llama.cpp, MLX-LM
++- **why_include**: Strong local-runtime option for researcher-stage demos and edge deployments, especially when a GUI plus headless server mode are both useful.
++
++## SWE-bench Verified
++- **macroarea**: Evaluation / Benchmarks
++- **url**: https://www.swebench.com/
++- **description**: Human-filtered subset of SWE-bench with 500 instances and a separate leaderboard track. It is the most commonly cited code-agent benchmark variant for apples-to-apples comparisons.
++- **popularity**: 9
++- **alternatives**: SWE-bench Lite, Terminal-Bench 2.0, BrowseComp, TAU-bench
++- **why_include**: The benchmark track most teams reference when they say an agent can "solve SWE-bench".
++
++## Terminal-Bench 2.0
++- **macroarea**: Evaluation / Benchmarks
++- **url**: https://www.tbench.ai/leaderboard/terminal-bench/2.0
++- **description**: Current terminal-agent benchmark with 89 tasks spanning software engineering, ML, security, and data science. The benchmark is optimized for long-horizon CLI mastery rather than toy terminal commands.
++- **popularity**: 8
++- **alternatives**: Terminal-Bench 1.0, SWE-bench, AgentBench
++- **why_include**: Best concrete benchmark for evaluating command-line agent competence today.
++
++## WebArena-x
++- **macroarea**: Evaluation / Benchmarks
++- **url**: https://webarena.dev/
++- **description**: Benchmark family hub for autonomous web agents, covering WebArena, WebArena-Infinity, VisualWebArena, and TheAgentCompany. It gives the family context behind the base web benchmark.
++- **popularity**: 7
++- **alternatives**: BrowserGym, Mind2Web, BrowseComp
++- **why_include**: Useful when the research target is browser automation rather than generic web QA.
+diff --git a/.workspaces/3-research/resources/guides.md b/.workspaces/3-research/resources/guides.md
+index 62bf31a..14731eb 100644
+--- a/.workspaces/3-research/resources/guides.md
++++ b/.workspaces/3-research/resources/guides.md
+@@ -393,3 +393,139 @@
+ - **source**: browser-use
+ - **description**: Starter example collection for Browser Use in TypeScript and Python.
+ - **relevance**: Handy runnable repo for browser-agent onboarding.
++
++---
++
++## Iteration 12 Guides (2026-04-02)
++
++### AG-UI and A2UI Explained
++- **url**: https://copilotkit.ai/ag-ui-and-a2ui
++- **source**: CopilotKit
++- **description**: Explains the difference between AG-UI as the agent-user runtime protocol and A2UI as the declarative generative UI spec.
++- **relevance**: Best primary source for the A2UI vs AG-UI distinction.
++
++### AG-UI Generative UI Specs
++- **url**: https://docs.ag-ui.com/concepts/generative-ui-specs
++- **source**: AG-UI docs
++- **description**: Official overview of A2UI, MCP-UI, and Open-JSON-UI as generative UI specs, plus AG-UI as the transport/runtime layer.
++- **relevance**: Useful when mapping the UI/protocol layer of agent apps.
++
++### Vercel AI SDK Generative User Interfaces
++- **url**: https://ai-sdk.dev/docs/ai-sdk-ui/generative-user-interfaces
++- **source**: Vercel
++- **description**: Concrete React/Next.js implementation pattern for rendering tool output as typed UI components.
++- **relevance**: Best practical guide for the TS/React generative UI path.
++
++### LiveKit Voice AI Quickstart
++- **url**: https://docs.livekit.io/agents/start/voice-ai/
++- **source**: LiveKit
++- **description**: Full quickstart for building and deploying a voice assistant in less than 10 minutes, including starter projects, transport, testing, telephony, and deployment.
++- **relevance**: Strongest onboarding guide for the open voice stack.
++
++### Daily AI Toolkit
++- **url**: https://docs.daily.co/guides/products/ai-toolkit
++- **source**: Daily
++- **description**: Introduces Pipecat and the Daily Python SDK as the two main paths for real-time voice and video AI workflows.
++- **relevance**: Best guide for understanding Daily as a media stack rather than a voice-agent framework.
++
++### Vapi Introduction
++- **url**: https://docs.vapi.ai/quickstart/introduction.mdx
++- **source**: Vapi
++- **description**: Quick intro to Assistants and Squads, with phone calls, web integration, and real-time voice agent primitives.
++- **relevance**: Best entry point for the platformized voice-agent path.
++
++### Retell Introduction
++- **url**: https://docs.retellai.com/
++- **source**: Retell AI
++- **description**: Platform overview for building, testing, deploying, and monitoring AI phone agents, including simulation testing.
++- **relevance**: Good reference for phone-agent ops and testing workflows.
++
++### Pipecat Docs
++- **url**: https://docs.pipecat.ai/
++- **source**: Pipecat
++- **description**: Documentation for the open-source voice and multimodal conversational AI framework.
++- **relevance**: Useful open-source alternative for the realtime voice stack.
++
++### OpenTelemetry GenAI Semantic Conventions
++- **url**: https://opentelemetry.io/docs/specs/semconv/gen-ai/
++- **source**: OpenTelemetry
++- **description**: Canonical spec for GenAI spans, metrics, events, and agent spans, including stability opt-in notes.
++- **relevance**: The standard vocabulary layer for telemetry across agent frameworks.
++
++### OpenLLMetry
++- **url**: https://www.traceloop.com/openllmetry
++- **source**: Traceloop
++- **description**: OpenTelemetry-based instrumentation layer with SDKs and broad backend support.
++- **relevance**: Practical bridge from GenAI semconv to existing observability stacks.
++
++### OpenLIT
++- **url**: https://github.com/openlit/openlit
++- **source**: OpenLIT
++- **description**: OpenTelemetry-native AI engineering platform with SDKs, dashboards, evals, prompt management, and broad framework support.
++- **relevance**: Good guide for a full OTEL-first AI engineering stack.
++
++### Ollama Docs
++- **url**: https://docs.ollama.com/
++- **source**: Ollama
++- **description**: Quickstart and API docs for local model runtime and tool integration.
++- **relevance**: Best on-ramp for local inference in the edge runtime path.
++
++### llama.cpp README
++- **url**: https://github.com/ggml-org/llama.cpp
++- **source**: ggml-org
++- **description**: Canonical documentation for the C/C++ inference runtime, quantization, server mode, and hardware backends.
++- **relevance**: Core reference for CPU-first and quantized deployment.
++
++### MLX-LM README
++- **url**: https://github.com/ml-explore/mlx-lm
++- **source**: ml-explore
++- **description**: Python package for generating and fine-tuning models on Apple silicon with MLX, including prompt caching and streaming generation.
++- **relevance**: Best Apple-silicon edge path in the local runtime family.
++
++### LM Studio Home
++- **url**: https://lmstudio.ai/
++- **source**: LM Studio
++- **description**: Local AI app with SDKs, OpenAI-compatible API, and headless server mode.
++- **relevance**: Useful if the runtime needs a GUI-first workflow plus headless deployment.
++
++### SWE-bench Leaderboards
++- **url**: https://www.swebench.com/
++- **source**: SWE-bench
++- **description**: Official leaderboard for the SWE-bench family, including Verified, Lite, Multilingual, and Multimodal tracks.
++- **relevance**: Core guide for code-agent evaluation.
++
++### Terminal-Bench 2.0
++- **url**: https://www.tbench.ai/
++- **source**: Terminal-Bench
++- **description**: Official site for terminal-agent benchmarks, including the 2.0 leaderboard and task examples.
++- **relevance**: Best source for long-horizon terminal evaluation.
++
++### WebArena-x
++- **url**: https://webarena.dev/
++- **source**: WebArena-x
++- **description**: Hub for the WebArena family of benchmarks.
++- **relevance**: Best way to see the browser-agent benchmark family in one place.
++
++### BrowseComp
++- **url**: https://openai.com/index/browsecomp/
++- **source**: OpenAI Research
++- **description**: Benchmark for browsing agents focused on hard-to-find information and strategic search.
++- **relevance**: Important for deep-research and browsing agent evaluation.
++
++### SWE-Lancer
++- **url**: https://openai.com/index/swe-lancer/
++- **source**: OpenAI Research
++- **description**: Benchmark of real freelance software engineering tasks, spanning implementation and managerial decisions.
++- **relevance**: Good next-step benchmark beyond issue-fixing.
++
++### Sotopia Docs
++- **url**: https://docs.sotopia.world/
++- **source**: Sotopia Lab
++- **description**: Documentation for a social learning environment for AI agents.
++- **relevance**: Best entry point for agent simulation work.
++
++### Generative Agents Repo
++- **url**: https://github.com/joonspk-research/generative_agents
++- **source**: Joon Sung Park research repo
++- **description**: Research code for the canonical long-horizon social simulation paper.
++- **relevance**: Baseline reference for human-like agent simulation.
+diff --git a/.workspaces/3-research/resources/research-requests.md b/.workspaces/3-research/resources/research-requests.md
+index 7f0e80a..fc09934 100644
+--- a/.workspaces/3-research/resources/research-requests.md
++++ b/.workspaces/3-research/resources/research-requests.md
+@@ -146,3 +146,16 @@
+ 
+ ### Priorità Media
+ 1. **PixiJS v8 emoji + label metrics on high-DPI canvases** — best practices for keeping mixed emoji/text bubbles crisp, centered, and readable at 2x/3x DPR.
++
++## Iterazione 13 — Nuove Richieste
++
++### Priorità Alta
++1. **Browser automation stack decision guide** — Browser Use vs Stagehand vs Playwright MCP vs Steel Browser vs browser-use-examples, with emphasis on researcher-stage reproducibility.
++2. **Voice agent starter and eval repos** — LiveKit, Pipecat, Vapi, Daily, and Retell example/starter repos that are most runnable and best documented.
++
++### Priorità Media
++3. **OpenTelemetry GenAI adoption map** — which frameworks already emit GenAI semconv natively, and where OpenLLMetry/OpenLIT still provide the cleanest bridge.
++4. **Agent registry/discovery adoption** — A2A Agent Cards, NANDA, ERC-8004, Glama, and other capability-card / directory systems with real uptake.
++
++### Esplorazione
++5. **Long-horizon benchmark harnesses** — repo-level tooling around SWE-bench Verified, Terminal-Bench 2.0, WebArena-x, BrowseComp, and SWE-Lancer.
+[0m
+Updated the research artifacts for the new sweep.
+
+- Added findings for `A2UI`, `Pipecat`, `LM Studio`, `SWE-bench Verified`, `Terminal-Bench 2.0`, and `WebArena-x`.
+- Added a new guides section covering A2UI vs AG-UI, voice stacks, OpenTelemetry GenAI, local runtimes, and benchmark families.
+- Updated `concepts.md` with `A2UI`, `Pipecat`, and `LM Studio` in the edge stack.
+- Added `research-requests.md` Iteration 13 for the next pass.
+- Updated `.workspaces/3-research/context.md` to reflect the new state.
+
+I left the unrelated `loop.log` change alone.
+[0;32m[2026-04-02 18:26:35] ✓[0m Workspace Research & Content completed successfully

@@ -1129,3 +1129,55 @@
 - **popularity**: 4
 - **alternatives**: Browser Use docs, Playwright MCP examples, Stagehand examples
 - **why_include**: Concrete starter surface for browser-agent experimentation and integrations.
+
+---
+
+# Iteration 12 - A2UI, voice, telemetry, edge, benchmarks
+
+## A2UI
+- **macroarea**: Integration / UI Protocol
+- **url**: https://copilotkit.ai/ag-ui-and-a2ui
+- **description**: Google-originated declarative generative UI spec for agent responses. It is JSONL-based and streaming, with a focus on platform-agnostic rendering rather than iframe-based app embedding.
+- **popularity**: 7
+- **alternatives**: AG-UI, MCP Apps, Vercel AI SDK Generative User Interfaces, Open-JSON-UI
+- **why_include**: This is the clearest concrete example of the "generative UI spec" layer that sits beside AG-UI.
+
+## Pipecat
+- **macroarea**: Realtime / Voice Framework
+- **url**: https://github.com/pipecat-ai/pipecat
+- **description**: Open-source framework for voice and multimodal conversational AI, supported by the Pipecat community and Daily engineering. It is a practical open runtime for building real-time conversational pipelines.
+- **popularity**: 8
+- **alternatives**: LiveKit Agents, Vapi, Daily, Retell
+- **why_include**: The missing open-source sibling in the voice stack comparison, and a useful Daily-adjacent runtime.
+
+## LM Studio
+- **macroarea**: Edge / Local Runtime
+- **url**: https://lmstudio.ai/
+- **description**: Local AI app and headless runtime for running models privately on your own hardware. It ships JS and Python SDKs, an OpenAI-compatible API, and a no-GUI deployment mode (`llmster`) for servers and CI.
+- **popularity**: 7
+- **alternatives**: Ollama, llama.cpp, MLX-LM
+- **why_include**: Strong local-runtime option for researcher-stage demos and edge deployments, especially when a GUI plus headless server mode are both useful.
+
+## SWE-bench Verified
+- **macroarea**: Evaluation / Benchmarks
+- **url**: https://www.swebench.com/
+- **description**: Human-filtered subset of SWE-bench with 500 instances and a separate leaderboard track. It is the most commonly cited code-agent benchmark variant for apples-to-apples comparisons.
+- **popularity**: 9
+- **alternatives**: SWE-bench Lite, Terminal-Bench 2.0, BrowseComp, TAU-bench
+- **why_include**: The benchmark track most teams reference when they say an agent can "solve SWE-bench".
+
+## Terminal-Bench 2.0
+- **macroarea**: Evaluation / Benchmarks
+- **url**: https://www.tbench.ai/leaderboard/terminal-bench/2.0
+- **description**: Current terminal-agent benchmark with 89 tasks spanning software engineering, ML, security, and data science. The benchmark is optimized for long-horizon CLI mastery rather than toy terminal commands.
+- **popularity**: 8
+- **alternatives**: Terminal-Bench 1.0, SWE-bench, AgentBench
+- **why_include**: Best concrete benchmark for evaluating command-line agent competence today.
+
+## WebArena-x
+- **macroarea**: Evaluation / Benchmarks
+- **url**: https://webarena.dev/
+- **description**: Benchmark family hub for autonomous web agents, covering WebArena, WebArena-Infinity, VisualWebArena, and TheAgentCompany. It gives the family context behind the base web benchmark.
+- **popularity**: 7
+- **alternatives**: BrowserGym, Mind2Web, BrowseComp
+- **why_include**: Useful when the research target is browser automation rather than generic web QA.
