@@ -3242,3 +3242,304 @@ Commit:
 Note:
 - I intentionally did **not** include `.workspaces/logs/loop.log` in the commit (it remains modified locally).
 [0;32m[2026-04-02 17:50:26] ✓[0m Workspace Implementation completed successfully
+ 1 file changed, 1201 insertions(+)
+To https://github.com/arro000/agent-glossary.git
+   3f743b1..410a084  main -> main
+[0;32m[2026-04-02 17:50:26] ✓[0m Workspace changes committed and pushed
+[0;36m[2026-04-02 17:50:26][0m Launching OpenCode for workspace Improvements & PRD...
+[0m
+> build · gpt-5.4-mini
+[0m
+I’m checking the current implementation and specs first, then I’ll patch the Pixi app and verify it with a build.
+[0m→ [0mRead .workspaces/1-implementation/context.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/pixijs-reference.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1, limit=400][0m
+[0m✱ [0mGlob "src/**/*"[90m in . · 5 matches[0m
+I’ve got the specs and research. Next I’m reading the current Pixi implementation to see what’s already there and what needs to be reworked.
+[0m→ [0mRead src/app/layout.tsx[90m [offset=1, limit=160][0m
+[0m→ [0mRead src/app/page.tsx[90m [offset=1, limit=120][0m
+[0m→ [0mRead src/app/globals.css[90m [offset=1, limit=260][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1, limit=500][0m
+I found an existing Pixi board, but I need the rest of the component before deciding what to replace versus extend. I’m also checking whether the research requests file already exists.
+[0m✱ [0mGrep "research-requests"[90m in .workspaces/3-research/resources · 0 matches[0m
+[0m✱ [0mGlob ".workspaces/3-research/resources/*"[90m in . · 5 matches[0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=501, limit=700][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1201, limit=700][0m
+[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/2-improvements/context.md[90m [offset=1, limit=260][0m
+I’m switching from inspection to the first code change: simplifying the bubble encoding so weight is visible without changing bubble size, while keeping the emoji and label readable.
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+[0m✱ [0mGrep "weightTier"[90m in src/components/whiteboard.tsx · 1 match[0m
+[0m✱ [0mGrep "weightStrip"[90m in src/components/whiteboard.tsx · 0 matches[0m
+I’ve swapped in a ring-based weight encoding. I’m cleaning the leftover dead code now and then I’ll update the workspace notes and validate the build.
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+The bubble visuals are patched. I’m doing a quick code sanity check before the build so I don’t waste time chasing a trivial syntax issue.
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=280, limit=80][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1030, limit=220][0m
+I’m at the verification step now. If the build is clean, I’ll write the workspace update and commit everything in one pass.
+[0m
+[0m$ [0mnpm run build
+> agent-glossary@0.1.0 build
+> next build
+
+▲ Next.js 16.2.2 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.1s
+  Running TypeScript ...
+  Finished TypeScript in 1887ms ...
+  Collecting page data using 5 workers ...
+  Generating static pages using 5 workers (0/4) ...
+  Generating static pages using 5 workers (1/4) 
+  Generating static pages using 5 workers (2/4) 
+  Generating static pages using 5 workers (3/4) 
+✓ Generating static pages using 5 workers (4/4) in 339ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+[0m
+The build passed, so I’m updating the workspace status now with the actual changes that landed in code.
+[0m✗ [0mapply_patch failed
+[91m[1mError: [0mapply_patch verification failed: Error: Failed to find expected lines in /home/arro/projects/agent-glossary/.workspaces/2-improvements/context.md:
+- Keyboard shortcuts (+/-, 0, ESC)
+- Initial zoom-to-fit al caricamento
+- Contatore concetti per ogni macroarea
+[0m→ [0mRead .workspaces/2-improvements/context.md[90m [offset=1, limit=120][0m
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/2-improvements/context.md
+The code and workspace note are in place. I’m checking the exact diff and recent commit style before I create the commit.
+[0m
+[0m$ [0mgit status --short
+M .workspaces/2-improvements/context.md
+ M .workspaces/logs/loop.log
+ M src/components/whiteboard.tsx
+[0m
+[0m$ [0mgit diff -- src/components/whiteboard.tsx .workspaces/2-improvements/context.md
+diff --git a/.workspaces/2-improvements/context.md b/.workspaces/2-improvements/context.md
+index 9e9c1fb..928e16a 100644
+--- a/.workspaces/2-improvements/context.md
++++ b/.workspaces/2-improvements/context.md
+@@ -1,8 +1,8 @@
+ # Workspace 2 — Improvements & Implementation
+ 
+ ## Stato
+-- **Iterazione**: 1
+-- **Ultimo aggiornamento**: 2026-04-02 18:22:00
++- **Iterazione**: 2
++- **Ultimo aggiornamento**: 2026-04-02 18:12:00
+ - **Stato**: completed
+ 
+ ## Obiettivo
+@@ -97,3 +97,9 @@ Analizzare l'implementazione corrente, identificare miglioramenti, e IMPLEMENTAR
+ 
+ ### Problemi incontrati
+ - Nessuno. Build e lint passano senza errori/warnings (0 errors, 0 warnings).
++
++## Iterazione 4 — Completata
++- Rework delle subsection bubbles con **dimensione fissa** e encoding del peso tramite **ring segmentato + badge refs**
++- Emoji rese piu riconoscibili con halo piu ampio e text size aumentata
++- Rimossa la vecchia barra a punti per ridurre il rumore visivo
++- Build di produzione verificata con successo (`npm run build`)
+diff --git a/src/components/whiteboard.tsx b/src/components/whiteboard.tsx
+index ac36538..28240ee 100644
+--- a/src/components/whiteboard.tsx
++++ b/src/components/whiteboard.tsx
+@@ -265,10 +265,6 @@ function getReferenceCount(alternatives: string): number {
+     .length;
+ }
+ 
+-function getProjectWeightTier(referenceCount: number): number {
+-  return Math.max(1, Math.min(5, Math.ceil(referenceCount / 2)));
+-}
+-
+ function getBubbleColumns(count: number): number {
+   if (count <= 3) return count;
+   if (count <= 6) return 3;
+@@ -287,6 +283,39 @@ function getBubbleLabel(name: string): string {
+   return name.replace(/\n/g, ' ');
+ }
+ 
++function drawProjectWeightRing(
++  graphics: Graphics,
++  radius: number,
++  color: string,
++  referenceCount: number,
++) {
++  const segments = 8;
++  const filledSegments = Math.max(1, Math.min(segments, referenceCount));
++  const ringRadius = radius + 8;
++  const ringWidth = 3.5;
++  const segmentSpan = (Math.PI * 2) / segments;
++  const gap = segmentSpan * 0.26;
++  const segmentArc = segmentSpan - gap;
++
++  graphics.clear();
++  graphics.moveTo(ringRadius, 0);
++  graphics.arc(0, 0, ringRadius, 0, Math.PI * 2);
++  graphics.stroke({ color: '#ffffff', width: ringWidth + 1.5, alpha: 0.22, cap: 'round' });
++
++  for (let i = 0; i < segments; i++) {
++    const start = -Math.PI / 2 + i * segmentSpan + gap / 2;
++    const end = start + segmentArc;
++    graphics.moveTo(Math.cos(start) * ringRadius, Math.sin(start) * ringRadius);
++    graphics.arc(0, 0, ringRadius, start, end);
++    graphics.stroke({
++      color,
++      width: ringWidth,
++      alpha: i < filledSegments ? 0.3 + (filledSegments / segments) * 0.42 : 0.1,
++      cap: 'round',
++    });
++  }
++}
++
+ function layoutBubbles(concepts: ConceptData[], ax: number, ay: number) {
+   const n = concepts.length;
+   const padX = 30;
+@@ -328,6 +357,7 @@ function layoutBubbles(concepts: ConceptData[], ax: number, ay: number) {
+ interface BubbleState {
+   container: Container;
+   glow: Graphics;
++  weightRing: Graphics;
+   bubble: Graphics;
+   targetScale: number;
+   currentScale: number;
+@@ -1017,7 +1047,6 @@ export default function Whiteboard() {
+           const bx = x - pos.x;
+           const by = y - pos.y;
+           const referenceCount = getReferenceCount(concept.alternatives);
+-          const weightTier = getProjectWeightTier(referenceCount);
+           const weightRatio = Math.min(1, referenceCount / 8);
+ 
+           const bubbleContainer = new Container();
+@@ -1034,6 +1063,12 @@ export default function Whiteboard() {
+           glow.eventMode = 'none';
+           bubbleContainer.addChild(glow);
+ 
++          const weightRing = new Graphics();
++          weightRing.eventMode = 'none';
++          drawProjectWeightRing(weightRing, radius, area.color, referenceCount);
++          weightRing.alpha = 0.92;
++          bubbleContainer.addChild(weightRing);
++
+           const bubble = new Graphics();
+           bubble.circle(0, 0, radius);
+           bubble.fill({ color: '#ffffff', alpha: 0.66 + weightRatio * 0.06 });
+@@ -1046,9 +1081,9 @@ export default function Whiteboard() {
+ 
+           const emoji = getBubbleEmoji(area.name, concept.category);
+           const emojiBack = new Graphics();
+-          emojiBack.circle(0, -radius * 0.35, 12.5);
+-          emojiBack.fill({ color: '#ffffff', alpha: 0.64 + weightRatio * 0.08 });
+-          emojiBack.stroke({ color: area.color, width: 1, alpha: 0.16 + weightRatio * 0.08 });
++          emojiBack.circle(0, -radius * 0.35, 13.5);
++          emojiBack.fill({ color: '#ffffff', alpha: 0.7 + weightRatio * 0.06 });
++          emojiBack.stroke({ color: area.color, width: 1, alpha: 0.14 + weightRatio * 0.1 });
+           emojiBack.eventMode = 'none';
+           bubbleContainer.addChild(emojiBack);
+ 
+@@ -1056,7 +1091,7 @@ export default function Whiteboard() {
+             text: emoji,
+             style: new TextStyle({
+               fontFamily: EMOJI_FONT_FAMILY,
+-              fontSize: 20,
++              fontSize: 22,
+               fontWeight: 'bold',
+             }),
+           });
+@@ -1082,23 +1117,6 @@ export default function Whiteboard() {
+           bText.y = radius * 0.1;
+           bubbleContainer.addChild(bText);
+ 
+-          const weightStrip = new Graphics();
+-          const dotCount = 6;
+-          const filledDots = Math.min(dotCount, weightTier + Math.max(0, referenceCount - 5) * 0.25);
+-          const dotSpacing = 7.5;
+-          const dotRadius = 2.35;
+-          const stripStart = -((dotCount - 1) * dotSpacing) / 2;
+-          for (let d = 0; d < dotCount; d++) {
+-            const xPos = stripStart + d * dotSpacing;
+-            weightStrip.circle(xPos, radius * 0.57, dotRadius);
+-            weightStrip.fill({
+-              color: d < filledDots ? area.color : '#cbd5e1',
+-              alpha: d < filledDots ? 0.7 + weightRatio * 0.18 : 0.4,
+-            });
+-          }
+-          weightStrip.eventMode = 'none';
+-          bubbleContainer.addChild(weightStrip);
+-
+           const badge = new Container();
+           badge.x = radius * 0.48;
+           badge.y = radius * 0.5;
+@@ -1123,6 +1141,7 @@ export default function Whiteboard() {
+           const state: BubbleState = {
+             container: bubbleContainer,
+             glow,
++            weightRing,
+             bubble,
+             targetScale: 1,
+             currentScale: 0.3,
+@@ -1135,6 +1154,7 @@ export default function Whiteboard() {
+ 
+           bubbleContainer.on('pointerover', (e) => {
+             state.targetScale = 1.06;
++            state.weightRing.alpha = 1;
+             glow.clear();
+             glow.circle(0, 0, radius + 14);
+             glow.fill({ color: area.color, alpha: 0.08 });
+@@ -1144,6 +1164,7 @@ export default function Whiteboard() {
+           });
+           bubbleContainer.on('pointerout', () => {
+             state.targetScale = 1;
++            state.weightRing.alpha = 0.92;
+             glow.clear();
+             hideTooltip();
+           });
+@@ -1448,6 +1469,9 @@ export default function Whiteboard() {
+             s.glow.fill({ color: '#fbbf24', alpha: 0.15 });
+             s.glow.circle(0, 0, BUBBLE_RADIUS + 4);
+             s.glow.fill({ color: '#fbbf24', alpha: 0.1 });
++            s.weightRing.alpha = 1;
++          } else {
++            s.weightRing.alpha += (0.92 - s.weightRing.alpha) * 0.18;
+           }
+         }
+[0m
+[0m$ [0mgit log -5 --oneline
+410a084 loop iter 2: workspace 1 (Implementation) completed
+f9bb659 Improve whiteboard fit behavior and search-panel consistency
+3f743b1 loop iter 1: workspace 3 (Research & Content) completed
+4631ba3 loop iter 1: workspace 2 (Improvements & PRD) completed
+58a6d3c Polish whiteboard bubble readability
+[0m
+I’ve got the exact scope now. I’m staging only the app code and the workspace note, leaving the unrelated log change alone.
+[0m$ [0mgit add src/components/whiteboard.tsx .workspaces/2-improvements/context.md && git commit -m "Refine bubble weight encoding"
+[main d7ba0a1] Refine bubble weight encoding
+ 2 files changed, 58 insertions(+), 28 deletions(-)
+[0m
+[0m$ [0mgit status --short
+M .workspaces/logs/loop.log
+[0m
+Implemented and committed.
+
+- Reworked subsection bubbles to keep fixed size while encoding project weight with a segmented ring plus refs badge.
+- Improved emoji clarity with a larger halo and slightly bigger icon text.
+- Removed the old dot strip to reduce clutter.
+- Updated `.workspaces/2-improvements/context.md` with the current state.
+- Verified with `npm run build`.
+
+Commit: `d7ba0a1` `Refine bubble weight encoding`
+
+Unrelated worktree change still present: `.workspaces/logs/loop.log`
+[0;32m[2026-04-02 17:53:26] ✓[0m Workspace Improvements & PRD completed successfully
