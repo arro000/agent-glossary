@@ -1603,3 +1603,414 @@ Implemented and committed as `da2461d` (`Refine glossary board taxonomy`).
 
 Unrelated `/.workspaces/logs/loop.log` is still modified and was left out of the commit.
 [0;32m[2026-04-02 21:48:40] ✓[0m Workspace Improvements & PRD completed successfully
+ 1 file changed, 274 insertions(+)
+To https://github.com/arro000/agent-glossary.git
+   5edda0e..98856f8  main -> main
+[0;32m[2026-04-02 21:48:40] ✓[0m Workspace changes committed and pushed
+[0;36m[2026-04-02 21:48:40][0m Launching OpenCode for workspace Implementation...
+[0m
+> build · gpt-5.3-codex
+[0m
+[0m→ [0mRead .workspaces/1-implementation/context.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/pixijs-reference.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .workspaces/2-improvements/context.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead .workspaces/2-improvements/resources/prd.md[90m [offset=1, limit=2000][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1, limit=2600][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1058, limit=2600][0m
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+
+LSP errors detected in src/components/whiteboard.tsx, please fix:
+<diagnostics file="/home/arro/projects/agent-glossary/src/components/whiteboard.tsx">
+ERROR [1370:17] Property 'signal' is missing in type '{ container: Container<ContainerChild>; glow: Graphics; weightRing: Graphics; bubble: Graphics; targetScale: number; currentScale: number; ... 10 more ...; selected: false; }' but required in type 'BubbleState'.
+</diagnostics>
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+
+LSP errors detected in src/components/whiteboard.tsx, please fix:
+<diagnostics file="/home/arro/projects/agent-glossary/src/components/whiteboard.tsx">
+ERROR [2343:9] Cannot find name 'signalHint'.
+ERROR [2344:9] Cannot find name 'signalHint'.
+ERROR [2345:9] Cannot find name 'signalHint'.
+</diagnostics>
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+[0m
+[0m$ [0mnpm run build
+> agent-glossary@0.1.0 build
+> next build
+
+▲ Next.js 16.2.2 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.1s
+  Running TypeScript ...
+  Finished TypeScript in 2.0s ...
+  Collecting page data using 5 workers ...
+  Generating static pages using 5 workers (0/4) ...
+  Generating static pages using 5 workers (1/4) 
+  Generating static pages using 5 workers (2/4) 
+  Generating static pages using 5 workers (3/4) 
+✓ Generating static pages using 5 workers (4/4) in 329ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+[0m
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/1-implementation/context.md
+[0m
+[0m$ [0mgit status --short
+M .workspaces/1-implementation/context.md
+ M .workspaces/logs/loop.log
+ M src/components/whiteboard.tsx
+[0m
+[0m$ [0mgit diff -- src/components/whiteboard.tsx .workspaces/1-implementation/context.md
+diff --git a/.workspaces/1-implementation/context.md b/.workspaces/1-implementation/context.md
+index 9b62514..ced4f62 100644
+--- a/.workspaces/1-implementation/context.md
++++ b/.workspaces/1-implementation/context.md
+@@ -2,8 +2,8 @@
+ 
+ ## Stato
+ - **Iterazione**: 2
+-- **Ultimo aggiornamento**: 2026-04-02 22:10:00
+-- **Stato**: completed
++- **Ultimo aggiornamento**: 2026-04-02 21:48:40
++- **Stato**: in_progress
+ 
+ ## Obiettivo
+ Implementare l'app "Agent Glossary Whiteboard" usando PixiJS v8 + Next.js.
+@@ -241,6 +241,14 @@ La whiteboard rappresenta 100 subsection correnti allineate alle macroaree princ
+ - [x] Rafforzati i signal cue per i pattern harness/context/replay senza introdurre overlay HTML
+ - [x] Verifica tecnica eseguita: `npm run build` completata con successo
+ 
++## Iterazione 2 (Richiesta utente corrente) — Completata
++- [x] Letti i riferimenti richiesti: `workspace 1 context`, `concepts.md`, `pixijs-reference.md`, `workspace 2 context`, `findings.md`
++- [x] Verificato PRD presente in `.workspaces/2-improvements/resources/prd.md` e applicati i raffinamenti visuali richiesti
++- [x] Tradotti i segnali harness/context/reference-navigation in elementi piu visibili: signal legend dedicata su canvas, signal chip nelle bubble e badge signal nel panel dettaglio
++- [x] Layout reso piu chiaro (non piu denso) aumentando spazio delle macroaree/gap e padding interno del bubble packing mantenendo bolle equal-size
++- [x] Vincoli chiave mantenuti: PixiJS v8 vanilla full-canvas, Inter, zoom/pan, hover glow, click panel, peso da `alternatives` (ring+badge, non diametro)
++- [x] Verifica tecnica: `npm run build` completata con successo
++
+ ## Comandi Dopo Ogni Iterazione
+ 1. Aggiorna questo file con lo stato attuale
+ 2. Se incontri errori o limiti, segnalali in `resources/blockers.md`
+diff --git a/src/components/whiteboard.tsx b/src/components/whiteboard.tsx
+index ff35ca0..ff4752a 100644
+--- a/src/components/whiteboard.tsx
++++ b/src/components/whiteboard.tsx
+@@ -30,10 +30,10 @@ interface MacroareaConfig {
+ const GRID_SIZE = 40;
+ const GRID_COLOR = '#e5e5e5';
+ const BG_COLOR = '#fafafa';
+-const AREA_WIDTH = 800;
+-const AREA_HEIGHT = 540;
+-const COL_GAP = 112;
+-const ROW_GAP = 80;
++const AREA_WIDTH = 840;
++const AREA_HEIGHT = 568;
++const COL_GAP = 124;
++const ROW_GAP = 92;
+ const START_X = 64;
+ const START_Y = 52;
+ const COL_STEP = AREA_WIDTH + COL_GAP;
+@@ -45,6 +45,22 @@ const PAN_LERP = 0.15;
+ const EMOJI_FONT_FAMILY = '"Inter", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif';
+ const MOBILE_BREAKPOINT = 768;
+ 
++interface SignalInfo {
++  key: 'harness' | 'eval' | 'replay' | 'context' | 'refnav' | 'repomap';
++  label: string;
++  color: string;
++  helper: string;
++}
++
++const SIGNAL_LEGEND: SignalInfo[] = [
++  { key: 'harness', label: 'HARNESS', color: '#0284c7', helper: 'runtime scaffold' },
++  { key: 'context', label: 'CONTEXT', color: '#2563eb', helper: 'state window + graph' },
++  { key: 'refnav', label: 'REF NAV', color: '#0f766e', helper: 'source traversal' },
++  { key: 'repomap', label: 'REPO MAP', color: '#0f766e', helper: 'codebase navigation' },
++  { key: 'replay', label: 'REPLAY', color: '#7c3aed', helper: 'durable trace loops' },
++  { key: 'eval', label: 'EVAL', color: '#7c3aed', helper: 'regression harness' },
++];
++
+ function isCompactViewport() {
+   if (typeof window === 'undefined') return false;
+   return window.innerWidth < MOBILE_BREAKPOINT || window.matchMedia('(pointer: coarse)').matches;
+@@ -324,15 +340,15 @@ function getBubbleColumns(count: number): number {
+   return 7;
+ }
+ 
+-function getConceptSignal(conceptName: string): { label: string; color: string } | null {
++function getConceptSignal(conceptName: string): SignalInfo | null {
+   const key = conceptName.replace(/\n/g, ' ').toLowerCase();
+-  if (key.includes('harness / runtime scaffold')) return { label: 'HARNESS', color: '#0284c7' };
+-  if (key.includes('eval harness')) return { label: 'EVAL', color: '#7c3aed' };
+-  if (key.includes('durable execution')) return { label: 'REPLAY', color: '#7c3aed' };
+-  if (key.includes('context window')) return { label: 'CONTEXT', color: '#2563eb' };
+-  if (key.includes('context graph')) return { label: 'CONTEXT', color: '#2563eb' };
+-  if (key.includes('reference navigation')) return { label: 'REF NAV', color: '#0f766e' };
+-  if (key.includes('repo map') || key.includes('codebase map')) return { label: 'REPO MAP', color: '#0f766e' };
++  if (key.includes('harness / runtime scaffold')) return SIGNAL_LEGEND[0];
++  if (key.includes('eval harness')) return SIGNAL_LEGEND[5];
++  if (key.includes('durable execution')) return SIGNAL_LEGEND[4];
++  if (key.includes('context window')) return SIGNAL_LEGEND[1];
++  if (key.includes('context graph')) return SIGNAL_LEGEND[1];
++  if (key.includes('reference navigation')) return SIGNAL_LEGEND[2];
++  if (key.includes('repo map') || key.includes('codebase map')) return SIGNAL_LEGEND[3];
+   return null;
+ }
+ 
+@@ -430,9 +446,9 @@ function drawProjectWeightRing(
+ 
+ function layoutBubbles(concepts: ConceptData[], ax: number, ay: number) {
+   const n = concepts.length;
+-  const padX = 42;
+-  const padY = 34;
+-  const headerH = 72;
++  const padX = 50;
++  const padY = 42;
++  const headerH = 80;
+   const availW = AREA_WIDTH - padX * 2;
+   const availH = AREA_HEIGHT - headerH - padY * 2;
+ 
+@@ -506,6 +522,7 @@ interface BubbleState {
+   searchIndex: string;
+   displayLabel: string;
+   emoji: string;
++  signal: SignalInfo | null;
+   introIndex: number;
+   searchHighlight: boolean;
+   selected: boolean;
+@@ -1073,6 +1090,89 @@ function createLegend(onAreaClick: (areaIndex: number) => void, compact = false)
+   return container;
+ }
+ 
++function createSignalLegend(compact = false): Container {
++  const container = new Container();
++  container.visible = !compact;
++  container.eventMode = 'none';
++
++  const padX = 10;
++  const padY = 8;
++  const chipW = 98;
++  const chipH = 20;
++  const chipGap = 8;
++  const headerH = 16;
++  const items = SIGNAL_LEGEND.slice(0, 4);
++  const w = padX * 2 + chipW * 2 + chipGap;
++  const h = padY * 2 + headerH + chipH * 2 + chipGap;
++
++  const bg = new Graphics();
++  bg.roundRect(0, 0, w, h, 12);
++  bg.fill({ color: '#ffffff', alpha: 0.9 });
++  bg.stroke({ color: '#e5e7eb', width: 1 });
++  bg.eventMode = 'none';
++  container.addChild(bg);
++
++  const title = new Text({
++    text: 'SIGNAL CUES',
++    style: new TextStyle({
++      fontFamily: '"Inter", sans-serif',
++      fontSize: 9,
++      fontWeight: 'bold',
++      fill: '#94a3b8',
++      letterSpacing: 1,
++    }),
++  });
++  title.x = padX;
++  title.y = padY;
++  title.eventMode = 'none';
++  container.addChild(title);
++
++  for (let i = 0; i < items.length; i++) {
++    const item = items[i];
++    const col = i % 2;
++    const row = Math.floor(i / 2);
++    const x = padX + col * (chipW + chipGap);
++    const y = padY + headerH + row * (chipH + chipGap);
++
++    const chip = new Graphics();
++    chip.roundRect(x, y, chipW, chipH, 10);
++    chip.fill({ color: '#f8fafc', alpha: 0.98 });
++    chip.stroke({ color: item.color, width: 1, alpha: 0.45 });
++    chip.eventMode = 'none';
++    container.addChild(chip);
++
++    const label = new Text({
++      text: item.label,
++      style: new TextStyle({
++        fontFamily: '"Inter", sans-serif',
++        fontSize: 8,
++        fontWeight: 'bold',
++        fill: item.color,
++        letterSpacing: 0.5,
++      }),
++    });
++    label.x = x + 8;
++    label.y = y + 3;
++    label.eventMode = 'none';
++    container.addChild(label);
++
++    const helper = new Text({
++      text: item.helper,
++      style: new TextStyle({
++        fontFamily: '"Inter", sans-serif',
++        fontSize: 7,
++        fill: '#64748b',
++      }),
++    });
++    helper.x = x + 8;
++    helper.y = y + 11;
++    helper.eventMode = 'none';
++    container.addChild(helper);
++  }
++
++  return container;
++}
++
+ export default function Whiteboard() {
+   const containerRef = useRef<HTMLDivElement>(null);
+ 
+@@ -1309,6 +1409,12 @@ export default function Whiteboard() {
+             signalChip.addChild(signalBg);
+             signalChip.addChild(signalText);
+             bubbleContainer.addChild(signalChip);
++
++            const signalRail = new Graphics();
++            signalRail.roundRect(-radius * 0.34, radius * 0.36, radius * 0.68, 4, 2);
++            signalRail.fill({ color: conceptSignal.color, alpha: 0.45 });
++            signalRail.eventMode = 'none';
++            bubbleContainer.addChild(signalRail);
+           }
+ 
+           const bText = new Text({
+@@ -1365,6 +1471,7 @@ export default function Whiteboard() {
+             searchIndex,
+             displayLabel,
+             emoji,
++            signal: conceptSignal,
+             introIndex: 0,
+             searchHighlight: false,
+             selected: false,
+@@ -1501,23 +1608,10 @@ export default function Whiteboard() {
+       searchBar.container.y = compactMode ? 10 : 14;
+       app.stage.addChild(searchBar.container);
+ 
+-      const signalHint = new Text({
+-        text: 'Signals: HARNESS · CONTEXT · REF NAV',
+-        style: new TextStyle({
+-          fontFamily: '"Inter", sans-serif',
+-          fontSize: 10,
+-          fontWeight: 'bold',
+-          fill: '#64748b',
+-          letterSpacing: 0.5,
+-        }),
+-      });
+-      signalHint.anchor.set(0.5, 0);
+-      signalHint.x = window.innerWidth / 2;
+-      signalHint.y = searchBar.container.y + searchBar.height + 7;
+-      signalHint.alpha = 0.92;
+-      signalHint.visible = !compactMode;
+-      signalHint.eventMode = 'none';
+-      app.stage.addChild(signalHint);
++      const signalLegend = createSignalLegend(compactMode);
++      signalLegend.x = Math.max(12, (window.innerWidth - signalLegend.width) / 2);
++      signalLegend.y = searchBar.container.y + searchBar.height + 8;
++      app.stage.addChild(signalLegend);
+ 
+       const legend = createLegend((areaIndex: number) => {
+         const pos = getAreaPosition(areaIndex);
+@@ -2095,6 +2189,29 @@ export default function Whiteboard() {
+         card.addChild(badgeTxt);
+         cy += 26;
+ 
++        if (state.signal) {
++          const signalBadge = new Graphics();
++          signalBadge.roundRect(pad - 4, cy - 2, 180, 20, 10);
++          signalBadge.fill({ color: '#f8fafc', alpha: 0.95 });
++          signalBadge.stroke({ color: state.signal.color, width: 1, alpha: 0.4 });
++          signalBadge.eventMode = 'none';
++          card.addChild(signalBadge);
++
++          const signalLabel = new Text({
++            text: `${state.signal.label} • ${state.signal.helper}`,
++            style: new TextStyle({
++              fontFamily: '"Inter", sans-serif',
++              fontSize: 10,
++              fontWeight: 'bold',
++              fill: state.signal.color,
++            }),
++          });
++          signalLabel.x = pad + 4;
++          signalLabel.y = cy + 2;
++          card.addChild(signalLabel);
++          cy += 26;
++        }
++
+         const desc = new Text({
+           text: state.concept.description,
+           style: new TextStyle({
+@@ -2252,9 +2369,9 @@ export default function Whiteboard() {
+         const searchW = searchBar.container.width;
+         searchBar.container.x = Math.max(12, (window.innerWidth - searchW) / 2);
+         searchBar.container.y = compactMode ? 10 : 14;
+-        signalHint.visible = !compactMode;
+-        signalHint.x = window.innerWidth / 2;
+-        signalHint.y = searchBar.container.y + searchBar.height + 7;
++        signalLegend.visible = !compactMode;
++        signalLegend.x = Math.max(12, (window.innerWidth - signalLegend.width) / 2);
++        signalLegend.y = searchBar.container.y + searchBar.height + 8;
+         legend.visible = !compactMode;
+         legend.x = window.innerWidth - 190 - 14;
+         legend.y = 14;
+[0m
+[0m$ [0mgit log -8 --oneline
+98856f8 loop iter 2: workspace 2 (Improvements & PRD) completed
+da2461d Refine glossary board taxonomy
+5edda0e loop iter 2: workspace 3 (Research & Content) completed
+3e4a2aa loop iter 1: workspace 1 (Implementation) completed
+759cb37 Improve whiteboard clarity around key agent concepts
+ff811ae loop iter 1: workspace 2 (Improvements & PRD) completed
+138d887 loop iter 1: improve whiteboard layout polish
+1e79167 loop iter 1: workspace 3 (Research & Content) completed
+[0m
+[0m$ [0mgit add "src/components/whiteboard.tsx" ".workspaces/1-implementation/context.md" && git commit -m "Improve whiteboard signal cues and spacing" && git status --short
+[main 773b989] Improve whiteboard signal cues and spacing
+ 2 files changed, 162 insertions(+), 37 deletions(-)
+ M .workspaces/logs/loop.log
+[0m
+Implemented iteration 2 updates and committed them.
+
+- I translated the harness/context/reference-navigation ideas into clearer on-canvas signals in `src/components/whiteboard.tsx`:
+  - Added a dedicated Pixi signal legend (`SIGNAL CUES`) near the search bar.
+  - Kept per-bubble signal chips and added a subtle in-bubble signal rail for stronger visual recognition.
+  - Added signal metadata in the detail panel (`HARNESS`, `CONTEXT`, `REF NAV`, etc.) with helper text.
+- I kept subsection bubbles equal-size and project-weighted (weight still encoded via refs ring/badge, not diameter) in `src/components/whiteboard.tsx`.
+- I made the layout clearer (not denser) by increasing macroarea dimensions/gaps and internal bubble padding in `src/components/whiteboard.tsx`.
+- I updated workspace state in `.workspaces/1-implementation/context.md` with the new “Iterazione 2 (Richiesta utente corrente) — Completata” section.
+- Verification: `npm run build` passes.
+
+Commit created:
+- `773b989` — `Improve whiteboard signal cues and spacing`
+
+Note:
+- There is an unrelated unstaged change left in `.workspaces/logs/loop.log` (not included in commit).
+[0;32m[2026-04-02 21:51:30] ✓[0m Workspace Implementation completed successfully
