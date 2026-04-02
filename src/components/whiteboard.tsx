@@ -30,10 +30,10 @@ interface MacroareaConfig {
 const GRID_SIZE = 40;
 const GRID_COLOR = '#e5e5e5';
 const BG_COLOR = '#fafafa';
-const AREA_WIDTH = 840;
-const AREA_HEIGHT = 568;
-const COL_GAP = 124;
-const ROW_GAP = 92;
+const AREA_WIDTH = 860;
+const AREA_HEIGHT = 600;
+const COL_GAP = 148;
+const ROW_GAP = 112;
 const START_X = 64;
 const START_Y = 52;
 const COL_STEP = AREA_WIDTH + COL_GAP;
@@ -338,9 +338,9 @@ function getReferenceCount(alternatives: string): number {
 }
 
 function getBubbleColumns(count: number): number {
-  if (count <= 3) return count;
-  if (count <= 8) return 4;
-  if (count <= 12) return 5;
+  if (count <= 4) return count;
+  if (count <= 9) return 4;
+  if (count <= 14) return 5;
   return 6;
 }
 
@@ -383,6 +383,11 @@ function getConceptSignal(conceptName: string): SignalInfo | null {
     if (rule.matchers.some((matcher) => matcher.test(key))) return rule.signal;
   }
   return null;
+}
+
+function isCoordinationFocusConcept(conceptName: string): boolean {
+  const key = conceptName.replace(/\n/g, ' ').toLowerCase();
+  return key.includes('harness / runtime scaffold') || key.includes('context graph') || key.includes('reference navigation');
 }
 
 function getMacroareaSignals(area: MacroareaConfig): SignalInfo[] {
@@ -493,9 +498,9 @@ function drawProjectWeightRing(
 
 function layoutBubbles(concepts: ConceptData[], ax: number, ay: number) {
   const n = concepts.length;
-  const padX = 50;
-  const padY = 42;
-  const headerH = 80;
+  const padX = 60;
+  const padY = 56;
+  const headerH = 96;
   const availW = AREA_WIDTH - padX * 2;
   const availH = AREA_HEIGHT - headerH - padY * 2;
 
@@ -1222,6 +1227,87 @@ function createSignalLegend(compact = false): Container {
   return container;
 }
 
+function createFocusConceptRail(compact = false): Container {
+  const container = new Container();
+  container.visible = !compact;
+  container.eventMode = 'none';
+
+  const items = [
+    { emoji: '🧱', label: 'HARNESS SCAFFOLD', color: '#0284c7' },
+    { emoji: '🕸️', label: 'CONTEXT GRAPH', color: '#2563eb' },
+    { emoji: '🔎', label: 'REFERENCE NAV', color: '#0f766e' },
+  ];
+
+  const padX = 12;
+  const padY = 9;
+  const chipW = 148;
+  const chipH = 24;
+  const gap = 8;
+  const w = padX * 2 + items.length * chipW + (items.length - 1) * gap;
+  const h = padY * 2 + 18 + chipH;
+
+  const bg = new Graphics();
+  bg.roundRect(0, 0, w, h, 12);
+  bg.fill({ color: '#ffffff', alpha: 0.9 });
+  bg.stroke({ color: '#e5e7eb', width: 1 });
+  bg.eventMode = 'none';
+  container.addChild(bg);
+
+  const title = new Text({
+    text: 'COORDINATION CONCEPTS',
+    style: new TextStyle({
+      fontFamily: '"Inter", sans-serif',
+      fontSize: 9,
+      fontWeight: 'bold',
+      fill: '#94a3b8',
+      letterSpacing: 1,
+    }),
+  });
+  title.x = padX;
+  title.y = padY;
+  title.eventMode = 'none';
+  container.addChild(title);
+
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+    const x = padX + i * (chipW + gap);
+    const y = padY + 16;
+
+    const chip = new Graphics();
+    chip.roundRect(x, y, chipW, chipH, 11);
+    chip.fill({ color: '#f8fafc', alpha: 0.98 });
+    chip.stroke({ color: item.color, width: 1, alpha: 0.46 });
+    chip.eventMode = 'none';
+    container.addChild(chip);
+
+    const emoji = new Text({
+      text: item.emoji,
+      style: new TextStyle({ fontFamily: EMOJI_FONT_FAMILY, fontSize: 13 }),
+    });
+    emoji.x = x + 8;
+    emoji.y = y + 4;
+    emoji.eventMode = 'none';
+    container.addChild(emoji);
+
+    const label = new Text({
+      text: item.label,
+      style: new TextStyle({
+        fontFamily: '"Inter", sans-serif',
+        fontSize: 8,
+        fontWeight: 'bold',
+        fill: item.color,
+        letterSpacing: 0.45,
+      }),
+    });
+    label.x = x + 28;
+    label.y = y + 8;
+    label.eventMode = 'none';
+    container.addChild(label);
+  }
+
+  return container;
+}
+
 export default function Whiteboard() {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -1436,6 +1522,7 @@ export default function Whiteboard() {
 
           const bubbleTypography = getBubbleTypography(concept.name, radius);
           const conceptSignal = getConceptSignal(concept.name);
+          const focusConcept = isCoordinationFocusConcept(concept.name);
 
           const titlePlate = new Graphics();
           titlePlate.roundRect(-radius * 0.72, radius * 0.005, radius * 1.44, radius * 0.58, 15);
@@ -1468,19 +1555,19 @@ export default function Whiteboard() {
               text: conceptSignal.label,
               style: new TextStyle({
                 fontFamily: '"Inter", sans-serif',
-                fontSize: 7,
+                fontSize: focusConcept ? 7.8 : 7,
                 fontWeight: 'bold',
                 fill: conceptSignal.color,
-                letterSpacing: 0.6,
+                letterSpacing: focusConcept ? 0.7 : 0.6,
               }),
             });
             signalText.anchor.set(0.5);
 
-            const signalWidth = Math.max(44, signalText.width + 10);
+            const signalWidth = Math.max(44, signalText.width + (focusConcept ? 13 : 10));
             const signalBg = new Graphics();
             signalBg.roundRect(-signalWidth / 2, -6, signalWidth, 12, 6);
             signalBg.fill({ color: '#ffffff', alpha: 0.95 });
-            signalBg.stroke({ color: conceptSignal.color, width: 1, alpha: 0.42 });
+            signalBg.stroke({ color: conceptSignal.color, width: focusConcept ? 1.2 : 1, alpha: focusConcept ? 0.58 : 0.42 });
             signalBg.eventMode = 'none';
 
             const signalChip = new Container();
@@ -1493,7 +1580,7 @@ export default function Whiteboard() {
 
             const signalRail = new Graphics();
             signalRail.roundRect(-radius * 0.34, radius * 0.36, radius * 0.68, 4, 2);
-            signalRail.fill({ color: conceptSignal.color, alpha: 0.45 });
+            signalRail.fill({ color: conceptSignal.color, alpha: focusConcept ? 0.62 : 0.45 });
             signalRail.eventMode = 'none';
             bubbleContainer.addChild(signalRail);
           }
@@ -1693,6 +1780,11 @@ export default function Whiteboard() {
       signalLegend.x = Math.max(12, (window.innerWidth - signalLegend.width) / 2);
       signalLegend.y = searchBar.container.y + searchBar.height + 8;
       app.stage.addChild(signalLegend);
+
+      const focusConceptRail = createFocusConceptRail(compactMode);
+      focusConceptRail.x = Math.max(12, (window.innerWidth - focusConceptRail.width) / 2);
+      focusConceptRail.y = signalLegend.y + signalLegend.height + 8;
+      app.stage.addChild(focusConceptRail);
 
       const legend = createLegend((areaIndex: number) => {
         const pos = getAreaPosition(areaIndex);
@@ -2457,6 +2549,9 @@ export default function Whiteboard() {
         signalLegend.visible = !compactMode;
         signalLegend.x = Math.max(12, (window.innerWidth - signalLegend.width) / 2);
         signalLegend.y = searchBar.container.y + searchBar.height + 8;
+        focusConceptRail.visible = !compactMode;
+        focusConceptRail.x = Math.max(12, (window.innerWidth - focusConceptRail.width) / 2);
+        focusConceptRail.y = signalLegend.y + signalLegend.height + 8;
         legend.visible = !compactMode;
         legend.x = window.innerWidth - 190 - 14;
         legend.y = 14;
