@@ -785,3 +785,289 @@ Implemented and committed.
 Remaining uncommitted file:
 - `.workspaces/logs/loop.log`
 [0;32m[2026-04-02 21:37:52] ✓[0m Workspace Improvements & PRD completed successfully
+ 1 file changed, 691 insertions(+)
+To https://github.com/arro000/agent-glossary.git
+   1e79167..ff811ae  main -> main
+[0;32m[2026-04-02 21:37:53] ✓[0m Workspace changes committed and pushed
+[0;36m[2026-04-02 21:37:53][0m Launching OpenCode for workspace Implementation...
+[0m
+> build · gpt-5.3-codex
+[0m
+[0m✱ [0mGlob "**/*"[90m in .workspaces · 16 matches[0m
+[0m✱ [0mGlob "**/*"[90m in . · 100 matches[0m
+[0m→ [0mRead .workspaces/1-implementation/context.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/pixijs-reference.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/2-improvements/context.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/2-improvements/resources/prd.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1, limit=420][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=421, limit=420][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=841, limit=420][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1261, limit=1200][0m
+[0m✱ [0mGlob "**/*"[90m in node_modules/next/dist/docs · 100 matches[0m
+[0m→ [0mRead node_modules/next/dist/docs/01-app/01-getting-started/05-server-and-client-components.md[90m [offset=1, limit=220][0m
+[0m→ [0mRead node_modules/next/dist/docs/01-app/01-getting-started/11-css.md[90m [offset=1, limit=160][0m
+[0m→ [0mRead src/app/page.tsx[90m [offset=1, limit=120][0m
+[0m→ [0mRead src/app/globals.css[90m [offset=1, limit=200][0m
+[0m→ [0mRead src/app/layout.tsx[90m [offset=1, limit=120][0m
+[0m
+[0m$ [0mgit status --short
+M .workspaces/1-implementation/context.md
+ M .workspaces/logs/loop.log
+[0m
+[0m$ [0mgit status -sb
+## main...origin/main
+ M .workspaces/1-implementation/context.md
+ M .workspaces/logs/loop.log
+[0m
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/1-implementation/context.md
+[0m→ [0mRead .workspaces/1-implementation/context.md[90m [offset=1, limit=20][0m
+[0m
+[0m$ [0mdate '+%Y-%m-%d %H:%M:%S'
+2026-04-02 21:40:12
+[0m
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/1-implementation/context.md
+[0m
+[0m$ [0mnpm run build
+> agent-glossary@0.1.0 build
+> next build
+
+▲ Next.js 16.2.2 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.1s
+  Running TypeScript ...
+  Finished TypeScript in 1991ms ...
+  Collecting page data using 5 workers ...
+  Generating static pages using 5 workers (0/4) ...
+  Generating static pages using 5 workers (1/4) 
+  Generating static pages using 5 workers (2/4) 
+  Generating static pages using 5 workers (3/4) 
+✓ Generating static pages using 5 workers (4/4) in 334ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+[0m
+[0m$ [0mgit status --short
+M .workspaces/1-implementation/context.md
+ M .workspaces/logs/loop.log
+ M src/components/whiteboard.tsx
+[0m
+[0m$ [0mgit diff -- src/components/whiteboard.tsx .workspaces/1-implementation/context.md
+diff --git a/.workspaces/1-implementation/context.md b/.workspaces/1-implementation/context.md
+index 0830fb5..bd9a141 100644
+--- a/.workspaces/1-implementation/context.md
++++ b/.workspaces/1-implementation/context.md
+@@ -2,8 +2,8 @@
+ 
+ ## Stato
+ - **Iterazione**: 1
+-- **Ultimo aggiornamento**: 2026-04-02 21:27:41
+-- **Stato**: completed
++- **Ultimo aggiornamento**: 2026-04-02 21:40:12
++- **Stato**: in_progress
+ 
+ ## Obiettivo
+ Implementare l'app "Agent Glossary Whiteboard" usando PixiJS v8 + Next.js.
+@@ -228,6 +228,12 @@ La whiteboard rappresenta 69 subsection correnti allineate alle macroaree princi
+ - `src/app/page.tsx` — Pagina che renderizza il whiteboard
+ - `src/app/globals.css` — CSS globale con import Inter e reset
+ 
++## Iterazione 1 (Richiesta utente corrente) — Aggiornamento finale
++- [x] Letti tutti i riferimenti richiesti (`context.md`, `resources/concepts.md`, `resources/pixijs-reference.md`, workspace 2 e findings) e verificato PRD presente
++- [x] Rafforzata la traduzione visiva di harness/context/reference-navigation con signal chip dedicati nelle subsection bubble (`HARNESS`, `CONTEXT`, `REF NAV`, `REPO MAP`, `EVAL`)
++- [x] Layout reso piu chiaro senza aumentare densita: macroaree piu ariose (dimensioni/gap aumentati) e bubble packing aggiornato per dataset denso mantenendo bubble equal-size
++- [x] Confermato encoding del peso progetto tramite reference count (`alternatives`) senza cambiare il diametro delle bubble
++
+ ## Comandi Dopo Ogni Iterazione
+ 1. Aggiorna questo file con lo stato attuale
+ 2. Se incontri errori o limiti, segnalali in `resources/blockers.md`
+diff --git a/src/components/whiteboard.tsx b/src/components/whiteboard.tsx
+index 9cfc688..615079b 100644
+--- a/src/components/whiteboard.tsx
++++ b/src/components/whiteboard.tsx
+@@ -30,10 +30,10 @@ interface MacroareaConfig {
+ const GRID_SIZE = 40;
+ const GRID_COLOR = '#e5e5e5';
+ const BG_COLOR = '#fafafa';
+-const AREA_WIDTH = 760;
+-const AREA_HEIGHT = 500;
+-const COL_GAP = 96;
+-const ROW_GAP = 72;
++const AREA_WIDTH = 800;
++const AREA_HEIGHT = 540;
++const COL_GAP = 112;
++const ROW_GAP = 80;
+ const START_X = 64;
+ const START_Y = 52;
+ const COL_STEP = AREA_WIDTH + COL_GAP;
+@@ -314,10 +314,20 @@ function getReferenceCount(alternatives: string): number {
+ 
+ function getBubbleColumns(count: number): number {
+   if (count <= 3) return count;
+-  if (count <= 7) return 4;
+-  if (count <= 11) return 5;
+-  if (count <= 14) return 5;
+-  return 6;
++  if (count <= 8) return 4;
++  if (count <= 12) return 5;
++  if (count <= 16) return 6;
++  return 7;
++}
++
++function getConceptSignal(conceptName: string): { label: string; color: string } | null {
++  const key = conceptName.replace(/\n/g, ' ').toLowerCase();
++  if (key.includes('harness / runtime scaffold')) return { label: 'HARNESS', color: '#0284c7' };
++  if (key.includes('eval harness')) return { label: 'EVAL', color: '#7c3aed' };
++  if (key.includes('context window')) return { label: 'CONTEXT', color: '#2563eb' };
++  if (key.includes('reference navigation')) return { label: 'REF NAV', color: '#0f766e' };
++  if (key.includes('repo map') || key.includes('codebase map')) return { label: 'REPO MAP', color: '#0f766e' };
++  return null;
+ }
+ 
+ function getBubbleReferenceScore(concept: ConceptData): number {
+@@ -414,9 +424,9 @@ function drawProjectWeightRing(
+ 
+ function layoutBubbles(concepts: ConceptData[], ax: number, ay: number) {
+   const n = concepts.length;
+-  const padX = 34;
+-  const padY = 26;
+-  const headerH = 54;
++  const padX = 42;
++  const padY = 34;
++  const headerH = 72;
+   const availW = AREA_WIDTH - padX * 2;
+   const availH = AREA_HEIGHT - headerH - padY * 2;
+ 
+@@ -1238,6 +1248,7 @@ export default function Whiteboard() {
+           bubbleContainer.addChild(bubble);
+ 
+           const bubbleTypography = getBubbleTypography(concept.name, radius);
++          const conceptSignal = getConceptSignal(concept.name);
+ 
+           const titlePlate = new Graphics();
+           titlePlate.roundRect(-radius * 0.72, radius * 0.005, radius * 1.44, radius * 0.58, 15);
+@@ -1265,6 +1276,35 @@ export default function Whiteboard() {
+           emojiText.y = bubbleTypography.emojiY;
+           bubbleContainer.addChild(emojiText);
+ 
++          if (conceptSignal) {
++            const signalText = new Text({
++              text: conceptSignal.label,
++              style: new TextStyle({
++                fontFamily: '"Inter", sans-serif',
++                fontSize: 7,
++                fontWeight: 'bold',
++                fill: conceptSignal.color,
++                letterSpacing: 0.6,
++              }),
++            });
++            signalText.anchor.set(0.5);
++
++            const signalWidth = Math.max(44, signalText.width + 10);
++            const signalBg = new Graphics();
++            signalBg.roundRect(-signalWidth / 2, -6, signalWidth, 12, 6);
++            signalBg.fill({ color: '#ffffff', alpha: 0.95 });
++            signalBg.stroke({ color: conceptSignal.color, width: 1, alpha: 0.42 });
++            signalBg.eventMode = 'none';
++
++            const signalChip = new Container();
++            signalChip.x = radius * 0.44;
++            signalChip.y = -radius * 0.59;
++            signalChip.eventMode = 'none';
++            signalChip.addChild(signalBg);
++            signalChip.addChild(signalText);
++            bubbleContainer.addChild(signalChip);
++          }
++
+           const bText = new Text({
+             text: displayLabel,
+             style: new TextStyle({
+@@ -1455,6 +1495,24 @@ export default function Whiteboard() {
+       searchBar.container.y = compactMode ? 10 : 14;
+       app.stage.addChild(searchBar.container);
+ 
++      const signalHint = new Text({
++        text: 'Signals: HARNESS · CONTEXT · REF NAV',
++        style: new TextStyle({
++          fontFamily: '"Inter", sans-serif',
++          fontSize: 10,
++          fontWeight: 'bold',
++          fill: '#64748b',
++          letterSpacing: 0.5,
++        }),
++      });
++      signalHint.anchor.set(0.5, 0);
++      signalHint.x = window.innerWidth / 2;
++      signalHint.y = searchBar.container.y + searchBar.height + 7;
++      signalHint.alpha = 0.92;
++      signalHint.visible = !compactMode;
++      signalHint.eventMode = 'none';
++      app.stage.addChild(signalHint);
++
+       const legend = createLegend((areaIndex: number) => {
+         const pos = getAreaPosition(areaIndex);
+         const areaCX = pos.x + AREA_WIDTH / 2;
+@@ -2188,6 +2246,9 @@ export default function Whiteboard() {
+         const searchW = searchBar.container.width;
+         searchBar.container.x = Math.max(12, (window.innerWidth - searchW) / 2);
+         searchBar.container.y = compactMode ? 10 : 14;
++        signalHint.visible = !compactMode;
++        signalHint.x = window.innerWidth / 2;
++        signalHint.y = searchBar.container.y + searchBar.height + 7;
+         legend.visible = !compactMode;
+         legend.x = window.innerWidth - 190 - 14;
+         legend.y = 14;
+[0m
+[0m$ [0mgit log -6 --oneline
+ff811ae loop iter 1: workspace 2 (Improvements & PRD) completed
+138d887 loop iter 1: improve whiteboard layout polish
+1e79167 loop iter 1: workspace 3 (Research & Content) completed
+94ea290 loop iter 1: workspace 1 (Implementation) completed
+dd15666 Improve whiteboard clarity with weighted concept cues
+161e049 loop iter 1: workspace 2 (Improvements & PRD) completed
+[0m
+[0m$ [0mgit add "src/components/whiteboard.tsx" ".workspaces/1-implementation/context.md" && git commit -m "Improve whiteboard clarity around key agent concepts" && git status --short
+[main 759cb37] Improve whiteboard clarity around key agent concepts
+ 2 files changed, 80 insertions(+), 13 deletions(-)
+ M .workspaces/logs/loop.log
+[0m
+Done — I implemented the iteration and committed it.
+
+- I added visible concept signals for the coordination themes directly on subsection bubbles in `src/components/whiteboard.tsx`:
+  - `HARNESS` for `Harness / Runtime Scaffold`
+  - `CONTEXT` for `Context Window Management`
+  - `REF NAV` for `Reference Navigation`
+  - `REPO MAP` for repo/codebase map concepts
+  - `EVAL` for `Eval Harness`
+- I kept subsection bubbles equal-size and left project weight encoding based on references (`alternatives`) only (ring/badge logic unchanged in principle), still in PixiJS-only rendering.
+- I made the board layout clearer (not denser) by increasing macroarea spacing/dimensions and relaxing bubble packing for dense areas:
+  - Updated constants and layout logic in `src/components/whiteboard.tsx`.
+- I added a lightweight canvas hint row (`Signals: HARNESS · CONTEXT · REF NAV`) under search to improve discoverability on desktop in `src/components/whiteboard.tsx`.
+- I updated workspace state notes in `.workspaces/1-implementation/context.md`.
+
+Validation:
+- Ran `npm run build` successfully.
+
+Commit:
+- `759cb37` — `Improve whiteboard clarity around key agent concepts`
+
+Note:
+- I intentionally did not include unrelated existing changes in `.workspaces/logs/loop.log` in the commit.
+[0;32m[2026-04-02 21:40:53] ✓[0m Workspace Implementation completed successfully

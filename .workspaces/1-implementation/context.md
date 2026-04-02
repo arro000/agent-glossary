@@ -3,7 +3,7 @@
 ## Stato
 - **Iterazione**: 1
 - **Ultimo aggiornamento**: 2026-04-02 21:40:12
-- **Stato**: in_progress
+- **Stato**: completed
 
 ## Obiettivo
 Implementare l'app "Agent Glossary Whiteboard" usando PixiJS v8 + Next.js.
