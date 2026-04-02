@@ -237,6 +237,16 @@ function getBubbleEmoji(areaName: string, category: string): string {
   return '•';
 }
 
+function getReferenceCount(alternatives: string): number {
+  const cleaned = alternatives.trim();
+  if (!cleaned || cleaned.toLowerCase() === 'n/a') return 1;
+  return cleaned
+    .split(',')
+    .map((item) => item.trim())
+    .filter(Boolean)
+    .length;
+}
+
 function layoutBubbles(concepts: ConceptData[], ax: number, ay: number) {
   const n = concepts.length;
   const padX = 30;
@@ -930,7 +940,7 @@ export default function Whiteboard() {
           badgeBg.stroke({ color: area.color, width: 1, alpha: 0.35 });
           badge.addChild(badgeBg);
           const badgeTxt = new Text({
-            text: `${concept.popularity}`,
+            text: `${getReferenceCount(concept.alternatives)}`,
             style: new TextStyle({
               fontFamily: '"Inter", sans-serif',
               fontSize: 10,
@@ -1554,7 +1564,7 @@ export default function Whiteboard() {
         card.addChild(popLbl);
 
         const popVal = new Text({
-          text: `${data.concept.popularity} refs`,
+          text: `${getReferenceCount(data.concept.alternatives)} refs`,
           style: new TextStyle({
             fontFamily: '"Inter", sans-serif',
             fontSize: 11,
@@ -1576,7 +1586,9 @@ export default function Whiteboard() {
         barBgGfx.eventMode = 'none';
         card.addChild(barBgGfx);
 
-        const fillW = Math.max(barH, (data.concept.popularity / 10) * barW);
+        const referenceCount = getReferenceCount(data.concept.alternatives);
+        const maxReferenceCount = 8;
+        const fillW = Math.max(barH, (Math.min(referenceCount, maxReferenceCount) / maxReferenceCount) * barW);
         const barFill = new Graphics();
         barFill.roundRect(pad, cy, fillW, barH, 3);
         barFill.fill({ color: data.macroarea.color, alpha: 0.65 });

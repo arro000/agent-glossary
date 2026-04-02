@@ -1,9 +1,9 @@
 # Workspace 1 — Implementation
 
 ## Stato
-- **Iterazione**: 4
-- **Ultimo aggiornamento**: 2026-04-02 15:50:05
-- **Stato**: failed
+- **Iterazione**: 1
+- **Ultimo aggiornamento**: 2026-04-02 18:02:00
+- **Stato**: completed
 
 ## Obiettivo
 Implementare l'app "Agent Glossary Whiteboard" usando PixiJS v8 + Next.js.
@@ -132,6 +132,14 @@ Tutti i concetti dal database sono ora rappresentati nella whiteboard.
 - [x] **5 nuovi concetti** aggiunti (da 62 a 67 totali)
 - [x] **Observability Platform** descrizione aggiornata con AgentOps
 - [x] Build e lint passano senza errori/warnings
+
+## Iterazione 1 (Current Workspace Pass) — Completata
+- [x] Verificate specifiche e PRD di `.workspaces/2-improvements/resources/prd.md`
+- [x] Confermato rendering PixiJS v8 vanilla con canvas montato via `useRef/useEffect`
+- [x] Bolle sottosezione mantenute a dimensione uniforme in ogni macroarea
+- [x] Peso bolla aggiornato: ora usa il numero di riferimenti/progetti (`alternatives`) invece della popularity
+- [x] Badge bolla e barra "PROJECT WEIGHT" nel panel mostrano il conteggio riferimenti
+- [x] Hover glow, click panel, zoom (wheel) e pan (drag) verificati nel flusso esistente
 
 ## File Principali
 - `src/components/whiteboard.tsx` — Componente principale con tutta la logica PixiJS
