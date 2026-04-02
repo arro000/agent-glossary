@@ -189,3 +189,101 @@
 - **source**: ACL 2024, 343+ citations
 - **description**: Benchmark for evaluating long-term conversational memory. ~600 turns, 16K tokens, 32 sessions. Tests single-hop, temporal, multi-hop QA, summarization, and multi-modal generation.
 - **relevance**: The de facto standard for memory system evaluation. Key scores and methodology needed for the memory whiteboard section.
+
+---
+
+## Iteration 3 Guides (2026-04-02)
+
+### AG-UI Protocol
+- **url**: https://ag-ui.com
+- **source**: CopilotKit
+- **description**: Official protocol page for the agent-user interaction layer. Explains shared state, tool-based GenUI, subgraphs, human-in-the-loop, and how AG-UI fits alongside MCP and A2A.
+- **relevance**: Best primary source for understanding the frontend/runtime boundary of agentic applications.
+
+### Semantic Kernel Agent Framework
+- **url**: https://learn.microsoft.com/en-us/semantic-kernel/frameworks/agent/
+- **source**: Microsoft Learn
+- **description**: Intro/tutorial page for the SK Agent Framework. Covers what an agent is, why to use it, and which packages/modules to install across .NET, Python, and Java.
+- **relevance**: Best official entry point for the Microsoft agent stack.
+
+### CrewAI Flows
+- **url**: https://docs.crewai.com/en/concepts/flows
+- **source**: CrewAI docs
+- **description**: Documentation for event-driven orchestration in CrewAI. Covers start/listen, persistence, routing, state management, and human feedback.
+- **relevance**: Essential for understanding the practical split between Crews and Flows.
+
+### Vercel AI SDK Agents Overview
+- **url**: https://sdk.vercel.ai/docs/agents/overview
+- **source**: Vercel AI SDK docs
+- **description**: Official overview of the agent abstraction in the Vercel AI SDK. Introduces ToolLoopAgent and how context management and stopping conditions are handled.
+- **relevance**: Cleanest entry point for TS-native agent building in the Vercel ecosystem.
+
+### Vercel AI SDK Workflow Patterns
+- **url**: https://sdk.vercel.ai/docs/agents/workflows
+- **source**: Vercel AI SDK docs
+- **description**: Documents sequential, routing, parallel, orchestrator-worker, and evaluator-optimizer patterns with code examples.
+- **relevance**: Directly useful for comparing the AI SDK to graph-based frameworks.
+
+### MCP Inspector
+- **url**: https://modelcontextprotocol.io/docs/tools/inspector
+- **source**: MCP docs
+- **description**: Official interactive tool for testing and debugging MCP servers. It inspects tools, prompts, resources, and notifications, and can run local servers via npx.
+- **relevance**: Essential developer tool for the MCP ecosystem.
+
+### LiveKit Voice AI Quickstart
+- **url**: https://docs.livekit.io/agents/start/voice-ai-quickstart/
+- **source**: LiveKit docs
+- **description**: Step-by-step quickstart for building a realtime voice assistant. Covers starter projects, STT-LLM-TTS vs realtime models, testing, deployment, and the agent server lifecycle.
+- **relevance**: Best onboarding path for practical voice-agent engineering.
+
+### Vapi Introduction
+- **url**: https://docs.vapi.ai/quickstart/introduction.mdx
+- **source**: Vapi docs
+- **description**: Overview of the Vapi platform and its core primitives: Assistants and Squads. Also explains the STT-LLM-TTS stack, phone calls, web integrations, and test suites.
+- **relevance**: Good primer on the productized voice-agent stack.
+
+### Vapi Banking Support Example
+- **url**: https://docs.vapi.ai/assistants/examples/inbound-support.mdx
+- **source**: Vapi docs
+- **description**: Concrete finance/support tutorial that builds a banking support agent with tools, knowledge bases, phone numbers, and voice test suites.
+- **relevance**: Useful vertical example for the FinTech agent section.
+
+### Ollama Quickstart
+- **url**: https://docs.ollama.com/quickstart
+- **source**: Ollama docs
+- **description**: Quickstart for launching local models, integrating with coding tools, and using the local API.
+- **relevance**: Strong entry point for local/edge model usage in agent workflows.
+
+### Anthropic Computer Use
+- **url**: https://docs.anthropic.com/en/docs/build-with-claude/computer-use
+- **source**: Anthropic docs
+- **description**: Reference guide for the computer-use beta, including the agent loop, safety guidance, sandboxing requirements, and the official reference implementation.
+- **relevance**: The canonical tutorial for desktop/browser automation with an LLM.
+
+### OpenLLMetry
+- **url**: https://www.traceloop.com/openllmetry
+- **source**: Traceloop
+- **description**: Shows how to instrument LLM apps with OpenTelemetry using a small SDK layer. Includes examples for Python and TypeScript plus supported observability backends.
+- **relevance**: Best bridge between agent observability and the broader OTEL ecosystem.
+
+---
+
+## Evaluation and Benchmarks
+
+### SWE-bench Leaderboards
+- **url**: https://www.swebench.com/
+- **source**: SWE-bench project
+- **description**: Official benchmark and leaderboard hub for software-engineering agents. Covers SWE-bench, Verified, Lite, Multilingual, Multimodal, and related family projects.
+- **relevance**: Important reference for current coding-agent evaluation practice.
+
+### WebArena
+- **url**: https://webarena.dev/
+- **source**: WebArena project
+- **description**: Official site for the realistic web-agent benchmark and its verified variants. Useful for browser navigation and computer-use evaluation.
+- **relevance**: Best source for browser task-completion agent benchmarks.
+
+### Sotopia Docs
+- **url**: https://docs.sotopia.world/
+- **source**: Sotopia Lab
+- **description**: Official docs for a social learning environment for AI agents. Includes installation, examples, and a quick tutorial notebook.
+- **relevance**: Good entry point for agent simulation and social intelligence research.

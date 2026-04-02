@@ -461,3 +461,65 @@
 - **description**: Piattaforma completa per tracing, evaluation, prompt management e deployment di agenti. Leader open-source: Langfuse (24.2k stars). Più feature-complete: LangSmith. Nuovi entranti: AgentOps (session replay, multi-agent viz).
 - **alternatives**: Langfuse, LangSmith, Arize Phoenix, W&B Weave, Helicone, AgentOps
 - **category**: Monitoring
+
+## Iteration 3 Additions
+
+### AG-UI Protocol
+- **popularity**: 7
+- **description**: Protocollo per la comunicazione bidirezionale tra agenti e applicazioni user-facing. Copre shared state, generative UI, subgraphs e human-in-the-loop.
+- **alternatives**: MCP Apps, A2UI, custom websocket/event channels
+- **category**: Integration
+
+### Semantic Kernel
+- **popularity**: 9
+- **description**: SDK Microsoft per costruire agenti e orchestration multi-linguaggio. Il Agent Framework aggiunge pattern agentici e collaborazione tra agenti.
+- **alternatives**: LangGraph, OpenAI Agents SDK, CrewAI, Google ADK
+- **category**: Framework
+
+### CrewAI Flows
+- **popularity**: 8
+- **description**: Layer event-driven di CrewAI per workflow stateful, branching, persistence e human feedback. Completa le Crews con orchestrazione deterministica.
+- **alternatives**: LangGraph, Vercel AI SDK workflows, AutoGen Core
+- **category**: Workflow
+
+### Vercel AI SDK
+- **popularity**: 9
+- **description**: Toolkit TypeScript-first per buildare app e agenti su React, Next.js, Vue, Svelte e Node.js. Il loop agentico passa da ToolLoopAgent e workflow espliciti.
+- **alternatives**: Mastra, LangGraph JS, OpenAI Agents SDK, Semantic Kernel
+- **category**: Framework
+
+### LiveKit Agents
+- **popularity**: 9
+- **description**: Framework open-source per voice, video e multimodal agents realtime. Offre runtime Python/Node, session management, turn detection e telephony hooks.
+- **alternatives**: Vapi, Retell, Daily, OpenAI Realtime
+- **category**: Realtime
+
+### Vapi
+- **popularity**: 8
+- **description**: Platform per voice AI con primitives Assistants e Squads, integrazione telefonica, web, eval e workflow. Forte nel support e nei calling flows verticali.
+- **alternatives**: LiveKit Agents, Retell, Daily, OpenAI Realtime
+- **category**: Realtime / Platform
+
+### OpenTelemetry for Agents
+- **popularity**: 8
+- **description**: Pattern di observability per agenti che mappa trace, span ed eventi su OpenTelemetry. OpenLLMetry è il bridge più concreto verso i backend standard.
+- **alternatives**: Langfuse, LangSmith, Arize Phoenix, W&B Weave, Helicone
+- **category**: Monitoring
+
+### Anthropic Computer Use
+- **popularity**: 8
+- **description**: Beta tool per desktop automation tramite screenshot, mouse e keyboard control. Richiede sandboxing e attenzione a prompt injection e azioni ad alto rischio.
+- **alternatives**: Playwright agents, Browser Use, operator-style flows
+- **category**: Interaction
+
+### Edge Runtime Stack
+- **popularity**: 8
+- **description**: Stack di inference locale per agenti basato su Ollama, llama.cpp e MLX-LM. Utile quando servono CPU-only, on-device o Apple Silicon.
+- **alternatives**: LM Studio, LocalAI, vLLM
+- **category**: Runtime
+
+### Data-Centric Agent Evaluation
+- **popularity**: 8
+- **description**: Benchmark-first evaluation per agenti basata su task reali e non su sole metriche astratte. Include SWE-bench, Terminal-Bench, WebArena e TAU-bench.
+- **alternatives**: LOCOMO, custom evals, human eval
+- **category**: Quality

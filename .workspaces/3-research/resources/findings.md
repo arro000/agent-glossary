@@ -741,3 +741,175 @@
 - **popularity**: 7
 - **category**: devops, security
 - **why_include**: Kubernetes-native agent sandbox from Alibaba. Addresses secure agent execution at scale.
+
+---
+
+# Iteration 3 - Protocols, Frameworks, Voice, Edge, Evaluation
+
+## AG-UI Protocol
+- **macroarea**: Integration / UI Protocol
+- **url**: https://ag-ui.com
+- **description**: Open protocol for bidirectional agent-user interaction. It standardizes shared state, tool-based generative UI, subgraphs, human-in-the-loop, and predictive updates at the app boundary.
+- **popularity**: 7
+- **alternatives**: MCP Apps, A2UI, custom websocket/event channels
+- **why_include**: Defines the frontend/runtime layer that is missing from MCP and A2A.
+
+## Semantic Kernel
+- **macroarea**: Frameworks & SDKs
+- **url**: https://learn.microsoft.com/en-us/semantic-kernel/
+- **description**: Microsoft's multi-language SDK for building AI agents and agentic patterns. The Agent Framework extends the core kernel with agent orchestration, collaboration, and enterprise-oriented abstractions.
+- **popularity**: 9
+- **alternatives**: LangGraph, OpenAI Agents SDK, CrewAI, Google ADK
+- **why_include**: Main Microsoft agent framework and the strongest enterprise reference in this ecosystem.
+
+## CrewAI Flows
+- **macroarea**: Orchestration / Workflow
+- **url**: https://docs.crewai.com/en/concepts/flows
+- **description**: Event-driven workflow layer in CrewAI for stateful orchestration, branching, persistence, and human feedback. It complements Crews by handling deterministic execution while Crews handle role-based collaboration.
+- **popularity**: 8
+- **alternatives**: LangGraph, Vercel AI SDK workflows, AutoGen Core
+- **why_include**: The key CrewAI distinction is Crews vs Flows, and Flows is the missing orchestration primitive.
+
+## Vercel AI SDK
+- **macroarea**: Frameworks & SDKs
+- **url**: https://ai-sdk.dev
+- **description**: TypeScript toolkit for building AI apps and agents across React, Next.js, Vue, Svelte, and Node.js. The agent API centers on ToolLoopAgent plus explicit workflow patterns.
+- **popularity**: 9
+- **alternatives**: Mastra, LangGraph JS, OpenAI Agents SDK, Semantic Kernel
+- **why_include**: The clearest TS-native path for agentic product teams.
+
+## MCP Inspector
+- **macroarea**: Debugging Tools
+- **url**: https://modelcontextprotocol.io/docs/tools/inspector
+- **description**: Official interactive tool for testing and debugging MCP servers. It inspects tools, prompts, resources, and notifications, and can run local servers via npx.
+- **popularity**: 8
+- **alternatives**: mcp-cli, custom server harnesses, IDE-integrated debug UIs
+- **why_include**: Essential developer tool for the MCP ecosystem.
+
+## LiveKit Agents
+- **macroarea**: Realtime / Voice Agents
+- **url**: https://docs.livekit.io/agents/
+- **description**: Open-source framework for realtime voice, video, and multimodal agents. It includes Python and Node runtimes, session handling, turn detection, telephony hooks, and LiveKit Cloud deployment.
+- **popularity**: 9
+- **alternatives**: Vapi, Retell, Daily, OpenAI Realtime
+- **why_include**: Strong open-source runtime for low-latency voice agents.
+
+## Vapi
+- **macroarea**: Voice Agents / Platform
+- **url**: https://docs.vapi.ai/
+- **description**: Developer platform for voice AI assistants with Assistants and Squads as the main primitives. It adds telephony, web integration, evals, workflows, and concrete support-call examples.
+- **popularity**: 8
+- **alternatives**: LiveKit Agents, Retell, Daily, OpenAI Realtime
+- **why_include**: Best vertical voice-agent platform in this sweep.
+
+## OpenTelemetry for Agents
+- **macroarea**: Observability / Monitoring
+- **url**: https://www.traceloop.com/openllmetry
+- **description**: OpenLLMetry layers LLM/agent instrumentation on top of OpenTelemetry and exports traces to standard backends. It is the clearest bridge between agent traces and the broader observability ecosystem.
+- **popularity**: 8
+- **alternatives**: Phoenix, Langfuse, LangSmith, Weave
+- **why_include**: Best concrete implementation of the OTEL-for-agents pattern.
+
+## Anthropic Computer Use
+- **macroarea**: Browser Automation / Computer Use
+- **url**: https://docs.anthropic.com/en/docs/build-with-claude/computer-use
+- **description**: Beta tool for desktop interaction using screenshots plus mouse and keyboard control. Anthropic provides a reference implementation and detailed guidance on sandboxing and prompt-injection risk.
+- **popularity**: 8
+- **alternatives**: Playwright agents, Browser Use, operator-style flows
+- **why_include**: Canonical source for computer-use style agent automation.
+
+## Ollama
+- **macroarea**: Edge / Embedded Runtime
+- **url**: https://ollama.com/
+- **description**: Local model runtime and launcher for macOS, Windows, and Linux. It also acts as an integration hub for coding tools and apps that want local inference.
+- **popularity**: 10
+- **alternatives**: llama.cpp, MLX-LM, LM Studio, LocalAI
+- **why_include**: The most visible local-model runtime for agent research and demos.
+
+## llama.cpp
+- **macroarea**: Edge / Embedded Runtime
+- **url**: https://github.com/ggml-org/llama.cpp
+- **description**: C/C++ inference runtime that powers a large chunk of the local LLM ecosystem. It is the foundational low-level stack behind many CPU-first and quantized deployments.
+- **popularity**: 10
+- **alternatives**: Ollama, MLX-LM, vLLM, TensorRT-LLM
+- **why_include**: Core runtime for on-device and CPU-first agent deployments.
+
+## MLX-LM
+- **macroarea**: Edge / Embedded Runtime
+- **url**: https://github.com/ml-explore/mlx-lm
+- **description**: Apple-silicon-focused LLM runtime built on MLX. It is the cleanest path for local inference on Macs when native acceleration matters.
+- **popularity**: 7
+- **alternatives**: llama.cpp, Ollama, LM Studio
+- **why_include**: Gives the whiteboard a concrete Apple-silicon edge path.
+
+## SWE-bench
+- **macroarea**: Evaluation / Benchmarks
+- **url**: https://www.swebench.com/
+- **description**: Benchmark suite for real GitHub issue resolution across software repositories. The family now spans Verified, Lite, Multilingual, Multimodal, and related leaderboards.
+- **popularity**: 9
+- **alternatives**: Terminal-Bench, AgentBench, WebArena, TAU-bench
+- **why_include**: The most important software-engineering agent benchmark family right now.
+
+## Terminal-Bench
+- **macroarea**: Evaluation / Benchmarks
+- **url**: https://www.tbench.ai/
+- **description**: Benchmark for complex terminal tasks and long-horizon command-line execution. It targets the CLI-oriented agent category that is expanding fastest.
+- **popularity**: 8
+- **alternatives**: SWE-bench, AgentBench, WebArena
+- **why_include**: Terminal competence is a core capability for coding agents.
+
+## WebArena
+- **macroarea**: Evaluation / Benchmarks
+- **url**: https://webarena.dev/
+- **description**: Realistic web environment benchmark for autonomous agents. It is widely used for browser navigation, task completion, and computer-use style workflows.
+- **popularity**: 7
+- **alternatives**: BrowserGym, Mind2Web, TAU-bench
+- **why_include**: Canonical benchmark for browser automation agents.
+
+## TAU-Bench
+- **macroarea**: Evaluation / Benchmarks
+- **url**: https://github.com/sierra-research/tau-bench
+- **description**: Benchmark suite for agent behavior in realistic tool-use scenarios. Commonly referenced in discussions about reliable tool calling and business-process execution.
+- **popularity**: 7
+- **alternatives**: AgentBench, SWE-bench, WebArena
+- **why_include**: Good complement to web/code benchmarks because it tests tool-using agents in operational tasks.
+
+## AgentBench
+- **macroarea**: Evaluation / Benchmarks
+- **url**: https://github.com/THUDM/AgentBench
+- **description**: Comprehensive benchmark for evaluating LLMs as agents across multiple tasks and environments. It remains one of the more general-purpose benchmark references.
+- **popularity**: 7
+- **alternatives**: SWE-bench, WebArena, TAU-bench, Terminal-Bench
+- **why_include**: Useful when the task is not narrowly coding-focused.
+
+## Sotopia
+- **macroarea**: Simulation / Social Agents
+- **url**: https://docs.sotopia.world/
+- **description**: Open-ended social learning environment for training and evaluating social agents. It emphasizes realistic social interaction, preset characters, and human-AI collaboration.
+- **popularity**: 6
+- **alternatives**: Generative Agents, GPTeam, WarAgent
+- **why_include**: Good representative of the agent simulation subdomain.
+
+## Generative Agents
+- **macroarea**: Simulation / Social Agents
+- **url**: https://github.com/joonspk-research/generative_agents
+- **description**: Research code for "Generative Agents: Interactive Simulacra of Human Behavior." It remains the canonical reference for long-horizon simulated human behavior.
+- **popularity**: 8
+- **alternatives**: Sotopia, GPTeam, WarAgent
+- **why_include**: The best-known baseline for human-like agent simulation.
+
+## FinRobot
+- **macroarea**: Vertical Agents / FinTech
+- **url**: https://finrobot.ai/
+- **description**: Open-source AI agent platform for financial analysis. It targets finance workflows rather than generic chat, making it a useful example of a vertical agent stack.
+- **popularity**: 7
+- **alternatives**: FinGPT, OpenBB, domain-specific analyst agents
+- **why_include**: One of the few clearly agentic open-source finance projects with a dedicated platform framing.
+
+## FinGPT
+- **macroarea**: Vertical Agents / FinTech
+- **url**: https://ai4finance.org/research/fingpt-open-source-finllm.html
+- **description**: Open-source financial LLM project and research umbrella for finance-oriented models and workflows. It is not a pure agent framework, but it is a major upstream building block in fintech agent stacks.
+- **popularity**: 8
+- **alternatives**: FinRobot, OpenBB, domain-tuned finance models
+- **why_include**: Finance agents often build on finance-specific language models and data pipelines.

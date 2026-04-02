@@ -2,8 +2,8 @@
 
 ## Stato
 - **Iterazione**: 3
-- **Ultimo aggiornamento**: 2026-04-02 15:30:03
-- **Stato**: failed
+- **Ultimo aggiornamento**: 2026-04-02
+- **Stato**: completed
 
 ## Risultati Iterazione 1
 
@@ -84,3 +84,47 @@ Focus su: AG-UI Protocol, Semantic Kernel, CrewAI Flows, Vercel AI SDK, Voice Ag
 - **Voice Agents** — categoria completamente non coperta
 - **Edge/Embedded Agents** — trend crescente (Ollama 100k+ stars)
 - **Agent Evaluation** — oltre LOCOMO servono SWE-bench, Aider polyglot, etc.
+
+## Risultati Iterazione 3
+
+### Ricerca Completata
+I topic nuovi della iterazione 3 sono stati coperti con focus su progetti concreti, SDK e benchmark:
+
+**High Priority:**
+- ✅ AG-UI Protocol: protocollo frontend agent-user, con CopilotKit come riferimento
+- ✅ Semantic Kernel: framework Microsoft con agent framework multi-language
+- ✅ CrewAI Flows: distinzione pratica tra Crews e Flows, con orchestration event-driven
+- ✅ Vercel AI SDK: ToolLoopAgent e workflow patterns per TS-native agents
+
+**Medium Priority:**
+- ✅ MCP Inspector: tool ufficiale per debug MCP
+- ✅ Voice agents: LiveKit Agents + Vapi come stack principali
+- ✅ Embedded/Edge: Ollama, llama.cpp, MLX-LM
+
+**Exploration:**
+- ✅ Simulation: Sotopia e Generative Agents
+- ✅ Evaluation: SWE-bench, Terminal-Bench, WebArena, TAU-bench, AgentBench
+- ✅ Computer use / observability: Anthropic Computer Use, OpenLLMetry
+- ✅ Verticals: FinRobot e FinGPT per finance
+
+### Output Prodotti
+- `resources/findings.md`: ampliato con nuovi tool/framework/benchmark concreti
+- `resources/guides.md`: ampliato con guide ufficiali e quickstart rilevanti
+- `research-requests.md`: aggiunta Iterazione 5 con nuove aree da approfondire
+
+### Nuovi Concetti da Valutare
+- AG-UI Protocol
+- Semantic Kernel
+- CrewAI Flows
+- Vercel AI SDK
+- OpenTelemetry for Agents
+- LiveKit Agents / Vapi
+- Edge runtimes: Ollama, llama.cpp, MLX-LM
+- Data-centric evaluation: SWE-bench family, Terminal-Bench, WebArena, TAU-bench
+
+### Insight Chiave
+1. **UI layer is becoming a protocol**: AG-UI fills the user-facing gap between model/tool protocols and actual apps.
+2. **TS agent stack is maturing**: Vercel AI SDK, AG-UI, and CopilotKit make the JS/TS path much more coherent.
+3. **Voice agents are now a real platform category**: LiveKit and Vapi both go beyond demos into deployment/testing/telephony.
+4. **Evaluation is fragmenting into task-specific families**: coding, terminal, web, tool-use, and social simulation now have distinct benchmarks.
+5. **Local inference is a first-class path**: Ollama, llama.cpp, and MLX-LM are core infrastructure for edge/restricted environments.

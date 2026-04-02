@@ -59,3 +59,19 @@
 ## Iterazione 4 - Da esplorare
 13. **PixiJS v8 text rendering per emoji/icon** — Migliori pratiche per mantenere emoji leggibili e crisp a dimensioni piccole
 14. **Visual encoding per nodi a dimensione fissa** — Pattern per rappresentare peso/importanza senza cambiare il diametro delle bolle
+
+## Iterazione 5 — Nuove Richieste
+
+### Priorità Alta
+1. **A2UI / Google Generative UI** — specifica, adozione e differenze reali rispetto ad AG-UI
+2. **Realtime Voice Stack** — LiveKit vs Vapi vs Daily vs Retell, con focus su SDK, telephony, testing e deployment
+3. **OpenTelemetry GenAI conventions** — standard di tracing per agenti e librerie di instrumentation rilevanti
+
+### Priorità Media
+4. **Edge runtimes per agenti** — Ollama vs llama.cpp vs MLX-LM vs LM Studio, con focus su Apple Silicon e CPU-only
+5. **Benchmark family for long-horizon agents** — SWE-Lancer, Terminal-Bench 2, BrowseComp, WebArena-Verified, TAU-bench
+6. **Vertical agent frameworks** — altri esempi concreti per finance/healthcare/support oltre FinRobot e Vapi
+
+### Esplorazione
+7. **Anthropic computer use safety** — reference implementations, sandboxing, prompt-injection mitigations, browser automation
+8. **Agent simulation stacks** — Sotopia, Generative Agents, GPTeam, WarAgent, e altri ambienti sociali/synthetic
