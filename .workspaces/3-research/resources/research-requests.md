@@ -243,3 +243,17 @@
 
 ### Esplorazione
 5. **Prompt assembly and caching** — how harnesses combine static system blocks, dynamic instructions, and cached context without drift or duplication.
+
+## Iterazione 21 — Nuove Richieste
+
+### Priorità Alta
+1. **Trace replay comparison** — LangSmith, Langfuse, AgentOps, Phoenix, OpenLIT, and OpenAI Trace Grading: which trace UIs and APIs are actually best for root-cause analysis?
+2. **Reference-aware retrieval ranking** — Context7, OpenAI Retrieval/File Search, Sourcegraph Code Search, Aider repo maps, Graphiti, and Zep: how do ranking, pinning, provenance, and citations differ in practice?
+3. **Harness policy layers** — OpenAI Agents SDK guardrails, LangGraph persistence/middleware, Claude Code hooks, Strands steering hooks, and session APIs: which are most reusable as a policy + replay layer?
+
+### Priorità Media
+4. **Session memory backends** — compare OpenAI Agents SDK sessions, LangGraph stores, OpenAI Conversations, Redis, SQLAlchemy, and Dapr for resumable multi-turn workflows.
+5. **Code intelligence surfaces** — compare Sourcegraph MCP, repo maps, search contexts, and symbol/diff search as agent navigation layers.
+
+### Esplorazione
+6. **Trace-to-eval flywheels** — how trace grading, eval datasets, and CI regression loops connect into a shareable harness workflow.

@@ -323,3 +323,21 @@ La passata attuale ha coperto la capa di curated repositories e discovery, con f
 - Compare hook systems and guardrail layers across the major agent stacks.
 - Compare retrieval/ranking primitives across Context7, Sourcegraph, Aider, Graphiti, and Zep.
 - Compare eval harness data models and replay UIs for CI-friendly regression loops.
+
+## Aggiornamento Corrente - Iterazione 21
+
+### Cosa è stato aggiornato
+- Harness/runtime: aggiunti LangGraph Persistence, OpenAI Agents SDK Sessions, OpenAI Agents SDK Guardrails, and OpenAI Trace Grading as concrete reusable primitives.
+- Trace-driven debugging: added OpenAI Agents SDK Tracing and expanded replay/grading coverage as separate concepts.
+- Reference navigation: added OpenAI Retrieval/File Search, Sourcegraph Code Search, and Aider Repository Map as concrete navigation surfaces.
+- Concepts: new `Session Replay` and `Trace Grading` concepts added to the whiteboard vocabulary.
+
+### Segnali attuali
+1. The harness loop is now best treated as state persistence + policy + tracing + grading rather than a single abstraction.
+2. Reference-aware retrieval splits into hosted semantic search, code intelligence search, and repo-map style context packing.
+3. The next useful comparison work is about replay semantics, ranking behavior, and which UIs close the loop fastest.
+
+### Next Focus
+- Compare trace replay and trace grading surfaces across OpenAI, LangSmith, Langfuse, AgentOps, Phoenix, and OpenLIT.
+- Compare reference-aware retrieval and ranking across OpenAI Retrieval, Sourcegraph, Aider, Context7, Graphiti, and Zep.
+- Compare session and checkpoint semantics across OpenAI Agents SDK, LangGraph, and Temporal-style workflows.

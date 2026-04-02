@@ -2014,3 +2014,357 @@ Commit created:
 Note:
 - There is an unrelated unstaged change left in `.workspaces/logs/loop.log` (not included in commit).
 [0;32m[2026-04-02 21:51:30] ✓[0m Workspace Implementation completed successfully
+ 2 files changed, 412 insertions(+), 1 deletion(-)
+To https://github.com/arro000/agent-glossary.git
+   98856f8..ce82415  main -> main
+[0;32m[2026-04-02 21:51:31] ✓[0m Workspace changes committed and pushed
+[0;32m[2026-04-02 21:51:31] ✓[0m Iteration 2 complete. Starting iteration 3...
+[0;36m[2026-04-02 21:51:33][0m Launching OpenCode for workspace Research & Content...
+[0m
+> build · gpt-5.4-mini
+[0m
+I’m reading the current research state first, then I’ll pull in concrete projects from curated agent lists and fold them into the whiteboard notes.
+[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=500][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1, limit=600][0m
+[0m→ [0mRead .workspaces/3-research/context.md[90m [offset=1, limit=300][0m
+I’ve got the current taxonomy. Next I’m checking what is already captured in the findings/guides so I can add only new, concrete projects and not duplicate earlier scans.
+[0m✱ [0mGrep "^## "[90m in .workspaces/3-research/resources/findings.md · 141 matches[0m
+[0m→ [0mRead .workspaces/3-research/resources/guides.md[90m [offset=1, limit=500][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=501, limit=400][0m
+[0m✱ [0mGrep "LangGraph Middleware"[90m in .workspaces/1-implementation/resources/concepts.md · 0 matches[0m
+[0m✱ [0mGrep "Trace Replay"[90m in .workspaces/1-implementation/resources/concepts.md · 1 match[0m
+[0m✱ [0mGrep "Reference Navigation"[90m in .workspaces/1-implementation/resources/concepts.md · 1 match[0m
+[0m✱ [0mGrep "Prompt Assembly"[90m in .workspaces/1-implementation/resources/concepts.md · 1 match[0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=630, limit=220][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=780, limit=140][0m
+I’ve confirmed most of the obvious entries already exist. I’m now looking for gaps in the harness layer and the retrieval/navigation layer so I can add only genuinely new concepts and not just rename existing ones.
+[0m✱ [0mGrep "Middleware"[90m in .workspaces/1-implementation/resources/concepts.md · 0 matches[0m
+[0m✱ [0mGrep "Checkpoint"[90m in .workspaces/1-implementation/resources/concepts.md · 0 matches[0m
+[0m✱ [0mGrep "Session Replay"[90m in .workspaces/1-implementation/resources/concepts.md · 0 matches[0m
+[0m✱ [0mGrep "Code Graph"[90m in .workspaces/1-implementation/resources/concepts.md · 0 matches[0m
+[0m✗ [0mwebfetch failed
+[91m[1mError: [0mRequest failed with status code: 404
+[0m% [0mWebFetch https://langchain-ai.github.io/langgraph/concepts/persistence/
+[0m% [0mWebFetch https://sourcegraph.com/docs/code-search
+[0m% [0mWebFetch https://platform.openai.com/docs/guides/agents
+[0m% [0mWebFetch https://langchain-ai.github.io/langgraph/
+[0m✗ [0mwebfetch failed
+[91m[1mError: [0mRequest failed with status code: 404
+[0m✗ [0mwebfetch failed
+[91m[1mError: [0mRequest failed with status code: 404
+[0m% [0mWebFetch https://langchain-ai.github.io/langgraph/how-tos/persistence/
+[0m% [0mWebFetch https://docs.langchain.com/oss/python/langgraph/overview
+[0m% [0mWebFetch https://docs.langchain.com/oss/python/langgraph/persistence
+[0m✗ [0mwebfetch failed
+[91m[1mError: [0mRequest failed with status code: 404
+[0m✗ [0mwebfetch failed
+[91m[1mError: [0mRequest failed with status code: 404
+[0m% [0mWebFetch https://platform.openai.com/docs/guides/trace-grading
+[0m% [0mWebFetch https://platform.openai.com/docs/guides/tools-skills
+[0m% [0mWebFetch https://platform.openai.com/docs/guides/agent-evals
+[0m% [0mWebFetch https://platform.openai.com/docs/guides/evals
+[0m% [0mWebFetch https://openai.github.io/openai-agents-python/
+[0m% [0mWebFetch https://openai.github.io/openai-agents-js/
+[0m✗ [0mwebfetch failed
+[91m[1mError: [0mRequest failed with status code: 404
+[0m% [0mWebFetch https://github.com/paul-gauthier/aider/blob/main/README.md
+[0m% [0mWebFetch https://aider.chat/docs/repomap.html
+[0m% [0mWebFetch https://langfuse.com/docs
+[0m% [0mWebFetch https://sourcegraph.com/docs/code-search/features
+[0m✗ [0mwebfetch failed
+[91m[1mError: [0mRequest failed with status code: 404
+[0m% [0mWebFetch https://openai.github.io/openai-agents-python/tracing/
+[0m% [0mWebFetch https://openai.github.io/openai-agents-python/guardrails/
+[0m% [0mWebFetch https://openai.github.io/openai-agents-python/sessions/
+[0m% [0mWebFetch https://openai.github.io/openai-agents-python/context/
+I have enough source material now to write the actual notes. I’m pulling the remaining retrieval-specific references and then I’ll append the findings/guides plus the next request list.
+[0m✗ [0mwebfetch failed
+[91m[1mError: [0mRequest failed with status code: 404
+[0m✗ [0mwebfetch failed
+[91m[1mError: [0mRequest failed with status code: 404
+[0m% [0mWebFetch https://platform.openai.com/docs/guides/tools-file-search
+[0m% [0mWebFetch https://platform.openai.com/docs/guides/retrieval
+I’ve finished the source review and I’m switching to the write-up pass: findings, guides, concepts, and the next request set.
+[0m→ [0mRead .workspaces/3-research/context.md[90m [offset=301, limit=80][0m
+[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=240, limit=30][0m
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/resources/findings.md
+[0m✗ [0mapply_patch failed
+[91m[1mError: [0mapply_patch verification failed: Error: Failed to find expected lines in /home/arro/projects/agent-glossary/.workspaces/3-research/resources/guides.md:
+### Terminal-Bench 2.0
+- **url**: https://www.tbench.ai/
+- **source**: Terminal-Bench
+- **description**: Official site for terminal-agent benchmarks, including the 2.0 leaderboard and task examples.
+- **relevance**: Best terminal-agent benchmark reference and a useful complement to SWE-bench.
+The first patch landed; the guides file had a different tail than expected, so I’m checking the exact end and appending there instead of forcing a brittle patch.
+[0m→ [0mRead .workspaces/3-research/resources/guides.md[90m [offset=495, limit=180][0m
+[0m→ [0mRead .workspaces/3-research/resources/guides.md[90m [offset=620, limit=120][0m
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/resources/guides.md
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/1-implementation/resources/concepts.md
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/resources/research-requests.md
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/context.md
+The content is written. I’m doing a quick verification pass on the changed files and then I’ll summarize what got added.
+[0m
+[0m$ [0mgit status --short
+M .workspaces/1-implementation/resources/concepts.md
+ M .workspaces/3-research/context.md
+ M .workspaces/3-research/resources/findings.md
+ M .workspaces/3-research/resources/guides.md
+ M .workspaces/3-research/resources/research-requests.md
+ M .workspaces/logs/loop.log
+[0m
+[0m$ [0mgit diff --stat
+.workspaces/1-implementation/resources/concepts.md | 14 ++++
+ .workspaces/3-research/context.md                  | 24 +++++-
+ .workspaces/3-research/resources/findings.md       | 68 ++++++++++++++++
+ .workspaces/3-research/resources/guides.md         | 40 +++++++++
+ .../3-research/resources/research-requests.md      | 14 ++++
+ .workspaces/logs/loop.log                          | 95 ++++++++++++++++++++++
+ 6 files changed, 252 insertions(+), 3 deletions(-)
+[0m
+[0m→ [0mRead .workspaces/3-research/resources/guides.md[90m [offset=637, limit=120][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=780, limit=220][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=610, limit=80][0m
+[0m→ [0mRead .workspaces/3-research/context.md[90m [offset=311, limit=40][0m
+I spotted one redundant guide entry in the new section. I’m trimming that duplicate so the research notes stay clean.
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/resources/guides.md
+[0m
+[0m$ [0mgit diff -- .workspaces/3-research/resources/guides.md .workspaces/3-research/resources/findings.md .workspaces/3-research/resources/research-requests.md .workspaces/1-implementation/resources/concepts.md .workspaces/3-research/context.md
+diff --git a/.workspaces/1-implementation/resources/concepts.md b/.workspaces/1-implementation/resources/concepts.md
+index 11e5950..43bd22f 100644
+--- a/.workspaces/1-implementation/resources/concepts.md
++++ b/.workspaces/1-implementation/resources/concepts.md
+@@ -619,3 +619,17 @@
+ - **description**: Benchmark-first evaluation per agenti basata su task reali e non su sole metriche astratte. Include SWE-bench, Terminal-Bench 2.0, WebArena, TAU-bench, BrowseComp e SWE-Lancer.
+ - **alternatives**: LOCOMO, custom evals, human eval
+ - **category**: Quality
++
++## Replay & Grading
++
++### Session Replay
++- **popularity**: 8
++- **description**: Replay visivo di una sessione o run con trace, tool call e state transitions per root-cause analysis e debugging long-horizon.
++- **alternatives**: trace playback, transcript viewer, LangSmith replay, Langfuse sessions, AgentOps replay
++- **category**: Debug
++
++### Trace Grading
++- **popularity**: 8
++- **description**: Valutazione strutturata di trace end-to-end con score o label per trasformare i failure di workflow in regressioni ripetibili.
++- **alternatives**: trace evals, LangSmith evals, Langfuse experiments, promptfoo, Inspect AI
++- **category**: Quality
+diff --git a/.workspaces/3-research/context.md b/.workspaces/3-research/context.md
+index c6bbabd..c03f35c 100644
+--- a/.workspaces/3-research/context.md
++++ b/.workspaces/3-research/context.md
+@@ -1,9 +1,9 @@
+ # Workspace 3 — Research & Content Discovery
+ 
+ ## Stato
+-- **Iterazione**: 20
+-- **Ultimo aggiornamento**: 2026-04-02 22:05:00
+-- **Stato**: completed
++- **Iterazione**: 3
++- **Ultimo aggiornamento**: 2026-04-02 21:51:33
++- **Stato**: in_progress
+ 
+ ## Risultati Iterazione 1
+ 
+@@ -323,3 +323,21 @@ La passata attuale ha coperto la capa di curated repositories e discovery, con f
+ - Compare hook systems and guardrail layers across the major agent stacks.
+ - Compare retrieval/ranking primitives across Context7, Sourcegraph, Aider, Graphiti, and Zep.
+ - Compare eval harness data models and replay UIs for CI-friendly regression loops.
++
++## Aggiornamento Corrente - Iterazione 21
++
++### Cosa è stato aggiornato
++- Harness/runtime: aggiunti LangGraph Persistence, OpenAI Agents SDK Sessions, OpenAI Agents SDK Guardrails, and OpenAI Trace Grading as concrete reusable primitives.
++- Trace-driven debugging: added OpenAI Agents SDK Tracing and expanded replay/grading coverage as separate concepts.
++- Reference navigation: added OpenAI Retrieval/File Search, Sourcegraph Code Search, and Aider Repository Map as concrete navigation surfaces.
++- Concepts: new `Session Replay` and `Trace Grading` concepts added to the whiteboard vocabulary.
++
++### Segnali attuali
++1. The harness loop is now best treated as state persistence + policy + tracing + grading rather than a single abstraction.
++2. Reference-aware retrieval splits into hosted semantic search, code intelligence search, and repo-map style context packing.
++3. The next useful comparison work is about replay semantics, ranking behavior, and which UIs close the loop fastest.
++
++### Next Focus
++- Compare trace replay and trace grading surfaces across OpenAI, LangSmith, Langfuse, AgentOps, Phoenix, and OpenLIT.
++- Compare reference-aware retrieval and ranking across OpenAI Retrieval, Sourcegraph, Aider, Context7, Graphiti, and Zep.
++- Compare session and checkpoint semantics across OpenAI Agents SDK, LangGraph, and Temporal-style workflows.
+diff --git a/.workspaces/3-research/resources/findings.md b/.workspaces/3-research/resources/findings.md
+index dc32f33..c88a319 100644
+--- a/.workspaces/3-research/resources/findings.md
++++ b/.workspaces/3-research/resources/findings.md
+@@ -850,6 +850,74 @@
+ - **alternatives**: Phoenix, Langfuse, LangSmith, Weave
+ - **why_include**: Best concrete implementation of the OTEL-for-agents pattern.
+ 
++---
++
++# Harness / Reference Navigation Addendum
++
++## LangGraph Persistence
++- **macroarea**: Harness / Runtime Scaffold
++- **url**: https://docs.langchain.com/oss/python/langgraph/persistence
++- **description**: LangGraph checkpoints graph state at every super-step and organizes execution into threads, which makes resume, replay, human-in-the-loop approval, and fault recovery first-class. It also pairs checkpointing with a store layer for cross-thread memory and semantic search.
++- **popularity**: 10
++- **alternatives**: Temporal, OpenAI Agents SDK sessions, OpenAI Responses compaction sessions
++- **why_include**: This is the clearest durable-execution substrate for agent harnesses.
++
++## OpenAI Agents SDK Guardrails
++- **macroarea**: Harness / Runtime Scaffold
++- **url**: https://openai.github.io/openai-agents-python/guardrails/
++- **description**: The Agents SDK exposes input, output, and tool guardrails as explicit workflow boundaries. Guardrails can run in parallel or blocking mode and raise tripwires before the expensive agent loop or after tool execution.
++- **popularity**: 9
++- **alternatives**: Claude Code hooks, LangGraph middleware, Strands steering hooks, Mastra lifecycle hooks
++- **why_include**: A concrete policy layer that is reusable across real agent workflows.
++
++## OpenAI Agents SDK Tracing
++- **macroarea**: Trace Replay / Observability
++- **url**: https://openai.github.io/openai-agents-python/tracing/
++- **description**: The SDK emits built-in traces and spans for agent runs, generations, tool calls, handoffs, guardrails, and audio events. It also supports custom tracing processors and ecosystem exporters, so the same trace surface can feed OpenAI or third-party backends.
++- **popularity**: 9
++- **alternatives**: LangSmith, Langfuse, AgentOps, Arize Phoenix, OpenLIT
++- **why_include**: Native trace plumbing is the foundation for debugging and replay-driven iteration.
++
++## OpenAI Trace Grading
++- **macroarea**: Eval Harness / Trace Replay
++- **url**: https://platform.openai.com/docs/guides/trace-grading
++- **description**: Trace grading assigns structured scores or labels to end-to-end agent traces so workflow-level failures can be analyzed and turned into repeatable evals. It is the direct bridge from observability into a regression-prevention loop.
++- **popularity**: 8
++- **alternatives**: LangSmith evals, Langfuse experiments, promptfoo, Inspect AI
++- **why_include**: Strongest first-party example of trace-driven debugging feeding eval loops.
++
++## OpenAI Retrieval / File Search
++- **macroarea**: Reference-Aware Retrieval
++- **url**: https://platform.openai.com/docs/guides/retrieval
++- **description**: OpenAI's Retrieval and File Search APIs provide semantic and keyword search over vector stores, with query rewriting, metadata filters, citations, and rank tuning. It is a managed way to surface relevant references instead of only compressing history.
++- **popularity**: 9
++- **alternatives**: Context7, Sourcegraph Code Search, Aider repo map, Graphiti, Zep
++- **why_include**: Concrete retrieval primitive with ranking and citation support for agents.
++
++## OpenAI Agents SDK Sessions
++- **macroarea**: Harness / Runtime Scaffold
++- **url**: https://openai.github.io/openai-agents-python/sessions/
++- **description**: The SDK has first-party session memory with SQLite, Redis, SQLAlchemy, Dapr, encrypted sessions, and OpenAI-hosted conversation storage. It also includes compaction sessions and history controls for resumable multi-turn workflows.
++- **popularity**: 9
++- **alternatives**: LangGraph persistence, OpenAI Conversations API, custom session stores
++- **why_include**: A reusable session layer that makes context persistence a harness primitive.
++
++## Sourcegraph Code Search
++- **macroarea**: Reference Navigation / Code Intelligence
++- **url**: https://sourcegraph.com/docs/code-search
++- **description**: Sourcegraph indexes code, commits, diffs, symbols, and search contexts across repositories with fresh results and ranking. It gives agents a code-intelligence layer that can rank and navigate references better than a flat repo map.
++- **popularity**: 9
++- **alternatives**: Aider repo map, Context7, GitHub code search, Graphiti, Zep
++- **why_include**: Best enterprise-grade code navigation surface for large codebases.
++
++## Aider Repository Map
++- **macroarea**: Reference Navigation / Code Intelligence
++- **url**: https://aider.chat/docs/repomap.html
++- **description**: Aider builds a concise graph-ranked map of the whole git repository with important symbols, signatures, and critical lines of code. The map is trimmed to fit token budget, which makes it a compact navigation layer rather than a full dump.
++- **popularity**: 8
++- **alternatives**: Sourcegraph Code Search, Context7, static code graphs
++- **why_include**: Canonical repo-map pattern for coding agents that need navigation, not compression.
++
+ ## Anthropic Computer Use
+ - **macroarea**: Browser Automation / Computer Use
+ - **url**: https://docs.anthropic.com/en/docs/build-with-claude/computer-use
+diff --git a/.workspaces/3-research/resources/guides.md b/.workspaces/3-research/resources/guides.md
+index 2138603..c593471 100644
+--- a/.workspaces/3-research/resources/guides.md
++++ b/.workspaces/3-research/resources/guides.md
+@@ -653,3 +653,37 @@
+ - **source**: Sourcegraph
+ - **description**: MCP surface for exposing Sourcegraph code intelligence to agents.
+ - **relevance**: Useful reference for agent-facing code intelligence and code-graph context injection.
++
++---
++
++## Harness / Retrieval Additions
++
++### LangGraph Persistence
++- **url**: https://docs.langchain.com/oss/python/langgraph/persistence
++- **source**: LangChain / LangGraph
++- **description**: Official guide to checkpointed state, threads, replay, time travel, and the store layer for cross-thread memory.
++- **relevance**: Best reference for durable execution and resumable agent workflows.
++
++### OpenAI Trace Grading
++- **url**: https://platform.openai.com/docs/guides/trace-grading
++- **source**: OpenAI Platform
++- **description**: Shows how to score workflow traces and turn debugging findings into repeatable evals.
++- **relevance**: Best first-party guide for a trace-to-eval feedback loop.
++
++### OpenAI Agents SDK Sessions
++- **url**: https://openai.github.io/openai-agents-python/sessions/
++- **source**: OpenAI Agents SDK docs
++- **description**: Covers session-backed conversation history, compaction, persistence backends, and encrypted sessions.
++- **relevance**: Strong practical reference for harness state that survives across turns.
++
++### OpenAI Retrieval
++- **url**: https://platform.openai.com/docs/guides/retrieval
++- **source**: OpenAI Platform
++- **description**: Explains vector stores, semantic search, query rewriting, metadata filters, ranking, and citations.
++- **relevance**: Best OpenAI-native guide for reference-aware retrieval.
++
++### OpenAI File Search
++- **url**: https://platform.openai.com/docs/guides/tools-file-search
++- **source**: OpenAI Platform
++- **description**: Shows how to use the hosted file_search tool with vector stores inside Responses.
++- **relevance**: Best practical guide for managed retrieval inside the model loop.
+diff --git a/.workspaces/3-research/resources/research-requests.md b/.workspaces/3-research/resources/research-requests.md
+index 6dcceb0..6d3f99d 100644
+--- a/.workspaces/3-research/resources/research-requests.md
++++ b/.workspaces/3-research/resources/research-requests.md
+@@ -243,3 +243,17 @@
+ 
+ ### Esplorazione
+ 5. **Prompt assembly and caching** — how harnesses combine static system blocks, dynamic instructions, and cached context without drift or duplication.
++
++## Iterazione 21 — Nuove Richieste
++
++### Priorità Alta
++1. **Trace replay comparison** — LangSmith, Langfuse, AgentOps, Phoenix, OpenLIT, and OpenAI Trace Grading: which trace UIs and APIs are actually best for root-cause analysis?
++2. **Reference-aware retrieval ranking** — Context7, OpenAI Retrieval/File Search, Sourcegraph Code Search, Aider repo maps, Graphiti, and Zep: how do ranking, pinning, provenance, and citations differ in practice?
++3. **Harness policy layers** — OpenAI Agents SDK guardrails, LangGraph persistence/middleware, Claude Code hooks, Strands steering hooks, and session APIs: which are most reusable as a policy + replay layer?
++
++### Priorità Media
++4. **Session memory backends** — compare OpenAI Agents SDK sessions, LangGraph stores, OpenAI Conversations, Redis, SQLAlchemy, and Dapr for resumable multi-turn workflows.
++5. **Code intelligence surfaces** — compare Sourcegraph MCP, repo maps, search contexts, and symbol/diff search as agent navigation layers.
++
++### Esplorazione
++6. **Trace-to-eval flywheels** — how trace grading, eval datasets, and CI regression loops connect into a shareable harness workflow.
+[0m
+[0m→ [0mRead .workspaces/3-research/resources/guides.md[90m [offset=659, limit=60][0m
+I caught a bad regression in `context.md`: the header got rolled back to an old in-progress state. I’m restoring the current state header before I finish.
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/context.md
+[0m→ [0mRead .workspaces/3-research/context.md[90m [offset=1, limit=8][0m
+[0m
+[0m$ [0mgit status --short .workspaces/3-research/context.md .workspaces/3-research/resources/findings.md .workspaces/3-research/resources/guides.md .workspaces/3-research/resources/research-requests.md .workspaces/1-implementation/resources/concepts.md
+M .workspaces/1-implementation/resources/concepts.md
+ M .workspaces/3-research/context.md
+ M .workspaces/3-research/resources/findings.md
+ M .workspaces/3-research/resources/guides.md
+ M .workspaces/3-research/resources/research-requests.md
+[0m
+[0m# [0mTodos
+[x] Read current research requests, concepts, findings, and context
+[x] Research harness/runtime scaffold, context navigation, trace replay, and eval loops
+[x] Append structured findings and guides for new concrete tools
+[x] Update concepts, next research requests, and workspace context
+[0m
+Added the iteration 21 research pass:
+
+- `findings.md`: new concrete entries for LangGraph persistence, OpenAI guardrails/tracing/sessions, OpenAI trace grading, OpenAI retrieval/file search, Sourcegraph code search, and Aider repo maps.
+- `guides.md`: added the matching docs/tutorial sources.
+- `concepts.md`: added `Session Replay` and `Trace Grading`.
+- `research-requests.md`: added the next request set.
+- `context.md`: updated current state and next focus.
+[0;32m[2026-04-02 21:54:55] ✓[0m Workspace Research & Content completed successfully

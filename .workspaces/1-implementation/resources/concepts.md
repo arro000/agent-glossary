@@ -619,3 +619,17 @@
 - **description**: Benchmark-first evaluation per agenti basata su task reali e non su sole metriche astratte. Include SWE-bench, Terminal-Bench 2.0, WebArena, TAU-bench, BrowseComp e SWE-Lancer.
 - **alternatives**: LOCOMO, custom evals, human eval
 - **category**: Quality
+
+## Replay & Grading
+
+### Session Replay
+- **popularity**: 8
+- **description**: Replay visivo di una sessione o run con trace, tool call e state transitions per root-cause analysis e debugging long-horizon.
+- **alternatives**: trace playback, transcript viewer, LangSmith replay, Langfuse sessions, AgentOps replay
+- **category**: Debug
+
+### Trace Grading
+- **popularity**: 8
+- **description**: Valutazione strutturata di trace end-to-end con score o label per trasformare i failure di workflow in regressioni ripetibili.
+- **alternatives**: trace evals, LangSmith evals, Langfuse experiments, promptfoo, Inspect AI
+- **category**: Quality

@@ -653,3 +653,37 @@
 - **source**: Sourcegraph
 - **description**: MCP surface for exposing Sourcegraph code intelligence to agents.
 - **relevance**: Useful reference for agent-facing code intelligence and code-graph context injection.
+
+---
+
+## Harness / Retrieval Additions
+
+### LangGraph Persistence
+- **url**: https://docs.langchain.com/oss/python/langgraph/persistence
+- **source**: LangChain / LangGraph
+- **description**: Official guide to checkpointed state, threads, replay, time travel, and the store layer for cross-thread memory.
+- **relevance**: Best reference for durable execution and resumable agent workflows.
+
+### OpenAI Trace Grading
+- **url**: https://platform.openai.com/docs/guides/trace-grading
+- **source**: OpenAI Platform
+- **description**: Shows how to score workflow traces and turn debugging findings into repeatable evals.
+- **relevance**: Best first-party guide for a trace-to-eval feedback loop.
+
+### OpenAI Agents SDK Sessions
+- **url**: https://openai.github.io/openai-agents-python/sessions/
+- **source**: OpenAI Agents SDK docs
+- **description**: Covers session-backed conversation history, compaction, persistence backends, and encrypted sessions.
+- **relevance**: Strong practical reference for harness state that survives across turns.
+
+### OpenAI Retrieval
+- **url**: https://platform.openai.com/docs/guides/retrieval
+- **source**: OpenAI Platform
+- **description**: Explains vector stores, semantic search, query rewriting, metadata filters, ranking, and citations.
+- **relevance**: Best OpenAI-native guide for reference-aware retrieval.
+
+### OpenAI File Search
+- **url**: https://platform.openai.com/docs/guides/tools-file-search
+- **source**: OpenAI Platform
+- **description**: Shows how to use the hosted file_search tool with vector stores inside Responses.
+- **relevance**: Best practical guide for managed retrieval inside the model loop.

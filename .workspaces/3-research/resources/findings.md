@@ -850,6 +850,74 @@
 - **alternatives**: Phoenix, Langfuse, LangSmith, Weave
 - **why_include**: Best concrete implementation of the OTEL-for-agents pattern.
 
+---
+
+# Harness / Reference Navigation Addendum
+
+## LangGraph Persistence
+- **macroarea**: Harness / Runtime Scaffold
+- **url**: https://docs.langchain.com/oss/python/langgraph/persistence
+- **description**: LangGraph checkpoints graph state at every super-step and organizes execution into threads, which makes resume, replay, human-in-the-loop approval, and fault recovery first-class. It also pairs checkpointing with a store layer for cross-thread memory and semantic search.
+- **popularity**: 10
+- **alternatives**: Temporal, OpenAI Agents SDK sessions, OpenAI Responses compaction sessions
+- **why_include**: This is the clearest durable-execution substrate for agent harnesses.
+
+## OpenAI Agents SDK Guardrails
+- **macroarea**: Harness / Runtime Scaffold
+- **url**: https://openai.github.io/openai-agents-python/guardrails/
+- **description**: The Agents SDK exposes input, output, and tool guardrails as explicit workflow boundaries. Guardrails can run in parallel or blocking mode and raise tripwires before the expensive agent loop or after tool execution.
+- **popularity**: 9
+- **alternatives**: Claude Code hooks, LangGraph middleware, Strands steering hooks, Mastra lifecycle hooks
+- **why_include**: A concrete policy layer that is reusable across real agent workflows.
+
+## OpenAI Agents SDK Tracing
+- **macroarea**: Trace Replay / Observability
+- **url**: https://openai.github.io/openai-agents-python/tracing/
+- **description**: The SDK emits built-in traces and spans for agent runs, generations, tool calls, handoffs, guardrails, and audio events. It also supports custom tracing processors and ecosystem exporters, so the same trace surface can feed OpenAI or third-party backends.
+- **popularity**: 9
+- **alternatives**: LangSmith, Langfuse, AgentOps, Arize Phoenix, OpenLIT
+- **why_include**: Native trace plumbing is the foundation for debugging and replay-driven iteration.
+
+## OpenAI Trace Grading
+- **macroarea**: Eval Harness / Trace Replay
+- **url**: https://platform.openai.com/docs/guides/trace-grading
+- **description**: Trace grading assigns structured scores or labels to end-to-end agent traces so workflow-level failures can be analyzed and turned into repeatable evals. It is the direct bridge from observability into a regression-prevention loop.
+- **popularity**: 8
+- **alternatives**: LangSmith evals, Langfuse experiments, promptfoo, Inspect AI
+- **why_include**: Strongest first-party example of trace-driven debugging feeding eval loops.
+
+## OpenAI Retrieval / File Search
+- **macroarea**: Reference-Aware Retrieval
+- **url**: https://platform.openai.com/docs/guides/retrieval
+- **description**: OpenAI's Retrieval and File Search APIs provide semantic and keyword search over vector stores, with query rewriting, metadata filters, citations, and rank tuning. It is a managed way to surface relevant references instead of only compressing history.
+- **popularity**: 9
+- **alternatives**: Context7, Sourcegraph Code Search, Aider repo map, Graphiti, Zep
+- **why_include**: Concrete retrieval primitive with ranking and citation support for agents.
+
+## OpenAI Agents SDK Sessions
+- **macroarea**: Harness / Runtime Scaffold
+- **url**: https://openai.github.io/openai-agents-python/sessions/
+- **description**: The SDK has first-party session memory with SQLite, Redis, SQLAlchemy, Dapr, encrypted sessions, and OpenAI-hosted conversation storage. It also includes compaction sessions and history controls for resumable multi-turn workflows.
+- **popularity**: 9
+- **alternatives**: LangGraph persistence, OpenAI Conversations API, custom session stores
+- **why_include**: A reusable session layer that makes context persistence a harness primitive.
+
+## Sourcegraph Code Search
+- **macroarea**: Reference Navigation / Code Intelligence
+- **url**: https://sourcegraph.com/docs/code-search
+- **description**: Sourcegraph indexes code, commits, diffs, symbols, and search contexts across repositories with fresh results and ranking. It gives agents a code-intelligence layer that can rank and navigate references better than a flat repo map.
+- **popularity**: 9
+- **alternatives**: Aider repo map, Context7, GitHub code search, Graphiti, Zep
+- **why_include**: Best enterprise-grade code navigation surface for large codebases.
+
+## Aider Repository Map
+- **macroarea**: Reference Navigation / Code Intelligence
+- **url**: https://aider.chat/docs/repomap.html
+- **description**: Aider builds a concise graph-ranked map of the whole git repository with important symbols, signatures, and critical lines of code. The map is trimmed to fit token budget, which makes it a compact navigation layer rather than a full dump.
+- **popularity**: 8
+- **alternatives**: Sourcegraph Code Search, Context7, static code graphs
+- **why_include**: Canonical repo-map pattern for coding agents that need navigation, not compression.
+
 ## Anthropic Computer Use
 - **macroarea**: Browser Automation / Computer Use
 - **url**: https://docs.anthropic.com/en/docs/build-with-claude/computer-use
