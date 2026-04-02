@@ -1,9 +1,9 @@
 # Workspace 1 — Implementation
 
 ## Stato
-- **Iterazione**: 2
-- **Ultimo aggiornamento**: 2026-04-02 21:48:40
-- **Stato**: completed
+- **Iterazione**: 3
+- **Ultimo aggiornamento**: 2026-04-02 22:01:59
+- **Stato**: in_progress
 
 ## Obiettivo
 Implementare l'app "Agent Glossary Whiteboard" usando PixiJS v8 + Next.js.
@@ -259,3 +259,10 @@ La whiteboard rappresenta 100 subsection correnti allineate alle macroaree princ
 - [x] Allineato il canvas a `concepts.md` con `Session Replay` e `Trace Grading` nelle metriche/visuali dell'area Observability
 - [x] Confermato il comportamento della bubble selezionata: resta evidenziata anche durante il filtro search
 - [x] Aggiornato il PRD workspace 2 alla iterazione corrente e sincronizzato il totale canvas a 101 concept nodes
+
+## Iterazione 3 (Richiesta utente corrente) — Completata
+- [x] Letti i riferimenti richiesti: `workspace 1 context`, `concepts.md`, `pixijs-reference.md`, `workspace 2 context`, `findings.md`, PRD workspace 2
+- [x] Tradotti in modo piu visibile i segnali harness/context/reference-navigation: signal legend estesa a 6 cue e signal chip anche a livello macroarea
+- [x] Layout reso piu chiaro senza aumentare densita: packing bolle limitato a max 6 colonne mantenendo bolle equal-size
+- [x] Confermati vincoli chiave: rendering full-canvas PixiJS v8 vanilla, font Inter, peso da `alternatives` (ring+badge), hover glow, click panel, zoom/pan
+- [x] Verifica tecnica: `npm run build` completata con successo

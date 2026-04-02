@@ -340,8 +340,7 @@ function getBubbleColumns(count: number): number {
   if (count <= 3) return count;
   if (count <= 8) return 4;
   if (count <= 12) return 5;
-  if (count <= 16) return 6;
-  return 7;
+  return 6;
 }
 
 function getConceptSignal(conceptName: string): SignalInfo | null {
@@ -356,6 +355,20 @@ function getConceptSignal(conceptName: string): SignalInfo | null {
   if (key.includes('reference navigation')) return SIGNAL_LEGEND[2];
   if (key.includes('repo map') || key.includes('codebase map')) return SIGNAL_LEGEND[3];
   return null;
+}
+
+function getMacroareaSignals(area: MacroareaConfig): SignalInfo[] {
+  const unique: SignalInfo[] = [];
+  const seen = new Set<SignalInfo['key']>();
+
+  for (const concept of area.concepts) {
+    const signal = getConceptSignal(concept.name);
+    if (!signal || seen.has(signal.key)) continue;
+    seen.add(signal.key);
+    unique.push(signal);
+  }
+
+  return unique.slice(0, 3);
 }
 
 function getBubbleReferenceScore(concept: ConceptData): number {
@@ -1103,13 +1116,13 @@ function createSignalLegend(compact = false): Container {
 
   const padX = 10;
   const padY = 8;
-  const chipW = 98;
+  const chipW = 96;
   const chipH = 20;
   const chipGap = 8;
   const headerH = 16;
-  const items = SIGNAL_LEGEND.slice(0, 4);
+  const items = SIGNAL_LEGEND;
   const w = padX * 2 + chipW * 2 + chipGap;
-  const h = padY * 2 + headerH + chipH * 2 + chipGap;
+  const h = padY * 2 + headerH + chipH * 3 + chipGap * 2;
 
   const bg = new Graphics();
   bg.roundRect(0, 0, w, h, 12);
@@ -1147,11 +1160,11 @@ function createSignalLegend(compact = false): Container {
     chip.eventMode = 'none';
     container.addChild(chip);
 
-    const label = new Text({
-      text: item.label,
+      const label = new Text({
+        text: item.label,
       style: new TextStyle({
         fontFamily: '"Inter", sans-serif',
-        fontSize: 8,
+        fontSize: 7,
         fontWeight: 'bold',
         fill: item.color,
         letterSpacing: 0.5,
@@ -1162,14 +1175,14 @@ function createSignalLegend(compact = false): Container {
     label.eventMode = 'none';
     container.addChild(label);
 
-    const helper = new Text({
-      text: item.helper,
-      style: new TextStyle({
-        fontFamily: '"Inter", sans-serif',
-        fontSize: 7,
-        fill: '#64748b',
-      }),
-    });
+      const helper = new Text({
+        text: item.helper,
+        style: new TextStyle({
+          fontFamily: '"Inter", sans-serif',
+          fontSize: 6,
+          fill: '#64748b',
+        }),
+      });
     helper.x = x + 8;
     helper.y = y + 11;
     helper.eventMode = 'none';
@@ -1316,6 +1329,38 @@ export default function Whiteboard() {
         conceptCountBg.eventMode = 'none';
         areaContainer.addChild(conceptCountBg);
         areaContainer.addChild(conceptCount);
+
+        const areaSignals = getMacroareaSignals(area);
+        if (areaSignals.length > 0) {
+          let chipX = 42;
+          for (const signal of areaSignals) {
+            const chipLabel = new Text({
+              text: signal.label,
+              style: new TextStyle({
+                fontFamily: '"Inter", sans-serif',
+                fontSize: 8,
+                fontWeight: 'bold',
+                fill: signal.color,
+                letterSpacing: 0.45,
+              }),
+            });
+            const chipW = chipLabel.width + 14;
+
+            const chipBg = new Graphics();
+            chipBg.roundRect(chipX, 50, chipW, 15, 7);
+            chipBg.fill({ color: '#ffffff', alpha: 0.85 });
+            chipBg.stroke({ color: signal.color, width: 1, alpha: 0.35 });
+            chipBg.eventMode = 'none';
+            areaContainer.addChild(chipBg);
+
+            chipLabel.x = chipX + 7;
+            chipLabel.y = 54;
+            chipLabel.eventMode = 'none';
+            areaContainer.addChild(chipLabel);
+
+            chipX += chipW + 6;
+          }
+        }
 
         const bubbles = layoutBubbles(area.concepts, pos.x, pos.y);
 
