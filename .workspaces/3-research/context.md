@@ -1,61 +1,57 @@
 # Workspace 3 — Research & Content Discovery
 
 ## Stato
-- **Iterazione**: 0
-- **Ultimo aggiornamento**: (auto)
-- **Stato**: pending
+- **Iterazione**: 1 (completata)
+- **Ultimo aggiornamento**: 2026-04-02
+- **Stato**: completed
 
-## Obiettivo
-Ricercare su internet nuovi progetti, strumenti, concetti e pattern dell'ecosistema agentico AI per il codice. Arricchire la whiteboard con contenuti rilevanti e aggiornati.
+## Risultati Iterazione 1
 
-## Workflow
-1. Leggi le richieste di ricerca in `resources/research-requests.md`
-2. Se vuote, genera le tue basandoti su:
-   - Cosa manca nelle macroaree attuali?
-   - Quali nuovi framework/tool sono usciti recentemente?
-   - Quali pattern emergono nella community?
-3. Cerca su internet (usa il terminale con curl a motori di ricerca, o leggi blog/docs)
-4. Raccogli risultati e aggiornali
+### Ricerca Completata
+Tutti i 10 topic di ricerca sono stati coperti:
 
-## Fonti di Ricerca
-- GitHub trending (AI/agent repositories)
-- Documentazione ufficiale dei framework (LangChain, CrewAI, AutoGen, etc.)
-- Blog: Anthropic, OpenAI, Google DeepMind
-- Reddit: r/LocalLLaMA, r/ChatGPTCoding, r/ArtificialIntelligence
-- ArXiv papers su agent systems
-- Awesome-lists su GitHub (awesome-langchain, awesome-agents, etc.)
+**High Priority (3/3):**
+- ✅ Framework agentici per coding: 12+ tool trovati (Cursor, Gemini CLI, Claude Code, Codex CLI, Cline, GitHub Copilot, Aider, Devin, Windsurf, Continue.dev, OpenCode)
+- ✅ MCP: Protocollo completo analizzato (spec 2025-11-25, 10 SDK, 93+ server, 80+ client, Linux Foundation)
+- ✅ ACP/A2A: ACP deprecato e mergiato in A2A (v1.0 Mar 2026, 23k stars, TSC con 8 aziende)
 
-## Output
-Salva i risultati in `resources/findings.md` con formato:
-```markdown
-## [Nome Framework/Strumento/Pattern]
-- **macroarea**: Quale macroarea della whiteboard
-- **url**: Link ufficiale
-- **description**: Cosa fa, in 2-3 frasi
-- **popularity**: Stima 1-10
-- **alternatives**: Cosa sostituisce o con cosa compete
-- **notes**: Note particolari, limitazioni, punti di forza
-- **why_include**: Perché merita di stare sulla whiteboard
-```
+**Medium Priority (4/4):**
+- ✅ Multi-agent patterns: 8+ pattern documentati (chaining, routing, parallelization, orchestrator-workers, evaluator-optimizer, handoffs/swarm, graphflow, MoA)
+- ✅ Observability: 6 tool analizzati (Langfuse, LangSmith, Arize Phoenix, W&B Weave, Helicone, OpenLLMetry)
+- ✅ Sandboxes: 6 piattaforme (Daytona, E2B, Modal, Fly.io, StackBlitz, CodeSandbox)
+- ✅ Memory systems: 4 sistemi principali (Mem0, Letta/MemGPT, Graphiti, Zep) + analysis comparativa LOCOMO
 
-## Ricerche Strutturali da Fare (ogni iterazione)
-1. C'è qualche nuovo framework agentic uscito nelle ultime 2 settimane?
-2. Quali tool di memory/state stanno guadagnando adozione?
-3. Nuovi pattern di orchestration (multi-agent, hierarchical, etc.)
-4. Quali miglioramenti nelle capacità dei modelli LLM per coding?
-5. Nuovi standard o protocolli (MCP, ACP, etc.)
+**Exploration (3/3):**
+- ✅ Guide: 8 guide raccolte (Anthropic, OpenAI, Devin, freeCodeCamp, Addy Osmani, Langflow)
+- ✅ Best practices: Framework 10-fattori per tool selection
+- ✅ Trends: 10+ trend identificati (async agents, CLI as IDE, MCP+A2A stack, HITL, ACI, security, governance)
 
-## Guide Contestuali
-Oltre agli strumenti, cerca anche:
-- Guide/tutorial su come progettare l'ambiente di un agente AI
-- Best practices per tool selection
-- Comparison chart tra framework agentici
-- Check-list per setup di un coding agent completo
+### Output Prodotti
+- `resources/findings.md`: 250+ righe di findings strutturati (30+ entries)
+- `resources/guides.md`: 10 guide educational con metadati
+- `concepts.md` (workspace 1): 13 nuovi concetti aggiunti, 3 aggiornati
 
-Salva le guide trovate in `resources/guides.md`.
+### Nuovi Concetti Aggiunti a concepts.md
+- **Memory & State**: Temporal Memory, Tiered Memory, Procedural Memory
+- **Integration**: A2A (Agent-to-Agent Protocol)
+- **Orchestration**: Prompt Chaining, Routing, Parallelization, Orchestrator-Workers, Evaluator-Optimizer, Handoffs/Swarm, GraphFlow/State Machine
+- **Pattern**: Human-in-the-Loop (HITL), Async Background Agent, ACI (Agent-Computer Interface)
+- **Monitoring**: Observability Platform
+- **Governance**: Agent Governance
 
-## Comandi Dopo Ogni Iterazione
-1. Aggiorna questo file con lo stato attuale
-2. Salva findings in `resources/findings.md`
-3. Se hai nuove richieste di ricerca, aggiungile in `resources/research-requests.md`
-4. Aggiorna il file concetti per il workspace 1 se hai nuovi dati significativi
+### Concetti Aggiornati
+- MCP: description aggiornata con dettagli spec, SDK, adozione
+- Code Execution Sandbox: description aggiornata con approcci (Firecracker, Docker, WASM)
+- Logging & Tracing: alternatives aggiornate (OpenLLMetry aggiunto)
+- Safety & Guardrails: alternatives aggiornate (Geordie AI aggiunto)
+
+### Insight Chiave dell'Ecosistema
+1. **Convergenza standard**: MCP (agent-to-tool) + A2A (agent-to-agent) formano lo stack di interoperabilità completo
+2. **CLI renaissance**: Il terminale è la nuova interfaccia primaria per coding agent (Gemini CLI 100k stars)
+3. **Memory wars**: Mem0 (51.8k stars) vs Letta (21.9k) vs Zep+Graphiti (24.4k) — tre approcci diversi alla memoria
+4. **Sandbox consolidation**: Daytona (71.1k stars, open-source) vs E2B (purpose-built) come leader
+5. **Pattern canonici**: I 5 workflow patterns di Anthropic (chaining, routing, parallelization, orchestrator-workers, evaluator-optimizer) sono il vocabolario fondamentale
+
+## Prossima Iterazione (2)
+Vedi `resources/research-requests.md` per 12 nuove richieste di ricerca.
+Focus su: Google ADK, Mastra, Pydantic AI, Strands Agents, Claude Agent SDK, Agentic RAG.

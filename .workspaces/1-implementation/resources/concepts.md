@@ -25,6 +25,24 @@
 - **alternatives**: Truncation, Summarization, Chunking, Hierarchical context
 - **category**: Runtime
 
+### Temporal Memory
+- **popularity**: 7
+- **description**: Memoria che traccia come i fatti cambiano nel tempo con finestre di validità e invalidazione automatica
+- **alternatives**: Graphiti, Zep, knowledge graphs con validità temporale
+- **category**: Storage
+
+### Tiered Memory
+- **popularity**: 7
+- **description**: Architettura a livelli: core memory (sempre in contesto), recall memory (ricercabile), archive (long-term storage). L'agente gestisce autonomamente quale livello usare.
+- **alternatives**: Letta (MemGPT), custom tiered systems
+- **category**: Architecture
+
+### Procedural Memory
+- **popularity**: 6
+- **description**: Memoria che memorizza workflow e conoscenze procedurali (come fare le cose) separate dai fatti semantici
+- **alternatives**: Mem0 procedural memory, Letta skills, workflow templates
+- **category**: Storage
+
 ### Token Budget
 - **popularity**: 7
 - **description**: Allocazione dinamica di token per system/user/tool output
@@ -34,8 +52,8 @@
 ## Tools & Actions
 ### Code Execution Sandbox
 - **popularity**: 9
-- **description**: Esecuzione codice in ambiente isolato (Python, Node, etc.)
-- **alternatives**: E2B, Modal, Docker sandbox, Jupyter kernel
+- **description**: Esecuzione codice in ambiente isolato (Python, Node, etc.). Approcci: Firecracker microVM (E2B), Docker/containers (Daytona), WebAssembly (StackBlitz)
+- **alternatives**: E2B, Daytona, Modal, Docker sandbox, Jupyter kernel, StackBlitz, Fly.io Machines
 - **category**: Execution
 
 ### Terminal/Shell Access
@@ -64,8 +82,14 @@
 
 ### MCP (Model Context Protocol)
 - **popularity**: 9
-- **description**: Protocollo standard per collegare tool esterni all'agente
-- **alternatives**: Function calling nativo, REST APIs, gRPC
+- **description**: Protocollo standard per collegare tool esterni all'agente. JSON-RPC 2.0, gestito dalla Linux Foundation. Supportato da Anthropic, OpenAI, Google, Microsoft, Amazon. 10 SDK ufficiali, 93+ server registrati.
+- **alternatives**: REST APIs, gRPC, OpenAI function calling, A2A
+- **category**: Integration
+
+### A2A (Agent-to-Agent Protocol)
+- **popularity**: 9
+- **description**: Protocollo standard (Linux Foundation, Apache 2.0) per comunicazione tra agenti AI indipendenti. v1.0 Mar 2026. Agent Cards per discovery, Tasks con messaggi multi-turn. Complementare a MCP (A2A per agent-to-agent, MCP per agent-to-tool).
+- **alternatives**: MCP (complementare), custom gRPC/REST, LangGraph inter-agent channels
 - **category**: Integration
 
 ### API Client
@@ -118,6 +142,48 @@
 - **alternatives**: ReAct, Plan-and-Execute, Function calling loop
 - **category**: Core
 
+### Prompt Chaining
+- **popularity**: 10
+- **description**: Decomposizione sequenziale dove ogni chiamata LLM processa l'output della precedente, con gates programmatici opzionali tra step
+- **alternatives**: Sequential Workflow (AutoGen), Sequential Process (CrewAI), LangGraph chain
+- **category**: Workflow
+
+### Routing
+- **popularity**: 9
+- **description**: Classifica l'input e lo dirige a un processo downstream specializzato. Permette separazione delle preoccupazioni e prompt specializzati per categoria.
+- **alternatives**: Selector Group Chat (AutoGen), conditional branching (LangGraph), tool routing
+- **category**: Workflow
+
+### Parallelization
+- **popularity**: 8
+- **description**: Due varianti: Sectioning (scomporre task in sotto-task paralleli indipendenti) e Voting (eseguire stesso task più volte per output diversi)
+- **alternatives**: Fan-out/fan-in (LangGraph), Concurrent Agents (AutoGen)
+- **category**: Workflow
+
+### Orchestrator-Workers
+- **popularity**: 9
+- **description**: Un LLM centrale decoompongono dinamicamente task e delega a worker LLM, poi sintetizza risultati. Sotto-task determinati dinamicamente dall'orchestratore.
+- **alternatives**: Hierarchical Process (CrewAI), Magentic-One (AutoGen), LangGraph subgraphs
+- **category**: Workflow
+
+### Evaluator-Optimizer
+- **popularity**: 8
+- **description**: Un LLM genera output mentre un altro valuta e fornisce feedback in un loop iterativo. Più efficace quando esistono criteri di valutazione chiari.
+- **alternatives**: Multi-Agent Debate (AutoGen), Reflection pattern, code review agents
+- **category**: Workflow
+
+### Handoffs / Swarm Pattern
+- **popularity**: 9
+- **description**: Agenti trasferiscono controllo ad altri agenti tramite function returns. Coordinazione leggera dove ogni agente ha le proprie istruzioni e tools.
+- **alternatives**: AutoGen Swarm, LangGraph edge transitions, A2A task delegation
+- **category**: Coordination
+
+### GraphFlow / State Machine
+- **popularity**: 9
+- **description**: Agenti e tools sono nodi in un grafo diretto. Stato mantenuto tra transizioni, archi condizionali abilitano routing dinamico. Supporta cicli, rami, subgraph e interrupt HITL.
+- **alternatives**: Temporal workflows, Prefect DAGs, Step Functions
+- **category**: Orchestration
+
 ### Multi-Agent
 - **popularity**: 8
 - **description**: Più agenti che collaborano o competono su un task
@@ -141,6 +207,24 @@
 - **description**: Delegare sotto-task a agenti secondari isolati
 - **alternatives**: Claude Code, Codex CLI, OpenCode, Subprocess
 - **category**: Pattern
+
+### Human-in-the-Loop (HITL)
+- **popularity**: 8
+- **description**: Pattern dove l'agente richiede approvazione umana prima di azioni ad alto rischio o quando supera soglie di errore. Standard per agenti in produzione.
+- **alternatives**: OpenAI Agents SDK approval flow, HumanLayer, CAMEL Framework, Permit.io
+- **category**: Pattern
+
+### Async Background Agent
+- **popularity**: 7
+- **description**: Agenti che lavorano autonomamente in cloud VM producendo PR/risultati mentre gli sviluppatori fanno altro. Task assegnati e revisionati in modo asincrono.
+- **alternatives**: Jules (Google), OpenAI Codex, Devin, GitHub Copilot Agent
+- **category**: Pattern
+
+### ACI (Agent-Computer Interface)
+- **popularity**: 7
+- **description**: Principio di design per cui il design dei tool per agenti merita lo stesso investimento dell'HCI per umani. Include poka-yoke, percorsi assoluti, e testing su come i modelli usano i tool.
+- **alternatives**: Function calling best practices, tool design guides
+- **category**: Methodology
 
 ### Cron/Scheduling
 - **popularity**: 6
@@ -220,7 +304,13 @@
 ### Logging & Tracing
 - **popularity**: 8
 - **description**: Tracciare le azioni dell'agente per debug e audit
-- **alternatives**: LangSmith, LangFuse, Weave, Phoenix, Custom logging
+- **alternatives**: LangSmith, Langfuse, Weave, Phoenix, OpenLLMetry, Custom logging
+- **category**: Monitoring
+
+### Observability Platform
+- **popularity**: 9
+- **description**: Piattaforma completa per tracing, evaluation, prompt management e deployment di agenti. Il leader open-source è Langfuse (24.2k stars), il più feature-complete è LangSmith.
+- **alternatives**: Langfuse, LangSmith, Arize Phoenix, W&B Weave, Helicone
 - **category**: Monitoring
 
 ### Cost Tracking
@@ -244,8 +334,14 @@
 ### Safety & Guardrails
 - **popularity**: 7
 - **description**: Meccanismi per prevenire comportamenti indesiderati
-- **alternatives**: Input/output filtering, Permission systems, Approval flows
+- **alternatives**: Input/output filtering, Permission systems, Approval flows, Geordie AI
 - **category**: Safety
+
+### Agent Governance
+- **popularity**: 6
+- **description**: Framework di governance per il deployment sicuro e controllato di agenti AI in produzione. Copre valutazione, rischio, conformità e audit. 82% degli executive pianifica adozione entro 1-3 anni.
+- **alternatives**: WEF framework, Microsoft Power Platform governance, Collibra
+- **category**: Governance
 
 ## Infrastructure
 ### Docker & Containers
