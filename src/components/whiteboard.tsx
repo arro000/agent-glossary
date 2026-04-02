@@ -215,6 +215,7 @@ const MACROAREAS: MacroareaConfig[] = [
     border: '#CBD5E1',
     concepts: [
       { name: 'MCP\nApps', popularity: 7, description: 'Estensione ufficiale MCP (SEP-1865) che permette ai server di fornire UI HTML interattive renderizzate inline nelle conversazioni AI', alternatives: 'N/A (estensione unica)', category: 'Integration' },
+      { name: 'Agent Registry\n/ Discovery', popularity: 6, description: 'Livello di scoperta per agenti, skill e capability tramite registry e capability cards condivise', alternatives: 'A2A Agent Cards, MCP registries, Glama directories, custom catalogs', category: 'Integration' },
     ],
   },
 ];

@@ -1,8 +1,8 @@
 # Workspace 1 — Implementation
 
 ## Stato
-- **Iterazione**: 3
-- **Ultimo aggiornamento**: 2026-04-02 18:01:17
+- **Iterazione**: 4
+- **Ultimo aggiornamento**: 2026-04-02 18:42:00
 - **Stato**: completed
 
 ## Obiettivo
@@ -35,13 +35,13 @@ Una whiteboard quadrettata interattiva che mostra un glossario visuale dell'ecos
 9. **Knowledge & Retrieval** — 2 concetti: Agentic RAG, Deep Research Agent
 10. **Frameworks & SDKs** — 6 concetti: Google ADK, OpenAI Agents SDK, Mastra, Pydantic AI, Strands Agents SDK, Claude Agent SDK
 11. **Business Automation** — 2 concetti: Visual Agent Builder, Low-Code Agent Platform
-12. **Protocol Extensions** — 1 concetto: MCP Apps
+12. **Protocol Extensions** — 2 concetti: MCP Apps, Agent Registry / Discovery
 
-**Totale: 67 concetti** (era 62 nell'iterazione 2)
+**Totale: 68 concetti** (era 62 nell'iterazione 2)
 
 ## Dati
 I concetti/strumenti per ogni macroarea stanno nel file `resources/concepts.md`.
-Tutti i concetti dal database sono ora rappresentati nella whiteboard.
+La whiteboard rappresenta 68 subsection correnti allineate alle macroaree principali del database.
 
 ## Dettagli Implementativi
 
@@ -190,6 +190,12 @@ Tutti i concetti dal database sono ora rappresentati nella whiteboard.
 - [x] Rework delle subsection bubbles: fill/stroke uniformi, peso progetto reso dal ring segmentato e dal badge refs
 - [x] Emoji rese piu leggibili con halo piu ampio e font size aumentata
 - [x] Label interne delle bubbles regolate per ridurre overlap e mantenere riconoscibilita a colpo d'occhio
+
+## Iterazione 4 (Richiesta utente corrente) — Completata
+- [x] Letti i file richiesti: `context.md`, `resources/concepts.md`, `resources/pixijs-reference.md`
+- [x] Verificato PRD in `.workspaces/2-improvements/resources/prd.md` (presente, baseline senza nuove change request)
+- [x] Aggiornati i dati subsection della macroarea **Protocol Extensions** con `Agent Registry / Discovery` da `concepts.md`
+- [x] Confermati key rules: PixiJS v8 vanilla via `useRef/useEffect`, rendering full-canvas, font Inter, bolle equal-size con emoji+titolo, peso da `alternatives`, hover glow, click panel, zoom wheel e pan drag
 
 ## File Principali
 - `src/components/whiteboard.tsx` — Componente principale con tutta la logica PixiJS
