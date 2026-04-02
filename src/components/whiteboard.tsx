@@ -576,7 +576,7 @@ function createSearchBar(): {
   return { container, bg, textDisplay, placeholder, clearBtn, matchLabel, iconGfx };
 }
 
-function createLegend(onAreaClick: (areaIndex: number) => void, screenH: number): Container {
+function createLegend(onAreaClick: (areaIndex: number) => void): Container {
   const pad = 10;
   const itemH = 22;
   const w = 190;
@@ -742,7 +742,7 @@ function createLegend(onAreaClick: (areaIndex: number) => void, screenH: number)
       e.stopPropagation();
     });
 
-    const onMove = (e: any) => {
+    const onMove = (e: PointerEvent) => {
       if (!isDragging) return;
       scrollY = Math.max(-maxY, Math.min(0, scrollY + e.movementY));
       listContainer.y = headerH + headerPad + scrollY;
@@ -752,7 +752,7 @@ function createLegend(onAreaClick: (areaIndex: number) => void, screenH: number)
     window.addEventListener('pointermove', onMove);
     window.addEventListener('pointerup', onUp);
 
-    (container as any)._cleanupScroll = () => {
+    (container as unknown as Record<string, unknown>)._cleanupScroll = () => {
       window.removeEventListener('pointermove', onMove);
       window.removeEventListener('pointerup', onUp);
     };
@@ -885,7 +885,7 @@ export default function Whiteboard() {
           bubbleContainer.alpha = 0;
 
           const hitR = radius + 4;
-          bubbleContainer.hitArea = new Circle(hitR, hitR, hitR);
+          bubbleContainer.hitArea = new Circle(0, 0, hitR);
 
           const glow = new Graphics();
           glow.eventMode = 'none';
@@ -1028,11 +1028,11 @@ export default function Whiteboard() {
 
       const zoomContainer = new Container();
       zoomContainer.x = 20;
-      zoomContainer.y = window.innerHeight - 180;
+      zoomContainer.y = window.innerHeight - 196;
       zoomContainer.label = 'zoom-controls';
 
       const zoomBg = new Graphics();
-      zoomBg.roundRect(0, 0, 40, 136, 10);
+      zoomBg.roundRect(0, 0, 40, 152, 10);
       zoomBg.fill({ color: '#ffffff', alpha: 0.88 });
       zoomBg.stroke({ color: '#d1d5db', width: 1 });
       zoomBg.eventMode = 'none';
@@ -1057,21 +1057,21 @@ export default function Whiteboard() {
       });
       zoomLabel.anchor.set(0.5);
       zoomLabel.x = 20;
-      zoomLabel.y = 58;
+      zoomLabel.y = 56;
       zoomContainer.addChild(zoomLabel);
 
       const plusBtn = createZoomBtn('+', () => {
         zoomToCenter(world.scale.x * 1.25);
       });
       plusBtn.x = 0;
-      plusBtn.y = 72;
+      plusBtn.y = 64;
       zoomContainer.addChild(plusBtn);
 
       const fitBtn = createZoomBtn('\u2922', () => {
         zoomToFit();
       });
       fitBtn.x = 0;
-      fitBtn.y = 88;
+      fitBtn.y = 104;
       zoomContainer.addChild(fitBtn);
 
       app.stage.addChild(zoomContainer);
@@ -1094,7 +1094,7 @@ export default function Whiteboard() {
         targetScale = ns;
         targetPanX = window.innerWidth / 2 - areaCX * ns;
         targetPanY = window.innerHeight / 2 - areaCY * ns;
-      }, window.innerHeight);
+      });
       legend.x = window.innerWidth - 190 - 14;
       legend.y = 14;
       app.stage.addChild(legend);
@@ -1679,7 +1679,7 @@ export default function Whiteboard() {
         minimap.x = window.innerWidth - 180 - 12;
         minimap.y = window.innerHeight - 110 - 12;
         zoomContainer.x = 20;
-        zoomContainer.y = window.innerHeight - 180;
+        zoomContainer.y = window.innerHeight - 196;
         searchBar.container.x = (window.innerWidth - 300) / 2;
         searchBar.container.y = 14;
         legend.x = window.innerWidth - 190 - 14;

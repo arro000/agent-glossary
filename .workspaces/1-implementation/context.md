@@ -2,7 +2,7 @@
 
 ## Stato
 - **Iterazione**: 1
-- **Ultimo aggiornamento**: 2026-04-02 18:02:00
+- **Ultimo aggiornamento**: 2026-04-02 18:12:00
 - **Stato**: completed
 
 ## Obiettivo
@@ -140,6 +140,13 @@ Tutti i concetti dal database sono ora rappresentati nella whiteboard.
 - [x] Peso bolla aggiornato: ora usa il numero di riferimenti/progetti (`alternatives`) invece della popularity
 - [x] Badge bolla e barra "PROJECT WEIGHT" nel panel mostrano il conteggio riferimenti
 - [x] Hover glow, click panel, zoom (wheel) e pan (drag) verificati nel flusso esistente
+
+## Iterazione 1 (Questa esecuzione) — Completata
+- [x] Requisiti chiave confermati: PixiJS v8 vanilla, rendering full-canvas, font Inter, bolle equal-size
+- [x] Confermata leggibilita bolle con emoji/icona + titolo in ogni subsection
+- [x] Confermato peso delle bolle basato su numero di riferimenti/progetti (`alternatives`)
+- [x] Corretto hit area delle bolle per interazioni pointer precise (`Circle(0, 0, radius)`)
+- [x] Migliorato layout controlli zoom evitando overlap tra pulsanti (+, -, fit)
 
 ## File Principali
 - `src/components/whiteboard.tsx` — Componente principale con tutta la logica PixiJS
