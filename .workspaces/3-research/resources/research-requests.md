@@ -75,3 +75,17 @@
 ### Esplorazione
 7. **Anthropic computer use safety** — reference implementations, sandboxing, prompt-injection mitigations, browser automation
 8. **Agent simulation stacks** — Sotopia, Generative Agents, GPTeam, WarAgent, e altri ambienti sociali/synthetic
+
+## Iterazione 6 — Nuove Richieste
+
+### Priorità Alta
+1. **Google Generative UI / A2UI** — adozione reale, esempi ufficiali, differenze pratiche rispetto a AG-UI e AI SDK UI
+2. **Voice platform decision guide** — confronto operativo Daily vs Retell vs LiveKit vs Vapi (telephony, testing, deployment, pricing, SDK)
+
+### Priorità Media
+3. **OpenTelemetry GenAI adoption** — SDK che emettono già le semantic conventions GenAI e compatibilità cross-backend
+4. **BrowseComp ecosystem** — implementazioni open-source, harness di valutazione, e agenti browsing che lo usano come target
+
+### Esplorazione
+5. **Terminal-Bench 3.0** — stato del benchmark in sviluppo e task design pattern
+6. **SWE-Lancer follow-up** — manager vs implementation tasks, dataset split, e framework di valutazione comparabile

@@ -1906,3 +1906,138 @@ Commit:
 Note:
 - `.workspaces/logs/loop.log` is still modified but was not committed.
 [0;32m[2026-04-02 17:43:34] ✓[0m Workspace Improvements & PRD completed successfully
+ 1 file changed, 532 insertions(+)
+To https://github.com/arro000/agent-glossary.git
+   0d9c48e..4631ba3  main -> main
+[0;32m[2026-04-02 17:43:35] ✓[0m Workspace changes committed and pushed
+[0;36m[2026-04-02 17:43:35][0m Launching OpenCode for workspace Research & Content...
+[0m
+> build · gpt-5.4-mini
+[0m
+I’m going to inspect the current research inputs and existing whiteboard content first, then I’ll gather candidate repos and write the first-pass findings back into the workspace files.
+[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/3-research/context.md[90m [offset=1, limit=200][0m
+I’ve got the existing map. Next I’m checking the current request set against the whiteboard gaps, then I’ll collect official sources for the new iteration topics and write them in the same structured format as the existing findings.
+[0m
+[0m# [0mTodos
+[x] Inspect current research requests and whiteboard concepts
+[ ] Research current iteration topics with official sources
+[ ] Write structured findings and guides
+[ ] Update context and next-iteration requests
+[0m
+[0m→ [0mRead .workspaces/3-research/resources/guides.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=401, limit=200][0m
+I’m moving into source collection now. I’m prioritizing official docs plus concrete repos for each topic, and I’ll only turn items into whiteboard findings once I can anchor them to a real project or spec.
+[0m% [0mWebFetch https://docs.ollama.com/quickstart
+[0m% [0mWebFetch https://modelcontextprotocol.io/docs/tools/inspector
+[0m% [0mWebFetch https://docs.crewai.com/en/concepts/flows
+[0m% [0mWebFetch https://docs.vapi.ai/quickstart/introduction.mdx
+[0m% [0mWebFetch https://sdk.vercel.ai/docs/agents/overview
+[0m% [0mWebFetch https://docs.livekit.io/agents/start/voice-ai-quickstart/
+[0m% [0mWebFetch https://learn.microsoft.com/en-us/semantic-kernel/frameworks/agent/
+[0m% [0mWebFetch https://opentelemetry.io/docs/specs/semconv/gen-ai/
+I have the core docs for the framework, protocol, voice, and telemetry topics. I’m filling the remaining gaps with concrete runtime repos and benchmark sources now, then I’ll normalize everything into findings and guide entries.
+[0m% [0mWebFetch https://www.swebench.com/
+[0m✗ [0mwebfetch failed
+[91m[1mError: [0mRequest failed with status code: 404
+[0m% [0mWebFetch https://webarena.dev/
+[0m% [0mWebFetch https://github.com/ollama/ollama
+[0m% [0mWebFetch https://github.com/ml-explore/mlx-lm
+[0m% [0mWebFetch https://github.com/AI4Finance-Foundation/FinRobot
+[0m% [0mWebFetch https://github.com/AI4Finance-Foundation/FinGPT
+[0m% [0mWebFetch https://github.com/ggerganov/llama.cpp
+I’ve got enough to cover the requested runtime, voice, telemetry, and benchmark families. I’m doing one last pass for the UI-layer topic so I don’t invent a non-existent Google spec or overstate adoption.
+[0m✗ [0mwebfetch failed
+[91m[1mError: [0mRequest failed with status code: 404
+[0m✗ [0mwebfetch failed
+[91m[1mError: [0mRequest failed with status code: 404
+[0m✗ [0mwebfetch failed
+[91m[1mError: [0mRequest failed with status code: 404
+[0m✗ [0mwebfetch failed
+[91m[1mError: [0mThe response redirected too many times. For more information, pass `verbose: true` in the second argument to fetch()
+[0m✱ [0mGrep "Generative User Interfaces|AG-UI|A2UI|generative UI"[90m in .workspaces/3-research/resources/guides.md · 2 matches[0m
+[0m✱ [0mGrep "OpenTelemetry|GenAI|semantic conventions"[90m in .workspaces/3-research/resources/guides.md · 1 match[0m
+I’m broadening the evidence base for the evaluation and voice topics. For the benchmarks, I’m collecting the benchmark hub pages first so the whiteboard can point at the actual leaderboard/project rather than a secondary writeup.
+[0m✗ [0mwebfetch failed
+[91m[1mError: [0mRequest failed with status code: 403
+[0m✗ [0mwebfetch failed
+[91m[1mError: [0mRequest failed with status code: 404
+[0m% [0mWebFetch https://ai-sdk.dev/docs/ai-sdk-ui/generative-user-interfaces
+[0m% [0mWebFetch https://docs.daily.co/
+[0m% [0mWebFetch https://tau-bench.com/
+[0m% [0mWebFetch https://docs.retellai.com/
+[0m% [0mWebFetch https://github.com/openlit/openlit
+[0m% [0mWebFetch https://openai.com/index/browsecomp/
+I’ve finished source collection. The remaining work is normalization: turn the concrete sources into a handful of clean finding entries, add guide links, and update the whiteboard concepts with the genuinely new primitives.
+[0m✱ [0mGrep "Generative User Interfaces|MCP Inspector|OpenTelemetry for Agents|OpenTelemetry GenAI|Daily|Retell|BrowseComp|SWE-Lancer|Terminal-Bench|TAU-bench"[90m in .workspaces/1-implementation/resources/concepts.md · 4 matches[0m
+[0m✱ [0mGrep "Generative User Interfaces|MCP Inspector|OpenTelemetry GenAI|Daily|Retell|BrowseComp|SWE-Lancer|Terminal-Bench|TAU-bench"[90m in .workspaces/3-research/resources/findings.md · 8 matches[0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=540, limit=380][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=760, limit=180][0m
+I’ve narrowed the remaining gap to a few concrete missing entries: generative UI, GenAI telemetry, voice-platform vendors, and the new benchmark family. I’m checking one last benchmark source so I can cite the official project page instead of a third-party summary.
+[0m✗ [0mwebfetch failed
+[91m[1mError: [0mRequest failed with status code: 404
+[0m% [0mWebFetch https://www.tbench.ai/
+[0m% [0mWebFetch https://openai.com/index/swe-lancer/
+I’m editing the workspace now. I’m keeping the changes additive and small: new findings for the missing concrete projects, guide links for the same, light concept updates where the whiteboard was still abstract, and a short follow-up request set for the next pass.
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/resources/findings.md
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/resources/guides.md
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/1-implementation/resources/concepts.md
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/resources/research-requests.md
+[0m✗ [0mapply_patch failed
+[91m[1mError: [0mapply_patch verification failed: Error: Failed to find expected lines in /home/arro/projects/agent-glossary/.workspaces/3-research/context.md:
+### Gap Rilevati da Coprire
+- **AG-UI Protocol** (CopilotKit) — potenziale terzo protocollo standard dopo MCP e A2A
+- **Semantic Kernel** — manca dal framework comparison (Microsoft)
+- **Voice Agents** — categoria completamente non coperta
+- **Edge/Embedded Agents** — trend crescente (Ollama 100k+ stars)
+- **Agent Evaluation** — oltre LOCOMO servono SWE-bench, Aider polyglot, etc.
+The workspace write is almost done. One patch missed because the context file layout was slightly different than expected, so I’m re-reading the tail and appending the new iteration summary cleanly.
+[0m→ [0mRead .workspaces/3-research/context.md[90m [offset=70, limit=120][0m
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/context.md
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/context.md
+The files are written. I’m doing a quick verification pass on the updated sections now, mainly to catch formatting mistakes or accidental duplication before I wrap up.
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=900, limit=120][0m
+[0m→ [0mRead .workspaces/3-research/resources/guides.md[90m [offset=260, limit=80][0m
+[0m→ [0mRead .workspaces/3-research/context.md[90m [offset=1, limit=40][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=465, limit=70][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=533, limit=20][0m
+[0m
+[0m# [0mTodos
+[x] Inspect current research requests and whiteboard concepts
+[x] Research current iteration topics with official sources
+[x] Write structured findings and guides
+[x] Update context and next-iteration requests
+[0m
+Updated the research workspace.
+
+1. Added new structured findings for:
+- Vercel AI SDK Generative User Interfaces
+- OpenTelemetry GenAI semantic conventions
+- OpenLIT
+- Daily AI Toolkit
+- Retell
+- BrowseComp
+- SWE-Lancer
+
+2. Added matching guides in `guides.md` for the new telemetry, benchmark, and voice sources.
+
+3. Updated `concepts.md` with:
+- Daily
+- Retell
+- OpenTelemetry GenAI semantic conventions
+- updated AG-UI / evaluation descriptions
+
+4. Added Iteration 6 follow-up requests in `research-requests.md`.
+
+5. Updated `context.md` to reflect the current completed state.
+
+Note: for the A2UI / Google Generative UI topic, I anchored the concrete UI-layer entry on Vercel AI SDK Generative User Interfaces, since that was the clearest public implementation source I could verify.
+[0;32m[2026-04-02 17:47:39] ✓[0m Workspace Research & Content completed successfully

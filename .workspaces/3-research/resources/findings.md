@@ -913,3 +913,63 @@
 - **popularity**: 8
 - **alternatives**: FinRobot, OpenBB, domain-tuned finance models
 - **why_include**: Finance agents often build on finance-specific language models and data pipelines.
+
+---
+
+# UI, Telemetry, Voice, and Benchmarks
+
+## Vercel AI SDK Generative User Interfaces
+- **macroarea**: Integration / UI Protocol
+- **url**: https://ai-sdk.dev/docs/ai-sdk-ui/generative-user-interfaces
+- **description**: Vercel's concrete React/Next.js pattern for rendering tool results as UI components instead of plain text. The model calls tools, tool outputs flow into typed message parts, and the client renders those parts as interactive components.
+- **popularity**: 8
+- **alternatives**: AG-UI Protocol, MCP Apps, custom tool-state renderers
+- **why_include**: Best concrete TS/React reference for the UI layer between model/tool protocols and a real app.
+
+## OpenTelemetry GenAI Semantic Conventions
+- **macroarea**: Observability / Monitoring
+- **url**: https://opentelemetry.io/docs/specs/semconv/gen-ai/
+- **description**: The OpenTelemetry semantic convention set for generative AI systems, including model spans, agent spans, events, and metrics. The page also documents the stability opt-in path for GenAI conventions and the current development status.
+- **popularity**: 8
+- **alternatives**: OpenLLMetry, OpenLIT, vendor-specific tracing schemas
+- **why_include**: This is the vocabulary layer that makes agent telemetry portable across tools and backends.
+
+## OpenLIT
+- **macroarea**: Observability / Monitoring
+- **url**: https://github.com/openlit/openlit
+- **description**: OpenTelemetry-native observability stack for AI engineering. It provides SDKs, dashboards, prompt management, evaluations, and integrations across many LLM providers, frameworks, and vector stores.
+- **popularity**: 7
+- **alternatives**: OpenLLMetry, Langfuse, Arize Phoenix, W&B Weave
+- **why_include**: Strong concrete bridge from OTEL conventions to an opinionated, usable agent observability stack.
+
+## Daily AI Toolkit
+- **macroarea**: Realtime / Voice Agents
+- **url**: https://docs.daily.co/guides/products/ai-toolkit
+- **description**: Daily's AI-focused call stack for building audio and video workflows. It sits on top of Daily's client SDKs, prebuilt UI, and telephony/SIP capabilities.
+- **popularity**: 6
+- **alternatives**: LiveKit Agents, Vapi, Retell
+- **why_include**: Adds the video-call-native path to the real-time voice stack comparison.
+
+## Retell
+- **macroarea**: Realtime / Voice Agents
+- **url**: https://docs.retellai.com/
+- **description**: End-to-end platform for building, testing, deploying, and monitoring AI phone agents. It emphasizes inbound/outbound calling, simulation testing, and operational monitoring.
+- **popularity**: 7
+- **alternatives**: Vapi, LiveKit Agents, Daily
+- **why_include**: Strong productized phone-agent stack with testing and monitoring built in.
+
+## BrowseComp
+- **macroarea**: Evaluation / Benchmarks
+- **url**: https://openai.com/index/browsecomp/
+- **description**: OpenAI's browsing benchmark with 1,266 hard-to-find information retrieval tasks. It measures persistence, strategic search, and multi-hop synthesis on the public web.
+- **popularity**: 8
+- **alternatives**: WebArena, TAU-bench, SimpleQA, Deep Research evals
+- **why_include**: A clean benchmark for research-stage browsing agents and deep research systems.
+
+## SWE-Lancer
+- **macroarea**: Evaluation / Benchmarks
+- **url**: https://openai.com/index/swe-lancer/
+- **description**: OpenAI's benchmark of 1,400+ real freelance software engineering tasks, including implementation and managerial decisions. It ties model performance to monetary value and ships a public evaluation split.
+- **popularity**: 8
+- **alternatives**: SWE-bench, Terminal-Bench, AgentBench
+- **why_include**: Raises the bar beyond bug fixing by testing real work allocation and value judgment.

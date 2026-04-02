@@ -467,7 +467,7 @@
 ### AG-UI Protocol
 - **popularity**: 7
 - **description**: Protocollo per la comunicazione bidirezionale tra agenti e applicazioni user-facing. Copre shared state, generative UI, subgraphs e human-in-the-loop.
-- **alternatives**: MCP Apps, A2UI, custom websocket/event channels
+- **alternatives**: MCP Apps, A2UI, Vercel AI SDK Generative UI, custom websocket/event channels
 - **category**: Integration
 
 ### Semantic Kernel
@@ -500,10 +500,28 @@
 - **alternatives**: LiveKit Agents, Retell, Daily, OpenAI Realtime
 - **category**: Realtime / Platform
 
+### Daily
+- **popularity**: 6
+- **description**: Stack Daily per voice/video AI con client SDK, Prebuilt UI, REST API e supporto SIP/telephony. Utile quando l'agente vive dentro una call media-rich invece che in un solo canale audio.
+- **alternatives**: LiveKit Agents, Vapi, Retell
+- **category**: Realtime
+
+### Retell
+- **popularity**: 7
+- **description**: Piattaforma per AI phone agents con build/test/deploy/monitor in un unico flusso. Include playground e simulation testing per validare conversazioni a scala.
+- **alternatives**: Vapi, LiveKit Agents, Daily
+- **category**: Realtime / Platform
+
 ### OpenTelemetry for Agents
 - **popularity**: 8
-- **description**: Pattern di observability per agenti che mappa trace, span ed eventi su OpenTelemetry. OpenLLMetry è il bridge più concreto verso i backend standard.
+- **description**: Pattern di observability per agenti che mappa trace, span ed eventi su OpenTelemetry. Le semantic conventions GenAI sono il lessico standard; OpenLLMetry e OpenLIT sono i bridge più concreti verso i backend standard.
 - **alternatives**: Langfuse, LangSmith, Arize Phoenix, W&B Weave, Helicone
+- **category**: Monitoring
+
+### OpenTelemetry GenAI Semantic Conventions
+- **popularity**: 8
+- **description**: Standard semantico OpenTelemetry per sistemi generativi: model spans, agent spans, events e metrics. Serve a rendere portabili le tracce tra framework e backend diversi.
+- **alternatives**: OpenLLMetry, OpenLIT, vendor-specific tracing schemas
 - **category**: Monitoring
 
 ### Anthropic Computer Use
@@ -520,6 +538,6 @@
 
 ### Data-Centric Agent Evaluation
 - **popularity**: 8
-- **description**: Benchmark-first evaluation per agenti basata su task reali e non su sole metriche astratte. Include SWE-bench, Terminal-Bench, WebArena e TAU-bench.
+- **description**: Benchmark-first evaluation per agenti basata su task reali e non su sole metriche astratte. Include SWE-bench, Terminal-Bench 2.0, WebArena, TAU-bench, BrowseComp e SWE-Lancer.
 - **alternatives**: LOCOMO, custom evals, human eval
 - **category**: Quality

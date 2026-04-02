@@ -1,8 +1,8 @@
 # Workspace 3 — Research & Content Discovery
 
 ## Stato
-- **Iterazione**: 3
-- **Ultimo aggiornamento**: 2026-04-02
+- **Iterazione**: 4
+- **Ultimo aggiornamento**: 2026-04-02 18:30:00
 - **Stato**: completed
 
 ## Risultati Iterazione 1
@@ -143,3 +143,31 @@ I topic nuovi della iterazione 3 sono stati coperti con focus su progetti concre
 ### Beads Roadmap
 Vedi `resources/beads-roadmap.md` per la suddivisione iterazione-per-iterazione.
 Vedi `resources/awesome-agents-scan.md` per la mappa dei repo e delle sottosezioni da convertire in bead.
+
+## Risultati Iterazione 4
+
+### Ricerca Completata
+La ricerca ha colmato i gap rimasti con focus su componenti concreti del runtime agentico:
+
+**High Priority:**
+- ✅ Generative UI: Vercel AI SDK UI come implementazione concreta del layer UI, affiancata da AG-UI
+- ✅ Voice stack: Daily e Retell aggiunti al confronto con LiveKit e Vapi
+
+**Medium Priority:**
+- ✅ Telemetry: OpenTelemetry GenAI semantic conventions + OpenLIT come bridge operativo
+- ✅ Benchmarks: BrowseComp e SWE-Lancer aggiunti alla famiglia di valutazione
+
+### Output Prodotti
+- `resources/findings.md`: nuovi finding per UI, telemetry, voice e benchmark families
+- `resources/guides.md`: nuove guide ufficiali per GenAI semconv, OpenLIT, BrowseComp, SWE-Lancer, Terminal-Bench 2.0, Daily e Retell
+- `research-requests.md`: aggiunta Iterazione 6 con i prossimi topic da approfondire
+- `concepts.md` (workspace 1): aggiornati AG-UI, OpenTelemetry for Agents, Data-Centric Agent Evaluation; aggiunti Daily, Retell e GenAI semconv
+
+### Insight Chiave
+1. **Generative UI is a product layer, not a protocol**: AG-UI defines the protocol; Vercel AI SDK shows the React rendering model.
+2. **OTel is getting a GenAI vocabulary**: the semantic conventions are now the portable telemetry base for agents.
+3. **Voice platforms are splitting by product shape**: LiveKit = open runtime, Vapi = platform, Daily = media stack, Retell = phone-agent ops.
+4. **Evaluation is moving toward economic realism**: BrowseComp measures search persistence; SWE-Lancer measures paid engineering work.
+
+### Next Iteration
+Vedi `resources/research-requests.md` per le richieste nuove dell'Iterazione 6.

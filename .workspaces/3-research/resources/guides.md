@@ -266,6 +266,18 @@
 - **description**: Shows how to instrument LLM apps with OpenTelemetry using a small SDK layer. Includes examples for Python and TypeScript plus supported observability backends.
 - **relevance**: Best bridge between agent observability and the broader OTEL ecosystem.
 
+### OpenTelemetry Semantic Conventions for Generative AI
+- **url**: https://opentelemetry.io/docs/specs/semconv/gen-ai/
+- **source**: OpenTelemetry
+- **description**: Official spec landing page for GenAI spans, events, metrics, and agent spans. Documents the current development status and stability opt-in path.
+- **relevance**: Canonical telemetry vocabulary for agent and model instrumentation.
+
+### OpenLIT
+- **url**: https://github.com/openlit/openlit
+- **source**: OpenLIT
+- **description**: OpenTelemetry-native AI observability stack with SDKs, dashboards, prompt management, and evaluations. The docs emphasize one-line instrumentation and broad framework/provider coverage.
+- **relevance**: Concrete implementation of OTEL-first agent observability.
+
 ---
 
 ## Evaluation and Benchmarks
@@ -281,6 +293,36 @@
 - **source**: WebArena project
 - **description**: Official site for the realistic web-agent benchmark and its verified variants. Useful for browser navigation and computer-use evaluation.
 - **relevance**: Best source for browser task-completion agent benchmarks.
+
+### BrowseComp
+- **url**: https://openai.com/index/browsecomp/
+- **source**: OpenAI Research
+- **description**: Benchmark for hard-to-find information retrieval on the public web. Focuses on persistence, strategic browsing, and easy-to-verify answers.
+- **relevance**: Strong benchmark for deep-research and browsing agents.
+
+### SWE-Lancer
+- **url**: https://openai.com/index/swe-lancer/
+- **source**: OpenAI Research
+- **description**: Benchmark of real freelance software engineering tasks from Upwork, including both implementation and managerial decisions. Connects agent performance to monetary value.
+- **relevance**: Important next-step benchmark beyond SWE-bench for evaluating real work allocation.
+
+### Terminal-Bench 2.0
+- **url**: https://www.tbench.ai/
+- **source**: Terminal-Bench / Laude Institute
+- **description**: Terminal benchmark with a latest 2.0 leaderboard and 89 high-quality tasks across software engineering, ML, security, and data science. Built for measuring terminal mastery in long-horizon agents.
+- **relevance**: Best terminal-agent benchmark reference and a useful complement to SWE-bench.
+
+### Daily AI Toolkit
+- **url**: https://docs.daily.co/guides/products/ai-toolkit
+- **source**: Daily
+- **description**: Daily's AI toolkit docs for building audio/video AI workflows with client SDKs, prebuilt UI, and telephony support.
+- **relevance**: Helpful for voice-agent infrastructure and media transport comparisons.
+
+### Retell Introduction
+- **url**: https://docs.retellai.com/
+- **source**: Retell AI
+- **description**: Platform overview for building, testing, deploying, and monitoring AI phone agents. Covers playground testing and simulation testing.
+- **relevance**: Practical guide for phone-agent deployment and testing workflows.
 
 ### Sotopia Docs
 - **url**: https://docs.sotopia.world/
