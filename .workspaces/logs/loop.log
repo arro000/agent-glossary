@@ -1300,3 +1300,203 @@ Iteration 2 complete. Here's what was implemented:
 
 **UX polish** — Zoom +/-/fit buttons with percentage indicator, panel fade-out animation, keyboard shortcuts (`+/-/0/ESC`), initial zoom-to-fit, concept counters per macroarea.
 [0;32m[2026-04-02 14:49:07] ✓[0m Workspace Implementation completed successfully
+ 1 file changed, 326 insertions(+)
+[0;32m[2026-04-02 14:49:07] ✓[0m Workspace changes committed
+[0;36m[2026-04-02 14:49:07][0m Launching OpenCode for workspace Improvements & PRD...
+[0m
+> build · glm-5-turbo
+[0m
+[0m# [0mTodos
+[ ] Read current src/ code to understand implementation state
+[ ] Read context.md, concepts.md, pixijs-reference.md, findings.md
+[ ] Identify gaps and plan improvements
+[ ] Implement improvements to the whiteboard app
+[ ] Run npm run build to verify
+[ ] Update .workspaces/2-improvements/context.md
+[0m
+[0m→ [0mRead src
+[0m→ [0mRead .workspaces/1-implementation/context.md
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md
+[0m→ [0mRead .workspaces/1-implementation/resources/pixijs-reference.md
+[0m→ [0mRead .workspaces/3-research/resources/findings.md
+[0m✱ [0mGlob "src/**/*"[90m 5 matches[0m
+Now let me read all the source files:
+[0m→ [0mRead src/app/layout.tsx
+[0m→ [0mRead src/app/page.tsx
+[0m→ [0mRead src/app/globals.css
+[0m→ [0mRead package.json
+[0m→ [0mRead src/components/whiteboard.tsx
+[0m→ [0mRead .workspaces/2-improvements/context.md
+[0m
+[0m# [0mTodos
+[x] Read current src/ code to understand implementation state
+[x] Read context.md, concepts.md, pixijs-reference.md, findings.md
+[ ] Identify gaps and plan improvements
+[ ] Implement improvements to the whiteboard app
+[ ] Run npm run build to verify
+[ ] Update .workspaces/2-improvements/context.md
+[0m
+Current state: fully working whiteboard with 62 bubbles, 8 macroareas, zoom/pan, hover/click, minimap, zoom controls, keyboard shortcuts.
+
+**Planned improvements for iteration 3:**
+1. Smooth animated zoom/pan (lerp transitions)
+2. Tooltip on hover (floating concept name)
+3. Search bar (filter concepts by name)
+4. Staggered intro animation
+5. Visual polish
+[0m# [0mTodos
+[x] Read current src/ code to understand implementation state
+[x] Read context.md, concepts.md, pixijs-reference.md, findings.md
+[x] Identify gaps and plan improvements
+[ ] Implement smooth animated zoom/pan with lerp transitions
+[ ] Implement tooltip on hover showing concept name
+[ ] Implement search bar to filter concepts
+[ ] Add staggered intro animation for bubbles
+[ ] Visual polish improvements
+[ ] Run npm run build to verify
+[ ] Update .workspaces/2-improvements/context.md
+[0m
+Now implementing all improvements in a single rewrite of whiteboard.tsx:
+[0m← [0mWrite src/components/whiteboard.tsx
+Wrote file successfully.
+[0m
+Now let me build to verify:
+[0m$ [0mnpm run build 2>&1
+> agent-glossary@0.1.0 build
+> next build
+
+▲ Next.js 16.2.2 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.1s
+  Running TypeScript ...
+  Finished TypeScript in 1889ms ...
+  Collecting page data using 5 workers ...
+  Generating static pages using 5 workers (0/4) ...
+  Generating static pages using 5 workers (1/4) 
+  Generating static pages using 5 workers (2/4) 
+  Generating static pages using 5 workers (3/4) 
+✓ Generating static pages using 5 workers (4/4) in 330ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+[0m
+Build passes. Let me run lint too:
+[0m$ [0mnpm run lint 2>&1
+> agent-glossary@0.1.0 lint
+> eslint
+
+
+/home/arro/projects/agent-glossary/src/components/whiteboard.tsx
+   817:13  warning  'minimapViewport' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  1125:17  warning  'cleanName' is assigned a value but never used        @typescript-eslint/no-unused-vars
+
+✖ 2 problems (0 errors, 2 warnings)
+[0m
+[0m← [0mEdit src/components/whiteboard.tsx
+Index: /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
+===================================================================
+--- /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
++++ /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
+@@ -813,9 +813,8 @@
+   targetPanY = Math.max(20, cy);
+ }
+ 
+ const minimap = createMinimap(worldBounds, window.innerWidth, window.innerHeight, world);
+-const minimapViewport = minimap.children[minimap.children.length - 1] as Graphics;
+ app.stage.addChild(minimap);
+ 
+ const zoomContainer = new Container();
+ zoomContainer.x = 20;
+
+[0m
+[0m← [0mEdit src/components/whiteboard.tsx
+Index: /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
+===================================================================
+--- /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
++++ /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
+@@ -1120,9 +1120,8 @@
+ });
+ 
+ app.stage.on('pointermove', (e) => {
+   if (tooltip.visible) {
+-    const cleanName = tooltipText.text;
+     tooltipBg.clear();
+     const tw = Math.max(tooltipText.width, tooltipSub.width) + 20;
+     tooltipBg.roundRect(0, 0, tw, 38, 8);
+     tooltipBg.fill({ color: '#1f2937', alpha: 0.92 });
+
+[0m
+[0m$ [0mnpm run lint 2>&1 && npm run build 2>&1
+> agent-glossary@0.1.0 lint
+> eslint
+
+
+> agent-glossary@0.1.0 build
+> next build
+
+▲ Next.js 16.2.2 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.2s
+  Running TypeScript ...
+  Finished TypeScript in 1868ms ...
+  Collecting page data using 5 workers ...
+  Generating static pages using 5 workers (0/4) ...
+  Generating static pages using 5 workers (1/4) 
+  Generating static pages using 5 workers (2/4) 
+  Generating static pages using 5 workers (3/4) 
+✓ Generating static pages using 5 workers (4/4) in 334ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+[0m
+[0m# [0mTodos
+[x] Read current src/ code to understand implementation state
+[x] Read context.md, concepts.md, pixijs-reference.md, findings.md
+[x] Identify gaps and plan improvements
+[x] Implement smooth animated zoom/pan with lerp transitions
+[x] Implement tooltip on hover showing concept name
+[x] Implement search bar to filter concepts
+[x] Add staggered intro animation for bubbles
+[x] Visual polish improvements
+[x] Run npm run build to verify
+[ ] Update .workspaces/2-improvements/context.md
+[0m
+Zero lint warnings, zero build errors. Now updating the improvements context:
+[0m← [0mWrite .workspaces/2-improvements/context.md
+Wrote file successfully.
+[0m
+[0m# [0mTodos
+[x] Read current src/ code to understand implementation state
+[x] Read context.md, concepts.md, pixijs-reference.md, findings.md
+[x] Identify gaps and plan improvements
+[x] Implement smooth animated zoom/pan with lerp transitions
+[x] Implement tooltip on hover showing concept name
+[x] Implement search bar to filter concepts
+[x] Add staggered intro animation for bubbles
+[x] Visual polish improvements
+[x] Run npm run build to verify
+[x] Update .workspaces/2-improvements/context.md
+[0m
+All done. Here's what was implemented in iteration 3:
+
+1. **Smooth animated zoom/pan** — All zoom transitions (scroll, buttons, keyboard) now use lerp interpolation (0.12 zoom, 0.15 pan) instead of instant jumps
+2. **Tooltip on hover** — Dark floating label showing concept name, follows cursor, auto-hides on panel open
+3. **Search bar** — PixiJS-styled search with hidden HTML input, filters bubbles by name+description, dims non-matching items, shows match count
+4. **Staggered intro animation** — Macroareas fade in sequentially (60ms stagger), bubbles scale in from 0.3x (15ms stagger)
+5. **Legend** — Top-right panel showing all 8 macroareas with colors, names, and concept counts
+6. **Visual polish** — Shadows on UI elements, improved bubble fill alpha, cleaner minimap/zoom controls
+
+Build and lint pass with 0 errors, 0 warnings.
+[0;32m[2026-04-02 14:56:51] ✓[0m Workspace Improvements & PRD completed successfully

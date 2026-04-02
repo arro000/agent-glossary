@@ -1,33 +1,86 @@
 # Workspace 2 — Improvements & Implementation
 
 ## Stato
-- **Iterazione**: 2
+- **Iterazione**: 3
 - **Ultimo aggiornamento**: 2026-04-02
 - **Stato**: completed
 
 ## Obiettivo
 Analizzare l'implementazione corrente, identificare miglioramenti, e IMPLEMENTARLI direttamente sul codice.
 
+## Iterazione 1 — Completata
+- Setup iniziale PixiJS con griglia, macroaree, bolle, zoom/pan
+
 ## Iterazione 2 — Completata
+- **16 nuovi concetti aggiunti** (da 48 a 62 totali)
+- **Adaptive bubble layout** per macroaree dense (Orchestration: 16 items, 6 colonne)
+- **AREA_HEIGHT aumentato** da 360 a 460px
+- **Panel fade-out** animazione su chiusura
+- **Zoom controls** (+/−/fit) con indicatore zoom percentuale
+- **Keyboard shortcuts** (+/-, 0, ESC)
+- **Initial zoom-to-fit** al caricamento
+- **Contatore concetti** per ogni macroarea
+
+## Iterazione 3 — Completata
 
 ### Cosa ho fatto
-- **16 nuovi concetti aggiunti** (da 48 a 62 totali): tutti i concetti dal database concepts.md sono ora presenti nella whiteboard
-- **Adaptive bubble layout**: algoritmo migliorato che scala automaticamente le bolle per macroaree dense (Orchestration: 16 items con 6 colonne)
-- **AREA_HEIGHT aumentato** da 360 a 460px per ospitare più concetti per macroarea
-- **Panel fade-out**: animazione alpha 1→0 su chiusura del detail panel (prima era istantanea)
-- **Zoom controls**: pulsanti +/−/fit nell'angolo in basso a sinistra con indicatore zoom percentuale
-- **Keyboard shortcuts**: +/= per zoom in, -/_ per zoom out, 0 per zoom-to-fit, ESC per chiudere panel
-- **Initial zoom-to-fit**: la whiteboard si adatta automaticamente al viewport al caricamento (min 0.55x)
-- **Contatore concetti**: ogni macroarea mostra il numero di concetti sotto il nome
-- **Descrizioni aggiornate**: tutte le descrizioni ora in italiano coerente con concepts.md
+
+#### 1. Smooth Animated Zoom & Pan
+- Tutte le transizioni di zoom ora usano **lerp interpolation** (fattore 0.12 per zoom, 0.15 per pan)
+- Scroll wheel zoom centered su cursore con animazione fluida
+- Zoom buttons (+/−/fit) con transizione animata
+- Keyboard zoom (+/-, 0) con transizione animata
+- Snap immediato quando la differenza è sotto la soglia per evitare oscillazioni
+- Drag pan rimane reattivo (assegnazione diretta, no lerp)
+
+#### 2. Tooltip on Hover
+- Floating tooltip scuro (#1f2937, alpha 0.92) che segue il cursore
+- Mostra il nome del concetto (senza \n) su hover
+- Si nasconde su pointerout e quando si apre il detail panel
+- Bordi arrotondati (8px), posizionato intelligentemente per non uscire dal viewport
+- Resettato automaticamente durante il drag
+
+#### 3. Search Bar
+- Barra di ricerca PixiJS-styled in alto al centro (300x38px)
+- **Hidden HTML input** per catturare il testo (off-screen, opacity 0)
+- Icona magnifying glass disegnata con Graphics
+- Placeholder "Search concepts..." visibile quando vuoto
+- Pulsante clear (×) per resettare la ricerca
+- **Filtering**: bolle non-matching vengono dimmate (alpha 0.12), macroaree senza match dimmate (alpha 0.15)
+- **Match counter**: mostra "N matches" accanto alla barra
+- Ricerca su nome concetto + descrizione (case-insensitive)
+- Focus state con border blu (#93c5fd)
+- **ESC priority**: se la search è attiva con testo, ESC cancella la ricerca; altrimenti chiude il panel
+- Bubbli filtrati non sono cliccabili nel detail panel
+
+#### 4. Staggered Intro Animation
+- **Macroarei**: fade-in sequenziale con 60ms delay tra aree (durata 500ms per area)
+- **Bolle**: scale-in da 0.3x a 1x con 15ms stagger (durata 400ms per bolla)
+- Entrambi alpha e scale animati con lerp nel ticker
+
+#### 5. Visual Polish
+- **Legend** (top-right): mostra tutte le 8 macroaree con colore, nome e contatore concetti
+  - Background semi-trasparente con ombra sottile, bordi arrotondati
+  - Header "MACROAREAS" con letter-spacing
+  - Ogni entry: badge colore + nome + numero concetti
+- **Search bar shadow**: ombra sottile sotto la barra di ricerca
+- **Minimap shadow**: migliorata alpha del background (0.85 → 0.88)
+- **Zoom controls shadow**: migliorata alpha del background (0.85 → 0.88)
+- **Bubble white alpha**: leggermente aumentata (0.6 → 0.65) per migliorare leggibilità
+- **Bubble inner fill**: ridotto (0.15 → 0.12) per look più pulito
+
+### Bug Fix
+- Rimossa variabile `minimapViewport` non utilizzata (warning lint)
+- Rimossa variabile `cleanName` non utilizzata nel tooltip move handler (warning lint)
 
 ### Cosa rimane da fare
-- Search/filter per macroarea
-- Drag bolle per riorganizzare
+- Drag bolle per riorganizzare (complesso)
 - Responsive layout (mobile)
-- Legend/colori macroarea
-- Accessibilità (keyboard navigation tra bolle)
-- Tooltip on hover (nome concetto floating)
+- Keyboard navigation tra bolle (Tab/Shift+Tab)
+- Tooltip con descrizione breve + categoria
+- Click macroarea nella legend per zoom-to-area
+- Export/save layout
+- Animazione panel apertura (slide + scale)
 
 ### Problemi incontrati
-- Nessuno, build e lint passano senza errori/warnings.
+- Nessuno. Build e lint passano senza errori/warnings (0 errors, 0 warnings).
