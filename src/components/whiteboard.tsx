@@ -39,6 +39,10 @@ const START_Y = 60;
 const COL_STEP = AREA_WIDTH + COL_GAP;
 const ROW_STEP = AREA_HEIGHT + ROW_GAP;
 const BUBBLE_RADIUS = 46;
+const BUBBLE_FILL_ALPHA = 0.72;
+const BUBBLE_TRACK_ALPHA = 0.16;
+const BUBBLE_INNER_ALPHA = 0.06;
+const PROJECT_WEIGHT_SEGMENTS = 10;
 const ZOOM_LERP = 0.12;
 const PAN_LERP = 0.15;
 const EMOJI_FONT_FAMILY = '"Inter", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif';
@@ -274,13 +278,23 @@ function getBubbleColumns(count: number): number {
 
 function getBubbleFontSize(name: string, radius: number): number {
   const len = name.replace(/\n/g, ' ').length;
-  if (len <= 12) return Math.min(11, Math.max(9, radius * 0.22));
-  if (len <= 18) return Math.min(10, Math.max(8.5, radius * 0.19));
-  return Math.min(9, Math.max(8, radius * 0.17));
+  if (len <= 12) return Math.min(12, Math.max(9.5, radius * 0.235));
+  if (len <= 18) return Math.min(10.5, Math.max(8.75, radius * 0.2));
+  return Math.min(9.5, Math.max(8.25, radius * 0.18));
 }
 
 function getBubbleLabel(name: string): string {
   return name.replace(/\n/g, ' ');
+}
+
+function getProjectWeightStyle(referenceCount: number) {
+  const capped = Math.max(1, Math.min(10, referenceCount));
+  const filledSegments = Math.max(1, Math.round((capped / 10) * PROJECT_WEIGHT_SEGMENTS));
+  return {
+    filledSegments,
+    totalSegments: PROJECT_WEIGHT_SEGMENTS,
+    emphasis: 0.28 + (capped / 10) * 0.44,
+  };
 }
 
 function drawProjectWeightRing(
@@ -289,28 +303,27 @@ function drawProjectWeightRing(
   color: string,
   referenceCount: number,
 ) {
-  const segments = 8;
-  const filledSegments = Math.max(1, Math.min(segments, referenceCount));
-  const ringRadius = radius + 8;
-  const ringWidth = 3.5;
-  const segmentSpan = (Math.PI * 2) / segments;
-  const gap = segmentSpan * 0.26;
+  const { filledSegments, totalSegments, emphasis } = getProjectWeightStyle(referenceCount);
+  const ringRadius = radius + 9;
+  const ringWidth = 3.2;
+  const segmentSpan = (Math.PI * 2) / totalSegments;
+  const gap = segmentSpan * 0.28;
   const segmentArc = segmentSpan - gap;
 
   graphics.clear();
   graphics.moveTo(ringRadius, 0);
   graphics.arc(0, 0, ringRadius, 0, Math.PI * 2);
-  graphics.stroke({ color: '#ffffff', width: ringWidth + 1.5, alpha: 0.22, cap: 'round' });
+  graphics.stroke({ color: '#ffffff', width: ringWidth + 1.5, alpha: BUBBLE_TRACK_ALPHA, cap: 'round' });
 
-  for (let i = 0; i < segments; i++) {
+  for (let i = 0; i < totalSegments; i++) {
     const start = -Math.PI / 2 + i * segmentSpan + gap / 2;
     const end = start + segmentArc;
     graphics.moveTo(Math.cos(start) * ringRadius, Math.sin(start) * ringRadius);
     graphics.arc(0, 0, ringRadius, start, end);
     graphics.stroke({
       color,
-      width: ringWidth,
-      alpha: i < filledSegments ? 0.3 + (filledSegments / segments) * 0.42 : 0.1,
+      width: i < filledSegments ? ringWidth + (i === filledSegments - 1 ? 0.2 : 0) : ringWidth - 0.4,
+      alpha: i < filledSegments ? 0.34 + emphasis : 0.08,
       cap: 'round',
     });
   }
@@ -1047,7 +1060,6 @@ export default function Whiteboard() {
           const bx = x - pos.x;
           const by = y - pos.y;
           const referenceCount = getReferenceCount(concept.alternatives);
-          const weightRatio = Math.min(1, referenceCount / 8);
 
           const bubbleContainer = new Container();
           bubbleContainer.x = bx;
@@ -1071,19 +1083,19 @@ export default function Whiteboard() {
 
           const bubble = new Graphics();
           bubble.circle(0, 0, radius);
-          bubble.fill({ color: '#ffffff', alpha: 0.66 + weightRatio * 0.06 });
+          bubble.fill({ color: '#ffffff', alpha: BUBBLE_FILL_ALPHA });
           bubble.circle(0, 0, radius);
-          bubble.stroke({ color: area.color, width: 1.4 + weightRatio * 0.5, alpha: 0.48 + weightRatio * 0.14 });
+          bubble.stroke({ color: area.color, width: 1.5, alpha: 0.54 });
           bubble.circle(0, 0, radius - 5);
-          bubble.fill({ color: area.border, alpha: 0.08 + weightRatio * 0.07 });
+          bubble.fill({ color: area.border, alpha: BUBBLE_INNER_ALPHA });
           bubble.eventMode = 'none';
           bubbleContainer.addChild(bubble);
 
           const emoji = getBubbleEmoji(area.name, concept.category);
           const emojiBack = new Graphics();
-          emojiBack.circle(0, -radius * 0.35, 13.5);
-          emojiBack.fill({ color: '#ffffff', alpha: 0.7 + weightRatio * 0.06 });
-          emojiBack.stroke({ color: area.color, width: 1, alpha: 0.14 + weightRatio * 0.1 });
+          emojiBack.circle(0, -radius * 0.36, 15.5);
+          emojiBack.fill({ color: '#ffffff', alpha: 0.78 });
+          emojiBack.stroke({ color: area.color, width: 1, alpha: 0.18 });
           emojiBack.eventMode = 'none';
           bubbleContainer.addChild(emojiBack);
 
@@ -1091,12 +1103,12 @@ export default function Whiteboard() {
             text: emoji,
             style: new TextStyle({
               fontFamily: EMOJI_FONT_FAMILY,
-              fontSize: 22,
+              fontSize: 24,
               fontWeight: 'bold',
             }),
           });
           emojiText.anchor.set(0.5);
-          emojiText.y = -radius * 0.35;
+          emojiText.y = -radius * 0.36;
           bubbleContainer.addChild(emojiText);
 
           const fontSize = getBubbleFontSize(concept.name, radius);
@@ -1109,27 +1121,27 @@ export default function Whiteboard() {
               fill: '#1f2937',
               align: 'center',
               wordWrap: true,
-              wordWrapWidth: radius * 1.55,
+              wordWrapWidth: radius * 1.45,
               lineHeight: fontSize + 2,
             }),
           });
           bText.anchor.set(0.5);
-          bText.y = radius * 0.1;
+          bText.y = radius * 0.11;
           bubbleContainer.addChild(bText);
 
           const badge = new Container();
-          badge.x = radius * 0.48;
+          badge.x = radius * 0.5;
           badge.y = radius * 0.5;
           const badgeBg = new Graphics();
-          badgeBg.circle(0, 0, 11.5);
-          badgeBg.fill({ color: area.color, alpha: 0.2 + weightRatio * 0.14 });
-          badgeBg.stroke({ color: area.color, width: 1, alpha: 0.34 + weightRatio * 0.12 });
+          badgeBg.roundRect(-13, -8, 26, 16, 8);
+          badgeBg.fill({ color: area.color, alpha: 0.16 });
+          badgeBg.stroke({ color: area.color, width: 1, alpha: 0.36 });
           badge.addChild(badgeBg);
           const badgeTxt = new Text({
             text: `${referenceCount}`,
             style: new TextStyle({
               fontFamily: '"Inter", sans-serif',
-              fontSize: 10,
+              fontSize: 9,
               fontWeight: 'bold',
               fill: area.color,
             }),

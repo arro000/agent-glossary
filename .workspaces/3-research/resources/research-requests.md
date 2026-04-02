@@ -103,3 +103,6 @@
 ### Esplorazione
 5. **Vertical agent directories** — finance, security, research e DevOps collections da promuovere come beads.
 6. **Repo quality signals** — come valutare freschezza, struttura, metadati machine-readable e utilità pratica delle curated lists.
+
+## Iterazione 8 — Da esplorare
+7. **PixiJS v8 emoji rendering** — pratiche migliori per mantenere emoji/icon leggibili e crisp dentro Text su canvas ad alto DPI

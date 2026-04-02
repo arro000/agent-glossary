@@ -1,8 +1,8 @@
 # Workspace 2 — Improvements & Implementation
 
 ## Stato
-- **Iterazione**: 2
-- **Ultimo aggiornamento**: 2026-04-02 18:12:00
+- **Iterazione**: 3
+- **Ultimo aggiornamento**: 2026-04-02 18:01:17
 - **Stato**: completed
 
 ## Obiettivo
@@ -103,3 +103,8 @@ Analizzare l'implementazione corrente, identificare miglioramenti, e IMPLEMENTAR
 - Emoji rese piu riconoscibili con halo piu ampio e text size aumentata
 - Rimossa la vecchia barra a punti per ridurre il rumore visivo
 - Build di produzione verificata con successo (`npm run build`)
+
+## Iterazione 5 — Completata
+- Le subsection bubbles ora mantengono una resa ancora piu uniforme: fill/stroke sono fissi, il peso progetto vive nel ring segmentato e nel badge refs
+- Emoji piu leggibili grazie a halo piu ampio e dimensione aumentata
+- Aggiornato il layout label interno per ridurre overlap visivo nelle bubble piu dense

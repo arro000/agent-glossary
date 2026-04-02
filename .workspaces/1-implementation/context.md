@@ -2,7 +2,7 @@
 
 ## Stato
 - **Iterazione**: 3
-- **Ultimo aggiornamento**: 2026-04-02 17:57:57
+- **Ultimo aggiornamento**: 2026-04-02 18:01:17
 - **Stato**: completed
 
 ## Obiettivo
@@ -185,6 +185,11 @@ Tutti i concetti dal database sono ora rappresentati nella whiteboard.
 - [x] Confermato allineamento ai key rules: PixiJS v8 vanilla via `useRef/useEffect`, rendering full-canvas, font Inter, bolle equal-size con emoji+titolo, peso da `alternatives`, zoom/pan, hover glow e click panel
 - [x] Verifica esecuzione: `npm run build` completata con successo
 - [x] Verifica lint eseguita: errori residui confinati agli artefatti generati `.netlify/**` (fuori scope della whiteboard)
+
+## Iterazione 4 — Completata
+- [x] Rework delle subsection bubbles: fill/stroke uniformi, peso progetto reso dal ring segmentato e dal badge refs
+- [x] Emoji rese piu leggibili con halo piu ampio e font size aumentata
+- [x] Label interne delle bubbles regolate per ridurre overlap e mantenere riconoscibilita a colpo d'occhio
 
 ## File Principali
 - `src/components/whiteboard.tsx` — Componente principale con tutta la logica PixiJS
