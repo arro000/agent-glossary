@@ -2368,3 +2368,689 @@ Added the iteration 21 research pass:
 - `research-requests.md`: added the next request set.
 - `context.md`: updated current state and next focus.
 [0;32m[2026-04-02 21:54:55] ✓[0m Workspace Research & Content completed successfully
+ 6 files changed, 502 insertions(+)
+To https://github.com/arro000/agent-glossary.git
+   ce82415..a424af8  main -> main
+[0;32m[2026-04-02 21:54:56] ✓[0m Workspace changes committed and pushed
+[0;36m[2026-04-02 21:54:56][0m Launching OpenCode for workspace Improvements & PRD...
+[0m
+> build · gpt-5.4-mini
+[0m
+I’m going to inspect the implementation, specs, and research notes first, then I’ll update the PRD/context and make the PixiJS app changes in `src/`.
+[0m→ [0mRead .workspaces/1-implementation/context.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/pixijs-reference.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/2-improvements/resources/prd.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/2-improvements/context.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1, limit=400][0m
+[0m✱ [0mGlob "src/**"[90m in . · 5 matches[0m
+I have the current spec and dataset. Next I’m checking the whiteboard code plus the research findings for anything that should become a PRD constraint before I touch rendering behavior.
+[0m→ [0mRead src/app/layout.tsx[90m [offset=1, limit=160][0m
+[0m→ [0mRead src/app/page.tsx[90m [offset=1, limit=120][0m
+[0m→ [0mRead src/app/globals.css[90m [offset=1, limit=220][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1, limit=400][0m
+[0m✱ [0mGrep "harness|context|reference|navigation|replay|repo map|trace"[90m in .workspaces/3-research/resources/findings.md · 72 matches[0m
+I found the existing app already has most baseline interactions. I’m drilling into the implementation to spot the unfinished or weak parts that are worth fixing in code rather than just documenting.
+[0m✱ [0mGrep "search|tooltip|panel|minimap|legend|zoom|pan|wheel|drag|pointerdown|pointermove|pointerup"[90m in src/components/whiteboard.tsx · 219 matches[0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=400, limit=420][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=820, limit=420][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1240, limit=420][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1660, limit=420][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=2080, limit=360][0m
+The implementation already has the core whiteboard interactions. I’m checking the remaining workspace files now so I can align the PRD and decide whether the code change should be a small visual/navigation refinement or a data correction.
+[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=1, limit=200][0m
+[0m→ [0mRead package.json[90m [offset=1, limit=200][0m
+[0m✱ [0mGlob ".workspaces/3-research/resources/*"[90m in . · 5 matches[0m
+I’ve confirmed the app is already rich, so the best payoff is a targeted refinement: align the PRD with the latest harness/reference-navigation research, then improve the board’s signal encoding and interaction clarity in the Pixi layer.
+[0m✱ [0mGrep "OpenTelemetry|AG-UI|Semantic Kernel|CrewAI Flows|Vercel AI SDK|Agent Registry|Discovery|Reference Navigation|Repo Map|Durable Execution|Harness / Runtime Scaffold|Trace Replay"[90m in src/components/whiteboard.tsx · 9 matches[0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=401, limit=260][0m
+I want to confirm the dataset size before editing. If the concepts file has drifted beyond the canvas, I’ll either sync the board data or update the workspace notes so the app and taxonomy stay consistent.
+[0m
+[0m$ [0mrg -n "^### " ".workspaces/1-implementation/resources/concepts.md" | wc -l
+102
+[0m
+[0m$ [0mrg -n "^\s*\{ name: '" src/components/whiteboard.tsx | wc -l
+99
+[0m
+[0m$ [0mnode -e "const fs=require('fs'); const a=fs.readFileSync('.workspaces/1-implementation/resources/concepts.md','utf8').match(/^### (.+)$/mg)?.map(s=>s.slice(4))||[]; const b=fs.readFileSync('src/components/whiteboard.tsx','utf8').match(/\{ name: '([^']+)'/g)?.map(s=>s.slice(9,-1))||[]; const setB=new Set(b.map(x=>x.replace(/\\n/g,'\n'))); console.log(a.filter(x=>!setB.has(x)).join('\n'));"
+Persistent Memory
+Session Memory
+Vector Database
+Context Window Management
+Temporal Memory
+Tiered Memory
+Procedural Memory
+Token Budget
+Code Execution Sandbox
+Terminal/Shell Access
+Browser Automation
+MCP (Model Context Protocol)
+A2A (Agent-to-Agent Protocol)
+System Prompt
+Few-Shot Examples
+Chain-of-Thought
+Structured Output
+Prompt Caching
+Context Compression
+Eval Harness
+Harness / Runtime Scaffold
+Durable Execution
+Prompt Assembly
+Hook System
+Agent Loop
+Prompt Chaining
+Parallelization
+Orchestrator-Workers
+Evaluator-Optimizer
+Handoffs / Swarm Pattern
+GraphFlow / State Machine
+Multi-Agent
+Task Planning
+Tool Routing
+Subagent Delegation
+Human-in-the-Loop (HITL)
+Async Background Agent
+ACI (Agent-Computer Interface)
+Cron/Scheduling
+LLM Providers
+Model Selection
+Context Length
+Reasoning Models
+Skill System
+Custom Tool Creation
+Workflow Automation
+PRD Generation
+Logging & Tracing
+Observability Platform
+Cost Tracking
+Evaluation & Benchmarks
+Debugging Tools
+Trace Replay
+Safety & Guardrails
+Agent Governance
+Docker & Containers
+Git Integration
+Environment Management
+Agentic RAG
+Deep Research Agent
+Context Graph
+Reference Navigation
+Repo Map / Codebase Map
+Google ADK (Agent Development Kit)
+OpenAI Agents SDK
+Pydantic AI
+Strands Agents SDK
+Claude Agent SDK
+Cloudflare Agents SDK
+Visual Agent Builder
+Low-Code Agent Platform
+MCP Apps
+Agent Registry / Discovery
+Observability Platform
+AG-UI Protocol
+Semantic Kernel
+CrewAI Flows
+Vercel AI SDK
+LiveKit Agents
+OpenTelemetry for Agents
+OpenTelemetry GenAI Semantic Conventions
+Anthropic Computer Use
+Edge Runtime Stack
+Data-Centric Agent Evaluation
+Session Replay
+Trace Grading
+[0m
+[0m$ [0mnode -e "const fs=require('fs'); const a=fs.readFileSync('.workspaces/1-implementation/resources/concepts.md','utf8').match(/^### (.+)$/mg)?.map(s=>s.slice(4))||[]; const b=fs.readFileSync('src/components/whiteboard.tsx','utf8').match(/\{ name: '([^']+)'/g)?.map(s=>s.slice(9,-1))||[]; const setA=new Set(a); console.log(b.filter(x=>!setA.has(x.replace(/\\n/g,'\n'))).join('\n'));"
+Persistent\nMemory
+Session\nMemory
+Vector\nDatabase
+Context Window\nManagement
+Temporal\nMemory
+Tiered\nMemory
+Procedural\nMemory
+Token\nBudget
+Code Execution\nSandbox
+Terminal/Shell\nAccess
+Browser\nAutomation
+Anthropic\nComputer Use
+MCP
+A2A
+LiveKit\nAgents
+System\nPrompt
+Prompt\nAssembly
+Hook\nSystem
+Few-Shot\nExamples
+Chain-of-\nThought
+Structured\nOutput
+Prompt\nCaching
+Context\nCompression
+Eval\nHarness
+Harness /\nRuntime Scaffold
+Durable\nExecution
+Agent\nLoop
+Prompt\nChaining
+Parallel\nization
+Orchestrator\nWorkers
+CrewAI\nFlows
+Evaluator\nOptimizer
+Handoffs /\nSwarm
+GraphFlow /\nState Machine
+Multi-\nAgent
+Task\nPlanning
+Tool\nRouting
+Subagent\nDelegation
+HITL
+Async\nBackground
+ACI
+Cron /\nScheduling
+LLM\nProviders
+Model\nSelection
+Context\nLength
+Reasoning\nModels
+Skill\nSystem
+Custom Tool\nCreation
+Workflow\nAutomation
+PRD\nGeneration
+Logging &\nTracing
+Observability\nPlatform
+Cost\nTracking
+Evaluation &\nBenchmarks
+Data-Centric\nAgent Evaluation
+Debugging\nTools
+Trace\nReplay
+Safety &\nGuardrails
+Agent\nGovernance
+OpenTelemetry\nfor Agents
+OpenTelemetry\nGenAI Semantic Conventions
+Docker &\nContainers
+Edge Runtime\nStack
+Git\nIntegration
+Environment\nManagement
+Agentic\nRAG
+Deep Research\nAgent
+Context\nGraph
+Reference\nNavigation
+Repo Map /\nCodebase Map
+Google\nADK
+OpenAI Agents\nSDK
+Pydantic\nAI
+Strands\nAgents SDK
+Claude Agent\nSDK
+Cloudflare\nAgents SDK
+Semantic\nKernel
+Vercel AI\nSDK
+Visual Agent\nBuilder
+Low-Code Agent\nPlatform
+MCP\nApps
+Agent Registry\n/ Discovery
+AG-UI\nProtocol
+[0m
+[0m$ [0mnode -e "const fs=require('fs'); const norm=s=>s.toLowerCase().replace(/[^a-z0-9]/g,''); const a=fs.readFileSync('.workspaces/1-implementation/resources/concepts.md','utf8').match(/^### (.+)$/mg)?.map(s=>s.slice(4))||[]; const b=fs.readFileSync('src/components/whiteboard.tsx','utf8').match(/\{ name: '((?:\\.|[^'])+)'/g)?.map(s=>s.slice(9,-1).replace(/\\n/g,' '))||[]; const setB=new Set(b.map(norm)); console.log('MISSING'); console.log(a.filter(x=>!setB.has(norm(x))).join('\n')); console.log('EXTRA'); const setA=new Set(a.map(norm)); console.log(b.filter(x=>!setA.has(norm(x))).join('\n'));"
+MISSING
+Persistent Memory
+Session Memory
+Vector Database
+Context Window Management
+Temporal Memory
+Tiered Memory
+Procedural Memory
+Token Budget
+Code Execution Sandbox
+Terminal/Shell Access
+Browser Automation
+MCP (Model Context Protocol)
+A2A (Agent-to-Agent Protocol)
+System Prompt
+Few-Shot Examples
+Chain-of-Thought
+Structured Output
+Prompt Caching
+Context Compression
+Eval Harness
+Harness / Runtime Scaffold
+Durable Execution
+Prompt Assembly
+Hook System
+Agent Loop
+Prompt Chaining
+Parallelization
+Orchestrator-Workers
+Evaluator-Optimizer
+Handoffs / Swarm Pattern
+GraphFlow / State Machine
+Multi-Agent
+Task Planning
+Tool Routing
+Subagent Delegation
+Human-in-the-Loop (HITL)
+Async Background Agent
+ACI (Agent-Computer Interface)
+Cron/Scheduling
+LLM Providers
+Model Selection
+Context Length
+Reasoning Models
+Skill System
+Custom Tool Creation
+Workflow Automation
+PRD Generation
+Logging & Tracing
+Observability Platform
+Cost Tracking
+Evaluation & Benchmarks
+Debugging Tools
+Trace Replay
+Safety & Guardrails
+Agent Governance
+Docker & Containers
+Git Integration
+Environment Management
+Agentic RAG
+Deep Research Agent
+Context Graph
+Reference Navigation
+Repo Map / Codebase Map
+Google ADK (Agent Development Kit)
+OpenAI Agents SDK
+Pydantic AI
+Strands Agents SDK
+Claude Agent SDK
+Cloudflare Agents SDK
+Visual Agent Builder
+Low-Code Agent Platform
+MCP Apps
+Agent Registry / Discovery
+Observability Platform
+AG-UI Protocol
+Semantic Kernel
+CrewAI Flows
+Vercel AI SDK
+LiveKit Agents
+OpenTelemetry for Agents
+OpenTelemetry GenAI Semantic Conventions
+Anthropic Computer Use
+Edge Runtime Stack
+Data-Centric Agent Evaluation
+Session Replay
+Trace Grading
+EXTRA
+Persistent\nMemory
+Session\nMemory
+Vector\nDatabase
+Context Window\nManagement
+Temporal\nMemory
+Tiered\nMemory
+Procedural\nMemory
+Token\nBudget
+Code Execution\nSandbox
+Terminal/Shell\nAccess
+Browser\nAutomation
+Anthropic\nComputer Use
+MCP
+A2A
+LiveKit\nAgents
+System\nPrompt
+Prompt\nAssembly
+Hook\nSystem
+Few-Shot\nExamples
+Chain-of-\nThought
+Structured\nOutput
+Prompt\nCaching
+Context\nCompression
+Eval\nHarness
+Harness /\nRuntime Scaffold
+Durable\nExecution
+Agent\nLoop
+Prompt\nChaining
+Parallel\nization
+Orchestrator\nWorkers
+CrewAI\nFlows
+Evaluator\nOptimizer
+Handoffs /\nSwarm
+GraphFlow /\nState Machine
+Multi-\nAgent
+Task\nPlanning
+Tool\nRouting
+Subagent\nDelegation
+HITL
+Async\nBackground
+ACI
+Cron /\nScheduling
+LLM\nProviders
+Model\nSelection
+Context\nLength
+Reasoning\nModels
+Skill\nSystem
+Custom Tool\nCreation
+Workflow\nAutomation
+PRD\nGeneration
+Logging &\nTracing
+Observability\nPlatform
+Cost\nTracking
+Evaluation &\nBenchmarks
+Data-Centric\nAgent Evaluation
+Debugging\nTools
+Trace\nReplay
+Safety &\nGuardrails
+Agent\nGovernance
+OpenTelemetry\nfor Agents
+OpenTelemetry\nGenAI Semantic Conventions
+Docker &\nContainers
+Edge Runtime\nStack
+Git\nIntegration
+Environment\nManagement
+Agentic\nRAG
+Deep Research\nAgent
+Context\nGraph
+Reference\nNavigation
+Repo Map /\nCodebase Map
+Google\nADK
+OpenAI Agents\nSDK
+Pydantic\nAI
+Strands\nAgents SDK
+Claude Agent\nSDK
+Cloudflare\nAgents SDK
+Semantic\nKernel
+Vercel AI\nSDK
+Visual Agent\nBuilder
+Low-Code Agent\nPlatform
+MCP\nApps
+Agent Registry\n/ Discovery
+AG-UI\nProtocol
+[0m
+[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=201, limit=120][0m
+I’ve got a concrete gap now: the board is missing three concepts that exist in the taxonomy. I’m tracking the implementation/docs updates as a short list so I can keep the code, PRD, and workspace state synchronized.
+[0m
+[0m# [0mTodos
+[ ] Sync board data with concepts taxonomy by adding missing observability concepts
+[ ] Refine PixiJS signals/emoji for replay and evaluation concepts
+[ ] Update PRD and workspace state docs for current iteration
+[ ] Add or refresh research requests for unresolved visualization questions
+[ ] Run npm run build and fix any regressions
+[ ] Commit the completed changes
+[0m
+I’m editing the whiteboard now: syncing the missing taxonomy items into the board data, tightening the search/selection behavior, and making the replay/eval concepts visually distinct.
+[0m✗ [0mapply_patch failed
+[91m[1mError: [0mapply_patch verification failed: Error: Failed to find expected lines in /home/arro/projects/agent-glossary/src/components/whiteboard.tsx:
+      { name: 'Evaluation &\nBenchmarks', popularity: 7, description: 'Valutare le performance dell\'agente su task specifici', alternatives: 'LM Eval Harness, Custom evals, A/B testing, Human eval', category: 'Quality' },
+      { name: 'Debugging\nTools', popularity: 7, description: 'Tool per ispezionare e debuggare il comportamento dell\'agente', alternatives: 'Replay tools, Inspector UI, Trace viewers', category: 'Debug' },
+      { name: 'Trace\nReplay', popularity: 8, description: 'Replay di sessioni e tool call per ricostruire failure long-horizon e confrontare run diverse', alternatives: 'AgentOps replay, LangSmith replay, Langfuse session replay, custom transcript viewers', category: 'Debug' },
+      { name: 'Safety &\nGuardrails', popularity: 7, description: 'Meccanismi per prevenire comportamenti indesiderati', alternatives: 'Input/output filtering, Permission systems, Approval flows, Geordie AI', category: 'Safety' },
+      { name: 'Agent\nGovernance', popularity: 6, description: 'Framework di governance per deployment sicuro di agenti AI in produzione', alternatives: 'WEF framework, Microsoft Power Platform governance, Collibra', category: 'Governance' },
+      { name: 'OpenTelemetry\nfor Agents', popularity: 8, description: 'Pattern di observability per agenti che mappa trace, span ed eventi su OpenTelemetry. Le semantic conventions GenAI sono il lessico standard.', alternatives: 'Langfuse, LangSmith, Arize Phoenix, W&B Weave, Helicone', category: 'Monitoring' },
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=180, limit=40][0m
+[0m✱ [0mGrep "Session Replay|Trace Grading|OpenTelemetry for Agents|Anthropic Computer Use|Edge Runtime Stack|Data-Centric Agent Evaluation|CrewAI Flows|Vercel AI SDK|Semantic Kernel"[90m in src/components/whiteboard.tsx · 5 matches[0m
+I’ve pinned the remaining taxonomy gap: `Session Replay` and `Trace Grading` are in the source taxonomy but not yet on the canvas. I’m patching those in and keeping the clicked node visible during search filtering.
+[0m✗ [0mapply_patch failed
+[91m[1mError: [0mapply_patch verification failed: Error: Failed to find expected lines in /home/arro/projects/agent-glossary/src/components/whiteboard.tsx:
+      { name: 'Debugging\nTools', popularity: 7, description: 'Tool per ispezionare e debuggare il comportamento dell\'agente', alternatives: 'Replay tools, Inspector UI, Trace viewers', category: 'Debug' },
+      { name: 'Trace\nReplay', popularity: 8, description: 'Replay di sessioni e tool call per ricostruire failure long-horizon e confrontare run diverse', alternatives: 'AgentOps replay, LangSmith replay, Langfuse session replay, custom transcript viewers', category: 'Debug' },
+      { name: 'Safety &\nGuardrails', popularity: 7, description: 'Meccanismi per prevenire comportamenti indesiderati', alternatives: 'Input/output filtering, Permission systems, Approval flows, Geordie AI', category: 'Safety' },
+      { name: 'Agent\nGovernance', popularity: 6, description: 'Framework di governance per deployment sicuro di agenti AI in produzione', alternatives: 'WEF framework, Microsoft Power Platform governance, Collibra', category: 'Governance' },
+      { name: 'OpenTelemetry\nfor Agents', popularity: 8, description: 'Pattern di observability per agenti che mappa trace, span ed eventi su OpenTelemetry. Le semantic conventions GenAI sono il lessico standard.', alternatives: 'Langfuse, LangSmith, Arize Phoenix, W&B Weave, Helicone', category: 'Monitoring' },
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+The canvas data is patched. I’m verifying the concept count now so the PRD and workspace notes stay numerically consistent with the board.
+[0m
+[0m$ [0mrg -n "^\s*\{ name: '" src/components/whiteboard.tsx | wc -l
+101
+[0m
+[0m✱ [0mGrep "Session Replay|Trace Grading|Trace Replay|Data-Centric Agent Evaluation"[90m in src/components/whiteboard.tsx · 0 matches[0m
+The board now has `101` concept nodes. I’m updating the PRD and workspace state to match that actual canvas state, including the new replay/grading concepts and the selection behavior fix.
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/2-improvements/resources/prd.md
+I’m syncing the workspace docs now: PRD first, then the implementation context, then the research backlog so the next iteration has a clean handoff.
+[0m✗ [0mapply_patch failed
+[91m[1mError: [0mapply_patch verification failed: Error: Failed to find expected lines in /home/arro/projects/agent-glossary/.workspaces/2-improvements/context.md:
+## Iterazione 3 — Completata
+- Rework delle subsection bubbles: i riferimenti/progetti guidano la posizione verso il centro dell'area senza cambiare il diametro
+- Rafforzato il rendering: emoji piu riconoscibili, title plate piu leggibile, badge refs piu esplicito
+- Ring segmentato reso piu contrastato per comunicare meglio il project-weight a colpo d'occhio
+- Verifica finale: `npm run build` completata con successo
+[0m→ [0mRead .workspaces/2-improvements/context.md[90m [offset=100, limit=60][0m
+[0m→ [0mRead .workspaces/2-improvements/context.md[90m [offset=1, limit=12][0m
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/2-improvements/context.md
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/1-implementation/context.md
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/resources/research-requests.md
+The source and workspace notes are patched. I’m doing a quick code read for the touched sections before running the production build.
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=270, limit=90][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=180, limit=30][0m
+[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=247, limit=20][0m
+[0m→ [0mRead .workspaces/1-implementation/context.md[90m [offset=248, limit=20][0m
+[0m→ [0mRead .workspaces/2-improvements/resources/prd.md[90m [offset=1, limit=80][0m
+[0m→ [0mRead .workspaces/2-improvements/context.md[90m [offset=1, limit=160][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1734, limit=50][0m
+I’ve finished the code and doc edits. Running the production build now to catch any PixiJS or TypeScript regressions before I commit.
+[0m
+[0m$ [0mnpm run build
+> agent-glossary@0.1.0 build
+> next build
+
+▲ Next.js 16.2.2 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.1s
+  Running TypeScript ...
+  Finished TypeScript in 2.1s ...
+  Collecting page data using 5 workers ...
+  Generating static pages using 5 workers (0/4) ...
+  Generating static pages using 5 workers (1/4) 
+  Generating static pages using 5 workers (2/4) 
+  Generating static pages using 5 workers (3/4) 
+✓ Generating static pages using 5 workers (4/4) in 336ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+[0m
+The build passed cleanly. I’m doing the final repo check now, then I’ll commit everything in one shot.
+[0m# [0mTodos
+[x] Sync board data with concepts taxonomy by adding missing observability concepts
+[x] Refine PixiJS signals/emoji for replay and evaluation concepts
+[x] Update PRD and workspace state docs for current iteration
+[x] Add or refresh research requests for unresolved visualization questions
+[x] Run npm run build and fix any regressions
+[ ] Commit the completed changes
+[0m
+[0m$ [0mgit status --short
+M .workspaces/1-implementation/context.md
+ M .workspaces/2-improvements/context.md
+ M .workspaces/2-improvements/resources/prd.md
+ M .workspaces/3-research/resources/research-requests.md
+ M .workspaces/logs/loop.log
+ M src/components/whiteboard.tsx
+[0m
+[0m$ [0mgit diff -- src/components/whiteboard.tsx .workspaces/2-improvements/resources/prd.md .workspaces/2-improvements/context.md .workspaces/1-implementation/context.md .workspaces/3-research/resources/research-requests.md
+diff --git a/.workspaces/1-implementation/context.md b/.workspaces/1-implementation/context.md
+index 1152500..447e574 100644
+--- a/.workspaces/1-implementation/context.md
++++ b/.workspaces/1-implementation/context.md
+@@ -254,3 +254,8 @@ La whiteboard rappresenta 100 subsection correnti allineate alle macroaree princ
+ 2. Se incontri errori o limiti, segnalali in `resources/blockers.md`
+ 3. Aggiorna i dati dei concetti se trovi nuovi strumenti/pattern
+ 4. Commit con messaggio descrittivo
++
++## Iterazione 4 (Questa esecuzione) — Completata
++- [x] Allineato il canvas a `concepts.md` con `Session Replay` e `Trace Grading` nelle metriche/visuali dell'area Observability
++- [x] Confermato il comportamento della bubble selezionata: resta evidenziata anche durante il filtro search
++- [x] Aggiornato il PRD workspace 2 alla iterazione corrente e sincronizzato il totale canvas a 101 concept nodes
+diff --git a/.workspaces/2-improvements/context.md b/.workspaces/2-improvements/context.md
+index b8a1046..be182da 100644
+--- a/.workspaces/2-improvements/context.md
++++ b/.workspaces/2-improvements/context.md
+@@ -1,8 +1,8 @@
+ # Workspace 2 — Improvements & Implementation
+ 
+ ## Stato
+-- **Iterazione**: 2
+-- **Ultimo aggiornamento**: 2026-04-02 22:10:00
++- **Iterazione**: 3
++- **Ultimo aggiornamento**: 2026-04-02 22:00:00
+ - **Stato**: completed
+ 
+ ## Obiettivo
+@@ -137,3 +137,8 @@ Analizzare l'implementazione corrente, identificare miglioramenti, e IMPLEMENTAR
+ - [x] Aggiornato il PRD di workspace 2 alla nuova iterazione e ai vincoli su context/replay signals
+ - [x] Validato che il board resta full-canvas PixiJS v8 vanilla con bolle equal-size e project-weight separato
+ - [x] Verifica tecnica eseguita: `npm run build` completata con successo
++
++## Iterazione 3 (Questa esecuzione) — Completata
++- [x] Allineati i concept del canvas al taxonomy corrente aggiungendo `Session Replay` e `Trace Grading`
++- [x] La bubble selezionata resta evidenziata anche mentre la search filtra gli altri nodi
++- [x] PRD riallineato a iterazione 3 con focus su replay/eval signals e stato attuale della board
+diff --git a/.workspaces/2-improvements/resources/prd.md b/.workspaces/2-improvements/resources/prd.md
+index eb158ed..279ffc7 100644
+--- a/.workspaces/2-improvements/resources/prd.md
++++ b/.workspaces/2-improvements/resources/prd.md
+@@ -1,4 +1,4 @@
+-# PRD — Iterazione 2
++# PRD — Iterazione 3
+ 
+ ## Obiettivo
+ Raffinare la whiteboard per rappresentare il glossario come una macchina agentica: macroaree, harness, memoria, contesto, tools, skills, navigazione tra riferimenti, observability e discovery.
+@@ -12,14 +12,14 @@ Raffinare la whiteboard per rappresentare il glossario come una macchina agentic
+ - [x] Hover effect sulle bolle
+ - [x] Click per mostrare dettagli (panel)
+ - [x] Search realtime che filtra nome, descrizione, categoria e alternative
+-- [x] Aggiornamento tassonomia con harness/runtime scaffold, reference navigation, repo map, OTel GenAI e protocolli UI
++- [x] Aggiornamento tassonomia con harness/runtime scaffold, reference navigation, repo map, OTel GenAI, replay/grading e protocolli UI
+ - [x] Cache dei metadati derivati delle bubble (search index, display label, refs) per search e interazioni piu fluide
+ - [x] Stato selezione persistente della bubble aperta per feedback visivo piu chiaro senza aggiungere clutter
+ - [x] Raffinamento visuale dell'attuale iterazione: header macroarea piu leggibili, bubble equal-size piu bilanciate, emoji piu riconoscibili e project weight piu chiaro
+ - [x] Miglioramento feedback interaction: tooltip e selezione restano leggibili su viewport piccole senza introdurre overlay HTML
+ - [x] Conservato il vincolo full-canvas PixiJS v8 vanilla con font Inter e layout responsive
+-- [x] Allineamento finale al dataset `concepts.md`: `Context Graph` e `Durable Execution` aggiunti, per un totale di 100 subsection bubbles coerenti con la taxonomy corrente
+-- [x] Signal chip e visual cues tenuti discreti ma leggibili per harness, context, reference navigation e replay-aware workflows
++- [x] Allineamento finale al dataset `concepts.md`: `Context Graph`, `Durable Execution`, `Session Replay` e `Trace Grading` visibili, per un totale di 101 subsection bubbles coerenti con la taxonomy corrente
++- [x] Signal chip e visual cues tenuti discreti ma leggibili per harness, context, reference navigation, replay-aware e eval-aware workflows
+ 
+ ## Dettagli Tecnici
+ Vedi `context.md` per le specifiche complete.
+@@ -31,11 +31,11 @@ Vedi `context.md` per le specifiche complete.
+ - Le bubble devono rimanere leggibili anche quando il dataset si densifica
+ - La search deve cercare anche alternative e categoria, non solo nome/descrizione
+ - Il canvas deve restare responsive con zoom-to-fit iniziale
+-- Le bubble cliccate devono restare enfatizzate finche il panel e aperto, ma senza cambiare dimensione base
++- Le bubble cliccate devono restare enfatizzate finche il panel e aperto, anche mentre la search filtra, ma senza cambiare dimensione base
+ - Il peso progetto deve restare codificato in modo discreto ma immediatamente interpretabile (ring + badge + panel)
+ - Le macroaree devono rimanere pastello e distinte, ma senza competere con la leggibilita delle bubble
+ - Le emoji devono restare riconoscibili anche su bubble compatte e ad alto DPR
+-- Context graph, reference navigation e durable execution devono avere segnali visivi distintivi ma non invasivi
++- Context graph, reference navigation, durable execution, session replay e trace grading devono avere segnali visivi distintivi ma non invasivi
+ 
+ ## Criticita
+ - Performance con molte bolle: usare Container per culling e redraw minimo della griglia
+diff --git a/.workspaces/3-research/resources/research-requests.md b/.workspaces/3-research/resources/research-requests.md
+index 6d3f99d..26293b1 100644
+--- a/.workspaces/3-research/resources/research-requests.md
++++ b/.workspaces/3-research/resources/research-requests.md
+@@ -257,3 +257,9 @@
+ 
+ ### Esplorazione
+ 6. **Trace-to-eval flywheels** — how trace grading, eval datasets, and CI regression loops connect into a shareable harness workflow.
++
++## Iterazione 22 — Da esplorare
++
++### Priorità Media
++1. **PixiJS v8 emoji/text crispness** — best practices per label brevi misti a emoji su canvas ad alto DPR, soprattutto dentro bubble fixed-size.
++2. **Replay vs grading iconography** — quale encoding visivo distingue meglio session replay, trace replay e trace grading senza aumentare clutter nelle bubble compatte?
+diff --git a/src/components/whiteboard.tsx b/src/components/whiteboard.tsx
+index ff4752a..3b476d3 100644
+--- a/src/components/whiteboard.tsx
++++ b/src/components/whiteboard.tsx
+@@ -189,6 +189,8 @@ const MACROAREAS: MacroareaConfig[] = [
+       { name: 'Data-Centric\nAgent Evaluation', popularity: 8, description: 'Benchmark-first evaluation basata su task reali e non solo metriche astratte. Include SWE-bench, Terminal-Bench 2.0, WebArena, TAU-bench, BrowseComp e SWE-Lancer.', alternatives: 'LOCOMO, custom evals, human eval', category: 'Quality' },
+       { name: 'Debugging\nTools', popularity: 7, description: 'Tool per ispezionare e debuggare il comportamento dell\'agente', alternatives: 'Replay tools, Inspector UI, Trace viewers', category: 'Debug' },
+       { name: 'Trace\nReplay', popularity: 8, description: 'Replay di sessioni e tool call per ricostruire failure long-horizon e confrontare run diverse', alternatives: 'AgentOps replay, LangSmith replay, Langfuse session replay, custom transcript viewers', category: 'Debug' },
++      { name: 'Session\nReplay', popularity: 8, description: 'Replay visivo di una sessione o run con trace, tool call e state transitions per root-cause analysis e debugging long-horizon', alternatives: 'trace playback, transcript viewer, LangSmith replay, Langfuse sessions, AgentOps replay', category: 'Debug' },
++      { name: 'Trace\nGrading', popularity: 8, description: 'Valutazione strutturata di trace end-to-end con score o label per trasformare i failure di workflow in regressioni ripetibili', alternatives: 'trace evals, LangSmith evals, Langfuse experiments, promptfoo, Inspect AI', category: 'Quality' },
+       { name: 'Safety &\nGuardrails', popularity: 7, description: 'Meccanismi per prevenire comportamenti indesiderati', alternatives: 'Input/output filtering, Permission systems, Approval flows, Geordie AI', category: 'Safety' },
+       { name: 'Agent\nGovernance', popularity: 6, description: 'Framework di governance per deployment sicuro di agenti AI in produzione', alternatives: 'WEF framework, Microsoft Power Platform governance, Collibra', category: 'Governance' },
+       { name: 'OpenTelemetry\nfor Agents', popularity: 8, description: 'Pattern di observability per agenti che mappa trace, span ed eventi su OpenTelemetry. Le semantic conventions GenAI sono il lessico standard.', alternatives: 'Langfuse, LangSmith, Arize Phoenix, W&B Weave, Helicone', category: 'Monitoring' },
+@@ -275,6 +277,8 @@ function getBubbleEmoji(areaName: string, category: string, conceptName: string)
+   if (conceptKey.includes('harness / runtime scaffold')) return '🧱';
+   if (conceptKey.includes('eval harness')) return '🧪';
+   if (conceptKey.includes('durable execution')) return '🔁';
++  if (conceptKey.includes('session replay')) return '🎬';
++  if (conceptKey.includes('trace grading')) return '🏷️';
+   if (conceptKey.includes('context window')) return '🪟';
+   if (conceptKey.includes('context graph')) return '🕸️';
+   if (conceptKey.includes('reference navigation')) return '🔎';
+@@ -345,6 +349,8 @@ function getConceptSignal(conceptName: string): SignalInfo | null {
+   if (key.includes('harness / runtime scaffold')) return SIGNAL_LEGEND[0];
+   if (key.includes('eval harness')) return SIGNAL_LEGEND[5];
+   if (key.includes('durable execution')) return SIGNAL_LEGEND[4];
++  if (key.includes('session replay')) return SIGNAL_LEGEND[4];
++  if (key.includes('trace grading')) return SIGNAL_LEGEND[5];
+   if (key.includes('context window')) return SIGNAL_LEGEND[1];
+   if (key.includes('context graph')) return SIGNAL_LEGEND[1];
+   if (key.includes('reference navigation')) return SIGNAL_LEGEND[2];
+@@ -1754,11 +1760,15 @@ export default function Whiteboard() {
+ 
+         for (const s of bubbleStates) {
+           const matched = s.searchIndex.includes(q);
+-          if (matched) {
++          if (matched || s.selected) {
+             s.baseAlpha = 1;
+-            s.searchHighlight = true;
+-            matchCount++;
+-            areaMatchFlags[s.areaIndex] = true;
++            s.searchHighlight = matched;
++            if (matched) {
++              matchCount++;
++              areaMatchFlags[s.areaIndex] = true;
++            } else {
++              areaMatchFlags[s.areaIndex] = true;
++            }
+           } else {
+             s.baseAlpha = 0.12;
+             s.searchHighlight = false;
+[0m
+[0m$ [0mgit log -3 --format=%s
+loop iter 3: workspace 3 (Research & Content) completed
+loop iter 2: workspace 1 (Implementation) completed
+Improve whiteboard signal cues and spacing
+[0m
+The functional work is done and the build is green. I’m staging only the implementation and workspace docs now, leaving the unrelated workspace log alone.
+[0m$ [0mgit add src/components/whiteboard.tsx .workspaces/2-improvements/resources/prd.md .workspaces/2-improvements/context.md .workspaces/1-implementation/context.md .workspaces/3-research/resources/research-requests.md && git commit -m "refine whiteboard replay and eval signals"
+[main 5a68391] refine whiteboard replay and eval signals
+ 5 files changed, 38 insertions(+), 12 deletions(-)
+[0m
+[0m$ [0mgit status --short
+M .workspaces/logs/loop.log
+[0m
+[0m# [0mTodos
+[x] Sync board data with concepts taxonomy by adding missing observability concepts
+[x] Refine PixiJS signals/emoji for replay and evaluation concepts
+[x] Update PRD and workspace state docs for current iteration
+[x] Add or refresh research requests for unresolved visualization questions
+[x] Run npm run build and fix any regressions
+[x] Commit the completed changes
+[0m
+Implemented and committed.
+
+- Added `Session Replay` and `Trace Grading` to the PixiJS board data.
+- Kept selected bubbles emphasized even while search filters the rest.
+- Updated PRD + workspace state docs to iteration 3/current state.
+- Added a small research request for PixiJS emoji/text crispness.
+
+Validation:
+- `npm run build` passed.
+
+Commit:
+- `5a68391` `refine whiteboard replay and eval signals`
+
+Uncommitted leftover:
+- `.workspaces/logs/loop.log`
+[0;32m[2026-04-02 22:00:15] ✓[0m Workspace Improvements & PRD completed successfully
