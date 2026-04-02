@@ -329,7 +329,7 @@ function createMinimap(
   const mmH = _screenH > 300 ? 110 : 70;
   const mmPad = 12;
   const mmX = screenW - mmW - mmPad;
-  const mmY = screenH - mmH - mmPad;
+  const mmY = _screenH - mmH - mmPad;
 
   const mm = new Container();
   mm.label = 'minimap';
@@ -372,7 +372,7 @@ function createMinimap(
     const vx = (-world.x / world.scale.x - worldBounds.x) * scale + offsetX;
     const vy = (-world.y / world.scale.y - worldBounds.y) * scale + offsetY;
     const vw = (screenW / world.scale.x) * scale;
-    const vh = (screenH / world.scale.y) * scale;
+    const vh = (_screenH / world.scale.y) * scale;
     viewportRect.rect(vx, vy, vw, vh);
     viewportRect.fill({ color: '#3b82f6', alpha: 0.08 });
     viewportRect.stroke({ color: '#3b82f6', width: 1, alpha: 0.5 });
