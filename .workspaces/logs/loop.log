@@ -3519,3 +3519,386 @@ Updated the research workspace.
 
 No tests were needed for these documentation updates.
 [0;32m[2026-04-02 22:05:57] ✓[0m Workspace Research & Content completed successfully
+ 6 files changed, 274 insertions(+), 2 deletions(-)
+To https://github.com/arro000/agent-glossary.git
+   a04e21e..e8fda55  main -> main
+[0;32m[2026-04-02 22:05:58] ✓[0m Workspace changes committed and pushed
+[0;36m[2026-04-02 22:05:58][0m Launching OpenCode for workspace Improvements & PRD...
+[0m
+> build · gpt-5.4-mini
+[0m
+I’m reading the implementation, research, and PRD files first, then I’ll update the app code in `src/` and verify with a build before committing.
+[0m# [0mTodos
+[ ] Read current app code and workspace specs
+[ ] Translate research into PRD/implementation constraints
+[ ] Implement PixiJS app improvements in src/
+[ ] Update workspace concept/context docs
+[ ] Run build and fix issues
+[ ] Commit changes
+[0m
+[0m→ [0mRead .workspaces/1-implementation/context.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/pixijs-reference.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/2-improvements/resources/prd.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/2-improvements/context.md[90m [offset=1, limit=400][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1, limit=400][0m
+[0m✱ [0mGlob "src/**/*"[90m in . · 5 matches[0m
+I’ve got the spec and research. Next I’m reading the actual PixiJS implementation to find the smallest code changes that will improve layout, interaction, and signaling without adding clutter.
+[0m→ [0mRead src/app/page.tsx[90m [offset=1, limit=120][0m
+[0m→ [0mRead src/app/layout.tsx[90m [offset=1, limit=160][0m
+[0m→ [0mRead src/app/globals.css[90m [offset=1, limit=220][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1, limit=400][0m
+[0m✱ [0mGrep "function Whiteboard|const Whiteboard|useEffect\(|app\.stage|minimap|legend|search|tooltip|pointer|fit|zoom|panel"[90m in src/components · 225 matches[0m
+[0m✱ [0mGrep "Session Replay|Trace Grading|Context Graph|Reference Navigation|Repo Map|Harness|Durable Execution|OpenTelemetry|Agent Registry"[90m in src/components · 7 matches[0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1195, limit=650][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1845, limit=650][0m
+I found the current board already has the core mechanics. I’m checking the research file for the newer cues that should become visible signals, then I’ll wire those into the PRD and canvas instead of adding generic polish.
+[0m✱ [0mGrep "Harness|Context Graph|Reference Navigation|Repo Map|Session Replay|Trace Grading|Durable Execution|Agent Registry|Discovery|Agent Interoperability|ACI|Prompt Assembly|Hook System|Session Bootstrap"[90m in .workspaces/3-research/resources/findings.md · 28 matches[0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=395, limit=220][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=863, limit=140][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1303, limit=120][0m
+[0m→ [0mRead .workspaces/3-research/resources/findings.md[90m [offset=1351, limit=80][0m
+[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=1, limit=200][0m
+[0m✱ [0mGlob ".workspaces/3-research/resources/*"[90m in . · 5 matches[0m
+[0m✱ [0mGrep "function layoutBubbles|drawProjectWeightRing|createMinimap|createLegend|createSearchBar|createZoomBtn|redrawGrid|drawDashedRoundedRect|BubbleState|BubbleTypography"[90m in src/components/whiteboard.tsx · 25 matches[0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=400, limit=850][0m
+[0m✱ [0mGrep "Claude Code Hooks|Claude Code Subagents|OpenAI Agents SDK Sessions|OpenAI Trace Grading|LangGraph Persistence|Temporal Workflow|Sourcegraph Code Search|Aider Repository Map|AG-UI|A2UI|MCP Apps|Agent Registry / Discovery|Session Replay|Trace Grading"[90m in .workspaces/1-implementation/resources/concepts.md · 8 matches[0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=400, limit=260][0m
+I’m updating the canvas code now: richer signal detection for the new harness/context/replay/discovery patterns, plus a small hover tooltip upgrade so the research cues are visible without adding extra UI chrome.
+[0m✗ [0mapply_patch failed
+[91m[1mError: [0mapply_patch verification failed: Error: Failed to find expected lines in /home/arro/projects/agent-glossary/src/components/whiteboard.tsx:
+      function showTooltip(name: string, category: string, referenceCount: number, x: number, y: number) {
+        if (panel || compactMode) return;
+        const cleanName = name.replace(/\n/g, ' ');
+        tooltipText.text = cleanName;
+        tooltipText.x = 10;
+        tooltipText.y = 6;
+        tooltipSub.text = `${category} · ${referenceCount} refs`;
+        tooltipSub.x = 10;
+        tooltipSub.y = 22;
+        tooltipBg.clear();
+The first patch missed the exact tooltip block, so I’m re-reading the local section and applying the changes in smaller pieces.
+[0m✱ [0mGrep "function showTooltip|tooltipSub.text|signalLabel|createSignalLegend|interface SignalInfo|SIGNAL_LEGEND|function getConceptSignal"[90m in src/components/whiteboard.tsx · 21 matches[0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=40, limit=120][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1110, limit=120][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1710, limit=60][0m
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+
+LSP errors detected in src/components/whiteboard.tsx, please fix:
+<diagnostics file="/home/arro/projects/agent-glossary/src/components/whiteboard.tsx">
+ERROR [1582:13] Expected 6 arguments, but got 5.
+</diagnostics>
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+I’ve got the code changes in place. I’m syncing the PRD and workspace notes now so the docs match the current iteration and the new signal layer.
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/2-improvements/resources/prd.md
+[0m→ [0mRead .workspaces/3-research/resources/research-requests.md[90m [offset=198, limit=120][0m
+[0m→ [0mRead .workspaces/2-improvements/context.md[90m [offset=1, limit=220][0m
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/2-improvements/context.md
+I’ve updated the implementation docs. I’m grabbing the current timestamp now so the workspace state stays accurate before I verify the build.
+[0m
+[0m$ [0mdate "+%Y-%m-%d %H:%M:%S"
+2026-04-02 22:09:37
+[0m
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/2-improvements/context.md
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/3-research/resources/research-requests.md
+[0m✱ [0mGrep "showTooltip\("[90m in src/components/whiteboard.tsx · 2 matches[0m
+[0m✱ [0mGrep "SIGNAL_LEGEND\[6\]|interop|SIGNAL_RULES"[90m in src/components/whiteboard.tsx · 5 matches[0m
+The code and docs are aligned. I’m running the production build now to catch any type or PixiJS regressions before I wrap up.
+[0m
+[0m$ [0mnpm run build
+> agent-glossary@0.1.0 build
+> next build
+
+▲ Next.js 16.2.2 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.2s
+  Running TypeScript ...
+  Finished TypeScript in 1993ms ...
+  Collecting page data using 5 workers ...
+  Generating static pages using 5 workers (0/4) ...
+  Generating static pages using 5 workers (1/4) 
+  Generating static pages using 5 workers (2/4) 
+  Generating static pages using 5 workers (3/4) 
+✓ Generating static pages using 5 workers (4/4) in 347ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+[0m
+[0m$ [0mgit status --short
+M .workspaces/2-improvements/context.md
+ M .workspaces/2-improvements/resources/prd.md
+ M .workspaces/3-research/resources/research-requests.md
+ M .workspaces/logs/loop.log
+ M src/components/whiteboard.tsx
+[0m
+[0m$ [0mgit diff -- src/components/whiteboard.tsx .workspaces/2-improvements/resources/prd.md .workspaces/2-improvements/context.md .workspaces/3-research/resources/research-requests.md
+diff --git a/.workspaces/2-improvements/context.md b/.workspaces/2-improvements/context.md
+index be182da..a35b620 100644
+--- a/.workspaces/2-improvements/context.md
++++ b/.workspaces/2-improvements/context.md
+@@ -1,8 +1,8 @@
+ # Workspace 2 — Improvements & Implementation
+ 
+ ## Stato
+-- **Iterazione**: 3
+-- **Ultimo aggiornamento**: 2026-04-02 22:00:00
++- **Iterazione**: 4
++- **Ultimo aggiornamento**: 2026-04-02 22:09:37
+ - **Stato**: completed
+ 
+ ## Obiettivo
+@@ -142,3 +142,9 @@ Analizzare l'implementazione corrente, identificare miglioramenti, e IMPLEMENTAR
+ - [x] Allineati i concept del canvas al taxonomy corrente aggiungendo `Session Replay` e `Trace Grading`
+ - [x] La bubble selezionata resta evidenziata anche mentre la search filtra gli altri nodi
+ - [x] PRD riallineato a iterazione 3 con focus su replay/eval signals e stato attuale della board
++
++## Iterazione 4 (Questa esecuzione) — Completata
++- [x] Signal legend ampliata con cue `INTEROP` e helper piu espliciti per harness/context/refnav/repomap/replay/eval
++- [x] Tooltip hover aggiornato per mostrare anche il signal sintetico del nodo senza introdurre nuovi overlay
++- [x] Signal matching reso piu robusto per harness, context, retrieval, repo map, replay, eval e protocol/discovery pattern
++- [x] PRD workspace 2 riallineato alla nuova iterazione e stato corrente aggiornato a `completed`
+diff --git a/.workspaces/2-improvements/resources/prd.md b/.workspaces/2-improvements/resources/prd.md
+index 279ffc7..8dc7a33 100644
+--- a/.workspaces/2-improvements/resources/prd.md
++++ b/.workspaces/2-improvements/resources/prd.md
+@@ -1,4 +1,4 @@
+-# PRD — Iterazione 3
++# PRD — Iterazione 4
+ 
+ ## Obiettivo
+ Raffinare la whiteboard per rappresentare il glossario come una macchina agentica: macroaree, harness, memoria, contesto, tools, skills, navigazione tra riferimenti, observability e discovery.
+@@ -16,6 +16,7 @@ Raffinare la whiteboard per rappresentare il glossario come una macchina agentic
+ - [x] Cache dei metadati derivati delle bubble (search index, display label, refs) per search e interazioni piu fluide
+ - [x] Stato selezione persistente della bubble aperta per feedback visivo piu chiaro senza aggiungere clutter
+ - [x] Raffinamento visuale dell'attuale iterazione: header macroarea piu leggibili, bubble equal-size piu bilanciate, emoji piu riconoscibili e project weight piu chiaro
++- [x] Signal legend ampliata con cue `INTEROP` per discovery/protocol UI, piu tooltip hover con segnale sintetico
+ - [x] Miglioramento feedback interaction: tooltip e selezione restano leggibili su viewport piccole senza introdurre overlay HTML
+ - [x] Conservato il vincolo full-canvas PixiJS v8 vanilla con font Inter e layout responsive
+ - [x] Allineamento finale al dataset `concepts.md`: `Context Graph`, `Durable Execution`, `Session Replay` e `Trace Grading` visibili, per un totale di 101 subsection bubbles coerenti con la taxonomy corrente
+@@ -36,6 +37,7 @@ Vedi `context.md` per le specifiche complete.
+ - Le macroaree devono rimanere pastello e distinte, ma senza competere con la leggibilita delle bubble
+ - Le emoji devono restare riconoscibili anche su bubble compatte e ad alto DPR
+ - Context graph, reference navigation, durable execution, session replay e trace grading devono avere segnali visivi distintivi ma non invasivi
++- Discovery/protocol UI deve avere un cue dedicato senza aumentare la densita delle bubble
+ 
+ ## Criticita
+ - Performance con molte bolle: usare Container per culling e redraw minimo della griglia
+diff --git a/.workspaces/3-research/resources/research-requests.md b/.workspaces/3-research/resources/research-requests.md
+index e9d6119..c6c0cf6 100644
+--- a/.workspaces/3-research/resources/research-requests.md
++++ b/.workspaces/3-research/resources/research-requests.md
+@@ -273,3 +273,9 @@
+ ### Priorità Media
+ 3. **Trace-to-eval flywheels** — come trace grading, session replay e dataset extraction si collegano in cicli di regression testing pratici?
+ 4. **Reference ranking policies** — come Context7, Sourcegraph, Aider repo maps, Graphiti, Zep e OpenAI File Search ordinano, pinzano e citano fonti?
++
++## Iterazione 24 — Da esplorare
++
++### Priorità Media
++1. **PixiJS v8 compact signal chips** — best practices per mantenere leggibili label brevi, helper text e emoji su chip molto piccoli a 2x/3x DPR.
++2. **Interop/discovery iconography** — quale encoding visivo distingue meglio registry, discovery, protocol UI e code-intelligence cues senza aggiungere clutter?
+diff --git a/src/components/whiteboard.tsx b/src/components/whiteboard.tsx
+index fc78cab..239f284 100644
+--- a/src/components/whiteboard.tsx
++++ b/src/components/whiteboard.tsx
+@@ -46,19 +46,20 @@ const EMOJI_FONT_FAMILY = '"Inter", "Apple Color Emoji", "Segoe UI Emoji", "Noto
+ const MOBILE_BREAKPOINT = 768;
+ 
+ interface SignalInfo {
+-  key: 'harness' | 'eval' | 'replay' | 'context' | 'refnav' | 'repomap';
++  key: 'harness' | 'eval' | 'replay' | 'context' | 'refnav' | 'repomap' | 'interop';
+   label: string;
+   color: string;
+   helper: string;
+ }
+ 
+ const SIGNAL_LEGEND: SignalInfo[] = [
+-  { key: 'harness', label: 'HARNESS', color: '#0284c7', helper: 'runtime scaffold' },
+-  { key: 'context', label: 'CONTEXT', color: '#2563eb', helper: 'state window + graph' },
+-  { key: 'refnav', label: 'REF NAV', color: '#0f766e', helper: 'source traversal' },
+-  { key: 'repomap', label: 'REPO MAP', color: '#0f766e', helper: 'codebase navigation' },
+-  { key: 'replay', label: 'REPLAY', color: '#7c3aed', helper: 'durable trace loops' },
+-  { key: 'eval', label: 'EVAL', color: '#7c3aed', helper: 'regression harness' },
++  { key: 'harness', label: 'HARNESS', color: '#0284c7', helper: 'hooks + sessions' },
++  { key: 'context', label: 'CONTEXT', color: '#2563eb', helper: 'window + graph' },
++  { key: 'refnav', label: 'REF NAV', color: '#0f766e', helper: 'citations + search' },
++  { key: 'repomap', label: 'REPO MAP', color: '#0891b2', helper: 'code intelligence' },
++  { key: 'replay', label: 'REPLAY', color: '#7c3aed', helper: 'session + trace' },
++  { key: 'eval', label: 'EVAL', color: '#c026d3', helper: 'grading loop' },
++  { key: 'interop', label: 'INTEROP', color: '#ea580c', helper: 'registry + UI' },
+ ];
+ 
+ function isCompactViewport() {
+@@ -343,17 +344,44 @@ function getBubbleColumns(count: number): number {
+   return 6;
+ }
+ 
++const SIGNAL_RULES: Array<{ signal: SignalInfo; matchers: RegExp[] }> = [
++  {
++    signal: SIGNAL_LEGEND[0],
++    matchers: [
++      /harness|runtime scaffold|hook system|prompt assembly|durable execution|session memory|temporal memory|tiered memory/i,
++    ],
++  },
++  {
++    signal: SIGNAL_LEGEND[1],
++    matchers: [/context graph|context window|context compression|context/i],
++  },
++  {
++    signal: SIGNAL_LEGEND[2],
++    matchers: [/reference navigation|retrieval|file search|sourcegraph code search/i],
++  },
++  {
++    signal: SIGNAL_LEGEND[3],
++    matchers: [/repo map|codebase map|aider repo map|code search|sourcegraph/i],
++  },
++  {
++    signal: SIGNAL_LEGEND[4],
++    matchers: [/session replay|trace replay|logging & tracing|openai agents sdk tracing/i],
++  },
++  {
++    signal: SIGNAL_LEGEND[5],
++    matchers: [/eval harness|trace grading|evaluation & benchmarks|data-centric agent evaluation/i],
++  },
++  {
++    signal: SIGNAL_LEGEND[6],
++    matchers: [/mcp apps|agent registry|discovery|ag-ui|a2ui|\bmcp\b|\ba2a\b|protocol/i],
++  },
++];
++
+ function getConceptSignal(conceptName: string): SignalInfo | null {
+-  const key = conceptName.replace(/\n/g, ' ').toLowerCase();
+-  if (key.includes('harness / runtime scaffold')) return SIGNAL_LEGEND[0];
+-  if (key.includes('eval harness')) return SIGNAL_LEGEND[5];
+-  if (key.includes('durable execution')) return SIGNAL_LEGEND[4];
+-  if (key.includes('session replay')) return SIGNAL_LEGEND[4];
+-  if (key.includes('trace grading')) return SIGNAL_LEGEND[5];
+-  if (key.includes('context window')) return SIGNAL_LEGEND[1];
+-  if (key.includes('context graph')) return SIGNAL_LEGEND[1];
+-  if (key.includes('reference navigation')) return SIGNAL_LEGEND[2];
+-  if (key.includes('repo map') || key.includes('codebase map')) return SIGNAL_LEGEND[3];
++  const key = conceptName.replace(/\n/g, ' ');
++  for (const rule of SIGNAL_RULES) {
++    if (rule.matchers.some((matcher) => matcher.test(key))) return rule.signal;
++  }
+   return null;
+ }
+ 
+@@ -1116,13 +1144,15 @@ function createSignalLegend(compact = false): Container {
+ 
+   const padX = 10;
+   const padY = 8;
+-  const chipW = 96;
++  const chipW = 102;
+   const chipH = 20;
+   const chipGap = 8;
+   const headerH = 16;
+   const items = SIGNAL_LEGEND;
+-  const w = padX * 2 + chipW * 2 + chipGap;
+-  const h = padY * 2 + headerH + chipH * 3 + chipGap * 2;
++  const cols = 2;
++  const rows = Math.ceil(items.length / cols);
++  const w = padX * 2 + chipW * cols + chipGap * (cols - 1);
++  const h = padY * 2 + headerH + chipH * rows + chipGap * (rows - 1);
+ 
+   const bg = new Graphics();
+   bg.roundRect(0, 0, w, h, 12);
+@@ -1148,8 +1178,8 @@ function createSignalLegend(compact = false): Container {
+ 
+   for (let i = 0; i < items.length; i++) {
+     const item = items[i];
+-    const col = i % 2;
+-    const row = Math.floor(i / 2);
++    const col = i % cols;
++    const row = Math.floor(i / cols);
+     const x = padX + col * (chipW + chipGap);
+     const y = padY + headerH + row * (chipH + chipGap);
+ 
+@@ -1549,7 +1579,7 @@ export default function Whiteboard() {
+             state.targetScale = 1.06;
+             state.weightRing.alpha = 1;
+             refreshGlow('hover');
+-            showTooltip(`${emoji} ${displayLabel}`, concept.category, referenceCount, e.globalX, e.globalY);
++            showTooltip(`${emoji} ${displayLabel}`, concept.category, referenceCount, conceptSignal?.label ?? null, e.globalX, e.globalY);
+           });
+           bubbleContainer.on('pointerout', () => {
+             state.targetScale = 1;
+@@ -1714,13 +1744,13 @@ export default function Whiteboard() {
+ 
+       app.stage.addChild(tooltip);
+ 
+-      function showTooltip(name: string, category: string, referenceCount: number, x: number, y: number) {
++      function showTooltip(name: string, category: string, referenceCount: number, signalLabel: string | null, x: number, y: number) {
+         if (panel || compactMode) return;
+         const cleanName = name.replace(/\n/g, ' ');
+         tooltipText.text = cleanName;
+         tooltipText.x = 10;
+         tooltipText.y = 6;
+-        tooltipSub.text = `${category} · ${referenceCount} refs`;
++        tooltipSub.text = signalLabel ? `${category} · ${referenceCount} refs · ${signalLabel}` : `${category} · ${referenceCount} refs`;
+         tooltipSub.x = 10;
+         tooltipSub.y = 22;
+         tooltipBg.clear();
+[0m
+[0m$ [0mgit log --oneline -5
+e8fda55 loop iter 4: workspace 3 (Research & Content) completed
+a04e21e loop iter 3: workspace 1 (Implementation) completed
+be5f0c4 clarify whiteboard signal cues without increasing density
+cc9a072 loop iter 3: workspace 2 (Improvements & PRD) completed
+5a68391 refine whiteboard replay and eval signals
+[0m
+[0m# [0mTodos
+[x] Read current app code and workspace specs
+[x] Translate research into PRD/implementation constraints
+[x] Implement PixiJS app improvements in src/
+[x] Update workspace concept/context docs
+[x] Run build and fix issues
+[ ] Commit changes
+[0m
+The implementation is done and the build passed. I’m staging the code, PRD, context, and research-request updates now and committing just those changes, leaving the unrelated log file alone.
+[0m$ [0mgit add src/components/whiteboard.tsx .workspaces/2-improvements/resources/prd.md .workspaces/2-improvements/context.md .workspaces/3-research/resources/research-requests.md && git commit -m "refine whiteboard signal cues and hover metadata"
+[main d213332] refine whiteboard signal cues and hover metadata
+ 4 files changed, 72 insertions(+), 28 deletions(-)
+[0m
+[0m$ [0mgit status --short
+M .workspaces/logs/loop.log
+[0m
+[0m# [0mTodos
+[x] Read current app code and workspace specs
+[x] Translate research into PRD/implementation constraints
+[x] Implement PixiJS app improvements in src/
+[x] Update workspace concept/context docs
+[x] Run build and fix issues
+[x] Commit changes
+[0m
+Committed as `d213332` (`refine whiteboard signal cues and hover metadata`).
+
+- `src/components/whiteboard.tsx`: added an `INTEROP` cue, richer signal matching, dynamic signal legend layout, and hover tooltips that surface the signal tag.
+- `.workspaces/2-improvements/resources/prd.md`: bumped to iteration 4 and aligned the current signal/discovery constraints.
+- `.workspaces/2-improvements/context.md`: marked workspace state complete and recorded the iteration 4 changes.
+- `.workspaces/3-research/resources/research-requests.md`: added follow-up requests for PixiJS chip crispness and interop/discovery iconography.
+
+Verification:
+- `npm run build` passed.
+
+Unrelated remaining change:
+- `.workspaces/logs/loop.log` is still modified and was left out of the commit.
+[0;32m[2026-04-02 22:10:43] ✓[0m Workspace Improvements & PRD completed successfully
