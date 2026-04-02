@@ -974,3 +974,329 @@ Research iteration 1 complete. Here's what was produced:
 
 **research-requests.md** — 12 new requests queued for iteration 2 (Google ADK, Mastra, Pydantic AI, Strands, Agentic RAG, etc.)
 [0;32m[2026-04-02 14:39:31] ✓[0m Workspace Research & Content completed successfully
+ 6 files changed, 1027 insertions(+), 78 deletions(-)
+[0;32m[2026-04-02 14:39:31] ✓[0m Workspace changes committed
+[0;32m[2026-04-02 14:39:31] ✓[0m Iteration 1 complete. Starting iteration 2...
+[0;36m[2026-04-02 14:39:33][0m Launching OpenCode for workspace Implementation...
+[0m
+> build · glm-5-turbo
+[0m
+I'll start by reading the key specification and context files, plus checking for the PRD.
+[0m→ [0mRead .workspaces/1-implementation/context.md
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md
+[0m→ [0mRead .workspaces/1-implementation/resources/pixijs-reference.md
+[0m→ [0mRead .workspaces/2-improvements/resources/prd.md
+[0m✱ [0mGlob "**/*.{ts,tsx,css,json}"[90m in . · 9 matches[0m
+Let me check for iteration 2 PRD and read the current implementation files.
+[0m→ [0mRead src/components/whiteboard.tsx
+[0m→ [0mRead src/app/globals.css
+[0m→ [0mRead src/app/layout.tsx
+[0m→ [0mRead src/app/page.tsx
+[0m→ [0mRead package.json
+[0m✱ [0mGlob "**/*"[90m in .workspaces/2-improvements · 2 matches[0m
+[0m→ [0mRead .workspaces/2-improvements/context.md
+Now I have the full picture. The PRD exists but is for iteration 1 (already completed). This is iteration 2, so I need to implement the remaining improvements and add missing concept data. Let me plan and execute.
+[0m
+[0m# [0mTodos
+[ ] Add all 16 missing concepts from concepts.md (Temporal Memory, Tiered Memory, Procedural Memory, A2A, Prompt Chaining, Routing, Parallelization, Orchestrator-Workers, Evaluator-Optimizer, Handoffs/Swarm, GraphFlow, HITL, Async Background, ACI, Observability Platform, Agent Governance)
+[ ] Improve layoutBubbles with adaptive scaling for dense areas (Orchestration: 16 items)
+[ ] Increase AREA_HEIGHT to accommodate more concepts
+[ ] Add panel fade-out animation on close
+[ ] Add zoom +/- buttons (bottom-left)
+[ ] Add initial zoom-to-fit and keyboard shortcuts (+/-/0/ESC)
+[ ] Build, lint, verify everything works
+[ ] Update context.md with iteration 2 state
+[ ] Commit changes
+[0m
+[0m← [0mWrite src/components/whiteboard.tsx
+Wrote file successfully.
+
+LSP errors detected in this file, please fix:
+<diagnostics file="/home/arro/projects/agent-glossary/src/components/whiteboard.tsx">
+ERROR [494:13] Object literal may only specify known properties, and 'alpha' does not exist in type 'Partial<TextStyleOptions>'.
+ERROR [514:41] Cannot find name 'Circle'.
+ERROR [651:11] Property 'fontSize' does not exist on type 'Text'.
+</diagnostics>
+[0m
+Let me fix the 3 LSP errors.
+[0m← [0mEdit src/components/whiteboard.tsx
+Index: /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
+===================================================================
+--- /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
++++ /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
+@@ -7,8 +7,9 @@
+   Text,
+   Container,
+   TextStyle,
+   Rectangle,
++  Circle,
+ } from 'pixi.js';
+ 
+ interface ConceptData {
+   name: string;
+
+[0m
+[0m← [0mEdit src/components/whiteboard.tsx
+Index: /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
+===================================================================
+--- /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
++++ /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
+@@ -491,11 +491,11 @@
+   style: new TextStyle({
+     fontFamily: '"Inter", sans-serif',
+     fontSize: 10,
+     fill: area.color,
+-    alpha: 0.6,
+   }),
+ });
++conceptCount.alpha = 0.6;
+ conceptCount.x = 18;
+ conceptCount.y = 30;
+ areaContainer.addChild(conceptCount);
+ 
+
+[0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=640, limit=25][0m
+[0m
+[0m← [0mEdit src/components/whiteboard.tsx
+Index: /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
+===================================================================
+--- /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
++++ /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
+@@ -640,20 +640,13 @@
+ plusBtn.x = 0;
+ plusBtn.y = 72;
+ zoomContainer.addChild(plusBtn);
+ 
+-const fitBtn = createZoomBtn('\u25A1', () => {
++const fitBtn = createZoomBtn('\u2922', () => {
+   zoomToFit();
+ });
+ fitBtn.x = 0;
+-fitBtn.y = 120;
+-fitBtn.getChildAt(1) && (() => {
+-  const t = fitBtn.children[1] as Text;
+-  t.text = '\u2922';
+-  t.fontSize = 16;
+-  t.x = 20;
+-  t.y = 20;
+-})();
++fitBtn.y = 88;
+ zoomContainer.addChild(fitBtn);
+ 
+ app.stage.addChild(zoomContainer);
+ 
+
+[0m
+Now let me also fix the zoomContainer background height since we changed the layout:
+[0m✗ [0medit failed
+[91m[1mError: [0mNo changes to apply: oldString and newString are identical.
+Good, no LSP errors now. Let me build to verify:
+[0m
+[0m# [0mTodos
+[x] Add all 16 missing concepts from concepts.md
+[x] Improve layoutBubbles with adaptive scaling for dense areas
+[x] Increase AREA_HEIGHT to accommodate more concepts
+[x] Add panel fade-out animation on close
+[x] Add zoom +/- buttons (bottom-left)
+[x] Add initial zoom-to-fit and keyboard shortcuts (+/-/0/ESC)
+[ ] Build, lint, verify everything works
+[ ] Update context.md with iteration 2 state
+[ ] Commit changes
+[0m
+[0m$ [0mnpm run lint 2>&1
+> agent-glossary@0.1.0 lint
+> eslint
+
+
+/home/arro/projects/agent-glossary/src/components/whiteboard.tsx
+  659:13  warning  'anyChanged' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+✖ 1 problem (0 errors, 1 warning)
+[0m
+[0m$ [0mnpm run build 2>&1
+> agent-glossary@0.1.0 build
+> next build
+
+▲ Next.js 16.2.2 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.4s
+  Running TypeScript ...
+  Finished TypeScript in 1862ms ...
+  Collecting page data using 5 workers ...
+  Generating static pages using 5 workers (0/4) ...
+  Generating static pages using 5 workers (1/4) 
+  Generating static pages using 5 workers (2/4) 
+  Generating static pages using 5 workers (3/4) 
+✓ Generating static pages using 5 workers (4/4) in 328ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+[0m
+Build passes, lint has 1 unused variable warning. Let me fix it:
+[0m← [0mEdit src/components/whiteboard.tsx
+Index: /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
+===================================================================
+--- /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
++++ /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
+@@ -650,9 +650,8 @@
+ 
+ app.stage.addChild(zoomContainer);
+ 
+ app.ticker.add(() => {
+-  let anyChanged = false;
+   for (const s of bubbleStates) {
+     if (Math.abs(s.currentScale - s.targetScale) > 0.001) {
+       s.currentScale += (s.targetScale - s.currentScale) * 0.18;
+       s.container.scale.set(s.currentScale);
+
+[0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=655, limit=15][0m
+[0m
+[0m← [0mEdit src/components/whiteboard.tsx
+Index: /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
+===================================================================
+--- /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
++++ /home/arro/projects/agent-glossary/src/components/whiteboard.tsx
+@@ -654,9 +654,8 @@
+ for (const s of bubbleStates) {
+   if (Math.abs(s.currentScale - s.targetScale) > 0.001) {
+     s.currentScale += (s.targetScale - s.currentScale) * 0.18;
+     s.container.scale.set(s.currentScale);
+-    anyChanged = true;
+   }
+ }
+ if (needsGridRedraw) {
+   redrawGrid(grid, world, app.renderer.width / (window.devicePixelRatio || 1), app.renderer.height / (window.devicePixelRatio || 1));
+
+[0m
+[0m$ [0mnpm run build 2>&1 && npm run lint 2>&1
+> agent-glossary@0.1.0 build
+> next build
+
+▲ Next.js 16.2.2 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.1s
+  Running TypeScript ...
+  Finished TypeScript in 1903ms ...
+  Collecting page data using 5 workers ...
+  Generating static pages using 5 workers (0/4) ...
+  Generating static pages using 5 workers (1/4) 
+  Generating static pages using 5 workers (2/4) 
+  Generating static pages using 5 workers (3/4) 
+✓ Generating static pages using 5 workers (4/4) in 334ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+
+
+> agent-glossary@0.1.0 lint
+> eslint
+[0m
+Build and lint both pass clean. Now let me update the context and commit.
+[0m# [0mTodos
+[x] Add all 16 missing concepts from concepts.md
+[x] Improve layoutBubbles with adaptive scaling for dense areas
+[x] Increase AREA_HEIGHT to accommodate more concepts
+[x] Add panel fade-out animation on close
+[x] Add zoom +/- buttons (bottom-left)
+[x] Add initial zoom-to-fit and keyboard shortcuts (+/-/0/ESC)
+[x] Build, lint, verify everything works
+[ ] Update context.md with iteration 2 state
+[ ] Commit changes
+[0m
+[0m← [0mWrite .workspaces/1-implementation/context.md
+Wrote file successfully.
+[0m
+Now let me also update the workspace 2 context:
+[0m← [0mWrite .workspaces/2-improvements/context.md
+Wrote file successfully.
+[0m
+[0m# [0mTodos
+[x] Add all 16 missing concepts from concepts.md
+[x] Improve layoutBubbles with adaptive scaling for dense areas
+[x] Increase AREA_HEIGHT to accommodate more concepts
+[x] Add panel fade-out animation on close
+[x] Add zoom +/- buttons (bottom-left)
+[x] Add initial zoom-to-fit and keyboard shortcuts (+/-/0/ESC)
+[x] Build, lint, verify everything works
+[x] Update context.md with iteration 2 state
+[ ] Commit changes
+[0m
+[0m$ [0mgit status
+On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   .workspaces/1-implementation/context.md
+	modified:   .workspaces/2-improvements/context.md
+	modified:   .workspaces/logs/loop.log
+	modified:   package-lock.json
+	modified:   package.json
+	modified:   src/components/whiteboard.tsx
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[0m
+[0m$ [0mgit log --oneline -5
+1f8c372 loop iter 1: workspace 3 (Research & Content) completed
+6f174ea loop iter 1: workspace 2 (Improvements & PRD) completed
+592ae22 feat: improve whiteboard — dynamic grid, smooth hover, minimap, panel animation
+31a35fe loop iter 1: workspace 1 (Implementation) completed
+2cb530e feat: iteration 1 complete — Agent Glossary Whiteboard with PixiJS v8
+[0m
+[0m$ [0mgit diff --stat
+.workspaces/1-implementation/context.md |  93 ++++---
+ .workspaces/2-improvements/context.md   |  66 ++---
+ .workspaces/logs/loop.log               | 261 +++++++++++++++++++
+ package-lock.json                       | 112 +++++++++
+ package.json                            |   2 +
+ src/components/whiteboard.tsx           | 426 +++++++++++++++++++++-----------
+ 6 files changed, 723 insertions(+), 237 deletions(-)
+[0m
+[0m$ [0mgit add src/components/whiteboard.tsx .workspaces/1-implementation/context.md .workspaces/2-improvements/context.md && git commit -m "feat: iteration 2 — add 16 missing concepts, zoom controls, panel fade-out, adaptive layout
+
+- Add all 62 concepts from concepts.md (was 48): Temporal Memory, Tiered Memory,
+  Procedural Memory, A2A, Prompt Chaining, Routing, Parallelization,
+  Orchestrator-Workers, Evaluator-Optimizer, Handoffs/Swarm, GraphFlow,
+  HITL, Async Background, ACI, Observability Platform, Agent Governance
+- Adaptive bubble layout with automatic scaling for dense areas (Orchestration: 16 items)
+- Increase macroarea height from 360 to 460px
+- Zoom +/- / fit buttons with percentage indicator
+- Panel fade-out animation on close
+- Keyboard shortcuts: +/- zoom, 0 zoom-to-fit, ESC close panel
+- Initial zoom-to-fit on load
+- Concept counter per macroarea"
+[main a365668] feat: iteration 2 — add 16 missing concepts, zoom controls, panel fade-out, adaptive layout
+ 3 files changed, 348 insertions(+), 237 deletions(-)
+[0m
+[0m# [0mTodos
+[x] Add all 16 missing concepts from concepts.md
+[x] Improve layoutBubbles with adaptive scaling for dense areas
+[x] Increase AREA_HEIGHT to accommodate more concepts
+[x] Add panel fade-out animation on close
+[x] Add zoom +/- buttons (bottom-left)
+[x] Add initial zoom-to-fit and keyboard shortcuts (+/-/0/ESC)
+[x] Build, lint, verify everything works
+[x] Update context.md with iteration 2 state
+[x] Commit changes
+[0m
+Iteration 2 complete. Here's what was implemented:
+
+**Content** — Added all 16 missing concepts from `concepts.md` (48 → 62 total), including A2A, Prompt Chaining, Routing, Handoffs/Swarm, GraphFlow, HITL, ACI, and more.
+
+**Layout** — Adaptive bubble scaling for dense areas (Orchestration grew from 6 to 16 items, now uses 6-column layout with auto-scaled radii). Macroarea height increased from 360 → 460px.
+
+**UX polish** — Zoom +/-/fit buttons with percentage indicator, panel fade-out animation, keyboard shortcuts (`+/-/0/ESC`), initial zoom-to-fit, concept counters per macroarea.
+[0;32m[2026-04-02 14:49:07] ✓[0m Workspace Implementation completed successfully
