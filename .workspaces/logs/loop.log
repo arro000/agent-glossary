@@ -5535,3 +5535,29 @@ I’ve got the final diff shape. I’m staging everything that changed and creat
 M .workspaces/logs/loop.log
 [0m
 One workspace log file was updated after the first commit, so I’m recording that separately to leave the tree clean.
+[0m$ [0mgit add ".workspaces/logs/loop.log" && git commit -m "record workspace log update"
+[main a264f90] record workspace log update
+ 1 file changed, 8 insertions(+)
+[0m
+[0m$ [0mgit status --short --untracked-files=all
+M .workspaces/logs/loop.log
+[0m
+Implemented and shipped.
+
+- Reworked subsection bubbles in `src/components/whiteboard.tsx` to keep fixed diameter while improving:
+  - emoji readability
+  - title legibility via an inner plate
+  - project-weight encoding via a clearer segmented ring
+  - centered refs badge
+- Added follow-up research requests in `.workspaces/3-research/resources/research-requests.md`
+- Updated workspace state in:
+  - `.workspaces/1-implementation/context.md`
+  - `.workspaces/2-improvements/context.md`
+- `npm run build` passes
+
+Commits:
+- `76ec9df` `refine fixed-size bubble visuals`
+- `a264f90` `record workspace log update`
+
+Note: `.workspaces/logs/loop.log` keeps getting updated by the workspace logger.
+[0;32m[2026-04-02 18:11:55] ✓[0m Workspace Improvements & PRD completed successfully
