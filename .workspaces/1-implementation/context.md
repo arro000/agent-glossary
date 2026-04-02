@@ -1,9 +1,9 @@
 # Workspace 1 — Implementation
 
 ## Stato
-- **Iterazione**: 5
-- **Ultimo aggiornamento**: 2026-04-02 18:18:09
-- **Stato**: completed
+- **Iterazione**: 1
+- **Ultimo aggiornamento**: 2026-04-02 21:27:41
+- **Stato**: in_progress
 
 ## Obiettivo
 Implementare l'app "Agent Glossary Whiteboard" usando PixiJS v8 + Next.js.
@@ -214,6 +214,14 @@ La whiteboard rappresenta 69 subsection correnti allineate alle macroaree princi
 - [x] Rafforzato il rendering: emoji piu riconoscibili, title plate piu leggibile, badge refs piu esplicito
 - [x] Ring segmentato reso piu contrastato per comunicare meglio il project-weight a colpo d'occhio
 - [x] Verifica finale: `npm run build` completata con successo
+
+## Iterazione 1 (Richiesta utente corrente) — Completata
+- [x] Letto il contesto richiesto (`context.md`, `resources/concepts.md`, `resources/pixijs-reference.md`, `workspace 2 context`, `research findings`) e verificato PRD presente in `.workspaces/2-improvements/resources/prd.md`
+- [x] Tradotti i segnali harness/context/reference-navigation in elementi visivamente piu riconoscibili nelle bubbles (emoji dedicate per Harness Runtime Scaffold, Context Window, Reference Navigation, Repo Map e Trace Replay)
+- [x] Migliorata la leggibilita del layout senza aumentare densita: macroaree piu ariose (dimensioni/gap aumentati) e packing bubbles piu bilanciato
+- [x] Mantenuti i vincoli chiave: bolle equal-size, project-weight codificato da refs (ring+badge), hover glow, click panel, zoom/pan
+- [x] Fix UI search bar: focus/blur ora ridisegnano il box con dimensioni reali anche in viewport compatta
+- [x] Verifica tecnica: `npm run build` completata con successo
 
 ## File Principali
 - `src/components/whiteboard.tsx` — Componente principale con tutta la logica PixiJS

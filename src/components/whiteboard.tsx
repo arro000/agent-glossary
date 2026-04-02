@@ -30,15 +30,15 @@ interface MacroareaConfig {
 const GRID_SIZE = 40;
 const GRID_COLOR = '#e5e5e5';
 const BG_COLOR = '#fafafa';
-const AREA_WIDTH = 720;
-const AREA_HEIGHT = 460;
-const COL_GAP = 80;
-const ROW_GAP = 60;
-const START_X = 80;
-const START_Y = 60;
+const AREA_WIDTH = 760;
+const AREA_HEIGHT = 500;
+const COL_GAP = 96;
+const ROW_GAP = 72;
+const START_X = 64;
+const START_Y = 52;
 const COL_STEP = AREA_WIDTH + COL_GAP;
 const ROW_STEP = AREA_HEIGHT + ROW_GAP;
-const BUBBLE_RADIUS = 46;
+const BUBBLE_RADIUS = 44;
 const PROJECT_WEIGHT_SEGMENTS = 10;
 const ZOOM_LERP = 0.12;
 const PAN_LERP = 0.15;
@@ -252,7 +252,15 @@ function getAreaPosition(index: number) {
   return { x: START_X + col * COL_STEP, y: START_Y + row * ROW_STEP };
 }
 
-function getBubbleEmoji(areaName: string, category: string): string {
+function getBubbleEmoji(areaName: string, category: string, conceptName: string): string {
+  const conceptKey = conceptName.replace(/\n/g, ' ').toLowerCase();
+  if (conceptKey.includes('harness / runtime scaffold')) return '🧱';
+  if (conceptKey.includes('eval harness')) return '🧪';
+  if (conceptKey.includes('context window')) return '🪟';
+  if (conceptKey.includes('reference navigation')) return '🔎';
+  if (conceptKey.includes('repo map') || conceptKey.includes('codebase map')) return '🗺️';
+  if (conceptKey.includes('trace replay')) return '🎞️';
+
   const key = `${areaName} ${category}`.toLowerCase();
   if (key.includes('memory')) return '🧠';
   if (key.includes('tool') || key.includes('action')) return '🛠️';
@@ -306,9 +314,9 @@ function getReferenceCount(alternatives: string): number {
 
 function getBubbleColumns(count: number): number {
   if (count <= 3) return count;
-  if (count <= 6) return 3;
-  if (count <= 10) return 4;
-  return Math.min(6, Math.max(4, Math.ceil(Math.sqrt(count * 1.2))));
+  if (count <= 8) return 4;
+  if (count <= 13) return 5;
+  return Math.min(5, Math.max(4, Math.ceil(Math.sqrt(count * 1.15))));
 }
 
 function getBubbleReferenceScore(concept: ConceptData): number {
@@ -405,9 +413,9 @@ function drawProjectWeightRing(
 
 function layoutBubbles(concepts: ConceptData[], ax: number, ay: number) {
   const n = concepts.length;
-  const padX = 30;
-  const padY = 20;
-  const headerH = 38;
+  const padX = 34;
+  const padY = 26;
+  const headerH = 54;
   const availW = AREA_WIDTH - padX * 2;
   const availH = AREA_HEIGHT - headerH - padY * 2;
 
@@ -754,9 +762,13 @@ function createSearchBar(screenW: number, compact = false): {
   clearBtn: Container;
   matchLabel: Text;
   iconGfx: Graphics;
+  width: number;
+  height: number;
+  radius: number;
 } {
   const w = compact ? Math.min(Math.max(screenW - 24, 280), 360) : 300;
   const h = compact ? 46 : 38;
+  const radius = 12;
   const pad = compact ? 14 : 12;
 
   const container = new Container();
@@ -770,7 +782,7 @@ function createSearchBar(screenW: number, compact = false): {
   container.addChild(shadow);
 
   const bg = new Graphics();
-  bg.roundRect(0, 0, w, h, 12);
+  bg.roundRect(0, 0, w, h, radius);
   bg.fill({ color: '#ffffff', alpha: 0.95 });
   bg.stroke({ color: '#d1d5db', width: 1 });
   bg.eventMode = 'none';
@@ -852,7 +864,7 @@ function createSearchBar(screenW: number, compact = false): {
   matchLabel.visible = false;
   container.addChild(matchLabel);
 
-  return { container, bg, textDisplay, placeholder, clearBtn, matchLabel, iconGfx };
+  return { container, bg, textDisplay, placeholder, clearBtn, matchLabel, iconGfx, width: w, height: h, radius };
 }
 
 function createLegend(onAreaClick: (areaIndex: number) => void, compact = false): Container {
@@ -1162,7 +1174,7 @@ export default function Whiteboard() {
         areaContainer.addChild(label);
 
         const conceptCount = new Text({
-          text: `${area.concepts.length} subsections`,
+          text: `${area.concepts.length} subsections • weighted by refs`,
           style: new TextStyle({
             fontFamily: '"Inter", sans-serif',
             fontSize: 10,
@@ -1181,7 +1193,7 @@ export default function Whiteboard() {
           const by = y - pos.y;
           const referenceCount = getReferenceCount(concept.alternatives);
           const displayLabel = getBubbleLabel(concept.name);
-          const emoji = getBubbleEmoji(area.name, concept.category);
+          const emoji = getBubbleEmoji(area.name, concept.category, concept.name);
           const searchIndex = buildSearchHaystack(concept, area.name);
 
           const bubbleContainer = new Container();
@@ -1430,7 +1442,7 @@ export default function Whiteboard() {
       app.stage.addChild(zoomContainer);
 
       const searchBar = createSearchBar(window.innerWidth, compactMode);
-      searchBar.container.x = Math.max(12, (window.innerWidth - (compactMode ? Math.min(Math.max(window.innerWidth - 24, 280), 360) : 300)) / 2);
+      searchBar.container.x = Math.max(12, (window.innerWidth - searchBar.width) / 2);
       searchBar.container.y = compactMode ? 10 : 14;
       app.stage.addChild(searchBar.container);
 
@@ -1534,7 +1546,7 @@ export default function Whiteboard() {
       hiddenInput.addEventListener('focus', () => {
         searchActive = true;
         searchBar.bg.clear();
-        searchBar.bg.roundRect(0, 0, 300, 38, 12);
+        searchBar.bg.roundRect(0, 0, searchBar.width, searchBar.height, searchBar.radius);
         searchBar.bg.fill({ color: '#ffffff', alpha: 1 });
         searchBar.bg.stroke({ color: '#93c5fd', width: 1.5 });
       });
@@ -1542,7 +1554,7 @@ export default function Whiteboard() {
       hiddenInput.addEventListener('blur', () => {
         searchActive = false;
         searchBar.bg.clear();
-        searchBar.bg.roundRect(0, 0, 300, 38, 12);
+        searchBar.bg.roundRect(0, 0, searchBar.width, searchBar.height, searchBar.radius);
         searchBar.bg.fill({ color: '#ffffff', alpha: 0.95 });
         searchBar.bg.stroke({ color: '#d1d5db', width: 1 });
       });
