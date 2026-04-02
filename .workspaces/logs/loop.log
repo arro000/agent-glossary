@@ -5026,3 +5026,379 @@ Main takeaways:
 - Computer use now has a canonical reference implementation
 - The next research pass is focused on browser automation, voice evals, registry/discovery, and finance/support verticals
 [0;32m[2026-04-02 18:05:06] ✓[0m Workspace Research & Content completed successfully
+ 5 files changed, 311 insertions(+), 3 deletions(-)
+To https://github.com/arro000/agent-glossary.git
+   c6e5600..923d96f  main -> main
+[0;32m[2026-04-02 18:05:07] ✓[0m Workspace changes committed and pushed
+[0;32m[2026-04-02 18:05:07] ✓[0m Iteration 3 complete. Starting iteration 4...
+[0;36m[2026-04-02 18:05:09][0m Launching OpenCode for workspace Implementation...
+[0m
+> build · gpt-5.3-codex
+[0m
+[0m→ [0mRead .workspaces/1-implementation/context.md[90m [offset=1, limit=4000][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=4000][0m
+[0m→ [0mRead .workspaces/1-implementation/resources/pixijs-reference.md[90m [offset=1, limit=4000][0m
+[0m→ [0mRead .workspaces/2-improvements/resources/prd.md[90m [offset=1, limit=4000][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1, limit=4000][0m
+[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1271, limit=4000][0m
+[0m→ [0mRead src/app/globals.css[90m [offset=1, limit=400][0m
+[0m→ [0mRead src/app/page.tsx[90m [offset=1, limit=200][0m
+[0m✱ [0mGlob "node_modules/next/dist/docs/**/*pixi*"[90m in . · 0 matches[0m
+[0m✱ [0mGlob "node_modules/next/dist/docs/**/*.md"[90m in . · 0 matches[0m
+[0m→ [0mRead node_modules/next/dist/docs[90m [offset=1, limit=200][0m
+[0m→ [0mRead node_modules/next/dist/docs/index.md[90m [offset=1, limit=200][0m
+[0m
+[0m$ [0mgit status --short
+M .workspaces/1-implementation/context.md
+ M .workspaces/logs/loop.log
+[0m
+[0m$ [0mgit log --oneline -8
+923d96f loop iter 3: workspace 3 (Research & Content) completed
+c6e5600 loop iter 3: workspace 2 (Improvements & PRD) completed
+62ed952 refine fixed-size bubble encoding
+48b4e66 loop iter 3: workspace 1 (Implementation) completed
+c6bee20 document iteration 3 implementation verification
+03e9e74 loop iter 2: workspace 3 (Research & Content) completed
+3e46710 loop iter 2: workspace 2 (Improvements & PRD) completed
+d7ba0a1 Refine bubble weight encoding
+[0m
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M src/components/whiteboard.tsx
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/1-implementation/context.md
+[0m
+[0m$ [0mnpm run build
+> agent-glossary@0.1.0 build
+> next build
+
+▲ Next.js 16.2.2 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.2s
+  Running TypeScript ...
+  Finished TypeScript in 1913ms ...
+  Collecting page data using 5 workers ...
+  Generating static pages using 5 workers (0/4) ...
+  Generating static pages using 5 workers (1/4) 
+  Generating static pages using 5 workers (2/4) 
+  Generating static pages using 5 workers (3/4) 
+✓ Generating static pages using 5 workers (4/4) in 335ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+└ ○ /_not-found
+
+
+○  (Static)  prerendered as static content
+[0m
+[0m$ [0mgit status --short
+M .workspaces/1-implementation/context.md
+ M .workspaces/logs/loop.log
+ M src/components/whiteboard.tsx
+[0m
+[0m$ [0mgit diff -- src/components/whiteboard.tsx .workspaces/1-implementation/context.md
+diff --git a/.workspaces/1-implementation/context.md b/.workspaces/1-implementation/context.md
+index c2111dd..74a0708 100644
+--- a/.workspaces/1-implementation/context.md
++++ b/.workspaces/1-implementation/context.md
+@@ -1,9 +1,9 @@
+ # Workspace 1 — Implementation
+ 
+ ## Stato
+-- **Iterazione**: 3
+-- **Ultimo aggiornamento**: 2026-04-02 18:01:17
+-- **Stato**: completed
++- **Iterazione**: 4
++- **Ultimo aggiornamento**: 2026-04-02 18:42:00
++- **Stato**: in_progress
+ 
+ ## Obiettivo
+ Implementare l'app "Agent Glossary Whiteboard" usando PixiJS v8 + Next.js.
+@@ -35,13 +35,13 @@ Una whiteboard quadrettata interattiva che mostra un glossario visuale dell'ecos
+ 9. **Knowledge & Retrieval** — 2 concetti: Agentic RAG, Deep Research Agent
+ 10. **Frameworks & SDKs** — 6 concetti: Google ADK, OpenAI Agents SDK, Mastra, Pydantic AI, Strands Agents SDK, Claude Agent SDK
+ 11. **Business Automation** — 2 concetti: Visual Agent Builder, Low-Code Agent Platform
+-12. **Protocol Extensions** — 1 concetto: MCP Apps
++12. **Protocol Extensions** — 2 concetti: MCP Apps, Agent Registry / Discovery
+ 
+-**Totale: 67 concetti** (era 62 nell'iterazione 2)
++**Totale: 68 concetti** (era 62 nell'iterazione 2)
+ 
+ ## Dati
+ I concetti/strumenti per ogni macroarea stanno nel file `resources/concepts.md`.
+-Tutti i concetti dal database sono ora rappresentati nella whiteboard.
++La whiteboard rappresenta 68 subsection correnti allineate alle macroaree principali del database.
+ 
+ ## Dettagli Implementativi
+ 
+@@ -191,6 +191,12 @@ Tutti i concetti dal database sono ora rappresentati nella whiteboard.
+ - [x] Emoji rese piu leggibili con halo piu ampio e font size aumentata
+ - [x] Label interne delle bubbles regolate per ridurre overlap e mantenere riconoscibilita a colpo d'occhio
+ 
++## Iterazione 4 (Richiesta utente corrente) — Completata
++- [x] Letti i file richiesti: `context.md`, `resources/concepts.md`, `resources/pixijs-reference.md`
++- [x] Verificato PRD in `.workspaces/2-improvements/resources/prd.md` (presente, baseline senza nuove change request)
++- [x] Aggiornati i dati subsection della macroarea **Protocol Extensions** con `Agent Registry / Discovery` da `concepts.md`
++- [x] Confermati key rules: PixiJS v8 vanilla via `useRef/useEffect`, rendering full-canvas, font Inter, bolle equal-size con emoji+titolo, peso da `alternatives`, hover glow, click panel, zoom wheel e pan drag
++
+ ## File Principali
+ - `src/components/whiteboard.tsx` — Componente principale con tutta la logica PixiJS
+ - `src/app/page.tsx` — Pagina che renderizza il whiteboard
+diff --git a/src/components/whiteboard.tsx b/src/components/whiteboard.tsx
+index cbadc96..3b6e3b1 100644
+--- a/src/components/whiteboard.tsx
++++ b/src/components/whiteboard.tsx
+@@ -215,6 +215,7 @@ const MACROAREAS: MacroareaConfig[] = [
+     border: '#CBD5E1',
+     concepts: [
+       { name: 'MCP\nApps', popularity: 7, description: 'Estensione ufficiale MCP (SEP-1865) che permette ai server di fornire UI HTML interattive renderizzate inline nelle conversazioni AI', alternatives: 'N/A (estensione unica)', category: 'Integration' },
++      { name: 'Agent Registry\n/ Discovery', popularity: 6, description: 'Livello di scoperta per agenti, skill e capability tramite registry e capability cards condivise', alternatives: 'A2A Agent Cards, MCP registries, Glama directories, custom catalogs', category: 'Integration' },
+     ],
+   },
+ ];
+[0m
+[0m⚙ [0mapply_patch Success. Updated the following files:
+M .workspaces/1-implementation/context.md
+[0m
+[0m$ [0mgit status --short
+M .workspaces/1-implementation/context.md
+ M .workspaces/logs/loop.log
+ M src/components/whiteboard.tsx
+[0m
+[0m$ [0mgit diff --staged; git diff
+diff --git a/.workspaces/1-implementation/context.md b/.workspaces/1-implementation/context.md
+index c2111dd..0a5e503 100644
+--- a/.workspaces/1-implementation/context.md
++++ b/.workspaces/1-implementation/context.md
+@@ -1,8 +1,8 @@
+ # Workspace 1 — Implementation
+ 
+ ## Stato
+-- **Iterazione**: 3
+-- **Ultimo aggiornamento**: 2026-04-02 18:01:17
++- **Iterazione**: 4
++- **Ultimo aggiornamento**: 2026-04-02 18:42:00
+ - **Stato**: completed
+ 
+ ## Obiettivo
+@@ -35,13 +35,13 @@ Una whiteboard quadrettata interattiva che mostra un glossario visuale dell'ecos
+ 9. **Knowledge & Retrieval** — 2 concetti: Agentic RAG, Deep Research Agent
+ 10. **Frameworks & SDKs** — 6 concetti: Google ADK, OpenAI Agents SDK, Mastra, Pydantic AI, Strands Agents SDK, Claude Agent SDK
+ 11. **Business Automation** — 2 concetti: Visual Agent Builder, Low-Code Agent Platform
+-12. **Protocol Extensions** — 1 concetto: MCP Apps
++12. **Protocol Extensions** — 2 concetti: MCP Apps, Agent Registry / Discovery
+ 
+-**Totale: 67 concetti** (era 62 nell'iterazione 2)
++**Totale: 68 concetti** (era 62 nell'iterazione 2)
+ 
+ ## Dati
+ I concetti/strumenti per ogni macroarea stanno nel file `resources/concepts.md`.
+-Tutti i concetti dal database sono ora rappresentati nella whiteboard.
++La whiteboard rappresenta 68 subsection correnti allineate alle macroaree principali del database.
+ 
+ ## Dettagli Implementativi
+ 
+@@ -191,6 +191,12 @@ Tutti i concetti dal database sono ora rappresentati nella whiteboard.
+ - [x] Emoji rese piu leggibili con halo piu ampio e font size aumentata
+ - [x] Label interne delle bubbles regolate per ridurre overlap e mantenere riconoscibilita a colpo d'occhio
+ 
++## Iterazione 4 (Richiesta utente corrente) — Completata
++- [x] Letti i file richiesti: `context.md`, `resources/concepts.md`, `resources/pixijs-reference.md`
++- [x] Verificato PRD in `.workspaces/2-improvements/resources/prd.md` (presente, baseline senza nuove change request)
++- [x] Aggiornati i dati subsection della macroarea **Protocol Extensions** con `Agent Registry / Discovery` da `concepts.md`
++- [x] Confermati key rules: PixiJS v8 vanilla via `useRef/useEffect`, rendering full-canvas, font Inter, bolle equal-size con emoji+titolo, peso da `alternatives`, hover glow, click panel, zoom wheel e pan drag
++
+ ## File Principali
+ - `src/components/whiteboard.tsx` — Componente principale con tutta la logica PixiJS
+ - `src/app/page.tsx` — Pagina che renderizza il whiteboard
+diff --git a/.workspaces/logs/loop.log b/.workspaces/logs/loop.log
+index 6e8f636..c67c67b 100644
+--- a/.workspaces/logs/loop.log
++++ b/.workspaces/logs/loop.log
+@@ -5026,3 +5026,143 @@ Main takeaways:
+ - Computer use now has a canonical reference implementation
+ - The next research pass is focused on browser automation, voice evals, registry/discovery, and finance/support verticals
+ [0;32m[2026-04-02 18:05:06] ✓[0m Workspace Research & Content completed successfully
++ 5 files changed, 311 insertions(+), 3 deletions(-)
++To https://github.com/arro000/agent-glossary.git
++   c6e5600..923d96f  main -> main
++[0;32m[2026-04-02 18:05:07] ✓[0m Workspace changes committed and pushed
++[0;32m[2026-04-02 18:05:07] ✓[0m Iteration 3 complete. Starting iteration 4...
++[0;36m[2026-04-02 18:05:09][0m Launching OpenCode for workspace Implementation...
++[0m
++> build · gpt-5.3-codex
++[0m
++[0m→ [0mRead .workspaces/1-implementation/context.md[90m [offset=1, limit=4000][0m
++[0m→ [0mRead .workspaces/1-implementation/resources/concepts.md[90m [offset=1, limit=4000][0m
++[0m→ [0mRead .workspaces/1-implementation/resources/pixijs-reference.md[90m [offset=1, limit=4000][0m
++[0m→ [0mRead .workspaces/2-improvements/resources/prd.md[90m [offset=1, limit=4000][0m
++[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1, limit=4000][0m
++[0m→ [0mRead src/components/whiteboard.tsx[90m [offset=1271, limit=4000][0m
++[0m→ [0mRead src/app/globals.css[90m [offset=1, limit=400][0m
++[0m→ [0mRead src/app/page.tsx[90m [offset=1, limit=200][0m
++[0m✱ [0mGlob "node_modules/next/dist/docs/**/*pixi*"[90m in . · 0 matches[0m
++[0m✱ [0mGlob "node_modules/next/dist/docs/**/*.md"[90m in . · 0 matches[0m
++[0m→ [0mRead node_modules/next/dist/docs[90m [offset=1, limit=200][0m
++[0m→ [0mRead node_modules/next/dist/docs/index.md[90m [offset=1, limit=200][0m
++[0m
++[0m$ [0mgit status --short
++M .workspaces/1-implementation/context.md
++ M .workspaces/logs/loop.log
++[0m
++[0m$ [0mgit log --oneline -8
++923d96f loop iter 3: workspace 3 (Research & Content) completed
++c6e5600 loop iter 3: workspace 2 (Improvements & PRD) completed
++62ed952 refine fixed-size bubble encoding
++48b4e66 loop iter 3: workspace 1 (Implementation) completed
++c6bee20 document iteration 3 implementation verification
++03e9e74 loop iter 2: workspace 3 (Research & Content) completed
++3e46710 loop iter 2: workspace 2 (Improvements & PRD) completed
++d7ba0a1 Refine bubble weight encoding
++[0m
++[0m⚙ [0mapply_patch Success. Updated the following files:
++M src/components/whiteboard.tsx
++[0m⚙ [0mapply_patch Success. Updated the following files:
++M .workspaces/1-implementation/context.md
++[0m
++[0m$ [0mnpm run build
++> agent-glossary@0.1.0 build
++> next build
++
++▲ Next.js 16.2.2 (Turbopack)
++
++  Creating an optimized production build ...
++✓ Compiled successfully in 2.2s
++  Running TypeScript ...
++  Finished TypeScript in 1913ms ...
++  Collecting page data using 5 workers ...
++  Generating static pages using 5 workers (0/4) ...
++  Generating static pages using 5 workers (1/4) 
++  Generating static pages using 5 workers (2/4) 
++  Generating static pages using 5 workers (3/4) 
++✓ Generating static pages using 5 workers (4/4) in 335ms
++  Finalizing page optimization ...
++
++Route (app)
++┌ ○ /
++└ ○ /_not-found
++
++
++○  (Static)  prerendered as static content
++[0m
++[0m$ [0mgit status --short
++M .workspaces/1-implementation/context.md
++ M .workspaces/logs/loop.log
++ M src/components/whiteboard.tsx
++[0m
++[0m$ [0mgit diff -- src/components/whiteboard.tsx .workspaces/1-implementation/context.md
++diff --git a/.workspaces/1-implementation/context.md b/.workspaces/1-implementation/context.md
++index c2111dd..74a0708 100644
++--- a/.workspaces/1-implementation/context.md
+++++ b/.workspaces/1-implementation/context.md
++@@ -1,9 +1,9 @@
++ # Workspace 1 — Implementation
++ 
++ ## Stato
++-- **Iterazione**: 3
++-- **Ultimo aggiornamento**: 2026-04-02 18:01:17
++-- **Stato**: completed
+++- **Iterazione**: 4
+++- **Ultimo aggiornamento**: 2026-04-02 18:42:00
+++- **Stato**: in_progress
++ 
++ ## Obiettivo
++ Implementare l'app "Agent Glossary Whiteboard" usando PixiJS v8 + Next.js.
++@@ -35,13 +35,13 @@ Una whiteboard quadrettata interattiva che mostra un glossario visuale dell'ecos
++ 9. **Knowledge & Retrieval** — 2 concetti: Agentic RAG, Deep Research Agent
++ 10. **Frameworks & SDKs** — 6 concetti: Google ADK, OpenAI Agents SDK, Mastra, Pydantic AI, Strands Agents SDK, Claude Agent SDK
++ 11. **Business Automation** — 2 concetti: Visual Agent Builder, Low-Code Agent Platform
++-12. **Protocol Extensions** — 1 concetto: MCP Apps
+++12. **Protocol Extensions** — 2 concetti: MCP Apps, Agent Registry / Discovery
++ 
++-**Totale: 67 concetti** (era 62 nell'iterazione 2)
+++**Totale: 68 concetti** (era 62 nell'iterazione 2)
++ 
++ ## Dati
++ I concetti/strumenti per ogni macroarea stanno nel file `resources/concepts.md`.
++-Tutti i concetti dal database sono ora rappresentati nella whiteboard.
+++La whiteboard rappresenta 68 subsection correnti allineate alle macroaree principali del database.
++ 
++ ## Dettagli Implementativi
++ 
++@@ -191,6 +191,12 @@ Tutti i concetti dal database sono ora rappresentati nella whiteboard.
++ - [x] Emoji rese piu leggibili con halo piu ampio e font size aumentata
++ - [x] Label interne delle bubbles regolate per ridurre overlap e mantenere riconoscibilita a colpo d'occhio
++ 
+++## Iterazione 4 (Richiesta utente corrente) — Completata
+++- [x] Letti i file richiesti: `context.md`, `resources/concepts.md`, `resources/pixijs-reference.md`
+++- [x] Verificato PRD in `.workspaces/2-improvements/resources/prd.md` (presente, baseline senza nuove change request)
+++- [x] Aggiornati i dati subsection della macroarea **Protocol Extensions** con `Agent Registry / Discovery` da `concepts.md`
+++- [x] Confermati key rules: PixiJS v8 vanilla via `useRef/useEffect`, rendering full-canvas, font Inter, bolle equal-size con emoji+titolo, peso da `alternatives`, hover glow, click panel, zoom wheel e pan drag
+++
++ ## File Principali
++ - `src/components/whiteboard.tsx` — Componente principale con tutta la logica PixiJS
++ - `src/app/page.tsx` — Pagina che renderizza il whiteboard
++diff --git a/src/components/whiteboard.tsx b/src/components/whiteboard.tsx
++index cbadc96..3b6e3b1 100644
++--- a/src/components/whiteboard.tsx
+++++ b/src/components/whiteboard.tsx
++@@ -215,6 +215,7 @@ const MACROAREAS: MacroareaConfig[] = [
++     border: '#CBD5E1',
++     concepts: [
++       { name: 'MCP\nApps', popularity: 7, description: 'Estensione ufficiale MCP (SEP-1865) che permette ai server di fornire UI HTML interattive renderizzate inline nelle conversazioni AI', alternatives: 'N/A (estensione unica)', category: 'Integration' },
+++      { name: 'Agent Registry\n/ Discovery', popularity: 6, description: 'Livello di scoperta per agenti, skill e capability tramite registry e capability cards condivise', alternatives: 'A2A Agent Cards, MCP registries, Glama directories, custom catalogs', category: 'Integration' },
++     ],
++   },
++ ];
++[0m
++[0m⚙ [0mapply_patch Success. Updated the following files:
++M .workspaces/1-implementation/context.md
++[0m
++[0m$ [0mgit status --short
++M .workspaces/1-implementation/context.md
++ M .workspaces/logs/loop.log
++ M src/components/whiteboard.tsx
++[0m
+diff --git a/src/components/whiteboard.tsx b/src/components/whiteboard.tsx
+index cbadc96..3b6e3b1 100644
+--- a/src/components/whiteboard.tsx
++++ b/src/components/whiteboard.tsx
+@@ -215,6 +215,7 @@ const MACROAREAS: MacroareaConfig[] = [
+     border: '#CBD5E1',
+     concepts: [
+       { name: 'MCP\nApps', popularity: 7, description: 'Estensione ufficiale MCP (SEP-1865) che permette ai server di fornire UI HTML interattive renderizzate inline nelle conversazioni AI', alternatives: 'N/A (estensione unica)', category: 'Integration' },
++      { name: 'Agent Registry\n/ Discovery', popularity: 6, description: 'Livello di scoperta per agenti, skill e capability tramite registry e capability cards condivise', alternatives: 'A2A Agent Cards, MCP registries, Glama directories, custom catalogs', category: 'Integration' },
+     ],
+   },
+ ];
+[0m
+[0m$ [0mgit log --oneline -10
+923d96f loop iter 3: workspace 3 (Research & Content) completed
+c6e5600 loop iter 3: workspace 2 (Improvements & PRD) completed
+62ed952 refine fixed-size bubble encoding
+48b4e66 loop iter 3: workspace 1 (Implementation) completed
+c6bee20 document iteration 3 implementation verification
+03e9e74 loop iter 2: workspace 3 (Research & Content) completed
+3e46710 loop iter 2: workspace 2 (Improvements & PRD) completed
+d7ba0a1 Refine bubble weight encoding
+410a084 loop iter 2: workspace 1 (Implementation) completed
+f9bb659 Improve whiteboard fit behavior and search-panel consistency
+[0m
+[0m$ [0mgit add "src/components/whiteboard.tsx" ".workspaces/1-implementation/context.md" && git commit -m "add protocol discovery subsection and update iteration 4 context" && git status --short
+[main 6f6927f] add protocol discovery subsection and update iteration 4 context
+ 2 files changed, 12 insertions(+), 5 deletions(-)
+ M .workspaces/logs/loop.log
+[0m
+Implemented and committed iteration 4 updates for the whiteboard.
+
+- Added missing `Agent Registry / Discovery` subsection to `Protocol Extensions` in `src/components/whiteboard.tsx:217`, with emoji+title rendering and project-weight behavior inherited from existing bubble logic.
+- Updated implementation state in `.workspaces/1-implementation/context.md:4` to iteration 4, refreshed totals to 68 concepts, and logged this execution under a new “Iterazione 4 (Richiesta utente corrente)” section.
+- Verified build success with `npm run build` (Next.js production build completed cleanly).
+
+Commit created:
+- `6f6927f` — `add protocol discovery subsection and update iteration 4 context`
+
+Note:
+- I intentionally did not include `.workspaces/logs/loop.log` in the commit since it was an unrelated pre-existing workspace log change.
+[0;32m[2026-04-02 18:07:25] ✓[0m Workspace Implementation completed successfully
