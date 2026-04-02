@@ -194,6 +194,7 @@ const MACROAREAS: MacroareaConfig[] = [
       { name: 'Pydantic\nAI', popularity: 8, description: 'Framework Python type-safe dal team Pydantic. Agent generici, validation automatica, 15+ provider, MCP e A2A nativi.', alternatives: 'LangGraph, Google ADK, Strands Agents, Claude Agent SDK', category: 'Framework' },
       { name: 'Strands\nAgents SDK', popularity: 7, description: 'SDK open-source Amazon/AWS. Model-driven: il modello orchestra, lo sviluppatore definisce tools e prompt. Nativo MCP, A2A, Bedrock.', alternatives: 'OpenAI Agents SDK, Claude Agent SDK, Google ADK', category: 'Framework' },
       { name: 'Claude Agent\nSDK', popularity: 9, description: 'SDK Anthropic che espone il motore di Claude Code come libreria. Tools built-in, subagenti, MCP, hooks, sessioni, permessi.', alternatives: 'OpenAI Agents SDK, Google ADK, Pydantic AI', category: 'Framework' },
+      { name: 'Cloudflare\nAgents SDK', popularity: 6, description: 'SDK Cloudflare per agenti distribuiti sulla rete globale Cloudflare, orientato a progetti runnable e composabili.', alternatives: 'Mastra, OpenAI Agents SDK, LangGraph, Cloudflare Workers', category: 'Framework' },
     ],
   },
   {

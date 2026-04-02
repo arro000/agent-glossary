@@ -1,9 +1,9 @@
 # Workspace 1 — Implementation
 
 ## Stato
-- **Iterazione**: 4
-- **Ultimo aggiornamento**: 2026-04-02 18:10:39
-- **Stato**: completed
+- **Iterazione**: 5
+- **Ultimo aggiornamento**: 2026-04-02 18:18:09
+- **Stato**: in_progress
 
 ## Obiettivo
 Implementare l'app "Agent Glossary Whiteboard" usando PixiJS v8 + Next.js.
@@ -33,15 +33,15 @@ Una whiteboard quadrettata interattiva che mostra un glossario visuale dell'ecos
 7. **Observability** — 7 concetti: Logging & Tracing, Observability Platform, Cost Tracking, Evaluation & Benchmarks, Debugging Tools, Safety & Guardrails, Agent Governance
 8. **Infrastructure** — 6 concetti: Docker & Containers, GPU Cloud, Serverless, CI/CD, Git Integration, Environment Management
 9. **Knowledge & Retrieval** — 2 concetti: Agentic RAG, Deep Research Agent
-10. **Frameworks & SDKs** — 6 concetti: Google ADK, OpenAI Agents SDK, Mastra, Pydantic AI, Strands Agents SDK, Claude Agent SDK
+10. **Frameworks & SDKs** — 7 concetti: Google ADK, OpenAI Agents SDK, Mastra, Pydantic AI, Strands Agents SDK, Claude Agent SDK, Cloudflare Agents SDK
 11. **Business Automation** — 2 concetti: Visual Agent Builder, Low-Code Agent Platform
 12. **Protocol Extensions** — 2 concetti: MCP Apps, Agent Registry / Discovery
 
-**Totale: 68 concetti** (era 62 nell'iterazione 2)
+**Totale: 69 concetti** (era 62 nell'iterazione 2)
 
 ## Dati
 I concetti/strumenti per ogni macroarea stanno nel file `resources/concepts.md`.
-La whiteboard rappresenta 68 subsection correnti allineate alle macroaree principali del database.
+La whiteboard rappresenta 69 subsection correnti allineate alle macroaree principali del database.
 
 ## Dettagli Implementativi
 
@@ -201,6 +201,13 @@ La whiteboard rappresenta 68 subsection correnti allineate alle macroaree princi
 - [x] Raffinato il rendering delle subsection bubbles: shell piu leggibile, title plate interno e halo emoji piu netto
 - [x] Reso piu chiaro il project-weight encoding con ring segmentato leggermente piu evidente e badge refs centrato
 - [x] Verifica finale: `npm run build` completata con successo dopo gli ultimi miglioramenti visivi
+
+## Iterazione 5 (Richiesta utente corrente) — Completata
+- [x] Letti i file richiesti: `context.md`, `resources/concepts.md`, `resources/pixijs-reference.md`
+- [x] Verificato PRD in `.workspaces/2-improvements/resources/prd.md` (presente, baseline senza nuove change request)
+- [x] Allineato dataset whiteboard a `concepts.md` aggiungendo `Cloudflare Agents SDK` in **Frameworks & SDKs**
+- [x] Confermati key rules: PixiJS v8 vanilla via `useRef/useEffect`, rendering full-canvas, font Inter, bolle equal-size con emoji+titolo, peso da `alternatives`, hover glow, click panel, zoom wheel e pan drag
+- [x] Totale subsection aggiornato a **69** con conteggi macroarea coerenti al dataset corrente
 
 ## File Principali
 - `src/components/whiteboard.tsx` — Componente principale con tutta la logica PixiJS
