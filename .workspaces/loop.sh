@@ -164,6 +164,8 @@ PROMPT
       cat <<PROMPT
 You are researching the AI agent ecosystem to enrich the Agent Glossary Whiteboard.
 
+Primary source focus: Awesome Agents-style lists and similar curated repositories of useful agent projects. Prioritize concrete repos, tools, SDKs, runtimes, and examples that are useful for the researcher stage.
+
 Read .workspaces/3-research/resources/research-requests.md for what to research.
 Read .workspaces/1-implementation/resources/concepts.md for what's already on the whiteboard.
 Read .workspaces/3-research/resources/findings.md for previous findings.
@@ -240,7 +242,8 @@ run_workspace() {
     else
       git add .workspaces/
       git commit -m "loop iter $iteration: workspace $ws ($ws_name) completed" 2>&1 | tail -1 | tee -a "$LOG_FILE"
-      log_success "Workspace changes committed"
+      git push 2>&1 | tail -20 | tee -a "$LOG_FILE"
+      log_success "Workspace changes committed and pushed"
     fi
 
     return 0
@@ -302,7 +305,8 @@ run_loop() {
     if ! git diff --quiet src/; then
       git add src/
       git commit -m "loop iter $iteration: implementation changes" 2>&1 | tail -1 | tee -a "$LOG_FILE"
-      log_success "Code changes committed"
+      git push 2>&1 | tail -20 | tee -a "$LOG_FILE"
+      log_success "Code changes committed and pushed"
     fi
 
     iteration=$((iteration + 1))
