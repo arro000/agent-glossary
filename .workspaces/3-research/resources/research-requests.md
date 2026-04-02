@@ -55,3 +55,7 @@
 10. **Data-Centric Agent Evaluation** — Framework di valutazione oltre LOCOMO (SWE-bench, Aider polyglot, etc.)
 11. **OpenTelemetry for Agents** — Standard telemetry per l'ecosistema agentico
 12. **Anthropic Computer Use API** — Stato avanzato, use cases, confronto con UI automation tradizionale
+
+## Iterazione 4 - Da esplorare
+13. **PixiJS v8 text rendering per emoji/icon** — Migliori pratiche per mantenere emoji leggibili e crisp a dimensioni piccole
+14. **Visual encoding per nodi a dimensione fissa** — Pattern per rappresentare peso/importanza senza cambiare il diametro delle bolle

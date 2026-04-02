@@ -1,9 +1,9 @@
 # Workspace 2 — Improvements & Implementation
 
 ## Stato
-- **Iterazione**: 4
-- **Ultimo aggiornamento**: 2026-04-02 16:10:05
-- **Stato**: in_progress
+- **Iterazione**: 1
+- **Ultimo aggiornamento**: 2026-04-02 18:42:00
+- **Stato**: completed
 
 ## Obiettivo
 Analizzare l'implementazione corrente, identificare miglioramenti, e IMPLEMENTARLI direttamente sul codice. Le bolle devono restare uguali tra loro, con emoji/icon e peso dato dai progetti/referenze della sotto-sezione. Non scrivere solo PRD — cambia il codice.
@@ -68,6 +68,12 @@ Analizzare l'implementazione corrente, identificare miglioramenti, e IMPLEMENTAR
 - **Zoom controls shadow**: migliorata alpha del background (0.85 → 0.88)
 - **Bubble white alpha**: leggermente aumentata (0.6 → 0.65) per migliorare leggibilità
 - **Bubble inner fill**: ridotto (0.15 → 0.12) per look più pulito
+
+### Iterazione 1 — Aggiornamento Visuale
+- Le subsection bubbles restano **tutte della stessa dimensione** e usano ora un encoding più chiaro del peso progetto
+- Aggiunto un **micro-meter a punti** e badge numerico per rendere il peso leggibile senza alterare il diametro
+- Rafforzata la leggibilità degli emoji con un piccolo halo chiaro dietro l'icona
+- Build di produzione verificata con successo dopo le modifiche
 
 ### Bug Fix
 - Rimossa variabile `minimapViewport` non utilizzata (warning lint)

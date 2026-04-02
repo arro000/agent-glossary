@@ -247,6 +247,10 @@ function getReferenceCount(alternatives: string): number {
     .length;
 }
 
+function getProjectWeightTier(referenceCount: number): number {
+  return Math.max(1, Math.min(5, Math.ceil(referenceCount / 2)));
+}
+
 function layoutBubbles(concepts: ConceptData[], ax: number, ay: number) {
   const n = concepts.length;
   const padX = 30;
@@ -876,6 +880,9 @@ export default function Whiteboard() {
         for (const { concept, x, y, radius } of bubbles) {
           const bx = x - pos.x;
           const by = y - pos.y;
+          const referenceCount = getReferenceCount(concept.alternatives);
+          const weightTier = getProjectWeightTier(referenceCount);
+          const weightRatio = Math.min(1, referenceCount / 8);
 
           const bubbleContainer = new Container();
           bubbleContainer.x = bx;
@@ -893,24 +900,32 @@ export default function Whiteboard() {
 
           const bubble = new Graphics();
           bubble.circle(0, 0, radius);
-          bubble.fill({ color: '#ffffff', alpha: 0.7 });
+          bubble.fill({ color: '#ffffff', alpha: 0.66 + weightRatio * 0.06 });
           bubble.circle(0, 0, radius);
-          bubble.stroke({ color: area.color, width: 1.5, alpha: 0.55 });
+          bubble.stroke({ color: area.color, width: 1.4 + weightRatio * 0.5, alpha: 0.48 + weightRatio * 0.14 });
           bubble.circle(0, 0, radius - 5);
-          bubble.fill({ color: area.border, alpha: 0.11 });
+          bubble.fill({ color: area.border, alpha: 0.08 + weightRatio * 0.07 });
           bubble.eventMode = 'none';
           bubbleContainer.addChild(bubble);
 
           const emoji = getBubbleEmoji(area.name, concept.category);
+          const emojiBack = new Graphics();
+          emojiBack.circle(0, -radius * 0.36, 11.5);
+          emojiBack.fill({ color: '#ffffff', alpha: 0.58 + weightRatio * 0.08 });
+          emojiBack.stroke({ color: area.color, width: 1, alpha: 0.12 + weightRatio * 0.08 });
+          emojiBack.eventMode = 'none';
+          bubbleContainer.addChild(emojiBack);
+
           const emojiText = new Text({
             text: emoji,
             style: new TextStyle({
               fontFamily: '"Inter", sans-serif',
-              fontSize: 18,
+              fontSize: 19,
+              fontWeight: 'bold',
             }),
           });
           emojiText.anchor.set(0.5);
-          emojiText.y = -radius * 0.38;
+          emojiText.y = -radius * 0.36;
           bubbleContainer.addChild(emojiText);
 
           const fontSize = 9;
@@ -928,19 +943,36 @@ export default function Whiteboard() {
             }),
           });
           bText.anchor.set(0.5);
-          bText.y = radius * 0.1;
+          bText.y = radius * 0.12;
           bubbleContainer.addChild(bText);
+
+          const weightStrip = new Graphics();
+          const dotCount = 5;
+          const filledDots = Math.min(dotCount, weightTier);
+          const dotSpacing = 8;
+          const dotRadius = 2.1;
+          const stripStart = -((dotCount - 1) * dotSpacing) / 2;
+          for (let d = 0; d < dotCount; d++) {
+            const xPos = stripStart + d * dotSpacing;
+            weightStrip.circle(xPos, radius * 0.57, dotRadius);
+            weightStrip.fill({
+              color: d < filledDots ? area.color : '#cbd5e1',
+              alpha: d < filledDots ? 0.6 + weightRatio * 0.2 : 0.38,
+            });
+          }
+          weightStrip.eventMode = 'none';
+          bubbleContainer.addChild(weightStrip);
 
           const badge = new Container();
           badge.x = radius * 0.48;
           badge.y = radius * 0.5;
           const badgeBg = new Graphics();
           badgeBg.circle(0, 0, 11);
-          badgeBg.fill({ color: area.color, alpha: 0.16 });
-          badgeBg.stroke({ color: area.color, width: 1, alpha: 0.35 });
+          badgeBg.fill({ color: area.color, alpha: 0.18 + weightRatio * 0.12 });
+          badgeBg.stroke({ color: area.color, width: 1, alpha: 0.32 + weightRatio * 0.12 });
           badge.addChild(badgeBg);
           const badgeTxt = new Text({
-            text: `${getReferenceCount(concept.alternatives)}`,
+            text: `${referenceCount}`,
             style: new TextStyle({
               fontFamily: '"Inter", sans-serif',
               fontSize: 10,
