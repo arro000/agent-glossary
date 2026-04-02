@@ -430,6 +430,12 @@
 - **alternatives**: GPT Researcher, STORM, Tongyi DeepResearch, DeepSearcher
 - **category**: Pattern
 
+### Context Graph
+- **popularity**: 8
+- **description**: Grafo temporale di entità, relazioni, episodi e provenance che permette agli agenti di recuperare contesto evolutivo invece di comprimere soltanto la chat history. Il grafico mantiene validità temporale e supporta query ibride su semantica, keyword e struttura.
+- **alternatives**: Graphiti, Zep, GraphRAG, temporal knowledge graph
+- **category**: Navigation
+
 ### Reference Navigation
 - **popularity**: 8
 - **description**: Esplorazione dei riferimenti già visti: recupero semantico, pinning, citazioni, summary incrementali e navigazione tra fonti correlate invece della sola compressione del contesto

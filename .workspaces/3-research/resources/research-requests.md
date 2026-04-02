@@ -230,3 +230,16 @@
 
 ### Esplorazione
 5. **Prompt caching and context assembly** — how outer-loop harnesses combine dynamic prompt assembly, cached static blocks, and reference reinjection without drift.
+
+## Iterazione 20 — Nuove Richieste
+
+### Priorità Alta
+1. **Hook / policy layer comparison** — Claude Code hooks, OpenAI Agents SDK guardrails, LangGraph middleware, Strands steering hooks, and Mastra lifecycle hooks: which ones are actually reusable and shareable?
+2. **Context graph / reference navigation stack** — Context7, Sourcegraph, Aider repo maps, Graphiti, and Zep: how do retrieval, ranking, pinning, and provenance differ in practice?
+
+### Priorità Media
+3. **Eval harness interoperability** — promptfoo, Inspect AI, OpenAI Evals, and LangSmith: dataset formats, scoring models, CI ergonomics, and import/export paths.
+4. **Trace replay UX** — AgentOps, Langfuse, Phoenix, and OpenLIT: which debugging views actually help root-cause long-horizon failures?
+
+### Esplorazione
+5. **Prompt assembly and caching** — how harnesses combine static system blocks, dynamic instructions, and cached context without drift or duplication.

@@ -1,8 +1,8 @@
 # Workspace 3 — Research & Content Discovery
 
 ## Stato
-- **Iterazione**: 19
-- **Ultimo aggiornamento**: 2026-04-02 21:34:27
+- **Iterazione**: 20
+- **Ultimo aggiornamento**: 2026-04-02 22:05:00
 - **Stato**: completed
 
 ## Risultati Iterazione 1
@@ -307,3 +307,19 @@ La passata attuale ha coperto la capa di curated repositories e discovery, con f
 - Compare Temporal against LangGraph checkpointing and OpenAI Agents sessions for resume semantics.
 - Compare Sourcegraph against repo maps, Context7, Graphiti, and Zep for code-aware navigation and ranking.
 - Tighten the eval harness comparison around dataset shape, scoring, and CI ergonomics.
+
+## Aggiornamento Corrente - Iterazione 20
+
+### Cosa è stato aggiornato
+- Concepts: aggiunto `Context Graph` come concetto concreto e riusabile per retrieval con provenance e temporal validity.
+- Research requests: nuova Iterazione 20 su hook/policy layers, context graph stack, eval harness interoperability, trace replay UX e prompt caching.
+
+### Segnali attuali
+1. The harness layer is now best modeled as policy, replay, eval, and prompt assembly primitives rather than a single runtime.
+2. Reference navigation is converging on three surfaces: docs context (Context7), code intelligence (Sourcegraph/Aider), and temporal memory graphs (Graphiti/Zep).
+3. The next useful comparison work is about data models and ergonomics, not just feature lists.
+
+### Next Focus
+- Compare hook systems and guardrail layers across the major agent stacks.
+- Compare retrieval/ranking primitives across Context7, Sourcegraph, Aider, Graphiti, and Zep.
+- Compare eval harness data models and replay UIs for CI-friendly regression loops.
