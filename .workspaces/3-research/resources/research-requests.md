@@ -195,3 +195,12 @@
 
 ### Esplorazione
 5. **Outer-loop harness optimization** — Meta-Harness, prompt mutation, and eval-driven harness tuning for the Pareto frontier of quality vs cost.
+
+## Iterazione 17 — Nuove Richieste
+
+### Priorità Alta
+1. **Coding agent landscape** — Cursor, Gemini CLI, Claude Code, Codex CLI, Cline, Copilot and Aider: which runtime/harness/navigation patterns are actually reusable in the glossary taxonomy?
+2. **Searchable reference metadata** — what minimal metadata should be kept on every concept to make search, tooltip, and selection state fast without bloating the canvas model?
+
+### Priorità Media
+3. **Persistent selection feedback** — visual patterns for keeping a clicked node emphasized while a detail panel is open, without adding duplicate UI chrome.

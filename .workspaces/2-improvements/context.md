@@ -2,7 +2,7 @@
 
 ## Stato
 - **Iterazione**: 1
-- **Ultimo aggiornamento**: 2026-04-02 19:54:53
+- **Ultimo aggiornamento**: 2026-04-02 21:23:55
 - **Stato**: completed
 
 ## Obiettivo
@@ -12,11 +12,10 @@ Analizzare l'implementazione corrente, identificare miglioramenti, e IMPLEMENTAR
 - Setup iniziale PixiJS con griglia, macroaree, bolle, zoom/pan
 
 ## Iterazione 1 (Questa esecuzione) — Completata
-- Bubble packing reso piu bilanciato con colonne adaptive e righe meglio centrate
-- Emoji e titoli delle bolle resi piu leggibili con font fallback dedicato e label dinamiche
-- Encoding del project weight rafforzato con meter a punti, badge numerico e tooltip con refs
-- Cleanup del listener scroll della legend collegato al teardown del canvas
-- Build di produzione verificata con successo (`npm run build`)
+- Bubble metadata derivati cache-ati per search, tooltip e panel (display label, refs, search index)
+- Bubble cliccata mantenuta evidenziata finche il panel resta aperto, senza cambiare il diametro
+- Search e apertura panel allineate alla stessa stringa indicizzata per ridurre work ripetuto
+- PRD aggiornato con i nuovi vincoli e build di produzione verificata con successo (`npm run build`)
 
 ## Iterazione 2 — Completata
 - **16 nuovi concetti aggiunti** (da 48 a 62 totali)

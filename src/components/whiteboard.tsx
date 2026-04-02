@@ -476,8 +476,14 @@ interface BubbleState {
   baseAlpha: number;
   concept: ConceptData;
   macroarea: MacroareaConfig;
+  areaIndex: number;
+  referenceCount: number;
+  searchIndex: string;
+  displayLabel: string;
+  emoji: string;
   introIndex: number;
   searchHighlight: boolean;
+  selected: boolean;
 }
 
 interface BubbleTypography {
@@ -1099,6 +1105,7 @@ export default function Whiteboard() {
       const bubbleStates: BubbleState[] = [];
       const macroareaContainers: Container[] = [];
       const introStart = Date.now();
+      let selectedBubble: BubbleState | null = null;
 
       for (let i = 0; i < MACROAREAS.length; i++) {
         const area = MACROAREAS[i];
@@ -1173,6 +1180,9 @@ export default function Whiteboard() {
           const bx = x - pos.x;
           const by = y - pos.y;
           const referenceCount = getReferenceCount(concept.alternatives);
+          const displayLabel = getBubbleLabel(concept.name);
+          const emoji = getBubbleEmoji(area.name, concept.category);
+          const searchIndex = buildSearchHaystack(concept, area.name);
 
           const bubbleContainer = new Container();
           bubbleContainer.x = bx;
@@ -1207,7 +1217,6 @@ export default function Whiteboard() {
           bubbleContainer.addChild(bubble);
 
           const bubbleTypography = getBubbleTypography(concept.name, radius);
-          const emoji = getBubbleEmoji(area.name, concept.category);
 
           const titlePlate = new Graphics();
           titlePlate.roundRect(-radius * 0.72, radius * 0.005, radius * 1.44, radius * 0.58, 15);
@@ -1236,7 +1245,7 @@ export default function Whiteboard() {
           bubbleContainer.addChild(emojiText);
 
           const bText = new Text({
-            text: getBubbleLabel(concept.name),
+            text: displayLabel,
             style: new TextStyle({
               fontFamily: '"Inter", sans-serif',
               fontSize: bubbleTypography.titleFontSize,
@@ -1284,24 +1293,43 @@ export default function Whiteboard() {
             baseAlpha: 1,
             concept,
             macroarea: area,
+            areaIndex: i,
+            referenceCount,
+            searchIndex,
+            displayLabel,
+            emoji,
             introIndex: 0,
             searchHighlight: false,
+            selected: false,
+          };
+
+          const refreshGlow = (mode: 'idle' | 'hover' | 'selected') => {
+            glow.clear();
+            if (mode === 'hover') {
+              glow.circle(0, 0, radius + 14);
+              glow.fill({ color: area.color, alpha: 0.08 });
+              glow.circle(0, 0, radius + 7);
+              glow.fill({ color: area.color, alpha: 0.15 });
+              return;
+            }
+            if (mode === 'selected') {
+              glow.circle(0, 0, radius + 15);
+              glow.fill({ color: area.color, alpha: 0.07 });
+              glow.circle(0, 0, radius + 8);
+              glow.fill({ color: area.color, alpha: 0.12 });
+            }
           };
 
           bubbleContainer.on('pointerover', (e) => {
             state.targetScale = 1.06;
             state.weightRing.alpha = 1;
-            glow.clear();
-            glow.circle(0, 0, radius + 14);
-            glow.fill({ color: area.color, alpha: 0.08 });
-            glow.circle(0, 0, radius + 7);
-            glow.fill({ color: area.color, alpha: 0.15 });
-            showTooltip(`${emoji} ${concept.name}`, concept.category, referenceCount, e.globalX, e.globalY);
+            refreshGlow('hover');
+            showTooltip(`${emoji} ${displayLabel}`, concept.category, referenceCount, e.globalX, e.globalY);
           });
           bubbleContainer.on('pointerout', () => {
             state.targetScale = 1;
             state.weightRing.alpha = 0.92;
-            glow.clear();
+            refreshGlow(state.selected ? 'selected' : 'idle');
             hideTooltip();
           });
 
@@ -1546,13 +1574,12 @@ export default function Whiteboard() {
         const areaMatchFlags = new Array(MACROAREAS.length).fill(false);
 
         for (const s of bubbleStates) {
-          const matched = buildSearchHaystack(s.concept, s.macroarea.name).includes(q);
+          const matched = s.searchIndex.includes(q);
           if (matched) {
             s.baseAlpha = 1;
             s.searchHighlight = true;
             matchCount++;
-            const areaIdx = MACROAREAS.indexOf(s.macroarea);
-            if (areaIdx >= 0) areaMatchFlags[areaIdx] = true;
+            areaMatchFlags[s.areaIndex] = true;
           } else {
             s.baseAlpha = 0.12;
             s.searchHighlight = false;
@@ -1587,6 +1614,10 @@ export default function Whiteboard() {
             introT = Math.min(1, Math.max(0, (introElapsed - bubbleDelay) / 400));
           }
 
+          if (s.selected && panel) {
+            s.targetScale = Math.max(s.targetScale, 1.04);
+          }
+
           if (Math.abs(s.currentScale - s.targetScale) > 0.001) {
             s.currentScale += (s.targetScale - s.currentScale) * 0.18;
           }
@@ -1603,6 +1634,13 @@ export default function Whiteboard() {
             s.glow.fill({ color: '#fbbf24', alpha: 0.15 });
             s.glow.circle(0, 0, BUBBLE_RADIUS + 4);
             s.glow.fill({ color: '#fbbf24', alpha: 0.1 });
+            s.weightRing.alpha = 1;
+          } else if (s.selected && panel) {
+            s.glow.clear();
+            s.glow.circle(0, 0, BUBBLE_RADIUS + 12);
+            s.glow.fill({ color: s.macroarea.color, alpha: 0.08 });
+            s.glow.circle(0, 0, BUBBLE_RADIUS + 5);
+            s.glow.fill({ color: s.macroarea.color, alpha: 0.14 });
             s.weightRing.alpha = 1;
           } else {
             s.weightRing.alpha += (0.92 - s.weightRing.alpha) * 0.18;
@@ -1822,17 +1860,26 @@ export default function Whiteboard() {
         if (!panel || panelFadeDir === -1) return;
         panelFadeDir = -1;
         hideTooltip();
+        if (selectedBubble) {
+          selectedBubble.selected = false;
+          selectedBubble.targetScale = 1;
+          selectedBubble = null;
+        }
       }
 
-      function openPanel(data: { concept: ConceptData; macroarea: MacroareaConfig }) {
+      function openPanel(state: BubbleState) {
         const loweredQuery = searchQuery.toLowerCase().trim();
-        const searchable = buildSearchHaystack(data.concept, data.macroarea.name);
-        if (searchable.includes(loweredQuery) || !loweredQuery) {
+        if (state.searchIndex.includes(loweredQuery) || !loweredQuery) {
           // ok to open
         } else {
           return;
         }
         hideTooltip();
+        if (selectedBubble && selectedBubble !== state) {
+          selectedBubble.selected = false;
+        }
+        selectedBubble = state;
+        state.selected = true;
         if (panel) {
           app.stage.removeChild(panel);
           panel.destroy({ children: true });
@@ -1882,7 +1929,7 @@ export default function Whiteboard() {
 
         const accentBar = new Graphics();
         accentBar.roundRect(0, 0, pw, 5, isSheet ? 20 : 16);
-        accentBar.fill({ color: data.macroarea.color, alpha: 0.8 });
+        accentBar.fill({ color: state.macroarea.color, alpha: 0.8 });
         accentBar.eventMode = 'none';
         card.addChild(accentBar);
 
@@ -1929,7 +1976,7 @@ export default function Whiteboard() {
         let cy = pad + (isSheet ? 8 : 6);
 
         const title = new Text({
-          text: data.concept.name.replace(/\n/g, ' '),
+          text: state.displayLabel,
           style: new TextStyle({
             fontFamily: '"Inter", sans-serif',
             fontSize: isSheet ? 16 : 18,
@@ -1945,17 +1992,17 @@ export default function Whiteboard() {
         cy += 28;
 
         const badgeTxt = new Text({
-          text: data.macroarea.name,
+          text: state.macroarea.name,
           style: new TextStyle({
             fontFamily: '"Inter", sans-serif',
             fontSize: 11,
             fontWeight: 'bold',
-            fill: data.macroarea.color,
+            fill: state.macroarea.color,
           }),
         });
         const badgeBgGfx = new Graphics();
         badgeBgGfx.roundRect(pad - 4, cy - 3, badgeTxt.width + 10, badgeTxt.height + 6, 5);
-        badgeBgGfx.fill({ color: data.macroarea.color, alpha: 0.1 });
+        badgeBgGfx.fill({ color: state.macroarea.color, alpha: 0.1 });
         badgeBgGfx.eventMode = 'none';
         card.addChild(badgeBgGfx);
         badgeTxt.x = pad + 1;
@@ -1964,7 +2011,7 @@ export default function Whiteboard() {
         cy += 26;
 
         const desc = new Text({
-          text: data.concept.description,
+          text: state.concept.description,
           style: new TextStyle({
             fontFamily: '"Inter", sans-serif',
             fontSize: isSheet ? 12 : 13,
@@ -1994,12 +2041,12 @@ export default function Whiteboard() {
         card.addChild(popLbl);
 
         const popVal = new Text({
-          text: `${getReferenceCount(data.concept.alternatives)} refs`,
+          text: `${state.referenceCount} refs`,
           style: new TextStyle({
             fontFamily: '"Inter", sans-serif',
             fontSize: 11,
             fontWeight: 'bold',
-            fill: data.macroarea.color,
+            fill: state.macroarea.color,
           }),
         });
         popVal.anchor.set(1, 0);
@@ -2016,18 +2063,18 @@ export default function Whiteboard() {
         barBgGfx.eventMode = 'none';
         card.addChild(barBgGfx);
 
-        const referenceCount = getReferenceCount(data.concept.alternatives);
+        const referenceCount = state.referenceCount;
         const maxReferenceCount = 8;
         const fillW = Math.max(barH, (Math.min(referenceCount, maxReferenceCount) / maxReferenceCount) * barW);
         const barFill = new Graphics();
         barFill.roundRect(pad, cy, fillW, barH, 3);
-        barFill.fill({ color: data.macroarea.color, alpha: 0.65 });
+        barFill.fill({ color: state.macroarea.color, alpha: 0.65 });
         barFill.eventMode = 'none';
         card.addChild(barFill);
         cy += barH + 16;
 
         const catTxt = new Text({
-          text: `Category: ${data.concept.category}`,
+          text: `Category: ${state.concept.category}`,
           style: new TextStyle({
             fontFamily: '"Inter", sans-serif',
             fontSize: 12,
@@ -2055,7 +2102,7 @@ export default function Whiteboard() {
         cy += 18;
 
         const altTxt = new Text({
-          text: data.concept.alternatives,
+          text: state.concept.alternatives,
           style: new TextStyle({
             fontFamily: '"Inter", sans-serif',
             fontSize: 12,
@@ -2077,7 +2124,7 @@ export default function Whiteboard() {
       for (const s of bubbleStates) {
         s.container.on('pointerdown', (e) => {
           e.stopPropagation();
-          openPanel({ concept: s.concept, macroarea: s.macroarea });
+          openPanel(s);
         });
       }
 
