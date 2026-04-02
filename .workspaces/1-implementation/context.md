@@ -1,8 +1,8 @@
 # Workspace 1 — Implementation
 
 ## Stato
-- **Iterazione**: 1
-- **Ultimo aggiornamento**: 2026-04-02 18:12:00
+- **Iterazione**: 2
+- **Ultimo aggiornamento**: 2026-04-02 18:07:00
 - **Stato**: completed
 
 ## Obiettivo
@@ -56,17 +56,18 @@ Tutti i concetti dal database sono ora rappresentati nella whiteboard.
 - Zoom/pan attivi
 
 ### Macroaree
-- Rettangoli 720x460px con bordo pastelle e angoli arrotondati (12px)
+- Rettangoli 720x460px con bordo tratteggiato pastello e angoli arrotondati (12px)
 - Etichetta macroarea + contatore concetti in alto a sinistra
 - Sfondo semi-trasparente (alpha 0.55)
 - Layout: griglia 3x4 con gap 80px orizzontale, 60px verticale
 - Ombra sottile per profondità
 
 ### Bolle
-- Cerchi con raggio proporzionale alla popolarità (min 24px per pop 6, max 62px per pop 10)
-- **Adaptive scaling**: per macroaree dense (es. Orchestration con 16 items), le bolle vengono scalate per adattarsi allo spazio disponibile
+- Cerchi equal-size (raggio fisso) in tutte le macroaree
 - Layout automatico: 4-6 colonne a seconda del numero di concetti
 - Colore pastelle sfumato della macroarea genitore
+- Ogni bolla mostra emoji/icona + titolo subsection
+- Peso visuale basato sul numero di riferimenti/progetti (`alternatives`), non sulla dimensione della bolla
 - Hover: glow a due livelli + scale 1.06x (animazione smooth con lerp 0.18)
 - Click: apre detail panel con fade-in
 
@@ -147,6 +148,14 @@ Tutti i concetti dal database sono ora rappresentati nella whiteboard.
 - [x] Confermato peso delle bolle basato su numero di riferimenti/progetti (`alternatives`)
 - [x] Corretto hit area delle bolle per interazioni pointer precise (`Circle(0, 0, radius)`)
 - [x] Migliorato layout controlli zoom evitando overlap tra pulsanti (+, -, fit)
+
+## Iterazione 2 (Questa esecuzione) — Completata
+- [x] Verificato PRD in `.workspaces/2-improvements/resources/prd.md` (baseline iteration)
+- [x] Migliorato visual macroaree con bordo tratteggiato in PixiJS (coerente con whiteboard style)
+- [x] Aggiunte emoji anche alle intestazioni macroarea per orientamento piu rapido
+- [x] Confermati vincoli chiave: bolle equal-size, peso da riferimenti, hover glow, panel click, zoom wheel, pan drag
+- [x] Build produzione eseguita con successo
+- [x] `npm run lint` ancora bloccato da errori preesistenti in file generati `.netlify/**` (fuori scope app)
 
 ## File Principali
 - `src/components/whiteboard.tsx` — Componente principale con tutta la logica PixiJS

@@ -237,6 +237,23 @@ function getBubbleEmoji(areaName: string, category: string): string {
   return '•';
 }
 
+function getMacroareaEmoji(areaName: string): string {
+  const key = areaName.toLowerCase();
+  if (key.includes('memory')) return '🧠';
+  if (key.includes('tools') || key.includes('actions')) return '🛠️';
+  if (key.includes('prompt')) return '✍️';
+  if (key.includes('orchestr')) return '🧭';
+  if (key.includes('inference') || key.includes('models')) return '🤖';
+  if (key.includes('skills') || key.includes('plugins')) return '🧩';
+  if (key.includes('observability')) return '👀';
+  if (key.includes('infrastructure')) return '🏗️';
+  if (key.includes('knowledge') || key.includes('retrieval')) return '📚';
+  if (key.includes('frameworks')) return '⚙️';
+  if (key.includes('business')) return '🚀';
+  if (key.includes('protocol')) return '🔌';
+  return '•';
+}
+
 function getReferenceCount(alternatives: string): number {
   const cleaned = alternatives.trim();
   if (!cleaned || cleaned.toLowerCase() === 'n/a') return 1;
@@ -334,6 +351,90 @@ function redrawGrid(
     grid.lineTo(maxX, y);
   }
   grid.stroke({ color: GRID_COLOR, width: 0.5 / s });
+}
+
+function drawDashedRoundedRect(
+  graphics: Graphics,
+  x: number,
+  y: number,
+  width: number,
+  height: number,
+  radius: number,
+  dashLength: number,
+  gapLength: number,
+) {
+  const top = width - radius * 2;
+  const right = height - radius * 2;
+  const bottom = top;
+  const left = right;
+  const quarterArc = (Math.PI * radius) / 2;
+  const perimeter = top + right + bottom + left + quarterArc * 4;
+  const step = dashLength + gapLength;
+  const segments = Math.max(1, Math.floor(perimeter / step));
+
+  const pointAt = (distance: number) => {
+    let d = ((distance % perimeter) + perimeter) % perimeter;
+    const x0 = x;
+    const y0 = y;
+
+    if (d <= top) return { x: x0 + radius + d, y: y0 };
+    d -= top;
+
+    if (d <= quarterArc) {
+      const t = d / quarterArc;
+      const a = -Math.PI / 2 + t * (Math.PI / 2);
+      return {
+        x: x0 + width - radius + Math.cos(a) * radius,
+        y: y0 + radius + Math.sin(a) * radius,
+      };
+    }
+    d -= quarterArc;
+
+    if (d <= right) return { x: x0 + width, y: y0 + radius + d };
+    d -= right;
+
+    if (d <= quarterArc) {
+      const t = d / quarterArc;
+      const a = t * (Math.PI / 2);
+      return {
+        x: x0 + width - radius + Math.cos(a) * radius,
+        y: y0 + height - radius + Math.sin(a) * radius,
+      };
+    }
+    d -= quarterArc;
+
+    if (d <= bottom) return { x: x0 + width - radius - d, y: y0 + height };
+    d -= bottom;
+
+    if (d <= quarterArc) {
+      const t = d / quarterArc;
+      const a = Math.PI / 2 + t * (Math.PI / 2);
+      return {
+        x: x0 + radius + Math.cos(a) * radius,
+        y: y0 + height - radius + Math.sin(a) * radius,
+      };
+    }
+    d -= quarterArc;
+
+    if (d <= left) return { x: x0, y: y0 + height - radius - d };
+    d -= left;
+
+    const t = Math.min(1, d / quarterArc);
+    const a = Math.PI + t * (Math.PI / 2);
+    return {
+      x: x0 + radius + Math.cos(a) * radius,
+      y: y0 + radius + Math.sin(a) * radius,
+    };
+  };
+
+  for (let i = 0; i < segments; i++) {
+    const start = i * step;
+    const end = Math.min(start + dashLength, perimeter);
+    const p1 = pointAt(start);
+    const p2 = pointAt(end);
+    graphics.moveTo(p1.x, p1.y);
+    graphics.lineTo(p2.x, p2.y);
+  }
 }
 
 function createMinimap(
@@ -844,9 +945,26 @@ export default function Whiteboard() {
         const bgGfx = new Graphics();
         bgGfx.roundRect(0, 0, AREA_WIDTH, AREA_HEIGHT, 12);
         bgGfx.fill({ color: area.bg, alpha: 0.55 });
-        bgGfx.stroke({ color: area.border, width: 1.5 });
         bgGfx.eventMode = 'none';
         areaContainer.addChild(bgGfx);
+
+        const borderGfx = new Graphics();
+        drawDashedRoundedRect(borderGfx, 0, 0, AREA_WIDTH, AREA_HEIGHT, 12, 13, 9);
+        borderGfx.stroke({ color: area.border, width: 1.6, alpha: 0.9 });
+        borderGfx.eventMode = 'none';
+        areaContainer.addChild(borderGfx);
+
+        const areaEmoji = new Text({
+          text: getMacroareaEmoji(area.name),
+          style: new TextStyle({
+            fontFamily: '"Inter", sans-serif',
+            fontSize: 15,
+          }),
+        });
+        areaEmoji.x = 18;
+        areaEmoji.y = 9;
+        areaEmoji.eventMode = 'none';
+        areaContainer.addChild(areaEmoji);
 
         const label = new Text({
           text: area.name,
@@ -858,7 +976,7 @@ export default function Whiteboard() {
             letterSpacing: 0.5,
           }),
         });
-        label.x = 18;
+        label.x = 42;
         label.y = 10;
         areaContainer.addChild(label);
 
@@ -871,7 +989,7 @@ export default function Whiteboard() {
           }),
         });
         conceptCount.alpha = 0.6;
-        conceptCount.x = 18;
+        conceptCount.x = 42;
         conceptCount.y = 30;
         areaContainer.addChild(conceptCount);
 
